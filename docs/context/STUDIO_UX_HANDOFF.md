@@ -41,14 +41,18 @@
 | Evolução · Evolution | `STUDIO_UX_ROADMAP.md` (fases 1.5/1.6), `research/REFERENCES.md` | ✅ |
 | **Plataforma (Épico 1) · Platform (Epic 1)** | `platform/STUDIO_UX_PLATFORM.md`, `platform/STUDIO_UX_ARCHITECTURE.md`, `platform/STUDIO_UX_RUNTIME.md`, `platform/STUDIO_UX_PACKAGES.md`, `platform/STUDIO_UX_ROADMAP_2035.md` | ✅ |
 | **Governança da plataforma (Épico 1) · Platform governance (Epic 1)** | `governance/STUDIO_UX_CONSTITUTION.md`, `governance/STUDIO_UX_VERSIONING.md`, `governance/STUDIO_UX_ADR_GUIDE.md`, `governance/STUDIO_UX_RFC_GUIDE.md` | ✅ |
+| **Ferramentas (Épico 2) · Tools (Epic 2)** | `tools/STUDIO_UX_CLI.md`, `tools/STUDIO_UX_DEVTOOLS.md`, `tools/STUDIO_UX_PLAYGROUND.md` | ✅ |
+| **Qualidade (Épico 3) · Quality (Epic 3)** | `quality/STUDIO_UX_LINTER.md`, `quality/STUDIO_UX_COMPLIANCE.md`, `STUDIO_UX_CERTIFICATION.md` (tela+sistema/Enterprise) | ✅ |
+| **Geração (Épico 4) · Generation (Epic 4)** | `generation/STUDIO_UX_PROJECT_GENERATOR.md`, `generation/STUDIO_UX_EXPORTERS.md` | ✅ |
+| **Ecossistema de IA (Épico 5) · AI Ecosystem (Epic 5)** | `context/STUDIO_UX_AI_ECOSYSTEM.md` | ✅ |
 
 ---
 
 ## 🎯 O que vem agora · What comes next
 
-**PT** — Fases 1 e 1.5 concluídas. **Camada de plataforma em andamento por épicos** (decisão do Robson): Épico 1 (Plataforma & Governança) **concluído** — 9 documentos em `platform/` e `governance/`. Próximos épicos: **2 Ferramentas** (CLI, DevTools, Playground), **3 Qualidade** (Linter, Compliance, Certification — este último expandido para tela+sistema), **4 Geração** (Project Generator, Exporters), **5 Ecossistema de IA** (AI Ecosystem). Cada épico é revisado/aprovado antes do próximo. Em paralelo, seguem pendentes a **Fase 1.6 (UI Exploration)** e a **Fase 2 (tokens)** do design system — `research/ui-exploration/` já tem guia e aguarda o "vai".
+**PT** — Fases 1 e 1.5 concluídas. **Camada de plataforma documental COMPLETA** — os cinco épicos (Plataforma & Governança, Ferramentas, Qualidade, Geração, Ecossistema de IA) foram entregues. Os Épicos 2–5 saíram numa única leva (decisão do Robson: sem código para deploy, o portão por épico perde a razão). **O que resta é a fundação do design system e a implementação:** **Fase 1.6 (UI Exploration)** — produzir os estudos visuais em `research/ui-exploration/` para validar a linguagem —, depois **Fase 2 (materialização dos tokens)**, onde o **código** começa. **Uma frente por vez, com validação humana.**
 
-**EN** — Phases 1 and 1.5 complete. **Platform layer in progress, epic by epic** (Robson's decision): Epic 1 (Platform & Governance) **done** — 9 documents in `platform/` and `governance/`. Next epics: **2 Tools**, **3 Quality** (Certification expanded to screen+system), **4 Generation**, **5 AI Ecosystem**. Each epic is reviewed/approved before the next. In parallel, **Phase 1.6 (UI Exploration)** and **Phase 2 (tokens)** of the design system remain pending — `research/ui-exploration/` has a guide and awaits the go-ahead.
+**EN** — Phases 1 and 1.5 complete. **Platform documentation layer COMPLETE** — all five epics (Platform & Governance, Tools, Quality, Generation, AI Ecosystem) delivered. Epics 2–5 shipped in a single batch (Robson's decision: no code to deploy, so the per-epic gate loses its point). **What remains is the design-system foundation and implementation:** **Phase 1.6 (UI Exploration)** — produce the visual studies in `research/ui-exploration/` to validate the language —, then **Phase 2 (materializing the tokens)**, where **code** begins. **One front at a time, with human validation.**
 
 ---
 

@@ -1,15 +1,18 @@
-# STUDIO_UX_CERTIFICATION.md — Certificação de Tela · Screen Certification
+# STUDIO_UX_CERTIFICATION.md — Certificação · Certification
 
-> Documento normativo vivo. Responde a: **como uma tela feita com Studio UX é auditada de forma objetiva e recebe uma nota e um nível reproduzíveis?**
-> Living normative document. Answers: **how is a screen built with Studio UX audited objectively and given a reproducible score and level?**
-> Governança: `STUDIO_UX.md`. Critérios de origem: `STUDIO_UX_PRINCIPLES.md` (P1–P25). Checklists de origem: `docs/context/STUDIO_UX_AI_CONTEXT.md` §3 e `STUDIO_UX_ACCESSIBILITY.md` §11. Definição de Pronto: `STUDIO_UX.md` §8.
+> Documento normativo vivo. Responde a: **como uma tela E um sistema feitos com Studio UX são auditados de forma objetiva e recebem uma nota e um nível reproduzíveis?**
+> Living normative document. Answers: **how are a screen AND a system built with Studio UX audited objectively and given a reproducible score and level?**
+> Governança: `STUDIO_UX.md`. Critérios de origem: `STUDIO_UX_PRINCIPLES.md` (P1–P25). Checklists de origem: `docs/context/STUDIO_UX_AI_CONTEXT.md` §3 e `STUDIO_UX_ACCESSIBILITY.md` §11. Definição de Pronto: `STUDIO_UX.md` §8. Medição contínua: `docs/quality/STUDIO_UX_COMPLIANCE.md`.
+
+> **PT — Dois escopos, um dono.** Este documento certifica em **dois escopos**: a **tela** (Bronze→Platinum, §§0–7) e o **sistema inteiro** (Bronze→Enterprise, §8). É o dono único do domínio "certificação" (SSOT) — não existe documento separado de certificação de sistema.
+> **EN — Two scopes, one owner.** This document certifies at **two scopes**: the **screen** (Bronze→Platinum, §§0–7) and the **whole system** (Bronze→Enterprise, §8). It is the single owner of the "certification" domain (SSOT) — there is no separate system-certification document.
 
 ```
 Architecture Boundary Check — STUDIO_UX_CERTIFICATION
-Resolve · Solves:            o método oficial para auditar uma tela pronta e atribuir nota + nível
-                             (Bronze/Silver/Gold/Platinum) de forma objetiva e reproduzível.
-                             / the official method to audit a finished screen and assign a score + level
-                             (Bronze/Silver/Gold/Platinum) objectively and reproducibly.
+Resolve · Solves:            o método oficial para auditar (a) uma TELA pronta — nível Bronze/Silver/Gold/Platinum —
+                             e (b) um SISTEMA inteiro — Bronze→Enterprise — de forma objetiva e reproduzível.
+                             / the official method to audit (a) a finished SCREEN — Bronze/Silver/Gold/Platinum —
+                             and (b) a whole SYSTEM — Bronze→Enterprise — objectively and reproducibly.
 Não pertence a outro porque · Not elsewhere because:
                              PRINCIPLES define as regras (o que é certo); ACCESSIBILITY e AI_CONTEXT trazem
                              checklists de construção; faltava o instrumento de MEDIÇÃO pós-fato — auditar,
@@ -202,6 +205,43 @@ Dono · Owner:                este doc, para o domínio "certificação / audito
 **PT** — O laudo mínimo registra: produto (Desktop/Mobile), nível atribuído, cada item reprovado com o P# citado e a evidência, e — se Platinum — a confirmação das duas telas irmãs. É a mesma tela para todos, sempre.
 
 **EN** — The minimal report records: product (Desktop/Mobile), assigned level, each failed item with its cited P# and evidence, and — if Platinum — confirmation of both sibling screens. It is the same screen for everyone, always.
+
+---
+
+## 8. Certificação de sistema · System certification — Bronze · Silver · Gold · Platinum · Enterprise
+
+**PT** — Certificar uma **tela** (§§0–7) responde "esta tela está conforme?". Certificar um **sistema** responde "este produto inteiro — todas as suas telas, sua navegação, seus temas, sua governança de uso — é conforme e permanece conforme?". O escopo muda de uma peça para o todo; os critérios de tela continuam valendo (cada tela do sistema é auditada), e somam-se critérios que só existem no nível do sistema.
+
+**EN** — Certifying a **screen** (§§0–7) answers "is this screen compliant?". Certifying a **system** answers "is this whole product — all its screens, its navigation, its themes, its usage governance — compliant, and does it stay compliant?". The scope moves from a piece to the whole; the screen criteria still apply (each screen is audited), and system-only criteria are added.
+
+### 8.1 Critérios de nível de sistema · System-level criteria
+**PT** — Além de auditar as telas, o nível de sistema verifica: **declaração de dependência** de versão do Studio UX (`VERSIONING`) em vez de fundamentos recriados; **uso exclusivo de componentes e tokens oficiais** em todo o produto (nenhum fork, nenhum valor mágico — verificável pelo `LINTER`); **separação Desktop/Mobile** correta em todo o sistema (Art. 2, P4); **consistência entre telas** (a família se mantém de tela em tela — P20); **cobertura de estados** e de acessibilidade em todos os fluxos, não só nas telas felizes; **conformidade contínua** medida ao longo do tempo (`COMPLIANCE`), não só num instante; e **governança de mudança** (alterações relevantes passam por RFC/ADR — `RFC_GUIDE`/`ADR_GUIDE`).
+**EN** — Beyond auditing screens, the system level verifies: a **version dependency declaration** on Studio UX (`VERSIONING`) instead of recreated fundamentals; **exclusive use of official components and tokens** across the product (no fork, no magic value — checkable by the `LINTER`); correct **Desktop/Mobile separation** system-wide (Art. 2, P4); **cross-screen consistency** (the family holds from screen to screen — P20); **state and accessibility coverage** across all flows, not only happy screens; **continuous conformance** measured over time (`COMPLIANCE`), not just at one instant; and **change governance** (relevant changes go through RFC/ADR).
+
+### 8.2 Os cinco níveis de sistema · The five system levels
+**PT**
+
+- **Bronze — conforme no piso.** Toda tela do sistema é ≥ Bronze (nenhum eliminatório em lugar nenhum); dependência de versão declarada; só componentes/tokens oficiais. O sistema é correto e seguro de ponta a ponta.
+- **Silver — consistente.** Bronze **+** toda tela ≥ Silver e consistência plena entre telas (P20): a família não varia entre módulos.
+- **Gold — polido.** Silver **+** toda tela ≥ Gold, acessibilidade integral em todos os fluxos nos dois temas, e conformidade contínua monitorada (`COMPLIANCE`) sem regressões abertas.
+- **Platinum — referência.** Gold **+** as jornadas-chave certificadas em **Desktop E Mobile** (produtos irmãs, cada um no seu layout, P4), DNA visual e ritmo impecáveis em todo o produto, e documentação do porquê nas duas línguas.
+- **Enterprise — plataforma de confiança.** Platinum **+** governança de escala comprovada: **mudanças passam por RFC/ADR**, versionamento e migração seguem `VERSIONING` (breaking changes com guia), a conformidade é **auditável e reproduzível continuamente** (não pontual), e o sistema sustenta a certificação **release após release** (não uma foto única). Enterprise é o nível de um sistema que outros sistemas podem tomar como exemplo do Studio UX.
+
+**EN**
+
+- **Bronze — compliant floor.** Every screen is ≥ Bronze (no eliminator anywhere); version dependency declared; official components/tokens only. The system is correct and safe end to end.
+- **Silver — consistent.** Bronze **+** every screen ≥ Silver and full cross-screen consistency (P20).
+- **Gold — polished.** Silver **+** every screen ≥ Gold, full accessibility across all flows in both themes, and continuously monitored conformance (`COMPLIANCE`) with no open regressions.
+- **Platinum — reference.** Gold **+** key journeys certified on **Desktop AND Mobile** (sibling products, each in its layout, P4), flawless visual DNA and rhythm across the product, and bilingual "why" documentation.
+- **Enterprise — trusted platform.** Platinum **+** proven governance at scale: **changes go through RFC/ADR**, versioning and migration follow `VERSIONING` (breaking changes with a guide), conformance is **continuously auditable and reproducible** (not a snapshot), and the system sustains certification **release after release**. Enterprise is the level of a system other systems can take as an example of Studio UX.
+
+### 8.3 Recertificar e perder certificação · Recertify and lose certification
+**PT** — A certificação de sistema é um **estado vivo**, não um selo permanente. Recertifica-se a cada release relevante (nova MAJOR/MINOR — `VERSIONING`) e periodicamente. **Perde-se o nível** quando: um eliminatório aparece em qualquer tela; um fork/valor mágico é introduzido (o `LINTER` detecta); a conformidade contínua cai abaixo do limiar do nível (`COMPLIANCE`); uma mudança estrutural entra sem RFC/ADR; ou a acessibilidade regride. A queda é para o maior nível ainda satisfeito — nunca se "mantém no papel" um nível que a realidade não sustenta (o pior erro seria um selo que mente).
+**EN** — System certification is a **living state**, not a permanent seal. It is recertified at each relevant release (new MAJOR/MINOR — `VERSIONING`) and periodically. **The level is lost** when: an eliminator appears in any screen; a fork/magic value is introduced (the `LINTER` catches it); continuous conformance drops below the level's threshold (`COMPLIANCE`); a structural change lands without RFC/ADR; or accessibility regresses. The drop is to the highest level still met — a level reality doesn't sustain is never kept "on paper".
+
+### 8.4 Fronteira com Linter e Compliance · Boundary with Linter and Compliance
+**PT** — *Linter detecta · Compliance mede · Certification gradua.* A certificação de sistema **consome** as violações do `LINTER` (detecção automática) e as métricas do `COMPLIANCE` (medição contínua) e as transforma em nível/selo. Ela não recria a detecção nem a medição — agrega, como sempre fez com os P# (SSOT).
+**EN** — *Linter detects · Compliance measures · Certification grades.* System certification **consumes** the `LINTER`'s violations (automatic detection) and the `COMPLIANCE` metrics (continuous measurement) and turns them into a level/badge. It recreates neither detection nor measurement — it aggregates, as it always has with the P# (SSOT).
 
 ---
 

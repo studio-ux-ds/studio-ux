@@ -12,6 +12,32 @@ Nada pendente. / Nothing pending.
 
 ---
 
+## [0.2.3] — 2026-07-15 — Épicos 2–5: Ferramentas, Qualidade, Geração, IA · Epics 2–5: Tools, Quality, Generation, AI
+
+### Adicionado · Added
+
+**PT — A plataforma completa em documentação.** Os quatro épicos restantes da camada de plataforma, entregues numa leva (sem código para deploy, o portão por épico perde a razão). Nada contradiz a fundação; **nenhum código, nenhum valor estético**.
+
+**EN — The full platform in documentation.** The four remaining platform-layer epics, delivered in one batch. Nothing contradicts the foundation; **no code, no aesthetic values**.
+
+- **Épico 2 — Ferramentas / Tools:** `docs/tools/STUDIO_UX_CLI.md` (CLI `studio` — 11 comandos), `docs/tools/STUDIO_UX_DEVTOOLS.md` (9 inspetores), `docs/tools/STUDIO_UX_PLAYGROUND.md`.
+- **Épico 3 — Qualidade / Quality:** `docs/quality/STUDIO_UX_LINTER.md` (catálogo de regras — detecta), `docs/quality/STUDIO_UX_COMPLIANCE.md` (mede continuamente). Fronteira canônica: *Linter detecta · Compliance mede · Certification gradua.*
+- **Épico 4 — Geração / Generation:** `docs/generation/STUDIO_UX_PROJECT_GENERATOR.md` (10 arquétipos), `docs/generation/STUDIO_UX_EXPORTERS.md` (10 alvos plugáveis).
+- **Épico 5 — Ecossistema de IA / AI Ecosystem:** `docs/context/STUDIO_UX_AI_ECOSYSTEM.md` (context loading, self-audit, protocolo anti-invenção).
+
+### Alterado · Changed
+
+- **`docs/STUDIO_UX_CERTIFICATION.md` expandido** para dois escopos com dono único: **tela** (Bronze→Platinum) e **sistema** (Bronze→**Enterprise**, §8). Sem `CERTIFICATION_SYSTEM.md` separado (SSOT).
+- **`STUDIO_UX.md`:** mapa SSOT (§11) ampliado com os 8 domínios novos; rótulo de certificação atualizado para tela+sistema.
+- **Docs-índice vivos:** `README`, `ROADMAP` (épicos 2–5 concluídos), `context/STUDIO_UX_HANDOFF.md`.
+
+### Notas · Notes
+
+- **PT** — Camada de plataforma documental **completa** (Épicos 1–5). Pendentes do design system: Fase 1.6 (UI Exploration) e Fase 2 (tokens). Implementação (código) começa na Fase 2.
+- **EN** — Platform documentation layer **complete** (Epics 1–5). Design-system pending: Phase 1.6 (UI Exploration) and Phase 2 (tokens). Implementation (code) starts at Phase 2.
+
+---
+
 ## [0.2.2] — 2026-07-15 — Épico 1: Plataforma & Governança · Epic 1: Platform & Governance
 
 ### Adicionado · Added

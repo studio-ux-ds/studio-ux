@@ -87,12 +87,12 @@
 **PT** — Acima do design system, o Studio UX cresce como **plataforma de desenvolvimento**, construída em **cinco épicos**, um por vez com validação humana entre eles. Esta trilha convive com as fases do design system (não as substitui) e especifica a arquitetura de longo prazo. O detalhe da estratégia está em `platform/STUDIO_UX_PLATFORM.md`.
 
 1. **Épico 1 — Plataforma & Governança** ✅ — `PLATFORM`, `ARCHITECTURE`, `RUNTIME`, `PACKAGES`, `CONSTITUTION`, `VERSIONING`, `ADR_GUIDE`, `RFC_GUIDE`, `ROADMAP_2035`.
-2. **Épico 2 — Ferramentas** — CLI, DevTools, Playground.
-3. **Épico 3 — Qualidade** — Linter, Compliance, Certification (expandido para tela + sistema).
-4. **Épico 4 — Geração** — Project Generator, Exporters.
-5. **Épico 5 — Ecossistema de IA** — AI Ecosystem.
+2. **Épico 2 — Ferramentas** ✅ — CLI, DevTools, Playground.
+3. **Épico 3 — Qualidade** ✅ — Linter, Compliance, Certification (expandido para tela + sistema, com nível Enterprise).
+4. **Épico 4 — Geração** ✅ — Project Generator, Exporters.
+5. **Épico 5 — Ecossistema de IA** ✅ — AI Ecosystem.
 
-**EN** — Above the design system, Studio UX grows as a **development platform**, built in **five epics**, one at a time with human validation between them. This track coexists with the design-system phases (it does not replace them) and specifies the long-term architecture. Strategy detail lives in `platform/STUDIO_UX_PLATFORM.md`. Epic 1 (Platform & Governance) is **done**; next: Tools, Quality, Generation, AI Ecosystem.
+**EN** — Above the design system, Studio UX grew as a **development platform**, built in **five epics — all complete** in documentation. This track coexists with the design-system phases (it does not replace them) and specifies the long-term architecture. Strategy detail lives in `platform/STUDIO_UX_PLATFORM.md`. The platform documentation is done; **implementation (code) begins at Phase 2** of the design system.
 
 ---
 

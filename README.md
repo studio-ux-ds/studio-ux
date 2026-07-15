@@ -31,7 +31,11 @@
 Constituição / Constitution → CONSTITUTION  (verdades imutáveis / immutable truths)
 Plataforma / Platform   → PLATFORM · ARCHITECTURE · RUNTIME · PACKAGES · ROADMAP_2035
 Governança / Governance → STUDIO_UX · VERSIONING · ADR_GUIDE · RFC_GUIDE
-Conceito / Concept      → VISION · PHILOSOPHY · PRINCIPLES · AI_CONTEXT · AI_RULES
+Ferramentas / Tools     → CLI · DEVTOOLS · PLAYGROUND
+Qualidade / Quality     → LINTER · COMPLIANCE · CERTIFICATION (tela+sistema)
+Geração / Generation    → PROJECT_GENERATOR · EXPORTERS
+Ecossistema IA / AI     → AI_ECOSYSTEM · AI_CONTEXT · AI_RULES
+Conceito / Concept      → VISION · PHILOSOPHY · PRINCIPLES
 Linguagem visual /      → VISUAL_DNA · GRAMMAR · SURFACES · VISUAL_RHYTHM
   Visual language          REFERENCE_DNA
 Fundação / Foundation   → DESIGN_TOKENS · COLOR_SYSTEM · TYPOGRAPHY · SPACING
@@ -39,11 +43,10 @@ Fundação / Foundation   → DESIGN_TOKENS · COLOR_SYSTEM · TYPOGRAPHY · SPA
 Estrutura / Structure   → LAYOUT_SYSTEM · COMPONENT_LIBRARY · PATTERNS · ACCESSIBILITY
 Composição / Composition→ DASHBOARD · FORMS · TABLES · NAVIGATION
 Produtos / Products     → DESKTOP · MOBILE
-Qualidade / Quality     → CERTIFICATION
 Evolução / Evolution    → ROADMAP · CHANGELOG · HANDOFF
 ```
 
-> **PT** — A camada de plataforma (governança elevada, arquitetura de longo prazo) é construída por **épicos**: 1 Plataforma & Governança ✅ · 2 Ferramentas · 3 Qualidade · 4 Geração · 5 Ecossistema de IA. **EN** — The platform layer is built by **epics**: 1 Platform & Governance ✅ · 2 Tools · 3 Quality · 4 Generation · 5 AI Ecosystem.
+> **PT** — A camada de plataforma (governança elevada, arquitetura de longo prazo) foi construída em **cinco épicos, todos concluídos** em documentação: 1 Plataforma & Governança ✅ · 2 Ferramentas ✅ · 3 Qualidade ✅ · 4 Geração ✅ · 5 Ecossistema de IA ✅. A implementação (código) começa na Fase 2 do design system. **EN** — The platform layer was built in **five epics, all complete** in documentation: 1 Platform & Governance · 2 Tools · 3 Quality · 4 Generation · 5 AI Ecosystem. Implementation (code) starts at Phase 2 of the design system.
 
 ## Como um sistema usa o Studio UX · How a system consumes Studio UX
 

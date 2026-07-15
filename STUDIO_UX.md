@@ -212,11 +212,19 @@ Toda mudança: entrada no `CHANGELOG.md` → commit → **tag anotada e imutáve
 | Formulários · Forms | `docs/STUDIO_UX_FORMS.md` |
 | Tabelas de dados · Data tables | `docs/STUDIO_UX_TABLES.md` |
 | Navegação · Navigation | `docs/STUDIO_UX_NAVIGATION.md` |
-| Certificação de tela · Screen certification | `docs/STUDIO_UX_CERTIFICATION.md` |
+| Certificação (tela e sistema) · Certification (screen and system) | `docs/STUDIO_UX_CERTIFICATION.md` |
 | Engenharia reversa de referências · Reference reverse-engineering | `docs/research/REFERENCE_DNA.md` |
 | Produto Desktop · Desktop product | `docs/desktop/STUDIO_UX_DESKTOP.md` |
 | Produto Mobile · Mobile product | `docs/mobile/STUDIO_UX_MOBILE.md` |
 | Regras para IA · AI rules | `docs/context/AI_RULES.md` |
+| CLI oficial · Official CLI | `docs/tools/STUDIO_UX_CLI.md` |
+| Ferramentas de inspeção (DevTools) · Inspection tools | `docs/tools/STUDIO_UX_DEVTOOLS.md` |
+| Ambiente Playground · Playground environment | `docs/tools/STUDIO_UX_PLAYGROUND.md` |
+| Validação automática (Linter) · Automatic validation | `docs/quality/STUDIO_UX_LINTER.md` |
+| Conformidade contínua · Continuous compliance | `docs/quality/STUDIO_UX_COMPLIANCE.md` |
+| Geração de projetos · Project generation | `docs/generation/STUDIO_UX_PROJECT_GENERATOR.md` |
+| Exportadores · Exporters | `docs/generation/STUDIO_UX_EXPORTERS.md` |
+| Integração com IA · AI ecosystem integration | `docs/context/STUDIO_UX_AI_ECOSYSTEM.md` |
 
 **PT** — Fronteira exemplar (permanente): **`GRAMMAR` define "o que existe"** (os níveis de composição e como se aninham); **`LAYOUT_SYSTEM` define "onde existe"** (grid, colunas, gutters, margens, breakpoints, z-index, regiões físicas). Grammar nunca fala de grid; Layout nunca fala de gramática. Ver o ADR em `STUDIO_UX_GRAMMAR.md`.
 
