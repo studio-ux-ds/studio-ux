@@ -130,6 +130,8 @@ studio-ux/
 
 ## 7. 🧭 GOVERNANÇA E VERSIONAMENTO · GOVERNANCE AND VERSIONING
 
+> **PT** — O detalhe completo da estratégia de versão (breaking changes, depreciação, compatibilidade, LTS) é do dono `docs/governance/STUDIO_UX_VERSIONING.md`. Esta seção é o resumo. Acima de toda a governança está a `docs/governance/STUDIO_UX_CONSTITUTION.md` (verdades imutáveis). **EN** — The full version-strategy detail (breaking changes, deprecation, compatibility, LTS) belongs to the owner `docs/governance/STUDIO_UX_VERSIONING.md`. This section is the summary. Above all governance stands `docs/governance/STUDIO_UX_CONSTITUTION.md` (immutable truths).
+
 **PT** — Studio UX é versionado por **SemVer** (`MAJOR.MINOR.PATCH`):
 
 - **MAJOR** — mudança que quebra contrato (token removido/renomeado, componente aposentado, princípio revogado). Exige guia de migração.
@@ -178,7 +180,16 @@ Toda mudança: entrada no `CHANGELOG.md` → commit → **tag anotada e imutáve
 
 | Domínio · Domain | Dono único · Sole owner |
 |---|---|
-| Governança, versionamento, SSOT · Governance, versioning, SSOT | `STUDIO_UX.md` |
+| Governança operacional, SSOT, Boundary Check · Operational governance, SSOT, Boundary Check | `STUDIO_UX.md` |
+| Verdades constitucionais · Constitutional truths | `docs/governance/STUDIO_UX_CONSTITUTION.md` |
+| Estratégia de versionamento · Versioning strategy | `docs/governance/STUDIO_UX_VERSIONING.md` |
+| Padrão de ADR · ADR standard | `docs/governance/STUDIO_UX_ADR_GUIDE.md` |
+| Processo de RFC · RFC process | `docs/governance/STUDIO_UX_RFC_GUIDE.md` |
+| Estratégia da plataforma · Platform strategy | `docs/platform/STUDIO_UX_PLATFORM.md` |
+| Arquitetura lógica / mapa de domínios · Logical architecture / domain map | `docs/platform/STUDIO_UX_ARCHITECTURE.md` |
+| Camadas de execução · Execution layers | `docs/platform/STUDIO_UX_RUNTIME.md` |
+| Arquitetura de monorepo / layout físico · Monorepo architecture / physical layout | `docs/platform/STUDIO_UX_PACKAGES.md` |
+| Visão de década · Decade vision | `docs/platform/STUDIO_UX_ROADMAP_2035.md` |
 | Visão · Vision | `docs/STUDIO_UX_VISION.md` |
 | Filosofia · Philosophy | `docs/STUDIO_UX_PHILOSOPHY.md` |
 | Princípios P1…Pn · Principles | `docs/STUDIO_UX_PRINCIPLES.md` |

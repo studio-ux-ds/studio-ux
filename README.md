@@ -28,6 +28,9 @@
 ## Mapa da documentação · Documentation map
 
 ```
+Constituição / Constitution → CONSTITUTION  (verdades imutáveis / immutable truths)
+Plataforma / Platform   → PLATFORM · ARCHITECTURE · RUNTIME · PACKAGES · ROADMAP_2035
+Governança / Governance → STUDIO_UX · VERSIONING · ADR_GUIDE · RFC_GUIDE
 Conceito / Concept      → VISION · PHILOSOPHY · PRINCIPLES · AI_CONTEXT · AI_RULES
 Linguagem visual /      → VISUAL_DNA · GRAMMAR · SURFACES · VISUAL_RHYTHM
   Visual language          REFERENCE_DNA
@@ -39,6 +42,8 @@ Produtos / Products     → DESKTOP · MOBILE
 Qualidade / Quality     → CERTIFICATION
 Evolução / Evolution    → ROADMAP · CHANGELOG · HANDOFF
 ```
+
+> **PT** — A camada de plataforma (governança elevada, arquitetura de longo prazo) é construída por **épicos**: 1 Plataforma & Governança ✅ · 2 Ferramentas · 3 Qualidade · 4 Geração · 5 Ecossistema de IA. **EN** — The platform layer is built by **epics**: 1 Platform & Governance ✅ · 2 Tools · 3 Quality · 4 Generation · 5 AI Ecosystem.
 
 ## Como um sistema usa o Studio UX · How a system consumes Studio UX
 

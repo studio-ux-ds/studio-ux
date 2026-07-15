@@ -12,6 +12,29 @@ Nada pendente. / Nothing pending.
 
 ---
 
+## [0.2.2] — 2026-07-15 — Épico 1: Plataforma & Governança · Epic 1: Platform & Governance
+
+### Adicionado · Added
+
+**PT — O Studio UX passa de design system a plataforma.** Primeiro épico da camada de plataforma: governança elevada e arquitetura de longo prazo. Nada contradiz a Fase 1; **nenhum código, nenhum valor estético**.
+
+**EN — Studio UX moves from design system to platform.** First epic of the platform layer: elevated governance and long-term architecture. Nothing contradicts Phase 1; **no code, no aesthetic values**.
+
+- **Governança / Governance:** `docs/governance/STUDIO_UX_CONSTITUTION.md` (20 artigos imutáveis), `docs/governance/STUDIO_UX_VERSIONING.md` (dono da estratégia de versão), `docs/governance/STUDIO_UX_ADR_GUIDE.md`, `docs/governance/STUDIO_UX_RFC_GUIDE.md`.
+- **Plataforma / Platform:** `docs/platform/STUDIO_UX_PLATFORM.md` (estratégia), `docs/platform/STUDIO_UX_ARCHITECTURE.md` (mapa lógico de domínios), `docs/platform/STUDIO_UX_RUNTIME.md` (Specification × Runtime × Playground × Templates × Applications), `docs/platform/STUDIO_UX_PACKAGES.md` (monorepo), `docs/platform/STUDIO_UX_ROADMAP_2035.md` (visão de década).
+
+### Alterado · Changed
+
+- **`STUDIO_UX.md`:** mapa SSOT (§11) ampliado com os 10 domínios novos; §7 passa a referenciar `VERSIONING` como dono do detalhe e a `CONSTITUTION` como camada suprema.
+- **Docs-índice vivos:** `README`, `ROADMAP`, `context/STUDIO_UX_HANDOFF.md` atualizados.
+
+### Notas · Notes
+
+- **PT** — Execução por épicos com validação humana entre eles (decisão do Robson). Épico 1 de 5. Próximos: Ferramentas, Qualidade, Geração, Ecossistema de IA. Conflito de certificação resolvido: dono único (`CERTIFICATION` será expandido para tela+sistema no Épico 3), sem `CERTIFICATION_SYSTEM.md` separado.
+- **EN** — Epic-by-epic execution with human validation between them (Robson's decision). Epic 1 of 5. Certification conflict resolved: single owner (`CERTIFICATION` to be expanded to screen+system in Epic 3), no separate `CERTIFICATION_SYSTEM.md`.
+
+---
+
 ## [0.2.0] — 2026-07-15
 
 ### Adicionado · Added

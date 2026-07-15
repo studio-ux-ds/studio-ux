@@ -39,14 +39,16 @@
 | Produtos · Products | `desktop/STUDIO_UX_DESKTOP.md`, `mobile/STUDIO_UX_MOBILE.md` | ✅ |
 | Qualidade · Quality | `STUDIO_UX_CERTIFICATION.md` | ✅ |
 | Evolução · Evolution | `STUDIO_UX_ROADMAP.md` (fases 1.5/1.6), `research/REFERENCES.md` | ✅ |
+| **Plataforma (Épico 1) · Platform (Epic 1)** | `platform/STUDIO_UX_PLATFORM.md`, `platform/STUDIO_UX_ARCHITECTURE.md`, `platform/STUDIO_UX_RUNTIME.md`, `platform/STUDIO_UX_PACKAGES.md`, `platform/STUDIO_UX_ROADMAP_2035.md` | ✅ |
+| **Governança da plataforma (Épico 1) · Platform governance (Epic 1)** | `governance/STUDIO_UX_CONSTITUTION.md`, `governance/STUDIO_UX_VERSIONING.md`, `governance/STUDIO_UX_ADR_GUIDE.md`, `governance/STUDIO_UX_RFC_GUIDE.md` | ✅ |
 
 ---
 
 ## 🎯 O que vem agora · What comes next
 
-**PT** — Fases 1 e 1.5 concluídas. A próxima frente é a **Fase 1.6 — UI Exploration**: produzir estudos visuais descritivos em `research/ui-exploration/` (todos derivados do `VISUAL_DNA`, nenhum definitivo) **para validar a linguagem visual com o Robson antes de implementar componentes**. Só depois dessa validação começa a **Fase 2 — materialização dos Design Tokens** (valores concretos). **Uma frente por vez, com validação humana entre frentes.** A pasta `research/ui-exploration/` já foi criada com um guia; os estudos aguardam o "vai".
+**PT** — Fases 1 e 1.5 concluídas. **Camada de plataforma em andamento por épicos** (decisão do Robson): Épico 1 (Plataforma & Governança) **concluído** — 9 documentos em `platform/` e `governance/`. Próximos épicos: **2 Ferramentas** (CLI, DevTools, Playground), **3 Qualidade** (Linter, Compliance, Certification — este último expandido para tela+sistema), **4 Geração** (Project Generator, Exporters), **5 Ecossistema de IA** (AI Ecosystem). Cada épico é revisado/aprovado antes do próximo. Em paralelo, seguem pendentes a **Fase 1.6 (UI Exploration)** e a **Fase 2 (tokens)** do design system — `research/ui-exploration/` já tem guia e aguarda o "vai".
 
-**EN** — Phases 1 and 1.5 complete. The next front is **Phase 1.6 — UI Exploration**: produce descriptive visual studies in `research/ui-exploration/` (all derived from `VISUAL_DNA`, none definitive) **to validate the visual language with Robson before implementing components**. Only after that validation does **Phase 2 — materializing the Design Tokens** (concrete values) begin. **One front at a time, with human validation between fronts.** The `research/ui-exploration/` folder is scaffolded with a guide; the studies await the go-ahead.
+**EN** — Phases 1 and 1.5 complete. **Platform layer in progress, epic by epic** (Robson's decision): Epic 1 (Platform & Governance) **done** — 9 documents in `platform/` and `governance/`. Next epics: **2 Tools**, **3 Quality** (Certification expanded to screen+system), **4 Generation**, **5 AI Ecosystem**. Each epic is reviewed/approved before the next. In parallel, **Phase 1.6 (UI Exploration)** and **Phase 2 (tokens)** of the design system remain pending — `research/ui-exploration/` has a guide and awaits the go-ahead.
 
 ---
 
