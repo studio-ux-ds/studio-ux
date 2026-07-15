@@ -1,0 +1,24 @@
+# Studio UX — projeto de documentação (fundação). / documentation project (foundation).
+# Nesta fase não há build; ignoramos apenas artefatos de SO e editor.
+# In this phase there is no build; we ignore only OS and editor artifacts.
+
+# Sistema operacional / OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores / Editors
+.vscode/
+.idea/
+*.swp
+*~
+
+# Temporários / Temporary
+*.tmp
+*.log
+
+# Futuro (fases de implementação) / Future (implementation phases)
+node_modules/
+dist/
+build/
+.cache/
