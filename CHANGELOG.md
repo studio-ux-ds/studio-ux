@@ -12,6 +12,17 @@ Nada pendente. / Nothing pending.
 
 ---
 
+## [0.3.0] — 2026-07-15 — 🧊 Foundation Frozen · Fundação Congelada
+
+**PT** — A Fundação do Studio UX foi **oficialmente congelada**. A partir desta versão, toda evolução ocorre **exclusivamente através da implementação** (Fase 2 — tokens em diante). Mudanças estruturais passam a exigir **RFC + ADR** (`governance/STUDIO_UX_RFC_GUIDE.md`, `governance/STUDIO_UX_ADR_GUIDE.md`). Componentes novos, **somente mediante necessidade comprovada por produtos consumidores** (auditoria em `docs/audits/`).
+
+**EN** — The Studio UX Foundation is **officially frozen**. From this version on, evolution happens **exclusively through implementation** (Phase 2 — tokens onward). Structural changes now require **RFC + ADR**. New components only upon **need proven by consuming products**.
+
+- Base da decisão / Decision basis: `docs/audits/STUDIO_UX_PRODUCT_AUDIT.md` (~93% de cobertura genérica, 0 gaps críticos), `docs/audits/FINAL_ARCHITECTURE_REVIEW.md`, `docs/audits/FOUNDATION_FREEZE_DECISION.md` (✅ SIM), `docs/audits/IMPLEMENTATION_PLAN_REVIEW.md`.
+- Próxima fase / Next phase: **Implementação (Fase 2 — materialização dos tokens).**
+
+---
+
 ## [0.2.3] — 2026-07-15 — Épicos 2–5: Ferramentas, Qualidade, Geração, IA · Epics 2–5: Tools, Quality, Generation, AI
 
 ### Adicionado · Added

@@ -1,5 +1,7 @@
 # Studio UX
 
+> **Status:** 🟢 **Foundation Frozen** · **Current Phase:** Implementation · **Version:** `v0.3.0`
+
 > O Framework de Experiência do Usuário oficial da empresa.
 > The company's official User Experience Framework.
 
@@ -14,8 +16,8 @@
 
 ## Estado atual · Current status
 
-- **Versão / Version:** `v0.2.0`
-- **Fase / Phase:** Fase 1.5 — Linguagem Visual concluída. **Somente documentação; nenhum componente, token final ou tela foi implementado ainda.** Próximo: Fase 1.6 (UI Exploration) → Fase 2 (tokens). / Phase 1.5 — Visual Language complete. **Documentation only; no components, final tokens or screens yet.** Next: Phase 1.6 (UI Exploration) → Phase 2 (tokens).
+- **Versão / Version:** `v0.3.0` — 🧊 **Foundation Frozen** (2026-07-15).
+- **Fase / Phase:** Fundação **congelada**; início da **Implementação (Fase 2 — tokens)**. Mudança estrutural agora exige RFC + ADR; componente novo só com necessidade comprovada por produto. / Foundation **frozen**; **Implementation (Phase 2 — tokens)** begins. Structural change now requires RFC + ADR; a new component only upon product-proven need.
 - **Idioma / Language:** Bilíngue PT-BR + EN em toda a documentação normativa. / Bilingual PT-BR + EN across all normative docs.
 
 ## Comece por aqui · Start here

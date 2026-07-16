@@ -21,7 +21,8 @@
 
 ## ✅ Estado vigente · Current state
 
-- **Versão / Version:** `v0.2.0` (Fase 1.5 — linguagem visual / visual language).
+- **🧊 FOUNDATION FROZEN em `v0.3.0` (2026-07-15).** A Fundação (arquitetura, princípios, linguagem visual, catálogo-spec, plataforma) está **congelada**. Daqui em diante: **Implementação (Fase 2 — tokens)**. Mudança estrutural só por RFC + ADR; componente novo só por necessidade comprovada em produto. Decisão em `docs/audits/FOUNDATION_FREEZE_DECISION.md`. / Foundation frozen at `v0.3.0`; implementation only from here (structural change via RFC+ADR).
+- **Versão / Version:** `v0.3.0` (era de documentação `v0.2.x` encerrada pelo freeze; `v1.0.0` segue reservado ao congelamento dos tokens na Fase 2).
 - **Fase / Phase:** Fases 1 e 1.5 concluídas em conteúdo — só documentação. Nenhum código, token final, componente ou tela; **nenhum valor estético final** decidido. / Phases 1 and 1.5 complete in content — documentation only. No code, final tokens, components or screens; **no final aesthetic value** decided.
 - **Idioma / Language:** Bilíngue PT-BR + EN, lado a lado por seção, em toda doc normativa. / Bilingual, side by side per section.
 
