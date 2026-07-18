@@ -142,4 +142,44 @@
 
 ---
 
-*Documento vivo. Novas famílias e regras de token entram aqui primeiro; o detalhe desce para os docs de cada família. Atualizar nas duas línguas na mesma leva. · Living document. New token families and rules enter here first; detail descends to each family's doc. Update in both languages in the same commit.*
+## Valores materializados — famílias sem doc próprio · Materialized values — families without their own doc (Fase 2 · Phase 2)
+
+**PT** — Cor/tipografia/espaço têm doc dono (`COLOR_SYSTEM`, `TYPOGRAPHY`, `SPACING`). As famílias abaixo não têm doc próprio — seus valores materializados moram aqui. Aprovados 2026-07-15.
+**EN** — Color/typography/spacing have owner docs. The families below have none — their materialized values live here. Approved 2026-07-15.
+
+### Raio · Radius (aprovado)
+| Token | px | Uso · Use |
+|---|---|---|
+| `radius.sm` | 6 | badges, chips |
+| `radius.md` | 8 | botões, campos · buttons, fields |
+| `radius.lg` | 12 | cartões · cards |
+| `radius.xl` | 16 | modais, sheets |
+| `radius.full` | 9999 | pills, avatares |
+
+### Elevação e Sombra · Elevation & Shadow (aprovado)
+> Poucos níveis (P9). No **escuro**, a elevação clareia a superfície (`color.surface.*`) e a sombra é reduzida/omitida.
+
+| Token | Sombra (claro) · Shadow (light) | Uso · Use |
+|---|---|---|
+| `elevation.none` | nenhuma · none | conteúdo em repouso · resting content |
+| `elevation.raised` → `shadow.sm` | `0 1px 2px rgba(23,26,31,.06), 0 1px 3px rgba(23,26,31,.05)` | cartões, painéis · cards, panels |
+| `elevation.overlay` → `shadow.md` | `0 6px 16px rgba(23,26,31,.10), 0 2px 5px rgba(23,26,31,.06)` | menus, popovers, sheets |
+| `elevation.modal` → `shadow.lg` | `0 16px 40px rgba(23,26,31,.18)` | diálogos · dialogs |
+
+### Motion (aprovado)
+| Token | Valor · Value |
+|---|---|
+| `motion.duration.fast` | 120ms |
+| `motion.duration.base` | 200ms |
+| `motion.duration.slow` | 320ms |
+| `motion.easing.standard` | `cubic-bezier(0.2, 0, 0, 1)` |
+| `motion.easing.entrance` | `cubic-bezier(0, 0, 0.2, 1)` |
+| `motion.easing.exit` | `cubic-bezier(0.4, 0, 1, 1)` |
+| `motion.delay.none` | 0ms |
+
+**PT** — `prefers-reduced-motion`: durações vão a ~0 e transições baseadas em posição são desligadas (fade simples permanece). Movimento curto e funcional (P15).
+**EN** — `prefers-reduced-motion`: durations go to ~0 and position-based transitions are disabled (a simple fade remains). Short, functional motion (P15).
+
+---
+
+*Documento vivo. Arquitetura de tokens + valores das famílias sem doc próprio (raio ✅, elevação ✅, motion ✅). Atualizar nas duas línguas na mesma leva. · Living document. Token architecture + values for families without their own doc (radius, elevation, motion — all ✅). Update in both languages in the same commit.*

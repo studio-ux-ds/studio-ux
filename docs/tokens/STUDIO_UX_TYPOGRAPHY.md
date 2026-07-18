@@ -112,4 +112,37 @@
 
 ---
 
-*Documento vivo. Papéis e eixos entram aqui; a fonte e os px finais são materializados na Fase 2. Atualizar nas duas línguas na mesma leva. · Living document. Roles and axes enter here; the final typeface and pixels are materialized in Phase 2. Update in both languages in the same commit.*
+## 9. Valores materializados · Materialized values (Fase 2 · Phase 2, aprovados 2026-07-15)
+
+**PT** — Valores concretos aprovados (validados na Fase 1.6). Telas consomem os papéis (§2), não os px crus.
+**EN** — Approved concrete values (validated in Phase 1.6). Screens consume the roles (§2), not raw px.
+
+### 9.1 Famílias · Families
+- `font.family.ui` = `"Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif`
+- `font.family.mono` = `"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace`
+
+*(Inter e JetBrains Mono como primárias; o fallback de sistema garante que a interface nunca quebra se a fonte não carregar.)*
+
+### 9.2 Pesos · Weights
+`font.weight.regular` = **400** · `font.weight.medium` = **500** · `font.weight.semibold` = **600**. Só três — hierarquia vem de tamanho + peso, nunca de mais tons.
+
+### 9.3 Escala — papel → tamanho / peso / entrelinha / tracking · Scale — role → size / weight / line-height / tracking
+
+| Papel · Role | Tamanho · Size | Peso · Weight | Line-height | Tracking |
+|---|---|---|---|---|
+| `type.display` | 32px | 600 | 1.2 | −0.02em |
+| `type.heading.1` | 24px | 600 | 1.25 | −0.015em |
+| `type.heading.2` | 20px | 600 | 1.3 | −0.01em |
+| `type.heading.3` | 16px | 600 | 1.4 | 0 |
+| `type.body.md` (base) | 15px | 400 | 1.5 | 0 |
+| `type.body.sm` | 13px | 400 | 1.5 | 0 |
+| `type.label` | 13px | 500 | 1.35 | 0 |
+| `type.caption` | 12px | 400 | 1.4 | 0 |
+| `type.code` | 13px | 400 (mono) | 1.5 | 0 |
+
+**PT** — `body.md` (15px) é o tamanho-base — meio-termo entre densidade do Desktop e conforto/acessibilidade. A densidade Desktop vs. Mobile (§7) ajusta *espaço*, não a escala tipográfica. Tamanho mínimo de texto na interface: `caption` 12px (nunca abaixo).
+**EN** — `body.md` (15px) is the base — a middle ground between Desktop density and comfort/accessibility. Desktop vs. Mobile density (§7) adjusts *space*, not the type scale. Minimum UI text size: `caption` 12px (never below).
+
+---
+
+*Documento vivo. Arquitetura tipográfica + valores materializados (§9, Fase 2). Atualizar nas duas línguas na mesma leva. · Living document. Typographic architecture + materialized values (§9, Phase 2). Update in both languages in the same commit.*

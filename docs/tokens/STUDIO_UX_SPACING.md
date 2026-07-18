@@ -106,4 +106,35 @@
 
 ---
 
-*Documento vivo. A base e a progressão entram aqui; os px finais de cada degrau são materializados na Fase 2. Atualizar nas duas línguas na mesma leva. · Living document. The base and progression enter here; the final px of each step is materialized in Phase 2. Update in both languages in the same commit.*
+## Valores materializados · Materialized values (Fase 2 · Phase 2, aprovados 2026-07-15)
+
+**PT** — Base **4px**. Escala primitiva e papéis semânticos aprovados (validados na Fase 1.6). Telas consomem os papéis, não o px cru (P1, P7).
+**EN** — Base **4px**. Approved primitive scale and semantic roles (validated in Phase 1.6). Screens consume the roles, not raw px.
+
+### Primitivo · Primitive
+| Token | px |
+|---|---|
+| `space-0` | 0 |
+| `space-1` | 4 |
+| `space-2` | 8 |
+| `space-3` | 12 |
+| `space-4` | 16 |
+| `space-5` | 20 |
+| `space-6` | 24 |
+| `space-8` | 32 |
+| `space-10` | 40 |
+| `space-12` | 48 |
+| `space-16` | 64 |
+| `space-20` | 80 |
+| `space-24` | 96 |
+
+### Semântico · Semantic
+| Papel · Role | sm | md | lg |
+|---|---|---|---|
+| `space.inset.*` (padding) | `space-2` (8) | `space-4` (16) | `space-6` (24) |
+| `space.stack.*` (gap vertical) | `space-2` (8) | `space-4` (16) | `space-6` (24) |
+| `space.inline.*` (gap horizontal) | `space-2` (8) | `space-3` (12) | `space-4` (16) |
+
+---
+
+*Documento vivo. Base/progressão + valores materializados. Atualizar nas duas línguas na mesma leva. · Living document. Base/progression + materialized values. Update in both languages in the same commit.*

@@ -1,6 +1,6 @@
 # Studio UX
 
-> **Status:** 🟢 **Foundation Frozen** · **Current Phase:** Implementation · **Version:** `v0.3.0`
+> **Status:** 🎯 **Tokens Frozen** (`v1.0.0`) · **Current Phase:** Phase 3 — Component Library (Desktop first)
 
 > O Framework de Experiência do Usuário oficial da empresa.
 > The company's official User Experience Framework.

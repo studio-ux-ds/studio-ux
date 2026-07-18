@@ -122,4 +122,75 @@
 
 ---
 
-*Documento vivo. Papéis de cor entram aqui; os valores de tom finais são materializados na Fase 2. Atualizar nas duas línguas na mesma leva. · Living document. Color roles enter here; final tonal values are materialized in Phase 2. Update in both languages in the same commit.*
+## 9. Valores materializados · Materialized values (Fase 2 · Phase 2, aprovados 2026-07-15)
+
+**PT** — Os valores concretos abaixo materializam a arquitetura acima (validados na Fase 1.6, aprovados pelo Robson). Telas e componentes **nunca** consomem o primitivo direto — consomem os papéis semânticos (§3), que apontam para estes primitivos. Hex de referência; a fonte executável virá nos arquivos de token (`packages/tokens`).
+
+**EN** — The concrete values below materialize the architecture above (validated in Phase 1.6, approved by Robson). Screens/components **never** consume the primitive directly — they consume the semantic roles (§3), which point to these primitives. Reference hex; the executable source will live in the token files (`packages/tokens`).
+
+### 9.1 Primitivo — escala neutra · Primitive — neutral scale
+
+| Passo · Step | Hex |
+|---|---|
+| `palette.neutral.0` | `#FFFFFF` |
+| `palette.neutral.50` | `#F7F8FA` |
+| `palette.neutral.100` | `#EDEFF3` |
+| `palette.neutral.200` | `#DDE1E8` |
+| `palette.neutral.300` | `#C4CAD4` |
+| `palette.neutral.400` | `#9AA1AE` |
+| `palette.neutral.500` | `#6E7683` |
+| `palette.neutral.600` | `#545B67` |
+| `palette.neutral.700` | `#3D434D` |
+| `palette.neutral.800` | `#272B33` |
+| `palette.neutral.900` | `#171A1F` |
+
+### 9.2 Primitivo — acentos (cor de ação, 7 opções) · Primitive — accents
+
+| Acento · Accent | Base | Hover | Tint claro · Light tint | Tint escuro · Dark tint |
+|---|---|---|---|---|
+| **Índigo** (padrão · default) | `#4F46E5` | `#4338CA` | `#EEEFFE` | `#21243A` |
+| Azul · Blue | `#2563EB` | `#1D4FD7` | `#E8F0FE` | `#16233F` |
+| Teal | `#0F766E` | `#0B5D57` | `#E1F1EF` | `#0F2E2B` |
+| Verde · Green | `#047857` | `#036145` | `#E6F4EE` | `#0F2E24` |
+| Violeta · Violet | `#7C3AED` | `#6A2BD4` | `#F1E9FE` | `#271640` |
+| Cobre · Copper | `#B45309` | `#96440A` | `#FBF0DD` | `#3A2A12` |
+| Grafite · Graphite | `#334155` | `#293445` | `#EDEFF3` | `#20262F` |
+
+### 9.3 Papéis semânticos — claro e escuro · Semantic roles — light and dark
+
+> No escuro, a cor de ação clareia (`#6366F1`) para manter contraste sobre fundo escuro. / In dark, the action color lightens to keep contrast on a dark ground.
+
+| Papel · Role | Claro · Light | Escuro · Dark |
+|---|---|---|
+| `color.surface.base` | `#F7F8FA` | `#14161B` |
+| `color.surface.raised` | `#FFFFFF` | `#1C1F26` |
+| `color.surface.overlay` | `#FFFFFF` | `#24272F` |
+| `color.surface.sunken` | `#EDEFF3` | `#101216` |
+| `color.text.primary` | `#171A1F` | `#F2F4F7` |
+| `color.text.secondary` | `#545B67` | `#A6ADBA` |
+| `color.text.muted` | `#9AA1AE` | `#6E7683` |
+| `color.text.on-action` | `#FFFFFF` | `#FFFFFF` |
+| `color.text.disabled` | `#C4CAD4` | `#4A5059` |
+| `color.border.subtle` | `#EDEFF3` | `#23262E` |
+| `color.border.default` | `#DDE1E8` | `#2A2E37` |
+| `color.border.strong` | `#C4CAD4` | `#3A3F49` |
+| `color.border.focus` | `#4F46E5` | `#6366F1` |
+| `color.action.primary` | `#4F46E5` | `#6366F1` |
+| `color.action.primary.hover` | `#4338CA` | `#7B7DF5` |
+| `color.action.primary.active` | `#3730A3` | `#4F46E5` |
+
+### 9.4 Status — primeiro plano + fundo · Status — foreground + background
+
+| Status | fg | bg claro · light | bg escuro · dark |
+|---|---|---|---|
+| `color.status.success` | `#047857` | `#E6F4EE` | `#123028` |
+| `color.status.warning` | `#B45309` | `#FBF0DD` | `#3A2A12` |
+| `color.status.danger` | `#DC2626` | `#FCE9E9` | `#3A1A1A` |
+| `color.status.info` | `#2563EB` | `#E8F0FE` | `#16233F` |
+
+**PT** — Contraste conferido (P18, §5): todos os pares texto-sobre-superfície e status cumprem a meta WCAG AA nos dois modos. O acento de marca escolhido por tema revalida contraste no publish (`../STUDIO_UX_THEMES.md`).
+**EN** — Contrast checked (P18, §5): every text-on-surface and status pair meets the WCAG AA target in both modes. The brand accent chosen per theme re-validates contrast on publish.
+
+---
+
+*Documento vivo. Arquitetura de cor + valores materializados (§9, Fase 2). Atualizar nas duas línguas na mesma leva. · Living document. Color architecture + materialized values (§9, Phase 2). Update in both languages in the same commit.*

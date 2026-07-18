@@ -8,7 +8,32 @@
 
 ## [Unreleased]
 
-Nada pendente. / Nothing pending.
+Nada pendente. Próximo: implementação dos componentes (Fase 3, Desktop primeiro). / Nothing pending. Next: component implementation (Phase 3, Desktop first).
+
+---
+
+## [1.0.0] — 2026-07-15 — 🎯 Tokens Frozen · Design Tokens Congelados
+
+**PT** — **Marco `v1.0.0`.** A Fase 2 (materialização dos Design Tokens) foi concluída: as seis camadas foram escolhidas, aprovadas pelo Robson e **congeladas** como o primeiro **contrato estável** que um sistema consumidor pode declarar. A estética deixou de ser provisória. A partir daqui, mudança de valor de token segue SemVer (`governance/STUDIO_UX_VERSIONING.md`).
+
+**EN** — **`v1.0.0` milestone.** Phase 2 (Design Token materialization) is complete: the six layers were chosen, approved by Robson and **frozen** as the first **stable contract** a consumer system can declare. Aesthetics are no longer provisional. From here, token value changes follow SemVer.
+
+- ✅ **Cor · Color** (`tokens/STUDIO_UX_COLOR_SYSTEM.md` §9) — escala neutra 0–900, papéis semânticos claro/escuro, 7 acentos (Índigo padrão), status; contraste WCAG AA conferido.
+- ✅ **Tipografia · Typography** (`tokens/STUDIO_UX_TYPOGRAPHY.md` §9) — Inter (UI) + JetBrains Mono; escala de 9 papéis; pesos 400/500/600; base 15px.
+- ✅ **Espaço · Spacing** (`tokens/STUDIO_UX_SPACING.md`) — grade 4px, `space-0…24`, papéis inset/stack/inline.
+- ✅ **Raio · Radius** (`tokens/STUDIO_UX_DESIGN_TOKENS.md`) — sm 6 / md 8 / lg 12 / xl 16 / full.
+- ✅ **Elevação · Elevation** — raised / overlay / modal (poucos níveis; escuro clareia a superfície).
+- ✅ **Motion** — durações 120/200/320ms; curvas standard/entrance/exit; respeita `prefers-reduced-motion`.
+
+**Próxima fase / Next phase:** **Fase 3 — Biblioteca de Componentes** (implementação, Desktop primeiro), sobre estes tokens congelados.
+
+---
+
+## [0.3.1] — 2026-07-15 — Fase 1.6 validada · Phase 1.6 validated
+
+**PT** — A **Fase 1.6 (UI Exploration)** foi concluída e a linguagem visual **aprovada** por decisão humana, validada em ~14 cenários (dashboard, analytics, DataTable, formulário, wizard, detalhe+timeline, login, mobile, estados, confirm+toast, configurações, command palette, filtro mobile, menu de linha). Decisões travadas: **(1)** direção **sóbria** (sem gradientes — o DNA congelado se mantém; a variação expressiva foi vista e recusada); **(2)** **cor de ação configurável** — paleta de 7 acentos sóbrios (Índigo padrão, Azul, Teal, Verde, Violeta, Cobre, Grafite), um por tema, pelo eixo de marca do `THEMES`. Sem mudança estrutural. Abre a **Fase 2 — Materialização dos Tokens**.
+
+**EN** — **Phase 1.6 (UI Exploration)** is complete and the visual language **approved** by human decision, validated across ~14 scenarios. Locked decisions: **(1)** the **sober** direction (no gradients — the frozen DNA holds; the expressive variant was reviewed and declined); **(2)** a **configurable action color** — a palette of 7 sober accents, one per theme, via the `THEMES` brand axis. No structural change. Opens **Phase 2 — Token Materialization**.
 
 ---
 
