@@ -8,14 +8,27 @@
 
 ## [Unreleased]
 
-**Fase 3 — Biblioteca de Componentes (em andamento).** Implementação de referência **tech-agnóstica** (CSS + tokens). / Phase 3 — Component Library (in progress). Tech-agnostic reference implementation.
+Nada pendente. / Nothing pending.
+
+---
+
+## [1.0.2] — 2026-07-15 — Componentes especializados + exemplo · Specialized components + example
+
+- ✅ `packages/components/components.css` — **grupo 3 (especializados):** Combobox, DatePicker/Calendar, FileUpload, Drawer/Sheet, Accordion, Stepper/Wizard, DescriptionList, ProgressBar, Timeline, CommandPalette, SegmentedControl, Divider.
+- ✅ `examples/dashboard.html` — Painel completo composto só com o kit (prova de composição; alterna tema).
+- **Catálogo Desktop essencialmente completo** — todos os componentes do catálogo agora em CSS sobre os tokens.
+- Correções: convenção de versão ajustada para a faixa `v1.0.x` (`HANDOFF`, `VERSIONING`); ícones da sidebar no preview trocados pelos oficiais.
+
+---
+
+## [1.0.1] — 2026-07-15 — Componentes Desktop (fundamentais + estrutura) · Desktop components
+
+**Fase 3 — Biblioteca de Componentes.** Implementação de referência **tech-agnóstica** (CSS + tokens). / Phase 3 — Component Library. Tech-agnostic reference implementation.
 
 - ✅ `packages/tokens/tokens.css` — todos os tokens congelados como CSS custom properties (claro/escuro/reduzir-movimento).
 - ✅ `packages/components/components.css` — **grupo 1 (fundamentais):** Button (primary/secondary/ghost/danger + tamanhos + estados + foco), IconButton, Badge/Status, FormField/Input (+ erro), Table, Modal/ConfirmDialog, Toast, Spinner.
 - ✅ **grupo 2:** Sidebar, TopBar, Tabs (folder+pills), Breadcrumb, Select, Checkbox, Radio, Switch, Menu/Dropdown, Tooltip, Popover, Card, StatCard, EmptyState, Skeleton, Pagination.
-- ✅ `packages/components/demo.html` — página de demonstração (grupo 1) com alternância de tema.
-- **Núcleo Desktop coberto** (~25 componentes mais usados) — pronto para taggear `v1.1.0`.
-- ⏳ Restam especializados: Combobox, DatePicker, FileUpload, Drawer/Sheet, Accordion, Stepper/Wizard, DescriptionList, ProgressBar, Timeline, CommandPalette, SegmentedControl.
+- ✅ `packages/components/demo.html` — demonstração com alternância de tema.
 
 ---
 

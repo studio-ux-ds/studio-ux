@@ -169,3 +169,82 @@
 .su-page--active { background: var(--su-action); color: var(--su-text-on-action); }
 .su-page--nav { border-color: var(--su-border-default); }
 
+/* ==================== Fase 3, grupo 3: especializados ==================== */
+
+/* ---------- Combobox (input + lista buscável) ---------- */
+.su-combobox { position: relative; }
+.su-combobox .su-menu { position: absolute; top: calc(100% + 4px); left: 0; right: 0; }
+
+/* ---------- DatePicker / Calendar ---------- */
+.su-calendar { background: var(--su-surface-overlay); border: 1px solid var(--su-border-default); border-radius: var(--su-radius-lg); box-shadow: var(--su-elevation-overlay); padding: var(--su-space-3); width: 260px; }
+.su-calendar__head { display: flex; align-items: center; justify-content: space-between; padding: 0 var(--su-space-1) var(--su-space-2); font-size: 13px; font-weight: var(--su-fw-medium); }
+.su-calendar__grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+.su-calendar__dow { font-size: 10px; color: var(--su-text-muted); text-align: center; padding: 4px 0; }
+.su-calendar__day { font-size: 12px; text-align: center; padding: 6px 0; border-radius: var(--su-radius-sm); color: var(--su-text-primary); cursor: pointer; }
+.su-calendar__day:hover { background: var(--su-surface-sunken); }
+.su-calendar__day--muted { color: var(--su-text-muted); }
+.su-calendar__day--selected { background: var(--su-action); color: var(--su-text-on-action); }
+
+/* ---------- FileUpload ---------- */
+.su-upload { border: 1.5px dashed var(--su-border-strong); border-radius: var(--su-radius-lg); padding: var(--su-space-6); text-align: center; color: var(--su-text-secondary); background: var(--su-surface-raised); cursor: pointer; }
+.su-upload:hover, .su-upload--dragover { border-color: var(--su-action); background: var(--su-action-tint); }
+.su-upload__icon { font-size: 26px; color: var(--su-text-muted); margin-bottom: var(--su-space-2); }
+
+/* ---------- Drawer / Sheet ---------- */
+.su-drawer { position: fixed; top: 0; right: 0; bottom: 0; width: 360px; max-width: 90vw; background: var(--su-surface-overlay); box-shadow: var(--su-elevation-modal); display: flex; flex-direction: column; z-index: 1000; animation: su-drawer-in var(--su-duration-base) var(--su-ease-entrance); }
+@keyframes su-drawer-in { from { transform: translateX(20px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+.su-sheet { position: fixed; left: 0; right: 0; bottom: 0; background: var(--su-surface-overlay); border-radius: var(--su-radius-xl) var(--su-radius-xl) 0 0; box-shadow: 0 -8px 24px rgba(20,22,30,.12); padding: var(--su-space-2) var(--su-space-5) var(--su-space-5); z-index: 1000; animation: su-sheet-in var(--su-duration-base) var(--su-ease-entrance); }
+@keyframes su-sheet-in { from { transform: translateY(24px); } to { transform: translateY(0); } }
+.su-sheet__handle { width: 34px; height: 4px; border-radius: 2px; background: var(--su-border-strong); margin: 0 auto var(--su-space-3); }
+
+/* ---------- Accordion ---------- */
+.su-accordion { border: 1px solid var(--su-border-default); border-radius: var(--su-radius-lg); overflow: hidden; }
+.su-accordion__item + .su-accordion__item { border-top: 1px solid var(--su-border-subtle); }
+.su-accordion__head { display: flex; align-items: center; justify-content: space-between; padding: var(--su-space-3) var(--su-space-4); font-size: 14px; font-weight: var(--su-fw-medium); cursor: pointer; }
+.su-accordion__body { padding: 0 var(--su-space-4) var(--su-space-4); font-size: 13px; color: var(--su-text-secondary); }
+
+/* ---------- Stepper / Wizard ---------- */
+.su-stepper { display: flex; align-items: center; }
+.su-step { display: flex; flex-direction: column; align-items: center; gap: var(--su-space-1); flex: 1; }
+.su-step__dot { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; background: var(--su-surface-sunken); color: var(--su-text-muted); }
+.su-step__label { font-size: 11px; color: var(--su-text-muted); }
+.su-step--current .su-step__dot { background: var(--su-action); color: var(--su-text-on-action); }
+.su-step--current .su-step__label { color: var(--su-text-primary); font-weight: var(--su-fw-medium); }
+.su-step--done .su-step__dot { background: var(--su-action); color: var(--su-text-on-action); }
+.su-step__line { height: 1px; flex: 1; background: var(--su-border-default); margin: 0 -6px 16px; }
+.su-step__line--done { background: var(--su-action); }
+
+/* ---------- DescriptionList ---------- */
+.su-dl { width: 100%; font-size: 13px; }
+.su-dl__row { display: flex; justify-content: space-between; padding: var(--su-space-2) 0; }
+.su-dl__row + .su-dl__row { border-top: 1px solid var(--su-border-subtle); }
+.su-dl__key { color: var(--su-text-secondary); }
+.su-dl__val { color: var(--su-text-primary); text-align: right; }
+
+/* ---------- ProgressBar ---------- */
+.su-progress { height: 8px; background: var(--su-surface-sunken); border-radius: var(--su-radius-full); overflow: hidden; }
+.su-progress__fill { height: 100%; background: var(--su-action); border-radius: var(--su-radius-full); transition: width var(--su-duration-base) var(--su-ease-standard); }
+
+/* ---------- Timeline (auditoria) ---------- */
+.su-timeline { position: relative; padding-left: var(--su-space-5); }
+.su-timeline::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 1px; background: var(--su-border-default); }
+.su-timeline__item { position: relative; margin-bottom: var(--su-space-4); }
+.su-timeline__dot { position: absolute; left: calc(-1 * var(--su-space-5) + 0px); top: 3px; width: 9px; height: 9px; border-radius: 50%; background: var(--su-border-strong); }
+.su-timeline__item--active .su-timeline__dot { background: var(--su-action); }
+.su-timeline__title { font-size: 12px; color: var(--su-text-primary); }
+.su-timeline__meta { font-size: 11px; color: var(--su-text-muted); }
+
+/* ---------- CommandPalette ---------- */
+.su-cmdk { background: var(--su-surface-overlay); border: 1px solid var(--su-border-default); border-radius: var(--su-radius-xl); box-shadow: var(--su-elevation-modal); width: 100%; max-width: 440px; overflow: hidden; }
+.su-cmdk__input { display: flex; align-items: center; gap: var(--su-space-2); padding: var(--su-space-3) var(--su-space-4); border-bottom: 1px solid var(--su-border-subtle); font-size: 14px; color: var(--su-text-primary); }
+.su-cmdk__group { font-size: 11px; color: var(--su-text-muted); padding: var(--su-space-2) var(--su-space-3) var(--su-space-1); }
+.su-cmdk__foot { display: flex; gap: var(--su-space-4); padding: var(--su-space-2) var(--su-space-4); border-top: 1px solid var(--su-border-subtle); font-size: 11px; color: var(--su-text-muted); }
+
+/* ---------- SegmentedControl ---------- */
+.su-segmented { display: inline-flex; background: var(--su-surface-sunken); border-radius: var(--su-radius-md); padding: 2px; }
+.su-segment { font-size: 13px; padding: 6px 14px; border-radius: calc(var(--su-radius-md) - 2px); color: var(--su-text-secondary); cursor: pointer; border: none; background: none; font-family: inherit; }
+.su-segment--active { background: var(--su-surface-raised); color: var(--su-text-primary); box-shadow: var(--su-elevation-raised); }
+
+/* ---------- DividerLine (utilitário) ---------- */
+.su-divider { height: 1px; background: var(--su-border-subtle); border: none; margin: var(--su-space-4) 0; }
+
