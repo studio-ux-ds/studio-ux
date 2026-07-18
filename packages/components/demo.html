@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio UX — Componentes (Fase 3, grupo 1)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="../tokens/tokens.css">
+  <link rel="stylesheet" href="./components.css">
+  <style>
+    body { margin: 0; background: var(--su-surface-base); font-family: var(--su-font-ui); color: var(--su-text-primary); }
+    .wrap { max-width: 860px; margin: 0 auto; padding: var(--su-space-8) var(--su-space-6); }
+    h1 { font: var(--su-fw-semibold) var(--su-text-h1); margin: 0; }
+    h2 { font: var(--su-fw-semibold) var(--su-text-h3); margin: var(--su-space-8) 0 var(--su-space-3); color: var(--su-text-secondary); }
+    .row { display: flex; gap: var(--su-space-3); align-items: center; flex-wrap: wrap; }
+    .card { background: var(--su-surface-raised); border: 1px solid var(--su-border-default); border-radius: var(--su-radius-lg); padding: var(--su-space-5); box-shadow: var(--su-elevation-raised); }
+    header { display: flex; align-items: center; gap: var(--su-space-4); }
+    header p { color: var(--su-text-secondary); font-size: 13px; margin: 4px 0 0; }
+  </style>
+</head>
+<body class="su">
+  <div class="wrap">
+    <header>
+      <div style="flex:1;">
+        <h1>Studio UX — Componentes</h1>
+        <p>Fase 3, grupo 1 (fundamentais) · sobre os tokens congelados v1.0.0</p>
+      </div>
+      <button class="su-btn su-btn--secondary" onclick="var h=document.documentElement;h.dataset.theme=h.dataset.theme==='dark'?'light':'dark';">Alternar tema</button>
+    </header>
+
+    <h2>Button</h2>
+    <div class="row">
+      <button class="su-btn su-btn--primary">Salvar</button>
+      <button class="su-btn su-btn--secondary">Cancelar</button>
+      <button class="su-btn su-btn--ghost">Ver mais</button>
+      <button class="su-btn su-btn--danger">Excluir</button>
+      <button class="su-btn su-btn--primary" disabled>Desabilitado</button>
+      <button class="su-btn su-btn--secondary su-btn--sm">Pequeno</button>
+      <button class="su-btn su-btn--primary su-btn--lg">Grande</button>
+    </div>
+
+    <h2>Badge / Status</h2>
+    <div class="row">
+      <span class="su-badge su-badge--success">Ativo</span>
+      <span class="su-badge su-badge--warning">Pendente</span>
+      <span class="su-badge su-badge--danger">Inadimplente</span>
+      <span class="su-badge su-badge--info">Novo</span>
+    </div>
+
+    <h2>FormField</h2>
+    <div class="card" style="max-width:360px;">
+      <div class="su-field" style="margin-bottom:16px;">
+        <label class="su-field__label">Nome</label>
+        <input class="su-input" value="Marina Alves">
+      </div>
+      <div class="su-field su-field--error">
+        <label class="su-field__label">E-mail</label>
+        <input class="su-input" value="marina@empresa">
+        <span class="su-field__error">Digite um e-mail válido.</span>
+      </div>
+    </div>
+
+    <h2>Table</h2>
+    <div class="su-table-card">
+      <table class="su-table">
+        <thead><tr><th>Cliente</th><th>Status</th><th class="num">Total</th></tr></thead>
+        <tbody>
+          <tr><td>Marina Alves</td><td><span class="su-badge su-badge--success">Ativo</span></td><td class="num">R$ 3.240</td></tr>
+          <tr><td>Carlos Nogueira</td><td><span class="su-badge su-badge--warning">Pendente</span></td><td class="num">R$ 1.980</td></tr>
+          <tr><td>Bianca Ferraz</td><td><span class="su-badge su-badge--danger">Inadimplente</span></td><td class="num">R$ 610</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Toast</h2>
+    <div class="row">
+      <span class="su-toast su-toast--success"><span class="su-toast__icon">✓</span>Cliente salvo.</span>
+    </div>
+
+    <h2>ConfirmDialog (os 5 patrasques)</h2>
+    <div class="card" style="max-width:420px;padding:0;">
+      <div class="su-modal__head">Excluir cliente?</div>
+      <div class="su-modal__body">Marina Alves e todo o histórico serão removidos. Esta ação não pode ser desfeita.</div>
+      <div class="su-modal__foot">
+        <button class="su-btn su-btn--secondary">Cancelar</button>
+        <button class="su-btn su-btn--danger">Excluir</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

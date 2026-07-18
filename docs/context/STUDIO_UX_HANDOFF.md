@@ -14,8 +14,8 @@
 
 **EN** — Never state a version number, a file/token/component name, or "what's already implemented" from memory. Run `git tag | sort -V | tail` and `git log --oneline -3` BEFORE talking about versions. Tags are immutable — never reuse. Confirm the next version number with Robson before tagging.
 
-> **PT — Convenção de versão vigente:** o `v1.0.0` foi alcançado com o **congelamento dos tokens** (fim da Fase 2). A era pré-1.0 (`v0.1.x`→`v0.3.x`) encerrou-se. **Daqui em diante vale o SemVer normal** (`governance/STUDIO_UX_VERSIONING.md`): PATCH para correção, MINOR para adição retrocompatível (ex.: componentes novos da Fase 3 → `v1.1.0`, `v1.2.0`…), MAJOR só para quebra com guia de migração. Tags imutáveis; confirmar o número com o Robson.
-> **EN — Current version convention:** `v1.0.0` was reached with the **token freeze** (end of Phase 2). The pre-1.0 era ended. **Normal SemVer applies from here** (`governance/STUDIO_UX_VERSIONING.md`): PATCH for fixes, MINOR for backward-compatible additions (e.g. new Phase 3 components → `v1.1.0`, `v1.2.0`…), MAJOR only for a break with a migration guide. Immutable tags; confirm the number with Robson.
+> **PT — Convenção de versão vigente (decisão do Robson):** `v1.0.0` foi alcançado com o congelamento dos tokens. **Durante a construção dos componentes (Fase 3), varia-se só o dígito final na faixa `v1.0.1` … `v1.0.99`** — próxima tag `v1.0.1`, etc. (o salto de MINOR/MAJOR fica para depois, quando o conjunto amadurecer). Tags imutáveis; confirmar o número com o Robson.
+> **EN — Current version convention (Robson's decision):** `v1.0.0` was reached with the token freeze. **While building the components (Phase 3), only the final digit varies within `v1.0.1` … `v1.0.99`** — next tag `v1.0.1`, etc. (MINOR/MAJOR jumps come later, once the set matures). Immutable tags; confirm the number with Robson.
 
 ---
 
