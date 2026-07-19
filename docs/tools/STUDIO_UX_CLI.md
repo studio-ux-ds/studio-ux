@@ -131,6 +131,11 @@ Dono · Owner:                este doc, para o domínio "CLI oficial".
 ## Referências internas · Internal references
 `platform/STUDIO_UX_ARCHITECTURE.md` · `platform/STUDIO_UX_PACKAGES.md` · `platform/STUDIO_UX_RUNTIME.md` · `tools/STUDIO_UX_DEVTOOLS.md` · `tools/STUDIO_UX_PLAYGROUND.md` · `generation/STUDIO_UX_PROJECT_GENERATOR.md` · `generation/STUDIO_UX_EXPORTERS.md` · `quality/STUDIO_UX_LINTER.md` · `quality/STUDIO_UX_COMPLIANCE.md` · `STUDIO_UX_CERTIFICATION.md` · `governance/STUDIO_UX_VERSIONING.md` · `STUDIO_UX_THEMES.md` · `tokens/STUDIO_UX_DESIGN_TOKENS.md` · `governance/STUDIO_UX_CONSTITUTION.md` (Art. 4, 5, 10, 13, 14) · `STUDIO_UX.md` §11 · §13
 
+## Estado da implementação · Implementation state
+
+**PT** — Materializada em `tools/cli/studio.mjs` (v1.1.7), a entrar em `packages/cli` quando o `PACKAGES` a formalizar. Os 11 comandos existem. **Donos já construídos → delegação real:** `lint` → `tools/linter/lint.mjs`; `export` → `tools/exporters/export-tokens.mjs`; `tokens`/`theme` → leitura de `tokens.css` (regra é do `tokens/*`), `tokens --export` reencaminha ao Exporter; `doctor`/`upgrade` → versão de `package.json` + tags git (dono: Versioning); `docs` → lista `docs/`; `playground` → aponta `PLAYGROUND`/`DEVTOOLS`. **Donos ainda não construídos → honestidade (Art. 21):** `create`/`generate` (Project Generator) e `audit` (Certification) existem como verbo, mas **avisam** que o dono não nasceu e saem com código 2 — não fingem execução. `bin: { studio }` no `package.json` raiz.
+**EN** — Materialized in `tools/cli/studio.mjs` (v1.1.7), to move into `packages/cli` when `PACKAGES` formalizes it. All 11 commands exist. **Owners already built → real delegation:** `lint`, `export`, `tokens`/`theme`, `doctor`/`upgrade`, `docs`, `playground`. **Owners not yet built → honesty (Art. 21):** `create`/`generate` (Project Generator) and `audit` (Certification) exist as verbs but **report** the owner isn't born and exit with code 2 — they don't fake execution.
+
 ---
 
 *Documento vivo. A CLI é a porta de entrada que aciona os donos; nunca reimplementa a regra deles. · Living document. The CLI is the entry point that triggers the owners; it never reimplements their rule.*

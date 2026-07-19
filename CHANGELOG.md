@@ -12,6 +12,16 @@ Nada pendente. / Nothing pending.
 
 ---
 
+## [1.1.7] — 2026-07-19 — Bloco B: CLI `studio` (verbo que aciona os donos) · Block B: CLI
+
+- ✅ Quarta peça do **bloco B**: `tools/cli/studio.mjs` (`npm run studio -- <cmd>`, ou `studio` via `bin`). Implementa `STUDIO_UX_CLI` — **verbo, não regra**: cada comando reúne argumentos, aciona o domínio dono e apresenta o resultado; nunca reimplementa a lógica do dono (SSOT, Art. 10).
+- **Os 11 comandos:** `create`, `generate`, `doctor`, `lint`, `audit`, `upgrade`, `tokens`, `theme`, `docs`, `playground`, `export`. **Delegação real** onde o dono já existe: `lint`→Linter, `export`→Exporters, `tokens`/`theme`→leitura de `tokens.css` (+`--export`→Exporters), `doctor`/`upgrade`→versão+tags git, `docs`→lista `docs/`, `playground`→aponta Playground/DevTools.
+- 🔎 **Honestidade (Art. 21):** `create`/`generate` (Project Generator) e `audit` (Certification) existem como verbo mas **avisam** que o dono ainda não foi construído e saem com código 2 — não fingem uma execução falsa. É o verbo esperando o dono nascer.
+- `bin: { studio }` + script `studio` no `package.json` raiz; `tools/cli/README.md`; nota de estado na doc `STUDIO_UX_CLI`.
+- Trem de release: 1.1.6 → **1.1.7**, lockstep.
+
+---
+
 ## [1.1.6] — 2026-07-19 — Bloco B: DevTools (9 inspetores) · Block B: DevTools
 
 - ✅ Terceira peça do **bloco B**: `tools/devtools/index.html` (abre no navegador, sem build). Implementa `STUDIO_UX_DEVTOOLS` — **lupas somente-leitura** que leem a regra do dono e mostram ao vivo; não julgam (é o Linter) nem alteram a Specification.

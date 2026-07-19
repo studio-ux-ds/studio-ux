@@ -1,6 +1,6 @@
 {
   "name": "studio-ux",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "private": true,
   "description": "Studio UX — Design System + plataforma. Monorepo dos pacotes publicáveis (tokens, components, mobile, react, react-native).",
   "workspaces": [
@@ -15,7 +15,11 @@
   "engines": {
     "node": ">=18"
   },
+  "bin": {
+    "studio": "tools/cli/studio.mjs"
+  },
   "scripts": {
+    "studio": "node tools/cli/studio.mjs",
     "version:all": "node scripts/set-version.mjs",
     "publish:all": "npm publish --workspaces --access restricted",
     "pack:all": "npm pack --workspaces --pack-destination ./dist-packs",
