@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio UX — Exemplo: Entrar (Desktop)</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css">
+  <link rel="stylesheet" href="../packages/tokens/tokens.css">
+  <link rel="stylesheet" href="../packages/components/components.css">
+  <style>
+    /* Só composição/layout — todos os VALORES vêm de tokens (P1, P22). */
+    body { margin: 0; min-height: 100vh; background: var(--su-surface-base); font-family: var(--su-font-ui); color: var(--su-text-primary); display: grid; grid-template-columns: 1fr; }
+    @media (min-width: 900px) { body { grid-template-columns: 1.1fr 1fr; } }
+    /* Painel de marca (à esquerda em desktop) — sóbrio, um acento só (P8). */
+    .brandside { display: none; }
+    @media (min-width: 900px) { .brandside { display: flex; flex-direction: column; justify-content: space-between; padding: var(--su-space-10); background: var(--su-surface-raised); border-right: 1px solid var(--su-border-subtle); } }
+    .brandmark { display: inline-flex; align-items: center; gap: 10px; font-weight: var(--su-fw-semibold); font-size: 16px; }
+    .brandmark span { width: 26px; height: 26px; border-radius: 8px; background: var(--su-action); color: #fff; display: inline-flex; align-items: center; justify-content: center; }
+    .pitch { max-width: 380px; }
+    .pitch h1 { font-size: var(--su-text-h1); font-weight: var(--su-fw-semibold); line-height: 1.25; margin: 0 0 var(--su-space-3); }
+    .pitch p { color: var(--su-text-secondary); font-size: var(--su-text-body); line-height: 1.55; margin: 0; }
+    .brandfoot { font-size: var(--su-text-caption); color: var(--su-text-muted); }
+    /* Formulário */
+    .formside { display: flex; align-items: center; justify-content: center; padding: var(--su-space-6); }
+    .card { width: 100%; max-width: 380px; display: flex; flex-direction: column; gap: var(--su-space-5); }
+    .card__head { text-align: left; }
+    .card__head h2 { font-size: var(--su-text-h2); font-weight: var(--su-fw-semibold); margin: 0 0 4px; }
+    .card__head p { color: var(--su-text-secondary); font-size: var(--su-text-body-sm); margin: 0; }
+    .rowbetween { display: flex; align-items: center; justify-content: space-between; font-size: var(--su-text-body-sm); }
+    .link { color: var(--su-action); text-decoration: none; font-weight: var(--su-fw-medium); }
+    .inputwrap { position: relative; display: flex; align-items: center; }
+    .inputwrap .ti { position: absolute; left: 12px; color: var(--su-text-muted); font-size: 18px; }
+    .inputwrap .su-input { padding-left: 38px; }
+    .checkline { display: flex; align-items: center; gap: 8px; color: var(--su-text-secondary); }
+    .divider-or { display: flex; align-items: center; gap: 12px; color: var(--su-text-muted); font-size: var(--su-text-caption); }
+    .divider-or::before, .divider-or::after { content: ""; flex: 1; height: 1px; background: var(--su-border-subtle); }
+    .sso { display: flex; gap: var(--su-space-2); }
+    .sso .su-btn { flex: 1; }
+    .signup { text-align: center; font-size: var(--su-text-body-sm); color: var(--su-text-secondary); }
+    .themetoggle { position: fixed; top: 16px; right: 16px; }
+  </style>
+</head>
+<body class="su">
+  <button class="su-iconbtn themetoggle" aria-label="Alternar tema" onclick="var h=document.documentElement;h.dataset.theme=h.dataset.theme==='dark'?'light':'dark';"><i class="ti ti-moon"></i></button>
+
+  <!-- Painel de marca -->
+  <aside class="brandside">
+    <div class="brandmark"><span><i class="ti ti-square-rounded"></i></span>Studio UX</div>
+    <div class="pitch">
+      <h1>Bem-vindo de volta.</h1>
+      <p>Entre para continuar de onde parou. Um só lugar para clientes, faturas e relatórios do seu negócio.</p>
+    </div>
+    <div class="brandfoot">© 2026 Studio UX · Todos os direitos reservados</div>
+  </aside>
+
+  <!-- Formulário -->
+  <main class="formside">
+    <form class="card" onsubmit="return false;">
+      <div class="brandmark" style="margin-bottom:4px;"><span><i class="ti ti-square-rounded"></i></span>Studio UX</div>
+      <div class="card__head">
+        <h2>Entrar na sua conta</h2>
+        <p>Use seu e-mail corporativo para acessar o painel.</p>
+      </div>
+
+      <div class="su-field">
+        <label class="su-field__label" for="email">E-mail</label>
+        <div class="inputwrap"><i class="ti ti-mail"></i><input class="su-input" id="email" type="email" placeholder="voce@empresa.com" autocomplete="username"></div>
+      </div>
+
+      <div class="su-field">
+        <div class="rowbetween"><label class="su-field__label" for="senha">Senha</label><a class="link" href="#">Esqueci a senha</a></div>
+        <div class="inputwrap"><i class="ti ti-lock"></i><input class="su-input" id="senha" type="password" placeholder="••••••••" autocomplete="current-password"></div>
+      </div>
+
+      <label class="checkline"><input type="checkbox" class="su-checkbox" checked> Manter conectado neste dispositivo</label>
+
+      <button class="su-btn su-btn--primary su-btn--lg" style="width:100%;">Entrar</button>
+
+      <div class="divider-or">ou continue com</div>
+      <div class="sso">
+        <button class="su-btn su-btn--secondary"><i class="ti ti-brand-google"></i>Google</button>
+        <button class="su-btn su-btn--secondary"><i class="ti ti-brand-windows"></i>Microsoft</button>
+      </div>
+
+      <div class="signup">Não tem conta? <a class="link" href="#">Falar com o administrador</a></div>
+    </form>
+  </main>
+</body>
+</html>

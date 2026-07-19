@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio UX — Exemplo: Configurações (Desktop)</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css">
+  <link rel="stylesheet" href="../packages/tokens/tokens.css">
+  <link rel="stylesheet" href="../packages/components/components.css">
+  <style>
+    /* Só composição/layout — todos os VALORES vêm de tokens (P1, P22). */
+    body { margin: 0; background: var(--su-surface-base); font-family: var(--su-font-ui); color: var(--su-text-primary); }
+    .shell { display: flex; min-height: 100vh; }
+    .main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+    .content { padding: var(--su-space-6); display: flex; flex-direction: column; gap: var(--su-space-5); max-width: 860px; }
+    .field-search { display: flex; align-items: center; gap: 8px; border: 1px solid var(--su-border-default); border-radius: var(--su-radius-md); padding: 6px 10px; color: var(--su-text-muted); font-size: 12px; }
+    .card { background: var(--su-surface-raised); border: 1px solid var(--su-border-subtle); border-radius: var(--su-radius-lg); }
+    .card__head { padding: var(--su-space-5); border-bottom: 1px solid var(--su-border-subtle); }
+    .card__head h3 { font-size: var(--su-text-h3); font-weight: var(--su-fw-semibold); margin: 0 0 2px; }
+    .card__head p { font-size: var(--su-text-body-sm); color: var(--su-text-secondary); margin: 0; }
+    .row { display: flex; align-items: center; gap: var(--su-space-4); padding: var(--su-space-4) var(--su-space-5); border-bottom: 1px solid var(--su-border-subtle); }
+    .row:last-child { border-bottom: 0; }
+    .row__text { flex: 1; }
+    .row__text b { font-weight: var(--su-fw-medium); font-size: var(--su-text-body); }
+    .row__text small { display: block; color: var(--su-text-muted); font-size: var(--su-text-caption); margin-top: 2px; }
+    .accent-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .swatch { width: 30px; height: 30px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; outline: 2px solid var(--su-border-default); outline-offset: 2px; }
+    .swatch[aria-pressed="true"] { outline-color: var(--su-action); }
+    .tabsbar { border-bottom: 1px solid var(--su-border-default); }
+    .form-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--su-space-4); padding: var(--su-space-5); }
+    @media (max-width: 700px) { .form-grid2 { grid-template-columns: 1fr; } }
+    .actions { display: flex; justify-content: flex-end; gap: var(--su-space-2); }
+  </style>
+</head>
+<body class="su">
+  <div class="shell">
+    <aside class="su-sidebar">
+      <div class="su-sidebar__brand"><span style="width:22px;height:22px;border-radius:7px;background:var(--su-action);color:#fff;display:inline-flex;align-items:center;justify-content:center;"><i class="ti ti-square-rounded"></i></span>Studio UX</div>
+      <nav class="su-nav">
+        <a class="su-nav__item"><i class="ti ti-layout-dashboard" style="font-size:18px;"></i>Painel</a>
+        <a class="su-nav__item"><i class="ti ti-users" style="font-size:18px;"></i>Clientes</a>
+        <a class="su-nav__item"><i class="ti ti-file-invoice" style="font-size:18px;"></i>Faturas</a>
+        <a class="su-nav__item"><i class="ti ti-chart-bar" style="font-size:18px;"></i>Relatórios</a>
+        <a class="su-nav__item su-nav__item--active"><i class="ti ti-settings" style="font-size:18px;"></i>Ajustes</a>
+      </nav>
+      <div class="su-sidebar__footer" style="display:flex;align-items:center;gap:9px;">
+        <span style="width:28px;height:28px;border-radius:50%;background:var(--su-surface-sunken);display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:var(--su-text-secondary);">RM</span>
+        <span style="line-height:1.25;flex:1;"><span style="display:block;font-size:12px;font-weight:500;">Robson</span><span style="display:block;font-size:11px;color:var(--su-text-muted);">Administrador</span></span>
+        <i class="ti ti-logout" style="color:var(--su-text-muted);"></i>
+      </div>
+      <div style="padding:0 12px 12px;text-align:center;font-size:10px;color:var(--su-text-muted);">v1.0.10</div>
+    </aside>
+
+    <div class="main">
+      <header class="su-topbar">
+        <div style="flex:1;">
+          <div class="su-breadcrumb">Início <span>/</span> Ajustes</div>
+          <div style="font-size:16px;font-weight:600;">Configurações</div>
+        </div>
+        <span class="field-search"><i class="ti ti-search"></i>Buscar</span>
+        <button class="su-iconbtn" aria-label="Alternar tema" onclick="var h=document.documentElement;h.dataset.theme=h.dataset.theme==='dark'?'light':'dark';"><i class="ti ti-moon"></i></button>
+      </header>
+
+      <div class="content">
+        <!-- Abas de pasta -->
+        <div class="su-tabs tabsbar" role="tablist">
+          <button class="su-tab su-tab--active">Geral</button>
+          <button class="su-tab">Aparência</button>
+          <button class="su-tab">Notificações</button>
+          <button class="su-tab">Segurança</button>
+        </div>
+
+        <!-- Perfil da empresa -->
+        <div class="card">
+          <div class="card__head"><h3>Perfil da empresa</h3><p>Dados exibidos em faturas, e-mails e no cabeçalho do painel.</p></div>
+          <div class="form-grid2">
+            <div class="su-field"><label class="su-field__label">Nome da empresa</label><input class="su-input" value="Pizzaria do Robson"></div>
+            <div class="su-field"><label class="su-field__label">CNPJ</label><input class="su-input" value="12.345.678/0001-90"></div>
+            <div class="su-field"><label class="su-field__label">E-mail de contato</label><input class="su-input" type="email" value="contato@pizzaria.com"></div>
+            <div class="su-field"><label class="su-field__label">Fuso horário</label><select class="su-select"><option>America/Sao_Paulo (UTC−3)</option><option>America/Manaus (UTC−4)</option></select></div>
+          </div>
+          <div class="row"><div class="actions" style="width:100%;"><button class="su-btn su-btn--ghost">Cancelar</button><button class="su-btn su-btn--primary">Salvar alterações</button></div></div>
+        </div>
+
+        <!-- Cor de ação (acento configurável — Constituição) -->
+        <div class="card">
+          <div class="card__head"><h3>Cor de ação</h3><p>Um acento sóbrio, aplicado a botões primários, foco e links. Escolha uma — o sistema recolore em tempo real.</p></div>
+          <div class="row">
+            <div class="accent-row" id="accents">
+              <button class="swatch" title="Índigo" data-a="#4F46E5" aria-pressed="true" style="background:#4F46E5;"></button>
+              <button class="swatch" title="Azul" data-a="#2563EB" aria-pressed="false" style="background:#2563EB;"></button>
+              <button class="swatch" title="Teal" data-a="#0D9488" aria-pressed="false" style="background:#0D9488;"></button>
+              <button class="swatch" title="Verde" data-a="#047857" aria-pressed="false" style="background:#047857;"></button>
+              <button class="swatch" title="Violeta" data-a="#7C3AED" aria-pressed="false" style="background:#7C3AED;"></button>
+              <button class="swatch" title="Cobre" data-a="#B45309" aria-pressed="false" style="background:#B45309;"></button>
+              <button class="swatch" title="Grafite" data-a="#475569" aria-pressed="false" style="background:#475569;"></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notificações (switches) -->
+        <div class="card">
+          <div class="card__head"><h3>Notificações</h3><p>Todo automatismo nasce desligado — ligue só o que faz sentido para você.</p></div>
+          <div class="row"><div class="row__text"><b>Novo pedido</b><small>Som + aviso na tela quando um pedido chega.</small></div><label class="su-switch"><input type="checkbox" checked><span class="su-switch__track"></span></label></div>
+          <div class="row"><div class="row__text"><b>Estoque baixo</b><small>Avisa quando um item cruza o mínimo configurado.</small></div><label class="su-switch"><input type="checkbox" checked><span class="su-switch__track"></span></label></div>
+          <div class="row"><div class="row__text"><b>Resumo diário por e-mail</b><small>Enviado todo dia às 8h com os números do dia anterior.</small></div><label class="su-switch"><input type="checkbox"><span class="su-switch__track"></span></label></div>
+          <div class="row"><div class="row__text"><b>Mensagens de WhatsApp</b><small>Avisa quando um cliente responde uma conversa.</small></div><label class="su-switch"><input type="checkbox" checked><span class="su-switch__track"></span></label></div>
+        </div>
+
+        <!-- Zona de perigo (ação destrutiva — 5 patrasques: P13) -->
+        <div class="card" style="border-color:var(--su-danger);">
+          <div class="card__head"><h3 style="color:var(--su-danger-fg);">Zona de perigo</h3><p>Ações irreversíveis. Exigem confirmação.</p></div>
+          <div class="row"><div class="row__text"><b>Encerrar conta</b><small>Remove o acesso de todos os usuários e arquiva os dados. Não pode ser desfeito.</small></div><button class="su-btn su-btn--danger" title="Esta ação é irreversível"><i class="ti ti-alert-triangle"></i>Encerrar conta</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Seletor de cor de ação — recolore --su-action ao vivo (mesmo mecanismo do playground).
+    var box = document.getElementById('accents');
+    function shade(hex, p){ var n=parseInt(hex.slice(1),16),r=n>>16,g=(n>>8)&255,b=n&255,f=function(x){return Math.max(0,Math.min(255,Math.round(x*(1-p))));}; return '#'+((f(r)<<16)|(f(g)<<8)|f(b)).toString(16).padStart(6,'0'); }
+    box.addEventListener('click', function(e){
+      var el = e.target.closest('.swatch'); if(!el) return;
+      [].forEach.call(box.children, function(c){ c.setAttribute('aria-pressed', c===el?'true':'false'); });
+      var a = el.dataset.a, root = document.documentElement.style;
+      root.setProperty('--su-action', a);
+      root.setProperty('--su-action-hover', shade(a,0.12));
+      root.setProperty('--su-action-active', shade(a,0.22));
+    });
+  </script>
+</body>
+</html>

@@ -12,6 +12,15 @@ Nada pendente. / Nothing pending.
 
 ---
 
+## [1.0.11] — 2026-07-19 — Mais exemplos Desktop: Entrar, Relatórios, Configurações · More Desktop examples
+
+- ✅ `examples/login.html` — tela de **Entrar**: painel de marca + formulário (e-mail/senha com ícone, "manter conectado", SSO Google/Microsoft), sóbrio, um acento só (P8), toggle de tema.
+- ✅ `examples/analytics.html` — **Relatórios**: filtros (segmented de período + canal), 4 KPIs, gráfico de barras (composição pura, cor de token), breakdown por canal e tabela "produtos mais vendidos". Barras montadas por JS — só a altura é dado; a cor vem de `--su-action`.
+- ✅ `examples/configuracoes.html` — **Configurações**: abas de pasta (Geral/Aparência/Notificações/Segurança), perfil da empresa (form grid), **seletor de cor de ação** (7 acentos, recolore ao vivo), notificações (switches, "todo automatismo nasce desligado") e zona de perigo (ação destrutiva com aviso — P13).
+- Todos reusam o shell/sidebar dos exemplos existentes; verificado: nenhuma classe fantasma.
+
+---
+
 ## [1.0.10] — 2026-07-19 — Adapter React para mobile-web (`@studio-ux/react/mobile`) · React adapter for mobile-web
 
 - ✅ Novo subpath **`@studio-ux/react/mobile`** (`packages/react/mobile/`): wrappers React sobre as classes `.su-m-*` do `mobile.css`, para PWA/mobile-web em React. Irmão do adapter Desktop (P4) — não é o desktop "responsivo".
