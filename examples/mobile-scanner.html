@@ -9,8 +9,8 @@
   <link rel="stylesheet" href="../packages/tokens/tokens.css">
   <link rel="stylesheet" href="../packages/mobile/mobile.css">
   <style>
-    body { margin: 0; background: #000; font-family: var(--su-font-ui); }
-    .phone { max-width: 390px; margin: 0 auto; min-height: 100vh; background: #0A0C10; display: flex; flex-direction: column; }
+    body { margin: 0; background: #000; font-family: var(--su-font-ui); } /* su-allow: color-off-token (fundo de cena — viewport escuro da câmera, cor física não-token) */
+    .phone { max-width: 390px; margin: 0 auto; min-height: 100vh; background: #0A0C10; display: flex; flex-direction: column; } /* su-allow: color-off-token (cena escura do scanner) */
     .bar { display: flex; align-items: center; gap: var(--su-space-3); padding: var(--su-space-3) var(--su-space-4); color: var(--su-text-on-action); }
     .bar__title { font-size: var(--su-fs-h3); font-weight: 600; flex: 1; }
     .icon-btn { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,.12); border: none; color: var(--su-text-on-action); display: flex; align-items: center; justify-content: center; font-size: var(--su-fs-h2); }
@@ -35,6 +35,7 @@
     </div>
 
     <!-- Alternativa acessível ao gesto/câmera (P19): sempre há um caminho manual. -->
+    <!-- su-allow: color-off-token (cena escura do scanner) -->
     <div class="su-m-footer" style="background:#0A0C10;border-top:1px solid rgba(255,255,255,.12);">
       <button class="su-m-cta su-m-cta--ghost" style="color:var(--su-text-on-action);border-color:rgba(255,255,255,.3);"><i class="ti ti-keyboard"></i>Digitar código manualmente</button>
     </div>

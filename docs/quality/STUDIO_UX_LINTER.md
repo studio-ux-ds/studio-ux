@@ -167,6 +167,18 @@ Dono · Owner:                este doc, para o domínio "validação automática
 **PT** — O catálogo cresce só quando um P#/Art. novo pede detecção estática; toda regra nova nasce com id, origem, severidade e exemplo, e entra no mesmo commit em que o dono muda. Detecções hoje parciais (só-cor, contraste sobre não-token) podem ganhar precisão, mas o limite permanece: o não-estático nunca vira decisão do linter.
 **EN** — The catalog grows only when a new P#/Art. asks for static detection; every new rule is born with id, origin, severity and example, entering in the same commit the owner changes. Today's partial detections (color-only, contrast over non-token) may gain precision, but the boundary holds: the non-static never becomes a linter decision.
 
+## Exceções explícitas e precisão de contexto · Explicit exceptions and context precision (v1.1.13)
+
+**PT** — Uma detecção estática às vezes é **falso-positivo legítimo**: um swatch de seletor de cor demonstra valores que **não são token** por definição; uma cena escura (viewport de câmera) usa cor física; um SPA multi-tela tem uma primária *por tela* que a contagem por-arquivo confunde. Para isso o linter tem um **escape-hatch auditável** — nunca um "desliga tudo" silencioso:
+- **`su-allow: <regras> (motivo)`** em comentário — suprime as regras citadas na **própria linha e na seguinte** (motivo obrigatório entre parênteses, para o laudo ser lido depois).
+- **`su-allow-begin: <regras> (motivo)` … `su-allow-end`** — suprime numa **região** (ex.: as N linhas de um swatch de acento).
+- **`su-allow-file: <regras> (motivo)`** — suprime regras de **nível de arquivo** (ex.: `single-primary-action` num SPA JS-driven).
+- As exceções **aparecem no relatório** ("Exceções explícitas (su-allow) — auditáveis: …") e são **contadas** — não somem. Abusar do marcador é visível (o número cresce); a auditoria humana/`CERTIFICATION` vê quantas exceções um arquivo declarou e por quê.
+
+**PT — `single-primary-action` conta por TELA, não por arquivo (P6 é por contexto):** o linter segmenta a fonte por marcadores de tela (`data-page`, `su-page`, `role="dialog"`, modal/scrim) e conta primárias por segmento; um sistema com N telas, 1 primária cada, passa. Onde a tela é montada por JS (sem delimitador estático), usa-se `su-allow-file: single-primary-action (motivo)`.
+
+**EN** — A static detection is sometimes a **legitimate false-positive** (a color-picker swatch demoing non-token values; a dark camera scene; a multi-screen SPA with one primary *per screen*). The linter offers an **auditable escape-hatch** — never a silent blanket disable: `su-allow: <rules> (reason)` (line + next), `su-allow-begin … su-allow-end` (region), `su-allow-file: <rules> (reason)` (file-level). Every exception is **printed and counted** in the report — it never disappears; abusing the marker is visible. And **`single-primary-action` counts per SCREEN, not per file** (P6 is per-context): the source is segmented by screen markers (`data-page`/`su-page`/`dialog`/modal); JS-built screens use `su-allow-file`.
+
 ## Referências internas · Internal references
 `STUDIO_UX.md` §11–§13 · `STUDIO_UX_PRINCIPLES.md` (P1–P25) · `governance/STUDIO_UX_CONSTITUTION.md` (Art. 1–20) · `tokens/STUDIO_UX_DESIGN_TOKENS.md` · `tokens/STUDIO_UX_COLOR_SYSTEM.md` · `tokens/STUDIO_UX_TYPOGRAPHY.md` · `tokens/STUDIO_UX_SPACING.md` · `components/STUDIO_UX_COMPONENT_LIBRARY.md` · `layouts/STUDIO_UX_LAYOUT_SYSTEM.md` · `STUDIO_UX_ANIMATIONS.md` · `STUDIO_UX_ACCESSIBILITY.md` · `STUDIO_UX_VISUAL_DNA.md` · `docs/quality/STUDIO_UX_COMPLIANCE.md` · `docs/STUDIO_UX_CERTIFICATION.md` §8.4 · `tools/STUDIO_UX_CLI` · `tools/STUDIO_UX_DEVTOOLS`
 

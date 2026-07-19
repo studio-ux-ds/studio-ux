@@ -33,16 +33,54 @@ const PAIRS = [
 ];
 
 const violations = [];
-const add = (file, line, id, origin, severity, evidence) => violations.push({ file, line, id, origin, severity, evidence });
+const allowances = []; // exceções explícitas (su-allow) — auditáveis, não somem do relatório
+
+// Supressão explícita por arquivo (su-allow). Preenchida no início de cada lintFile; vazia no contrastAudit.
+let SUPP = { file: new Set(), line: {} };
+const suppressed = (line, id) => {
+  const set = line === 0 ? SUPP.file : (SUPP.line[line] || null);
+  return !!set && (set.has(id) || set.has("*"));
+};
+const add = (file, line, id, origin, severity, evidence) => {
+  if (suppressed(line, id)) { allowances.push({ file, line, id, origin, evidence }); return; }
+  violations.push({ file, line, id, origin, severity, evidence });
+};
+
+// Parseia os marcadores su-allow de um arquivo → { file:Set, line:{n:Set} }.
+// Sintaxe (em comentário): `su-allow: regra1,regra2 (motivo)` (linha), `su-allow-begin: regras (motivo)` … `su-allow-end` (região),
+// `su-allow-file: regras (motivo)` (regras de nível de arquivo, linha 0). `*` = todas.
+function parseSuppress(lines) {
+  const S = { file: new Set(), line: {} };
+  const rules = (seg) => seg.split(/[,\s]+/).map((r) => r.trim()).filter(Boolean);
+  let region = null;
+  lines.forEach((ln, i) => {
+    const n = i + 1;
+    let m;
+    if ((m = ln.match(/su-allow-file:\s*([a-z0-9-,\s*]+?)\s*(?:\(|--?>|$)/i))) rules(m[1]).forEach((r) => S.file.add(r));
+    if (/su-allow-end\b/i.test(ln)) { region = null; return; }
+    if ((m = ln.match(/su-allow-begin:\s*([a-z0-9-,\s*]+?)\s*(?:\(|--?>|$)/i))) { region = new Set(rules(m[1])); return; }
+    if ((m = ln.match(/(?<!-)\bsu-allow:\s*([a-z0-9-,\s*]+?)\s*(?:\(|--?>|$)/i))) {
+      const r = rules(m[1]); // vale para a própria linha (inline) E a seguinte (comentário acima)
+      S.line[n] = new Set([...(S.line[n] || []), ...r]);
+      S.line[n + 1] = new Set([...(S.line[n + 1] || []), ...r]);
+    }
+    if (region) S.line[n] = new Set([...(S.line[n] || []), ...region]);
+  });
+  return S;
+}
 
 // ---------- catálogo de regras estáticas ----------
 function lintFile(file) {
   const src = readFileSync(file, "utf8");
   const lines = src.split("\n");
   const rel = file.replace(root + "/", "").replace(root + "\\", "");
+  SUPP = parseSuppress(lines);
   const hasFocusReplacement = /focus-visible[^}]*box-shadow|:focus[^}]*box-shadow/.test(src);
-  const primaryCount = (src.match(/su-btn--primary/g) || []).length;
-  if (primaryCount > 1) add(rel, 0, "single-primary-action", "P6", "erro", `${primaryCount} ações primárias (su-btn--primary) no mesmo arquivo`);
+  // single-primary por TELA/contexto, não por arquivo: segmenta em telas (data-page/su-page/modal/dialog)
+  // e conta primárias por segmento. Um SPA com N telas, 1 primária cada, passa. >1 no MESMO segmento reprova.
+  const segments = src.split(/(?=data-page=|role="dialog"|class="[^"]*\bsu-page\b|class="[^"]*\b(?:scrim|su-modal|dialog)\b)/);
+  const maxPrimary = Math.max(0, ...segments.map((s) => (s.match(/su-btn--primary/g) || []).length));
+  if (maxPrimary > 1) add(rel, 0, "single-primary-action", "P6", "erro", `${maxPrimary} ações primárias (su-btn--primary) na mesma tela/contexto`);
   const usesMobile = /\bsu-m-[a-z]/.test(src), usesDesktopShell = /\bsu-sidebar\b|\bsu-topbar\b/.test(src);
   if (usesMobile && usesDesktopShell) add(rel, 0, "no-cross-product-component", "P4/Art.2", "erro", "arquivo Desktop (su-sidebar/topbar) usando componente Mobile (su-m-*)");
   const hasData = /\bsu-table\b|class="[^"]*su-m-list/.test(src);
@@ -88,6 +126,7 @@ function lintFile(file) {
 
 // ---------- 2.13 contrast-minimum (auditoria dos tokens; determinístico) ----------
 function contrastAudit() {
+  SUPP = { file: new Set(), line: {} }; // auditoria de token nunca é suprimida por marcador de exemplo
   for (const [theme, T] of [["claro", T_LIGHT], ["escuro", T_DARK]]) {
     for (const [fg, bg, target] of PAIRS) {
       const a = T[fg], b = T[bg];
@@ -121,5 +160,10 @@ for (const f of Object.keys(byFile).sort()) {
   }
   console.log("");
 }
-console.log(`Total: ${errors} erro(s), ${warns} aviso(s).`);
+if (allowances.length) {
+  const byId = {};
+  for (const a of allowances) byId[a.id] = (byId[a.id] || 0) + 1;
+  console.log("  Exceções explícitas (su-allow) — auditáveis: " + Object.entries(byId).map(([id, c]) => `${id}×${c}`).join(", ") + "\n");
+}
+console.log(`Total: ${errors} erro(s), ${warns} aviso(s)${allowances.length ? `, ${allowances.length} exceção(ões) su-allow` : ""}.`);
 process.exit(errors > 0 ? 1 : 0);

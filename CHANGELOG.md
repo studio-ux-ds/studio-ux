@@ -12,6 +12,17 @@ Nada pendente. / Nothing pending.
 
 ---
 
+## [1.1.13] — 2026-07-19 — Linter mais preciso: `su-allow` auditável + `single-primary` por tela → exemplos 17/17 · Linter precision
+
+- ✅ **`single-primary-action` agora conta por TELA, não por arquivo** (P6 é por contexto). O linter segmenta a fonte por marcadores de tela (`data-page`/`su-page`/`role="dialog"`/modal/scrim) e conta primárias por segmento — um SPA com N telas, 1 primária cada, deixa de ser falso-positivo. `clientes.html` (página + modal) passou a limpo só com isso.
+- ✅ **Escape-hatch auditável `su-allow`** (nunca "desliga tudo" silencioso): `su-allow: <regras> (motivo)` (linha + seguinte), `su-allow-begin … su-allow-end` (região), `su-allow-file: <regras> (motivo)` (nível de arquivo). Exige **motivo** e **aparece contado no relatório** ("Exceções explícitas (su-allow) — auditáveis: …") — abusar do marcador é visível. Sem marcador, a regra continua reprovando (não afrouxou: `bad.html` mantém o baseline 11/4).
+- ✅ **Exemplos: 17/17 limpos.** Os 6 resíduos legítimos ganharam marcador com motivo no código: swatches do seletor de acento (`configuracoes`/`index`/`mobile-configuracoes` — cores não-token por definição), cena escura do scanner (`#000`/`#0A0C10`), e `single-primary` do SPA `app.html`. Total: 25 exceções auditáveis, todas justificadas.
+- 🔎 **Achado ao auditar um projeto MOBILE (que eu ainda não tinha auditado):** o shell mobile do gerador (`generate.mjs`) tinha `padding-bottom:84px` cru (folga da bottom-nav) — valor mágico pré-existente. Corrigido para `calc(var(--su-space-16) + var(--su-space-5))`; agora `studio create -p mobile` também passa o piso.
+- Doc do `LINTER` atualizada (seção "Exceções explícitas e precisão de contexto").
+- Trem de release: 1.1.12 → **1.1.13**, lockstep (6 pacotes).
+
+---
+
 ## [1.1.12] — 2026-07-19 — Tokens de tamanho de fonte (`--su-fs-*`) + limpeza dos exemplos · Font-size tokens + examples cleanup
 
 - 🔎 **Bug silencioso encontrado e corrigido na raiz:** os únicos tokens de tipografia eram pares `size/line-height` (`--su-text-h2: 20px/1.3`), feitos para o shorthand `font:`. Usá-los em `font-size:` gera **CSS inválido** (`font-size: 20px/1.3` → ignorado → texto herda o tamanho). Os exemplos **e** o fix de gerador da v1.1.11 já carregavam esse bug, e o linter o aceitava (regra fraca).

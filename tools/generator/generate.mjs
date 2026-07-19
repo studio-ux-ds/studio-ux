@@ -194,7 +194,7 @@ function mobileHtml(name, arch) {
   <style>
     body { margin:0; background:var(--su-surface-sunken); font-family:var(--su-font-ui); color:var(--su-text-primary); }
     .phone { max-width:390px; margin:0 auto; min-height:100vh; background:var(--su-surface-base); display:flex; flex-direction:column; position:relative; }
-    .app { flex:1; overflow:auto; padding-bottom:84px; }
+    .app { flex:1; overflow:auto; padding-bottom:calc(var(--su-space-16) + var(--su-space-5)); }
     .su-page { display:none; } .su-page--active { display:block; }
   </style>
 </head>
