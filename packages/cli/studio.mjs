@@ -26,22 +26,22 @@ function tokenMaps() {
 }
 
 const COMMANDS = {
-  lint: { owner: "quality/LINTER", desc: "detecção estática de violações", run: (a) => run("node", ["tools/linter/lint.mjs", ...a]) },
-  export: { owner: "generation/EXPORTERS", desc: "exporta tokens para os alvos", run: (a) => run("node", ["tools/exporters/export-tokens.mjs", ...a]) },
+  lint: { owner: "quality/LINTER", desc: "detecção estática de violações", run: (a) => run("node", ["packages/cli/linter/lint.mjs", ...a]) },
+  export: { owner: "generation/EXPORTERS", desc: "exporta tokens para os alvos", run: (a) => run("node", ["packages/cli/exporters/export-tokens.mjs", ...a]) },
   tokens: { owner: "tokens/* (leitura) · EXPORTERS (--export)", desc: "lista/resolve tokens no tema ativo", run: cmdTokens },
   theme: { owner: "THEMES", desc: "lista temas e resolve num deles", run: cmdTheme },
   doctor: { owner: "VERSIONING + LINTER", desc: "diagnóstico do ambiente/projeto", run: cmdDoctor },
   upgrade: { owner: "governance/VERSIONING", desc: "mostra versão atual × disponível", run: cmdUpgrade },
   docs: { owner: "packages/docs", desc: "abre/lista a documentação (a verdade é o git)", run: cmdDocs },
   playground: { owner: "tools/PLAYGROUND + DEVTOOLS", desc: "aponta o catálogo vivo e os inspetores", run: cmdPlayground },
-  create: { owner: "generation/PROJECT_GENERATOR", desc: "cria um projeto conforme (produto→arquétipo→versão)", run: (a) => run("node", ["tools/generator/generate.mjs", ...a]) },
-  generate: { owner: "generation/TEMPLATES", desc: "instancia um molde de tela num projeto", run: (a) => run("node", ["tools/generator/templates.mjs", ...a]) },
-  audit: { owner: "CERTIFICATION", desc: "gradua a conformidade (consome o Linter)", run: (a) => run("node", ["tools/certification/certify.mjs", ...a]) },
+  create: { owner: "generation/PROJECT_GENERATOR", desc: "cria um projeto conforme (produto→arquétipo→versão)", run: (a) => run("node", ["packages/cli/generator/generate.mjs", ...a]) },
+  generate: { owner: "generation/TEMPLATES", desc: "instancia um molde de tela num projeto", run: (a) => run("node", ["packages/cli/generator/templates.mjs", ...a]) },
+  audit: { owner: "CERTIFICATION", desc: "gradua a conformidade (consome o Linter)", run: (a) => run("node", ["packages/cli/certification/certify.mjs", ...a]) },
 };
 
 function cmdTokens(a) {
   const { light, dark } = tokenMaps();
-  if (a.includes("--export")) return run("node", ["tools/exporters/export-tokens.mjs"]);
+  if (a.includes("--export")) return run("node", ["packages/cli/exporters/export-tokens.mjs"]);
   const name = a.find((x) => !x.startsWith("-"));
   if (name) {
     const k = name.replace(/^--su-/, "");
@@ -108,10 +108,10 @@ function cmdDocs() {
 }
 
 function cmdPlayground() {
-  const pg = join(ROOT, "playground/index.html"), dt = join(ROOT, "tools/devtools/index.html");
+  const pg = join(ROOT, "playground/index.html"), dt = join(ROOT, "packages/cli/devtools/index.html");
   say(c.b("Ambientes vivos (derivados do Runtime, nunca produção — Art. 5)"));
   say(`  Playground (catálogo/sandbox): ${c.a(existsSync(pg) ? pg : "playground/index.html")}`);
-  say(`  DevTools (9 inspetores)      : ${c.a(existsSync(dt) ? dt : "tools/devtools/index.html")}`);
+  say(`  DevTools (9 inspetores)      : ${c.a(existsSync(dt) ? dt : "packages/cli/devtools/index.html")}`);
   say(c.dim("  Abra no navegador (sem build)."));
   return 0;
 }

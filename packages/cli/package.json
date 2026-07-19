@@ -1,0 +1,29 @@
+{
+  "name": "@studio-ux-ds/cli",
+  "version": "1.1.14",
+  "description": "CLI oficial do Studio UX (`studio`) — verbo que aciona os donos: linter, exporters, project generator, templates, certification, devtools.",
+  "type": "module",
+  "bin": {
+    "studio": "studio.mjs"
+  },
+  "files": [
+    "studio.mjs",
+    "linter/",
+    "exporters/",
+    "generator/",
+    "certification/",
+    "devtools/",
+    "README.md"
+  ],
+  "author": "Robson Marques <robson.marques.jr@gmail.com>",
+  "license": "UNLICENSED",
+  "publishConfig": {
+    "access": "restricted",
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/studio-ux-ds/studio-ux.git",
+    "directory": "packages/cli"
+  }
+}

@@ -1,4 +1,4 @@
-// Studio UX tokens @ v1.1.11 — GERADO de packages/tokens/tokens.css. NÃO editar (regenere: npm run export:tokens).
+// Studio UX tokens @ v1.1.13 — GERADO de packages/tokens/tokens.css. NÃO editar (regenere: npm run export:tokens).
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp

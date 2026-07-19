@@ -4,10 +4,10 @@ Implementa `docs/generation/STUDIO_UX_PROJECT_GENERATOR.md`. Faz um projeto **na
 
 ## Rodar
 
-- Direto: `node tools/generator/generate.mjs --product <desktop|mobile> --archetype <id> --name <nome> [--out <dir>]`
+- Direto: `node packages/cli/generator/generate.mjs --product <desktop|mobile> --archetype <id> --name <nome> [--out <dir>]`
 - npm: `npm run create -- -p desktop -a crm -n meu-crm`
 - Via CLI: `studio create -p mobile -a customer-portal -n portal-cliente`
-- Listar arquétipos: `node tools/generator/generate.mjs --list`
+- Listar arquétipos: `node packages/cli/generator/generate.mjs --list`
 
 ## Arquétipos (§2)
 
@@ -34,7 +34,7 @@ Implementa `docs/generation/STUDIO_UX_PROJECT_GENERATOR.md`. Faz um projeto **na
 
 ## Moldes de tela — `studio generate` (dono: TEMPLATES)
 
-`tools/generator/templates.mjs` instancia um **molde de tela** num projeto já criado (implementa `STUDIO_UX_TEMPLATES`).
+`packages/cli/generator/templates.mjs` instancia um **molde de tela** num projeto já criado (implementa `STUDIO_UX_TEMPLATES`).
 
 - `studio generate --mold <nome> --into <projeto> [--name <tela>]` — escreve `<projeto>/src/screens/<tela>.html`, uma tela **abrível no navegador** que compõe só classes `.su-*` do catálogo, com pontos de conteúdo vazios (Art. 19).
 - `studio generate --list` — os 9 moldes: `login`, `dashboard`, `list`, `detail`, `form`, `search`, `settings`, `wizard`, `empty`.

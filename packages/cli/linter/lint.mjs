@@ -4,13 +4,13 @@
  * Detecção estática e binária: cada regra aponta UMA violação e cita seu P#/Art. dono
  * (o linter NÃO cria regra — só detecta). Severidade herdada da certificação: eliminatório=erro,
  * pontuável=aviso. Fora do estático → encaminha (Certification/humano), não decide.
- * Uso: node tools/linter/lint.mjs [arquivos...]   (default: fixtures)
+ * Uso: node packages/cli/linter/lint.mjs [arquivos...]   (default: fixtures)
  */
 import { readFileSync, readdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const root = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
+const root = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "..");
 
 // ---------- tokens da fonte (para contraste e checagem de token válido) ----------
 const css = readFileSync(join(root, "packages/tokens/tokens.css"), "utf8");
@@ -140,7 +140,7 @@ function contrastAudit() {
 // ---------- execução ----------
 let files = process.argv.slice(2);
 if (files.length === 0) {
-  const fx = join(root, "tools/linter/fixtures");
+  const fx = join(root, "packages/cli/linter/fixtures");
   files = readdirSync(fx).filter((f) => /\.(html|jsx|css)$/.test(f)).map((f) => join(fx, f));
 }
 files.forEach(lintFile);

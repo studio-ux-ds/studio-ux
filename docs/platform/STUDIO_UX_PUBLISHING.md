@@ -23,7 +23,7 @@ Dono · Owner:                este doc, para o domínio "empacotamento e publica
 
 ## 1. O monorepo publicável · The publishable monorepo
 
-**PT** — O `package.json` da raiz é **privado** (`"private": true`, nunca publicado) e declara `workspaces` apontando para os 6 pacotes publicáveis. Cada pacote tem responsabilidade única (PACKAGES §1) e é publicado separadamente sob o escopo `@studio-ux-ds/`.
+**PT** — O `package.json` da raiz é **privado** (`"private": true`, nunca publicado) e declara `workspaces` apontando para os 7 pacotes publicáveis. Cada pacote tem responsabilidade única (PACKAGES §1) e é publicado separadamente sob o escopo `@studio-ux-ds/`.
 
 | Pacote | Conteúdo | Depende de (peer) |
 |---|---|---|
@@ -33,6 +33,7 @@ Dono · Owner:                este doc, para o domínio "empacotamento e publica
 | `@studio-ux-ds/react` | adapter web: `index.js` (`.su-*`) + `mobile.js`/`mobile/` (`.su-m-*`) | `react`, `tokens`, `components`, `mobile` (opcional) |
 | `@studio-ux-ds/react-native` | adapter nativo (View/Text/Pressable, mesmos valores de token) | `react`, `react-native` |
 | `@studio-ux-ds/icons` | biblioteca curada de ícones (`icons.js` + `<Icon>` + `icons/*.svg`, estilo único, cor via token) | `tokens`, `react` (opcional) |
+| `@studio-ux-ds/cli` | CLI oficial `studio` (bin) + o ferramental que ela aciona (linter, exporters, generator, templates, certification, devtools) | — (dev tooling) |
 
 **PT** — Não há passo de build: o CSS é fonte executável e os adapters JSX são **runtime descartável** (RUNTIME) que o produto consumidor transpila com o próprio toolchain React/RN (Babel/Metro/Vite). Publicar código-fonte é deliberado — mantém o pacote agnóstico de bundler e alinhado a "trocar o runtime não muda o design".
 

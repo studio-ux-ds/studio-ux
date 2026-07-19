@@ -17,7 +17,7 @@ Não pertence a outro porque · Not elsewhere because:
                              / each operation already has an owner (Generator, Linter, Certification, Versioning,
                              Exporters, Themes, Playground…); the missing layer is the ORCHESTRATION that invokes them
                              coherently. The CLI is the verb, not the rule.
-Complementa · Complements:   ARCHITECTURE, PACKAGES (futuro `packages/cli`), DEVTOOLS, PLAYGROUND, EXPORTERS,
+Complementa · Complements:   ARCHITECTURE, PACKAGES (`packages/cli`), DEVTOOLS, PLAYGROUND, EXPORTERS,
                              PROJECT_GENERATOR, LINTER, COMPLIANCE, CERTIFICATION, VERSIONING, THEMES, tokens/*.
 Nunca substitui · Never replaces: nenhum domínio dono — a CLI aciona, nunca reimplementa a lógica deles (SSOT, Art. 10).
 Dono · Owner:                este doc, para o domínio "CLI oficial".
@@ -105,7 +105,7 @@ Dono · Owner:                este doc, para o domínio "CLI oficial".
 
 ## Integrações e dependências · Integrations and dependencies
 **PT** — A CLI aciona: `PROJECT_GENERATOR`, `TEMPLATES`, `COMPONENT_LIBRARY`, `LINTER`, `COMPLIANCE`, `CERTIFICATION`, `VERSIONING`, `tokens/*`, `EXPORTERS`, `THEMES`, `packages/docs`, `PLAYGROUND`. Fisicamente residirá em `packages/cli` (a entrar no `PACKAGES` quando o épico o materializar). Depende da fronteira Specification × Runtime do `RUNTIME`.
-**EN** — The CLI triggers: `PROJECT_GENERATOR`, `TEMPLATES`, `COMPONENT_LIBRARY`, `LINTER`, `COMPLIANCE`, `CERTIFICATION`, `VERSIONING`, `tokens/*`, `EXPORTERS`, `THEMES`, `packages/docs`, `PLAYGROUND`. It will physically live in `packages/cli` (to enter `PACKAGES` when the epic materializes it). It depends on the `RUNTIME` Specification × Runtime boundary.
+**EN** — The CLI triggers: `PROJECT_GENERATOR`, `TEMPLATES`, `COMPONENT_LIBRARY`, `LINTER`, `COMPLIANCE`, `CERTIFICATION`, `VERSIONING`, `tokens/*`, `EXPORTERS`, `THEMES`, `packages/docs`, `PLAYGROUND`. It physically lives in `packages/cli` (the 7th publishable package, `@studio-ux-ds/cli`, in `PACKAGES`). It depends on the `RUNTIME` Specification × Runtime boundary.
 
 ## Fluxos · Flows
 **PT** — Fluxo canônico de um comando: **argumentos → validação leve → invocação do dono → apresentação do resultado + código de saída.** Fluxo de nascimento: `studio create` → Generator → projeto conforme. Fluxo de qualidade: `studio lint` → Linter; `studio audit` → Certification. Fluxo de evolução: `studio upgrade` → Versioning. Nenhum fluxo termina dentro da CLI: o resultado sempre vem do dono.
@@ -133,8 +133,8 @@ Dono · Owner:                este doc, para o domínio "CLI oficial".
 
 ## Estado da implementação · Implementation state
 
-**PT** — Materializada em `tools/cli/studio.mjs` (v1.1.7), a entrar em `packages/cli` quando o `PACKAGES` a formalizar. Os 11 comandos existem. **Donos já construídos → delegação real:** `lint` → `tools/linter/lint.mjs`; `export` → `tools/exporters/export-tokens.mjs`; `tokens`/`theme` → leitura de `tokens.css` (regra é do `tokens/*`), `tokens --export` reencaminha ao Exporter; `doctor`/`upgrade` → versão de `package.json` + tags git (dono: Versioning); `docs` → lista `docs/`; `playground` → aponta `PLAYGROUND`/`DEVTOOLS`. `create` → `generate.mjs` (Project Generator); `generate` → `templates.mjs` (Templates); `audit` → `certification/certify.mjs` (Certification, desde v1.1.11). **Todos os 11 comandos delegam de verdade** ao seu dono — nenhum "não construído" restante. `bin: { studio }` no `package.json` raiz.
-**EN** — Materialized in `tools/cli/studio.mjs`, to move into `packages/cli` when `PACKAGES` formalizes it. **All 11 commands now delegate for real** to their owner — none left "not built": `create` (Project Generator), `generate` (Templates), `audit` (Certification, since v1.1.11), `lint`, `export`, `tokens`/`theme`, `doctor`/`upgrade`, `docs`, `playground`.
+**PT** — Materializada como o pacote **`@studio-ux-ds/cli`** (`packages/cli/`, v1.1.14) — a casa física do ferramental: `studio.mjs` (bin `studio`) + as ferramentas que ele aciona (`linter/`, `exporters/`, `generator/`, `certification/`, `devtools/`). Os 11 comandos existem. **Donos já construídos → delegação real:** `lint` → `packages/cli/linter/lint.mjs`; `export` → `packages/cli/exporters/export-tokens.mjs`; `tokens`/`theme` → leitura de `tokens.css` (regra é do `tokens/*`), `tokens --export` reencaminha ao Exporter; `doctor`/`upgrade` → versão de `package.json` + tags git (dono: Versioning); `docs` → lista `docs/`; `playground` → aponta `PLAYGROUND`/`DEVTOOLS`. `create` → `generate.mjs` (Project Generator); `generate` → `templates.mjs` (Templates); `audit` → `certification/certify.mjs` (Certification, desde v1.1.11). **Todos os 11 comandos delegam de verdade** ao seu dono — nenhum "não construído" restante. `bin: { studio }` no `package.json` raiz.
+**EN** — Materialized as the **`@studio-ux-ds/cli`** package (`packages/cli/`, v1.1.14) — the physical home of the tooling: `studio.mjs` (bin `studio`) + the tools it triggers (`linter/`, `exporters/`, `generator/`, `certification/`, `devtools/`). **All 11 commands now delegate for real** to their owner — none left "not built": `create` (Project Generator), `generate` (Templates), `audit` (Certification, since v1.1.11), `lint`, `export`, `tokens`/`theme`, `doctor`/`upgrade`, `docs`, `playground`.
 
 ---
 

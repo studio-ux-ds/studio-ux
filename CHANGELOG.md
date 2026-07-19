@@ -12,6 +12,16 @@ Nada pendente. / Nothing pending.
 
 ---
 
+## [1.1.14] — 2026-07-19 — `packages/cli` físico: `@studio-ux-ds/cli` (7º pacote) · Physical CLI package
+
+- ✅ **CLI virou pacote publicável `@studio-ux-ds/cli`** (`bin: studio`), a **casa física do ferramental da plataforma**: o orquestrador `studio.mjs` + as ferramentas que ele aciona migraram de `tools/` para `packages/cli/` (`linter/`, `exporters/`, `generator/`, `certification/`, `devtools/`). `tools/` foi removido; nada duplicado (SSOT).
+- **Sem regressão:** profundidade de ROOT ajustada (3 níveis para as ferramentas em subpasta), caminhos de spawn e refs corrigidos. Pipeline inteiro validado no novo local — `studio help`, `lint` (good 0 / bad baseline 11-4), `export`, `create → generate → audit` (desktop **e** mobile **apto**), exemplos **17/17** limpos.
+- **Monorepo agora com 7 pacotes** publicáveis (lockstep); `check-packages`/`set-version` incluem `cli`; scripts do root apontam para `packages/cli/`; PUBLISHING/CLI docs atualizados; codemod de exemplos movido para `scripts/`.
+- 🔎 **Fronteira honesta (Art. 21):** `create`/`generate`/`audit`(estrutura)/`tokens`/`theme`/`doctor`/`upgrade`/`docs`/`playground` rodam de qualquer diretório do monorepo; **`lint` (contraste) e `export`** leem a fonte de tokens pelo layout do monorepo — resolver via `@studio-ux-ds/tokens` instalado (consumidor puro) é o próximo passo declarado, não finjo que já é 100% consumer-side.
+- Trem de release: 1.1.13 → **1.1.14**, lockstep (7 pacotes).
+
+---
+
 ## [1.1.13] — 2026-07-19 — Linter mais preciso: `su-allow` auditável + `single-primary` por tela → exemplos 17/17 · Linter precision
 
 - ✅ **`single-primary-action` agora conta por TELA, não por arquivo** (P6 é por contexto). O linter segmenta a fonte por marcadores de tela (`data-page`/`su-page`/`role="dialog"`/modal/scrim) e conta primárias por segmento — um SPA com N telas, 1 primária cada, deixa de ser falso-positivo. `clientes.html` (página + modal) passou a limpo só com isso.

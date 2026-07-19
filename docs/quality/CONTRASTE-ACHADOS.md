@@ -7,7 +7,7 @@
 > abaixo mantido como trilha (o que foi encontrado e por quê).
 
 
-> O linter (`tools/linter/lint.mjs`, regra `contrast-minimum` — P18/Art.9) calculou a razão
+> O linter (`packages/cli/linter/lint.mjs`, regra `contrast-minimum` — P18/Art.9) calculou a razão
 > de contraste WCAG dos pares texto/fundo de token da paleta **v1.0.0 (frozen)** e encontrou
 > **4 pares abaixo de AA**. Registrado como **dívida visível** (Art. 21: não esconder, não
 > afrouxar o limiar). **Não corrigido automaticamente** — mexer em token congelado é decisão

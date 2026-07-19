@@ -14,7 +14,7 @@ import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const root = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
+const root = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "..");
 const SRC = join(root, "packages/tokens/tokens.css");
 const OUT = join(root, "packages/tokens/exports");
 const VERSION = JSON.parse(readFileSync(join(root, "packages/tokens/package.json"), "utf8")).version;

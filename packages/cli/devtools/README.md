@@ -2,7 +2,7 @@
 
 Implementa `docs/tools/STUDIO_UX_DEVTOOLS.md`. **Lupas somente-leitura**: leem a regra do domínio dono e mostram ao vivo o que uma composição usa **agora** — não julgam conformidade (isso é o Linter) nem alteram a Specification.
 
-- **Abrir:** dê duplo-clique em `tools/devtools/index.html` (roda no navegador, sem build). Carrega os pacotes reais (`packages/tokens/tokens.css` + `packages/components/components.css`) e lê os **valores vivos** via `getComputedStyle` — inspeciona o Runtime, não a abstração.
+- **Abrir:** dê duplo-clique em `packages/cli/devtools/index.html` (roda no navegador, sem build). Carrega os pacotes reais (`packages/tokens/tokens.css` + `packages/components/components.css`) e lê os **valores vivos** via `getComputedStyle` — inspeciona o Runtime, não a abstração.
 - **Tema:** o toggle no topo alterna claro/escuro e **tudo re-lê ao vivo** (paridade de tema, contraste por tema).
 
 ## Os 9 inspetores (DEVTOOLS §2)

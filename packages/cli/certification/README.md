@@ -2,7 +2,7 @@
 
 Implementa `docs/STUDIO_UX_CERTIFICATION.md`. **Gradua** a conformidade — não detecta. Regra de ouro (§8.4): *Linter detecta · Compliance mede · Certification gradua*. Esta ferramenta **consome** as violações do Linter e as transforma em veredito de eliminatórios; **nunca re-detecta** (SSOT, Art. 10).
 
-- **Rodar:** `node tools/certification/certify.mjs <alvo>` · `npm run audit -- <alvo>` · `studio audit <alvo>`.
+- **Rodar:** `node packages/cli/certification/certify.mjs <alvo>` · `npm run audit -- <alvo>` · `studio audit <alvo>`.
 - **Alvo:** uma **tela** (arquivo `.html`) → laudo de tela; um **projeto** (pasta com `studio-ux.json`) → laudo de sistema (shell + telas + dependência de versão).
 
 ## O que ela faz — e o que deliberadamente NÃO faz (Art. 21)

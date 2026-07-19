@@ -2,7 +2,7 @@
 
 Implementa `docs/quality/STUDIO_UX_LINTER.md`. Detecção **binária e estática**: cada regra aponta UMA violação e **cita seu P#/Art. dono** (o linter não cria regra — só detecta). Severidade herda o peso da certificação: eliminatório → **erro**, pontuável → **aviso**. Fora do estático → **encaminha** (Certification/humano), não decide.
 
-- **Rodar:** `npm run lint` (fixtures) · `node tools/linter/lint.mjs <arquivos…>` (alvos).
+- **Rodar:** `npm run lint` (fixtures) · `node packages/cli/linter/lint.mjs <arquivos…>` (alvos).
 - **Saída:** por arquivo/linha — `id (origem) — evidência`; **sai com código 1 se houver erro** (para travar CI). É o domínio de detecção; a CLI (`studio lint`) é a superfície de invocação.
 
 ## As 14 regras (LINTER §2)
