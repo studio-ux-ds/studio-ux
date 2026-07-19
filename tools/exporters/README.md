@@ -19,9 +19,17 @@ Implementa `docs/generation/STUDIO_UX_EXPORTERS.md`. Anatomia: **FONTE canônica
 | `theme.js` | React + React Native | `export const light/dark` (valores fiéis à fonte) |
 | `tokens.css` | CSS Variables | re-emissão determinística (a FONTE segue sendo `packages/tokens/tokens.css`) |
 
-## Próximos alvos (crescimento honesto — NÃO stub)
+## Alvos nativos (gerados; validados ESTRUTURALMENTE, não compilados aqui)
 
-`Flutter (Dart)`, `SwiftUI (Swift)`, `Compose (Kotlin)`. Emitir constantes é mecânico, mas exigem **verificação de compilação na própria plataforma** — não foram gerados aqui para não entregar arquivo que eu não consigo validar (Constituição Art. 21). Entram como novos emissores neste mesmo script quando forem verificáveis, sem tocar a fonte (a arquitetura é plugável, §2 do EXPORTERS).
+`tokens.dart` (Flutter), `Tokens.swift` (SwiftUI), `Tokens.kt` (Compose). Sintaxe idiomática e determinística; validados por contagem (cobertura = 76 tokens × claro+escuro), chaves balanceadas e ausência de `undefined`/`NaN`. **Não compilados aqui** (sem dart/swiftc/kotlinc no ambiente) — o produto confirma compilando na plataforma. Honestidade explícita (Art. 21): estrutura garantida, compilação a verificar.
+
+| Arquivo | Convenção |
+|---|---|
+| `tokens.dart` | `abstract class SuTokensLight/Dark` — `Color(0xFF…)`, `double`, `int` |
+| `Tokens.swift` | `enum SuTokens…` + extensão `Color(su:)`, `CGFloat` |
+| `Tokens.kt` | `object SuTokens…` — `Color(0xFF…)`, `.dp`, `.sp`, `FontWeight(…)` |
+
+Com isso, os **10 alvos** da tabela do `EXPORTERS §2` estão emitidos.
 
 ## Consumo pelos produtos
 

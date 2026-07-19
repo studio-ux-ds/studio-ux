@@ -12,6 +12,15 @@ Nada pendente. / Nothing pending.
 
 ---
 
+## [1.1.3] — 2026-07-19 — Exporters: alvos nativos (Flutter/SwiftUI/Compose) · Native exporter targets
+
+- ✅ Os 3 alvos nativos do exporter, completando os **10 alvos** da tabela do `EXPORTERS §2`: `tokens.dart` (Flutter — `abstract class` com `Color(0xFF…)`/`double`/`int`), `Tokens.swift` (SwiftUI — `enum` + extensão `Color(su:)`/`CGFloat`), `Tokens.kt` (Compose — `object` com `Color(0xFF…)`/`.dp`/`.sp`/`FontWeight`).
+- **Validação:** estrutural (152 declarações por arquivo = 76 tokens × claro+escuro; chaves balanceadas; sem `undefined`/`NaN`). Sintaxe idiomática e determinística. **NÃO compilados no ambiente do DS** (sem dart/swiftc/kotlinc) — o produto confirma compilando; honestidade explícita (Art. 21): estrutura garantida, compilação a verificar.
+- Publicados no `@studio-ux-ds/tokens` (`files: exports/`). Doc EXPORTERS e `tools/exporters/README.md` atualizados.
+- Trem de release: 1.1.2 → **1.1.3**, lockstep.
+
+---
+
 ## [1.1.2] — 2026-07-19 — Bloco B: Exporters de tokens (real) · Block B: token exporters
 
 - ✅ Primeira peça do **bloco B** (plataforma-ferramenta) construída de verdade: `tools/exporters/export-tokens.mjs` (`npm run export:tokens`). Implementa `STUDIO_UX_EXPORTERS`: **fonte única `packages/tokens/tokens.css` → transformação determinística → artefato do alvo** (o exporter só lê a fonte — Art. 5).

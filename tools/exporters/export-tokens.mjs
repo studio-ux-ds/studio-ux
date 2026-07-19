@@ -165,7 +165,65 @@ ${NAMES.filter((n) => dark[n] !== light[n]).map((n) => `  --su-${n}: ${dark[n]};
 `);
 }
 
+// ---------- Alvos nativos (constantes) ----------
+// GERADOS com sintaxe idiomática e determinística; validados estruturalmente (contagem = cobertura,
+// chaves balanceadas). NÃO compilados aqui (sem dart/swiftc/kotlinc) — o produto verifica na plataforma.
+const argb = (h) => "0xFF" + h.replace("#", "").toUpperCase();   // Flutter/Compose (alpha FF)
+const rgb = (h) => "0x" + h.replace("#", "").toUpperCase();      // Swift (extensão aplica opacity 1)
+const dbl = (s) => (/\./.test(s) ? s : s + ".0");
+const px = (v) => v.replace("px", "");
+const sz = (v) => v.split("/")[0].replace("px", "").trim();
+const lh = (v) => v.split("/")[1].trim();
+const ms = (v) => v.replace("ms", "");
+const s = (v) => JSON.stringify(v);
+
+// Flutter (Dart)
+function emitFlutter() {
+  const line = (n, v) => { const c = CAT[n], name = camel(n);
+    if (c === "color") return `  static const Color ${name} = Color(${argb(v)});`;
+    if (c === "dimension") return `  static const double ${name} = ${dbl(px(v))};`;
+    if (c === "typography") return `  static const double ${name} = ${dbl(sz(v))}; // line-height ${lh(v)}`;
+    if (c === "fontWeight" || c === "zIndex" || c === "number") return `  static const int ${name} = ${v};`;
+    if (c === "duration") return `  static const int ${name} = ${ms(v)}; // ms`;
+    if (c === "opacity") return `  static const double ${name} = ${dbl(v)};`;
+    return `  static const String ${name} = ${s(v)};`; };
+  const cls = (nm, th) => `abstract class ${nm} {\n${NAMES.map((n) => line(n, th[n])).join("\n")}\n}`;
+  write("tokens.dart", `// ${STAMP}\nimport 'package:flutter/material.dart';\n\n${cls("SuTokensLight", light)}\n\n${cls("SuTokensDark", dark)}\n`);
+}
+
+// SwiftUI (Swift)
+function emitSwift() {
+  const line = (n, v) => { const c = CAT[n], name = camel(n);
+    if (c === "color") return `    static let ${name} = Color(su: ${rgb(v)})`;
+    if (c === "dimension") return `    static let ${name}: CGFloat = ${px(v)}`;
+    if (c === "typography") return `    static let ${name}: CGFloat = ${sz(v)} // line-height ${lh(v)}`;
+    if (c === "fontWeight" || c === "zIndex" || c === "number") return `    static let ${name} = ${v}`;
+    if (c === "duration") return `    static let ${name} = ${ms(v)} // ms`;
+    if (c === "opacity") return `    static let ${name}: Double = ${v}`;
+    return `    static let ${name} = ${s(v)}`; };
+  const ext = `extension Color {\n    init(su hex: UInt32) {\n        self.init(.sRGB, red: Double((hex >> 16) & 0xFF) / 255, green: Double((hex >> 8) & 0xFF) / 255, blue: Double(hex & 0xFF) / 255, opacity: 1)\n    }\n}`;
+  const en = (nm, th) => `enum ${nm} {\n${NAMES.map((n) => line(n, th[n])).join("\n")}\n}`;
+  write("Tokens.swift", `// ${STAMP}\nimport SwiftUI\n\n${ext}\n\n${en("SuTokensLight", light)}\n\n${en("SuTokensDark", dark)}\n`);
+}
+
+// Compose (Kotlin)
+function emitCompose() {
+  const line = (n, v) => { const c = CAT[n], name = camel(n);
+    if (c === "color") return `    val ${name} = Color(${argb(v)})`;
+    if (c === "dimension") return `    val ${name} = ${px(v)}.dp`;
+    if (c === "typography") return `    val ${name} = ${sz(v)}.sp // line-height ${lh(v)}`;
+    if (c === "fontWeight") return `    val ${name} = FontWeight(${v})`;
+    if (c === "zIndex" || c === "number") return `    val ${name} = ${v}`;
+    if (c === "duration") return `    val ${name} = ${ms(v)} // ms`;
+    if (c === "opacity") return `    val ${name} = ${v}f`;
+    return `    val ${name} = ${s(v)}`; };
+  const obj = (nm, th) => `object ${nm} {\n${NAMES.map((n) => line(n, th[n])).join("\n")}\n}`;
+  const head = `import androidx.compose.ui.graphics.Color\nimport androidx.compose.ui.text.font.FontWeight\nimport androidx.compose.ui.unit.dp\nimport androidx.compose.ui.unit.sp`;
+  write("Tokens.kt", `// ${STAMP}\n${head}\n\n${obj("SuTokensLight", light)}\n\n${obj("SuTokensDark", dark)}\n`);
+}
+
 emitJson(); emitW3C(); emitFigma(); emitTailwind(); emitThemeJs(); emitCss();
+emitFlutter(); emitSwift(); emitCompose();
 console.log(`Exportados ${NAMES.length} tokens (v${VERSION}) → packages/tokens/exports/`);
-console.log("  tokens.json · tokens.w3c.json · tokens.figma.json · tailwind.preset.cjs · theme.js · tokens.css");
-console.log("Próximos alvos (verificação na plataforma): Flutter (Dart), SwiftUI (Swift), Compose (Kotlin).");
+console.log("  web/interop: tokens.json · tokens.w3c.json · tokens.figma.json · tailwind.preset.cjs · theme.js · tokens.css");
+console.log("  nativos:     tokens.dart · Tokens.swift · Tokens.kt  (sintaxe determinística; compilar na plataforma)");
