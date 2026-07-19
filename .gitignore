@@ -16,6 +16,8 @@ desktop.ini
 # Temporários / Temporary
 *.tmp
 *.log
+.fuse_hidden*
+.fuse_hidden*/
 
 # Futuro (fases de implementação) / Future (implementation phases)
 node_modules/
