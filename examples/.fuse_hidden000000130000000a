@@ -48,7 +48,7 @@
       <nav class="su-nav">
          <a class="su-nav__item" href="dashboard.html"><i class="ti ti-layout-dashboard" style="font-size:18px;"></i>Painel</a>
         <a class="su-nav__item" href="clientes.html"><i class="ti ti-users" style="font-size:18px;"></i>Clientes</a>
-        <a class="su-nav__item" href="chat.html"><i class="ti ti-message-2" style="font-size:18px;"></i>Conversas</a>
+        <a class="su-nav__item"><i class="ti ti-file-invoice" style="font-size:18px;"></i>Faturas</a>
         <a class="su-nav__item su-nav__item--active" href="analytics.html"><i class="ti ti-chart-bar" style="font-size:18px;"></i>Relatórios</a>
         <a class="su-nav__item" href="configuracoes.html"><i class="ti ti-settings" style="font-size:18px;"></i>Ajustes</a>
       </nav>

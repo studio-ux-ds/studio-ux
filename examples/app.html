@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio UX — Demo do sistema</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css">
+  <link rel="stylesheet" href="../packages/tokens/tokens.css">
+  <link rel="stylesheet" href="../packages/components/components.css">
+  <style>
+    /* Só composição/layout — todos os VALORES vêm de tokens (P1, P22). */
+    body { margin: 0; background: var(--su-surface-base); font-family: var(--su-font-ui); color: var(--su-text-primary); }
+    .shell { display: flex; min-height: 100vh; }
+    .main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+    .content { padding: var(--su-space-6); display: flex; flex-direction: column; gap: var(--su-space-5); }
+    .hidden { display: none !important; }
+    .field-search { display: flex; align-items: center; gap: 8px; border: 1px solid var(--su-border-default); border-radius: var(--su-radius-md); padding: 6px 10px; color: var(--su-text-muted); font-size: 12px; min-width: 180px; }
+    .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--su-space-3); }
+    @media (max-width: 1000px) { .kpis { grid-template-columns: repeat(2, 1fr); } }
+    .delta-up { color: var(--su-success-fg); font-size: 12px; } .delta-down { color: var(--su-danger-fg); font-size: 12px; }
+    .panel { background: var(--su-surface-raised); border: 1px solid var(--su-border-subtle); border-radius: var(--su-radius-lg); padding: var(--su-space-5); }
+    .panel__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--su-space-4); }
+    .panel__title { font-size: var(--su-text-h3); font-weight: var(--su-fw-semibold); }
+    .bars { display: flex; align-items: flex-end; gap: var(--su-space-2); height: 170px; }
+    .barcol { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+    .bar { width: 100%; background: var(--su-action-tint); border-radius: 5px 5px 0 0; }
+    .bar--peak { background: var(--su-action); }
+    .barcol span { font-size: 11px; color: var(--su-text-muted); }
+    .grid2 { display: grid; grid-template-columns: 2fr 1fr; gap: var(--su-space-4); }
+    @media (max-width: 1100px) { .grid2 { grid-template-columns: 1fr; } }
+    .toolbar { display: flex; align-items: center; gap: var(--su-space-3); flex-wrap: wrap; }
+    .toolbar .spacer { flex: 1; }
+    .mono { font-family: var(--su-font-mono); font-variant-numeric: tabular-nums; }
+    .rowlink { cursor: pointer; }
+    .rowlink:hover td { background: var(--su-surface-sunken); }
+    .backlink { display: inline-flex; align-items: center; gap: 6px; color: var(--su-text-secondary); font-size: 13px; text-decoration: none; cursor: pointer; }
+    .backlink:hover { color: var(--su-action); }
+    .dl { display: grid; grid-template-columns: 160px 1fr; gap: 10px 16px; font-size: 14px; }
+    .dl dt { color: var(--su-text-muted); } .dl dd { margin: 0; }
+    /* Chat */
+    .chat { display: grid; grid-template-columns: 300px 1fr; border: 1px solid var(--su-border-subtle); border-radius: var(--su-radius-lg); overflow: hidden; height: calc(100vh - 150px); }
+    .convs { border-right: 1px solid var(--su-border-subtle); display: flex; flex-direction: column; min-height: 0; background: var(--su-surface-raised); }
+    .convs__list { flex: 1; overflow: auto; }
+    .conv { display: flex; gap: 10px; padding: 11px 14px; border-bottom: 1px solid var(--su-border-subtle); cursor: pointer; }
+    .conv:hover { background: var(--su-surface-sunken); }
+    .conv--active { background: var(--su-action-tint); }
+    .avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--su-surface-sunken); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: var(--su-fw-medium); color: var(--su-text-secondary); flex: none; }
+    .conv__body { flex: 1; min-width: 0; } .conv__top { display: flex; justify-content: space-between; gap: 8px; }
+    .conv__name { font-size: 14px; font-weight: var(--su-fw-medium); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .conv__time { font-size: 11px; color: var(--su-text-muted); flex: none; }
+    .conv__last { font-size: 12.5px; color: var(--su-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px; }
+    .thread { display: flex; flex-direction: column; min-width: 0; }
+    .thread__head { display: flex; align-items: center; gap: 12px; padding: 11px 18px; border-bottom: 1px solid var(--su-border-subtle); background: var(--su-surface-raised); }
+    .thread__body { flex: 1; overflow: auto; padding: 18px; display: flex; flex-direction: column; gap: 8px; background: var(--su-surface-sunken); }
+    .msg { max-width: 66%; padding: 8px 12px; border-radius: 13px; font-size: 14px; line-height: 1.4; }
+    .msg time { display: block; font-size: 10px; margin-top: 3px; opacity: .7; text-align: right; }
+    .msg--in { align-self: flex-start; background: var(--su-surface-raised); border: 1px solid var(--su-border-subtle); border-bottom-left-radius: 4px; }
+    .msg--out { align-self: flex-end; background: var(--su-action); color: #fff; border-bottom-right-radius: 4px; }
+    .composer { display: flex; align-items: center; gap: 10px; padding: 11px 16px; border-top: 1px solid var(--su-border-subtle); background: var(--su-surface-raised); }
+    .composer input { flex: 1; border: 1px solid var(--su-border-default); border-radius: 999px; padding: 9px 15px; font: inherit; font-size: 14px; background: var(--su-surface-base); color: var(--su-text-primary); outline: none; }
+    .composer input:focus { border-color: var(--su-action); }
+    /* Overlays */
+    .scrim { position: fixed; inset: 0; background: var(--su-overlay-scrim, rgba(20,22,30,.44)); z-index: 900; display: flex; align-items: center; justify-content: center; padding: 20px; }
+    .dialog { background: var(--su-surface-raised); border-radius: var(--su-radius-xl); width: 100%; max-width: 440px; box-shadow: 0 16px 48px rgba(20,22,30,.24); overflow: hidden; }
+    .dialog__head { padding: 18px 20px 0; font-size: var(--su-text-h3); font-weight: var(--su-fw-semibold); }
+    .dialog__body { padding: 10px 20px; color: var(--su-text-secondary); font-size: 14px; display: flex; flex-direction: column; gap: 12px; }
+    .dialog__foot { padding: 14px 20px; display: flex; justify-content: flex-end; gap: 8px; border-top: 1px solid var(--su-border-subtle); margin-top: 6px; }
+    /* Toasts */
+    .toasts { position: fixed; right: 18px; bottom: 18px; z-index: 1000; display: flex; flex-direction: column; gap: 10px; }
+    .toast { display: flex; align-items: center; gap: 10px; background: var(--su-surface-raised); border: 1px solid var(--su-border-subtle); border-left: 3px solid var(--su-action); border-radius: var(--su-radius-md); padding: 11px 14px; font-size: 13px; box-shadow: 0 8px 24px rgba(20,22,30,.14); min-width: 240px; animation: toastin .18s ease; }
+    .toast--success { border-left-color: var(--su-success-fg); } .toast--danger { border-left-color: var(--su-danger-fg); }
+    @keyframes toastin { from { transform: translateY(8px); opacity: 0; } to { transform: none; opacity: 1; } }
+    /* Accent popover */
+    .accent-pop { position: absolute; top: 46px; right: 12px; background: var(--su-surface-raised); border: 1px solid var(--su-border-default); border-radius: var(--su-radius-lg); padding: 12px; box-shadow: 0 12px 32px rgba(20,22,30,.16); z-index: 50; }
+    .accent-pop b { font-size: 12px; color: var(--su-text-secondary); display: block; margin-bottom: 8px; }
+    .swatches { display: flex; gap: 8px; }
+    .swatch { width: 26px; height: 26px; border-radius: 50%; border: 0; cursor: pointer; outline: 2px solid var(--su-border-default); outline-offset: 2px; }
+    .swatch[aria-pressed="true"] { outline-color: var(--su-action); }
+
+    /* ===== Adaptação a celular (demo desktop degradando; num produto real = telas .su-m-*) ===== */
+    .mobnav { display: none; }
+    @media (max-width: 760px) {
+      .su-sidebar { display: none; }
+      .content { padding: var(--su-space-4); padding-bottom: 78px; gap: var(--su-space-4); }
+      .su-topbar { padding: 10px 14px; }
+      .su-topbar .field-search, .su-topbar #crumb { display: none; }
+      .kpis { grid-template-columns: repeat(2, 1fr); }
+      #ctatext { display: none; }              /* CTA vira só ícone */
+      #cta { padding: 0 12px; }
+      /* Chat em painel único: lista rolável + thread abaixo */
+      .chat { grid-template-columns: 1fr; height: auto; }
+      .convs { max-height: 34vh; }
+      .thread__body { min-height: 46vh; }
+      .accent-pop { right: 8px; }
+      /* Barra de navegação inferior (fixa, respeitando safe-area) */
+      .mobnav { display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+        background: var(--su-surface-raised); border-top: 1px solid var(--su-border-default);
+        padding: 6px 4px calc(6px + env(safe-area-inset-bottom)); }
+      .mobnav button { flex: 1; border: 0; background: none; cursor: pointer; display: flex; flex-direction: column;
+        align-items: center; gap: 3px; font-size: 10px; color: var(--su-text-muted); padding: 4px 0; -webkit-appearance: none; appearance: none; }
+      .mobnav button i { font-size: 21px; }
+      .mobnav button[aria-current="page"] { color: var(--su-action); }
+    }
+  </style>
+</head>
+<body class="su">
+  <!-- ===== LOGIN ===== -->
+  <div id="login" style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;">
+    <form class="panel" style="width:100%;max-width:380px;display:flex;flex-direction:column;gap:18px;" onsubmit="doLogin();return false;">
+      <div style="display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:17px;"><span class="su-brand__logo" style="width:30px;height:30px;border-radius:9px;background:var(--su-action);color:#fff;display:inline-flex;align-items:center;justify-content:center;"><i class="ti ti-square-rounded"></i></span>Studio UX</div>
+      <div><div style="font-size:var(--su-text-h2);font-weight:600;">Entrar na sua conta</div><div style="color:var(--su-text-secondary);font-size:13px;">Use seu e-mail corporativo para acessar o painel.</div></div>
+      <div class="su-field"><label class="su-field__label">E-mail</label><input class="su-input" type="email" value="robson@empresa.com"></div>
+      <div class="su-field"><label class="su-field__label">Senha</label><input class="su-input" type="password" value="senha123"><a href="#" onclick="toast('Enviamos um link de redefinição.');return false;" style="align-self:flex-end;margin-top:7px;font-size:12px;color:var(--su-text-muted);text-decoration:none;">Esqueci a senha?</a></div>
+      <button class="su-btn su-btn--primary su-btn--lg" style="width:100%;">Entrar</button>
+    </form>
+  </div>
+
+  <!-- ===== APP ===== -->
+  <div id="app" class="shell hidden">
+    <aside class="su-sidebar">
+      <div class="su-sidebar__brand"><span class="su-brand__logo" style="width:22px;height:22px;border-radius:7px;background:var(--su-action);color:#fff;display:inline-flex;align-items:center;justify-content:center;"><i class="ti ti-square-rounded"></i></span>Studio UX</div>
+      <nav class="su-nav" id="nav">
+        <a class="su-nav__item" data-route="painel"><i class="ti ti-layout-dashboard" style="font-size:18px;"></i>Painel</a>
+        <a class="su-nav__item" data-route="clientes"><i class="ti ti-users" style="font-size:18px;"></i>Clientes</a>
+        <a class="su-nav__item" data-route="conversas"><i class="ti ti-message-2" style="font-size:18px;"></i>Conversas</a>
+        <a class="su-nav__item" data-route="relatorios"><i class="ti ti-chart-bar" style="font-size:18px;"></i>Relatórios</a>
+        <a class="su-nav__item" data-route="ajustes"><i class="ti ti-settings" style="font-size:18px;"></i>Ajustes</a>
+      </nav>
+      <div class="su-sidebar__footer" style="display:flex;align-items:center;gap:9px;">
+        <span class="avatar" style="width:28px;height:28px;font-size:11px;">RM</span>
+        <span style="line-height:1.25;flex:1;"><span style="display:block;font-size:12px;font-weight:500;">Robson</span><span style="display:block;font-size:11px;color:var(--su-text-muted);">Administrador</span></span>
+        <i class="ti ti-logout" style="color:var(--su-text-muted);cursor:pointer;" onclick="logout()"></i>
+      </div>
+      <div style="padding:0 12px 12px;text-align:center;font-size:10px;color:var(--su-text-muted);">v1.0.15</div>
+    </aside>
+
+    <div class="main">
+      <header class="su-topbar" style="position:relative;">
+        <div style="flex:1;">
+          <div class="su-breadcrumb" id="crumb">Início / Painel</div>
+          <div style="font-size:16px;font-weight:600;" id="ptitle">Painel</div>
+        </div>
+        <span class="field-search"><i class="ti ti-search"></i>Buscar</span>
+        <button class="su-iconbtn" aria-label="Cor de ação" onclick="togglePop()"><i class="ti ti-palette"></i></button>
+        <button class="su-iconbtn" aria-label="Alternar tema" onclick="toggleTheme()"><i class="ti ti-moon"></i></button>
+        <button class="su-btn su-btn--primary" id="cta" onclick="onCta()"><i class="ti ti-plus"></i><span id="ctatext">Nova fatura</span></button>
+        <div class="accent-pop hidden" id="pop">
+          <b>Cor de ação</b>
+          <div class="swatches" id="swatches"></div>
+        </div>
+      </header>
+      <div class="content" id="view"></div>
+    </div>
+
+    <nav class="mobnav" id="mobnav">
+      <button data-route="painel"><i class="ti ti-layout-dashboard"></i>Painel</button>
+      <button data-route="clientes"><i class="ti ti-users"></i>Clientes</button>
+      <button data-route="conversas"><i class="ti ti-message-2"></i>Conversas</button>
+      <button data-route="relatorios"><i class="ti ti-chart-bar"></i>Relatórios</button>
+      <button data-route="ajustes"><i class="ti ti-settings"></i>Ajustes</button>
+    </nav>
+  </div>
+
+  <div class="toasts" id="toasts"></div>
+  <div id="overlay"></div>
+
+  <script>
+    // ===================== DADOS =====================
+    var CLIENTES = [
+      { id:1, nome:'Marina Alves', doc:'123.456.789-00', canal:'WhatsApp', cidade:'São Paulo', desde:'2021', status:'success', rot:'Ativo', valor:'R$ 240' },
+      { id:2, nome:'Diego Prado', doc:'987.654.321-00', canal:'App', cidade:'Campinas', desde:'2022', status:'info', rot:'Em preparo', valor:'R$ 96' },
+      { id:3, nome:'Bianca Ferraz', doc:'456.789.123-00', canal:'Balcão', cidade:'Santos', desde:'2020', status:'danger', rot:'Inadimplente', valor:'R$ 180' },
+      { id:4, nome:'Rafael Souza', doc:'321.654.987-00', canal:'WhatsApp', cidade:'Guarulhos', desde:'2023', status:'warning', rot:'Pendente', valor:'R$ 320' },
+      { id:5, nome:'Carla Mendes', doc:'654.321.789-00', canal:'App', cidade:'Osasco', desde:'2021', status:'success', rot:'Ativo', valor:'R$ 150' }
+    ];
+    var CONVERSAS = [
+      { id:1, cid:1, msgs:[['in','Oi! Minha fatura já saiu?','09:12'],['out','Bom dia, Marina! Saiu sim — R$ 240, vence dia 20.','09:14'],['in','Pode mandar o PIX?','09:15'],['out','Enviado! Qualquer coisa estou por aqui 🙂','09:15']] },
+      { id:2, cid:2, msgs:[['in','Preciso trocar meu plano','10:01'],['out','Claro, Diego! Te explico as opções.','10:03']] },
+      { id:3, cid:3, msgs:[['in','Minha fatura está em atraso?','08:47'],['out','Está, Bianca. Quer o link da 2ª via?','08:49']] }
+    ];
+    var chartData = [42,55,48,61,58,72,66,80,74,69,88,81,94,90];
+    var chartDays = ['06','07','08','09','10','11','12','13','14','15','16','17','18','19'];
+
+    // ===================== HELPERS =====================
+    function el(id){ return document.getElementById(id); }
+    function badge(s, t){ return '<span class="su-badge su-badge--'+s+'">'+t+'</span>'; }
+    function initials(n){ return n.split(' ').map(function(w){return w[0];}).slice(0,2).join(''); }
+    function chartHTML(){ var peak=Math.max.apply(null,chartData); return chartData.map(function(v,i){var h=Math.round(v/peak*100);return '<div class="barcol"><div class="bar'+(v===peak?' bar--peak':'')+'" style="height:'+h+'%"></div><span>'+chartDays[i]+'</span></div>';}).join(''); }
+
+    // ===================== TOASTS =====================
+    function toast(msg, kind){ var t=document.createElement('div'); t.className='toast'+(kind?' toast--'+kind:''); var ic=kind==='danger'?'alert-triangle':(kind==='success'?'circle-check':'info-circle'); t.innerHTML='<i class="ti ti-'+ic+'"></i>'+msg; el('toasts').appendChild(t); setTimeout(function(){t.remove();},3200); }
+
+    // ===================== OVERLAYS =====================
+    function closeOverlay(){ el('overlay').innerHTML=''; }
+    function confirmDialog(title, body, danger, onOk){
+      el('overlay').innerHTML='<div class="scrim" onclick="if(event.target===this)closeOverlay()"><div class="dialog">'+
+        '<div class="dialog__head">'+title+'</div><div class="dialog__body">'+body+'</div>'+
+        '<div class="dialog__foot"><button class="su-btn su-btn--ghost" onclick="closeOverlay()">Cancelar</button>'+
+        '<button class="su-btn su-btn--'+(danger?'danger':'primary')+'" id="okbtn"><i class="ti ti-'+(danger?'trash':'check')+'"></i>Confirmar</button></div></div></div>';
+      el('okbtn').onclick=function(){ closeOverlay(); onOk&&onOk(); };
+    }
+    function novoClienteModal(){
+      el('overlay').innerHTML='<div class="scrim" onclick="if(event.target===this)closeOverlay()"><div class="dialog" style="max-width:520px;">'+
+        '<div class="dialog__head">Novo cliente</div><div class="dialog__body">'+
+        '<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">'+
+        '<div class="su-field"><label class="su-field__label">Nome</label><input class="su-input" placeholder="Nome completo"></div>'+
+        '<div class="su-field"><label class="su-field__label">CPF</label><input class="su-input" placeholder="000.000.000-00"></div>'+
+        '<div class="su-field"><label class="su-field__label">Cidade</label><input class="su-input" placeholder="Cidade"></div>'+
+        '<div class="su-field"><label class="su-field__label">Canal</label><select class="su-select"><option>WhatsApp</option><option>App</option><option>Balcão</option></select></div>'+
+        '</div></div>'+
+        '<div class="dialog__foot"><button class="su-btn su-btn--ghost" onclick="closeOverlay()">Cancelar</button>'+
+        '<button class="su-btn su-btn--primary" onclick="closeOverlay();toast(\'Cliente cadastrado.\',\'success\')"><i class="ti ti-check"></i>Salvar</button></div></div></div>';
+    }
+
+    // ===================== ROTEADOR =====================
+    var META = {
+      painel:    { t:'Painel',      crumb:'Início / Painel',            cta:'Nova fatura' },
+      clientes:  { t:'Clientes',    crumb:'Início / Clientes',          cta:'Novo cliente' },
+      cliente:   { t:'Cliente',     crumb:'Início / Clientes / Detalhe',cta:'' },
+      conversas: { t:'Atendimento', crumb:'Início / Conversas',         cta:'' },
+      relatorios:{ t:'Relatórios',  crumb:'Início / Relatórios',        cta:'Exportar' },
+      ajustes:   { t:'Configurações',crumb:'Início / Ajustes',          cta:'' }
+    };
+    var current = 'painel';
+    function go(route, arg){
+      current = route;
+      var m = META[route] || META.painel;
+      el('ptitle').textContent = m.t; el('crumb').textContent = m.crumb;
+      // CTA da topbar
+      el('cta').style.display = m.cta ? '' : 'none';
+      if(m.cta) el('ctatext').textContent = m.cta;
+      // sidebar ativa
+      var navRoute = route==='cliente' ? 'clientes' : route;
+      [].forEach.call(document.querySelectorAll('#nav .su-nav__item'), function(a){ a.classList.toggle('su-nav__item--active', a.dataset.route===navRoute); });
+      [].forEach.call(document.querySelectorAll('#mobnav button'), function(b){ b.setAttribute('aria-current', b.dataset.route===navRoute ? 'page' : 'false'); });
+      // render
+      ({ painel:renderPainel, clientes:renderClientes, cliente:function(){renderCliente(arg);}, conversas:function(){renderConversas(arg);}, relatorios:renderRelatorios, ajustes:renderAjustes }[route] || renderPainel)();
+      el('view').scrollTop = 0;
+    }
+    function onCta(){ if(current==='clientes') novoClienteModal(); else if(current==='relatorios') toast('Relatório exportado (CSV).','success'); else toast('Nova fatura criada.','success'); }
+
+    // ===================== VIEWS =====================
+    function renderPainel(){
+      el('view').innerHTML =
+        '<section class="kpis">'+
+        '<div class="su-statcard"><div class="su-statcard__label">Receita do mês</div><div class="su-statcard__value">R$ 148.230</div><div class="delta-up"><i class="ti ti-arrow-up-right"></i> 8,4%</div></div>'+
+        '<div class="su-statcard"><div class="su-statcard__label">Pedidos</div><div class="su-statcard__value">1.284</div><div class="delta-up"><i class="ti ti-arrow-up-right"></i> 3,1%</div></div>'+
+        '<div class="su-statcard"><div class="su-statcard__label">Ticket médio</div><div class="su-statcard__value">R$ 115,44</div><div class="delta-up"><i class="ti ti-arrow-up-right"></i> 5,2%</div></div>'+
+        '<div class="su-statcard"><div class="su-statcard__label">Inadimplência</div><div class="su-statcard__value">2,3%</div><div class="delta-down"><i class="ti ti-arrow-down-right"></i> 0,4%</div></div>'+
+        '</section>'+
+        '<div class="grid2">'+
+        '<div class="panel"><div class="panel__head"><div class="panel__title">Receita por dia</div>'+badge('success','<i class="ti ti-trending-up"></i> Em alta')+'</div><div class="bars">'+chartHTML()+'</div></div>'+
+        '<div class="panel"><div class="panel__head"><div class="panel__title">Atividade recente</div></div><div style="display:flex;flex-direction:column;gap:12px;">'+
+          '<div style="display:flex;gap:10px;align-items:center;"><span class="avatar"><i class="ti ti-cash" style="color:var(--su-success-fg)"></i></span><div style="flex:1;font-size:13px;">Fatura #458 paga<div style="color:var(--su-text-muted);font-size:12px;">Marina Alves</div></div>'+badge('success','R$ 240')+'</div>'+
+          '<div style="display:flex;gap:10px;align-items:center;"><span class="avatar"><i class="ti ti-message-2" style="color:var(--su-action)"></i></span><div style="flex:1;font-size:13px;">Nova conversa<div style="color:var(--su-text-muted);font-size:12px;">Diego Prado · há 12 min</div></div></div>'+
+          '<div style="display:flex;gap:10px;align-items:center;"><span class="avatar"><i class="ti ti-alert-circle" style="color:var(--su-danger-fg)"></i></span><div style="flex:1;font-size:13px;">Fatura vencida<div style="color:var(--su-text-muted);font-size:12px;">Bianca Ferraz</div></div>'+badge('danger','Vencida')+'</div>'+
+        '</div></div></div>';
+    }
+    function renderClientes(){
+      var rows = CLIENTES.map(function(c){ return '<tr class="rowlink" onclick="go(\'cliente\','+c.id+')"><td>'+c.nome+'</td><td>'+c.cidade+'</td><td>'+c.canal+'</td><td class="num mono">'+c.valor+'</td><td>'+badge(c.status,c.rot)+'</td><td style="text-align:right;"><i class="ti ti-chevron-right" style="color:var(--su-text-muted)"></i></td></tr>'; }).join('');
+      el('view').innerHTML =
+        '<div class="toolbar"><span class="field-search"><i class="ti ti-search"></i>Buscar cliente</span>'+
+        '<select class="su-select" style="width:auto;"><option>Todos os status</option><option>Ativo</option><option>Inadimplente</option></select>'+
+        '<div class="spacer"></div><button class="su-btn su-btn--primary" onclick="novoClienteModal()"><i class="ti ti-plus"></i>Novo cliente</button></div>'+
+        '<div class="su-table-card"><table class="su-table"><thead><tr><th>Cliente</th><th>Cidade</th><th>Canal</th><th style="text-align:right;">Última fatura</th><th>Status</th><th></th></tr></thead><tbody>'+rows+'</tbody></table></div>';
+    }
+    function renderCliente(id){
+      var c = CLIENTES.filter(function(x){return x.id==id;})[0] || CLIENTES[0];
+      el('view').innerHTML =
+        '<a class="backlink" onclick="go(\'clientes\')"><i class="ti ti-arrow-left"></i> Voltar para Clientes</a>'+
+        '<div class="panel" style="display:flex;align-items:center;gap:16px;"><span class="avatar" style="width:56px;height:56px;font-size:17px;">'+initials(c.nome)+'</span>'+
+        '<div style="flex:1;"><div style="font-size:20px;font-weight:600;">'+c.nome+'</div><div style="color:var(--su-text-secondary);font-size:13px;display:flex;gap:8px;align-items:center;">Cliente desde '+c.desde+' '+badge(c.status,c.rot)+'</div></div>'+
+        '<button class="su-btn su-btn--secondary" onclick="go(\'conversas\','+c.id+')"><i class="ti ti-message-2"></i>Abrir conversa</button>'+
+        '<button class="su-btn su-btn--danger" onclick="confirmDialog(\'Cancelar cliente?\',\'Esta ação encerra o acesso do cliente e arquiva os dados. Não pode ser desfeita.\',true,function(){toast(\'Cliente cancelado.\',\'danger\')})" title="Ação irreversível"><i class="ti ti-ban"></i>Cancelar</button></div>'+
+        '<div class="su-tabs" role="tablist" id="ctabs"><button class="su-tab su-tab--active" onclick="cliTab(this,0)">Visão geral</button><button class="su-tab" onclick="cliTab(this,1)">Faturas</button><button class="su-tab" onclick="cliTab(this,2)">Histórico</button></div>'+
+        '<div id="clitab"></div>';
+      cliTabRender(0, c);
+      window._cli = c;
+    }
+    function cliTab(btn, i){ [].forEach.call(btn.parentNode.children, function(b){ b.classList.remove('su-tab--active'); }); btn.classList.add('su-tab--active'); cliTabRender(i, window._cli); }
+    function cliTabRender(i, c){
+      if(i===0){ el('clitab').innerHTML='<div class="panel"><dl class="dl"><dt>Documento</dt><dd class="mono">'+c.doc+'</dd><dt>Canal preferido</dt><dd>'+c.canal+'</dd><dt>Cidade</dt><dd>'+c.cidade+'</dd><dt>Cliente desde</dt><dd>'+c.desde+'</dd><dt>Status</dt><dd>'+badge(c.status,c.rot)+'</dd></dl></div>'; }
+      else if(i===1){ el('clitab').innerHTML='<div class="su-table-card"><table class="su-table"><thead><tr><th>Fatura</th><th>Vencimento</th><th style="text-align:right;">Valor</th><th>Status</th></tr></thead><tbody>'+
+        '<tr><td class="mono">#458</td><td>20/07/2026</td><td class="num mono">'+c.valor+'</td><td>'+badge(c.status,c.rot)+'</td></tr>'+
+        '<tr><td class="mono">#441</td><td>20/06/2026</td><td class="num mono">'+c.valor+'</td><td>'+badge('success','Pago')+'</td></tr>'+
+        '<tr><td class="mono">#427</td><td>20/05/2026</td><td class="num mono">'+c.valor+'</td><td>'+badge('success','Pago')+'</td></tr></tbody></table></div>'; }
+      else { el('clitab').innerHTML='<div class="panel" style="display:flex;flex-direction:column;gap:14px;font-size:13px;">'+
+        '<div style="display:flex;gap:10px;"><i class="ti ti-circle-filled" style="font-size:8px;color:var(--su-action);margin-top:5px;"></i><div>Fatura #458 gerada<div style="color:var(--su-text-muted);">18/07/2026 · sistema</div></div></div>'+
+        '<div style="display:flex;gap:10px;"><i class="ti ti-circle-filled" style="font-size:8px;color:var(--su-action);margin-top:5px;"></i><div>Conversa iniciada no WhatsApp<div style="color:var(--su-text-muted);">15/07/2026 · atendente</div></div></div>'+
+        '<div style="display:flex;gap:10px;"><i class="ti ti-circle-filled" style="font-size:8px;color:var(--su-action);margin-top:5px;"></i><div>Cliente cadastrado<div style="color:var(--su-text-muted);">'+c.desde+'</div></div></div></div>'; }
+    }
+    function renderConversas(cid){
+      var active = cid ? CONVERSAS.filter(function(x){return x.cid==cid;})[0] : CONVERSAS[0];
+      if(!active) active = CONVERSAS[0];
+      var list = CONVERSAS.map(function(cv){ var c=CLIENTES.filter(function(x){return x.id==cv.cid;})[0]; var last=cv.msgs[cv.msgs.length-1]; return '<div class="conv'+(cv.id===active.id?' conv--active':'')+'" onclick="go(\'conversas\','+cv.cid+')"><span class="avatar">'+initials(c.nome)+'</span><div class="conv__body"><div class="conv__top"><span class="conv__name">'+c.nome+'</span><span class="conv__time">'+last[2]+'</span></div><div class="conv__last">'+(last[0]==='out'?'Você: ':'')+last[1]+'</div></div></div>'; }).join('');
+      var cli = CLIENTES.filter(function(x){return x.id==active.cid;})[0];
+      var msgs = active.msgs.map(function(m){ return '<div class="msg msg--'+m[0]+'">'+m[1]+'<time>'+m[2]+'</time></div>'; }).join('');
+      el('view').innerHTML =
+        '<div class="chat"><div class="convs"><div style="padding:12px 14px;border-bottom:1px solid var(--su-border-subtle);"><span class="field-search" style="width:100%;"><i class="ti ti-search"></i>Buscar conversa</span></div><div class="convs__list">'+list+'</div></div>'+
+        '<div class="thread"><div class="thread__head"><span class="avatar" style="width:36px;height:36px;">'+initials(cli.nome)+'</span><div style="flex:1;"><b style="font-size:14px;">'+cli.nome+'</b><div style="font-size:12px;color:var(--su-success-fg);"><i class="ti ti-circle-filled" style="font-size:8px;"></i> Janela de 24h aberta</div></div>'+badge('success','Em atendimento')+'<button class="su-iconbtn" onclick="toast(\'Conversa transferida.\')" aria-label="Transferir"><i class="ti ti-arrows-exchange"></i></button><button class="su-iconbtn" onclick="confirmDialog(\'Encerrar atendimento?\',\'A conversa será marcada como resolvida.\',false,function(){toast(\'Atendimento encerrado.\',\'success\')})" aria-label="Encerrar"><i class="ti ti-check"></i></button></div>'+
+        '<div class="thread__body" id="tbody">'+msgs+'</div>'+
+        '<div class="composer"><button class="su-iconbtn" aria-label="Anexar"><i class="ti ti-paperclip"></i></button><input id="msgin" placeholder="Escreva uma mensagem…" onkeydown="if(event.key===\'Enter\')sendMsg('+active.id+')"><button class="su-btn su-btn--primary" onclick="sendMsg('+active.id+')"><i class="ti ti-send"></i>Enviar</button></div></div></div>';
+      var tb=el('tbody'); tb.scrollTop=tb.scrollHeight;
+    }
+    function sendMsg(convId){ var inp=el('msgin'); var v=(inp.value||'').trim(); if(!v){ toast('Escreva uma mensagem primeiro.','danger'); return; } var cv=CONVERSAS.filter(function(x){return x.id==convId;})[0]; var now=new Date(); var hh=('0'+now.getHours()).slice(-2)+':'+('0'+now.getMinutes()).slice(-2); cv.msgs.push(['out',v,hh]); inp.value=''; var tb=el('tbody'); tb.insertAdjacentHTML('beforeend','<div class="msg msg--out">'+v+'<time>'+hh+'</time></div>'); tb.scrollTop=tb.scrollHeight; }
+    function renderRelatorios(){
+      el('view').innerHTML =
+        '<div class="toolbar"><div class="su-segmented"><button class="su-segment">7 dias</button><button class="su-segment su-segment--active">30 dias</button><button class="su-segment">Ano</button></div>'+
+        '<select class="su-select" style="width:auto;"><option>Todos os canais</option><option>WhatsApp</option></select><div class="spacer"></div><span style="font-size:12px;color:var(--su-text-muted);"><i class="ti ti-calendar"></i> 20 jun – 19 jul</span></div>'+
+        '<section class="kpis">'+
+        '<div class="su-statcard"><div class="su-statcard__label">Receita</div><div class="su-statcard__value">R$ 148.230</div><div class="delta-up"><i class="ti ti-arrow-up-right"></i> 8,4%</div></div>'+
+        '<div class="su-statcard"><div class="su-statcard__label">Pedidos</div><div class="su-statcard__value">1.284</div><div class="delta-up"><i class="ti ti-arrow-up-right"></i> 3,1%</div></div>'+
+        '<div class="su-statcard"><div class="su-statcard__label">Ticket médio</div><div class="su-statcard__value">R$ 115,44</div><div class="delta-up"><i class="ti ti-arrow-up-right"></i> 5,2%</div></div>'+
+        '<div class="su-statcard"><div class="su-statcard__label">Cancelamentos</div><div class="su-statcard__value">2,3%</div><div class="delta-down"><i class="ti ti-arrow-down-right"></i> 0,4%</div></div></section>'+
+        '<div class="panel"><div class="panel__head"><div class="panel__title">Receita por dia</div></div><div class="bars">'+chartHTML()+'</div></div>'+
+        '<div class="su-table-card"><table class="su-table"><thead><tr><th>Produto</th><th style="text-align:right;">Qtd.</th><th style="text-align:right;">Receita</th></tr></thead><tbody>'+
+        '<tr><td>Pizza Margherita G</td><td class="num mono">312</td><td class="num mono">R$ 21.840</td></tr>'+
+        '<tr><td>Combo Família</td><td class="num mono">198</td><td class="num mono">R$ 17.820</td></tr>'+
+        '<tr><td>Refrigerante 2L</td><td class="num mono">540</td><td class="num mono">R$ 6.480</td></tr></tbody></table></div>';
+    }
+    function renderAjustes(){
+      el('view').innerHTML =
+        '<div class="su-tabs" id="atabs"><button class="su-tab su-tab--active" onclick="ajTab(this,0)">Geral</button><button class="su-tab" onclick="ajTab(this,1)">Notificações</button></div><div id="ajtab"></div>';
+      ajRender(0);
+    }
+    function ajTab(btn,i){ [].forEach.call(btn.parentNode.children,function(b){b.classList.remove('su-tab--active');}); btn.classList.add('su-tab--active'); ajRender(i); }
+    function ajRender(i){
+      if(i===0){ el('ajtab').innerHTML='<div class="panel"><div class="panel__title" style="margin-bottom:14px;">Perfil da empresa</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">'+
+        '<div class="su-field"><label class="su-field__label">Nome</label><input class="su-input" value="Pizzaria do Robson"></div>'+
+        '<div class="su-field"><label class="su-field__label">CNPJ</label><input class="su-input" value="12.345.678/0001-90"></div></div>'+
+        '<div style="display:flex;justify-content:flex-end;gap:8px;margin-top:16px;"><button class="su-btn su-btn--ghost">Cancelar</button><button class="su-btn su-btn--primary" onclick="toast(\'Alterações salvas.\',\'success\')">Salvar</button></div></div>'; }
+      else { el('ajtab').innerHTML='<div class="panel" style="display:flex;flex-direction:column;gap:2px;">'+
+        rowSwitch('Novo pedido','Som + aviso na tela.',true)+rowSwitch('Estoque baixo','',true)+rowSwitch('Resumo diário por e-mail','Todo dia às 8h.',false)+'</div>'; }
+    }
+    function rowSwitch(t,s,on){ return '<label style="display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--su-border-subtle);"><div style="flex:1;"><b style="font-weight:500;font-size:14px;">'+t+'</b>'+(s?'<div style="color:var(--su-text-muted);font-size:12px;">'+s+'</div>':'')+'</div><span class="su-switch"><input type="checkbox" '+(on?'checked':'')+'><span class="su-switch__track"></span></span></label>'; }
+
+    // ===================== TEMA / ACENTO / LOGIN =====================
+    function toggleTheme(){ var h=document.documentElement; h.dataset.theme = h.dataset.theme==='dark'?'light':'dark'; }
+    function togglePop(){ el('pop').classList.toggle('hidden'); }
+    function shade(hex,p){ var n=parseInt(hex.slice(1),16),r=n>>16,g=(n>>8)&255,b=n&255,f=function(x){return Math.max(0,Math.min(255,Math.round(x*(1-p))));}; return '#'+((f(r)<<16)|(f(g)<<8)|f(b)).toString(16).padStart(6,'0'); }
+    var ACCENTS=[['Índigo','#4F46E5'],['Azul','#2563EB'],['Teal','#0D9488'],['Verde','#047857'],['Violeta','#7C3AED'],['Cobre','#B45309'],['Grafite','#475569']];
+    el('swatches').innerHTML = ACCENTS.map(function(a,i){ return '<button class="swatch" title="'+a[0]+'" aria-pressed="'+(i===0)+'" style="background:'+a[1]+'" onclick="setAccent(\''+a[1]+'\',this)"></button>'; }).join('');
+    function setAccent(hex, btn){ [].forEach.call(btn.parentNode.children,function(c){c.setAttribute('aria-pressed',c===btn);}); var r=document.documentElement.style; r.setProperty('--su-action',hex); r.setProperty('--su-action-hover',shade(hex,0.12)); r.setProperty('--su-action-active',shade(hex,0.22)); }
+    function doLogin(){ el('login').classList.add('hidden'); el('app').classList.remove('hidden'); go('painel'); toast('Bem-vindo de volta, Robson!','success'); }
+    function logout(){ el('app').classList.add('hidden'); el('login').classList.remove('hidden'); }
+
+    // nav clicks (sidebar + barra inferior mobile)
+    [].forEach.call(document.querySelectorAll('#nav .su-nav__item'), function(a){ a.onclick=function(){ go(a.dataset.route); }; });
+    [].forEach.call(document.querySelectorAll('#mobnav button'), function(b){ b.onclick=function(){ go(b.dataset.route); }; });
+  </script>
+</body>
+</html>

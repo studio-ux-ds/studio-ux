@@ -5,6 +5,15 @@
 
 .su { font-family: var(--su-font-ui); color: var(--su-text-primary); }
 
+/* ---------- Brand slot (white-label — ver docs/platform/STUDIO_UX_BRANDING.md) ---------- */
+/* Slot único da marca do cliente. Default: símbolo do sistema; o produto troca por <img>. */
+.su-brand { display: inline-flex; align-items: center; gap: var(--su-space-2); font-weight: var(--su-fw-semibold); }
+.su-brand__logo {
+  width: 26px; height: 26px; flex: none; border-radius: var(--su-radius-md);
+  background: var(--su-action); color: #fff; object-fit: contain;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+
 /* ---------- Button ---------- */
 .su-btn {
   display: inline-flex; align-items: center; justify-content: center; gap: var(--su-space-2);

@@ -12,6 +12,17 @@ Nada pendente. / Nothing pending.
 
 ---
 
+## [1.0.16] — 2026-07-19 — Demo do sistema + slot de marca + logins corrigidos · System demo + brand slot + login fixes
+
+- ✅ **`examples/app.html` — demo navegável como um sistema:** login → painel, clientes → **detalhe** (abas), conversas (chat com envio de mensagem), relatórios, ajustes. Roteador em JS, toasts, modal de "novo cliente", ConfirmDialog em ação destrutiva, seletor de tema e de **cor de ação** ao vivo. **Adapta ao celular** (sidebar → barra inferior, grids empilham, chat em painel único) — degradação do desktop; num produto real seriam as telas `.su-m-*` (P4).
+- ✅ **`examples/chat.html`** — Central de atendimento (lista + thread + composer), tela que faltava.
+- ✅ **Logins corrigidos:** "Esqueci a senha?" virou link discreto **abaixo** do campo (não competindo com o label); painel de marca do desktop rebalanceado (headline + pitch + 3 destaques); login mobile sem o vão gigante (CTA não é mais empurrado ao fundo).
+- ✅ **Slot de marca (white-label):** classe `.su-brand__logo` agora no `components.css` + doc `docs/platform/STUDIO_UX_BRANDING.md` (onde ancoram logo do sistema, favicon e ícone de app/PWA; produto injeta em runtime; cor vem do acento).
+- ✅ **Exemplos navegáveis:** sidebar dos exemplos desktop leva a cada tela; "Faturas" (sem tela) virou "Conversas". Galeria `index.html` atualizada (app em destaque + chat).
+- Versões em lockstep na 1.0.16 (o `components.css` ganhou `.su-brand__logo`).
+
+---
+
 ## [1.0.15] — 2026-07-19 — Publicação no GitHub Packages (org `studio-ux-ds`) · Publish to GitHub Packages
 
 - ✅ Registry definido: **GitHub Packages**, org **`studio-ux-ds`** (`studio-ux` e `studioux` estavam tomados). Escopo renomeado para **`@studio-ux-ds`** em todos os pacotes/docs/scripts (casa com o dono do repositório). Os 5 `package.json` ganharam `publishConfig.registry: https://npm.pkg.github.com` e `repository.url` da org `github.com/studio-ux-ds/studio-ux`.
