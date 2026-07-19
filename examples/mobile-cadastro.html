@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Studio UX — Exemplo Mobile: Cadastro em etapas</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css">
+  <link rel="stylesheet" href="../packages/tokens/tokens.css">
+  <link rel="stylesheet" href="../packages/mobile/mobile.css">
+  <style>
+    body { margin: 0; background: var(--su-surface-sunken); font-family: var(--su-font-ui); }
+    .phone { max-width: 390px; margin: 0 auto; min-height: 100vh; background: var(--su-surface-base); display: flex; flex-direction: column; }
+    .app { flex: 1; overflow: auto; }
+    .pane { display: none; } .pane.on { display: block; }
+    .su-m-phone { display: flex; }
+  </style>
+</head>
+<body class="su-m">
+  <div class="phone">
+    <div class="app">
+      <div class="su-m-topbar">
+        <button class="su-m-navitem" style="min-height:auto;" aria-label="Voltar" onclick="prevStep()"><i class="ti ti-arrow-left" style="font-size:22px;color:var(--su-text-secondary);"></i></button>
+        <span class="su-m-topbar__title">Novo cliente</span>
+      </div>
+
+      <div class="su-m-stepbar">
+        <div class="su-m-stepbar__label" id="steplabel">Etapa 1 de 4 · Dados pessoais</div>
+        <div class="su-m-stepbar__track"><div class="su-m-stepbar__fill" id="stepfill" style="width:25%;"></div></div>
+      </div>
+
+      <div style="padding:16px;">
+        <div class="pane on" data-p="1">
+          <div class="su-m-field"><label class="su-m-field__label">Nome completo</label><input class="su-m-input" placeholder="Nome do cliente"></div>
+          <div class="su-m-field"><label class="su-m-field__label">CPF / CNPJ</label><input class="su-m-input" inputmode="numeric" placeholder="000.000.000-00"></div>
+          <div class="su-m-field"><label class="su-m-field__label">Data de nascimento</label><input class="su-m-input" type="date"></div>
+        </div>
+        <div class="pane" data-p="2">
+          <div class="su-m-field"><label class="su-m-field__label">E-mail</label><input class="su-m-input" type="email" placeholder="nome@empresa.com"></div>
+          <div class="su-m-field"><label class="su-m-field__label">Telefone</label>
+            <div class="su-phoneinput" style="height:46px;">
+              <button class="su-phoneinput__country" type="button" onclick="return false">🇧🇷 +55 <i class="ti ti-chevron-down" style="font-size:13px;color:var(--su-text-muted);"></i></button>
+              <input class="su-phoneinput__input" style="height:44px;font-size:15px;" inputmode="tel" placeholder="27 99999-8888">
+            </div>
+          </div>
+        </div>
+        <div class="pane" data-p="3">
+          <div class="su-m-field"><label class="su-m-field__label">CEP</label><input class="su-m-input" inputmode="numeric" placeholder="00000-000"></div>
+          <div class="su-m-field"><label class="su-m-field__label">Endereço</label><input class="su-m-input" placeholder="Rua, número"></div>
+          <div class="su-m-field"><label class="su-m-field__label">Cidade</label><input class="su-m-input" placeholder="Cidade"></div>
+        </div>
+        <div class="pane" data-p="4">
+          <div class="su-m-field"><label class="su-m-field__label">Plano</label><select class="su-m-input" style="appearance:none;"><option>Vitalício</option><option>Mensal</option></select></div>
+          <div class="su-m-field"><label class="su-m-field__label">Dia de vencimento</label><input class="su-m-input" inputmode="numeric" placeholder="10"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="su-m-footer">
+      <button class="su-m-cta" id="nextBtn" onclick="nextStep()">Próximo <i class="ti ti-arrow-right"></i></button>
+    </div>
+  </div>
+
+  <script>
+    var labels = ['Dados pessoais','Contato','Endereço','Plano'], cur = 1, total = 4;
+    function show(){
+      document.querySelectorAll('.pane').forEach(function(p){ p.classList.toggle('on', +p.dataset.p === cur); });
+      document.getElementById('steplabel').textContent = 'Etapa ' + cur + ' de ' + total + ' · ' + labels[cur-1];
+      document.getElementById('stepfill').style.width = (cur/total*100) + '%';
+      document.getElementById('nextBtn').innerHTML = cur === total ? 'Salvar cliente' : 'Próximo <i class="ti ti-arrow-right"></i>';
+    }
+    function nextStep(){ if (cur < total) { cur++; show(); window.scrollTo(0,0); } }
+    function prevStep(){ if (cur > 1) { cur--; show(); } else { history.back(); } }
+    show();
+  </script>
+</body>
+</html>

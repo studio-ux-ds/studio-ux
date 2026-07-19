@@ -8,7 +8,14 @@
 
 ## [Unreleased]
 
-Nada pendente. / Nothing pending.
+**Fase 4 (Mobile) — paridade do CRUD.** / Phase 4 (Mobile) — CRUD parity.
+
+- ✅ `packages/mobile/mobile.css` ampliado: cabeçalho de detalhe, sub-abas por toque, KPI compacto, ações rápidas (círculos), CTA + rodapé fixo, campo grande de toque, barra de progresso de etapa, sync/offline.
+- ✅ `examples/mobile-detalhe.html` — detalhe do cliente (KPIs, ações rápidas, dados, CTA).
+- ✅ `examples/mobile-cadastro.html` — cadastro em **etapas** (mobile), contraparte do Wizard Desktop (P4). Rodapé com **um CTA proeminente**; voltar na seta do topo (alinhado à referência).
+- ✅ `mobile.css`: **swipe** em item de lista (com alternativa no "…"), **Scanner** (moldura + alternativa manual, P19), **notificações** (item + banner), **offline/sync** de primeira classe. `.su-m-cta` com `appearance:none` (renderiza cheio).
+- ✅ `examples/mobile-scanner.html` e `examples/mobile-notificacoes.html`.
+- **Fase 4 (Mobile) essencialmente completa.** Próximo: camada React (opcional) e/ou playground/mais exemplos.
 
 ---
 

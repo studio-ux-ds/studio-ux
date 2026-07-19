@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Studio UX — Exemplo Mobile: Notificações</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css">
+  <link rel="stylesheet" href="../packages/tokens/tokens.css">
+  <link rel="stylesheet" href="../packages/mobile/mobile.css">
+  <style>
+    body { margin: 0; background: var(--su-surface-sunken); font-family: var(--su-font-ui); }
+    .phone { max-width: 390px; margin: 0 auto; min-height: 100vh; background: var(--su-surface-base); display: flex; flex-direction: column; }
+    .app { flex: 1; overflow: auto; }
+  </style>
+</head>
+<body class="su-m">
+  <div class="phone">
+    <div class="app">
+      <div class="su-m-topbar">
+        <button class="su-m-navitem" style="min-height:auto;"><i class="ti ti-arrow-left" style="font-size:22px;color:var(--su-text-secondary);"></i></button>
+        <span class="su-m-topbar__title">Notificações</span>
+        <button class="su-m-navitem" style="min-height:auto;color:var(--su-action);font-size:11px;">Marcar lidas</button>
+      </div>
+
+      <!-- Estado offline (primeira classe no Mobile) -->
+      <div class="su-m-offline"><i class="ti ti-wifi-off"></i>Você está offline — mostrando o que está salvo.</div>
+      <!-- Estado de sincronização -->
+      <div class="su-m-sync"><i class="ti ti-refresh"></i>Sincronizando 2 alterações…</div>
+
+      <div style="padding:4px 0;">
+        <div class="su-m-notif su-m-notif--unread">
+          <span class="su-m-notif__icon" style="background:var(--su-success-bg);color:var(--su-success-fg);"><i class="ti ti-check"></i></span>
+          <span style="flex:1;"><span class="su-m-notif__title">Fatura #458 foi paga</span><div class="su-m-notif__time">Marina Alves · há 12 min</div></span>
+          <span style="width:8px;height:8px;border-radius:50%;background:var(--su-action);align-self:center;"></span>
+        </div>
+        <div class="su-m-notif su-m-notif--unread">
+          <span class="su-m-notif__icon" style="background:var(--su-danger-bg);color:var(--su-danger-fg);"><i class="ti ti-alert-circle"></i></span>
+          <span style="flex:1;"><span class="su-m-notif__title">Fatura vencida de Bianca Ferraz</span><div class="su-m-notif__time">há 1 h</div></span>
+          <span style="width:8px;height:8px;border-radius:50%;background:var(--su-action);align-self:center;"></span>
+        </div>
+        <div class="su-m-notif">
+          <span class="su-m-notif__icon" style="background:var(--su-info-bg);color:var(--su-info-fg);"><i class="ti ti-user-plus"></i></span>
+          <span style="flex:1;"><span class="su-m-notif__title">Novo cliente: Diego Prado</span><div class="su-m-notif__time">ontem</div></span>
+        </div>
+        <div class="su-m-notif">
+          <span class="su-m-notif__icon" style="background:var(--su-surface-sunken);color:var(--su-text-secondary);"><i class="ti ti-file-invoice"></i></span>
+          <span style="flex:1;"><span class="su-m-notif__title">Relatório mensal disponível</span><div class="su-m-notif__time">2 dias</div></span>
+        </div>
+      </div>
+    </div>
+
+    <nav class="su-m-bottomnav">
+      <button class="su-m-navitem"><i class="ti ti-home"></i>Início</button>
+      <button class="su-m-navitem"><i class="ti ti-users"></i>Clientes</button>
+      <button class="su-m-fab" aria-label="Novo"><i class="ti ti-plus"></i></button>
+      <button class="su-m-navitem su-m-navitem--active"><i class="ti ti-bell"></i>Avisos</button>
+      <button class="su-m-navitem"><i class="ti ti-user"></i>Perfil</button>
+    </nav>
+  </div>
+</body>
+</html>

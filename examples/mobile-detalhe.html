@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Studio UX — Exemplo Mobile: Detalhe do cliente</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css">
+  <link rel="stylesheet" href="../packages/tokens/tokens.css">
+  <link rel="stylesheet" href="../packages/mobile/mobile.css">
+  <style>
+    body { margin: 0; background: var(--su-surface-sunken); font-family: var(--su-font-ui); }
+    .phone { max-width: 390px; margin: 0 auto; min-height: 100vh; background: var(--su-surface-base); display: flex; flex-direction: column; }
+    .app { flex: 1; overflow: auto; }
+    .status-badge { font-size: 11px; padding: 2px 8px; border-radius: var(--su-radius-full); background: var(--su-success-bg); color: var(--su-success-fg); }
+    .dl-row { display: flex; justify-content: space-between; padding: 12px 0; font-size: 14px; border-top: 1px solid var(--su-border-subtle); }
+    .dl-row:first-child { border-top: none; }
+    .dl-key { color: var(--su-text-secondary); } .dl-val { color: var(--su-text-primary); }
+  </style>
+</head>
+<body class="su-m">
+  <div class="phone">
+    <div class="app">
+      <div class="su-m-topbar">
+        <button class="su-m-navitem" style="min-height:auto;"><i class="ti ti-arrow-left" style="font-size:22px;color:var(--su-text-secondary);"></i></button>
+        <span style="flex:1;"></span>
+        <button class="su-m-navitem" style="min-height:auto;"><i class="ti ti-share" style="font-size:20px;color:var(--su-text-secondary);"></i></button>
+      </div>
+
+      <div class="su-m-detail-head">
+        <span class="su-m-detail-head__avatar">MA</span>
+        <span style="flex:1;line-height:1.3;">
+          <span class="su-m-detail-head__name">Marina Alves</span>
+          <span style="display:flex;align-items:center;gap:8px;"><span style="font-size:12px;color:var(--su-text-secondary);">Cliente desde 2021</span><span class="status-badge">Ativo</span></span>
+        </span>
+      </div>
+
+      <div class="su-m-tabs">
+        <button class="su-m-tab su-m-tab--active">Visão geral</button>
+        <button class="su-m-tab">Faturas</button>
+        <button class="su-m-tab">Histórico</button>
+      </div>
+
+      <div style="padding:16px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
+        <div class="su-m-stat"><div class="su-m-stat__label">Total pago</div><div class="su-m-stat__value">R$ 3,2k</div></div>
+        <div class="su-m-stat"><div class="su-m-stat__label">Faturas</div><div class="su-m-stat__value">14</div></div>
+        <div class="su-m-stat"><div class="su-m-stat__label">Em aberto</div><div class="su-m-stat__value">R$ 0</div></div>
+      </div>
+
+      <div style="padding:0 16px 8px;"><div class="su-m-actions">
+        <button class="su-m-action"><span class="su-m-action__circle"><i class="ti ti-mail"></i></span>Cobrar</button>
+        <button class="su-m-action"><span class="su-m-action__circle"><i class="ti ti-edit"></i></span>Editar</button>
+        <button class="su-m-action"><span class="su-m-action__circle"><i class="ti ti-phone"></i></span>Ligar</button>
+        <button class="su-m-action"><span class="su-m-action__circle"><i class="ti ti-brand-whatsapp"></i></span>WhatsApp</button>
+      </div></div>
+
+      <div style="padding:16px;">
+        <div style="font-size:13px;font-weight:600;color:var(--su-text-secondary);margin-bottom:4px;">Dados</div>
+        <div class="dl-row"><span class="dl-key">E-mail</span><span class="dl-val">marina@empresa.com</span></div>
+        <div class="dl-row"><span class="dl-key">Telefone</span><span class="dl-val">+55 27 99999-8888</span></div>
+        <div class="dl-row"><span class="dl-key">Plano</span><span class="dl-val">Vitalício</span></div>
+        <div class="dl-row"><span class="dl-key">Vencimento</span><span class="dl-val">Dia 10</span></div>
+      </div>
+    </div>
+
+    <div class="su-m-footer"><button class="su-m-cta"><i class="ti ti-plus"></i>Nova fatura</button></div>
+  </div>
+</body>
+</html>
