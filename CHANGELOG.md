@@ -12,6 +12,13 @@ Nada pendente. / Nothing pending.
 
 ---
 
+## [1.0.13] — 2026-07-19 — Galeria de exemplos (`examples/index.html`) · Examples gallery
+
+- ✅ `examples/index.html` — vitrine única que lista os 13 exemplos em cards, agrupados por **Desktop** (5) e **Mobile** (8), cada card com ícone, descrição e link. Toggle de tema, seletor de cor de ação ao vivo e atalho para o Playground de componentes.
+- Verificado: todos os 13 links resolvem; nenhuma classe fantasma.
+
+---
+
 ## [1.0.12] — 2026-07-19 — Mais exemplos Mobile: Entrar, Início, Configurações · More Mobile examples
 
 - ✅ `examples/mobile-login.html` — **Entrar** (tela própria mobile, P4): marca no topo, campos com ícone, CTA único de destaque, SSO empilhado, link de recuperação.

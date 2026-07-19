@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio UX — Galeria de exemplos</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css">
+  <link rel="stylesheet" href="../packages/tokens/tokens.css">
+  <link rel="stylesheet" href="../packages/components/components.css">
+  <style>
+    /* Só composição/layout — todos os VALORES vêm de tokens (P1, P22). */
+    body { margin: 0; background: var(--su-surface-base); font-family: var(--su-font-ui); color: var(--su-text-primary); }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: var(--su-space-8) var(--su-space-6) var(--su-space-16); }
+    header.hero { display: flex; align-items: flex-start; gap: var(--su-space-4); margin-bottom: var(--su-space-8); }
+    .brandmark { display: inline-flex; align-items: center; gap: 10px; font-weight: var(--su-fw-semibold); font-size: 17px; }
+    .brandmark span { width: 30px; height: 30px; border-radius: 9px; background: var(--su-action); color: #fff; display: inline-flex; align-items: center; justify-content: center; }
+    .hero__text { flex: 1; }
+    .hero h1 { font-size: var(--su-text-h1); font-weight: var(--su-fw-semibold); margin: var(--su-space-4) 0 4px; }
+    .hero p { color: var(--su-text-secondary); font-size: var(--su-text-body); margin: 0; max-width: 620px; line-height: 1.55; }
+    .controls { display: flex; align-items: center; gap: var(--su-space-3); flex-wrap: wrap; margin-bottom: var(--su-space-6); }
+    .accent-row { display: flex; gap: 8px; }
+    .swatch { width: 24px; height: 24px; border-radius: 50%; border: 0; cursor: pointer; outline: 2px solid var(--su-border-default); outline-offset: 2px; }
+    .swatch[aria-pressed="true"] { outline-color: var(--su-action); }
+    .spacer { flex: 1; }
+    .sect-title { font-size: var(--su-text-h3); font-weight: var(--su-fw-semibold); margin: var(--su-space-8) 0 var(--su-space-4); display: flex; align-items: center; gap: 8px; }
+    .sect-title .count { font-size: 12px; font-weight: var(--su-fw-medium); color: var(--su-text-muted); background: var(--su-surface-sunken); border-radius: var(--su-radius-full); padding: 2px 9px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: var(--su-space-4); }
+    .card { display: flex; flex-direction: column; text-decoration: none; color: inherit; background: var(--su-surface-raised); border: 1px solid var(--su-border-subtle); border-radius: var(--su-radius-lg); overflow: hidden; transition: border-color var(--su-duration-fast) var(--su-ease-standard); }
+    .card:hover { border-color: var(--su-action); }
+    .thumb { height: 128px; display: flex; align-items: center; justify-content: center; background: var(--su-surface-sunken); border-bottom: 1px solid var(--su-border-subtle); color: var(--su-action); font-size: 40px; position: relative; }
+    .thumb .plat { position: absolute; top: 8px; right: 8px; font-size: 10px; font-weight: var(--su-fw-medium); padding: 2px 8px; border-radius: var(--su-radius-full); background: var(--su-surface-raised); color: var(--su-text-secondary); border: 1px solid var(--su-border-subtle); }
+    .card__body { padding: var(--su-space-4); }
+    .card__title { font-weight: var(--su-fw-medium); font-size: 14px; display: flex; align-items: center; justify-content: space-between; }
+    .card__title .ti { color: var(--su-text-muted); font-size: 16px; }
+    .card__desc { color: var(--su-text-muted); font-size: 12px; margin-top: 3px; line-height: 1.4; }
+    footer { margin-top: var(--su-space-12); padding-top: var(--su-space-5); border-top: 1px solid var(--su-border-subtle); color: var(--su-text-muted); font-size: var(--su-text-caption); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+    footer a { color: var(--su-action); text-decoration: none; }
+  </style>
+</head>
+<body class="su">
+  <div class="wrap">
+    <header class="hero">
+      <div class="hero__text">
+        <div class="brandmark"><span><i class="ti ti-square-rounded"></i></span>Studio UX</div>
+        <h1>Galeria de exemplos</h1>
+        <p>Telas reais montadas com os pacotes do Studio UX — tokens, componentes Desktop (<code>.su-*</code>) e Mobile (<code>.su-m-*</code>). Desktop e Mobile são produtos distintos (P4), não um layout responsivo. Clique para abrir cada exemplo.</p>
+      </div>
+      <button class="su-iconbtn" aria-label="Alternar tema" onclick="var h=document.documentElement;h.dataset.theme=h.dataset.theme==='dark'?'light':'dark';"><i class="ti ti-moon"></i></button>
+    </header>
+
+    <div class="controls">
+      <span style="font-size:13px;color:var(--su-text-secondary);">Cor de ação:</span>
+      <div class="accent-row" id="accents">
+        <button class="swatch" title="Índigo" data-a="#4F46E5" aria-pressed="true" style="background:#4F46E5;"></button>
+        <button class="swatch" title="Azul" data-a="#2563EB" aria-pressed="false" style="background:#2563EB;"></button>
+        <button class="swatch" title="Teal" data-a="#0D9488" aria-pressed="false" style="background:#0D9488;"></button>
+        <button class="swatch" title="Verde" data-a="#047857" aria-pressed="false" style="background:#047857;"></button>
+        <button class="swatch" title="Violeta" data-a="#7C3AED" aria-pressed="false" style="background:#7C3AED;"></button>
+        <button class="swatch" title="Cobre" data-a="#B45309" aria-pressed="false" style="background:#B45309;"></button>
+        <button class="swatch" title="Grafite" data-a="#475569" aria-pressed="false" style="background:#475569;"></button>
+      </div>
+      <div class="spacer"></div>
+      <a class="su-btn su-btn--secondary su-btn--sm" href="../playground/index.html"><i class="ti ti-components"></i>Playground de componentes</a>
+    </div>
+
+    <div class="sect-title"><i class="ti ti-device-desktop"></i>Desktop <span class="count" id="cd">0</span></div>
+    <div class="grid" id="grid-desktop"></div>
+
+    <div class="sect-title"><i class="ti ti-device-mobile"></i>Mobile <span class="count" id="cm">0</span></div>
+    <div class="grid" id="grid-mobile"></div>
+
+    <footer>
+      <span>Studio UX · Design System + plataforma · v1.0.13</span>
+      <span><a href="../CHANGELOG.md">Changelog</a> · <a href="../README.md">Leia-me</a></span>
+    </footer>
+  </div>
+
+  <script>
+    var DESKTOP = [
+      { f:'dashboard.html',     t:'Painel',        d:'KPIs, gráfico e tabela de faturas recentes.',        i:'ti-layout-dashboard' },
+      { f:'analytics.html',     t:'Relatórios',    d:'Filtros, KPIs, gráfico de barras e top produtos.',   i:'ti-chart-bar' },
+      { f:'clientes.html',      t:'Clientes',      d:'CRUD com cadastro em etapas (wizard) e telefone.',   i:'ti-users' },
+      { f:'configuracoes.html', t:'Configurações', d:'Abas de pasta, switches e seletor de cor de ação.',  i:'ti-settings' },
+      { f:'login.html',         t:'Entrar',        d:'Painel de marca + formulário com SSO.',              i:'ti-login-2' }
+    ];
+    var MOBILE = [
+      { f:'mobile-inicio.html',        t:'Início',        d:'Saudação, KPIs, ações rápidas e atividade.',   i:'ti-home' },
+      { f:'mobile-clientes.html',      t:'Clientes',      d:'Lista, busca, filtros e bottom sheet.',        i:'ti-users' },
+      { f:'mobile-detalhe.html',       t:'Detalhe',       d:'Cabeçalho, sub-abas e ações rápidas.',         i:'ti-id' },
+      { f:'mobile-cadastro.html',      t:'Cadastro',      d:'Fluxo em etapas com CTA único no rodapé.',     i:'ti-forms' },
+      { f:'mobile-scanner.html',       t:'Scanner',      d:'Moldura de leitura + entrada manual.',          i:'ti-scan' },
+      { f:'mobile-notificacoes.html',  t:'Notificações',  d:'Lista com tons, offline e sincronização.',     i:'ti-bell' },
+      { f:'mobile-configuracoes.html', t:'Configurações', d:'Seções, tema escuro e seletor de acento.',     i:'ti-settings' },
+      { f:'mobile-login.html',         t:'Entrar',        d:'Tela própria mobile com CTA e SSO.',           i:'ti-login-2' }
+    ];
+    function card(x, plat){
+      return '<a class="card" href="'+x.f+'">'+
+        '<div class="thumb"><i class="ti '+x.i+'"></i><span class="plat">'+plat+'</span></div>'+
+        '<div class="card__body"><div class="card__title">'+x.t+'<i class="ti ti-arrow-up-right"></i></div>'+
+        '<div class="card__desc">'+x.d+'</div></div></a>';
+    }
+    document.getElementById('grid-desktop').innerHTML = DESKTOP.map(function(x){return card(x,'Desktop');}).join('');
+    document.getElementById('grid-mobile').innerHTML  = MOBILE.map(function(x){return card(x,'Mobile');}).join('');
+    document.getElementById('cd').textContent = DESKTOP.length;
+    document.getElementById('cm').textContent = MOBILE.length;
+
+    var box = document.getElementById('accents');
+    function shade(hex, p){ var n=parseInt(hex.slice(1),16),r=n>>16,g=(n>>8)&255,b=n&255,f=function(x){return Math.max(0,Math.min(255,Math.round(x*(1-p))));}; return '#'+((f(r)<<16)|(f(g)<<8)|f(b)).toString(16).padStart(6,'0'); }
+    box.addEventListener('click', function(e){
+      var el = e.target.closest('.swatch'); if(!el) return;
+      [].forEach.call(box.children, function(c){ c.setAttribute('aria-pressed', c===el?'true':'false'); });
+      var a = el.dataset.a, root = document.documentElement.style;
+      root.setProperty('--su-action', a);
+      root.setProperty('--su-action-hover', shade(a,0.12));
+      root.setProperty('--su-action-active', shade(a,0.22));
+    });
+  </script>
+</body>
+</html>
