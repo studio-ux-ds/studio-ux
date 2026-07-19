@@ -1,6 +1,6 @@
 {
   "name": "@studio-ux-ds/components",
-  "version": "1.0.16",
+  "version": "1.1.0",
   "description": "Componentes Desktop do Studio UX em CSS puro (classes .su-*), sobre @studio-ux-ds/tokens.",
   "exports": {
     "./components.css": "./components.css"

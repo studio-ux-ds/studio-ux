@@ -66,6 +66,25 @@
   --su-ease-standard: cubic-bezier(0.2, 0, 0, 1);
   --su-ease-entrance: cubic-bezier(0, 0, 0.2, 1);
   --su-ease-exit: cubic-bezier(0.4, 0, 1, 1);
+
+  /* ---- Opacidade · Opacity ---- */
+  --su-opacity-disabled: 0.55;
+  --su-opacity-muted: 0.7;
+  --su-opacity-overlay: 0.44;
+
+  /* ---- Z-index (pilha nomeada · LAYOUT_SYSTEM §7) ---- */
+  --su-z-base: 0;
+  --su-z-content: 1;
+  --su-z-sticky: 100;
+  --su-z-overlay: 900;
+  --su-z-modal: 1000;
+  --su-z-toast: 1100;
+
+  /* ---- Breakpoints (pontos de mudança DENTRO de cada produto; não trocam Desktop↔Mobile) ---- */
+  --su-bp-sm: 480px;
+  --su-bp-md: 768px;
+  --su-bp-lg: 1024px;
+  --su-bp-xl: 1280px;
 }
 
 /* ---- Tema escuro · Dark theme (explícito ou automático) ---- */

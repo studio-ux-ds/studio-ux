@@ -4,10 +4,12 @@
 // Fundamentais
 export { Button, IconButton } from "./Button.jsx";
 export { Badge } from "./Badge.jsx";
+export { Avatar, Link, Tag, Banner, CommandPalette } from "./Misc.jsx";
 
 // Formulário
 export { Field, Input, PhoneInput } from "./Field.jsx";
 export { Select, Checkbox, Radio, Switch, SegmentedControl } from "./Controls.jsx";
+export { NumericInput, TextArea, Combobox, FileUpload, DatePicker } from "./Inputs.jsx";
 export { Stepper } from "./Stepper.jsx";
 
 // Dados

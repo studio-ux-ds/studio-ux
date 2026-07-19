@@ -75,6 +75,8 @@ Dono · Owner:                este doc, para o domínio "verdades constitucionai
 
 **Art. 20** — **Na dúvida, não se inventa: propõe-se e aguarda-se aprovação.** *(`AI_RULES`, `STUDIO_UX.md` §12)* / **When in doubt, do not invent: propose and await approval.**
 
+**Art. 21 (REGRA SUPREMA) — Melhor erro visível do que buraco oculto.** Quando a fonte é uma especificação já pronta (a doc, escrita a partir de sistemas reais), implementa-se **tudo o que a doc manda, de uma vez, sem deixar nada para trás** — mesmo que isso produza muitos erros. Erro visível se conserta fácil; **falta de código e erro silencioso são falhas ocultas que se acumulam a cada interação e custam caro depois.** É proibido "suavizar" (entregar parcial, deixar item documentado sem implementar, ou stub que finge existir) para evitar erros agora. Corolário: se uma **limitação real** (do ambiente, do build, da natureza do artefato) impede completar o fluxo, **pausa-se e reporta-se ao Robson** — nunca se preenche o buraco com fingimento. *(`AI_RULES`, `STUDIO_UX_GAP_AUDIT`)* / **Supreme rule — a visible error beats a hidden hole.** When the source is a finished spec, implement everything it mandates at once, nothing left behind, even if it surfaces many errors; visible errors are cheap to fix, missing code and silent errors are hidden failures that compound. Never soften into partial/stub work; if a real limitation blocks completion, pause and report — never fake the gap.
+
 ---
 
 ## Não-responsabilidades · Non-responsibilities

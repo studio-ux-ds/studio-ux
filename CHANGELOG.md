@@ -12,6 +12,17 @@ Nada pendente. / Nothing pending.
 
 ---
 
+## [1.1.0] — 2026-07-19 — Catálogo de componentes completo (bloco A do GAP_AUDIT) · Component catalog completed
+
+- ✅ **Regra suprema (Constituição Art. 21):** melhor erro visível do que buraco oculto. Implementa-se tudo o que a doc manda de uma vez; proibido suavizar/stub; limitação real → pausa e reporta.
+- ✅ **Auditoria de completude** (`docs/audits/STUDIO_UX_GAP_AUDIT.md`) — cruza doc × código; separa "buraco de porte" (bloco A) de "plataforma futura" (bloco B).
+- ✅ **Bloco A fechado (CSS + adapter React):** `Avatar` (imagem/iniciais/status), `NumericInput` (com passos +/−, nunca `input[type=number]`), `TextArea`, `Link`, `Banner` desktop, `Tag` removível, `Checkbox` indeterminado; e os wrappers React que faltavam para CSS já existente: `Combobox`, `FileUpload`, `CommandPalette`, `DatePicker` (calendário funcional). Adapter React: 47 exports, todos validados (esbuild + checagem de resolução).
+- ✅ **Tokens que faltavam:** grupos `opacity`, `z-index` (pilha nomeada) e `breakpoints` — aditivos, sem tocar nos valores congelados.
+- **Não implementado de propósito (honestidade — Art. 21):** o **bloco B** (CLI, exporters, linter, devtools, gerador de projeto, pacotes `core`/`icons`/`testing`/`devtools`) é software executável e fica como roadmap real — NÃO virou stub. Item aberto: paridade do adapter React Native (eixo próprio).
+- **MINOR** (adição retrocompatível): 1.0.x → **1.1.0**, lockstep nos 5 pacotes.
+
+---
+
 ## [1.0.16] — 2026-07-19 — Demo do sistema + slot de marca + logins corrigidos · System demo + brand slot + login fixes
 
 - ✅ **`examples/app.html` — demo navegável como um sistema:** login → painel, clientes → **detalhe** (abas), conversas (chat com envio de mensagem), relatórios, ajustes. Roteador em JS, toasts, modal de "novo cliente", ConfirmDialog em ação destrutiva, seletor de tema e de **cor de ação** ao vivo. **Adapta ao celular** (sidebar → barra inferior, grids empilham, chat em painel único) — degradação do desktop; num produto real seriam as telas `.su-m-*` (P4).

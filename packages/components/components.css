@@ -275,3 +275,53 @@
 .su-form-grid--full { grid-column: 1 / -1; }
 .su-form-actions { display: flex; justify-content: flex-end; gap: var(--su-space-2); padding: var(--su-space-4) 0 0; }
 
+/* ==================== Fase 3, grupo 4: catálogo completo (bloco A do GAP_AUDIT) ==================== */
+
+/* ---------- Avatar (imagem · iniciais · indicador de status) ---------- */
+.su-avatar { position: relative; display: inline-flex; align-items: center; justify-content: center; flex: none; width: 36px; height: 36px; border-radius: var(--su-radius-full); background: var(--su-surface-sunken); color: var(--su-text-secondary); font-size: 13px; font-weight: var(--su-fw-medium); overflow: hidden; }
+.su-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.su-avatar--sm { width: 28px; height: 28px; font-size: 11px; }
+.su-avatar--lg { width: 52px; height: 52px; font-size: 17px; }
+.su-avatar__status { position: absolute; right: -1px; bottom: -1px; width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--su-surface-raised); background: var(--su-text-muted); }
+.su-avatar__status--online { background: var(--su-success-fg); }
+.su-avatar__status--busy { background: var(--su-danger-fg); }
+.su-avatar__status--away { background: var(--su-warning-fg); }
+
+/* ---------- Link ---------- */
+.su-link { color: var(--su-action); text-decoration: none; font-weight: var(--su-fw-medium); cursor: pointer; }
+.su-link:hover { text-decoration: underline; }
+.su-link--muted { color: var(--su-text-muted); font-weight: var(--su-fw-regular); }
+.su-link--muted:hover { color: var(--su-action); }
+
+/* ---------- Tag (Badge removível, com "x") ---------- */
+.su-tag { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: var(--su-fw-medium); line-height: 1; padding: 4px 6px 4px 9px; border-radius: var(--su-radius-full); background: var(--su-surface-sunken); color: var(--su-text-secondary); }
+.su-tag__x { display: inline-flex; align-items: center; justify-content: center; width: 15px; height: 15px; border-radius: var(--su-radius-full); border: 0; background: transparent; color: currentColor; cursor: pointer; opacity: .7; font-size: 13px; }
+.su-tag__x:hover { opacity: 1; background: rgba(0,0,0,.08); }
+
+/* ---------- NumericInput (campo numérico com passos +/−; nunca input[type=number]) ---------- */
+.su-numeric { display: inline-flex; align-items: stretch; border: 1px solid var(--su-border-default); border-radius: var(--su-radius-md); background: var(--su-surface-raised); overflow: hidden; height: 38px; }
+.su-numeric:focus-within { border-color: var(--su-border-focus); box-shadow: 0 0 0 3px var(--su-action-tint); }
+.su-numeric__input { border: none; outline: none; width: 72px; min-width: 0; text-align: center; font-family: var(--su-font-ui); font-size: 14px; color: var(--su-text-primary); background: transparent; font-variant-numeric: tabular-nums; }
+.su-numeric__btn { width: 32px; border: none; background: var(--su-surface-sunken); color: var(--su-text-secondary); cursor: pointer; font-size: 16px; display: inline-flex; align-items: center; justify-content: center; }
+.su-numeric__btn:hover { background: var(--su-border-default); color: var(--su-text-primary); }
+.su-numeric__btn:disabled { opacity: .4; cursor: not-allowed; }
+
+/* ---------- TextArea ---------- */
+.su-textarea { font-family: var(--su-font-ui); font-size: 14px; color: var(--su-text-primary); min-height: 84px; padding: var(--su-space-2) var(--su-space-3); background: var(--su-surface-raised); border: 1px solid var(--su-border-default); border-radius: var(--su-radius-md); resize: vertical; line-height: 1.5; transition: border-color var(--su-duration-fast) var(--su-ease-standard), box-shadow var(--su-duration-fast) var(--su-ease-standard); }
+.su-textarea::placeholder { color: var(--su-text-muted); }
+.su-textarea:hover { border-color: var(--su-border-strong); }
+.su-textarea:focus-visible { outline: none; border-color: var(--su-border-focus); box-shadow: 0 0 0 3px var(--su-action-tint); }
+.su-field--error .su-textarea { border-color: var(--su-danger); }
+
+/* ---------- Banner (desktop; condição contínua — NUNCA substitui Toast, P12/PATTERNS §15) ---------- */
+.su-banner { display: flex; align-items: center; gap: var(--su-space-3); padding: var(--su-space-3) var(--su-space-4); border-radius: var(--su-radius-md); border: 1px solid var(--su-border-default); background: var(--su-surface-sunken); font-size: 13px; color: var(--su-text-secondary); }
+.su-banner__icon { flex: none; font-size: 18px; }
+.su-banner__body { flex: 1; }
+.su-banner--info    { background: var(--su-info-bg);    border-color: transparent; color: var(--su-info-fg); }
+.su-banner--success { background: var(--su-success-bg); border-color: transparent; color: var(--su-success-fg); }
+.su-banner--warning { background: var(--su-warning-bg); border-color: transparent; color: var(--su-warning-fg); }
+.su-banner--danger  { background: var(--su-danger-bg);  border-color: transparent; color: var(--su-danger-fg); }
+
+/* ---------- Checkbox: estado indeterminado (obrigatório — COMPONENT_LIBRARY grupo B) ---------- */
+.su-checkbox:indeterminate { accent-color: var(--su-action); }
+
