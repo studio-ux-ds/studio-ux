@@ -1,0 +1,24 @@
+{
+  "name": "studio-ux",
+  "version": "1.0.14",
+  "private": true,
+  "description": "Studio UX — Design System + plataforma. Monorepo dos pacotes publicáveis (tokens, components, mobile, react, react-native).",
+  "workspaces": [
+    "packages/tokens",
+    "packages/components",
+    "packages/mobile",
+    "packages/react",
+    "packages/react-native"
+  ],
+  "author": "Robson Marques <robson.marques.jr@gmail.com>",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "version:all": "node scripts/set-version.mjs",
+    "publish:all": "npm publish --workspaces --access restricted",
+    "pack:all": "npm pack --workspaces --pack-destination ./dist-packs",
+    "check": "node scripts/check-packages.mjs"
+  }
+}

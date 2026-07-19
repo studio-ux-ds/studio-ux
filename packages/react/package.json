@@ -1,6 +1,6 @@
 {
   "name": "@studio-ux/react",
-  "version": "1.0.0",
+  "version": "1.0.14",
   "description": "Adapter React sobre o Studio UX (embrulha as classes .su-* — runtime descartável).",
   "type": "module",
   "main": "index.js",
@@ -9,14 +9,37 @@
     ".": "./index.js",
     "./mobile": "./mobile.js"
   },
+  "files": [
+    "index.js",
+    "mobile.js",
+    "*.jsx",
+    "mobile/",
+    "README.md"
+  ],
   "sideEffects": false,
+  "author": "Robson Marques <robson.marques.jr@gmail.com>",
+  "license": "UNLICENSED",
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Robson-Marques/studio-ux.git",
+    "directory": "packages/react"
+  },
   "peerDependencies": {
     "react": ">=17",
     "react-dom": ">=17"
   },
   "peerDependenciesMeta": {
-    "@studio-ux/tokens": { "optional": false },
-    "@studio-ux/components": { "optional": false },
-    "@studio-ux/mobile": { "optional": true }
+    "@studio-ux/tokens": {
+      "optional": false
+    },
+    "@studio-ux/components": {
+      "optional": false
+    },
+    "@studio-ux/mobile": {
+      "optional": true
+    }
   }
 }

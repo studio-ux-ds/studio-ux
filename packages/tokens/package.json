@@ -1,11 +1,31 @@
 {
   "name": "@studio-ux/tokens",
-  "version": "1.0.0",
+  "version": "1.0.14",
   "description": "Design Tokens do Studio UX como CSS custom properties (fonte executável, v1.0.0 Tokens Frozen).",
   "main": "tokens.css",
   "exports": {
     ".": "./tokens.css",
     "./tokens.css": "./tokens.css"
   },
-  "sideEffects": ["*.css"]
+  "files": [
+    "tokens.css"
+  ],
+  "sideEffects": [
+    "*.css"
+  ],
+  "author": "Robson Marques <robson.marques.jr@gmail.com>",
+  "license": "UNLICENSED",
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Robson-Marques/studio-ux.git",
+    "directory": "packages/tokens"
+  },
+  "keywords": [
+    "studio-ux",
+    "design-tokens",
+    "css-variables"
+  ]
 }

@@ -1,12 +1,12 @@
 {
-  "name": "@studio-ux/components",
+  "name": "@studio-ux/mobile",
   "version": "1.0.14",
-  "description": "Componentes Desktop do Studio UX em CSS puro (classes .su-*), sobre @studio-ux/tokens.",
+  "description": "Produto Mobile do Studio UX em CSS puro (classes .su-m-*), sobre @studio-ux/tokens. Irmão do Desktop (P4).",
   "exports": {
-    "./components.css": "./components.css"
+    "./mobile.css": "./mobile.css"
   },
   "files": [
-    "components.css"
+    "mobile.css"
   ],
   "sideEffects": [
     "*.css"
@@ -19,7 +19,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/Robson-Marques/studio-ux.git",
-    "directory": "packages/components"
+    "directory": "packages/mobile"
   },
   "peerDependencies": {
     "@studio-ux/tokens": "^1.0.0"

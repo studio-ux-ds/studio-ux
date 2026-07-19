@@ -12,6 +12,18 @@ Nada pendente. / Nothing pending.
 
 ---
 
+## [1.0.14] — 2026-07-19 — Empacotamento: monorepo npm workspaces publicável · Packaging: publishable npm workspaces monorepo
+
+- ✅ `package.json` na raiz (**privado**, nunca publicado) com `workspaces` dos 5 pacotes; versionamento **em lockstep**.
+- ✅ `packages/mobile/package.json` criado (faltava) — `@studio-ux/mobile` (classes `.su-m-*`).
+- ✅ Todos os `package.json` normalizados: `files`, `license` (UNLICENSED), `repository`, `author`, `publishConfig` (`access: restricted`), `keywords`. Confirmado via `npm pack --dry-run` que cada tarball leva só o necessário (a subpasta `react/mobile/` inclusa).
+- ✅ `scripts/set-version.mjs` (bump em lockstep raiz+pacotes) e `scripts/check-packages.mjs` (smoke test: campos, `files` existentes, lockstep e **fronteira P4** — web ⊥ nativo).
+- ✅ `docs/platform/STUDIO_UX_PUBLISHING.md` — como empacotar, versionar, publicar (npm/GitHub Packages/interno) e **consumir** nos produtos. `.npmrc.example` + `.gitignore` (ignora `node_modules`, `dist-packs`, `.npmrc`, `*.tgz`, lockfile).
+- **Sem build:** CSS é fonte executável e os adapters JSX são runtime descartável que o consumidor transpila — pacotes agnósticos de bundler.
+- Versões em lockstep na 1.0.14 (raiz + 5 pacotes).
+
+---
+
 ## [1.0.13] — 2026-07-19 — Galeria de exemplos (`examples/index.html`) · Examples gallery
 
 - ✅ `examples/index.html` — vitrine única que lista os 13 exemplos em cards, agrupados por **Desktop** (5) e **Mobile** (8), cada card com ícone, descrição e link. Toggle de tema, seletor de cor de ação ao vivo e atalho para o Playground de componentes.

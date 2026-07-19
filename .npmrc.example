@@ -1,0 +1,14 @@
+# Studio UX — exemplo de .npmrc. Copie para `.npmrc` (que é git-ignored) e ajuste.
+# Escolha UM registry para o escopo @studio-ux e autentique.
+
+# Opção A — GitHub Packages (token com write:packages):
+# @studio-ux:registry=https://npm.pkg.github.com
+# //npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
+
+# Opção B — npm privado (org paga):
+# @studio-ux:registry=https://registry.npmjs.org
+# (rode `npm login` em vez de gravar token aqui)
+
+# Opção C — registry interno (Verdaccio/Artifactory):
+# @studio-ux:registry=https://npm.suaempresa.com
+# //npm.suaempresa.com/:_authToken=${NPM_TOKEN}
