@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Studio UX — Exemplo Mobile: Configurações</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css">
+  <link rel="stylesheet" href="../packages/tokens/tokens.css">
+  <link rel="stylesheet" href="../packages/mobile/mobile.css">
+  <link rel="stylesheet" href="../packages/components/components.css">
+  <style>
+    body { margin: 0; background: var(--su-surface-sunken); font-family: var(--su-font-ui); color: var(--su-text-primary); }
+    .phone { max-width: 390px; margin: 0 auto; min-height: 100vh; background: var(--su-surface-sunken); display: flex; flex-direction: column; position: relative; }
+    .app { flex: 1; overflow: auto; padding-bottom: 84px; }
+    .group-label { font-size: 12px; font-weight: var(--su-fw-medium); color: var(--su-text-muted); text-transform: uppercase; letter-spacing: .04em; padding: var(--su-space-5) var(--su-space-5) var(--su-space-2); }
+    .group { background: var(--su-surface-base); }
+    .row { display: flex; align-items: center; gap: var(--su-space-3); padding: var(--su-space-4) var(--su-space-5); border-bottom: 1px solid var(--su-border-subtle); min-height: 52px; }
+    .row:last-child { border-bottom: 0; }
+    .row .ti-lead { font-size: 20px; color: var(--su-text-secondary); width: 24px; text-align: center; flex: none; }
+    .row__text { flex: 1; min-width: 0; }
+    .row__text b { font-weight: var(--su-fw-medium); font-size: 14px; display: block; }
+    .row__text small { color: var(--su-text-muted); font-size: 12px; }
+    .row .chev { color: var(--su-text-muted); font-size: 18px; }
+    .accent-row { display: flex; gap: 12px; flex-wrap: wrap; padding: var(--su-space-4) var(--su-space-5); background: var(--su-surface-base); }
+    .swatch { width: 34px; height: 34px; border-radius: 50%; border: 0; cursor: pointer; outline: 2px solid var(--su-border-default); outline-offset: 2px; }
+    .swatch[aria-pressed="true"] { outline-color: var(--su-action); }
+    .toggle { background: none; border: 0; color: var(--su-text-muted); font-size: 20px; min-height: auto; }
+  </style>
+</head>
+<body>
+  <div class="phone su-m">
+    <div class="app">
+      <div class="su-m-topbar" style="background:var(--su-surface-base);">
+        <span class="su-m-topbar__title">Configurações</span>
+        <button class="su-m-navitem toggle" style="min-height:auto;" onclick="var h=document.documentElement;h.dataset.theme=h.dataset.theme==='dark'?'light':'dark';"><i class="ti ti-moon" style="font-size:20px;"></i></button>
+      </div>
+
+      <!-- Conta -->
+      <div class="group" style="margin-top:8px;">
+        <div class="row">
+          <span class="su-m-item__avatar" style="width:44px;height:44px;">RM</span>
+          <div class="row__text"><b>Robson Marques</b><small>robson@pizzaria.com · Administrador</small></div>
+          <i class="ti ti-chevron-right chev"></i>
+        </div>
+      </div>
+
+      <!-- Aparência -->
+      <div class="group-label">Aparência</div>
+      <div class="group">
+        <div class="row">
+          <i class="ti ti-moon ti-lead"></i>
+          <div class="row__text"><b>Tema escuro</b><small>Segue o sistema se desligado.</small></div>
+          <label class="su-switch"><input type="checkbox" onchange="var h=document.documentElement;h.dataset.theme=this.checked?'dark':'light';"><span class="su-switch__track"></span></label>
+        </div>
+      </div>
+      <div class="accent-row" id="accents">
+        <button class="swatch" title="Índigo" data-a="#4F46E5" aria-pressed="true" style="background:#4F46E5;"></button>
+        <button class="swatch" title="Azul" data-a="#2563EB" aria-pressed="false" style="background:#2563EB;"></button>
+        <button class="swatch" title="Teal" data-a="#0D9488" aria-pressed="false" style="background:#0D9488;"></button>
+        <button class="swatch" title="Verde" data-a="#047857" aria-pressed="false" style="background:#047857;"></button>
+        <button class="swatch" title="Violeta" data-a="#7C3AED" aria-pressed="false" style="background:#7C3AED;"></button>
+        <button class="swatch" title="Cobre" data-a="#B45309" aria-pressed="false" style="background:#B45309;"></button>
+        <button class="swatch" title="Grafite" data-a="#475569" aria-pressed="false" style="background:#475569;"></button>
+      </div>
+
+      <!-- Notificações -->
+      <div class="group-label">Notificações</div>
+      <div class="group">
+        <div class="row"><i class="ti ti-bell ti-lead"></i><div class="row__text"><b>Novo pedido</b><small>Som + aviso na tela.</small></div><label class="su-switch"><input type="checkbox" checked><span class="su-switch__track"></span></label></div>
+        <div class="row"><i class="ti ti-package ti-lead"></i><div class="row__text"><b>Estoque baixo</b></div><label class="su-switch"><input type="checkbox" checked><span class="su-switch__track"></span></label></div>
+        <div class="row"><i class="ti ti-brand-whatsapp ti-lead"></i><div class="row__text"><b>Mensagens de WhatsApp</b></div><label class="su-switch"><input type="checkbox" checked><span class="su-switch__track"></span></label></div>
+        <div class="row"><i class="ti ti-mail ti-lead"></i><div class="row__text"><b>Resumo diário por e-mail</b><small>Todo dia às 8h.</small></div><label class="su-switch"><input type="checkbox"><span class="su-switch__track"></span></label></div>
+      </div>
+
+      <!-- Sobre -->
+      <div class="group-label">Sobre</div>
+      <div class="group">
+        <div class="row"><i class="ti ti-help ti-lead"></i><div class="row__text"><b>Central de ajuda</b></div><i class="ti ti-external-link chev"></i></div>
+        <div class="row"><i class="ti ti-info-circle ti-lead"></i><div class="row__text"><b>Versão</b></div><small style="color:var(--su-text-muted);">v1.0.12</small></div>
+        <div class="row"><i class="ti ti-logout ti-lead" style="color:var(--su-danger-fg);"></i><div class="row__text"><b style="color:var(--su-danger-fg);">Sair</b></div></div>
+      </div>
+    </div>
+
+    <nav class="su-m-bottomnav">
+      <button class="su-m-navitem"><i class="ti ti-home"></i>Início</button>
+      <button class="su-m-navitem"><i class="ti ti-users"></i>Clientes</button>
+      <button class="su-m-fab" aria-label="Novo pedido"><i class="ti ti-plus"></i></button>
+      <button class="su-m-navitem"><i class="ti ti-file-invoice"></i>Faturas</button>
+      <button class="su-m-navitem su-m-navitem--active"><i class="ti ti-user"></i>Perfil</button>
+    </nav>
+  </div>
+
+  <script>
+    var box = document.getElementById('accents');
+    function shade(hex, p){ var n=parseInt(hex.slice(1),16),r=n>>16,g=(n>>8)&255,b=n&255,f=function(x){return Math.max(0,Math.min(255,Math.round(x*(1-p))));}; return '#'+((f(r)<<16)|(f(g)<<8)|f(b)).toString(16).padStart(6,'0'); }
+    box.addEventListener('click', function(e){
+      var el = e.target.closest('.swatch'); if(!el) return;
+      [].forEach.call(box.children, function(c){ c.setAttribute('aria-pressed', c===el?'true':'false'); });
+      var a = el.dataset.a, root = document.documentElement.style;
+      root.setProperty('--su-action', a);
+      root.setProperty('--su-action-hover', shade(a,0.12));
+      root.setProperty('--su-action-active', shade(a,0.22));
+    });
+  </script>
+</body>
+</html>

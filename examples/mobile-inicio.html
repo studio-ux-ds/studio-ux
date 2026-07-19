@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Studio UX — Exemplo Mobile: Início</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css">
+  <link rel="stylesheet" href="../packages/tokens/tokens.css">
+  <link rel="stylesheet" href="../packages/mobile/mobile.css">
+  <style>
+    body { margin: 0; background: var(--su-surface-sunken); font-family: var(--su-font-ui); color: var(--su-text-primary); }
+    .phone { max-width: 390px; margin: 0 auto; min-height: 100vh; background: var(--su-surface-base); display: flex; flex-direction: column; position: relative; }
+    .app { flex: 1; overflow: auto; padding-bottom: 84px; }
+    .kpis { display: grid; grid-template-columns: 1fr 1fr; gap: var(--su-space-3); padding: 0 var(--su-space-4); }
+    .section-title { font-size: 14px; font-weight: var(--su-fw-semibold); padding: var(--su-space-5) var(--su-space-4) var(--su-space-2); display: flex; align-items: center; justify-content: space-between; }
+    .section-title a { font-size: 12px; color: var(--su-action); text-decoration: none; font-weight: var(--su-fw-medium); }
+    .delta-up { color: var(--su-success-fg); font-size: 11px; } .delta-down { color: var(--su-danger-fg); font-size: 11px; }
+    .status-badge { font-size: 11px; padding: 2px 8px; border-radius: 9999px; }
+    .toggle { background: none; border: 0; color: var(--su-text-muted); font-size: 20px; min-height: auto; }
+  </style>
+</head>
+<body>
+  <div class="phone su-m">
+    <div class="app">
+      <div class="su-m-topbar">
+        <span class="su-m-topbar__title">Início</span>
+        <button class="su-m-navitem toggle" style="min-height:auto;" onclick="var h=document.documentElement;h.dataset.theme=h.dataset.theme==='dark'?'light':'dark';"><i class="ti ti-moon" style="font-size:20px;"></i></button>
+        <button class="su-m-navitem" style="min-height:auto;position:relative;"><i class="ti ti-bell" style="font-size:20px;"></i><span style="position:absolute;top:4px;right:4px;width:8px;height:8px;border-radius:50%;background:var(--su-danger);"></span></button>
+      </div>
+
+      <div class="su-m-greeting">
+        <div class="su-m-greeting__hi">Olá, Robson 👋</div>
+        <div class="su-m-greeting__sub">Aqui está o resumo de hoje.</div>
+      </div>
+
+      <section class="kpis">
+        <div class="su-m-stat"><div class="su-m-stat__value">R$ 5.240</div><div class="su-m-stat__label">Receita hoje</div><div class="delta-up"><i class="ti ti-arrow-up-right"></i> 8,4%</div></div>
+        <div class="su-m-stat"><div class="su-m-stat__value">47</div><div class="su-m-stat__label">Pedidos</div><div class="delta-up"><i class="ti ti-arrow-up-right"></i> 3,1%</div></div>
+        <div class="su-m-stat"><div class="su-m-stat__value">R$ 111</div><div class="su-m-stat__label">Ticket médio</div><div class="delta-up"><i class="ti ti-arrow-up-right"></i> 5,2%</div></div>
+        <div class="su-m-stat"><div class="su-m-stat__value">2,3%</div><div class="su-m-stat__label">Cancelamentos</div><div class="delta-down"><i class="ti ti-arrow-down-right"></i> 0,4%</div></div>
+      </section>
+
+      <div class="section-title">Ações rápidas</div>
+      <div class="su-m-actions">
+        <button class="su-m-action"><span class="su-m-action__circle"><i class="ti ti-plus"></i></span>Novo pedido</button>
+        <button class="su-m-action"><span class="su-m-action__circle"><i class="ti ti-user-plus"></i></span>Cliente</button>
+        <button class="su-m-action"><span class="su-m-action__circle"><i class="ti ti-file-invoice"></i></span>Fatura</button>
+        <button class="su-m-action"><span class="su-m-action__circle"><i class="ti ti-scan"></i></span>Escanear</button>
+      </div>
+
+      <div class="section-title">Atividade recente <a href="#">Ver tudo</a></div>
+      <div class="su-m-list">
+        <div class="su-m-item">
+          <span class="su-m-item__avatar"><i class="ti ti-cash" style="color:var(--su-success-fg);"></i></span>
+          <div class="su-m-item__body"><div class="su-m-item__title">Fatura #458 foi paga</div><div class="su-m-item__sub">Marina Alves</div></div>
+          <div class="su-m-item__end"><div class="su-m-item__value">R$ 240</div><span class="status-badge" style="background:var(--su-success-bg);color:var(--su-success-fg);">Pago</span></div>
+        </div>
+        <div class="su-m-item">
+          <span class="su-m-item__avatar"><i class="ti ti-shopping-bag" style="color:var(--su-action);"></i></span>
+          <div class="su-m-item__body"><div class="su-m-item__title">Novo pedido #1287</div><div class="su-m-item__sub">Diego Prado · há 12 min</div></div>
+          <div class="su-m-item__end"><div class="su-m-item__value">R$ 96</div><span class="status-badge" style="background:var(--su-action-tint);color:var(--su-action);">Em preparo</span></div>
+        </div>
+        <div class="su-m-item">
+          <span class="su-m-item__avatar"><i class="ti ti-alert-circle" style="color:var(--su-danger-fg);"></i></span>
+          <div class="su-m-item__body"><div class="su-m-item__title">Fatura vencida</div><div class="su-m-item__sub">Bianca Ferraz · há 1 h</div></div>
+          <div class="su-m-item__end"><div class="su-m-item__value">R$ 180</div><span class="status-badge" style="background:var(--su-danger-bg);color:var(--su-danger-fg);">Vencida</span></div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="su-m-bottomnav">
+      <button class="su-m-navitem su-m-navitem--active"><i class="ti ti-home"></i>Início</button>
+      <button class="su-m-navitem"><i class="ti ti-users"></i>Clientes</button>
+      <button class="su-m-fab" aria-label="Novo pedido"><i class="ti ti-plus"></i></button>
+      <button class="su-m-navitem"><i class="ti ti-file-invoice"></i>Faturas</button>
+      <button class="su-m-navitem"><i class="ti ti-user"></i>Perfil</button>
+    </nav>
+  </div>
+</body>
+</html>

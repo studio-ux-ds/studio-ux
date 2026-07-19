@@ -12,6 +12,15 @@ Nada pendente. / Nothing pending.
 
 ---
 
+## [1.0.12] — 2026-07-19 — Mais exemplos Mobile: Entrar, Início, Configurações · More Mobile examples
+
+- ✅ `examples/mobile-login.html` — **Entrar** (tela própria mobile, P4): marca no topo, campos com ícone, CTA único de destaque, SSO empilhado, link de recuperação.
+- ✅ `examples/mobile-inicio.html` — **Início**: saudação, 4 KPIs (`.su-m-stat`), ações rápidas (`.su-m-actions`), atividade recente (itens com valor + status à direita) e bottom nav com FAB central.
+- ✅ `examples/mobile-configuracoes.html` — **Configurações**: seções agrupadas (conta, aparência, notificações, sobre), tema escuro + **seletor de cor de ação** (recolore ao vivo) e switches (`.su-switch` de components.css — importado junto por ser componente universal). Sair em destaque de perigo.
+- Verificado: nenhuma classe fantasma. Paridade com os exemplos Desktop da v1.0.11.
+
+---
+
 ## [1.0.11] — 2026-07-19 — Mais exemplos Desktop: Entrar, Relatórios, Configurações · More Desktop examples
 
 - ✅ `examples/login.html` — tela de **Entrar**: painel de marca + formulário (e-mail/senha com ícone, "manter conectado", SSO Google/Microsoft), sóbrio, um acento só (P8), toggle de tema.
