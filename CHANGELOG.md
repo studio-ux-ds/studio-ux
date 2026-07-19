@@ -12,6 +12,16 @@ Nada pendente. / Nothing pending.
 
 ---
 
+## [1.1.15] — 2026-07-19 — CLI consumer-side: `lint`/`export` resolvem a fonte instalada · Consumer-side CLI
+
+- ✅ **`lint` e `export` agora funcionam num projeto consumidor** (instalado via `node_modules`), não só no monorepo. Resolvedor `packages/cli/lib/resolve-tokens.mjs` acha o `tokens.css` por precedência: **`--tokens <caminho>` / env `STUDIO_UX_TOKENS` → pacote instalado `@studio-ux-ds/tokens` → layout do monorepo (fallback)**. Nunca em silêncio (Art. 5): se não achar, erro listando o que tentou.
+- ✅ **`studio export` escreve na pasta do consumidor** (`./studio-ux-tokens` por padrão; `--out <dir>` override; `packages/tokens/exports/` no monorepo). Carimbo com a versão do pacote de tokens ao lado da fonte.
+- 🔎 **Bug real encontrado ao simular a instalação:** o `studio.mjs` (e `certify.mjs`) spawnavam as ferramentas por caminho relativo ao layout do repo (`packages/cli/…`), que **quebra instalado** (o dir vira `node_modules/@studio-ux-ds/cli`). Corrigido para **caminho self-relativo** (`tool()`), e o cwd dos spawns passou a **herdar o do usuário** (para o export escrever na pasta certa). `generate` passou a declarar a versão do **próprio pacote CLI** (self-relativo, lockstep), não do `package.json` do repo.
+- **Prova:** pipeline inteiro (`studio lint/export/create/generate/audit`) rodado de um **consumidor real** fora do monorepo (CLI + tokens em `node_modules`) — lint acha os tokens instalados, export gera na pasta do consumidor com a versão instalada (`v9.9.9` no teste), create/generate/audit **apto**. Monorepo intacto (exemplos 17/17, `good.html` 0, `bad.html` baseline). `docs`/`playground` avisam (não quebram) num consumidor.
+- Trem de release: 1.1.14 → **1.1.15**, lockstep (7 pacotes).
+
+---
+
 ## [1.1.14] — 2026-07-19 — `packages/cli` físico: `@studio-ux-ds/cli` (7º pacote) · Physical CLI package
 
 - ✅ **CLI virou pacote publicável `@studio-ux-ds/cli`** (`bin: studio`), a **casa física do ferramental da plataforma**: o orquestrador `studio.mjs` + as ferramentas que ele aciona migraram de `tools/` para `packages/cli/` (`linter/`, `exporters/`, `generator/`, `certification/`, `devtools/`). `tools/` foi removido; nada duplicado (SSOT).

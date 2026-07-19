@@ -11,7 +11,8 @@ import { readFileSync, existsSync, readdirSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "..");
+const SELF = dirname(fileURLToPath(import.meta.url));
+const ROOT = join(SELF, "..", "..", "..");
 const C = { b:(s)=>`\x1b[1m${s}\x1b[0m`, dim:(s)=>`\x1b[2m${s}\x1b[0m`, g:(s)=>`\x1b[32m${s}\x1b[0m`, y:(s)=>`\x1b[33m${s}\x1b[0m`, r:(s)=>`\x1b[31m${s}\x1b[0m`, a:(s)=>`\x1b[36m${s}\x1b[0m` };
 
 // Eliminatórios oficiais (§3). Os que o Linter enxerga estaticamente vs os que exigem evidência humana (§1 passo 3).
@@ -20,7 +21,7 @@ const STATIC_ELIMINATORS = ["P1","P3","P4","P6","P7","P11","P14","P17","P18"]; /
 const HUMAN_ELIMINATORS = ["P12","P13","P19"]; // toast/5-patrasques/toque-teclado — só auditoria humana
 
 function lint(file) {
-  const r = spawnSync("node", ["packages/cli/linter/lint.mjs", file], { cwd: ROOT, encoding: "utf8" });
+  const r = spawnSync("node", [join(SELF, "..", "linter", "lint.mjs"), file], { encoding: "utf8" });
   const out = (r.stdout || "") + (r.stderr || "");
   const errors = [], warns = [];
   for (const m of out.matchAll(/\[(ERRO|aviso)\s*\]\s+([a-z-]+)\s+\(([^)]+)\)\s+—\s+(.+)/g)) {

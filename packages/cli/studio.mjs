@@ -9,39 +9,43 @@ import { spawnSync } from "node:child_process";
 import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { resolveTokensCss } from "./lib/resolve-tokens.mjs";
 
-const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
+const SELF = dirname(fileURLToPath(import.meta.url)); // dir do próprio CLI (monorepo: packages/cli · instalado: node_modules/@studio-ux-ds/cli)
+const ROOT = join(SELF, "..", ".."); // raiz do monorepo (fallback dev); num consumidor não existe
+const tool = (p) => join(SELF, p); // caminho self-relativo de uma ferramenta irmã — funciona instalado E no monorepo
 const c = { dim: (s) => `\x1b[2m${s}\x1b[0m`, b: (s) => `\x1b[1m${s}\x1b[0m`, g: (s) => `\x1b[32m${s}\x1b[0m`, y: (s) => `\x1b[33m${s}\x1b[0m`, r: (s) => `\x1b[31m${s}\x1b[0m`, a: (s) => `\x1b[36m${s}\x1b[0m` };
 const say = (...a) => console.log(...a);
-const run = (cmd, args) => spawnSync(cmd, args, { cwd: ROOT, stdio: "inherit" }).status ?? 0;
-const runOut = (cmd, args) => { const r = spawnSync(cmd, args, { cwd: ROOT, encoding: "utf8" }); return (r.stdout || "").trim(); };
-const version = () => JSON.parse(readFileSync(join(ROOT, "package.json"), "utf8")).version;
+// cwd herda o do usuário (não forço ROOT) — assim `studio export` num projeto consumidor escreve na pasta dele.
+const run = (cmd, args) => spawnSync(cmd, args, { stdio: "inherit" }).status ?? 0;
+const runOut = (cmd, args) => { const r = spawnSync(cmd, args, { encoding: "utf8" }); return (r.stdout || "").trim(); };
+const version = () => JSON.parse(readFileSync(join(SELF, "package.json"), "utf8")).version; // versão do próprio pacote CLI (lockstep)
 
-// --- fonte de tokens (leitura; regra é do tokens/*) ---
+// --- fonte de tokens (leitura; regra é do tokens/*) — resolve consumer-side ou monorepo ---
 function tokenMaps() {
-  const css = readFileSync(join(ROOT, "packages/tokens/tokens.css"), "utf8");
+  const css = readFileSync(resolveTokensCss({ override: process.env.STUDIO_UX_TOKENS, root: ROOT }), "utf8");
   const blk = (re) => { const m = css.match(re); const o = {}; if (m) { const r = /--su-([\w-]+)\s*:\s*([^;]+);/g; let x; while ((x = r.exec(m[1]))) o[x[1].trim()] = x[2].trim(); } return o; };
   const light = blk(/:root\s*\{([^}]*)\}/);
   return { light, dark: { ...light, ...blk(/\[data-theme="dark"\]\s*\{([^}]*)\}/) } };
 }
 
 const COMMANDS = {
-  lint: { owner: "quality/LINTER", desc: "detecção estática de violações", run: (a) => run("node", ["packages/cli/linter/lint.mjs", ...a]) },
-  export: { owner: "generation/EXPORTERS", desc: "exporta tokens para os alvos", run: (a) => run("node", ["packages/cli/exporters/export-tokens.mjs", ...a]) },
+  lint: { owner: "quality/LINTER", desc: "detecção estática de violações", run: (a) => run("node", [tool("linter/lint.mjs"), ...a]) },
+  export: { owner: "generation/EXPORTERS", desc: "exporta tokens para os alvos", run: (a) => run("node", [tool("exporters/export-tokens.mjs"), ...a]) },
   tokens: { owner: "tokens/* (leitura) · EXPORTERS (--export)", desc: "lista/resolve tokens no tema ativo", run: cmdTokens },
   theme: { owner: "THEMES", desc: "lista temas e resolve num deles", run: cmdTheme },
   doctor: { owner: "VERSIONING + LINTER", desc: "diagnóstico do ambiente/projeto", run: cmdDoctor },
   upgrade: { owner: "governance/VERSIONING", desc: "mostra versão atual × disponível", run: cmdUpgrade },
   docs: { owner: "packages/docs", desc: "abre/lista a documentação (a verdade é o git)", run: cmdDocs },
   playground: { owner: "tools/PLAYGROUND + DEVTOOLS", desc: "aponta o catálogo vivo e os inspetores", run: cmdPlayground },
-  create: { owner: "generation/PROJECT_GENERATOR", desc: "cria um projeto conforme (produto→arquétipo→versão)", run: (a) => run("node", ["packages/cli/generator/generate.mjs", ...a]) },
-  generate: { owner: "generation/TEMPLATES", desc: "instancia um molde de tela num projeto", run: (a) => run("node", ["packages/cli/generator/templates.mjs", ...a]) },
-  audit: { owner: "CERTIFICATION", desc: "gradua a conformidade (consome o Linter)", run: (a) => run("node", ["packages/cli/certification/certify.mjs", ...a]) },
+  create: { owner: "generation/PROJECT_GENERATOR", desc: "cria um projeto conforme (produto→arquétipo→versão)", run: (a) => run("node", [tool("generator/generate.mjs"), ...a]) },
+  generate: { owner: "generation/TEMPLATES", desc: "instancia um molde de tela num projeto", run: (a) => run("node", [tool("generator/templates.mjs"), ...a]) },
+  audit: { owner: "CERTIFICATION", desc: "gradua a conformidade (consome o Linter)", run: (a) => run("node", [tool("certification/certify.mjs"), ...a]) },
 };
 
 function cmdTokens(a) {
   const { light, dark } = tokenMaps();
-  if (a.includes("--export")) return run("node", ["packages/cli/exporters/export-tokens.mjs"]);
+  if (a.includes("--export")) return run("node", [tool("exporters/export-tokens.mjs")]);
   const name = a.find((x) => !x.startsWith("-"));
   if (name) {
     const k = name.replace(/^--su-/, "");
@@ -99,6 +103,7 @@ function cmdUpgrade() {
 function cmdDocs() {
   const dir = join(ROOT, "docs");
   say(c.b("Documentação (Specification em git — a verdade, Art. 5)") + c.dim("  docs/"));
+  if (!existsSync(dir)) { say(c.dim("  (docs vivem no repositório do framework — não vêm no pacote instalado; ver github.com/studio-ux-ds/studio-ux)")); return 0; }
   const walk = (d, pre) => readdirSync(d, { withFileTypes: true }).forEach((e) => {
     if (e.isDirectory()) { say(c.dim(pre + e.name + "/")); walk(join(d, e.name), pre + "  "); }
     else if (e.name.endsWith(".md")) say(pre + e.name);
@@ -108,7 +113,7 @@ function cmdDocs() {
 }
 
 function cmdPlayground() {
-  const pg = join(ROOT, "playground/index.html"), dt = join(ROOT, "packages/cli/devtools/index.html");
+  const pg = join(ROOT, "playground/index.html"), dt = join(SELF, "devtools/index.html");
   say(c.b("Ambientes vivos (derivados do Runtime, nunca produção — Art. 5)"));
   say(`  Playground (catálogo/sandbox): ${c.a(existsSync(pg) ? pg : "playground/index.html")}`);
   say(`  DevTools (9 inspetores)      : ${c.a(existsSync(dt) ? dt : "packages/cli/devtools/index.html")}`);

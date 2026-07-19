@@ -9,6 +9,8 @@
 > Every AI or person working on this project MUST follow these rules without exception.
 
 > **Documentos normativos vivos / Living normative documents:** `docs/STUDIO_UX_PRINCIPLES.md` (princípios), `docs/tokens/STUDIO_UX_DESIGN_TOKENS.md` (arquitetura de tokens), `docs/components/STUDIO_UX_COMPONENT_LIBRARY.md` (catálogo oficial), `docs/context/STUDIO_UX_AI_CONTEXT.md` (contexto para IA). Índice de estado / re-ancoragem: `docs/context/STUDIO_UX_HANDOFF.md`.
+>
+> **Como interagir com o Robson / How to work with Robson** (idioma pt-BR nas conversas, re-ancorar pós-compactação, erro silencioso, docs vivos, ambiente/deploy, governança de mudanças, tom de resposta) está em **`COMO-INTERAGIR-COM-ROBSON.md`** (raiz do projeto — mesmo conteúdo em todos os projetos do Robson) / is in **`COMO-INTERAGIR-COM-ROBSON.md`** (project root — same content across all of Robson's projects). Este arquivo aqui é só regra do produto Studio UX (a política bilíngue PT+EN do §1 é do produto, não conflita com aquele doc). / This file is product rule only (the §1 PT+EN bilingual policy is about the product, not in conflict with that doc).
 
 ---
 
@@ -57,7 +59,7 @@
 4. **Desktop e Mobile pensados do zero, separadamente. / Desktop and Mobile designed from scratch, separately.** Nunca adaptar um a partir do outro.
 5. **Desconfie de inconsistência silenciosa. / Distrust silent inconsistency.** Um valor "quase igual" (um `padding` de 15px onde o token é 16px) é o bug do design system: parece certo e corrói a família. Sempre ancorar em token.
 6. **Arquitetura antes de estética. / Architecture before aesthetics.** Nesta fase definimos *como* tokens, temas e componentes funcionam — não os valores/estilos finais.
-7. **Pós-compactação = re-ancorar antes de agir. / After context compaction, re-anchor before acting.** A primeira ação após um resumo de sessão é reler este arquivo + o topo do `CHANGELOG.md` + `docs/context/STUDIO_UX_HANDOFF.md` e conferir o estado real (git, ls, ler o arquivo) antes de recomendar ou tocar em nada. Nunca cravar versão/nome de arquivo de cabeça. Tag nunca é reusada.
+7. **Pós-compactação = re-ancorar antes de agir. / After context compaction, re-anchor before acting.** Regra geral em `COMO-INTERAGIR-COM-ROBSON.md` §2; aqui a primeira ação após um resumo de sessão é reler também `docs/context/STUDIO_UX_HANDOFF.md`. / General rule in `COMO-INTERAGIR-COM-ROBSON.md` §2; here the first action after a session summary also rereads `docs/context/STUDIO_UX_HANDOFF.md`.
 8. **Antes de criar um documento, pergunte: "assunto novo ou já tem dono?" / Before creating a document, ask: "new subject or already owned?"** Se o assunto pertence a um documento existente, **expanda o existente — não crie outro** (viola SSOT, §11). Só nasce documento novo quando é um domínio de conhecimento genuinamente novo. E todo documento novo passa antes pelo **Architecture Boundary Check** (§12). / If the subject belongs to an existing document, **expand it — do not create another** (violates SSOT, §11). A new document is born only for a genuinely new knowledge domain. And every new document first passes the **Architecture Boundary Check** (§12).
 
 ---
@@ -138,11 +140,11 @@ studio-ux/
 - **MINOR** — adição retrocompatível (novo token, novo componente, novo padrão).
 - **PATCH** — correção/esclarecimento de documentação sem mudar contrato.
 
-Toda mudança: entrada no `CHANGELOG.md` → commit → **tag anotada e imutável** `vX.Y.Z` (nunca reusar tag; sempre confirmar o número com o Robson). Decisões arquiteturais relevantes viram **ADR** (Architecture Decision Record) curto dentro do doc afetado (contexto → decisão → consequência).
+Toda mudança: entrada no `CHANGELOG.md` → commit → **tag anotada e imutável** `vX.Y.Z` (nunca reusar tag — regra geral de confirmar versão com o Robson em `COMO-INTERAGIR-COM-ROBSON.md` §5). Decisões arquiteturais relevantes viram **ADR** (Architecture Decision Record) curto dentro do doc afetado (contexto → decisão → consequência).
 
 **Consumo por sistemas / Consumption by systems:** um sistema **declara** a versão do Studio UX que usa (ex.: "Aquapark → Studio UX Desktop `v1.x`"). Atualizações MAJOR são adotadas deliberadamente, com o guia de migração. O framework nunca é editado dentro do sistema consumidor — só consumido.
 
-**EN** — Studio UX is versioned via **SemVer** (`MAJOR.MINOR.PATCH`): MAJOR = contract break (needs migration guide); MINOR = backward-compatible addition; PATCH = doc fix/clarification. Every change: `CHANGELOG.md` entry → commit → **annotated immutable tag** `vX.Y.Z` (never reuse a tag; always confirm the number with Robson). Notable architectural decisions become a short **ADR** inside the affected doc (context → decision → consequence). A consuming system **declares** the Studio UX version it uses; MAJOR upgrades are adopted deliberately with the migration guide. The framework is never edited inside a consumer — only consumed.
+**EN** — Studio UX is versioned via **SemVer** (`MAJOR.MINOR.PATCH`): MAJOR = contract break (needs migration guide); MINOR = backward-compatible addition; PATCH = doc fix/clarification. Every change: `CHANGELOG.md` entry → commit → **annotated immutable tag** `vX.Y.Z` (never reuse a tag — general version-confirmation rule in `COMO-INTERAGIR-COM-ROBSON.md` §5). Notable architectural decisions become a short **ADR** inside the affected doc (context → decision → consequence). A consuming system **declares** the Studio UX version it uses; MAJOR upgrades are adopted deliberately with the migration guide. The framework is never edited inside a consumer — only consumed.
 
 ---
 
@@ -156,9 +158,9 @@ Toda mudança: entrada no `CHANGELOG.md` → commit → **tag anotada e imutáve
 
 ## 9. 🧾 DOCUMENTAÇÃO VIVA — SEM LIXO · LIVING DOCS — NO DEAD WEIGHT
 
-**PT** — Doc descreve o que EXISTE hoje, não é depósito de histórico. Toda versão/ajuste atualiza a doc afetada (as DUAS línguas) na mesma leva. Regra/token/componente removido SAI da doc. Correção terminada não vira "registro de correção" na doc — o histórico mora no `CHANGELOG.md`; a doc mantém só a descrição do estado atual. Spec de fase é andaime temporário: concluída a fase e documentado o "como funciona", a spec sai.
+**PT** — Regra geral (doc descreve o hoje, sem depósito de histórico) em `COMO-INTERAGIR-COM-ROBSON.md` §4. Aqui, o adicional específico do Studio UX: toda versão/ajuste atualiza a doc afetada nas DUAS línguas na mesma leva — mudar só o PT ou só o EN é o mesmo tipo de dívida.
 
-**EN** — Docs describe what EXISTS today; they are not a history dump. Every version/tweak updates the affected doc (BOTH languages) in the same commit. A removed rule/token/component LEAVES the doc. A finished fix does not become a "fix log" in the doc — history lives in `CHANGELOG.md`; the doc keeps only the current-state description. Phase specs are temporary scaffolding: once the phase ships and the "how it works" is documented, the spec is removed.
+**EN** — General rule (docs describe the today, no history dump) in `COMO-INTERAGIR-COM-ROBSON.md` §4. Studio UX-specific addition: every version/tweak updates the affected doc in BOTH languages in the same commit — changing only PT or only EN is the same kind of debt.
 
 **Papéis / Roles:** `CHANGELOG.md` = histórico (o que mudou e quando). `docs/` = estado atual (o que existe e como funciona). `docs/context/STUDIO_UX_HANDOFF.md` = índice para re-ancorar entre sessões (a verdade mora no git + arquivos, nunca na memória).
 

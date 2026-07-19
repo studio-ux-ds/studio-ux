@@ -22,6 +22,12 @@ Este pacote é a **casa física do ferramental da plataforma**: além do orquest
 
 `create · generate · doctor · lint · audit · upgrade · tokens · theme · docs · playground · export` — todos delegam de verdade ao dono (nenhum "não construído").
 
-## Fronteira honesta (Art. 21)
+## Consumer-side (instalado num projeto)
 
-`create`, `generate`, `audit` (estrutura), `tokens`, `theme`, `doctor`, `upgrade`, `docs`, `playground` funcionam a partir de qualquer diretório do monorepo. **`lint` (auditoria de contraste) e `export`** leem a **fonte de tokens** (`packages/tokens/tokens.css`) pelo layout do monorepo — publicados assim, assumem o workspace do Studio UX. Resolver a fonte via `@studio-ux-ds/tokens` instalado (uso num projeto consumidor puro) é o próximo passo declarado — não finjo que já é 100% consumer-side.
+Todo o CLI funciona **instalado** num projeto consumidor, não só no monorepo. As ferramentas são acionadas por caminho **self-relativo** (não dependem do layout do repo), e a **fonte de tokens** é resolvida por precedência: `--tokens <caminho>` / env `STUDIO_UX_TOKENS` → pacote **instalado** `@studio-ux-ds/tokens` (via `node_modules`) → layout do monorepo (fallback dev). Nunca em silêncio (Art. 5): se não achar, lança erro listando o que tentou.
+
+- `studio lint <tela>` — usa o `tokens.css` do `@studio-ux-ds/tokens` instalado (auditoria de contraste contra a paleta real do projeto).
+- `studio export [--out <dir>]` — lê os tokens instalados e escreve os artefatos na **pasta do consumidor** (`./studio-ux-tokens` por padrão; no monorepo, `packages/tokens/exports`). A versão do carimbo vem do pacote de tokens instalado.
+- `studio create/generate/audit` — a versão declarada nos projetos gerados é a do próprio pacote `@studio-ux-ds/cli` (lockstep com o framework).
+- `docs`/`playground` são dev-side (vivem no repositório do framework); num consumidor, avisam onde encontrá-los em vez de quebrar.
+

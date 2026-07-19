@@ -9,11 +9,13 @@
 import { readFileSync, readdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { resolveTokensCss, parseTokenArgs } from "../lib/resolve-tokens.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "..");
 
-// ---------- tokens da fonte (para contraste e checagem de token válido) ----------
-const css = readFileSync(join(root, "packages/tokens/tokens.css"), "utf8");
+// ---------- tokens da fonte (consumer-side ou monorepo — para contraste e checagem de token válido) ----------
+const { override: tokensOverride, rest: cliArgs } = parseTokenArgs(process.argv.slice(2));
+const css = readFileSync(resolveTokensCss({ override: tokensOverride, root }), "utf8");
 const parseBlock = (re) => { const m = css.match(re); const o = {}; if (m) { const r = /--su-([\w-]+)\s*:\s*([^;]+);/g; let x; while ((x = r.exec(m[1]))) o[x[1].trim()] = x[2].trim(); } return o; };
 const T_LIGHT = parseBlock(/:root\s*\{([^}]*)\}/);
 const T_DARK = { ...T_LIGHT, ...parseBlock(/\[data-theme="dark"\]\s*\{([^}]*)\}/) };
@@ -138,7 +140,7 @@ function contrastAudit() {
 }
 
 // ---------- execução ----------
-let files = process.argv.slice(2);
+let files = cliArgs;
 if (files.length === 0) {
   const fx = join(root, "packages/cli/linter/fixtures");
   files = readdirSync(fx).filter((f) => /\.(html|jsx|css)$/.test(f)).map((f) => join(fx, f));

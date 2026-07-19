@@ -12,7 +12,8 @@ import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "..");
-const VERSION = JSON.parse(readFileSync(join(ROOT, "package.json"), "utf8")).version;
+// Versão declarada = a do próprio pacote CLI (lockstep com todo o framework); self-relativo → funciona instalado E no monorepo.
+const VERSION = JSON.parse(readFileSync(join(dirname(fileURLToPath(import.meta.url)), "..", "package.json"), "utf8")).version;
 
 // ---------------------------------------------------------------------------
 // Catálogo de arquétipos (§2). Cada um: bases suportadas, propósito, navegação e

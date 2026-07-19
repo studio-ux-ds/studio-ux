@@ -1,4 +1,4 @@
-// Studio UX tokens @ v1.1.13 — GERADO de packages/tokens/tokens.css. NÃO editar (regenere: npm run export:tokens).
+// Studio UX tokens @ v1.1.15 — GERADO de packages/tokens/tokens.css. NÃO editar (regenere: npm run export:tokens).
 export const light = {
   "action": "#4F46E5",
   "actionActive": "#3730A3",

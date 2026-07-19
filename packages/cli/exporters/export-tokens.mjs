@@ -10,14 +10,18 @@
  * (React + React Native), CSS Variables. Próximos alvos (precisam de verificação na plataforma, não
  * fingidos aqui): Flutter (Dart), SwiftUI (Swift), Compose (Kotlin) — ver README.
  */
-import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { resolveTokensCss, resolveExportOut, parseTokenArgs } from "../lib/resolve-tokens.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "..");
-const SRC = join(root, "packages/tokens/tokens.css");
-const OUT = join(root, "packages/tokens/exports");
-const VERSION = JSON.parse(readFileSync(join(root, "packages/tokens/package.json"), "utf8")).version;
+const { override, out } = parseTokenArgs(process.argv.slice(2)); // --tokens (fonte) · --out (destino) · env STUDIO_UX_TOKENS
+const SRC = resolveTokensCss({ override, root }); // consumer-side (@studio-ux-ds/tokens) ou monorepo
+const OUT = resolveExportOut({ override: out, root });
+mkdirSync(OUT, { recursive: true });
+const pkgJson = join(dirname(SRC), "package.json"); // versão vem do pacote de tokens ao lado da fonte
+const VERSION = existsSync(pkgJson) ? JSON.parse(readFileSync(pkgJson, "utf8")).version : "0.0.0";
 const STAMP = `Studio UX tokens @ v${VERSION} — GERADO de packages/tokens/tokens.css. NÃO editar (regenere: npm run export:tokens).`;
 
 // ---------- 1) FONTE: parse do tokens.css ----------

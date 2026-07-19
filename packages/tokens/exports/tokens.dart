@@ -1,4 +1,4 @@
-// Studio UX tokens @ v1.1.13 — GERADO de packages/tokens/tokens.css. NÃO editar (regenere: npm run export:tokens).
+// Studio UX tokens @ v1.1.15 — GERADO de packages/tokens/tokens.css. NÃO editar (regenere: npm run export:tokens).
 import 'package:flutter/material.dart';
 
 abstract class SuTokensLight {
