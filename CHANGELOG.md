@@ -12,6 +12,17 @@ Nada pendente. / Nothing pending.
 
 ---
 
+## [1.1.10] — 2026-07-19 — Templates / Component Library: moldes de tela + `studio generate` · Screen templates
+
+- ✅ **Doc dona faltante escrita:** `docs/generation/STUDIO_UX_TEMPLATES.md` — os **moldes de tela** que o Project Generator vinha *citando* (`generation/TEMPLATES`) sem que a spec existisse. Buraco estrutural fechado: agora há dono próprio (o que é um molde §1, o catálogo §2, "compõe não redefine" §3, relação com Generator/CLI/Library §4).
+- ✅ **Ferramenta materializada:** `tools/generator/templates.mjs`, acionada por `studio generate --mold <nome> --into <projeto> [--name <tela>]`. **9 moldes:** `login`, `dashboard`, `list`, `detail`, `form`, `search`, `settings`, `wizard`, `empty` — cada um **compõe só classes `.su-*` do catálogo** (verificado: todo nome emitido existe no `components.css`) com pontos de conteúdo vazios (`su-empty`, Art. 19). A tela sai **abrível no navegador** (importa tokens+peças de `node_modules`) — prova visual imediata. `list` adapta por produto (tabela Desktop / cartões Mobile).
+- **CLI:** `studio generate` deixa de ser "não construído" e passa a **delegar** ao motor de moldes; `studio generate --list` mostra o catálogo. Guard honesto: recusa gerar fora de um projeto criado por `studio create`. Só resta `studio audit` (Certification) como verbo à espera do dono (Art. 21).
+- **Docs vivas:** nota de fase obsoleta do `COMPONENT_LIBRARY` ("nada implementado", v0.1.0) corrigida para o estado real (materializado em `.su-*`/`.su-m-*` + adapters + ícones); notas de estado no `TEMPLATES`, `CLI` e README do gerador.
+- 🔎 **Fronteira honesta:** os moldes **compõem**, nunca redefinem token nem criam peça (§3); as peças são do `COMPONENT_LIBRARY`, a regra de cada classe é dos guias de domínio.
+- Trem de release: 1.1.9 → **1.1.10**, lockstep (6 pacotes).
+
+---
+
 ## [1.1.9] — 2026-07-19 — Bloco B: pacote de ícones `@studio-ux-ds/icons` · Block B: icons package
 
 - ✅ Sexta peça (e última estrutural) do **bloco B**: pacote **`@studio-ux-ds/icons`** — a biblioteca curada de ícones. Implementa `STUDIO_UX_ICONOGRAPHY`. Fecha o último dono estrutural do bloco B.

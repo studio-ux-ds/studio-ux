@@ -20,9 +20,9 @@
 
 **EN** — **Per-product variants (P4).** Where Desktop and Mobile diverge, each component describes both forms. They are *variants of the same component* (same name, purpose, tokens), not two components — the divergence is composition/target, not identity.
 
-**PT** — **Nota de fase (v0.1.0):** **nada aqui está implementado.** Este documento é a *especificação* — nome, propósito, contrato e regras. Código virá em fase futura (ver `STUDIO_UX_ROADMAP.md`). Construir a partir da spec é legítimo; inventar fora dela não é (regra zero do `AI_CONTEXT.md`).
+**PT** — **Estado de implementação (v1.1.10):** o catálogo está **materializado** como classes `.su-*` em `@studio-ux-ds/components` (Desktop) e `.su-m-*` em `@studio-ux-ds/mobile`, com adapters `@studio-ux-ds/react` e `@studio-ux-ds/react-native` aplicando-as; os ícones vivem em `@studio-ux-ds/icons` (dono: `ICONOGRAPHY`). Este documento segue sendo a *especificação* (nome, propósito, contrato, regras) — a fonte da verdade do comportamento; o código a implementa, não a substitui. Os **moldes de tela** que compõem estes componentes são de `generation/STUDIO_UX_TEMPLATES.md` (instanciáveis por `studio generate`). Construir a partir da spec é legítimo; inventar fora dela não é (regra zero do `AI_CONTEXT.md`).
 
-**EN** — **Phase note (v0.1.0):** **nothing here is implemented.** This document is the *specification* — name, purpose, contract and rules. Code comes in a future phase (see `STUDIO_UX_ROADMAP.md`). Building from the spec is legitimate; inventing outside it is not (rule zero of `AI_CONTEXT.md`).
+**EN** — **Implementation state (v1.1.10):** the catalog is **materialized** as `.su-*` classes in `@studio-ux-ds/components` (Desktop) and `.su-m-*` in `@studio-ux-ds/mobile`, with the `@studio-ux-ds/react` and `@studio-ux-ds/react-native` adapters applying them; icons live in `@studio-ux-ds/icons`. This document remains the *specification* — the behavior source of truth; code implements it, does not replace it. The **screen templates** composing these components belong to `generation/STUDIO_UX_TEMPLATES.md` (instantiable via `studio generate`). Building from the spec is legitimate; inventing outside it is not.
 
 ---
 

@@ -32,6 +32,14 @@ Implementa `docs/generation/STUDIO_UX_PROJECT_GENERATOR.md`. Faz um projeto **na
 - `src/screens/<rota>.md` — cada tela como ponto de conteúdo, citando o molde a instanciar (dono: `generation/TEMPLATES`).
 - `README.md` — como rodar, versão, e a regra derivado-não-fork.
 
+## Moldes de tela — `studio generate` (dono: TEMPLATES)
+
+`tools/generator/templates.mjs` instancia um **molde de tela** num projeto já criado (implementa `STUDIO_UX_TEMPLATES`).
+
+- `studio generate --mold <nome> --into <projeto> [--name <tela>]` — escreve `<projeto>/src/screens/<tela>.html`, uma tela **abrível no navegador** que compõe só classes `.su-*` do catálogo, com pontos de conteúdo vazios (Art. 19).
+- `studio generate --list` — os 9 moldes: `login`, `dashboard`, `list`, `detail`, `form`, `search`, `settings`, `wizard`, `empty`.
+- Guard: recusa gerar fora de um projeto criado por `studio create` (sem `studio-ux.json`). O molde **compõe**, nunca redefine token/peça (§3); `list` adapta por produto (tabela Desktop / cartões Mobile).
+
 ## Fronteiras (o que NÃO faz)
 
 Não define a interface de comando (é a `CLI`), não é dono dos **moldes de tela** (é `generation/TEMPLATES` — o gerador os **cita**, não os duplica), não exporta tokens (é `EXPORTERS`), não define a mecânica de versão (é `VERSIONING`). Não traz dado de negócio (Art. 19).

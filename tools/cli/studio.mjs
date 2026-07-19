@@ -35,7 +35,7 @@ const COMMANDS = {
   docs: { owner: "packages/docs", desc: "abre/lista a documentação (a verdade é o git)", run: cmdDocs },
   playground: { owner: "tools/PLAYGROUND + DEVTOOLS", desc: "aponta o catálogo vivo e os inspetores", run: cmdPlayground },
   create: { owner: "generation/PROJECT_GENERATOR", desc: "cria um projeto conforme (produto→arquétipo→versão)", run: (a) => run("node", ["tools/generator/generate.mjs", ...a]) },
-  generate: { owner: "generation/TEMPLATES + COMPONENT_LIBRARY", desc: "gera uma peça num projeto", run: () => notYet("Templates / Component Library (gerador de peça)") },
+  generate: { owner: "generation/TEMPLATES", desc: "instancia um molde de tela num projeto", run: (a) => run("node", ["tools/generator/templates.mjs", ...a]) },
   audit: { owner: "CERTIFICATION", desc: "gradua a conformidade (selo/nível)", run: () => notYet("Certification") },
 };
 
