@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio UX — DevTools (inspetores)</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css">
+  <!-- LÊ os pacotes reais (Runtime): inspeciona o que está materializado, nunca a Specification abstrata. -->
+  <link rel="stylesheet" href="../../packages/tokens/tokens.css">
+  <link rel="stylesheet" href="../../packages/components/components.css">
+  <style>
+    body { margin: 0; background: var(--su-surface-base); font-family: var(--su-font-ui); color: var(--su-text-primary); }
+    .shell { display: flex; min-height: 100vh; }
+    .side { width: 230px; background: var(--su-surface-raised); border-right: 1px solid var(--su-border-default); display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; }
+    .brand { display: flex; align-items: center; gap: 8px; padding: var(--su-space-4); font-weight: 600; }
+    .brand span { width: 24px; height: 24px; border-radius: 7px; background: var(--su-action); color: #fff; display: inline-flex; align-items: center; justify-content: center; }
+    .navi { flex: 1; padding: 4px 8px; overflow: auto; }
+    .navi button { width: 100%; text-align: left; display: flex; align-items: center; gap: 10px; padding: 8px 10px; border: 0; background: none; border-radius: var(--su-radius-md); font: inherit; font-size: 13px; color: var(--su-text-secondary); cursor: pointer; }
+    .navi button:hover { background: var(--su-surface-sunken); }
+    .navi button.on { background: var(--su-action-tint); color: var(--su-action); font-weight: 500; }
+    .navi i { font-size: 17px; }
+    .ro { margin: 8px; padding: 8px 10px; border-radius: var(--su-radius-md); background: var(--su-surface-sunken); font-size: 11px; color: var(--su-text-muted); line-height: 1.4; }
+    .main { flex: 1; min-width: 0; }
+    .top { display: flex; align-items: center; gap: 12px; padding: 12px 22px; border-bottom: 1px solid var(--su-border-default); background: var(--su-surface-raised); position: sticky; top: 0; z-index: 5; }
+    .top h1 { font-size: 16px; font-weight: 600; margin: 0; flex: 1; }
+    .content { padding: 22px; max-width: 1000px; }
+    .lead { color: var(--su-text-secondary); font-size: 13px; margin: 0 0 18px; }
+    .cite { font-size: 11px; color: var(--su-text-muted); background: var(--su-surface-sunken); border-radius: 999px; padding: 2px 9px; }
+    .grid { display: grid; gap: 10px; }
+    .tokrow { display: flex; align-items: center; gap: 12px; padding: 7px 10px; border: 1px solid var(--su-border-subtle); border-radius: var(--su-radius-md); background: var(--su-surface-raised); font-size: 13px; }
+    .tokrow .sw { width: 26px; height: 26px; border-radius: 6px; border: 1px solid var(--su-border-default); flex: none; }
+    .tokrow .nm { font-weight: 500; min-width: 210px; }
+    .tokrow .vl { font-family: var(--su-font-mono); color: var(--su-text-secondary); font-size: 12px; }
+    .sect { font-size: 12px; font-weight: 600; color: var(--su-text-secondary); text-transform: uppercase; letter-spacing: .04em; margin: 22px 0 8px; }
+    table.k { width: 100%; border-collapse: collapse; font-size: 13px; }
+    table.k th { text-align: left; font-size: 11px; color: var(--su-text-muted); padding: 6px 10px; font-weight: 400; }
+    table.k td { padding: 8px 10px; border-top: 1px solid var(--su-border-subtle); }
+    .mono { font-family: var(--su-font-mono); }
+    .ok { color: var(--su-success-fg); } .bad { color: var(--su-danger-fg); }
+    .demo { border: 1px solid var(--su-border-subtle); border-radius: var(--su-radius-lg); padding: 16px; background: var(--su-surface-raised); display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 10px; }
+    .demo .lbl { width: 100%; font-size: 11px; color: var(--su-text-muted); font-family: var(--su-font-mono); margin-bottom: 4px; }
+    .sbar { height: 20px; background: var(--su-action-tint); border-radius: 4px; }
+    .zbar { display: flex; align-items: center; gap: 10px; padding: 6px 10px; border: 1px solid var(--su-border-subtle); border-radius: 8px; margin-bottom: 6px; font-size: 13px; }
+    .movebox { width: 40px; height: 40px; border-radius: 10px; background: var(--su-action); }
+  </style>
+</head>
+<body class="su">
+  <div class="shell">
+    <aside class="side">
+      <div class="brand"><span><i class="ti ti-square-rounded"></i></span>DevTools</div>
+      <nav class="navi" id="navi"></nav>
+      <div class="ro"><i class="ti ti-lock"></i> Somente-leitura sobre a regra. Lê e mostra o que a peça usa agora — não julga conformidade (isso é o Linter) nem altera a Specification.</div>
+    </aside>
+    <div class="main">
+      <div class="top">
+        <h1 id="title">Inspector</h1>
+        <button class="su-iconbtn" aria-label="Tema" onclick="toggleTheme()"><i class="ti ti-moon"></i></button>
+        <span class="cite" id="theme-badge">tema: claro</span>
+      </div>
+      <div class="content" id="view"></div>
+    </div>
+  </div>
+
+  <script>
+  // ---- catálogo de tokens (nomes estáveis; VALORES lidos ao vivo do runtime) ----
+  var COLORS = ["surface-base","surface-raised","surface-overlay","surface-sunken","text-primary","text-secondary","text-muted","text-on-action","text-disabled","border-subtle","border-default","border-strong","border-focus","action","action-hover","action-active","action-tint","success-fg","success-bg","warning-fg","warning-bg","danger-fg","danger-bg","danger","info-fg","info-bg"];
+  var TYPO = ["text-display","text-h1","text-h2","text-h3","text-body","text-body-sm","text-label","text-caption"];
+  var WEIGHTS = ["fw-regular","fw-medium","fw-semibold"];
+  var FAMS = ["font-ui","font-mono"];
+  var SPACE = ["space-1","space-2","space-3","space-4","space-5","space-6","space-8","space-12","space-16","space-24"];
+  var RADIUS = ["radius-sm","radius-md","radius-lg","radius-xl","radius-full"];
+  var ELEV = ["elevation-raised","elevation-overlay","elevation-modal"];
+  var MOTION = ["duration-fast","duration-base","duration-slow","ease-standard","ease-entrance","ease-exit"];
+  var OPAC = ["opacity-disabled","opacity-muted","opacity-overlay"];
+  var ZI = ["z-base","z-content","z-sticky","z-overlay","z-modal","z-toast"];
+  var BP = ["bp-sm","bp-md","bp-lg","bp-xl"];
+  var val = (n) => getComputedStyle(document.documentElement).getPropertyValue("--su-" + n).trim();
+
+  // WCAG (a Acessibilidade LÊ o contraste ao vivo; o veredito é do Linter/Certification)
+  function rgb(h){h=h.replace("#","");return [0,2,4].map(i=>parseInt(h.substr(i,2),16));}
+  function lum(h){var [r,g,b]=rgb(h).map(c=>{c/=255;return c<=0.03928?c/12.92:Math.pow((c+0.055)/1.055,2.4);});return 0.2126*r+0.7152*g+0.0722*b;}
+  function ratio(a,b){try{var l=[lum(a),lum(b)].sort((x,y)=>y-x);return (l[0]+0.05)/(l[1]+0.05);}catch(e){return null;}}
+
+  var INS = [
+    ["inspector","Inspector","ti-focus-2", renderInspector],
+    ["theme","Theme Viewer","ti-color-swatch", renderTheme],
+    ["token","Token Viewer","ti-variable", renderToken],
+    ["component","Component Explorer","ti-components", renderComponent],
+    ["layout","Layout Inspector","ti-layout-grid", renderLayout],
+    ["spacing","Spacing Inspector","ti-ruler-2", renderSpacing],
+    ["a11y","Accessibility Inspector","ti-accessible", renderA11y],
+    ["motion","Motion Inspector","ti-wave-sine", renderMotion],
+    ["feedback","Feedback Inspector","ti-message-report", renderFeedback],
+  ];
+  var current = "inspector";
+  function toggleTheme(){ var h=document.documentElement; h.dataset.theme = h.dataset.theme==="dark"?"light":"dark"; document.getElementById("theme-badge").textContent = "tema: "+(h.dataset.theme==="dark"?"escuro":"claro"); go(current); }
+
+  function colorRows(names){ return names.map(n=>{ var v=val(n); var isC=/^#|rgb|hsl/.test(v); return '<div class="tokrow">'+(isC?'<span class="sw" style="background:'+v+'"></span>':'<span class="sw" style="background:var(--su-surface-sunken)"></span>')+'<span class="nm">--su-'+n+'</span><span class="vl">'+v+'</span></div>'; }).join(""); }
+
+  function renderInspector(){
+    var total = COLORS.length+TYPO.length+WEIGHTS.length+FAMS.length+SPACE.length+RADIUS.length+ELEV.length+MOTION.length+OPAC.length+ZI.length+BP.length;
+    return '<p class="lead">Ponto de entrada. Uma lupa por dimensão — cada inspetor <b>lê</b> o valor vivo e cita o domínio dono. <span class="cite">lê: COMPONENT_LIBRARY · GRAMMAR · SURFACES</span></p>'+
+      '<div class="grid" style="grid-template-columns:repeat(2,1fr)">'+
+      INS.slice(1).map(i=>'<button class="tokrow" style="cursor:pointer;text-align:left" onclick="go(\''+i[0]+'\')"><i class="ti '+i[2]+'" style="font-size:20px;color:var(--su-action)"></i><span class="nm">'+i[1]+'</span></button>').join("")+
+      '</div>'+
+      '<div class="sect">Resumo</div><div class="tokrow"><span class="nm">Tokens materializados</span><span class="vl">'+total+'</span></div>';
+  }
+  function renderTheme(){
+    var surf=["surface-base","surface-raised","surface-overlay","surface-sunken"];
+    return '<p class="lead">Tema ativo e como cada superfície resolve. Alterne no topo para ver a paridade claro/escuro. <span class="cite">lê: THEMES</span></p>'+
+      surf.map(s=>'<div class="demo" style="background:'+val(s)+'"><span class="lbl">--su-'+s+' = '+val(s)+'</span><span style="color:'+val("text-primary")+'">Texto primário</span> <span style="color:'+val("text-secondary")+'">secundário</span> <span style="color:'+val("text-muted")+'">apagado</span></div>').join("");
+  }
+  function renderToken(){
+    var block=(t,names,typo)=>'<div class="sect">'+t+'</div>'+(typo?names.map(n=>'<div class="tokrow"><span class="nm">--su-'+n+'</span><span class="vl">'+val(n)+'</span></div>').join(""):colorRows(names));
+    return '<p class="lead">Para cada valor, qual token o produz e como resolve no tema ativo. Expõe qualquer valor que NÃO veio de token. <span class="cite">lê: tokens/*</span></p>'+
+      block("Cor",COLORS)+block("Tipografia (papéis)",TYPO,1)+block("Peso",WEIGHTS,1)+block("Família",FAMS,1)+block("Espaço",SPACE,1)+block("Raio",RADIUS,1)+block("Elevação",ELEV,1)+block("Motion",MOTION,1)+block("Opacidade",OPAC,1)+block("Z-index",ZI,1)+block("Breakpoints",BP,1);
+  }
+  function renderComponent(){
+    return '<p class="lead">A peça oficial em uso, variantes e estado. <span class="cite">lê: COMPONENT_LIBRARY</span></p>'+
+      '<div class="demo"><span class="lbl">.su-btn — variantes</span><button class="su-btn su-btn--primary">primary</button><button class="su-btn su-btn--secondary">secondary</button><button class="su-btn su-btn--ghost">ghost</button><button class="su-btn su-btn--danger">danger</button><button class="su-btn su-btn--primary" disabled>disabled</button></div>'+
+      '<div class="demo"><span class="lbl">.su-badge — status</span><span class="su-badge su-badge--success">success</span><span class="su-badge su-badge--warning">warning</span><span class="su-badge su-badge--danger">danger</span><span class="su-badge su-badge--info">info</span></div>'+
+      '<div class="demo"><span class="lbl">.su-field / .su-input / .su-select</span><div class="su-field" style="min-width:200px"><label class="su-field__label">Campo</label><input class="su-input" placeholder="texto"></div><select class="su-select"><option>opção</option></select></div>'+
+      '<div class="demo"><span class="lbl">.su-tabs · .su-segmented</span><div class="su-tabs"><button class="su-tab su-tab--active">Aba</button><button class="su-tab">Outra</button></div><div class="su-segmented"><button class="su-segment su-segment--active">A</button><button class="su-segment">B</button></div></div>'+
+      '<div class="demo"><span class="lbl">.su-statcard</span><div class="su-statcard"><div class="su-statcard__label">Receita</div><div class="su-statcard__value">R$ 148k</div></div></div>';
+  }
+  function renderLayout(){
+    return '<p class="lead">Estrutura e camadas em que a composição se apoia. <span class="cite">lê: LAYOUT_SYSTEM</span></p>'+
+      '<div class="sect">Pilha de z-index</div>'+ ZI.map(z=>'<div class="zbar"><span class="nm" style="min-width:140px">--su-'+z+'</span><span class="vl mono">'+val(z)+'</span><div style="flex:1;height:6px;border-radius:3px;background:var(--su-action-tint)"><div style="height:100%;width:'+Math.min(100,(parseInt(val(z))||0)/11)+'%;background:var(--su-action);border-radius:3px"></div></div></div>').join("")+
+      '<div class="sect">Breakpoints</div>'+ BP.map(b=>'<div class="zbar"><span class="nm" style="min-width:140px">--su-'+b+'</span><span class="vl mono">'+val(b)+'</span></div>').join("");
+  }
+  function renderSpacing(){
+    return '<p class="lead">Espaço aplicado e o token por trás — o ritmo visível (grade 4px). <span class="cite">lê: SPACING · VISUAL_RHYTHM</span></p>'+
+      SPACE.map(s=>{ var v=val(s); return '<div style="display:flex;align-items:center;gap:12px;margin-bottom:6px"><span class="nm mono" style="min-width:120px;font-size:12px">--su-'+s+'</span><span class="vl mono" style="min-width:50px">'+v+'</span><div class="sbar" style="width:'+v+'"></div></div>'; }).join("");
+  }
+  function renderA11y(){
+    var pairs=[["text-primary","surface-base",4.5],["text-primary","surface-raised",4.5],["text-secondary","surface-raised",4.5],["text-muted","surface-raised",3.0],["text-on-action","action",4.5],["success-fg","success-bg",4.5],["warning-fg","warning-bg",4.5],["danger-fg","danger-bg",4.5],["info-fg","info-bg",4.5]];
+    var rows=pairs.map(p=>{ var r=ratio(val(p[0]),val(p[1])); var pass=r>=p[2]; return '<tr><td>'+p[0]+' <span style="color:var(--su-text-muted)">sobre</span> '+p[1]+'</td><td class="mono">'+ (r?r.toFixed(2):"—") +':1</td><td class="mono">'+p[2]+'</td><td class="'+(pass?'ok':'bad')+'">'+(pass?'✓ passa':'✗ abaixo')+'</td></tr>'; }).join("");
+    return '<p class="lead">Estado de acessibilidade: contraste medido ao vivo (tema atual) contra a meta AA. Alterne o tema para conferir os dois. <span class="cite">lê: ACCESSIBILITY (Art. 9)</span></p>'+
+      '<table class="k"><thead><tr><th>Par texto/fundo</th><th>Contraste</th><th>Meta AA</th><th>Estado</th></tr></thead><tbody>'+rows+'</tbody></table>'+
+      '<p class="lead" style="margin-top:14px">Alvo de toque ≥ 44px · foco visível herdado do token/componente (P18/P19). O veredito de conformidade é do Linter/Certification — aqui só se <b>lê</b>.</p>';
+  }
+  function renderMotion(){
+    return '<p class="lead">Durações, easings e o papel do movimento (funcional, não decorativo). Respeita <span class="mono">prefers-reduced-motion</span>. <span class="cite">lê: ANIMATIONS (P15)</span></p>'+
+      '<div class="demo"><span class="lbl">observar — clique para animar</span><div class="movebox" id="mbox"></div>'+
+      MOTION.filter(m=>m.startsWith("duration")).map(m=>'<button class="su-btn su-btn--secondary su-btn--sm" onclick="playMove(\''+m+'\')">'+m+' ('+val(m)+')</button>').join("")+'</div>'+
+      '<div class="sect">Durações</div>'+MOTION.filter(m=>m.startsWith("duration")).map(m=>'<div class="tokrow"><span class="nm">--su-'+m+'</span><span class="vl">'+val(m)+'</span></div>').join("")+
+      '<div class="sect">Easings</div>'+MOTION.filter(m=>m.startsWith("ease")).map(m=>'<div class="tokrow"><span class="nm">--su-'+m+'</span><span class="vl">'+val(m)+'</span></div>').join("");
+  }
+  function playMove(dur){ var b=document.getElementById("mbox"); if(!b)return; b.style.transition="transform var(--su-"+dur+") var(--su-ease-standard)"; b.style.transform="translateX(180px)"; setTimeout(()=>{b.style.transform="translateX(0)";},parseInt(val(dur))+40); }
+  function renderFeedback(){
+    return '<p class="lead">Estados de resposta ao usuário — nada trava em silêncio (P16). <span class="cite">lê: PATTERNS · COMPONENT_LIBRARY</span></p>'+
+      '<div class="demo"><span class="lbl">loading — .su-spinner / .su-skeleton</span><span class="su-spinner"></span><span class="su-skeleton" style="width:160px;height:14px;display:inline-block"></span></div>'+
+      '<div class="demo" style="flex-direction:column;align-items:stretch"><span class="lbl">empty — .su-empty</span><div class="su-empty"><div class="su-empty__icon"><i class="ti ti-inbox"></i></div><div class="su-empty__title">Nada por aqui ainda</div></div></div>'+
+      '<div class="demo"><span class="lbl">progress — .su-progress</span><div class="su-progress" style="width:220px"><div class="su-progress__fill" style="width:62%"></div></div></div>'+
+      '<div class="demo"><span class="lbl">toast — .su-toast (success/danger)</span><div class="su-toast su-toast--success"><span class="su-toast__icon"><i class="ti ti-check"></i></span>Salvo com sucesso.</div><div class="su-toast su-toast--danger"><span class="su-toast__icon"><i class="ti ti-alert-triangle"></i></span>Falha ao salvar.</div></div>';
+  }
+
+  function go(id){ current=id; var ins=INS.find(x=>x[0]===id); document.getElementById("title").textContent=ins[1]; document.getElementById("view").innerHTML=ins[3](); [].forEach.call(document.querySelectorAll("#navi button"),b=>b.classList.toggle("on",b.dataset.id===id)); }
+  document.getElementById("navi").innerHTML = INS.map(i=>'<button data-id="'+i[0]+'" onclick="go(\''+i[0]+'\')"><i class="ti '+i[2]+'"></i>'+i[1]+'</button>').join("");
+  go("inspector");
+  </script>
+</body>
+</html>

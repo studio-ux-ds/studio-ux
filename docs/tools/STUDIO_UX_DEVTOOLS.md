@@ -122,6 +122,9 @@ Dono · Owner:                este doc, para o domínio "ferramentas de inspeç�
 - Inspetor acoplado a uma tecnologia de implementação específica (§13). / An inspector coupled to a specific implementation technology.
 - Despejar chaves técnicas cruas como experiência principal (viola P11). / Dumping raw technical keys as the primary experience.
 
+## Estado da implementação · Implementation state
+**PT** — **Implementado (v1.1.6)** em `tools/devtools/index.html` (abre no navegador, sem build). Carrega os pacotes reais (`packages/tokens/tokens.css` + `packages/components/components.css`) e lê os **valores vivos** via `getComputedStyle` (inspeciona o Runtime). Os **9 inspetores** da §2 estão presentes, cada um citando seu dono e **somente-leitura sobre a regra**: Inspector, Theme Viewer, Token Viewer (76 tokens), Component Explorer, Layout Inspector (z-index/breakpoints), Spacing Inspector, Accessibility Inspector (contraste medido ao vivo × AA, por tema), Motion Inspector (observar movimento), Feedback Inspector. O toggle de tema re-lê tudo ao vivo. Ver `tools/devtools/README.md`.
+
 ## Roadmap
 **PT** — Especificado no Épico 2 (Ferramentas); os inspetores nascem na implementação (`packages/devtools`). Inspetores novos entram aqui quando uma dimensão inspecionável nova ganha dono. Este documento aponta aos donos; não os detalha.
 **EN** — Specified in Epic 2 (Tools); the inspectors are born at implementation (`packages/devtools`). New inspectors enter here when a new inspectable dimension gains an owner. This document points to the owners; it does not detail them.

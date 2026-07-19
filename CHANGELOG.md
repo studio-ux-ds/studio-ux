@@ -12,6 +12,15 @@ Nada pendente. / Nothing pending.
 
 ---
 
+## [1.1.6] — 2026-07-19 — Bloco B: DevTools (9 inspetores) · Block B: DevTools
+
+- ✅ Terceira peça do **bloco B**: `tools/devtools/index.html` (abre no navegador, sem build). Implementa `STUDIO_UX_DEVTOOLS` — **lupas somente-leitura** que leem a regra do dono e mostram ao vivo; não julgam (é o Linter) nem alteram a Specification.
+- **Os 9 inspetores:** Inspector, Theme Viewer, Token Viewer, Component Explorer, Layout Inspector, Spacing Inspector, Accessibility Inspector, Motion Inspector, Feedback Inspector. Carrega os pacotes reais e lê os **valores vivos** via `getComputedStyle` (76 tokens, todos verificados como existentes — sem fantasma); o toggle de tema re-lê tudo. Accessibility Inspector mostra o contraste medido × AA por tema (o veredito continua sendo do Linter).
+- Doc DEVTOOLS + `tools/devtools/README.md` atualizados.
+- Trem de release: 1.1.5 → **1.1.6**, lockstep.
+
+---
+
 ## [1.1.5] — 2026-07-19 — Correção de contraste AA nos tokens (achado do linter) · AA contrast fix
 
 - ✅ Resolvidos os 4 pares abaixo de AA que o `contrast-minimum` (v1.1.4) apontou, ajustando os tokens **na fonte** (decisão do Robson): `text-muted` claro `#9AA1AE → #8E95A1` (2.60 → 3.02), `warning-fg` claro `#B45309 → #B25209` (→ 4.53), `danger-fg` claro `#DC2626 → #D12424` (→ 4.51), `action` escuro `#6366F1 → #6365F0` (→ 4.52). Três mudanças imperceptíveis; `text-muted` levemente mais escuro mantendo o visual muted (alvo 3.0).
