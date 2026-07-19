@@ -12,6 +12,17 @@ Nada pendente. / Nothing pending.
 
 ---
 
+## [1.1.2] — 2026-07-19 — Bloco B: Exporters de tokens (real) · Block B: token exporters
+
+- ✅ Primeira peça do **bloco B** (plataforma-ferramenta) construída de verdade: `tools/exporters/export-tokens.mjs` (`npm run export:tokens`). Implementa `STUDIO_UX_EXPORTERS`: **fonte única `packages/tokens/tokens.css` → transformação determinística → artefato do alvo** (o exporter só lê a fonte — Art. 5).
+- **Alvos entregues e validados por máquina** (76 tokens, light+dark) em `packages/tokens/exports/`: `tokens.json` (JSON), `tokens.w3c.json` (W3C/DTCG), `tokens.figma.json` (Tokens Studio), `tailwind.preset.cjs` (preset `su-*`, cores via var CSS → theme-aware), `theme.js` (React + React Native), `tokens.css` (re-emissão). Validação: JSON.parse, `require` do Tailwind, esbuild do tema JS, cobertura (aborta se o escuro tiver token fora do claro).
+- **Fidelidade (§4):** direção única, determinismo, cobertura; exports carimbam a versão da fonte e a seguem (não têm versão própria).
+- Publicados no pacote `@studio-ux-ds/tokens` (`files: exports/` + subpaths). Consumo: `presets: [require("@studio-ux-ds/tokens/exports/tailwind.preset.cjs")]`, `import { light, dark } from "@studio-ux-ds/tokens/exports/theme.js"`.
+- **Próximos alvos (honesto, não stub):** Flutter/SwiftUI/Compose — exigem verificação de compilação na plataforma; entram no mesmo script depois.
+- Trem de release: 1.1.1 → **1.1.2**, lockstep.
+
+---
+
 ## [1.1.1] — 2026-07-19 — Paridade do adapter React Native · React Native adapter parity
 
 - ✅ O adapter nativo (`@studio-ux-ds/react-native`) fechou a lacuna de primitivos que um app nativo real precisa (antes era só shell mobile: topbar/bottomnav/lista/chat). Adicionados, em base nativa (View/Text/Pressable/TextInput/Modal/Switch/ActivityIndicator): `Switch`, `Checkbox` (+indeterminado), `Radio`, `Select` (folha nativa), `SegmentedControl`, `NumericInput`, `TextArea`, `Avatar`, `Tag`, `Link`, `Spinner`, `ProgressBar`, `EmptyState`, `Modal`, `ConfirmDialog`, `Menu` (action sheet), `Accordion`, `DescriptionList`, `Timeline`.

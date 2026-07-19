@@ -109,6 +109,9 @@ Dono · Owner:                este doc, para o domínio "exportadores".
 - Ramificar a Specification por tecnologia em vez de adicionar um exportador (`RUNTIME` §2). / Forking the Specification per technology instead of adding an exporter.
 - Amarrar o Studio UX a um alvo, tratando-o como insubstituível (viola Art. 13, §13). / Binding Studio UX to a target as if it were irreplaceable.
 
+## Estado da implementação · Implementation state
+**PT** — **Implementado (v1.1.2)** em `tools/exporters/export-tokens.mjs` (rodar: `npm run export:tokens`), lendo a fonte `packages/tokens/tokens.css` e emitindo para `packages/tokens/exports/`. **Alvos entregues e validados por máquina:** JSON, Design Tokens (W3C/DTCG), Figma Tokens (Tokens Studio), Tailwind (preset `su-*`), tema JS (React + React Native), CSS Variables. **Próximos alvos** (crescimento honesto, não stub — exigem verificação de compilação na plataforma): Flutter (Dart), SwiftUI (Swift), Compose (Kotlin) — entram como novos emissores no mesmo script, sem tocar a fonte. Fidelidade garantida por: direção única, determinismo (mesma fonte → mesmo artefato) e cobertura (o script aborta se o tema escuro introduzir token inexistente no claro). Ver `tools/exporters/README.md`.
+
 ## Roadmap
 **PT** — Especificado na era de documentação; os exportadores são construídos no Épico 4 (Geração), partindo de `packages/tokens`. Alvos novos entram aqui quando uma tecnologia relevante aparecer — sempre como destino plugável, nunca alterando a fonte. Um alvo aposentado sai da tabela (§2) sem qualquer efeito sobre a Specification.
 **EN** — Specified in the documentation era; the exporters are built in Epic 4 (Generation), starting from `packages/tokens`. New targets enter here when a relevant technology appears — always as a pluggable destination, never altering the source. A retired target leaves the table (§2) with no effect on the Specification.
