@@ -60,9 +60,12 @@ function lintFile(file) {
     // 2.2 no-magic-value (radius/opacity/shadow/duration soltos)
     m = ln.match(/border-radius\s*:\s*[^;"']*\b\d+px/);
     if (m && !/var\(|50%|9999/.test(m[0])) add(rel, n, "no-magic-value", "P1/Art.3", "erro", m[0].trim());
-    // 2.5 typography-off-role
+    // 2.5 typography-off-role — px cru fora de token
     m = ln.match(/font-size\s*:\s*[^;"']*\b\d+px/);
     if (m && !/var\(/.test(m[0])) add(rel, n, "typography-off-role", "P1/P20/Art.3", "erro", m[0].trim());
+    // 2.5b typography-off-role — par size/line-height em font-size é CSS inválido; use --su-fs-*
+    m = ln.match(/font-size\s*:\s*var\(--su-text-[a-z0-9-]+\)/);
+    if (m) add(rel, n, "typography-off-role", "P1/P20/Art.3", "erro", m[0].trim() + " (par size/line-height é inválido em font-size — use var(--su-fs-*))");
     // 2.6 animation-off-catalog
     m = ln.match(/(transition|animation)\s*:[^;"']*\b\d+\.?\d*m?s\b/);
     if (m && !/var\(/.test(m[0])) add(rel, n, "animation-off-catalog", "P15/P1", "erro", m[0].trim());

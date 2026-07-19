@@ -48,6 +48,16 @@
   --su-text-label: 13px/1.35;
   --su-text-caption: 12px/1.4;
 
+  /* ---- Tamanho de fonte puro · Font size only (para `font-size:` — o par acima é para o shorthand `font:`) ---- */
+  --su-fs-display: 32px;
+  --su-fs-h1: 24px;
+  --su-fs-h2: 20px;
+  --su-fs-h3: 16px;
+  --su-fs-body: 15px;
+  --su-fs-body-sm: 13px;
+  --su-fs-label: 13px;
+  --su-fs-caption: 12px;
+
   /* ---- Ícone · Icon size (token, derivado da tipografia — ICONOGRAPHY §4) ---- */
   --su-icon-sm: 16px; /* inline em body-sm/label */
   --su-icon-md: 20px; /* inline em body/h2 — padrão */

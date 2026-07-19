@@ -12,6 +12,17 @@ Nada pendente. / Nothing pending.
 
 ---
 
+## [1.1.12] — 2026-07-19 — Tokens de tamanho de fonte (`--su-fs-*`) + limpeza dos exemplos · Font-size tokens + examples cleanup
+
+- 🔎 **Bug silencioso encontrado e corrigido na raiz:** os únicos tokens de tipografia eram pares `size/line-height` (`--su-text-h2: 20px/1.3`), feitos para o shorthand `font:`. Usá-los em `font-size:` gera **CSS inválido** (`font-size: 20px/1.3` → ignorado → texto herda o tamanho). Os exemplos **e** o fix de gerador da v1.1.11 já carregavam esse bug, e o linter o aceitava (regra fraca).
+- ✅ **Correção de raiz (opção escolhida pelo Robson):** nova família de token **`--su-fs-{display,h1,h2,h3,body,body-sm,label,caption}`** (tamanho puro) na fonte de tokens, para `font-size: var(--su-fs-h2)` válido. Geradores (`generate.mjs`/`templates.mjs`) migrados de `--su-text-*` → `--su-fs-*` em `font-size`. Exports regenerados (os 10 alvos). Doc de tipografia atualizada (duas famílias de token).
+- ✅ **Linter endurecido:** `typography-off-role` agora **reprova** `font-size: var(--su-text-*)` (o par inválido) e aponta o `--su-fs-*` — o furo que deixava o bug passar foi fechado; fixture `good.html` migrado.
+- ✅ **Exemplos tokenizados — 11/17 totalmente limpos** (era 0/17). Codemod determinístico (`tools/examples-codemod.mjs`) trocou `font-size`/espaçamento/raio crus por tokens; correções manuais de `color:#fff → --su-text-on-action`, e **bugs reais de a11y/motion** (anel de foco `:focus-visible` em app/chat; `animation .18s → var(--su-duration-base)`).
+- **Resíduo honesto (não forçado — Art. 21):** 6 arquivos mantêm hex/contagem por motivo legítimo — o **seletor de cor de acento** (swatches mostram opções que não são token: configuracoes/index/mobile-configuracoes), a **cena escura do scanner** (`#000`/`#0A0C10`), e `single-primary-action` em app/clientes (o linter conta por arquivo, mas cada primária está em tela/modal diferente — falso-positivo de SPA). Forçar seria esconder hex em JS (desonesto) ou remover feature (destrutivo).
+- Trem de release: 1.1.11 → **1.1.12**, lockstep (6 pacotes).
+
+---
+
 ## [1.1.11] — 2026-07-19 — Certification: `studio audit` (consome o Linter) + conformidade dos geradores · Certification tool
 
 - ✅ **Ferramenta materializada:** `tools/certification/certify.mjs`, acionada por `studio audit <alvo>`. Implementa `STUDIO_UX_CERTIFICATION`. Regra de ouro (§8.4): *Linter detecta · Compliance mede · **Certification gradua***. Ela **consome** as violações do Linter e as transforma em veredito de eliminatórios — **não re-detecta** (SSOT, Art. 10). Alvo tela (`.html`) → laudo de tela; alvo projeto (`studio-ux.json`) → laudo de sistema (shell + `src/screens/*` + dependência de versão declarada).

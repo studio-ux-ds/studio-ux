@@ -18,63 +18,63 @@
     /* Coluna de conversas */
     .convs { border-right: 1px solid var(--su-border-subtle); display: flex; flex-direction: column; min-height: 0; background: var(--su-surface-raised); }
     .convs__head { padding: var(--su-space-4); border-bottom: 1px solid var(--su-border-subtle); display: flex; flex-direction: column; gap: var(--su-space-3); }
-    .convs__tabs { display: flex; gap: 4px; }
-    .searchbar { display: flex; align-items: center; gap: 8px; border: 1px solid var(--su-border-default); border-radius: var(--su-radius-md); padding: 7px 10px; color: var(--su-text-muted); font-size: 13px; }
+    .convs__tabs { display: flex; gap: var(--su-space-1); }
+    .searchbar { display: flex; align-items: center; gap: var(--su-space-2); border: 1px solid var(--su-border-default); border-radius: var(--su-radius-md); padding: var(--su-space-2) var(--su-space-2); color: var(--su-text-muted); font-size: var(--su-fs-body-sm); }
     .convs__list { flex: 1; overflow: auto; }
-    .conv { display: flex; gap: 10px; padding: 12px var(--su-space-4); border-bottom: 1px solid var(--su-border-subtle); cursor: pointer; }
+    .conv { display: flex; gap: var(--su-space-2); padding: var(--su-space-3) var(--su-space-4); border-bottom: 1px solid var(--su-border-subtle); cursor: pointer; }
     .conv:hover { background: var(--su-surface-sunken); }
     .conv--active { background: var(--su-action-tint); }
-    .conv__avatar { width: 42px; height: 42px; border-radius: 50%; background: var(--su-surface-sunken); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: var(--su-fw-medium); color: var(--su-text-secondary); flex: none; }
+    .conv__avatar { width: 42px; height: 42px; border-radius: 50%; background: var(--su-surface-sunken); display: flex; align-items: center; justify-content: center; font-size: var(--su-fs-body-sm); font-weight: var(--su-fw-medium); color: var(--su-text-secondary); flex: none; }
     .conv__body { flex: 1; min-width: 0; }
-    .conv__top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
-    .conv__name { font-size: 14px; font-weight: var(--su-fw-medium); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .conv__time { font-size: 11px; color: var(--su-text-muted); flex: none; }
-    .conv__last { font-size: 12.5px; color: var(--su-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px; }
-    .conv__meta { display: flex; align-items: center; gap: 6px; margin-top: 4px; }
-    .unread { min-width: 18px; height: 18px; border-radius: 999px; background: var(--su-action); color: #fff; font-size: 11px; font-weight: var(--su-fw-medium); display: inline-flex; align-items: center; justify-content: center; padding: 0 5px; }
+    .conv__top { display: flex; justify-content: space-between; align-items: baseline; gap: var(--su-space-2); }
+    .conv__name { font-size: var(--su-fs-body-sm); font-weight: var(--su-fw-medium); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .conv__time { font-size: var(--su-fs-caption); color: var(--su-text-muted); flex: none; }
+    .conv__last { font-size: var(--su-fs-body-sm); color: var(--su-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: var(--su-space-1); }
+    .conv__meta { display: flex; align-items: center; gap: var(--su-space-1); margin-top: var(--su-space-1); }
+    .unread { min-width: 18px; height: 18px; border-radius: var(--su-radius-xl); background: var(--su-action); color: var(--su-text-on-action); font-size: var(--su-fs-caption); font-weight: var(--su-fw-medium); display: inline-flex; align-items: center; justify-content: center; padding: 0 var(--su-space-1); }
     /* Thread */
     .thread { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
-    .thread__head { display: flex; align-items: center; gap: 12px; padding: 12px var(--su-space-5); border-bottom: 1px solid var(--su-border-subtle); background: var(--su-surface-raised); }
+    .thread__head { display: flex; align-items: center; gap: var(--su-space-3); padding: var(--su-space-3) var(--su-space-5); border-bottom: 1px solid var(--su-border-subtle); background: var(--su-surface-raised); }
     .thread__head .conv__avatar { width: 38px; height: 38px; }
     .thread__title { flex: 1; }
-    .thread__title b { font-size: 14px; font-weight: var(--su-fw-semibold); }
-    .thread__title small { display: block; font-size: 12px; color: var(--su-success-fg); }
-    .thread__body { flex: 1; overflow: auto; padding: var(--su-space-5); display: flex; flex-direction: column; gap: 10px; background: var(--su-surface-sunken); }
-    .daysep { align-self: center; font-size: 11px; color: var(--su-text-muted); background: var(--su-surface-raised); border: 1px solid var(--su-border-subtle); border-radius: 999px; padding: 3px 12px; margin: 4px 0; }
-    .msg { max-width: 62%; padding: 9px 13px; border-radius: 14px; font-size: 14px; line-height: 1.45; position: relative; }
-    .msg time { display: block; font-size: 10px; margin-top: 4px; opacity: .7; text-align: right; }
+    .thread__title b { font-size: var(--su-fs-body-sm); font-weight: var(--su-fw-semibold); }
+    .thread__title small { display: block; font-size: var(--su-fs-caption); color: var(--su-success-fg); }
+    .thread__body { flex: 1; overflow: auto; padding: var(--su-space-5); display: flex; flex-direction: column; gap: var(--su-space-2); background: var(--su-surface-sunken); }
+    .daysep { align-self: center; font-size: var(--su-fs-caption); color: var(--su-text-muted); background: var(--su-surface-raised); border: 1px solid var(--su-border-subtle); border-radius: var(--su-radius-xl); padding: var(--su-space-1) var(--su-space-3); margin: var(--su-space-1) 0; }
+    .msg { max-width: 62%; padding: var(--su-space-2) var(--su-space-3); border-radius: var(--su-radius-lg); font-size: var(--su-fs-body-sm); line-height: 1.45; position: relative; }
+    .msg time { display: block; font-size: var(--su-fs-caption); margin-top: var(--su-space-1); opacity: .7; text-align: right; }
     .msg--in { align-self: flex-start; background: var(--su-surface-raised); border: 1px solid var(--su-border-subtle); border-bottom-left-radius: 4px; }
-    .msg--out { align-self: flex-end; background: var(--su-action); color: #fff; border-bottom-right-radius: 4px; }
-    .composer { display: flex; align-items: center; gap: 10px; padding: 12px var(--su-space-5); border-top: 1px solid var(--su-border-subtle); background: var(--su-surface-raised); }
-    .composer input { flex: 1; border: 1px solid var(--su-border-default); border-radius: 999px; padding: 10px 16px; font: inherit; font-size: 14px; background: var(--su-surface-base); color: var(--su-text-primary); outline: none; }
-    .composer input:focus { border-color: var(--su-action); }
-    .field-search { display: flex; align-items: center; gap: 8px; border: 1px solid var(--su-border-default); border-radius: var(--su-radius-md); padding: 6px 10px; color: var(--su-text-muted); font-size: 12px; }
+    .msg--out { align-self: flex-end; background: var(--su-action); color: var(--su-text-on-action); border-bottom-right-radius: 4px; }
+    .composer { display: flex; align-items: center; gap: var(--su-space-2); padding: var(--su-space-3) var(--su-space-5); border-top: 1px solid var(--su-border-subtle); background: var(--su-surface-raised); }
+    .composer input { flex: 1; border: 1px solid var(--su-border-default); border-radius: var(--su-radius-xl); padding: var(--su-space-2) var(--su-space-4); font: inherit; font-size: var(--su-fs-body-sm); background: var(--su-surface-base); color: var(--su-text-primary); }
+    .composer input:focus-visible { border-color: var(--su-action); outline: none; box-shadow: 0 0 0 3px var(--su-action-tint); }
+    .field-search { display: flex; align-items: center; gap: var(--su-space-2); border: 1px solid var(--su-border-default); border-radius: var(--su-radius-md); padding: var(--su-space-1) var(--su-space-2); color: var(--su-text-muted); font-size: var(--su-fs-caption); }
   </style>
 </head>
 <body class="su">
   <div class="shell">
     <aside class="su-sidebar">
-      <div class="su-sidebar__brand"><span class="su-brand__logo" style="width:22px;height:22px;border-radius:7px;background:var(--su-action);color:#fff;display:inline-flex;align-items:center;justify-content:center;"><i class="ti ti-square-rounded"></i></span>Studio UX</div>
+      <div class="su-sidebar__brand"><span class="su-brand__logo" style="width:22px;height:22px;border-radius:var(--su-radius-sm);background:var(--su-action);color:var(--su-text-on-action);display:inline-flex;align-items:center;justify-content:center;"><i class="ti ti-square-rounded"></i></span>Studio UX</div>
       <nav class="su-nav">
-        <a class="su-nav__item" href="dashboard.html"><i class="ti ti-layout-dashboard" style="font-size:18px;"></i>Painel</a>
-        <a class="su-nav__item" href="clientes.html"><i class="ti ti-users" style="font-size:18px;"></i>Clientes</a>
-        <a class="su-nav__item su-nav__item--active" href="chat.html"><i class="ti ti-message-2" style="font-size:18px;"></i>Conversas</a>
-        <a class="su-nav__item" href="analytics.html"><i class="ti ti-chart-bar" style="font-size:18px;"></i>Relatórios</a>
-        <a class="su-nav__item" href="configuracoes.html"><i class="ti ti-settings" style="font-size:18px;"></i>Ajustes</a>
+        <a class="su-nav__item" href="dashboard.html"><i class="ti ti-layout-dashboard" style="font-size:var(--su-fs-h2);"></i>Painel</a>
+        <a class="su-nav__item" href="clientes.html"><i class="ti ti-users" style="font-size:var(--su-fs-h2);"></i>Clientes</a>
+        <a class="su-nav__item su-nav__item--active" href="chat.html"><i class="ti ti-message-2" style="font-size:var(--su-fs-h2);"></i>Conversas</a>
+        <a class="su-nav__item" href="analytics.html"><i class="ti ti-chart-bar" style="font-size:var(--su-fs-h2);"></i>Relatórios</a>
+        <a class="su-nav__item" href="configuracoes.html"><i class="ti ti-settings" style="font-size:var(--su-fs-h2);"></i>Ajustes</a>
       </nav>
-      <div class="su-sidebar__footer" style="display:flex;align-items:center;gap:9px;">
-        <span style="width:28px;height:28px;border-radius:50%;background:var(--su-surface-sunken);display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:var(--su-text-secondary);">RM</span>
-        <span style="line-height:1.25;flex:1;"><span style="display:block;font-size:12px;font-weight:500;">Robson</span><span style="display:block;font-size:11px;color:var(--su-text-muted);">Administrador</span></span>
+      <div class="su-sidebar__footer" style="display:flex;align-items:center;gap:var(--su-space-2);">
+        <span style="width:28px;height:28px;border-radius:50%;background:var(--su-surface-sunken);display:inline-flex;align-items:center;justify-content:center;font-size:var(--su-fs-caption);font-weight:500;color:var(--su-text-secondary);">RM</span>
+        <span style="line-height:1.25;flex:1;"><span style="display:block;font-size:var(--su-fs-caption);font-weight:500;">Robson</span><span style="display:block;font-size:var(--su-fs-caption);color:var(--su-text-muted);">Administrador</span></span>
         <i class="ti ti-logout" style="color:var(--su-text-muted);"></i>
       </div>
-      <div style="padding:0 12px 12px;text-align:center;font-size:10px;color:var(--su-text-muted);">v1.0.15</div>
+      <div style="padding:0 var(--su-space-3) var(--su-space-3);text-align:center;font-size:var(--su-fs-caption);color:var(--su-text-muted);">v1.0.15</div>
     </aside>
 
     <div class="main">
       <header class="su-topbar">
         <div style="flex:1;">
           <div class="su-breadcrumb">Início <span>/</span> Conversas</div>
-          <div style="font-size:16px;font-weight:600;">Atendimento</div>
+          <div style="font-size:var(--su-fs-h3);font-weight:600;">Atendimento</div>
         </div>
         <span class="field-search"><i class="ti ti-search"></i>Buscar</span>
         <button class="su-iconbtn" aria-label="Alternar tema" onclick="var h=document.documentElement;h.dataset.theme=h.dataset.theme==='dark'?'light':'dark';"><i class="ti ti-moon"></i></button>
@@ -98,7 +98,7 @@
         <div class="thread">
           <div class="thread__head">
             <span class="conv__avatar">MA</span>
-            <div class="thread__title"><b>Marina Alves</b><small><i class="ti ti-circle-filled" style="font-size:8px;"></i> Online · janela de 24h aberta</small></div>
+            <div class="thread__title"><b>Marina Alves</b><small><i class="ti ti-circle-filled" style="font-size:var(--su-fs-caption);"></i> Online · janela de 24h aberta</small></div>
             <span class="su-badge su-badge--success">Em atendimento</span>
             <button class="su-iconbtn" aria-label="Transferir"><i class="ti ti-arrows-exchange"></i></button>
             <button class="su-iconbtn" aria-label="Encerrar"><i class="ti ti-check"></i></button>

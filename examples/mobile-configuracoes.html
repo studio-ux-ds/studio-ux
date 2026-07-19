@@ -12,20 +12,20 @@
   <style>
     body { margin: 0; background: var(--su-surface-sunken); font-family: var(--su-font-ui); color: var(--su-text-primary); }
     .phone { max-width: 390px; margin: 0 auto; min-height: 100vh; background: var(--su-surface-sunken); display: flex; flex-direction: column; position: relative; }
-    .app { flex: 1; overflow: auto; padding-bottom: 84px; }
-    .group-label { font-size: 12px; font-weight: var(--su-fw-medium); color: var(--su-text-muted); text-transform: uppercase; letter-spacing: .04em; padding: var(--su-space-5) var(--su-space-5) var(--su-space-2); }
+    .app { flex: 1; overflow: auto; padding-bottom: var(--su-space-24); }
+    .group-label { font-size: var(--su-fs-caption); font-weight: var(--su-fw-medium); color: var(--su-text-muted); text-transform: uppercase; letter-spacing: .04em; padding: var(--su-space-5) var(--su-space-5) var(--su-space-2); }
     .group { background: var(--su-surface-base); }
     .row { display: flex; align-items: center; gap: var(--su-space-3); padding: var(--su-space-4) var(--su-space-5); border-bottom: 1px solid var(--su-border-subtle); min-height: 52px; }
     .row:last-child { border-bottom: 0; }
-    .row .ti-lead { font-size: 20px; color: var(--su-text-secondary); width: 24px; text-align: center; flex: none; }
+    .row .ti-lead { font-size: var(--su-fs-h2); color: var(--su-text-secondary); width: 24px; text-align: center; flex: none; }
     .row__text { flex: 1; min-width: 0; }
-    .row__text b { font-weight: var(--su-fw-medium); font-size: 14px; display: block; }
-    .row__text small { color: var(--su-text-muted); font-size: 12px; }
-    .row .chev { color: var(--su-text-muted); font-size: 18px; }
-    .accent-row { display: flex; gap: 12px; flex-wrap: wrap; padding: var(--su-space-4) var(--su-space-5); background: var(--su-surface-base); }
+    .row__text b { font-weight: var(--su-fw-medium); font-size: var(--su-fs-body-sm); display: block; }
+    .row__text small { color: var(--su-text-muted); font-size: var(--su-fs-caption); }
+    .row .chev { color: var(--su-text-muted); font-size: var(--su-fs-h2); }
+    .accent-row { display: flex; gap: var(--su-space-3); flex-wrap: wrap; padding: var(--su-space-4) var(--su-space-5); background: var(--su-surface-base); }
     .swatch { width: 34px; height: 34px; border-radius: 50%; border: 0; cursor: pointer; outline: 2px solid var(--su-border-default); outline-offset: 2px; }
     .swatch[aria-pressed="true"] { outline-color: var(--su-action); }
-    .toggle { background: none; border: 0; color: var(--su-text-muted); font-size: 20px; min-height: auto; }
+    .toggle { background: none; border: 0; color: var(--su-text-muted); font-size: var(--su-fs-h2); min-height: auto; }
   </style>
 </head>
 <body>
@@ -33,11 +33,11 @@
     <div class="app">
       <div class="su-m-topbar" style="background:var(--su-surface-base);">
         <span class="su-m-topbar__title">Configurações</span>
-        <button class="su-m-navitem toggle" style="min-height:auto;" onclick="var h=document.documentElement;h.dataset.theme=h.dataset.theme==='dark'?'light':'dark';"><i class="ti ti-moon" style="font-size:20px;"></i></button>
+        <button class="su-m-navitem toggle" style="min-height:auto;" onclick="var h=document.documentElement;h.dataset.theme=h.dataset.theme==='dark'?'light':'dark';"><i class="ti ti-moon" style="font-size:var(--su-fs-h2);"></i></button>
       </div>
 
       <!-- Conta -->
-      <div class="group" style="margin-top:8px;">
+      <div class="group" style="margin-top:var(--su-space-2);">
         <div class="row">
           <span class="su-m-item__avatar" style="width:44px;height:44px;">RM</span>
           <div class="row__text"><b>Robson Marques</b><small>robson@pizzaria.com · Administrador</small></div>

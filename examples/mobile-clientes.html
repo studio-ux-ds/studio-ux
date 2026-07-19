@@ -12,8 +12,8 @@
     body { margin: 0; background: var(--su-surface-sunken); font-family: var(--su-font-ui); }
     /* Moldura de telefone só para visualizar no desktop; num aparelho real é a tela cheia. */
     .phone { max-width: 390px; margin: 0 auto; min-height: 100vh; background: var(--su-surface-base); display: flex; flex-direction: column; position: relative; }
-    .app { flex: 1; overflow: auto; padding-bottom: 8px; }
-    .status-badge { font-size: 11px; padding: 2px 8px; border-radius: 9999px; }
+    .app { flex: 1; overflow: auto; padding-bottom: var(--su-space-2); }
+    .status-badge { font-size: var(--su-fs-caption); padding: var(--su-space-1) var(--su-space-2); border-radius: var(--su-radius-full); }
     .hidden { display: none !important; }
     .scrim { position: fixed; inset: 0; background: rgba(20,22,30,.45); z-index: 900; max-width: 390px; margin: 0 auto; }
   </style>
@@ -23,8 +23,8 @@
     <div class="app">
       <div class="su-m-topbar">
         <span class="su-m-topbar__title">Clientes</span>
-        <button class="su-m-navitem" style="min-height:auto;" onclick="toggleTheme()"><i class="ti ti-moon" style="font-size:20px;"></i></button>
-        <button class="su-m-navitem" style="min-height:auto;color:var(--su-action);" onclick="openSheet()"><i class="ti ti-adjustments-horizontal" style="font-size:22px;"></i></button>
+        <button class="su-m-navitem" style="min-height:auto;" onclick="toggleTheme()"><i class="ti ti-moon" style="font-size:var(--su-fs-h2);"></i></button>
+        <button class="su-m-navitem" style="min-height:auto;color:var(--su-action);" onclick="openSheet()"><i class="ti ti-adjustments-horizontal" style="font-size:var(--su-fs-h1);"></i></button>
       </div>
 
       <div class="su-m-search"><i class="ti ti-search"></i>Buscar cliente</div>
@@ -43,15 +43,15 @@
     <div class="scrim hidden" id="scrim" onclick="if(event.target===this)closeSheet()">
       <div class="su-m-sheet">
         <div class="su-m-sheet__handle"></div>
-        <div style="display:flex;align-items:center;margin-bottom:12px;"><span style="flex:1;font-size:15px;font-weight:600;">Filtros</span><span style="font-size:13px;color:var(--su-action);">Limpar</span></div>
-        <div style="font-size:12px;color:var(--su-text-secondary);margin-bottom:8px;">Status</div>
-        <div class="su-m-chips" style="margin-bottom:16px;">
+        <div style="display:flex;align-items:center;margin-bottom:var(--su-space-3);"><span style="flex:1;font-size:var(--su-fs-body);font-weight:600;">Filtros</span><span style="font-size:var(--su-fs-body-sm);color:var(--su-action);">Limpar</span></div>
+        <div style="font-size:var(--su-fs-caption);color:var(--su-text-secondary);margin-bottom:var(--su-space-2);">Status</div>
+        <div class="su-m-chips" style="margin-bottom:var(--su-space-4);">
           <button class="su-m-chip su-m-chip--active">Todos</button>
           <button class="su-m-chip">Ativos</button>
           <button class="su-m-chip">Pendentes</button>
           <button class="su-m-chip">Inadimplentes</button>
         </div>
-        <button class="su-m-chip su-m-chip--active" style="width:100%;border-radius:var(--su-radius-lg);font-size:14px;min-height:48px;" onclick="closeSheet()">Aplicar filtros</button>
+        <button class="su-m-chip su-m-chip--active" style="width:100%;border-radius:var(--su-radius-lg);font-size:var(--su-fs-body-sm);min-height:48px;" onclick="closeSheet()">Aplicar filtros</button>
       </div>
     </div>
   </div>

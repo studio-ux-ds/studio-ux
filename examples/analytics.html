@@ -14,29 +14,29 @@
     .shell { display: flex; min-height: 100vh; }
     .main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
     .content { padding: var(--su-space-6); display: flex; flex-direction: column; gap: var(--su-space-5); }
-    .field-search { display: flex; align-items: center; gap: 8px; border: 1px solid var(--su-border-default); border-radius: var(--su-radius-md); padding: 6px 10px; color: var(--su-text-muted); font-size: 12px; }
+    .field-search { display: flex; align-items: center; gap: var(--su-space-2); border: 1px solid var(--su-border-default); border-radius: var(--su-radius-md); padding: var(--su-space-1) var(--su-space-2); color: var(--su-text-muted); font-size: var(--su-fs-caption); }
     .toolbar { display: flex; align-items: center; gap: var(--su-space-3); flex-wrap: wrap; }
     .toolbar .spacer { flex: 1; }
     .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--su-space-3); }
-    .delta-up { color: var(--su-success-fg); font-size: 12px; } .delta-down { color: var(--su-danger-fg); font-size: 12px; }
+    .delta-up { color: var(--su-success-fg); font-size: var(--su-fs-caption); } .delta-down { color: var(--su-danger-fg); font-size: var(--su-fs-caption); }
     .grid2 { display: grid; grid-template-columns: 2fr 1fr; gap: var(--su-space-4); }
     @media (max-width: 1100px) { .grid2 { grid-template-columns: 1fr; } .kpis { grid-template-columns: repeat(2,1fr); } }
     .panel { background: var(--su-surface-raised); border: 1px solid var(--su-border-subtle); border-radius: var(--su-radius-lg); padding: var(--su-space-5); }
     .panel__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--su-space-4); }
-    .panel__title { font-size: var(--su-text-h3); font-weight: var(--su-fw-semibold); }
-    .panel__sub { font-size: var(--su-text-caption); color: var(--su-text-muted); }
+    .panel__title { font-size: var(--su-fs-h3); font-weight: var(--su-fw-semibold); }
+    .panel__sub { font-size: var(--su-fs-caption); color: var(--su-text-muted); }
     /* Gráfico de barras (composição pura — cor de token) */
     .bars { display: flex; align-items: flex-end; gap: var(--su-space-2); height: 200px; }
-    .barcol { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; }
-    .bar { width: 100%; background: var(--su-action-tint); border-radius: 5px 5px 0 0; }
+    .barcol { flex: 1; display: flex; flex-direction: column; align-items: center; gap: var(--su-space-1); }
+    .bar { width: 100%; background: var(--su-action-tint); border-radius: var(--su-radius-sm) var(--su-radius-sm) 0 0; }
     .bar--peak { background: var(--su-action); }
-    .barcol span { font-size: 11px; color: var(--su-text-muted); }
+    .barcol span { font-size: var(--su-fs-caption); color: var(--su-text-muted); }
     /* Legenda / donut simplificado por linhas */
     .breakdown { display: flex; flex-direction: column; gap: var(--su-space-3); }
-    .brow { display: flex; align-items: center; gap: 10px; font-size: var(--su-text-body-sm); }
-    .dot { width: 10px; height: 10px; border-radius: 3px; flex: none; }
-    .btrack { flex: 1; height: 6px; border-radius: 3px; background: var(--su-surface-sunken); overflow: hidden; }
-    .bfill { height: 100%; border-radius: 3px; }
+    .brow { display: flex; align-items: center; gap: var(--su-space-2); font-size: var(--su-fs-body-sm); }
+    .dot { width: 10px; height: 10px; border-radius: var(--su-radius-sm); flex: none; }
+    .btrack { flex: 1; height: 6px; border-radius: var(--su-radius-sm); background: var(--su-surface-sunken); overflow: hidden; }
+    .bfill { height: 100%; border-radius: var(--su-radius-sm); }
     .bval { color: var(--su-text-secondary); font-variant-numeric: tabular-nums; }
     .mono { font-family: var(--su-font-mono); font-variant-numeric: tabular-nums; }
   </style>
@@ -44,27 +44,27 @@
 <body class="su">
   <div class="shell">
     <aside class="su-sidebar">
-      <div class="su-sidebar__brand"><span style="width:22px;height:22px;border-radius:7px;background:var(--su-action);color:#fff;display:inline-flex;align-items:center;justify-content:center;"><i class="ti ti-square-rounded"></i></span>Studio UX</div>
+      <div class="su-sidebar__brand"><span style="width:22px;height:22px;border-radius:var(--su-radius-sm);background:var(--su-action);color:var(--su-text-on-action);display:inline-flex;align-items:center;justify-content:center;"><i class="ti ti-square-rounded"></i></span>Studio UX</div>
       <nav class="su-nav">
-         <a class="su-nav__item" href="dashboard.html"><i class="ti ti-layout-dashboard" style="font-size:18px;"></i>Painel</a>
-        <a class="su-nav__item" href="clientes.html"><i class="ti ti-users" style="font-size:18px;"></i>Clientes</a>
-        <a class="su-nav__item" href="chat.html"><i class="ti ti-message-2" style="font-size:18px;"></i>Conversas</a>
-        <a class="su-nav__item su-nav__item--active" href="analytics.html"><i class="ti ti-chart-bar" style="font-size:18px;"></i>Relatórios</a>
-        <a class="su-nav__item" href="configuracoes.html"><i class="ti ti-settings" style="font-size:18px;"></i>Ajustes</a>
+         <a class="su-nav__item" href="dashboard.html"><i class="ti ti-layout-dashboard" style="font-size:var(--su-fs-h2);"></i>Painel</a>
+        <a class="su-nav__item" href="clientes.html"><i class="ti ti-users" style="font-size:var(--su-fs-h2);"></i>Clientes</a>
+        <a class="su-nav__item" href="chat.html"><i class="ti ti-message-2" style="font-size:var(--su-fs-h2);"></i>Conversas</a>
+        <a class="su-nav__item su-nav__item--active" href="analytics.html"><i class="ti ti-chart-bar" style="font-size:var(--su-fs-h2);"></i>Relatórios</a>
+        <a class="su-nav__item" href="configuracoes.html"><i class="ti ti-settings" style="font-size:var(--su-fs-h2);"></i>Ajustes</a>
       </nav>
-      <div class="su-sidebar__footer" style="display:flex;align-items:center;gap:9px;">
-        <span style="width:28px;height:28px;border-radius:50%;background:var(--su-surface-sunken);display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:var(--su-text-secondary);">RM</span>
-        <span style="line-height:1.25;flex:1;"><span style="display:block;font-size:12px;font-weight:500;">Robson</span><span style="display:block;font-size:11px;color:var(--su-text-muted);">Administrador</span></span>
+      <div class="su-sidebar__footer" style="display:flex;align-items:center;gap:var(--su-space-2);">
+        <span style="width:28px;height:28px;border-radius:50%;background:var(--su-surface-sunken);display:inline-flex;align-items:center;justify-content:center;font-size:var(--su-fs-caption);font-weight:500;color:var(--su-text-secondary);">RM</span>
+        <span style="line-height:1.25;flex:1;"><span style="display:block;font-size:var(--su-fs-caption);font-weight:500;">Robson</span><span style="display:block;font-size:var(--su-fs-caption);color:var(--su-text-muted);">Administrador</span></span>
         <i class="ti ti-logout" style="color:var(--su-text-muted);"></i>
       </div>
-      <div style="padding:0 12px 12px;text-align:center;font-size:10px;color:var(--su-text-muted);">v1.0.10</div>
+      <div style="padding:0 var(--su-space-3) var(--su-space-3);text-align:center;font-size:var(--su-fs-caption);color:var(--su-text-muted);">v1.0.10</div>
     </aside>
 
     <div class="main">
       <header class="su-topbar">
         <div style="flex:1;">
           <div class="su-breadcrumb">Início <span>/</span> Relatórios</div>
-          <div style="font-size:16px;font-weight:600;">Relatórios</div>
+          <div style="font-size:var(--su-fs-h3);font-weight:600;">Relatórios</div>
         </div>
         <span class="field-search"><i class="ti ti-search"></i>Buscar</span>
         <button class="su-iconbtn" aria-label="Alternar tema" onclick="var h=document.documentElement;h.dataset.theme=h.dataset.theme==='dark'?'light':'dark';"><i class="ti ti-moon"></i></button>

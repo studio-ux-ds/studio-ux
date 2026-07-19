@@ -1,4 +1,4 @@
-// Studio UX tokens @ v1.1.9 — GERADO de packages/tokens/tokens.css. NÃO editar (regenere: npm run export:tokens).
+// Studio UX tokens @ v1.1.11 — GERADO de packages/tokens/tokens.css. NÃO editar (regenere: npm run export:tokens).
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -31,6 +31,14 @@ object SuTokensLight {
     val elevationRaised = "0 1px 2px rgba(23,26,31,.06), 0 1px 3px rgba(23,26,31,.05)"
     val fontMono = "\"JetBrains Mono\", ui-monospace, SFMono-Regular, Menlo, monospace"
     val fontUi = "\"Inter\", system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif"
+    val fsBody = 15.dp
+    val fsBodySm = 13.dp
+    val fsCaption = 12.dp
+    val fsDisplay = 32.dp
+    val fsH1 = 24.dp
+    val fsH2 = 20.dp
+    val fsH3 = 16.dp
+    val fsLabel = 13.dp
     val fwMedium = FontWeight(500)
     val fwRegular = FontWeight(400)
     val fwSemibold = FontWeight(600)
@@ -113,6 +121,14 @@ object SuTokensDark {
     val elevationRaised = "0 1px 2px rgba(0,0,0,.30)"
     val fontMono = "\"JetBrains Mono\", ui-monospace, SFMono-Regular, Menlo, monospace"
     val fontUi = "\"Inter\", system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif"
+    val fsBody = 15.dp
+    val fsBodySm = 13.dp
+    val fsCaption = 12.dp
+    val fsDisplay = 32.dp
+    val fsH1 = 24.dp
+    val fsH2 = 20.dp
+    val fsH3 = 16.dp
+    val fsLabel = 13.dp
     val fwMedium = FontWeight(500)
     val fwRegular = FontWeight(400)
     val fwSemibold = FontWeight(600)

@@ -1,4 +1,4 @@
-/* Studio UX tokens @ v1.1.9 — GERADO de packages/tokens/tokens.css. NÃO editar (regenere: npm run export:tokens). */
+/* Studio UX tokens @ v1.1.11 — GERADO de packages/tokens/tokens.css. NÃO editar (regenere: npm run export:tokens). */
 :root {
   --su-action: #4F46E5;
   --su-action-active: #3730A3;
@@ -26,6 +26,14 @@
   --su-elevation-raised: 0 1px 2px rgba(23,26,31,.06), 0 1px 3px rgba(23,26,31,.05);
   --su-font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   --su-font-ui: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --su-fs-body: 15px;
+  --su-fs-body-sm: 13px;
+  --su-fs-caption: 12px;
+  --su-fs-display: 32px;
+  --su-fs-h1: 24px;
+  --su-fs-h2: 20px;
+  --su-fs-h3: 16px;
+  --su-fs-label: 13px;
   --su-fw-medium: 500;
   --su-fw-regular: 400;
   --su-fw-semibold: 600;

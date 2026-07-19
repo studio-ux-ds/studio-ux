@@ -1,4 +1,4 @@
-// Studio UX tokens @ v1.1.9 — GERADO de packages/tokens/tokens.css. NÃO editar (regenere: npm run export:tokens).
+// Studio UX tokens @ v1.1.11 — GERADO de packages/tokens/tokens.css. NÃO editar (regenere: npm run export:tokens).
 import SwiftUI
 
 extension Color {
@@ -34,6 +34,14 @@ enum SuTokensLight {
     static let elevationRaised = "0 1px 2px rgba(23,26,31,.06), 0 1px 3px rgba(23,26,31,.05)"
     static let fontMono = "\"JetBrains Mono\", ui-monospace, SFMono-Regular, Menlo, monospace"
     static let fontUi = "\"Inter\", system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif"
+    static let fsBody: CGFloat = 15
+    static let fsBodySm: CGFloat = 13
+    static let fsCaption: CGFloat = 12
+    static let fsDisplay: CGFloat = 32
+    static let fsH1: CGFloat = 24
+    static let fsH2: CGFloat = 20
+    static let fsH3: CGFloat = 16
+    static let fsLabel: CGFloat = 13
     static let fwMedium = 500
     static let fwRegular = 400
     static let fwSemibold = 600
@@ -116,6 +124,14 @@ enum SuTokensDark {
     static let elevationRaised = "0 1px 2px rgba(0,0,0,.30)"
     static let fontMono = "\"JetBrains Mono\", ui-monospace, SFMono-Regular, Menlo, monospace"
     static let fontUi = "\"Inter\", system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif"
+    static let fsBody: CGFloat = 15
+    static let fsBodySm: CGFloat = 13
+    static let fsCaption: CGFloat = 12
+    static let fsDisplay: CGFloat = 32
+    static let fsH1: CGFloat = 24
+    static let fsH2: CGFloat = 20
+    static let fsH3: CGFloat = 16
+    static let fsLabel: CGFloat = 13
     static let fwMedium = 500
     static let fwRegular = 400
     static let fwSemibold = 600

@@ -194,20 +194,6 @@
         "type": "fontFamilies"
       }
     },
-    "fontWeights": {
-      "medium": {
-        "value": "500",
-        "type": "fontWeights"
-      },
-      "regular": {
-        "value": "400",
-        "type": "fontWeights"
-      },
-      "semibold": {
-        "value": "600",
-        "type": "fontWeights"
-      }
-    },
     "spacing": {
       "1": {
         "value": "4px",
@@ -249,6 +235,38 @@
         "value": "96px",
         "type": "spacing"
       },
+      "fs-body": {
+        "value": "15px",
+        "type": "spacing"
+      },
+      "fs-body-sm": {
+        "value": "13px",
+        "type": "spacing"
+      },
+      "fs-caption": {
+        "value": "12px",
+        "type": "spacing"
+      },
+      "fs-display": {
+        "value": "32px",
+        "type": "spacing"
+      },
+      "fs-h1": {
+        "value": "24px",
+        "type": "spacing"
+      },
+      "fs-h2": {
+        "value": "20px",
+        "type": "spacing"
+      },
+      "fs-h3": {
+        "value": "16px",
+        "type": "spacing"
+      },
+      "fs-label": {
+        "value": "13px",
+        "type": "spacing"
+      },
       "icon-lg": {
         "value": "24px",
         "type": "spacing"
@@ -260,6 +278,20 @@
       "icon-sm": {
         "value": "16px",
         "type": "spacing"
+      }
+    },
+    "fontWeights": {
+      "medium": {
+        "value": "500",
+        "type": "fontWeights"
+      },
+      "regular": {
+        "value": "400",
+        "type": "fontWeights"
+      },
+      "semibold": {
+        "value": "600",
+        "type": "fontWeights"
       }
     },
     "opacity": {
@@ -528,20 +560,6 @@
         "type": "fontFamilies"
       }
     },
-    "fontWeights": {
-      "medium": {
-        "value": "500",
-        "type": "fontWeights"
-      },
-      "regular": {
-        "value": "400",
-        "type": "fontWeights"
-      },
-      "semibold": {
-        "value": "600",
-        "type": "fontWeights"
-      }
-    },
     "spacing": {
       "1": {
         "value": "4px",
@@ -583,6 +601,38 @@
         "value": "96px",
         "type": "spacing"
       },
+      "fs-body": {
+        "value": "15px",
+        "type": "spacing"
+      },
+      "fs-body-sm": {
+        "value": "13px",
+        "type": "spacing"
+      },
+      "fs-caption": {
+        "value": "12px",
+        "type": "spacing"
+      },
+      "fs-display": {
+        "value": "32px",
+        "type": "spacing"
+      },
+      "fs-h1": {
+        "value": "24px",
+        "type": "spacing"
+      },
+      "fs-h2": {
+        "value": "20px",
+        "type": "spacing"
+      },
+      "fs-h3": {
+        "value": "16px",
+        "type": "spacing"
+      },
+      "fs-label": {
+        "value": "13px",
+        "type": "spacing"
+      },
       "icon-lg": {
         "value": "24px",
         "type": "spacing"
@@ -594,6 +644,20 @@
       "icon-sm": {
         "value": "16px",
         "type": "spacing"
+      }
+    },
+    "fontWeights": {
+      "medium": {
+        "value": "500",
+        "type": "fontWeights"
+      },
+      "regular": {
+        "value": "400",
+        "type": "fontWeights"
+      },
+      "semibold": {
+        "value": "600",
+        "type": "fontWeights"
       }
     },
     "opacity": {
@@ -668,6 +732,6 @@
     }
   },
   "$meta": {
-    "version": "1.1.9"
+    "version": "1.1.11"
   }
 }

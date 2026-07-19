@@ -1,4 +1,4 @@
-// Studio UX tokens @ v1.1.9 — GERADO de packages/tokens/tokens.css. NÃO editar (regenere: npm run export:tokens).
+// Studio UX tokens @ v1.1.11 — GERADO de packages/tokens/tokens.css. NÃO editar (regenere: npm run export:tokens).
 import 'package:flutter/material.dart';
 
 abstract class SuTokensLight {
@@ -28,6 +28,14 @@ abstract class SuTokensLight {
   static const String elevationRaised = "0 1px 2px rgba(23,26,31,.06), 0 1px 3px rgba(23,26,31,.05)";
   static const String fontMono = "\"JetBrains Mono\", ui-monospace, SFMono-Regular, Menlo, monospace";
   static const String fontUi = "\"Inter\", system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif";
+  static const double fsBody = 15.0;
+  static const double fsBodySm = 13.0;
+  static const double fsCaption = 12.0;
+  static const double fsDisplay = 32.0;
+  static const double fsH1 = 24.0;
+  static const double fsH2 = 20.0;
+  static const double fsH3 = 16.0;
+  static const double fsLabel = 13.0;
   static const int fwMedium = 500;
   static const int fwRegular = 400;
   static const int fwSemibold = 600;
@@ -110,6 +118,14 @@ abstract class SuTokensDark {
   static const String elevationRaised = "0 1px 2px rgba(0,0,0,.30)";
   static const String fontMono = "\"JetBrains Mono\", ui-monospace, SFMono-Regular, Menlo, monospace";
   static const String fontUi = "\"Inter\", system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif";
+  static const double fsBody = 15.0;
+  static const double fsBodySm = 13.0;
+  static const double fsCaption = 12.0;
+  static const double fsDisplay = 32.0;
+  static const double fsH1 = 24.0;
+  static const double fsH2 = 20.0;
+  static const double fsH3 = 16.0;
+  static const double fsLabel = 13.0;
   static const int fwMedium = 500;
   static const int fwRegular = 400;
   static const int fwSemibold = 600;

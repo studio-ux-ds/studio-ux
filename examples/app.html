@@ -15,18 +15,18 @@
     .main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
     .content { padding: var(--su-space-6); display: flex; flex-direction: column; gap: var(--su-space-5); }
     .hidden { display: none !important; }
-    .field-search { display: flex; align-items: center; gap: 8px; border: 1px solid var(--su-border-default); border-radius: var(--su-radius-md); padding: 6px 10px; color: var(--su-text-muted); font-size: 12px; min-width: 180px; }
+    .field-search { display: flex; align-items: center; gap: var(--su-space-2); border: 1px solid var(--su-border-default); border-radius: var(--su-radius-md); padding: var(--su-space-1) var(--su-space-2); color: var(--su-text-muted); font-size: var(--su-fs-caption); min-width: 180px; }
     .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--su-space-3); }
     @media (max-width: 1000px) { .kpis { grid-template-columns: repeat(2, 1fr); } }
-    .delta-up { color: var(--su-success-fg); font-size: 12px; } .delta-down { color: var(--su-danger-fg); font-size: 12px; }
+    .delta-up { color: var(--su-success-fg); font-size: var(--su-fs-caption); } .delta-down { color: var(--su-danger-fg); font-size: var(--su-fs-caption); }
     .panel { background: var(--su-surface-raised); border: 1px solid var(--su-border-subtle); border-radius: var(--su-radius-lg); padding: var(--su-space-5); }
     .panel__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--su-space-4); }
-    .panel__title { font-size: var(--su-text-h3); font-weight: var(--su-fw-semibold); }
+    .panel__title { font-size: var(--su-fs-h3); font-weight: var(--su-fw-semibold); }
     .bars { display: flex; align-items: flex-end; gap: var(--su-space-2); height: 170px; }
-    .barcol { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; }
-    .bar { width: 100%; background: var(--su-action-tint); border-radius: 5px 5px 0 0; }
+    .barcol { flex: 1; display: flex; flex-direction: column; align-items: center; gap: var(--su-space-1); }
+    .bar { width: 100%; background: var(--su-action-tint); border-radius: var(--su-radius-sm) var(--su-radius-sm) 0 0; }
     .bar--peak { background: var(--su-action); }
-    .barcol span { font-size: 11px; color: var(--su-text-muted); }
+    .barcol span { font-size: var(--su-fs-caption); color: var(--su-text-muted); }
     .grid2 { display: grid; grid-template-columns: 2fr 1fr; gap: var(--su-space-4); }
     @media (max-width: 1100px) { .grid2 { grid-template-columns: 1fr; } }
     .toolbar { display: flex; align-items: center; gap: var(--su-space-3); flex-wrap: wrap; }
@@ -34,47 +34,47 @@
     .mono { font-family: var(--su-font-mono); font-variant-numeric: tabular-nums; }
     .rowlink { cursor: pointer; }
     .rowlink:hover td { background: var(--su-surface-sunken); }
-    .backlink { display: inline-flex; align-items: center; gap: 6px; color: var(--su-text-secondary); font-size: 13px; text-decoration: none; cursor: pointer; }
+    .backlink { display: inline-flex; align-items: center; gap: var(--su-space-1); color: var(--su-text-secondary); font-size: var(--su-fs-body-sm); text-decoration: none; cursor: pointer; }
     .backlink:hover { color: var(--su-action); }
-    .dl { display: grid; grid-template-columns: 160px 1fr; gap: 10px 16px; font-size: 14px; }
+    .dl { display: grid; grid-template-columns: 160px 1fr; gap: var(--su-space-2) var(--su-space-4); font-size: var(--su-fs-body-sm); }
     .dl dt { color: var(--su-text-muted); } .dl dd { margin: 0; }
     /* Chat */
     .chat { display: grid; grid-template-columns: 300px 1fr; border: 1px solid var(--su-border-subtle); border-radius: var(--su-radius-lg); overflow: hidden; height: calc(100vh - 150px); }
     .convs { border-right: 1px solid var(--su-border-subtle); display: flex; flex-direction: column; min-height: 0; background: var(--su-surface-raised); }
     .convs__list { flex: 1; overflow: auto; }
-    .conv { display: flex; gap: 10px; padding: 11px 14px; border-bottom: 1px solid var(--su-border-subtle); cursor: pointer; }
+    .conv { display: flex; gap: var(--su-space-2); padding: var(--su-space-3) var(--su-space-3); border-bottom: 1px solid var(--su-border-subtle); cursor: pointer; }
     .conv:hover { background: var(--su-surface-sunken); }
     .conv--active { background: var(--su-action-tint); }
-    .avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--su-surface-sunken); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: var(--su-fw-medium); color: var(--su-text-secondary); flex: none; }
-    .conv__body { flex: 1; min-width: 0; } .conv__top { display: flex; justify-content: space-between; gap: 8px; }
-    .conv__name { font-size: 14px; font-weight: var(--su-fw-medium); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .conv__time { font-size: 11px; color: var(--su-text-muted); flex: none; }
-    .conv__last { font-size: 12.5px; color: var(--su-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px; }
+    .avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--su-surface-sunken); display: flex; align-items: center; justify-content: center; font-size: var(--su-fs-body-sm); font-weight: var(--su-fw-medium); color: var(--su-text-secondary); flex: none; }
+    .conv__body { flex: 1; min-width: 0; } .conv__top { display: flex; justify-content: space-between; gap: var(--su-space-2); }
+    .conv__name { font-size: var(--su-fs-body-sm); font-weight: var(--su-fw-medium); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .conv__time { font-size: var(--su-fs-caption); color: var(--su-text-muted); flex: none; }
+    .conv__last { font-size: var(--su-fs-body-sm); color: var(--su-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: var(--su-space-1); }
     .thread { display: flex; flex-direction: column; min-width: 0; }
-    .thread__head { display: flex; align-items: center; gap: 12px; padding: 11px 18px; border-bottom: 1px solid var(--su-border-subtle); background: var(--su-surface-raised); }
-    .thread__body { flex: 1; overflow: auto; padding: 18px; display: flex; flex-direction: column; gap: 8px; background: var(--su-surface-sunken); }
-    .msg { max-width: 66%; padding: 8px 12px; border-radius: 13px; font-size: 14px; line-height: 1.4; }
-    .msg time { display: block; font-size: 10px; margin-top: 3px; opacity: .7; text-align: right; }
+    .thread__head { display: flex; align-items: center; gap: var(--su-space-3); padding: var(--su-space-3) var(--su-space-4); border-bottom: 1px solid var(--su-border-subtle); background: var(--su-surface-raised); }
+    .thread__body { flex: 1; overflow: auto; padding: var(--su-space-4); display: flex; flex-direction: column; gap: var(--su-space-2); background: var(--su-surface-sunken); }
+    .msg { max-width: 66%; padding: var(--su-space-2) var(--su-space-3); border-radius: var(--su-radius-lg); font-size: var(--su-fs-body-sm); line-height: 1.4; }
+    .msg time { display: block; font-size: var(--su-fs-caption); margin-top: var(--su-space-1); opacity: .7; text-align: right; }
     .msg--in { align-self: flex-start; background: var(--su-surface-raised); border: 1px solid var(--su-border-subtle); border-bottom-left-radius: 4px; }
-    .msg--out { align-self: flex-end; background: var(--su-action); color: #fff; border-bottom-right-radius: 4px; }
-    .composer { display: flex; align-items: center; gap: 10px; padding: 11px 16px; border-top: 1px solid var(--su-border-subtle); background: var(--su-surface-raised); }
-    .composer input { flex: 1; border: 1px solid var(--su-border-default); border-radius: 999px; padding: 9px 15px; font: inherit; font-size: 14px; background: var(--su-surface-base); color: var(--su-text-primary); outline: none; }
-    .composer input:focus { border-color: var(--su-action); }
+    .msg--out { align-self: flex-end; background: var(--su-action); color: var(--su-text-on-action); border-bottom-right-radius: 4px; }
+    .composer { display: flex; align-items: center; gap: var(--su-space-2); padding: var(--su-space-3) var(--su-space-4); border-top: 1px solid var(--su-border-subtle); background: var(--su-surface-raised); }
+    .composer input { flex: 1; border: 1px solid var(--su-border-default); border-radius: var(--su-radius-xl); padding: var(--su-space-2) var(--su-space-4); font: inherit; font-size: var(--su-fs-body-sm); background: var(--su-surface-base); color: var(--su-text-primary); }
+    .composer input:focus-visible { border-color: var(--su-action); outline: none; box-shadow: 0 0 0 3px var(--su-action-tint); }
     /* Overlays */
-    .scrim { position: fixed; inset: 0; background: var(--su-overlay-scrim, rgba(20,22,30,.44)); z-index: 900; display: flex; align-items: center; justify-content: center; padding: 20px; }
+    .scrim { position: fixed; inset: 0; background: var(--su-overlay-scrim, rgba(20,22,30,.44)); z-index: 900; display: flex; align-items: center; justify-content: center; padding: var(--su-space-5); }
     .dialog { background: var(--su-surface-raised); border-radius: var(--su-radius-xl); width: 100%; max-width: 440px; box-shadow: 0 16px 48px rgba(20,22,30,.24); overflow: hidden; }
-    .dialog__head { padding: 18px 20px 0; font-size: var(--su-text-h3); font-weight: var(--su-fw-semibold); }
-    .dialog__body { padding: 10px 20px; color: var(--su-text-secondary); font-size: 14px; display: flex; flex-direction: column; gap: 12px; }
-    .dialog__foot { padding: 14px 20px; display: flex; justify-content: flex-end; gap: 8px; border-top: 1px solid var(--su-border-subtle); margin-top: 6px; }
+    .dialog__head { padding: var(--su-space-4) var(--su-space-5) 0; font-size: var(--su-fs-h3); font-weight: var(--su-fw-semibold); }
+    .dialog__body { padding: var(--su-space-2) var(--su-space-5); color: var(--su-text-secondary); font-size: var(--su-fs-body-sm); display: flex; flex-direction: column; gap: var(--su-space-3); }
+    .dialog__foot { padding: var(--su-space-3) var(--su-space-5); display: flex; justify-content: flex-end; gap: var(--su-space-2); border-top: 1px solid var(--su-border-subtle); margin-top: var(--su-space-1); }
     /* Toasts */
-    .toasts { position: fixed; right: 18px; bottom: 18px; z-index: 1000; display: flex; flex-direction: column; gap: 10px; }
-    .toast { display: flex; align-items: center; gap: 10px; background: var(--su-surface-raised); border: 1px solid var(--su-border-subtle); border-left: 3px solid var(--su-action); border-radius: var(--su-radius-md); padding: 11px 14px; font-size: 13px; box-shadow: 0 8px 24px rgba(20,22,30,.14); min-width: 240px; animation: toastin .18s ease; }
+    .toasts { position: fixed; right: 18px; bottom: 18px; z-index: 1000; display: flex; flex-direction: column; gap: var(--su-space-2); }
+    .toast { display: flex; align-items: center; gap: var(--su-space-2); background: var(--su-surface-raised); border: 1px solid var(--su-border-subtle); border-left: 3px solid var(--su-action); border-radius: var(--su-radius-md); padding: var(--su-space-3) var(--su-space-3); font-size: var(--su-fs-body-sm); box-shadow: 0 8px 24px rgba(20,22,30,.14); min-width: 240px; animation: toastin var(--su-duration-base) ease; }
     .toast--success { border-left-color: var(--su-success-fg); } .toast--danger { border-left-color: var(--su-danger-fg); }
     @keyframes toastin { from { transform: translateY(8px); opacity: 0; } to { transform: none; opacity: 1; } }
     /* Accent popover */
-    .accent-pop { position: absolute; top: 46px; right: 12px; background: var(--su-surface-raised); border: 1px solid var(--su-border-default); border-radius: var(--su-radius-lg); padding: 12px; box-shadow: 0 12px 32px rgba(20,22,30,.16); z-index: 50; }
-    .accent-pop b { font-size: 12px; color: var(--su-text-secondary); display: block; margin-bottom: 8px; }
-    .swatches { display: flex; gap: 8px; }
+    .accent-pop { position: absolute; top: 46px; right: 12px; background: var(--su-surface-raised); border: 1px solid var(--su-border-default); border-radius: var(--su-radius-lg); padding: var(--su-space-3); box-shadow: 0 12px 32px rgba(20,22,30,.16); z-index: 50; }
+    .accent-pop b { font-size: var(--su-fs-caption); color: var(--su-text-secondary); display: block; margin-bottom: var(--su-space-2); }
+    .swatches { display: flex; gap: var(--su-space-2); }
     .swatch { width: 26px; height: 26px; border-radius: 50%; border: 0; cursor: pointer; outline: 2px solid var(--su-border-default); outline-offset: 2px; }
     .swatch[aria-pressed="true"] { outline-color: var(--su-action); }
 
@@ -82,12 +82,12 @@
     .mobnav { display: none; }
     @media (max-width: 760px) {
       .su-sidebar { display: none; }
-      .content { padding: var(--su-space-4); padding-bottom: 78px; gap: var(--su-space-4); }
-      .su-topbar { padding: 10px 14px; }
+      .content { padding: var(--su-space-4); padding-bottom: var(--su-space-16); gap: var(--su-space-4); }
+      .su-topbar { padding: var(--su-space-2) var(--su-space-3); }
       .su-topbar .field-search, .su-topbar #crumb { display: none; }
       .kpis { grid-template-columns: repeat(2, 1fr); }
       #ctatext { display: none; }              /* CTA vira só ícone */
-      #cta { padding: 0 12px; }
+      #cta { padding: 0 var(--su-space-3); }
       /* Chat em painel único: lista rolável + thread abaixo */
       .chat { grid-template-columns: 1fr; height: auto; }
       .convs { max-height: 34vh; }
@@ -96,22 +96,22 @@
       /* Barra de navegação inferior (fixa, respeitando safe-area) */
       .mobnav { display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
         background: var(--su-surface-raised); border-top: 1px solid var(--su-border-default);
-        padding: 6px 4px calc(6px + env(safe-area-inset-bottom)); }
+        padding: var(--su-space-1) var(--su-space-1) calc(var(--su-space-1) + env(safe-area-inset-bottom)); }
       .mobnav button { flex: 1; border: 0; background: none; cursor: pointer; display: flex; flex-direction: column;
-        align-items: center; gap: 3px; font-size: 10px; color: var(--su-text-muted); padding: 4px 0; -webkit-appearance: none; appearance: none; }
-      .mobnav button i { font-size: 21px; }
+        align-items: center; gap: var(--su-space-1); font-size: var(--su-fs-caption); color: var(--su-text-muted); padding: var(--su-space-1) 0; -webkit-appearance: none; appearance: none; }
+      .mobnav button i { font-size: var(--su-fs-h2); }
       .mobnav button[aria-current="page"] { color: var(--su-action); }
     }
   </style>
 </head>
 <body class="su">
   <!-- ===== LOGIN ===== -->
-  <div id="login" style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;">
-    <form class="panel" style="width:100%;max-width:380px;display:flex;flex-direction:column;gap:18px;" onsubmit="doLogin();return false;">
-      <div style="display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:17px;"><span class="su-brand__logo" style="width:30px;height:30px;border-radius:9px;background:var(--su-action);color:#fff;display:inline-flex;align-items:center;justify-content:center;"><i class="ti ti-square-rounded"></i></span>Studio UX</div>
-      <div><div style="font-size:var(--su-text-h2);font-weight:600;">Entrar na sua conta</div><div style="color:var(--su-text-secondary);font-size:13px;">Use seu e-mail corporativo para acessar o painel.</div></div>
+  <div id="login" style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:var(--su-space-6);">
+    <form class="panel" style="width:100%;max-width:380px;display:flex;flex-direction:column;gap:var(--su-space-4);" onsubmit="doLogin();return false;">
+      <div style="display:inline-flex;align-items:center;gap:var(--su-space-2);font-weight:600;font-size:var(--su-fs-h3);"><span class="su-brand__logo" style="width:30px;height:30px;border-radius:var(--su-radius-md);background:var(--su-action);color:var(--su-text-on-action);display:inline-flex;align-items:center;justify-content:center;"><i class="ti ti-square-rounded"></i></span>Studio UX</div>
+      <div><div style="font-size:var(--su-fs-h2);font-weight:600;">Entrar na sua conta</div><div style="color:var(--su-text-secondary);font-size:var(--su-fs-body-sm);">Use seu e-mail corporativo para acessar o painel.</div></div>
       <div class="su-field"><label class="su-field__label">E-mail</label><input class="su-input" type="email" value="robson@empresa.com"></div>
-      <div class="su-field"><label class="su-field__label">Senha</label><input class="su-input" type="password" value="senha123"><a href="#" onclick="toast('Enviamos um link de redefinição.');return false;" style="align-self:flex-end;margin-top:7px;font-size:12px;color:var(--su-text-muted);text-decoration:none;">Esqueci a senha?</a></div>
+      <div class="su-field"><label class="su-field__label">Senha</label><input class="su-input" type="password" value="senha123"><a href="#" onclick="toast('Enviamos um link de redefinição.');return false;" style="align-self:flex-end;margin-top:var(--su-space-2);font-size:var(--su-fs-caption);color:var(--su-text-muted);text-decoration:none;">Esqueci a senha?</a></div>
       <button class="su-btn su-btn--primary su-btn--lg" style="width:100%;">Entrar</button>
     </form>
   </div>
@@ -119,27 +119,27 @@
   <!-- ===== APP ===== -->
   <div id="app" class="shell hidden">
     <aside class="su-sidebar">
-      <div class="su-sidebar__brand"><span class="su-brand__logo" style="width:22px;height:22px;border-radius:7px;background:var(--su-action);color:#fff;display:inline-flex;align-items:center;justify-content:center;"><i class="ti ti-square-rounded"></i></span>Studio UX</div>
+      <div class="su-sidebar__brand"><span class="su-brand__logo" style="width:22px;height:22px;border-radius:var(--su-radius-sm);background:var(--su-action);color:var(--su-text-on-action);display:inline-flex;align-items:center;justify-content:center;"><i class="ti ti-square-rounded"></i></span>Studio UX</div>
       <nav class="su-nav" id="nav">
-        <a class="su-nav__item" data-route="painel"><i class="ti ti-layout-dashboard" style="font-size:18px;"></i>Painel</a>
-        <a class="su-nav__item" data-route="clientes"><i class="ti ti-users" style="font-size:18px;"></i>Clientes</a>
-        <a class="su-nav__item" data-route="conversas"><i class="ti ti-message-2" style="font-size:18px;"></i>Conversas</a>
-        <a class="su-nav__item" data-route="relatorios"><i class="ti ti-chart-bar" style="font-size:18px;"></i>Relatórios</a>
-        <a class="su-nav__item" data-route="ajustes"><i class="ti ti-settings" style="font-size:18px;"></i>Ajustes</a>
+        <a class="su-nav__item" data-route="painel"><i class="ti ti-layout-dashboard" style="font-size:var(--su-fs-h2);"></i>Painel</a>
+        <a class="su-nav__item" data-route="clientes"><i class="ti ti-users" style="font-size:var(--su-fs-h2);"></i>Clientes</a>
+        <a class="su-nav__item" data-route="conversas"><i class="ti ti-message-2" style="font-size:var(--su-fs-h2);"></i>Conversas</a>
+        <a class="su-nav__item" data-route="relatorios"><i class="ti ti-chart-bar" style="font-size:var(--su-fs-h2);"></i>Relatórios</a>
+        <a class="su-nav__item" data-route="ajustes"><i class="ti ti-settings" style="font-size:var(--su-fs-h2);"></i>Ajustes</a>
       </nav>
-      <div class="su-sidebar__footer" style="display:flex;align-items:center;gap:9px;">
-        <span class="avatar" style="width:28px;height:28px;font-size:11px;">RM</span>
-        <span style="line-height:1.25;flex:1;"><span style="display:block;font-size:12px;font-weight:500;">Robson</span><span style="display:block;font-size:11px;color:var(--su-text-muted);">Administrador</span></span>
+      <div class="su-sidebar__footer" style="display:flex;align-items:center;gap:var(--su-space-2);">
+        <span class="avatar" style="width:28px;height:28px;font-size:var(--su-fs-caption);">RM</span>
+        <span style="line-height:1.25;flex:1;"><span style="display:block;font-size:var(--su-fs-caption);font-weight:500;">Robson</span><span style="display:block;font-size:var(--su-fs-caption);color:var(--su-text-muted);">Administrador</span></span>
         <i class="ti ti-logout" style="color:var(--su-text-muted);cursor:pointer;" onclick="logout()"></i>
       </div>
-      <div style="padding:0 12px 12px;text-align:center;font-size:10px;color:var(--su-text-muted);">v1.0.15</div>
+      <div style="padding:0 var(--su-space-3) var(--su-space-3);text-align:center;font-size:var(--su-fs-caption);color:var(--su-text-muted);">v1.0.15</div>
     </aside>
 
     <div class="main">
       <header class="su-topbar" style="position:relative;">
         <div style="flex:1;">
           <div class="su-breadcrumb" id="crumb">Início / Painel</div>
-          <div style="font-size:16px;font-weight:600;" id="ptitle">Painel</div>
+          <div style="font-size:var(--su-fs-h3);font-weight:600;" id="ptitle">Painel</div>
         </div>
         <span class="field-search"><i class="ti ti-search"></i>Buscar</span>
         <button class="su-iconbtn" aria-label="Cor de ação" onclick="togglePop()"><i class="ti ti-palette"></i></button>
@@ -203,7 +203,7 @@
     function novoClienteModal(){
       el('overlay').innerHTML='<div class="scrim" onclick="if(event.target===this)closeOverlay()"><div class="dialog" style="max-width:520px;">'+
         '<div class="dialog__head">Novo cliente</div><div class="dialog__body">'+
-        '<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">'+
+        '<div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--su-space-3);">'+
         '<div class="su-field"><label class="su-field__label">Nome</label><input class="su-input" placeholder="Nome completo"></div>'+
         '<div class="su-field"><label class="su-field__label">CPF</label><input class="su-input" placeholder="000.000.000-00"></div>'+
         '<div class="su-field"><label class="su-field__label">Cidade</label><input class="su-input" placeholder="Cidade"></div>'+
@@ -251,10 +251,10 @@
         '</section>'+
         '<div class="grid2">'+
         '<div class="panel"><div class="panel__head"><div class="panel__title">Receita por dia</div>'+badge('success','<i class="ti ti-trending-up"></i> Em alta')+'</div><div class="bars">'+chartHTML()+'</div></div>'+
-        '<div class="panel"><div class="panel__head"><div class="panel__title">Atividade recente</div></div><div style="display:flex;flex-direction:column;gap:12px;">'+
-          '<div style="display:flex;gap:10px;align-items:center;"><span class="avatar"><i class="ti ti-cash" style="color:var(--su-success-fg)"></i></span><div style="flex:1;font-size:13px;">Fatura #458 paga<div style="color:var(--su-text-muted);font-size:12px;">Marina Alves</div></div>'+badge('success','R$ 240')+'</div>'+
-          '<div style="display:flex;gap:10px;align-items:center;"><span class="avatar"><i class="ti ti-message-2" style="color:var(--su-action)"></i></span><div style="flex:1;font-size:13px;">Nova conversa<div style="color:var(--su-text-muted);font-size:12px;">Diego Prado · há 12 min</div></div></div>'+
-          '<div style="display:flex;gap:10px;align-items:center;"><span class="avatar"><i class="ti ti-alert-circle" style="color:var(--su-danger-fg)"></i></span><div style="flex:1;font-size:13px;">Fatura vencida<div style="color:var(--su-text-muted);font-size:12px;">Bianca Ferraz</div></div>'+badge('danger','Vencida')+'</div>'+
+        '<div class="panel"><div class="panel__head"><div class="panel__title">Atividade recente</div></div><div style="display:flex;flex-direction:column;gap:var(--su-space-3);">'+
+          '<div style="display:flex;gap:var(--su-space-2);align-items:center;"><span class="avatar"><i class="ti ti-cash" style="color:var(--su-success-fg)"></i></span><div style="flex:1;font-size:var(--su-fs-body-sm);">Fatura #458 paga<div style="color:var(--su-text-muted);font-size:var(--su-fs-caption);">Marina Alves</div></div>'+badge('success','R$ 240')+'</div>'+
+          '<div style="display:flex;gap:var(--su-space-2);align-items:center;"><span class="avatar"><i class="ti ti-message-2" style="color:var(--su-action)"></i></span><div style="flex:1;font-size:var(--su-fs-body-sm);">Nova conversa<div style="color:var(--su-text-muted);font-size:var(--su-fs-caption);">Diego Prado · há 12 min</div></div></div>'+
+          '<div style="display:flex;gap:var(--su-space-2);align-items:center;"><span class="avatar"><i class="ti ti-alert-circle" style="color:var(--su-danger-fg)"></i></span><div style="flex:1;font-size:var(--su-fs-body-sm);">Fatura vencida<div style="color:var(--su-text-muted);font-size:var(--su-fs-caption);">Bianca Ferraz</div></div>'+badge('danger','Vencida')+'</div>'+
         '</div></div></div>';
     }
     function renderClientes(){
@@ -269,8 +269,8 @@
       var c = CLIENTES.filter(function(x){return x.id==id;})[0] || CLIENTES[0];
       el('view').innerHTML =
         '<a class="backlink" onclick="go(\'clientes\')"><i class="ti ti-arrow-left"></i> Voltar para Clientes</a>'+
-        '<div class="panel" style="display:flex;align-items:center;gap:16px;"><span class="avatar" style="width:56px;height:56px;font-size:17px;">'+initials(c.nome)+'</span>'+
-        '<div style="flex:1;"><div style="font-size:20px;font-weight:600;">'+c.nome+'</div><div style="color:var(--su-text-secondary);font-size:13px;display:flex;gap:8px;align-items:center;">Cliente desde '+c.desde+' '+badge(c.status,c.rot)+'</div></div>'+
+        '<div class="panel" style="display:flex;align-items:center;gap:var(--su-space-4);"><span class="avatar" style="width:56px;height:56px;font-size:var(--su-fs-h3);">'+initials(c.nome)+'</span>'+
+        '<div style="flex:1;"><div style="font-size:var(--su-fs-h2);font-weight:600;">'+c.nome+'</div><div style="color:var(--su-text-secondary);font-size:var(--su-fs-body-sm);display:flex;gap:var(--su-space-2);align-items:center;">Cliente desde '+c.desde+' '+badge(c.status,c.rot)+'</div></div>'+
         '<button class="su-btn su-btn--secondary" onclick="go(\'conversas\','+c.id+')"><i class="ti ti-message-2"></i>Abrir conversa</button>'+
         '<button class="su-btn su-btn--danger" onclick="confirmDialog(\'Cancelar cliente?\',\'Esta ação encerra o acesso do cliente e arquiva os dados. Não pode ser desfeita.\',true,function(){toast(\'Cliente cancelado.\',\'danger\')})" title="Ação irreversível"><i class="ti ti-ban"></i>Cancelar</button></div>'+
         '<div class="su-tabs" role="tablist" id="ctabs"><button class="su-tab su-tab--active" onclick="cliTab(this,0)">Visão geral</button><button class="su-tab" onclick="cliTab(this,1)">Faturas</button><button class="su-tab" onclick="cliTab(this,2)">Histórico</button></div>'+
@@ -285,10 +285,10 @@
         '<tr><td class="mono">#458</td><td>20/07/2026</td><td class="num mono">'+c.valor+'</td><td>'+badge(c.status,c.rot)+'</td></tr>'+
         '<tr><td class="mono">#441</td><td>20/06/2026</td><td class="num mono">'+c.valor+'</td><td>'+badge('success','Pago')+'</td></tr>'+
         '<tr><td class="mono">#427</td><td>20/05/2026</td><td class="num mono">'+c.valor+'</td><td>'+badge('success','Pago')+'</td></tr></tbody></table></div>'; }
-      else { el('clitab').innerHTML='<div class="panel" style="display:flex;flex-direction:column;gap:14px;font-size:13px;">'+
-        '<div style="display:flex;gap:10px;"><i class="ti ti-circle-filled" style="font-size:8px;color:var(--su-action);margin-top:5px;"></i><div>Fatura #458 gerada<div style="color:var(--su-text-muted);">18/07/2026 · sistema</div></div></div>'+
-        '<div style="display:flex;gap:10px;"><i class="ti ti-circle-filled" style="font-size:8px;color:var(--su-action);margin-top:5px;"></i><div>Conversa iniciada no WhatsApp<div style="color:var(--su-text-muted);">15/07/2026 · atendente</div></div></div>'+
-        '<div style="display:flex;gap:10px;"><i class="ti ti-circle-filled" style="font-size:8px;color:var(--su-action);margin-top:5px;"></i><div>Cliente cadastrado<div style="color:var(--su-text-muted);">'+c.desde+'</div></div></div></div>'; }
+      else { el('clitab').innerHTML='<div class="panel" style="display:flex;flex-direction:column;gap:var(--su-space-3);font-size:var(--su-fs-body-sm);">'+
+        '<div style="display:flex;gap:var(--su-space-2);"><i class="ti ti-circle-filled" style="font-size:var(--su-fs-caption);color:var(--su-action);margin-top:var(--su-space-1);"></i><div>Fatura #458 gerada<div style="color:var(--su-text-muted);">18/07/2026 · sistema</div></div></div>'+
+        '<div style="display:flex;gap:var(--su-space-2);"><i class="ti ti-circle-filled" style="font-size:var(--su-fs-caption);color:var(--su-action);margin-top:var(--su-space-1);"></i><div>Conversa iniciada no WhatsApp<div style="color:var(--su-text-muted);">15/07/2026 · atendente</div></div></div>'+
+        '<div style="display:flex;gap:var(--su-space-2);"><i class="ti ti-circle-filled" style="font-size:var(--su-fs-caption);color:var(--su-action);margin-top:var(--su-space-1);"></i><div>Cliente cadastrado<div style="color:var(--su-text-muted);">'+c.desde+'</div></div></div></div>'; }
     }
     function renderConversas(cid){
       var active = cid ? CONVERSAS.filter(function(x){return x.cid==cid;})[0] : CONVERSAS[0];
@@ -297,8 +297,8 @@
       var cli = CLIENTES.filter(function(x){return x.id==active.cid;})[0];
       var msgs = active.msgs.map(function(m){ return '<div class="msg msg--'+m[0]+'">'+m[1]+'<time>'+m[2]+'</time></div>'; }).join('');
       el('view').innerHTML =
-        '<div class="chat"><div class="convs"><div style="padding:12px 14px;border-bottom:1px solid var(--su-border-subtle);"><span class="field-search" style="width:100%;"><i class="ti ti-search"></i>Buscar conversa</span></div><div class="convs__list">'+list+'</div></div>'+
-        '<div class="thread"><div class="thread__head"><span class="avatar" style="width:36px;height:36px;">'+initials(cli.nome)+'</span><div style="flex:1;"><b style="font-size:14px;">'+cli.nome+'</b><div style="font-size:12px;color:var(--su-success-fg);"><i class="ti ti-circle-filled" style="font-size:8px;"></i> Janela de 24h aberta</div></div>'+badge('success','Em atendimento')+'<button class="su-iconbtn" onclick="toast(\'Conversa transferida.\')" aria-label="Transferir"><i class="ti ti-arrows-exchange"></i></button><button class="su-iconbtn" onclick="confirmDialog(\'Encerrar atendimento?\',\'A conversa será marcada como resolvida.\',false,function(){toast(\'Atendimento encerrado.\',\'success\')})" aria-label="Encerrar"><i class="ti ti-check"></i></button></div>'+
+        '<div class="chat"><div class="convs"><div style="padding:var(--su-space-3) var(--su-space-3);border-bottom:1px solid var(--su-border-subtle);"><span class="field-search" style="width:100%;"><i class="ti ti-search"></i>Buscar conversa</span></div><div class="convs__list">'+list+'</div></div>'+
+        '<div class="thread"><div class="thread__head"><span class="avatar" style="width:36px;height:36px;">'+initials(cli.nome)+'</span><div style="flex:1;"><b style="font-size:var(--su-fs-body-sm);">'+cli.nome+'</b><div style="font-size:var(--su-fs-caption);color:var(--su-success-fg);"><i class="ti ti-circle-filled" style="font-size:var(--su-fs-caption);"></i> Janela de 24h aberta</div></div>'+badge('success','Em atendimento')+'<button class="su-iconbtn" onclick="toast(\'Conversa transferida.\')" aria-label="Transferir"><i class="ti ti-arrows-exchange"></i></button><button class="su-iconbtn" onclick="confirmDialog(\'Encerrar atendimento?\',\'A conversa será marcada como resolvida.\',false,function(){toast(\'Atendimento encerrado.\',\'success\')})" aria-label="Encerrar"><i class="ti ti-check"></i></button></div>'+
         '<div class="thread__body" id="tbody">'+msgs+'</div>'+
         '<div class="composer"><button class="su-iconbtn" aria-label="Anexar"><i class="ti ti-paperclip"></i></button><input id="msgin" placeholder="Escreva uma mensagem…" onkeydown="if(event.key===\'Enter\')sendMsg('+active.id+')"><button class="su-btn su-btn--primary" onclick="sendMsg('+active.id+')"><i class="ti ti-send"></i>Enviar</button></div></div></div>';
       var tb=el('tbody'); tb.scrollTop=tb.scrollHeight;
@@ -307,7 +307,7 @@
     function renderRelatorios(){
       el('view').innerHTML =
         '<div class="toolbar"><div class="su-segmented"><button class="su-segment">7 dias</button><button class="su-segment su-segment--active">30 dias</button><button class="su-segment">Ano</button></div>'+
-        '<select class="su-select" style="width:auto;"><option>Todos os canais</option><option>WhatsApp</option></select><div class="spacer"></div><span style="font-size:12px;color:var(--su-text-muted);"><i class="ti ti-calendar"></i> 20 jun – 19 jul</span></div>'+
+        '<select class="su-select" style="width:auto;"><option>Todos os canais</option><option>WhatsApp</option></select><div class="spacer"></div><span style="font-size:var(--su-fs-caption);color:var(--su-text-muted);"><i class="ti ti-calendar"></i> 20 jun – 19 jul</span></div>'+
         '<section class="kpis">'+
         '<div class="su-statcard"><div class="su-statcard__label">Receita</div><div class="su-statcard__value">R$ 148.230</div><div class="delta-up"><i class="ti ti-arrow-up-right"></i> 8,4%</div></div>'+
         '<div class="su-statcard"><div class="su-statcard__label">Pedidos</div><div class="su-statcard__value">1.284</div><div class="delta-up"><i class="ti ti-arrow-up-right"></i> 3,1%</div></div>'+
@@ -326,14 +326,14 @@
     }
     function ajTab(btn,i){ [].forEach.call(btn.parentNode.children,function(b){b.classList.remove('su-tab--active');}); btn.classList.add('su-tab--active'); ajRender(i); }
     function ajRender(i){
-      if(i===0){ el('ajtab').innerHTML='<div class="panel"><div class="panel__title" style="margin-bottom:14px;">Perfil da empresa</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">'+
+      if(i===0){ el('ajtab').innerHTML='<div class="panel"><div class="panel__title" style="margin-bottom:var(--su-space-3);">Perfil da empresa</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--su-space-3);">'+
         '<div class="su-field"><label class="su-field__label">Nome</label><input class="su-input" value="Pizzaria do Robson"></div>'+
         '<div class="su-field"><label class="su-field__label">CNPJ</label><input class="su-input" value="12.345.678/0001-90"></div></div>'+
-        '<div style="display:flex;justify-content:flex-end;gap:8px;margin-top:16px;"><button class="su-btn su-btn--ghost">Cancelar</button><button class="su-btn su-btn--primary" onclick="toast(\'Alterações salvas.\',\'success\')">Salvar</button></div></div>'; }
-      else { el('ajtab').innerHTML='<div class="panel" style="display:flex;flex-direction:column;gap:2px;">'+
+        '<div style="display:flex;justify-content:flex-end;gap:var(--su-space-2);margin-top:var(--su-space-4);"><button class="su-btn su-btn--ghost">Cancelar</button><button class="su-btn su-btn--primary" onclick="toast(\'Alterações salvas.\',\'success\')">Salvar</button></div></div>'; }
+      else { el('ajtab').innerHTML='<div class="panel" style="display:flex;flex-direction:column;gap:var(--su-space-1);">'+
         rowSwitch('Novo pedido','Som + aviso na tela.',true)+rowSwitch('Estoque baixo','',true)+rowSwitch('Resumo diário por e-mail','Todo dia às 8h.',false)+'</div>'; }
     }
-    function rowSwitch(t,s,on){ return '<label style="display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--su-border-subtle);"><div style="flex:1;"><b style="font-weight:500;font-size:14px;">'+t+'</b>'+(s?'<div style="color:var(--su-text-muted);font-size:12px;">'+s+'</div>':'')+'</div><span class="su-switch"><input type="checkbox" '+(on?'checked':'')+'><span class="su-switch__track"></span></span></label>'; }
+    function rowSwitch(t,s,on){ return '<label style="display:flex;align-items:center;gap:var(--su-space-3);padding:var(--su-space-3) 0;border-bottom:1px solid var(--su-border-subtle);"><div style="flex:1;"><b style="font-weight:500;font-size:var(--su-fs-body-sm);">'+t+'</b>'+(s?'<div style="color:var(--su-text-muted);font-size:var(--su-fs-caption);">'+s+'</div>':'')+'</div><span class="su-switch"><input type="checkbox" '+(on?'checked':'')+'><span class="su-switch__track"></span></span></label>'; }
 
     // ===================== TEMA / ACENTO / LOGIN =====================
     function toggleTheme(){ var h=document.documentElement; h.dataset.theme = h.dataset.theme==='dark'?'light':'dark'; }

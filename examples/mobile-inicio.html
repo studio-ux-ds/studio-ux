@@ -11,13 +11,13 @@
   <style>
     body { margin: 0; background: var(--su-surface-sunken); font-family: var(--su-font-ui); color: var(--su-text-primary); }
     .phone { max-width: 390px; margin: 0 auto; min-height: 100vh; background: var(--su-surface-base); display: flex; flex-direction: column; position: relative; }
-    .app { flex: 1; overflow: auto; padding-bottom: 84px; }
+    .app { flex: 1; overflow: auto; padding-bottom: var(--su-space-24); }
     .kpis { display: grid; grid-template-columns: 1fr 1fr; gap: var(--su-space-3); padding: 0 var(--su-space-4); }
-    .section-title { font-size: 14px; font-weight: var(--su-fw-semibold); padding: var(--su-space-5) var(--su-space-4) var(--su-space-2); display: flex; align-items: center; justify-content: space-between; }
-    .section-title a { font-size: 12px; color: var(--su-action); text-decoration: none; font-weight: var(--su-fw-medium); }
-    .delta-up { color: var(--su-success-fg); font-size: 11px; } .delta-down { color: var(--su-danger-fg); font-size: 11px; }
-    .status-badge { font-size: 11px; padding: 2px 8px; border-radius: 9999px; }
-    .toggle { background: none; border: 0; color: var(--su-text-muted); font-size: 20px; min-height: auto; }
+    .section-title { font-size: var(--su-fs-body-sm); font-weight: var(--su-fw-semibold); padding: var(--su-space-5) var(--su-space-4) var(--su-space-2); display: flex; align-items: center; justify-content: space-between; }
+    .section-title a { font-size: var(--su-fs-caption); color: var(--su-action); text-decoration: none; font-weight: var(--su-fw-medium); }
+    .delta-up { color: var(--su-success-fg); font-size: var(--su-fs-caption); } .delta-down { color: var(--su-danger-fg); font-size: var(--su-fs-caption); }
+    .status-badge { font-size: var(--su-fs-caption); padding: var(--su-space-1) var(--su-space-2); border-radius: var(--su-radius-full); }
+    .toggle { background: none; border: 0; color: var(--su-text-muted); font-size: var(--su-fs-h2); min-height: auto; }
   </style>
 </head>
 <body>
@@ -25,8 +25,8 @@
     <div class="app">
       <div class="su-m-topbar">
         <span class="su-m-topbar__title">Início</span>
-        <button class="su-m-navitem toggle" style="min-height:auto;" onclick="var h=document.documentElement;h.dataset.theme=h.dataset.theme==='dark'?'light':'dark';"><i class="ti ti-moon" style="font-size:20px;"></i></button>
-        <button class="su-m-navitem" style="min-height:auto;position:relative;"><i class="ti ti-bell" style="font-size:20px;"></i><span style="position:absolute;top:4px;right:4px;width:8px;height:8px;border-radius:50%;background:var(--su-danger);"></span></button>
+        <button class="su-m-navitem toggle" style="min-height:auto;" onclick="var h=document.documentElement;h.dataset.theme=h.dataset.theme==='dark'?'light':'dark';"><i class="ti ti-moon" style="font-size:var(--su-fs-h2);"></i></button>
+        <button class="su-m-navitem" style="min-height:auto;position:relative;"><i class="ti ti-bell" style="font-size:var(--su-fs-h2);"></i><span style="position:absolute;top:4px;right:4px;width:8px;height:8px;border-radius:50%;background:var(--su-danger);"></span></button>
       </div>
 
       <div class="su-m-greeting">

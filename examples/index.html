@@ -13,28 +13,28 @@
     body { margin: 0; background: var(--su-surface-base); font-family: var(--su-font-ui); color: var(--su-text-primary); }
     .wrap { max-width: 1080px; margin: 0 auto; padding: var(--su-space-8) var(--su-space-6) var(--su-space-16); }
     header.hero { display: flex; align-items: flex-start; gap: var(--su-space-4); margin-bottom: var(--su-space-8); }
-    .brandmark { display: inline-flex; align-items: center; gap: 10px; font-weight: var(--su-fw-semibold); font-size: 17px; }
-    .brandmark span { width: 30px; height: 30px; border-radius: 9px; background: var(--su-action); color: #fff; display: inline-flex; align-items: center; justify-content: center; }
+    .brandmark { display: inline-flex; align-items: center; gap: var(--su-space-2); font-weight: var(--su-fw-semibold); font-size: var(--su-fs-h3); }
+    .brandmark span { width: 30px; height: 30px; border-radius: var(--su-radius-md); background: var(--su-action); color: var(--su-text-on-action); display: inline-flex; align-items: center; justify-content: center; }
     .hero__text { flex: 1; }
-    .hero h1 { font-size: var(--su-text-h1); font-weight: var(--su-fw-semibold); margin: var(--su-space-4) 0 4px; }
-    .hero p { color: var(--su-text-secondary); font-size: var(--su-text-body); margin: 0; max-width: 620px; line-height: 1.55; }
+    .hero h1 { font-size: var(--su-fs-h1); font-weight: var(--su-fw-semibold); margin: var(--su-space-4) 0 var(--su-space-1); }
+    .hero p { color: var(--su-text-secondary); font-size: var(--su-fs-body); margin: 0; max-width: 620px; line-height: 1.55; }
     .controls { display: flex; align-items: center; gap: var(--su-space-3); flex-wrap: wrap; margin-bottom: var(--su-space-6); }
-    .accent-row { display: flex; gap: 8px; }
+    .accent-row { display: flex; gap: var(--su-space-2); }
     .swatch { width: 24px; height: 24px; border-radius: 50%; border: 0; cursor: pointer; outline: 2px solid var(--su-border-default); outline-offset: 2px; }
     .swatch[aria-pressed="true"] { outline-color: var(--su-action); }
     .spacer { flex: 1; }
-    .sect-title { font-size: var(--su-text-h3); font-weight: var(--su-fw-semibold); margin: var(--su-space-8) 0 var(--su-space-4); display: flex; align-items: center; gap: 8px; }
-    .sect-title .count { font-size: 12px; font-weight: var(--su-fw-medium); color: var(--su-text-muted); background: var(--su-surface-sunken); border-radius: var(--su-radius-full); padding: 2px 9px; }
+    .sect-title { font-size: var(--su-fs-h3); font-weight: var(--su-fw-semibold); margin: var(--su-space-8) 0 var(--su-space-4); display: flex; align-items: center; gap: var(--su-space-2); }
+    .sect-title .count { font-size: var(--su-fs-caption); font-weight: var(--su-fw-medium); color: var(--su-text-muted); background: var(--su-surface-sunken); border-radius: var(--su-radius-full); padding: var(--su-space-1) var(--su-space-2); }
     .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: var(--su-space-4); }
     .card { display: flex; flex-direction: column; text-decoration: none; color: inherit; background: var(--su-surface-raised); border: 1px solid var(--su-border-subtle); border-radius: var(--su-radius-lg); overflow: hidden; transition: border-color var(--su-duration-fast) var(--su-ease-standard); }
     .card:hover { border-color: var(--su-action); }
-    .thumb { height: 128px; display: flex; align-items: center; justify-content: center; background: var(--su-surface-sunken); border-bottom: 1px solid var(--su-border-subtle); color: var(--su-action); font-size: 40px; position: relative; }
-    .thumb .plat { position: absolute; top: 8px; right: 8px; font-size: 10px; font-weight: var(--su-fw-medium); padding: 2px 8px; border-radius: var(--su-radius-full); background: var(--su-surface-raised); color: var(--su-text-secondary); border: 1px solid var(--su-border-subtle); }
+    .thumb { height: 128px; display: flex; align-items: center; justify-content: center; background: var(--su-surface-sunken); border-bottom: 1px solid var(--su-border-subtle); color: var(--su-action); font-size: var(--su-fs-display); position: relative; }
+    .thumb .plat { position: absolute; top: 8px; right: 8px; font-size: var(--su-fs-caption); font-weight: var(--su-fw-medium); padding: var(--su-space-1) var(--su-space-2); border-radius: var(--su-radius-full); background: var(--su-surface-raised); color: var(--su-text-secondary); border: 1px solid var(--su-border-subtle); }
     .card__body { padding: var(--su-space-4); }
-    .card__title { font-weight: var(--su-fw-medium); font-size: 14px; display: flex; align-items: center; justify-content: space-between; }
-    .card__title .ti { color: var(--su-text-muted); font-size: 16px; }
-    .card__desc { color: var(--su-text-muted); font-size: 12px; margin-top: 3px; line-height: 1.4; }
-    footer { margin-top: var(--su-space-12); padding-top: var(--su-space-5); border-top: 1px solid var(--su-border-subtle); color: var(--su-text-muted); font-size: var(--su-text-caption); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+    .card__title { font-weight: var(--su-fw-medium); font-size: var(--su-fs-body-sm); display: flex; align-items: center; justify-content: space-between; }
+    .card__title .ti { color: var(--su-text-muted); font-size: var(--su-fs-h3); }
+    .card__desc { color: var(--su-text-muted); font-size: var(--su-fs-caption); margin-top: var(--su-space-1); line-height: 1.4; }
+    footer { margin-top: var(--su-space-12); padding-top: var(--su-space-5); border-top: 1px solid var(--su-border-subtle); color: var(--su-text-muted); font-size: var(--su-fs-caption); display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--su-space-2); }
     footer a { color: var(--su-action); text-decoration: none; }
   </style>
 </head>
@@ -50,7 +50,7 @@
     </header>
 
     <div class="controls">
-      <span style="font-size:13px;color:var(--su-text-secondary);">Cor de ação:</span>
+      <span style="font-size:var(--su-fs-body-sm);color:var(--su-text-secondary);">Cor de ação:</span>
       <div class="accent-row" id="accents">
         <button class="swatch" title="Índigo" data-a="#4F46E5" aria-pressed="true" style="background:#4F46E5;"></button>
         <button class="swatch" title="Azul" data-a="#2563EB" aria-pressed="false" style="background:#2563EB;"></button>

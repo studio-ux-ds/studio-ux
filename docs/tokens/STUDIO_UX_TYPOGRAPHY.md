@@ -47,7 +47,7 @@
 
 **EN** — Each typographic role combines four axes, each its own set of tokens:
 
-- **Size / `font.size.*`** — o tamanho, vindo da escala modular (§3).
+- **Size / `font.size.*`** — o tamanho, vindo da escala modular (§3). **Implementação (v1.1.12):** materializado em **duas famílias de token CSS**, porque `font-size:` e o shorthand `font:` exigem formas diferentes: `--su-text-{display,h1,h2,h3,body,body-sm,label,caption}` traz o par `size/line-height` (para o shorthand `font: peso 20px/1.3 família`), e `--su-fs-{…}` traz o **tamanho puro** (para `font-size: var(--su-fs-h2)`). Usar o par em `font-size:` é **CSS inválido** (o browser ignora e o texto herda o tamanho — bug silencioso); o linter `typography-off-role` reprova esse uso e aponta o `--su-fs-*`.
 - **Weight / `font.weight.*`** — poucos pesos com papel (`regular`, `medium`, `semibold`, `bold`). Peso é ênfase, não substituto de nível de tamanho (§8).
 - **Line-height / `font.line-height.*`** — a entrelinha, ligada ao ritmo vertical (§5). Texto de conteúdo pede mais folga (leitura); títulos pedem menos (compacidade).
 - **Letter-spacing / `font.tracking.*`** — o tracking, sutil: levemente negativo em títulos grandes, levemente positivo em rótulos pequenos em caixa alta. Nunca decorativo.

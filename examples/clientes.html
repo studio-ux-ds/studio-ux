@@ -14,13 +14,13 @@
     .main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
     .content { padding: var(--su-space-6); }
     .toolbar { display: flex; align-items: center; gap: var(--su-space-3); padding: var(--su-space-3) var(--su-space-4); }
-    .bulkbar { display: none; align-items: center; gap: var(--su-space-5); padding: var(--su-space-3) var(--su-space-4); background: var(--su-action-tint); font-size: 12px; }
-    .bulkbar .act { display: inline-flex; align-items: center; gap: 5px; color: var(--su-action); cursor: pointer; }
+    .bulkbar { display: none; align-items: center; gap: var(--su-space-5); padding: var(--su-space-3) var(--su-space-4); background: var(--su-action-tint); font-size: var(--su-fs-caption); }
+    .bulkbar .act { display: inline-flex; align-items: center; gap: var(--su-space-1); color: var(--su-action); cursor: pointer; }
     .bulkbar .act.dz { color: var(--su-danger-fg); }
     .row-menu { position: relative; }
     .row-menu .su-menu { display: none; position: absolute; top: 30px; right: 0; z-index: 30; }
     .row-menu.open .su-menu { display: block; }
-    .field-search { display: flex; align-items: center; gap: 8px; border: 1px solid var(--su-border-default); border-radius: var(--su-radius-md); padding: 6px 10px; color: var(--su-text-muted); font-size: 12px; }
+    .field-search { display: flex; align-items: center; gap: var(--su-space-2); border: 1px solid var(--su-border-default); border-radius: var(--su-radius-md); padding: var(--su-space-1) var(--su-space-2); color: var(--su-text-muted); font-size: var(--su-fs-caption); }
     .selrow td { background: color-mix(in srgb, var(--su-action) 5%, transparent); }
     .hidden { display: none !important; }
     .form-page { max-width: 780px; }
@@ -32,27 +32,27 @@
 <body class="su">
   <div class="shell">
     <aside class="su-sidebar">
-      <div class="su-sidebar__brand"><span style="width:22px;height:22px;border-radius:7px;background:var(--su-action);color:#fff;display:inline-flex;align-items:center;justify-content:center;"><i class="ti ti-square-rounded"></i></span>Studio UX</div>
+      <div class="su-sidebar__brand"><span style="width:22px;height:22px;border-radius:var(--su-radius-sm);background:var(--su-action);color:var(--su-text-on-action);display:inline-flex;align-items:center;justify-content:center;"><i class="ti ti-square-rounded"></i></span>Studio UX</div>
       <nav class="su-nav">
-         <a class="su-nav__item" href="dashboard.html"><i class="ti ti-layout-dashboard" style="font-size:18px;"></i>Painel</a>
-        <a class="su-nav__item su-nav__item--active" href="clientes.html"><i class="ti ti-users" style="font-size:18px;"></i>Clientes</a>
-        <a class="su-nav__item" href="chat.html"><i class="ti ti-message-2" style="font-size:18px;"></i>Conversas</a>
-        <a class="su-nav__item" href="analytics.html"><i class="ti ti-chart-bar" style="font-size:18px;"></i>Relatórios</a>
-        <a class="su-nav__item" href="configuracoes.html"><i class="ti ti-settings" style="font-size:18px;"></i>Ajustes</a>
+         <a class="su-nav__item" href="dashboard.html"><i class="ti ti-layout-dashboard" style="font-size:var(--su-fs-h2);"></i>Painel</a>
+        <a class="su-nav__item su-nav__item--active" href="clientes.html"><i class="ti ti-users" style="font-size:var(--su-fs-h2);"></i>Clientes</a>
+        <a class="su-nav__item" href="chat.html"><i class="ti ti-message-2" style="font-size:var(--su-fs-h2);"></i>Conversas</a>
+        <a class="su-nav__item" href="analytics.html"><i class="ti ti-chart-bar" style="font-size:var(--su-fs-h2);"></i>Relatórios</a>
+        <a class="su-nav__item" href="configuracoes.html"><i class="ti ti-settings" style="font-size:var(--su-fs-h2);"></i>Ajustes</a>
       </nav>
-      <div class="su-sidebar__footer" style="display:flex;align-items:center;gap:9px;">
-        <span style="width:28px;height:28px;border-radius:50%;background:var(--su-surface-sunken);display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:var(--su-text-secondary);">RM</span>
-        <span style="line-height:1.25;flex:1;"><span style="display:block;font-size:12px;font-weight:500;">Robson</span><span style="display:block;font-size:11px;color:var(--su-text-muted);">Administrador</span></span>
+      <div class="su-sidebar__footer" style="display:flex;align-items:center;gap:var(--su-space-2);">
+        <span style="width:28px;height:28px;border-radius:50%;background:var(--su-surface-sunken);display:inline-flex;align-items:center;justify-content:center;font-size:var(--su-fs-caption);font-weight:500;color:var(--su-text-secondary);">RM</span>
+        <span style="line-height:1.25;flex:1;"><span style="display:block;font-size:var(--su-fs-caption);font-weight:500;">Robson</span><span style="display:block;font-size:var(--su-fs-caption);color:var(--su-text-muted);">Administrador</span></span>
         <i class="ti ti-logout" style="color:var(--su-text-muted);"></i>
       </div>
-      <div style="padding:0 12px 12px;text-align:center;font-size:10px;color:var(--su-text-muted);">v1.0.3</div>
+      <div style="padding:0 var(--su-space-3) var(--su-space-3);text-align:center;font-size:var(--su-fs-caption);color:var(--su-text-muted);">v1.0.3</div>
     </aside>
 
     <div class="main">
       <header class="su-topbar">
         <div style="flex:1;">
           <div class="su-breadcrumb" id="crumb">Início <span>/</span> Clientes</div>
-          <div style="font-size:16px;font-weight:600;" id="crumb-title">Clientes</div>
+          <div style="font-size:var(--su-fs-h3);font-weight:600;" id="crumb-title">Clientes</div>
         </div>
         <button class="su-iconbtn" aria-label="Alternar tema" onclick="var h=document.documentElement;h.dataset.theme=h.dataset.theme==='dark'?'light':'dark';"><i class="ti ti-moon"></i></button>
       </header>
@@ -61,7 +61,7 @@
       <div class="content" id="listView">
         <div class="su-table-card">
           <div class="toolbar" id="normalbar">
-            <span style="font-size:15px;font-weight:600;flex:1;">Clientes</span>
+            <span style="font-size:var(--su-fs-body);font-weight:600;flex:1;">Clientes</span>
             <span class="field-search"><i class="ti ti-search"></i>Buscar</span>
             <button class="su-btn su-btn--secondary su-btn--sm"><i class="ti ti-filter"></i>Filtros</button>
             <button class="su-btn su-btn--primary su-btn--sm" onclick="showForm('Novo cliente')"><i class="ti ti-plus"></i>Novo cliente</button>
@@ -76,8 +76,8 @@
           <table class="su-table">
             <thead>
               <tr>
-                <th style="width:34px;padding-left:16px;"><i class="ti ti-square" id="all" style="cursor:pointer;color:var(--su-text-muted);font-size:15px;"></i></th>
-                <th>Cliente <i class="ti ti-chevron-down" style="font-size:12px;"></i></th>
+                <th style="width:34px;padding-left:var(--su-space-4);"><i class="ti ti-square" id="all" style="cursor:pointer;color:var(--su-text-muted);font-size:var(--su-fs-body);"></i></th>
+                <th>Cliente <i class="ti ti-chevron-down" style="font-size:var(--su-fs-caption);"></i></th>
                 <th>Status</th>
                 <th class="num">Total</th>
                 <th style="width:44px;"></th>
@@ -85,7 +85,7 @@
             </thead>
             <tbody id="rows"></tbody>
           </table>
-          <div style="display:flex;align-items:center;justify-content:space-between;padding:11px 16px;border-top:1px solid var(--su-border-subtle);font-size:12px;color:var(--su-text-secondary);">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:var(--su-space-3) var(--su-space-4);border-top:1px solid var(--su-border-subtle);font-size:var(--su-fs-caption);color:var(--su-text-secondary);">
             <span>1–5 de 1.902</span>
             <span class="su-pagination">
               <span class="su-page su-page--nav"><i class="ti ti-chevron-left"></i></span>
@@ -101,13 +101,13 @@
         <div class="form-page">
           <div class="form-head">
             <button class="su-iconbtn" aria-label="Voltar à lista" onclick="showList()"><i class="ti ti-arrow-left"></i></button>
-            <div style="flex:1;"><div style="font-size:18px;font-weight:600;" id="form-title">Novo cliente</div><div style="font-size:13px;color:var(--su-text-secondary);">Preencha em etapas.</div></div>
+            <div style="flex:1;"><div style="font-size:var(--su-fs-h2);font-weight:600;" id="form-title">Novo cliente</div><div style="font-size:var(--su-fs-body-sm);color:var(--su-text-secondary);">Preencha em etapas.</div></div>
           </div>
 
           <div class="su-card" style="padding:0;">
-            <div class="su-stepper" id="stepper" style="padding:20px 24px;border-bottom:1px solid var(--su-border-subtle);"></div>
+            <div class="su-stepper" id="stepper" style="padding:var(--su-space-5) var(--su-space-6);border-bottom:1px solid var(--su-border-subtle);"></div>
 
-            <div style="padding:24px;">
+            <div style="padding:var(--su-space-6);">
               <div class="pane on" data-p="1">
                 <div class="su-form-section__title">Dados pessoais</div>
                 <div class="su-form-grid">
@@ -125,7 +125,7 @@
                   <div class="su-field">
                     <label class="su-field__label">Telefone</label>
                     <div class="su-phoneinput">
-                      <button class="su-phoneinput__country" type="button" onclick="return false">🇧🇷 +55 <i class="ti ti-chevron-down" style="font-size:13px;color:var(--su-text-muted);"></i></button>
+                      <button class="su-phoneinput__country" type="button" onclick="return false">🇧🇷 +55 <i class="ti ti-chevron-down" style="font-size:var(--su-fs-body-sm);color:var(--su-text-muted);"></i></button>
                       <input class="su-phoneinput__input" placeholder="27 99999-8888">
                     </div>
                   </div>
@@ -151,7 +151,7 @@
               </div>
             </div>
 
-            <div class="su-form-actions" style="padding:16px 24px;border-top:1px solid var(--su-border-subtle);justify-content:space-between;">
+            <div class="su-form-actions" style="padding:var(--su-space-4) var(--su-space-6);border-top:1px solid var(--su-border-subtle);justify-content:space-between;">
               <button class="su-btn su-btn--secondary" id="prevBtn" onclick="prevStep()"><i class="ti ti-x"></i>Cancelar</button>
               <button class="su-btn su-btn--primary" id="nextBtn" onclick="nextStep()">Próximo <i class="ti ti-arrow-right"></i></button>
             </div>
@@ -174,7 +174,7 @@
     var menu = '<div class="su-menu"><div class="su-menu__item" onclick="showForm(\'Editar cliente\')"><i class="ti ti-eye"></i>Ver detalhe</div><div class="su-menu__item" onclick="showForm(\'Editar cliente\')"><i class="ti ti-edit"></i>Editar</div><div class="su-menu__item"><i class="ti ti-mail"></i>Enviar cobrança</div><div class="su-menu__sep"></div><div class="su-menu__item su-menu__item--danger"><i class="ti ti-trash"></i>Excluir</div></div>';
     data.forEach(function(d,i){
       var tr = document.createElement('tr'); tr.dataset.i = i;
-      tr.innerHTML = '<td style="padding-left:16px;"><i class="ti ti-square ck" data-ck="'+i+'" style="cursor:pointer;color:var(--su-text-muted);font-size:15px;"></i></td>'+
+      tr.innerHTML = '<td style="padding-left:var(--su-space-4);"><i class="ti ti-square ck" data-ck="'+i+'" style="cursor:pointer;color:var(--su-text-muted);font-size:var(--su-fs-body);"></i></td>'+
         '<td>'+d.n+'</td><td><span class="su-badge su-badge--'+d.k+'">'+d.s+'</span></td>'+
         '<td class="num">'+d.v+'</td>'+
         '<td class="row-menu"><button class="su-iconbtn" data-kb="'+i+'" aria-label="Ações"><i class="ti ti-dots"></i></button>'+menu+'</td>';

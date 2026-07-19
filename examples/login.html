@@ -18,34 +18,34 @@
       .brandside { position: relative; display: flex; flex-direction: column; justify-content: center; gap: var(--su-space-6); padding: var(--su-space-16) var(--su-space-12); background: var(--su-surface-raised); border-right: 1px solid var(--su-border-subtle); }
     }
     /* SLOT DE MARCA — troque o <span> pela logo do cliente: <img class="su-brand__logo" src="...">. */
-    .brandmark { position: absolute; top: var(--su-space-8); left: var(--su-space-12); display: inline-flex; align-items: center; gap: 10px; font-weight: var(--su-fw-semibold); font-size: 16px; }
-    .su-brand__logo { width: 28px; height: 28px; border-radius: 8px; background: var(--su-action); color: #fff; display: inline-flex; align-items: center; justify-content: center; object-fit: contain; }
+    .brandmark { position: absolute; top: var(--su-space-8); left: var(--su-space-12); display: inline-flex; align-items: center; gap: var(--su-space-2); font-weight: var(--su-fw-semibold); font-size: var(--su-fs-h3); }
+    .su-brand__logo { width: 28px; height: 28px; border-radius: var(--su-radius-md); background: var(--su-action); color: var(--su-text-on-action); display: inline-flex; align-items: center; justify-content: center; object-fit: contain; }
     .pitch { max-width: 400px; }
-    .pitch h1 { font-size: var(--su-text-display); font-weight: var(--su-fw-semibold); line-height: 1.2; margin: 0 0 var(--su-space-3); }
-    .pitch p { color: var(--su-text-secondary); font-size: var(--su-text-body); line-height: 1.6; margin: 0; }
+    .pitch h1 { font-size: var(--su-fs-display); font-weight: var(--su-fw-semibold); line-height: 1.2; margin: 0 0 var(--su-space-3); }
+    .pitch p { color: var(--su-text-secondary); font-size: var(--su-fs-body); line-height: 1.6; margin: 0; }
     .feats { max-width: 400px; display: flex; flex-direction: column; gap: var(--su-space-3); }
-    .feat { display: flex; align-items: center; gap: 10px; font-size: var(--su-text-body-sm); color: var(--su-text-secondary); }
-    .feat i { width: 26px; height: 26px; border-radius: 7px; background: var(--su-action-tint); color: var(--su-action); display: inline-flex; align-items: center; justify-content: center; font-size: 15px; flex: none; }
-    .brandfoot { position: absolute; bottom: var(--su-space-8); left: var(--su-space-12); font-size: var(--su-text-caption); color: var(--su-text-muted); }
+    .feat { display: flex; align-items: center; gap: var(--su-space-2); font-size: var(--su-fs-body-sm); color: var(--su-text-secondary); }
+    .feat i { width: 26px; height: 26px; border-radius: var(--su-radius-sm); background: var(--su-action-tint); color: var(--su-action); display: inline-flex; align-items: center; justify-content: center; font-size: var(--su-fs-body); flex: none; }
+    .brandfoot { position: absolute; bottom: var(--su-space-8); left: var(--su-space-12); font-size: var(--su-fs-caption); color: var(--su-text-muted); }
     /* Formulário */
     .formside { display: flex; align-items: center; justify-content: center; padding: var(--su-space-6); }
     .card { width: 100%; max-width: 380px; display: flex; flex-direction: column; gap: var(--su-space-5); }
     .brandmark--mobile { display: flex; }
     @media (min-width: 900px) { .brandmark--mobile { display: none; } }
-    .card__head h2 { font-size: var(--su-text-h2); font-weight: var(--su-fw-semibold); margin: 0 0 4px; }
-    .card__head p { color: var(--su-text-secondary); font-size: var(--su-text-body-sm); margin: 0; }
-    .link { color: var(--su-action); text-decoration: none; font-weight: var(--su-fw-medium); font-size: var(--su-text-body-sm); }
-    .forgot { align-self: flex-end; margin-top: 7px; font-size: var(--su-text-caption); color: var(--su-text-muted); font-weight: var(--su-fw-regular); transition: color var(--su-duration-fast) var(--su-ease-standard); }
+    .card__head h2 { font-size: var(--su-fs-h2); font-weight: var(--su-fw-semibold); margin: 0 0 var(--su-space-1); }
+    .card__head p { color: var(--su-text-secondary); font-size: var(--su-fs-body-sm); margin: 0; }
+    .link { color: var(--su-action); text-decoration: none; font-weight: var(--su-fw-medium); font-size: var(--su-fs-body-sm); }
+    .forgot { align-self: flex-end; margin-top: var(--su-space-2); font-size: var(--su-fs-caption); color: var(--su-text-muted); font-weight: var(--su-fw-regular); transition: color var(--su-duration-fast) var(--su-ease-standard); }
     .forgot:hover { color: var(--su-action); }
     .inputwrap { position: relative; display: flex; align-items: center; }
-    .inputwrap > .ti { position: absolute; left: 12px; color: var(--su-text-muted); font-size: 18px; pointer-events: none; }
-    .inputwrap .su-input { padding-left: 38px; }
-    .checkline { display: flex; align-items: center; gap: 8px; color: var(--su-text-secondary); font-size: var(--su-text-body-sm); }
-    .divider-or { display: flex; align-items: center; gap: 12px; color: var(--su-text-muted); font-size: var(--su-text-caption); }
+    .inputwrap > .ti { position: absolute; left: 12px; color: var(--su-text-muted); font-size: var(--su-fs-h2); pointer-events: none; }
+    .inputwrap .su-input { padding-left: var(--su-space-8); }
+    .checkline { display: flex; align-items: center; gap: var(--su-space-2); color: var(--su-text-secondary); font-size: var(--su-fs-body-sm); }
+    .divider-or { display: flex; align-items: center; gap: var(--su-space-3); color: var(--su-text-muted); font-size: var(--su-fs-caption); }
     .divider-or::before, .divider-or::after { content: ""; flex: 1; height: 1px; background: var(--su-border-subtle); }
     .sso { display: flex; gap: var(--su-space-2); }
     .sso .su-btn { flex: 1; }
-    .signup { text-align: center; font-size: var(--su-text-body-sm); color: var(--su-text-secondary); }
+    .signup { text-align: center; font-size: var(--su-fs-body-sm); color: var(--su-text-secondary); }
     .themetoggle { position: fixed; top: 16px; right: 16px; z-index: 5; }
   </style>
 </head>
