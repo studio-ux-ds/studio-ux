@@ -1,6 +1,6 @@
 {
   "name": "studio-ux",
-  "version": "1.1.10",
+  "version": "1.1.11",
   "private": true,
   "description": "Studio UX — Design System + plataforma. Monorepo dos pacotes publicáveis (tokens, components, mobile, react, react-native, icons).",
   "workspaces": [
@@ -26,6 +26,7 @@
     "pack:all": "npm pack --workspaces --pack-destination ./dist-packs",
     "create": "node tools/generator/generate.mjs",
     "generate": "node tools/generator/templates.mjs",
+    "audit": "node tools/certification/certify.mjs",
     "build:icons": "node packages/icons/build-icons.mjs",
     "export:tokens": "node tools/exporters/export-tokens.mjs",
     "lint": "node tools/linter/lint.mjs",

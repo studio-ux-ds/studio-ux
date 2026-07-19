@@ -94,24 +94,24 @@ function listArchetypes() {
 
 // --- construtores de shell (markup REAL; classes oficiais .su-* / .su-m-*) ---
 const brand = (name) =>
-  `<span class="su-brand__logo" style="width:22px;height:22px;border-radius:7px;background:var(--su-action);color:#fff;display:inline-flex;align-items:center;justify-content:center;"><i class="ti ti-square-rounded"></i></span>${name}`;
+  `<span class="su-brand__logo" style="width:22px;height:22px;border-radius:var(--su-radius-sm);background:var(--su-action);color:var(--su-text-on-action);display:inline-flex;align-items:center;justify-content:center;"><i class="ti ti-square-rounded"></i></span>${name}`;
 
 function contentPoint(scr) {
   // Ponto de conteúdo vazio (Art. 19): shell pronto, dado de negócio ainda não.
   return `<div class="su-empty">
         <div class="su-empty__icon"><i class="ti ti-${scr.icon}"></i></div>
         <div class="su-empty__title">${scr.label}</div>
-        <p style="color:var(--su-text-muted);font-size:13px;max-width:420px;margin:6px auto 0;">${scr.note}</p>
-        <p style="color:var(--su-text-muted);font-size:12px;margin-top:10px;">Ponto de conteúdo — instancie o molde <b>${scr.mold}</b> (generation/TEMPLATES) e conecte o dado de negócio.</p>
+        <p style="color:var(--su-text-muted);font-size:var(--su-text-body-sm);max-width:420px;margin:var(--su-space-1) auto 0;">${scr.note}</p>
+        <p style="color:var(--su-text-muted);font-size:var(--su-text-caption);margin-top:var(--su-space-2);">Ponto de conteúdo — instancie o molde <b>${scr.mold}</b> (generation/TEMPLATES) e conecte o dado de negócio.</p>
       </div>`;
 }
 
 function desktopHtml(name, arch, product) {
   const nav = arch.nav.map((s, i) =>
-    `        <a class="su-nav__item${i === 0 ? " su-nav__item--active" : ""}" data-route="${s.route}"><i class="ti ti-${s.icon}" style="font-size:18px;"></i>${s.label}</a>`).join("\n");
+    `        <a class="su-nav__item${i === 0 ? " su-nav__item--active" : ""}" data-route="${s.route}"><i class="ti ti-${s.icon}" style="font-size:var(--su-icon-sm);"></i>${s.label}</a>`).join("\n");
   const pages = arch.nav.map((s, i) =>
     `    <section class="su-page${i === 0 ? " su-page--active" : ""}" data-page="${s.route}">
-      <h1 style="font-size:20px;margin:0 0 4px;">${s.label}</h1>
+      <h1 style="font-size:var(--su-text-h2);margin:0 0 var(--su-space-1);">${s.label}</h1>
       ${contentPoint(s)}
     </section>`).join("\n");
   return `<!DOCTYPE html>
@@ -142,15 +142,15 @@ function desktopHtml(name, arch, product) {
       <nav class="su-nav" id="nav">
 ${nav}
       </nav>
-      <div class="su-sidebar__footer" style="display:flex;align-items:center;gap:9px;">
-        <span class="su-brand__logo" style="width:26px;height:26px;border-radius:50%;background:var(--su-surface-raised);color:var(--su-text-muted);display:inline-flex;align-items:center;justify-content:center;">US</span>
-        <div style="flex:1;font-size:12px;"><b>Usuário</b><div style="color:var(--su-text-muted);">Papel</div></div>
+      <div class="su-sidebar__footer" style="display:flex;align-items:center;gap:var(--su-space-2);">
+        <span class="su-brand__logo" style="width:26px;height:26px;border-radius:var(--su-radius-full);background:var(--su-surface-raised);color:var(--su-text-muted);display:inline-flex;align-items:center;justify-content:center;">US</span>
+        <div style="flex:1;font-size:var(--su-text-caption);"><b>Usuário</b><div style="color:var(--su-text-muted);">Papel</div></div>
         <i class="ti ti-logout" style="color:var(--su-text-muted);cursor:pointer;"></i>
       </div>
     </aside>
     <div class="main">
       <header class="su-topbar">
-        <b style="font-size:14px;">${arch.__title}</b>
+        <b style="font-size:var(--su-text-body-sm);">${arch.__title}</b>
         <span style="flex:1;"></span>
         <button class="su-iconbtn" aria-label="Alternar tema" onclick="document.documentElement.dataset.theme=document.documentElement.dataset.theme==='dark'?'light':'dark'"><i class="ti ti-moon"></i></button>
       </header>

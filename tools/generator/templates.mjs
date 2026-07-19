@@ -18,10 +18,10 @@ const step = (label, mod = "") => `<div class="su-step ${mod}"><span class="su-s
 export const MOLDS = {
   login: { guide: "PATTERNS", desc: "acesso — cartão central + e-mail/senha + ação única (P6)", render: (p, name) =>
     `<div class="loginwrap"><div class="su-card logincard">
-      <div class="su-brand" style="justify-content:center;margin-bottom:4px;"><span class="su-brand__logo bl">${name.slice(0,1).toUpperCase()}</span>${name}</div>
+      <div class="su-brand" style="justify-content:center;margin-bottom:var(--su-space-1);"><span class="su-brand__logo bl">${name.slice(0,1).toUpperCase()}</span>${name}</div>
       ${field("E-mail", "email", "voce@empresa.com")}
       <div class="su-field"><label class="su-field__label">Senha</label><input class="su-input" type="password"><a class="forgot" href="#" onclick="return false">Esqueci a senha</a></div>
-      <button class="su-btn su-btn--primary" style="width:100%;margin-top:4px;">Entrar</button>
+      <button class="su-btn su-btn--primary" style="width:100%;margin-top:var(--su-space-1);">Entrar</button>
     </div></div>` },
 
   dashboard: { guide: "DASHBOARD", desc: "leitura de indicadores — KPIs + gráfico + resumo", render: () =>
@@ -65,7 +65,7 @@ export const MOLDS = {
      <div class="su-form-actions"><button class="su-btn su-btn--ghost">Voltar</button><button class="su-btn su-btn--primary">Avançar</button></div>` },
 
   empty: { guide: "COMPONENT_LIBRARY", desc: "estado vazio de tela inteira — EmptyState + ação", render: () =>
-    `<div class="fullempty">${cp("inbox","Nada por aqui ainda","Descreva o que falta e sugira a ação.")}<button class="su-btn su-btn--primary" style="margin-top:12px;"><i class="ti ti-plus"></i>Começar</button></div>` },
+    `<div class="fullempty">${cp("inbox","Nada por aqui ainda","Descreva o que falta e sugira a ação.")}<button class="su-btn su-btn--primary" style="margin-top:var(--su-space-3);"><i class="ti ti-plus"></i>Começar</button></div>` },
 };
 
 export const MOLD_NAMES = Object.keys(MOLDS);
@@ -93,18 +93,18 @@ function page(product, name, mold) {
     .screen { max-width:1024px; margin:0 auto; padding:var(--su-space-6); display:flex; flex-direction:column; gap:var(--su-space-5); }
     .phone { max-width:390px; margin:0 auto; min-height:100vh; background:var(--su-surface-base); }
     .phone .screen { padding:var(--su-space-4); gap:var(--su-space-4); }
-    h1 { font-size:20px; margin:0; }
+    h1 { font-size:var(--su-text-h2); margin:0; }
     .kpis { display:grid; grid-template-columns:repeat(4,1fr); gap:var(--su-space-3); }
     .row2 { display:grid; grid-template-columns:1fr 1fr; gap:var(--su-space-4); }
     .listhead { display:flex; align-items:center; justify-content:space-between; }
-    .filters { display:flex; gap:var(--su-space-3); } .ff { flex:1; } .searchf { display:flex; align-items:center; gap:8px; }
-    .su-pagination { display:flex; align-items:center; justify-content:center; gap:12px; } .pg { color:var(--su-text-muted); font-size:13px; }
+    .filters { display:flex; gap:var(--su-space-3); } .ff { flex:1; } .searchf { display:flex; align-items:center; gap:var(--su-space-2); }
+    .su-pagination { display:flex; align-items:center; justify-content:center; gap:var(--su-space-3); } .pg { color:var(--su-text-muted); font-size:var(--su-text-body-sm); }
     .loginwrap { min-height:80vh; display:flex; align-items:center; justify-content:center; } .logincard { width:340px; display:flex; flex-direction:column; gap:var(--su-space-3); padding:var(--su-space-6); }
-    .bl { background:var(--su-action); color:#fff; width:24px; height:24px; border-radius:7px; display:inline-flex; align-items:center; justify-content:center; }
-    .forgot { align-self:flex-end; margin-top:6px; font-size:12px; color:var(--su-text-muted); text-decoration:none; } .forgot:hover { color:var(--su-action); }
+    .bl { background:var(--su-action); color:var(--su-text-on-action); width:24px; height:24px; border-radius:var(--su-radius-sm); display:inline-flex; align-items:center; justify-content:center; }
+    .forgot { align-self:flex-end; margin-top:var(--su-space-1); font-size:var(--su-text-caption); color:var(--su-text-muted); text-decoration:none; } .forgot:hover { color:var(--su-action); }
     .formcard { display:flex; flex-direction:column; gap:var(--su-space-4); } /* su-form-actions é estilizado pelo components.css (dono) */
-    .backlink { color:var(--su-text-muted); text-decoration:none; font-size:13px; } .ch { display:block; margin-bottom:8px; }
-    .cp { color:var(--su-text-muted); font-size:12px; margin:6px 0 0; }
+    .backlink { color:var(--su-text-muted); text-decoration:none; font-size:var(--su-text-body-sm); } .ch { display:block; margin-bottom:var(--su-space-2); }
+    .cp { color:var(--su-text-muted); font-size:var(--su-text-caption); margin:var(--su-space-1) 0 0; }
     .fullempty { text-align:center; padding:var(--su-space-16) 0; }
     @media (max-width:720px){ .kpis{grid-template-columns:repeat(2,1fr);} .row2{grid-template-columns:1fr;} }
   </style>

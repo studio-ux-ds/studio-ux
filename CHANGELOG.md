@@ -12,6 +12,17 @@ Nada pendente. / Nothing pending.
 
 ---
 
+## [1.1.11] — 2026-07-19 — Certification: `studio audit` (consome o Linter) + conformidade dos geradores · Certification tool
+
+- ✅ **Ferramenta materializada:** `tools/certification/certify.mjs`, acionada por `studio audit <alvo>`. Implementa `STUDIO_UX_CERTIFICATION`. Regra de ouro (§8.4): *Linter detecta · Compliance mede · **Certification gradua***. Ela **consome** as violações do Linter e as transforma em veredito de eliminatórios — **não re-detecta** (SSOT, Art. 10). Alvo tela (`.html`) → laudo de tela; alvo projeto (`studio-ux.json`) → laudo de sistema (shell + `src/screens/*` + dependência de versão declarada).
+- **Honesta por construção (§8.3, Art. 21):** gradua só o **estaticamente verificável** (eliminatórios `P1, P3, P4, P6, P7, P11, P14, P17, P18`); **não imprime nível** (Bronze→Platinum) porque isso exige evidência humana (a11y nos 2 temas, estados, DNA visual, Desktop+Mobile), e é explícita sobre os eliminatórios só-humanos (`P12, P13, P19`). "Selo que mente é o pior erro" — prefere reportar o que não pode provar a fingir um nível.
+- 🔎 **Achado real na estreia — corrigido na fonte:** a certificação pegou que os geradores (`generate.mjs`/`templates.mjs`) emitiam **valores mágicos** (P1/P7/P8/P20 — `font-size`/`color`/`border-radius`/`gap`/`margin` crus) no `<style>` das telas, tornando a saída de `studio create`+`generate` **não-certificável**. Trocados por tokens (`--su-text-*`, `--su-space-*`, `--su-radius-*`, `--su-text-on-action`, `--su-icon-*`); agora **todo projeto gerado passa o piso automático** (shell + 9 moldes). Erro visível, corrigido — não suavizado.
+- **CLI completa:** `studio audit` deixa de ser "não construído" e delega à ferramenta. **Os 11 comandos agora delegam de verdade** ao seu dono — `notYet` (código morto) removido. `npm run audit`.
+- Docs vivas: nota de estado no `CERTIFICATION` (§9) e no `CLI`; `tools/certification/README.md`.
+- Trem de release: 1.1.10 → **1.1.11**, lockstep (6 pacotes).
+
+---
+
 ## [1.1.10] — 2026-07-19 — Templates / Component Library: moldes de tela + `studio generate` · Screen templates
 
 - ✅ **Doc dona faltante escrita:** `docs/generation/STUDIO_UX_TEMPLATES.md` — os **moldes de tela** que o Project Generator vinha *citando* (`generation/TEMPLATES`) sem que a spec existisse. Buraco estrutural fechado: agora há dono próprio (o que é um molde §1, o catálogo §2, "compõe não redefine" §3, relação com Generator/CLI/Library §4).

@@ -36,15 +36,8 @@ const COMMANDS = {
   playground: { owner: "tools/PLAYGROUND + DEVTOOLS", desc: "aponta o catálogo vivo e os inspetores", run: cmdPlayground },
   create: { owner: "generation/PROJECT_GENERATOR", desc: "cria um projeto conforme (produto→arquétipo→versão)", run: (a) => run("node", ["tools/generator/generate.mjs", ...a]) },
   generate: { owner: "generation/TEMPLATES", desc: "instancia um molde de tela num projeto", run: (a) => run("node", ["tools/generator/templates.mjs", ...a]) },
-  audit: { owner: "CERTIFICATION", desc: "gradua a conformidade (selo/nível)", run: () => notYet("Certification") },
+  audit: { owner: "CERTIFICATION", desc: "gradua a conformidade (consome o Linter)", run: (a) => run("node", ["tools/certification/certify.mjs", ...a]) },
 };
-
-function notYet(owner) {
-  say(c.y("⚠ ") + `o domínio dono (${c.b(owner)}) ainda não foi construído.`);
-  say(c.dim("   A CLI é só o verbo — este comando existe, mas não vou fingir uma execução (Art. 21)."));
-  say(c.dim("   Roadmap: bloco B do docs/audits/STUDIO_UX_GAP_AUDIT.md."));
-  return 2;
-}
 
 function cmdTokens(a) {
   const { light, dark } = tokenMaps();
