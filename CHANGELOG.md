@@ -12,6 +12,15 @@ Nada pendente. / Nothing pending.
 
 ---
 
+## [1.1.1] — 2026-07-19 — Paridade do adapter React Native · React Native adapter parity
+
+- ✅ O adapter nativo (`@studio-ux-ds/react-native`) fechou a lacuna de primitivos que um app nativo real precisa (antes era só shell mobile: topbar/bottomnav/lista/chat). Adicionados, em base nativa (View/Text/Pressable/TextInput/Modal/Switch/ActivityIndicator): `Switch`, `Checkbox` (+indeterminado), `Radio`, `Select` (folha nativa), `SegmentedControl`, `NumericInput`, `TextArea`, `Avatar`, `Tag`, `Link`, `Spinner`, `ProgressBar`, `EmptyState`, `Modal`, `ConfirmDialog`, `Menu` (action sheet), `Accordion`, `DescriptionList`, `Timeline`.
+- **54 exports** no barrel RN; validado (esbuild transpila + resolução dos exports + fronteira P4 intacta).
+- **Fora de escopo por design (P4):** `DataTable`/`CommandPalette`/`Tooltip` são desktop — no mobile a doc manda cards/gesto, não tabela/hover.
+- Trem de release (último dígito, convenção do Robson): 1.1.0 → **1.1.1**, lockstep. Resta apenas o **bloco B** (plataforma-ferramenta) do GAP_AUDIT, que não vira stub.
+
+---
+
 ## [1.1.0] — 2026-07-19 — Catálogo de componentes completo (bloco A do GAP_AUDIT) · Component catalog completed
 
 - ✅ **Regra suprema (Constituição Art. 21):** melhor erro visível do que buraco oculto. Implementa-se tudo o que a doc manda de uma vez; proibido suavizar/stub; limitação real → pausa e reporta.

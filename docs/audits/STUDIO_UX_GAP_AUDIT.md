@@ -12,8 +12,16 @@
 > TextArea, Link, Banner desktop, Tag removível, Checkbox indeterminado, e os wrappers
 > React de Combobox/FileUpload/CommandPalette/DatePicker; tokens `opacity`/`z-index`/
 > `breakpoints` adicionados. O **bloco B (plataforma-ferramenta)** segue como roadmap
-> honesto — NÃO foi transformado em stub (Art. 21: não fingir). Item aberto: **paridade
-> do adapter React Native** (eixo próprio — o catálogo do RN é o mobile, não o desktop).
+> honesto — NÃO foi transformado em stub (Art. 21: não fingir).
+>
+> **ATUALIZAÇÃO v1.1.1 (2026-07-19): PARIDADE DO ADAPTER REACT NATIVE FECHADA.** O RN
+> ganhou os primitivos que faltavam para um app nativo real: `Avatar`, `NumericInput`,
+> `TextArea`, `Switch`, `Checkbox` (+indeterminado), `Radio`, `Select` (folha nativa),
+> `SegmentedControl`, `Modal`/`ConfirmDialog`, `Menu` (action sheet), `EmptyState`,
+> `Spinner`, `ProgressBar`, `Accordion`, `DescriptionList`, `Timeline`, `Tag`, `Link`
+> — 54 exports, tudo validado (esbuild + resolução). Fora de escopo por design (P4):
+> `DataTable`/`CommandPalette`/`Tooltip` são desktop (mobile usa cards/gesto, não hover).
+> Resta apenas o **bloco B**.
 
 ## Veredito em uma linha
 
