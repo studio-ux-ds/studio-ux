@@ -1,6 +1,6 @@
 {
   "name": "studio-ux",
-  "version": "1.1.3",
+  "version": "1.1.5",
   "private": true,
   "description": "Studio UX — Design System + plataforma. Monorepo dos pacotes publicáveis (tokens, components, mobile, react, react-native).",
   "workspaces": [
@@ -20,6 +20,7 @@
     "publish:all": "npm publish --workspaces --access restricted",
     "pack:all": "npm pack --workspaces --pack-destination ./dist-packs",
     "export:tokens": "node tools/exporters/export-tokens.mjs",
+    "lint": "node tools/linter/lint.mjs",
     "check": "node scripts/check-packages.mjs"
   }
 }

@@ -12,6 +12,25 @@ Nada pendente. / Nothing pending.
 
 ---
 
+## [1.1.5] — 2026-07-19 — Correção de contraste AA nos tokens (achado do linter) · AA contrast fix
+
+- ✅ Resolvidos os 4 pares abaixo de AA que o `contrast-minimum` (v1.1.4) apontou, ajustando os tokens **na fonte** (decisão do Robson): `text-muted` claro `#9AA1AE → #8E95A1` (2.60 → 3.02), `warning-fg` claro `#B45309 → #B25209` (→ 4.53), `danger-fg` claro `#DC2626 → #D12424` (→ 4.51), `action` escuro `#6366F1 → #6365F0` (→ 4.52). Três mudanças imperceptíveis; `text-muted` levemente mais escuro mantendo o visual muted (alvo 3.0).
+- **Exports regenerados** (todos os 10 alvos refletem os novos valores); o `npm run lint` agora **zera** o contraste.
+- `docs/quality/CONTRASTE-ACHADOS.md` marcado como resolvido; header do `tokens.css` atualizado (deixou de ser literalmente "frozen" — valor mudou por AA).
+- Trem de release: 1.1.4 → **1.1.5**, lockstep.
+
+---
+
+## [1.1.4] — 2026-07-19 — Bloco B: Linter (14 regras estáticas) · Block B: linter
+
+- ✅ Segunda peça do **bloco B**: `tools/linter/lint.mjs` (`npm run lint`). Implementa `STUDIO_UX_LINTER` — detecção estática e binária; cada regra cita seu **P#/Art. dono** e a severidade herda a certificação (eliminatório→erro, pontuável→aviso). Sai com código 1 se houver erro (trava CI).
+- **As 14 regras:** `no-magic-spacing`, `no-magic-value`, `color-off-token`, `unofficial-component`, `typography-off-role`, `animation-off-catalog`, `single-primary-action`, `layout-from-system`, `no-cross-product-component`, `no-surface-jargon`, `meaning-not-color-only`, `focus-visible-required`, `contrast-minimum`, `required-states`.
+- **Fixtures de prova:** `bad.html` dispara as 14 categorias; `good.html` passa limpo (0 violações de arquivo).
+- 🔎 **Achado real (não escondido — Art. 21):** a regra `contrast-minimum` (determinística sobre os valores de token) encontrou **4 pares abaixo de AA** na paleta v1.0.0 — `text-muted/surface-raised` (2.60), `warning-fg/warning-bg` (4.45), `danger-fg/danger-bg` (4.13), `text-on-action/action` escuro (4.47). Registrado em `docs/quality/CONTRASTE-ACHADOS.md` como **dívida visível**; NÃO foi corrigido nem o limiar afrouxado (mexer em token congelado é decisão do Robson).
+- Trem de release: 1.1.3 → **1.1.4**, lockstep.
+
+---
+
 ## [1.1.3] — 2026-07-19 — Exporters: alvos nativos (Flutter/SwiftUI/Compose) · Native exporter targets
 
 - ✅ Os 3 alvos nativos do exporter, completando os **10 alvos** da tabela do `EXPORTERS §2`: `tokens.dart` (Flutter — `abstract class` com `Color(0xFF…)`/`double`/`int`), `Tokens.swift` (SwiftUI — `enum` + extensão `Color(su:)`/`CGFloat`), `Tokens.kt` (Compose — `object` com `Color(0xFF…)`/`.dp`/`.sp`/`FontWeight`).

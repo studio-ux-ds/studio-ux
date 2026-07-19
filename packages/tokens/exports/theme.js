@@ -1,4 +1,4 @@
-// Studio UX tokens @ v1.1.3 — GERADO de packages/tokens/tokens.css. NÃO editar (regenere: npm run export:tokens).
+// Studio UX tokens @ v1.1.5 — GERADO de packages/tokens/tokens.css. NÃO editar (regenere: npm run export:tokens).
 export const light = {
   "action": "#4F46E5",
   "actionActive": "#3730A3",
@@ -14,7 +14,7 @@ export const light = {
   "bpXl": "1280px",
   "danger": "#DC2626",
   "dangerBg": "#FCE9E9",
-  "dangerFg": "#DC2626",
+  "dangerFg": "#D12424",
   "durationBase": "200ms",
   "durationFast": "120ms",
   "durationSlow": "320ms",
@@ -64,12 +64,12 @@ export const light = {
   "textH2": "20px/1.3",
   "textH3": "16px/1.4",
   "textLabel": "13px/1.35",
-  "textMuted": "#9AA1AE",
+  "textMuted": "#8E95A1",
   "textOnAction": "#FFFFFF",
   "textPrimary": "#171A1F",
   "textSecondary": "#545B67",
   "warningBg": "#FBF0DD",
-  "warningFg": "#B45309",
+  "warningFg": "#B25209",
   "zBase": "0",
   "zContent": "1",
   "zModal": "1000",
@@ -78,7 +78,7 @@ export const light = {
   "zToast": "1100",
 };
 export const dark = {
-  "action": "#6366F1",
+  "action": "#6365F0",
   "actionActive": "#4F46E5",
   "actionHover": "#7B7DF5",
   "actionTint": "#21243A",

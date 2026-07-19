@@ -1,4 +1,4 @@
-// Studio UX tokens @ v1.1.3 — GERADO de packages/tokens/tokens.css. NÃO editar (regenere: npm run export:tokens).
+// Studio UX tokens @ v1.1.5 — GERADO de packages/tokens/tokens.css. NÃO editar (regenere: npm run export:tokens).
 import SwiftUI
 
 extension Color {
@@ -22,7 +22,7 @@ enum SuTokensLight {
     static let bpXl: CGFloat = 1280
     static let danger = Color(su: 0xDC2626)
     static let dangerBg = Color(su: 0xFCE9E9)
-    static let dangerFg = Color(su: 0xDC2626)
+    static let dangerFg = Color(su: 0xD12424)
     static let durationBase = 200 // ms
     static let durationFast = 120 // ms
     static let durationSlow = 320 // ms
@@ -72,12 +72,12 @@ enum SuTokensLight {
     static let textH2: CGFloat = 20 // line-height 1.3
     static let textH3: CGFloat = 16 // line-height 1.4
     static let textLabel: CGFloat = 13 // line-height 1.35
-    static let textMuted = Color(su: 0x9AA1AE)
+    static let textMuted = Color(su: 0x8E95A1)
     static let textOnAction = Color(su: 0xFFFFFF)
     static let textPrimary = Color(su: 0x171A1F)
     static let textSecondary = Color(su: 0x545B67)
     static let warningBg = Color(su: 0xFBF0DD)
-    static let warningFg = Color(su: 0xB45309)
+    static let warningFg = Color(su: 0xB25209)
     static let zBase = 0
     static let zContent = 1
     static let zModal = 1000
@@ -87,7 +87,7 @@ enum SuTokensLight {
 }
 
 enum SuTokensDark {
-    static let action = Color(su: 0x6366F1)
+    static let action = Color(su: 0x6365F0)
     static let actionActive = Color(su: 0x4F46E5)
     static let actionHover = Color(su: 0x7B7DF5)
     static let actionTint = Color(su: 0x21243A)

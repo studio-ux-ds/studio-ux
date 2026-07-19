@@ -1,0 +1,27 @@
+<!-- FIXTURE: viola de propósito. O linter DEVE apontar cada violação. Não é tela real. -->
+<!DOCTYPE html>
+<html><head><style>
+  .card { background: #ffffff; padding: 13px; border-radius: 7px; }
+  .title { font-size: 15px; }
+  .fade { transition: opacity 0.3s ease; }
+  .no焦 { outline: none; }
+</style></head>
+<body class="su">
+  <aside class="su-sidebar">menu</aside>
+  <nav class="su-m-bottomnav">barra mobile numa tela desktop</nav>
+
+  <button class="su-btn su-btn--primary">Salvar</button>
+  <button class="su-btn su-btn--primary">Confirmar</button>
+  <button onclick="x()">Cru</button>
+
+  <input type="number" min="0">
+
+  <div style="display:grid;grid-template-columns:1fr 2fr 1fr;">grid ad hoc</div>
+
+  <span>O campo allowed_tools controla isto</span>
+  <span>token bruto: --su-action</span>
+
+  <span style="background: var(--su-danger); width:10px;height:10px;border-radius:50%;"></span>
+
+  <table class="su-table"><tr><td>sem estado vazio/loading/erro</td></tr></table>
+</body></html>

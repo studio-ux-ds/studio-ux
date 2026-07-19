@@ -1,4 +1,4 @@
-// Studio UX tokens @ v1.1.3 — GERADO de packages/tokens/tokens.css. NÃO editar (regenere: npm run export:tokens).
+// Studio UX tokens @ v1.1.5 — GERADO de packages/tokens/tokens.css. NÃO editar (regenere: npm run export:tokens).
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -19,7 +19,7 @@ object SuTokensLight {
     val bpXl = 1280.dp
     val danger = Color(0xFFDC2626)
     val dangerBg = Color(0xFFFCE9E9)
-    val dangerFg = Color(0xFFDC2626)
+    val dangerFg = Color(0xFFD12424)
     val durationBase = 200 // ms
     val durationFast = 120 // ms
     val durationSlow = 320 // ms
@@ -69,12 +69,12 @@ object SuTokensLight {
     val textH2 = 20.sp // line-height 1.3
     val textH3 = 16.sp // line-height 1.4
     val textLabel = 13.sp // line-height 1.35
-    val textMuted = Color(0xFF9AA1AE)
+    val textMuted = Color(0xFF8E95A1)
     val textOnAction = Color(0xFFFFFFFF)
     val textPrimary = Color(0xFF171A1F)
     val textSecondary = Color(0xFF545B67)
     val warningBg = Color(0xFFFBF0DD)
-    val warningFg = Color(0xFFB45309)
+    val warningFg = Color(0xFFB25209)
     val zBase = 0
     val zContent = 1
     val zModal = 1000
@@ -84,7 +84,7 @@ object SuTokensLight {
 }
 
 object SuTokensDark {
-    val action = Color(0xFF6366F1)
+    val action = Color(0xFF6365F0)
     val actionActive = Color(0xFF4F46E5)
     val actionHover = Color(0xFF7B7DF5)
     val actionTint = Color(0xFF21243A)

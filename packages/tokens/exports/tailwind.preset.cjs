@@ -1,4 +1,4 @@
-/* Studio UX tokens @ v1.1.3 — GERADO de packages/tokens/tokens.css. NÃO editar (regenere: npm run export:tokens). */
+/* Studio UX tokens @ v1.1.5 — GERADO de packages/tokens/tokens.css. NÃO editar (regenere: npm run export:tokens). */
 module.exports = {
   theme: {
     extend: {

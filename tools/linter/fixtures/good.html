@@ -1,0 +1,23 @@
+<!-- FIXTURE: conforme. O linter NÃO deve apontar nada (só composição via tokens/componentes). -->
+<!DOCTYPE html>
+<html><head><style>
+  .card { background: var(--su-surface-raised); padding: var(--su-space-4); border-radius: var(--su-radius-md); }
+  .title { font-size: var(--su-text-h3); }
+  .fade { transition: opacity var(--su-duration-base) var(--su-ease-standard); }
+  .btn:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--su-action-tint); }
+</style></head>
+<body class="su">
+  <aside class="su-sidebar">menu</aside>
+
+  <button class="su-btn su-btn--primary">Salvar</button>
+  <button class="su-btn su-btn--secondary">Cancelar</button>
+
+  <div class="su-field"><label class="su-field__label">Quantidade</label></div>
+
+  <span class="su-badge su-badge--danger"><i class="ti ti-alert-circle"></i> Vencida</span>
+
+  <div class="su-table-card">
+    <table class="su-table"><tr><td>com estados</td></tr></table>
+    <div class="su-empty">Nenhum registro ainda</div>
+  </div>
+</body></html>

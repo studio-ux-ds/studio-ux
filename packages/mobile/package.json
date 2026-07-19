@@ -1,6 +1,6 @@
 {
   "name": "@studio-ux-ds/mobile",
-  "version": "1.1.3",
+  "version": "1.1.5",
   "description": "Produto Mobile do Studio UX em CSS puro (classes .su-m-*), sobre @studio-ux-ds/tokens. Irmão do Desktop (P4).",
   "exports": {
     "./mobile.css": "./mobile.css"

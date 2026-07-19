@@ -1,4 +1,4 @@
-// Studio UX tokens @ v1.1.3 — GERADO de packages/tokens/tokens.css. NÃO editar (regenere: npm run export:tokens).
+// Studio UX tokens @ v1.1.5 — GERADO de packages/tokens/tokens.css. NÃO editar (regenere: npm run export:tokens).
 import 'package:flutter/material.dart';
 
 abstract class SuTokensLight {
@@ -16,7 +16,7 @@ abstract class SuTokensLight {
   static const double bpXl = 1280.0;
   static const Color danger = Color(0xFFDC2626);
   static const Color dangerBg = Color(0xFFFCE9E9);
-  static const Color dangerFg = Color(0xFFDC2626);
+  static const Color dangerFg = Color(0xFFD12424);
   static const int durationBase = 200; // ms
   static const int durationFast = 120; // ms
   static const int durationSlow = 320; // ms
@@ -66,12 +66,12 @@ abstract class SuTokensLight {
   static const double textH2 = 20.0; // line-height 1.3
   static const double textH3 = 16.0; // line-height 1.4
   static const double textLabel = 13.0; // line-height 1.35
-  static const Color textMuted = Color(0xFF9AA1AE);
+  static const Color textMuted = Color(0xFF8E95A1);
   static const Color textOnAction = Color(0xFFFFFFFF);
   static const Color textPrimary = Color(0xFF171A1F);
   static const Color textSecondary = Color(0xFF545B67);
   static const Color warningBg = Color(0xFFFBF0DD);
-  static const Color warningFg = Color(0xFFB45309);
+  static const Color warningFg = Color(0xFFB25209);
   static const int zBase = 0;
   static const int zContent = 1;
   static const int zModal = 1000;
@@ -81,7 +81,7 @@ abstract class SuTokensLight {
 }
 
 abstract class SuTokensDark {
-  static const Color action = Color(0xFF6366F1);
+  static const Color action = Color(0xFF6365F0);
   static const Color actionActive = Color(0xFF4F46E5);
   static const Color actionHover = Color(0xFF7B7DF5);
   static const Color actionTint = Color(0xFF21243A);

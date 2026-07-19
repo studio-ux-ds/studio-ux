@@ -1,6 +1,7 @@
-/* Studio UX — Design Tokens (v1.0.0, Tokens Frozen)
-   Fonte executável dos tokens congelados na Fase 2.
-   Executable source of the frozen Phase 2 tokens.
+/* Studio UX — Design Tokens (Tokens Frozen desde v1.0.0; correção de contraste AA em v1.1.5)
+   Fonte executável dos tokens. Valores estáveis; a v1.1.5 escureceu 4 cores para cumprir WCAG AA
+   (text-muted, warning-fg, danger-fg no claro; action no escuro) — ver docs/quality/CONTRASTE-ACHADOS.md.
+   Executable source of the tokens; v1.1.5 adjusted 4 colors for WCAG AA.
    Consuma SEMPRE estas variáveis — nunca valores literais em tela (P1, P7).
    Always consume these variables — never literal values on screen. */
 
@@ -13,7 +14,7 @@
 
   --su-text-primary: #171A1F;
   --su-text-secondary: #545B67;
-  --su-text-muted: #9AA1AE;
+  --su-text-muted: #8E95A1;
   --su-text-on-action: #FFFFFF;
   --su-text-disabled: #C4CAD4;
 
@@ -28,8 +29,8 @@
   --su-action-tint: #EEEFFE;
 
   --su-success-fg: #047857; --su-success-bg: #E6F4EE;
-  --su-warning-fg: #B45309; --su-warning-bg: #FBF0DD;
-  --su-danger-fg:  #DC2626; --su-danger-bg:  #FCE9E9; --su-danger: #DC2626;
+  --su-warning-fg: #B25209; --su-warning-bg: #FBF0DD;
+  --su-danger-fg:  #D12424; --su-danger-bg:  #FCE9E9; --su-danger: #DC2626;
   --su-info-fg:    #2563EB; --su-info-bg:    #E8F0FE;
 
   /* ---- Tipografia · Typography ---- */
@@ -105,7 +106,7 @@
   --su-border-strong: #3A3F49;
   --su-border-focus: #6366F1;
 
-  --su-action: #6366F1;
+  --su-action: #6365F0;
   --su-action-hover: #7B7DF5;
   --su-action-active: #4F46E5;
   --su-action-tint: #21243A;
@@ -125,7 +126,7 @@
     --su-surface-base: #14161B; --su-surface-raised: #1C1F26; --su-surface-overlay: #24272F; --su-surface-sunken: #101216;
     --su-text-primary: #F2F4F7; --su-text-secondary: #A6ADBA; --su-text-muted: #6E7683; --su-text-disabled: #4A5059;
     --su-border-subtle: #23262E; --su-border-default: #2A2E37; --su-border-strong: #3A3F49; --su-border-focus: #6366F1;
-    --su-action: #6366F1; --su-action-hover: #7B7DF5; --su-action-active: #4F46E5; --su-action-tint: #21243A;
+    --su-action: #6365F0; --su-action-hover: #7B7DF5; --su-action-active: #4F46E5; --su-action-tint: #21243A;
     --su-success-fg: #34D399; --su-success-bg: #123028; --su-warning-fg: #E0A82E; --su-warning-bg: #3A2A12;
     --su-danger-fg: #F87171; --su-danger-bg: #3A1A1A; --su-danger: #F87171; --su-info-fg: #60A5FA; --su-info-bg: #16233F;
     --su-elevation-raised: 0 1px 2px rgba(0,0,0,.30);
