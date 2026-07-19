@@ -1,4 +1,4 @@
-// Studio UX tokens @ v1.1.5 — GERADO de packages/tokens/tokens.css. NÃO editar (regenere: npm run export:tokens).
+// Studio UX tokens @ v1.1.9 — GERADO de packages/tokens/tokens.css. NÃO editar (regenere: npm run export:tokens).
 import SwiftUI
 
 extension Color {
@@ -37,6 +37,9 @@ enum SuTokensLight {
     static let fwMedium = 500
     static let fwRegular = 400
     static let fwSemibold = 600
+    static let iconLg: CGFloat = 24
+    static let iconMd: CGFloat = 20
+    static let iconSm: CGFloat = 16
     static let infoBg = Color(su: 0xE8F0FE)
     static let infoFg = Color(su: 0x2563EB)
     static let opacityDisabled: Double = 0.55
@@ -116,6 +119,9 @@ enum SuTokensDark {
     static let fwMedium = 500
     static let fwRegular = 400
     static let fwSemibold = 600
+    static let iconLg: CGFloat = 24
+    static let iconMd: CGFloat = 20
+    static let iconSm: CGFloat = 16
     static let infoBg = Color(su: 0x16233F)
     static let infoFg = Color(su: 0x60A5FA)
     static let opacityDisabled: Double = 0.55

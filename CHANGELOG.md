@@ -12,6 +12,19 @@ Nada pendente. / Nothing pending.
 
 ---
 
+## [1.1.9] — 2026-07-19 — Bloco B: pacote de ícones `@studio-ux-ds/icons` · Block B: icons package
+
+- ✅ Sexta peça (e última estrutural) do **bloco B**: pacote **`@studio-ux-ds/icons`** — a biblioteca curada de ícones. Implementa `STUDIO_UX_ICONOGRAPHY`. Fecha o último dono estrutural do bloco B.
+- **Fonte única** `packages/icons/icons.js`: nome semântico em inglês → corpo SVG + significado documentado + keywords. **Core curado de 43 glifos** (navegação, ações, objetos, dados, status, UI).
+- **Estilo único (§3):** grade 24, traço 1.5, terminações redondas, **cor via `currentColor`** (herda o papel de texto do contexto). O `build-icons.mjs` (`npm run build:icons`) **valida o contrato de estilo** (kebab-case, sem cor crua, sem `px`/`style`, ponto absoluto na grade, significado obrigatório) e emite `icons/<name>.svg` + `manifest.json` — o pacote enforce a própria regra; falha (exit 1) o que quebrar o contrato.
+- **Tamanho virou token (§4 — era buraco estrutural):** `--su-icon-sm/md/lg` = 16/20/24 na fonte de tokens; exports regenerados (os 10 alvos carregam os novos tokens).
+- **`<Icon>` web** (`react.jsx`): tamanho por token + acessibilidade do §5 (`label` → `role=img`+`aria-label`; sem `label` → `aria-hidden`). `icons.css` dá `.su-icon`/`--sm`/`--lg`. Galeria em `examples/icons.html`.
+- 🔎 **Honesto (Art. 21):** é o **core que cresce por curadoria governada** (SemVer), não a biblioteca "completa" — novo ícone entra por `icons.js` + `build:icons`, nunca por download avulso por tela (§6).
+- Monorepo agora com **6 pacotes** publicáveis (lockstep); `check-packages`/`set-version` incluem `icons`; PUBLISHING atualizado; `dist-projects/` no `.gitignore` (da peça anterior).
+- Trem de release: 1.1.8 → **1.1.9**, lockstep.
+
+---
+
 ## [1.1.8] — 2026-07-19 — Bloco B: Project Generator (projeto nasce conforme) · Block B: Project Generator
 
 - ✅ Quinta peça do **bloco B**: `tools/generator/generate.mjs` (`npm run create` / `studio create`). Implementa `STUDIO_UX_PROJECT_GENERATOR` — um projeto **nasce conforme** (§1): produto (Desktop **OU** Mobile) → arquétipo → **versão declarada** → estrutura pronta.

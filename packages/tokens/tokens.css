@@ -48,6 +48,11 @@
   --su-text-label: 13px/1.35;
   --su-text-caption: 12px/1.4;
 
+  /* ---- Ícone · Icon size (token, derivado da tipografia — ICONOGRAPHY §4) ---- */
+  --su-icon-sm: 16px; /* inline em body-sm/label */
+  --su-icon-md: 20px; /* inline em body/h2 — padrão */
+  --su-icon-lg: 24px; /* ênfase; casa com a grade 24 do desenho */
+
   /* ---- Espaço · Spacing (grade 4px) ---- */
   --su-space-1: 4px;  --su-space-2: 8px;  --su-space-3: 12px; --su-space-4: 16px;
   --su-space-5: 20px; --su-space-6: 24px; --su-space-8: 32px; --su-space-12: 48px;

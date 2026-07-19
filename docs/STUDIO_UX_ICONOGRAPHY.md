@@ -113,4 +113,11 @@
 
 ---
 
+## Estado da implementação · Implementation state
+
+**PT** — Materializado no pacote `@studio-ux-ds/icons` (v1.1.9). Fonte única `packages/icons/icons.js` (nome semântico → corpo SVG + significado + keywords); `build-icons.mjs` **valida o contrato de estilo** (§3/§7: kebab-case, sem cor crua, sem `px`/`style`, ponto absoluto na grade 24, significado obrigatório) e emite `icons/<name>.svg` + `manifest.json`. **Tamanhos viraram token** (§4): `--su-icon-sm/md/lg` = 16/20/24 na fonte de tokens (entram em todos os exports). O `<Icon>` web (`react.jsx`) aplica tamanho por token e a acessibilidade do §5 (`label` → `role=img`+`aria-label`; sem `label` → `aria-hidden`); `icons.css` dá `.su-icon`/`--sm`/`--lg`. Core curado: **43 glifos** (navegação, ações, objetos, dados, status, UI), cor via `currentColor` (herda o papel de texto). Galeria em `examples/icons.html`. **Honesto:** é o core que cresce por curadoria governada (SemVer) — não a biblioteca "completa"; novo ícone entra por `icons.js` + `build:icons`, nunca por download avulso (§6).
+**EN** — Materialized in `@studio-ux-ds/icons` (v1.1.9). Single source `icons.js`; `build-icons.mjs` **validates the style contract** (§3/§7) and emits `icons/*.svg` + `manifest.json`. **Sizes are now tokens** (§4): `--su-icon-sm/md/lg` = 16/20/24. The web `<Icon>` applies size-by-token and §5 accessibility; `icons.css` provides `.su-icon`. Curated core: **43 glyphs**, color via `currentColor`. Gallery in `examples/icons.html`. **Honest:** it's the governed-growth core, not the "complete" library — a new icon enters via `icons.js` + `build:icons`, never ad-hoc download (§6).
+
+---
+
 *Documento vivo. O sistema de iconografia entra aqui; os desenhos concretos são curados na Fase 2. Atualizar nas duas línguas na mesma leva. · Living document. The iconography system enters here; concrete glyphs are curated in Phase 2. Update in both languages in the same commit.*

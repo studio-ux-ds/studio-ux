@@ -1,4 +1,4 @@
-// Studio UX tokens @ v1.1.5 — GERADO de packages/tokens/tokens.css. NÃO editar (regenere: npm run export:tokens).
+// Studio UX tokens @ v1.1.9 — GERADO de packages/tokens/tokens.css. NÃO editar (regenere: npm run export:tokens).
 export const light = {
   "action": "#4F46E5",
   "actionActive": "#3730A3",
@@ -29,6 +29,9 @@ export const light = {
   "fwMedium": "500",
   "fwRegular": "400",
   "fwSemibold": "600",
+  "iconLg": "24px",
+  "iconMd": "20px",
+  "iconSm": "16px",
   "infoBg": "#E8F0FE",
   "infoFg": "#2563EB",
   "opacityDisabled": "0.55",
@@ -107,6 +110,9 @@ export const dark = {
   "fwMedium": "500",
   "fwRegular": "400",
   "fwSemibold": "600",
+  "iconLg": "24px",
+  "iconMd": "20px",
+  "iconSm": "16px",
   "infoBg": "#16233F",
   "infoFg": "#60A5FA",
   "opacityDisabled": "0.55",

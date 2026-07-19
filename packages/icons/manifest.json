@@ -1,0 +1,341 @@
+{
+  "name": "@studio-ux-ds/icons",
+  "style": {
+    "grid": 24,
+    "viewBox": "0 0 24 24",
+    "stroke": "currentColor",
+    "strokeWidth": 1.5,
+    "fill": "none",
+    "strokeLinecap": "round",
+    "strokeLinejoin": "round"
+  },
+  "note": "Biblioteca curada (ICONOGRAPHY §6). Uma metáfora, um significado (P2). Cor via currentColor (§4). Cresce por curadoria governada.",
+  "count": 43,
+  "icons": {
+    "chevron-right": {
+      "meaning": "avançar / abrir item",
+      "keywords": [
+        "next",
+        "forward",
+        "expand"
+      ]
+    },
+    "chevron-left": {
+      "meaning": "voltar item",
+      "keywords": [
+        "prev",
+        "back"
+      ]
+    },
+    "chevron-down": {
+      "meaning": "expandir / abrir menu",
+      "keywords": [
+        "expand",
+        "open",
+        "dropdown"
+      ]
+    },
+    "chevron-up": {
+      "meaning": "recolher",
+      "keywords": [
+        "collapse"
+      ]
+    },
+    "arrow-left": {
+      "meaning": "voltar para a tela anterior",
+      "keywords": [
+        "back",
+        "previous"
+      ]
+    },
+    "arrow-right": {
+      "meaning": "seguir adiante",
+      "keywords": [
+        "forward",
+        "continue"
+      ]
+    },
+    "arrow-up-right": {
+      "meaning": "tendência de alta / sair",
+      "keywords": [
+        "trend up",
+        "increase"
+      ]
+    },
+    "external-link": {
+      "meaning": "abrir em novo local / fora do app",
+      "keywords": [
+        "open",
+        "new tab"
+      ]
+    },
+    "plus": {
+      "meaning": "adicionar / criar novo",
+      "keywords": [
+        "add",
+        "create",
+        "new"
+      ]
+    },
+    "minus": {
+      "meaning": "remover / diminuir",
+      "keywords": [
+        "remove",
+        "less"
+      ]
+    },
+    "close": {
+      "meaning": "fechar / cancelar",
+      "keywords": [
+        "x",
+        "dismiss",
+        "cancel"
+      ]
+    },
+    "check": {
+      "meaning": "confirmar / concluído",
+      "keywords": [
+        "ok",
+        "done",
+        "confirm"
+      ]
+    },
+    "search": {
+      "meaning": "buscar",
+      "keywords": [
+        "find",
+        "lookup"
+      ]
+    },
+    "trash": {
+      "meaning": "excluir (ação destrutiva — nunca solta, P13)",
+      "keywords": [
+        "delete",
+        "remove"
+      ]
+    },
+    "edit": {
+      "meaning": "editar",
+      "keywords": [
+        "pencil",
+        "modify",
+        "write"
+      ]
+    },
+    "send": {
+      "meaning": "enviar mensagem",
+      "keywords": [
+        "submit",
+        "paper plane"
+      ]
+    },
+    "download": {
+      "meaning": "baixar",
+      "keywords": [
+        "save",
+        "export"
+      ]
+    },
+    "refresh": {
+      "meaning": "recarregar / sincronizar",
+      "keywords": [
+        "reload",
+        "sync",
+        "retry"
+      ]
+    },
+    "filter": {
+      "meaning": "filtrar lista",
+      "keywords": [
+        "funnel",
+        "refine"
+      ]
+    },
+    "home": {
+      "meaning": "início",
+      "keywords": [
+        "house",
+        "start",
+        "dashboard"
+      ]
+    },
+    "user": {
+      "meaning": "pessoa / perfil",
+      "keywords": [
+        "person",
+        "account",
+        "profile"
+      ]
+    },
+    "users": {
+      "meaning": "grupo de pessoas / equipe",
+      "keywords": [
+        "team",
+        "group",
+        "contacts"
+      ]
+    },
+    "user-plus": {
+      "meaning": "adicionar pessoa",
+      "keywords": [
+        "add user",
+        "invite"
+      ]
+    },
+    "mail": {
+      "meaning": "e-mail / mensagem",
+      "keywords": [
+        "email",
+        "envelope",
+        "inbox"
+      ]
+    },
+    "message": {
+      "meaning": "conversa / atendimento",
+      "keywords": [
+        "chat",
+        "comment",
+        "talk"
+      ]
+    },
+    "bell": {
+      "meaning": "notificação",
+      "keywords": [
+        "notification",
+        "alert",
+        "reminder"
+      ]
+    },
+    "settings": {
+      "meaning": "ajustes / configuração",
+      "keywords": [
+        "gear",
+        "config",
+        "preferences"
+      ]
+    },
+    "calendar": {
+      "meaning": "data / agenda",
+      "keywords": [
+        "date",
+        "schedule",
+        "event"
+      ]
+    },
+    "lock": {
+      "meaning": "seguro / privado",
+      "keywords": [
+        "secure",
+        "private",
+        "password"
+      ]
+    },
+    "phone": {
+      "meaning": "telefone / ligação",
+      "keywords": [
+        "call",
+        "tel"
+      ]
+    },
+    "file": {
+      "meaning": "documento / arquivo",
+      "keywords": [
+        "document",
+        "page",
+        "invoice"
+      ]
+    },
+    "dashboard": {
+      "meaning": "painel / visão geral",
+      "keywords": [
+        "grid",
+        "overview",
+        "panel"
+      ]
+    },
+    "chart-bar": {
+      "meaning": "relatório / gráfico",
+      "keywords": [
+        "report",
+        "analytics",
+        "stats"
+      ]
+    },
+    "trending-up": {
+      "meaning": "tendência de crescimento",
+      "keywords": [
+        "growth",
+        "increase",
+        "up"
+      ]
+    },
+    "alert-circle": {
+      "meaning": "atenção / aviso",
+      "keywords": [
+        "warning",
+        "attention",
+        "caution"
+      ]
+    },
+    "info-circle": {
+      "meaning": "informação",
+      "keywords": [
+        "info",
+        "note"
+      ]
+    },
+    "check-circle": {
+      "meaning": "sucesso / validado",
+      "keywords": [
+        "success",
+        "done",
+        "valid"
+      ]
+    },
+    "menu": {
+      "meaning": "menu / navegação",
+      "keywords": [
+        "hamburger",
+        "nav"
+      ]
+    },
+    "more": {
+      "meaning": "mais ações",
+      "keywords": [
+        "options",
+        "overflow",
+        "dots"
+      ]
+    },
+    "moon": {
+      "meaning": "tema escuro",
+      "keywords": [
+        "dark",
+        "night",
+        "theme"
+      ]
+    },
+    "help": {
+      "meaning": "ajuda",
+      "keywords": [
+        "question",
+        "support",
+        "faq"
+      ]
+    },
+    "logout": {
+      "meaning": "sair da conta",
+      "keywords": [
+        "sign out",
+        "exit"
+      ]
+    },
+    "login": {
+      "meaning": "entrar na conta",
+      "keywords": [
+        "sign in",
+        "enter"
+      ]
+    }
+  }
+}

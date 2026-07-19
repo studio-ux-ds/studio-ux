@@ -1,4 +1,4 @@
-// Studio UX tokens @ v1.1.5 — GERADO de packages/tokens/tokens.css. NÃO editar (regenere: npm run export:tokens).
+// Studio UX tokens @ v1.1.9 — GERADO de packages/tokens/tokens.css. NÃO editar (regenere: npm run export:tokens).
 import 'package:flutter/material.dart';
 
 abstract class SuTokensLight {
@@ -31,6 +31,9 @@ abstract class SuTokensLight {
   static const int fwMedium = 500;
   static const int fwRegular = 400;
   static const int fwSemibold = 600;
+  static const double iconLg = 24.0;
+  static const double iconMd = 20.0;
+  static const double iconSm = 16.0;
   static const Color infoBg = Color(0xFFE8F0FE);
   static const Color infoFg = Color(0xFF2563EB);
   static const double opacityDisabled = 0.55;
@@ -110,6 +113,9 @@ abstract class SuTokensDark {
   static const int fwMedium = 500;
   static const int fwRegular = 400;
   static const int fwSemibold = 600;
+  static const double iconLg = 24.0;
+  static const double iconMd = 20.0;
+  static const double iconSm = 16.0;
   static const Color infoBg = Color(0xFF16233F);
   static const Color infoFg = Color(0xFF60A5FA);
   static const double opacityDisabled = 0.55;

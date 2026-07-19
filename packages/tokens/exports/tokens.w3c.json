@@ -1,5 +1,5 @@
 {
-  "$description": "Studio UX tokens @ v1.1.5 — GERADO de packages/tokens/tokens.css. NÃO editar (regenere: npm run export:tokens).",
+  "$description": "Studio UX tokens @ v1.1.9 — GERADO de packages/tokens/tokens.css. NÃO editar (regenere: npm run export:tokens).",
   "color": {
     "action": {
       "$value": "#4F46E5",
@@ -121,6 +121,18 @@
     },
     "bp-xl": {
       "$value": "1280px",
+      "$type": "dimension"
+    },
+    "icon-lg": {
+      "$value": "24px",
+      "$type": "dimension"
+    },
+    "icon-md": {
+      "$value": "20px",
+      "$type": "dimension"
+    },
+    "icon-sm": {
+      "$value": "16px",
       "$type": "dimension"
     },
     "radius-full": {

@@ -1,4 +1,4 @@
-/* Studio UX tokens @ v1.1.5 — GERADO de packages/tokens/tokens.css. NÃO editar (regenere: npm run export:tokens). */
+/* Studio UX tokens @ v1.1.9 — GERADO de packages/tokens/tokens.css. NÃO editar (regenere: npm run export:tokens). */
 :root {
   --su-action: #4F46E5;
   --su-action-active: #3730A3;
@@ -29,6 +29,9 @@
   --su-fw-medium: 500;
   --su-fw-regular: 400;
   --su-fw-semibold: 600;
+  --su-icon-lg: 24px;
+  --su-icon-md: 20px;
+  --su-icon-sm: 16px;
   --su-info-bg: #E8F0FE;
   --su-info-fg: #2563EB;
   --su-opacity-disabled: 0.55;

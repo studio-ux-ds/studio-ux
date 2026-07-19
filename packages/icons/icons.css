@@ -1,0 +1,14 @@
+/* Studio UX — ícones: tamanho por token (ICONOGRAPHY §4), cor herdada (currentColor). */
+.su-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: var(--su-icon-md);
+  height: var(--su-icon-md);
+  color: inherit; /* herda o papel de texto do contexto (§4) */
+  vertical-align: middle;
+}
+.su-icon > svg { width: 100%; height: 100%; display: block; }
+.su-icon--sm { width: var(--su-icon-sm); height: var(--su-icon-sm); }
+.su-icon--lg { width: var(--su-icon-lg); height: var(--su-icon-lg); }

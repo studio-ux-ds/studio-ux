@@ -1,4 +1,4 @@
-// Studio UX tokens @ v1.1.5 — GERADO de packages/tokens/tokens.css. NÃO editar (regenere: npm run export:tokens).
+// Studio UX tokens @ v1.1.9 — GERADO de packages/tokens/tokens.css. NÃO editar (regenere: npm run export:tokens).
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -34,6 +34,9 @@ object SuTokensLight {
     val fwMedium = FontWeight(500)
     val fwRegular = FontWeight(400)
     val fwSemibold = FontWeight(600)
+    val iconLg = 24.dp
+    val iconMd = 20.dp
+    val iconSm = 16.dp
     val infoBg = Color(0xFFE8F0FE)
     val infoFg = Color(0xFF2563EB)
     val opacityDisabled = 0.55f
@@ -113,6 +116,9 @@ object SuTokensDark {
     val fwMedium = FontWeight(500)
     val fwRegular = FontWeight(400)
     val fwSemibold = FontWeight(600)
+    val iconLg = 24.dp
+    val iconMd = 20.dp
+    val iconSm = 16.dp
     val infoBg = Color(0xFF16233F)
     val infoFg = Color(0xFF60A5FA)
     val opacityDisabled = 0.55f
