@@ -30,3 +30,6 @@ dist-packs/
 *.tgz
 .npmrc
 package-lock.json
+
+# Projetos gerados pelo Project Generator (saída, não fazem parte do framework)
+dist-projects/

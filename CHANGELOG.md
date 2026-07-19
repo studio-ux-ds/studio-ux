@@ -12,6 +12,18 @@ Nada pendente. / Nothing pending.
 
 ---
 
+## [1.1.8] — 2026-07-19 — Bloco B: Project Generator (projeto nasce conforme) · Block B: Project Generator
+
+- ✅ Quinta peça do **bloco B**: `tools/generator/generate.mjs` (`npm run create` / `studio create`). Implementa `STUDIO_UX_PROJECT_GENERATOR` — um projeto **nasce conforme** (§1): produto (Desktop **OU** Mobile) → arquétipo → **versão declarada** → estrutura pronta.
+- **Derivado, não fork (§3):** o projeto gerado **declara** a dependência `@studio-ux-ds/*` com `~` (anda no trem — último dígito; salto de linha é edição deliberada, VERSIONING §2) e **nunca copia** o framework (Art. 1/14). O `index.html` é um **shell real** com as classes oficiais (`.su-*` desktop / `.su-m-*` mobile) consumindo o CSS de `node_modules`; os pontos de conteúdo nascem **vazios** (Art. 19).
+- **Os 9 arquétipos (§2):** `base`, `portal`, `crm`, `erp`, `analytics`, `ia-studio`, `customer-portal`, `marketplace`, `backoffice` (cada um declara suas bases desktop/mobile). Valida produto (desktop XOR mobile — recusa mistura, Art. 2/P4) e a base do arquétipo.
+- **CLI:** `studio create` deixa de ser "não construído" e passa a **delegar** ao gerador (real). `studio generate` (peça em projeto existente, dono Templates) e `studio audit` (Certification) seguem honestos (Art. 21).
+- 🔎 **Fronteira honesta:** os moldes de tela são do `generation/TEMPLATES` (ainda não é pacote separado) — o gerador **cita** o molde de cada tela, não o duplica; o miolo nasce vazio à espera do dado e do molde.
+- Materializa: `studio-ux.json` (manifesto), `package.json` (deps declaradas), `.npmrc` (GitHub Packages), `index.html` (shell), `src/screens/<rota>.md` (pontos de conteúdo), `README.md`. `dist-projects/` no `.gitignore`. `tools/generator/README.md` + nota de estado na doc.
+- Trem de release: 1.1.7 → **1.1.8**, lockstep.
+
+---
+
 ## [1.1.7] — 2026-07-19 — Bloco B: CLI `studio` (verbo que aciona os donos) · Block B: CLI
 
 - ✅ Quarta peça do **bloco B**: `tools/cli/studio.mjs` (`npm run studio -- <cmd>`, ou `studio` via `bin`). Implementa `STUDIO_UX_CLI` — **verbo, não regra**: cada comando reúne argumentos, aciona o domínio dono e apresenta o resultado; nunca reimplementa a lógica do dono (SSOT, Art. 10).
