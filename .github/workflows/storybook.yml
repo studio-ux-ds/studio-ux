@@ -33,8 +33,12 @@ jobs:
 
       # npm install (não `npm ci`): o repo não versiona package-lock.json, então
       # a resolução acontece na CI contra o monorepo real (7 workspaces).
+      # --legacy-peer-deps: sem ele, o npm tenta satisfazer o peer `react-native`
+      # de @studio-ux-ds/react-native, puxa react-native@latest (que exige react 19)
+      # e conflita com o react 18 das devDeps → ERESOLVE. O build do Storybook não
+      # precisa dos workspaces resolvidos (stories usam alias do Vite p/ packages/react).
       - name: Instalar dependências
-        run: npm install --no-audit --no-fund
+        run: npm install --legacy-peer-deps --no-audit --no-fund
 
       - name: Build do Storybook
         run: npm run build-storybook
