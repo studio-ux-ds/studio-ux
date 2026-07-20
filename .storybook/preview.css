@@ -1,0 +1,20 @@
+/* Casca visual do preview — usa APENAS tokens --su-* (nada literal). */
+.su-preview {
+  font-family: var(--su-font-ui);
+  font-size: var(--su-fs-body);
+  color: var(--su-text-primary);
+  background: var(--su-surface-base);
+  padding: var(--su-space-6);
+  min-height: 220px;
+  border-radius: var(--su-radius-lg);
+}
+/* O canvas do Storybook também acompanha a superfície base do tema. */
+.sb-show-main.sb-main-padded,
+.docs-story {
+  background: var(--su-surface-base);
+}
+/* Espaçamento agradável entre exemplos empilhados numa mesma story. */
+.su-demo-row { display: flex; flex-wrap: wrap; gap: var(--su-space-3); align-items: center; }
+.su-demo-col { display: flex; flex-direction: column; gap: var(--su-space-4); }
+.su-demo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: var(--su-space-4); }
+.su-demo-label { font-size: var(--su-fs-caption); color: var(--su-text-muted); margin-bottom: var(--su-space-2); text-transform: uppercase; letter-spacing: .04em; }

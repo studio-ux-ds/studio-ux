@@ -25,6 +25,9 @@ dist/
 build/
 .cache/
 
+# Storybook (build local; deploy é pela CI de Pages)
+storybook-static/
+
 # Empacotamento / Packaging
 dist-packs/
 *.tgz

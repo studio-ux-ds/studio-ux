@@ -1,0 +1,59 @@
+name: Storybook (GitHub Pages)
+
+# Publica o Storybook do Studio UX (doc navegável do @studio-ux-ds/react) no GitHub Pages
+# a cada push na branch principal. O Windows do Robson não tem Node — o build só roda aqui.
+# Requer, uma única vez: Settings → Pages → Build and deployment → Source = "GitHub Actions".
+
+on:
+  push:
+    branches: ["main", "master"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Um deploy por vez; não cancela um deploy em andamento.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # npm install (não `npm ci`): o repo não versiona package-lock.json, então
+      # a resolução acontece na CI contra o monorepo real (7 workspaces).
+      - name: Instalar dependências
+        run: npm install --no-audit --no-fund
+
+      - name: Build do Storybook
+        run: npm run build-storybook
+
+      - name: Configurar Pages
+        uses: actions/configure-pages@v5
+
+      - name: Subir artefato (storybook-static)
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: storybook-static
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy no GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

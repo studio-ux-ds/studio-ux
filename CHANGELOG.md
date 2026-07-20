@@ -8,7 +8,10 @@
 
 ## [Unreleased]
 
-Nada pendente. / Nothing pending.
+- ✅ **Storybook do `@studio-ux-ds/react`** (doc navegável, hospedado no GitHub Pages). Documenta o **pacote React real** — cada componente com exemplo vivo + tabela de props + código, importando de `@studio-ux-ds/react` igual a um sistema consumidor (alias do Vite para `packages/react/index.js`; nada recriado). Cobre os ~28 exports do barrel (Button/IconButton, Badge, Avatar, Link, Tag, Banner, CommandPalette, Field, Input, PhoneInput, Select, Checkbox, Radio, Switch, SegmentedControl, NumericInput, TextArea, Combobox, FileUpload, DatePicker, Stepper, Card, StatCard, DataTable, DescriptionList, Timeline, Pagination, Accordion, EmptyState, Skeleton, Spinner, ProgressBar, Sidebar/NavItem, TopBar, Breadcrumb, Tabs, Modal, ConfirmDialog, Drawer, Sheet, Menu, Tooltip, Popover, Toast) com cobertura profunda (ex.: `DataTable` com seleção em lote, `bulkActions`, `renderRowMenu` e `toolbar`). Seletor de tema claro/escuro na toolbar (tokens `--su-*`), webfont Tabler no `preview-head.html`.
+- ✅ **CI de Pages** `.github/workflows/storybook.yml`: push na branch principal → `npm install` → `build-storybook` → deploy do `storybook-static` via `actions/deploy-pages`. (Requer, uma vez: Settings → Pages → Source = "GitHub Actions".) O Windows do Robson não tem Node — o build só roda na CI.
+- Sem impacto em versão/publicação: o Storybook vive fora de `packages/*` (`.storybook/`, `stories/`), não adiciona workspace nem toca em `package.json` de pacote — **lockstep intacto** e `check-packages.mjs` inalterado. Apenas o `package.json` raiz ganhou `devDependencies` (storybook/react/vite) e os scripts `storybook`/`build-storybook`.
+- **Prova (QA):** build limpo; todas as stories renderizam (0 faltando); accent indigo `--su-action` correto (claro `#4F46E5`, escuro `#6365F0`) com a troca de tema; ícones Tabler renderizando; sem chrome nativo do navegador em select/tabs/segmented (checkbox/radio usam `accent-color` por design). Verificado com Chromium headless (screenshots por seção, claro + escuro).
 
 ---
 

@@ -1,0 +1,38 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Studio UX/Introdução" />
+
+# Studio UX · React
+
+Documentação viva do pacote **`@studio-ux-ds/react`** — a camada React do design system.
+Cada componente abaixo é o **componente real** publicado no pacote (importado de
+`@studio-ux-ds/react`), com exemplo vivo, tabela de props e código. É daqui que você
+copia o import para os seus sistemas.
+
+## Como consumir
+
+```jsx
+import "@studio-ux-ds/tokens/tokens.css";
+import "@studio-ux-ds/components/components.css";
+import { DataTable, StatCard, Button } from "@studio-ux-ds/react";
+```
+
+O adapter React **não reimplementa** nada: ele embrulha as classes `.su-*` de
+`@studio-ux-ds/components` e os tokens `--su-*` de `@studio-ux-ds/tokens` numa API de props.
+Trocar de framework troca o adapter, não o design system.
+
+## Arquitetura dos pacotes
+
+- **`@studio-ux-ds/tokens`** — fonte da verdade: variáveis `--su-*` (cor, tipo, espaço, raio…). `--su-action` = indigo `#4F46E5`.
+- **`@studio-ux-ds/components`** — CSS puro, classes `.su-*` sobre os tokens.
+- **`@studio-ux-ds/react`** — esta camada: os ~28 componentes React documentados aqui.
+
+## Tema
+
+Use o seletor **Tema** na barra de ferramentas para alternar claro/escuro — os componentes
+respondem sozinhos porque leem os tokens `--su-*` (nada de cor literal).
+
+## Ícones
+
+Os componentes renderizam ícones da webfont **Tabler** (`<i class="ti ti-...">`). Passe o
+nome Tabler cru na prop (ex.: `icon="plus"`, `iconRight="arrow-right"`).

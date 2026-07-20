@@ -1,0 +1,11 @@
+<!-- Ícones = Tabler webfont. Os componentes React renderizam <i class="ti ti-..."> —
+     sem esta folha os ícones não aparecem. -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css">
+<!-- Fonte de UI do DS (tokens usam Inter como primária). -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  /* O Storybook injeta seu próprio reset; garanta que a fonte-base do DS valha no canvas. */
+  body { font-family: var(--su-font-ui, "Inter", system-ui, sans-serif); }
+</style>
