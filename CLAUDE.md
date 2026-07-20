@@ -4,6 +4,13 @@
 > Toda IA/dev que atuar aqui DEVE seguir estas regras sem exceção.
 > **Como interagir com o Robson** (idioma pt-BR, re-ancorar pós-compactação, erro silencioso, docs vivos, ambiente/deploy, tom) está em **`COMO-INTERAGIR-COM-ROBSON.md`** (raiz — mesmo conteúdo em todos os projetos). Governança e SSOT do DS em **`STUDIO_UX.md`**; regras de IA em `docs/context/AI_RULES.md`; princípios em `docs/STUDIO_UX_PRINCIPLES.md`; constituição em `docs/governance/STUDIO_UX_CONSTITUTION.md`.
 
+## ⚖️ O QUE O STUDIO UX É — e por que a regra de "porte dos irmãos" NÃO se aplica aqui
+O Studio UX é a **interface (design system) que os outros sistemas USAM.** Ele é **upstream, novo e original.** A direção da dependência é só uma: `tokens → components (CSS) → react (adapter) → os sistemas consomem`.
+
+Por isso a regra que vale nos SISTEMAS — *"PORTE, NÃO REINVENTE: olhe o AquaPark/IA STUDIO ANTES e porte o equivalente"* — **NÃO se aplica ao Studio UX.** Aqui **não se porta código dos sistemas**; aqui se **cria** a interface limpa e original que eles vão adotar. Quem porta são os sistemas (as telas deles passam a importar o Studio UX), nunca o contrário.
+
+O *"não reinvente"* aqui tem outro sentido: **não duplicar o que já existe DENTRO do próprio DS.** A camada React já é o `@studio-ux-ds/react` — não recriar; as classes já são o `components.css` — não inventar outras; os valores já são os tokens — não cravar literal. Descobrir QUAIS componentes/telas precisam existir pode olhar as necessidades reais dos sistemas — mas isso é **escopo/descoberta**, e o resultado é código **original e limpo do DS**, não cópia de arquivo do sistema.
+
 ## ⛔ REGRA ZERO — LER ANTES DE AGIR (a lição mais cara desta base)
 **NUNCA suponha que algo não existe. Inventarie primeiro.** Antes de propor, construir ou "diagnosticar que falta" QUALQUER pacote, componente, token, rota ou função:
 
