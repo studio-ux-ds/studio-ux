@@ -6,6 +6,10 @@
 
 ---
 
+## [1.1.18] - 2026-07-21 - Fix .su-cards (variante mobile do ListScreen)
+
+- 🔎 **Fix achado ao re-adotar a Receitas (Finanças) no `ListScreen`:** a lista de cards da variante estreita (`.su-cards`) estourava a largura em ~375px — era `display:grid` sem coluna explícita (vira `max-content` e infla no conteúdo) e faltava `min-width:0` na cadeia flex (`.su-listscreen > *`, `.su-cards > *`). Corrigido: `.su-cards` vira **flex-column** + `min-width:0` nos filhos; os cards ocupam 100% da largura e o texto trunca. Verificado em build real (Vite) a 375px, claro/escuro, **0 overflow**.
+
 ## [1.1.17] - 2026-07-21 - Padrao list na camada React
 
 - ✅ **Padrão `list` materializado na camada React** (`@studio-ux-ds/react`): novos `PageHeader` e `ListScreen` (subpasta `patterns/`) compondo só átomos existentes (DataTable, SegmentedControl, Pagination, EmptyState, Skeleton…). O molde de tela `list` (TEMPLATES §2, deriva de TABLES) passa a existir como componente React **runtime**, não só como gerador HTML — um app React (Finanças) importa `ListScreen` e a tela é **re-desenhada no archetype**.

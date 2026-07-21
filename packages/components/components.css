@@ -328,7 +328,10 @@
 
 /* ── Padrões · Patterns (camada de composição — STUDIO_UX_TEMPLATES) ──────────
    Só arranjo, sobre os átomos e tokens que já existem. Nenhum valor cru (P1/P7). */
-.su-listscreen { display: flex; flex-direction: column; gap: var(--su-space-5); }
+.su-listscreen { display: flex; flex-direction: column; gap: var(--su-space-5); min-width: 0; }
+/* filhos de flex precisam de min-width:0 pra encolher em vez de estourar no min-content */
+.su-listscreen > * { min-width: 0; }
+.su-cards > * { min-width: 0; }
 
 .su-pagehead { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--su-space-4); flex-wrap: wrap; }
 .su-pagehead__title { font-size: var(--su-fs-h1); line-height: 1.25; font-weight: var(--su-fw-semibold); margin: 0; color: var(--su-text-primary); }
@@ -346,4 +349,7 @@
 .su-listcard__foot .su-pagination { margin-left: auto; }
 
 .su-cardstate { padding: var(--su-space-8) var(--su-space-4); }
-.su-cards { display: grid; gap: var(--su-space-3); padding: var(--su-space-4); }
+/* Lista de cards (variante estreita do molde `list`). Flex-column (não grid) pra
+   o card ocupar 100% da largura e o conteúdo interno truncar — grid sem coluna
+   explícita vira max-content e estoura em telas estreitas. */
+.su-cards { display: flex; flex-direction: column; gap: var(--su-space-3); padding: var(--su-space-4); }
