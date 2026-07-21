@@ -1,0 +1,252 @@
+import React, { useEffect, useRef, useState } from "react";
+import { Sidebar, NavItem, TopBar, Breadcrumb } from "../Shell.jsx";
+import { Drawer } from "../Overlay.jsx";
+import { IconButton } from "../Button.jsx";
+import { Avatar } from "../Misc.jsx";
+import { Customize } from "./Customize.jsx";
+import { getTheme, setTheme, isDark } from "../theme.js";
+
+// AppShell — o MOLDE da casca (arquétipo), não a decoração. Compõe os átomos que
+// o DS já tem (Sidebar/NavItem/TopBar/Breadcrumb/Drawer) e trava as invariantes que
+// fazem a casca ficar idêntica ao Flux em posição e comportamento:
+//   • P22 — a página só preenche a REGIÃO de conteúdo; nunca redesenha a casca.
+//   • P6  — a TopBar carrega CONTEXTO (breadcrumb/período), ⌘K, notificações, ajuda
+//           e menu do usuário. A ação primária da tela mora no PageHeader, nunca aqui.
+//   • P17 — o item de nav ativo sinaliza além da cor (barra + peso + aria-current).
+//   • P4  — Desktop: Sidebar fixa. Mobile (≤767px): Sidebar vira Drawer (hambúrguer).
+//   • Sidebar colapsável no desktop, com estado LEMBRADO; rodapé em 2 blocos
+//     (atalhos + bloco de versão passivo).
+//   • Gatilho "Personalizar" no menu do usuário → abre o painel Customize (tema/accent).
+
+function useNarrow(maxWidth = 767) {
+  const q = `(max-width: ${maxWidth}px)`;
+  const read = () => (typeof window !== "undefined" && window.matchMedia ? window.matchMedia(q).matches : false);
+  const [narrow, setNarrow] = useState(read);
+  useEffect(() => {
+    if (typeof window === "undefined" || !window.matchMedia) return;
+    const mql = window.matchMedia(q);
+    const on = () => setNarrow(mql.matches);
+    on();
+    mql.addEventListener ? mql.addEventListener("change", on) : mql.addListener(on);
+    return () => (mql.removeEventListener ? mql.removeEventListener("change", on) : mql.removeListener(on));
+  }, [q]);
+  return narrow;
+}
+
+// Estado booleano lembrado em localStorage (colapso da sidebar).
+function useRemembered(key, initial) {
+  const read = () => {
+    if (typeof window === "undefined") return initial;
+    try { const v = window.localStorage.getItem(key); return v == null ? initial : v === "1"; } catch { return initial; }
+  };
+  const [val, setVal] = useState(read);
+  const set = (next) => {
+    setVal(next);
+    try { window.localStorage.setItem(key, next ? "1" : "0"); } catch { /* sem storage */ }
+  };
+  return [val, set];
+}
+
+// Normaliza `nav` para seções: aceita [{section?, items:[…]}] ou uma lista simples de itens.
+function toSections(nav) {
+  if (!Array.isArray(nav)) return [];
+  if (nav.length && nav[0] && Array.isArray(nav[0].items)) return nav;
+  return [{ items: nav }];
+}
+
+function NavList({ sections, collapsed, onNavigate }) {
+  return (
+    <>
+      {sections.map((sec, i) => (
+        <div key={i} className="su-nav__group">
+          {sec.section && !collapsed && <div className="su-nav__label">{sec.section}</div>}
+          {(sec.items || []).map((it, j) => (
+            <NavItem
+              key={j}
+              icon={it.icon}
+              active={it.active}
+              href={it.href}
+              title={collapsed ? it.label : undefined}
+              onClick={(e) => { it.onClick && it.onClick(e); onNavigate && onNavigate(); }}
+            >
+              {!collapsed && it.label}
+            </NavItem>
+          ))}
+        </div>
+      ))}
+    </>
+  );
+}
+
+/** Dropdown do usuário — fecha ao clicar fora ou Esc. */
+function UserMenu({ user, items, onClose }) {
+  const ref = useRef(null);
+  useEffect(() => {
+    const onDoc = (e) => { if (ref.current && !ref.current.contains(e.target)) onClose(); };
+    const onKey = (e) => e.key === "Escape" && onClose();
+    document.addEventListener("mousedown", onDoc);
+    document.addEventListener("keydown", onKey);
+    return () => { document.removeEventListener("mousedown", onDoc); document.removeEventListener("keydown", onKey); };
+  }, [onClose]);
+  return (
+    <div ref={ref} className="su-menu su-usermenu" role="menu">
+      {user && (
+        <div className="su-usermenu__head">
+          <div className="su-usermenu__name">{user.name}</div>
+          {user.email && <div className="su-usermenu__mail">{user.email}</div>}
+        </div>
+      )}
+      {items.map((it, i) =>
+        it.separator ? (
+          <div key={i} className="su-menu__sep" />
+        ) : (
+          <div key={i} role="menuitem"
+            className={["su-menu__item", it.danger && "su-menu__item--danger"].filter(Boolean).join(" ")}
+            onClick={() => { onClose(); it.onClick && it.onClick(); }}>
+            {it.icon && <i className={`ti ti-${it.icon}`} aria-hidden="true" />}
+            <span style={{ flex: 1 }}>{it.label}</span>
+            {it.hint && <span className="su-usermenu__hint">{it.hint}</span>}
+          </div>
+        )
+      )}
+    </div>
+  );
+}
+
+export function AppShell({
+  brand,
+  nav,
+  footer,
+  version,
+  breadcrumb,
+  topbarContext,
+  user,
+  userMenuItems = [],
+  onCommandPalette,
+  commandPaletteHint = "⌘K",
+  notifications,
+  onNotifications,
+  onHelp,
+  customize = false,          // true liga o painel embutido; ou {accents, themes} p/ configurar
+  onCustomize,                // sobrescreve a abertura do painel embutido, se quiser um próprio
+  onLogout,
+  children,
+}) {
+  const narrow = useNarrow();
+  const [collapsed, setCollapsed] = useRemembered("su_sidebar_collapsed", false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [custOpen, setCustOpen] = useState(false);
+  // Espelha o tema atual só para rotular o atalho rápido no menu (Claro↔Escuro).
+  const [, force] = useState(0);
+  const sections = toSections(nav);
+
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const onKey = (e) => e.key === "Escape" && setMobileOpen(false);
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [mobileOpen]);
+
+  const openCustomize = () => {
+    if (onCustomize) return onCustomize();
+    if (customize) setCustOpen(true);
+  };
+  const quickToggleTheme = () => {
+    // Atalho: alterna Claro↔Escuro (sai de "Sistema" para a escolha explícita oposta ao atual).
+    setTheme(isDark() ? "light" : "dark");
+    force((n) => n + 1);
+  };
+
+  const menuItems = [
+    ...userMenuItems,
+    ...(userMenuItems.length ? [{ separator: true }] : []),
+    { icon: isDark() ? "sun" : "moon", label: isDark() ? "Modo claro" : "Modo escuro", onClick: quickToggleTheme },
+    ...(customize || onCustomize ? [{ icon: "adjustments", label: "Personalizar", onClick: openCustomize }] : []),
+    ...(onLogout ? [{ separator: true }, { icon: "logout", label: "Sair", danger: true, onClick: onLogout }] : []),
+  ];
+
+  const sidebarNode = (mobile) => (
+    <Sidebar
+      brand={brand}
+      footer={
+        <div className="su-sidebar__foot">
+          {footer && <div className="su-sidebar__foot-actions">{footer}</div>}
+          {version && <div className="su-sidebar__version" aria-hidden="true">{version}</div>}
+        </div>
+      }
+    >
+      <NavList sections={sections} collapsed={!mobile && collapsed} onNavigate={mobile ? () => setMobileOpen(false) : undefined} />
+    </Sidebar>
+  );
+
+  return (
+    <div className={["su-appshell", !narrow && collapsed && "su-appshell--collapsed"].filter(Boolean).join(" ")}>
+      {/* Sidebar — desktop fixa; mobile em off-canvas à esquerda */}
+      {!narrow && sidebarNode(false)}
+      {narrow && mobileOpen && (
+        <div className="su-appshell__scrim" onClick={(e) => e.target === e.currentTarget && setMobileOpen(false)}>
+          <div className="su-appshell__offcanvas">{sidebarNode(true)}</div>
+        </div>
+      )}
+
+      <div className="su-appshell__main">
+        <TopBar>
+          <div className="su-topbar__left">
+            {narrow ? (
+              <IconButton icon="menu-2" aria-label="Abrir menu" onClick={() => setMobileOpen(true)} />
+            ) : (
+              <IconButton
+                icon={collapsed ? "layout-sidebar-left-expand" : "layout-sidebar-left-collapse"}
+                aria-label={collapsed ? "Expandir menu" : "Recolher menu"}
+                onClick={() => setCollapsed(!collapsed)}
+              />
+            )}
+            {breadcrumb && <Breadcrumb items={breadcrumb} />}
+            {topbarContext && <div className="su-topbar__context">{topbarContext}</div>}
+          </div>
+
+          <div className="su-topbar__right">
+            {onCommandPalette && (
+              <button className="su-topbar__cmdk" onClick={onCommandPalette} aria-label="Abrir busca de comandos">
+                <i className="ti ti-search" aria-hidden="true" />
+                <span className="su-topbar__cmdk-label">Buscar</span>
+                <kbd>{commandPaletteHint}</kbd>
+              </button>
+            )}
+            {onNotifications && (
+              <span className="su-topbar__bell">
+                <IconButton icon="bell" aria-label="Notificações" onClick={onNotifications} />
+                {notifications > 0 && <span className="su-topbar__bell-dot" aria-label={`${notifications} novas`}>{notifications > 9 ? "9+" : notifications}</span>}
+              </span>
+            )}
+            {onHelp && <IconButton icon="help" aria-label="Ajuda" onClick={onHelp} />}
+            {user && (
+              <div className="su-topbar__user">
+                <button className="su-topbar__user-btn" aria-haspopup="menu" aria-expanded={menuOpen} onClick={() => setMenuOpen((v) => !v)}>
+                  <Avatar src={user.avatarUrl} initials={user.initials} size="sm" alt={user.name} />
+                  {!narrow && <span className="su-topbar__user-name">{user.name}</span>}
+                  <i className="ti ti-chevron-down" aria-hidden="true" />
+                </button>
+                {menuOpen && <UserMenu user={user} items={menuItems} onClose={() => setMenuOpen(false)} />}
+              </div>
+            )}
+          </div>
+        </TopBar>
+
+        {/* Região de conteúdo — a página vive SÓ aqui (P22) */}
+        <main className="su-appshell__content">{children}</main>
+      </div>
+
+      {/* Painel Customize embutido (Drawer a partir do menu do usuário) */}
+      {customize && !onCustomize && (
+        <Drawer open={custOpen} onClose={() => setCustOpen(false)} title="Personalizar">
+          <Customize
+            accents={typeof customize === "object" ? customize.accents : undefined}
+            onChange={() => force((n) => n + 1)}
+          />
+        </Drawer>
+      )}
+    </div>
+  );
+}

@@ -154,3 +154,36 @@
 @media (prefers-reduced-motion: reduce) {
   :root { --su-duration-fast: 1ms; --su-duration-base: 1ms; --su-duration-slow: 1ms; }
 }
+
+/* ==== Accent por PRODUTO/usuário · [data-su-accent] (v1.1.19) ====
+   Um accent repõe SÓ o papel de ação (--su-action + derivados) e o texto-sobre-ação;
+   nunca espaço, layout ou estrutura (THEMES §5). Todos os 7 revalidados em AA (P18),
+   claro e escuro — ver scripts de verificação. Índigo = padrão do sistema.
+   No escuro, accents claros (teal/âmbar/…) usam tinta escura no botão para cumprir AA. */
+[data-su-accent="indigo"] { --su-action:#4F46E5;--su-action-hover:#4338CA;--su-action-active:#3730A3;--su-action-tint:#EEEFFE;--su-text-on-action:#FFFFFF; }
+[data-su-accent="blue"] { --su-action:#2563EB;--su-action-hover:#1D4ED8;--su-action-active:#1E40AF;--su-action-tint:#E8F0FE;--su-text-on-action:#FFFFFF; }
+[data-su-accent="teal"] { --su-action:#0D8C82;--su-action-hover:#0B7268;--su-action-active:#0A5F57;--su-action-tint:#DFF3F1;--su-text-on-action:#FFFFFF; }
+[data-su-accent="violet"] { --su-action:#7C3AED;--su-action-hover:#6D28D9;--su-action-active:#5B21B6;--su-action-tint:#F1E9FE;--su-text-on-action:#FFFFFF; }
+[data-su-accent="amber"] { --su-action:#B25E09;--su-action-hover:#8F4B07;--su-action-active:#733D06;--su-action-tint:#FBEFDA;--su-text-on-action:#FFFFFF; }
+[data-su-accent="rose"] { --su-action:#E11D48;--su-action-hover:#BE123C;--su-action-active:#9F1239;--su-action-tint:#FCE7EC;--su-text-on-action:#FFFFFF; }
+[data-su-accent="slate"] { --su-action:#475569;--su-action-hover:#3A4557;--su-action-active:#2E3846;--su-action-tint:#EDF0F4;--su-text-on-action:#FFFFFF; }
+
+/* accent no escuro explícito */
+[data-theme="dark"][data-su-accent="indigo"] { --su-action:#6365F0;--su-action-hover:#7B7DF5;--su-action-active:#4F46E5;--su-action-tint:#21243A;--su-text-on-action:#FFFFFF; }
+[data-theme="dark"][data-su-accent="blue"] { --su-action:#6AA0F7;--su-action-hover:#8AB4FA;--su-action-active:#5B92F5;--su-action-tint:#16233F;--su-text-on-action:#10131A; }
+[data-theme="dark"][data-su-accent="teal"] { --su-action:#2DD4BF;--su-action-hover:#5EEAD4;--su-action-active:#14B8A6;--su-action-tint:#0E2C2A;--su-text-on-action:#10131A; }
+[data-theme="dark"][data-su-accent="violet"] { --su-action:#B79BF5;--su-action-hover:#CBB6F8;--su-action-active:#A98BF3;--su-action-tint:#2A2140;--su-text-on-action:#10131A; }
+[data-theme="dark"][data-su-accent="amber"] { --su-action:#F0B429;--su-action-hover:#F6C74E;--su-action-active:#E0A82E;--su-action-tint:#3A2A12;--su-text-on-action:#10131A; }
+[data-theme="dark"][data-su-accent="rose"] { --su-action:#FB7A9B;--su-action-hover:#FD9BB3;--su-action-active:#FB6F92;--su-action-tint:#3A1A24;--su-text-on-action:#10131A; }
+[data-theme="dark"][data-su-accent="slate"] { --su-action:#9AA6B8;--su-action-hover:#B3BDCC;--su-action-active:#8A97AB;--su-action-tint:#232A34;--su-text-on-action:#10131A; }
+
+/* accent no escuro automático (segue o SO, sem data-theme forçado) */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"])[data-su-accent="indigo"] { --su-action:#6365F0;--su-action-hover:#7B7DF5;--su-action-active:#4F46E5;--su-action-tint:#21243A;--su-text-on-action:#FFFFFF; }
+  :root:not([data-theme="light"])[data-su-accent="blue"] { --su-action:#6AA0F7;--su-action-hover:#8AB4FA;--su-action-active:#5B92F5;--su-action-tint:#16233F;--su-text-on-action:#10131A; }
+  :root:not([data-theme="light"])[data-su-accent="teal"] { --su-action:#2DD4BF;--su-action-hover:#5EEAD4;--su-action-active:#14B8A6;--su-action-tint:#0E2C2A;--su-text-on-action:#10131A; }
+  :root:not([data-theme="light"])[data-su-accent="violet"] { --su-action:#B79BF5;--su-action-hover:#CBB6F8;--su-action-active:#A98BF3;--su-action-tint:#2A2140;--su-text-on-action:#10131A; }
+  :root:not([data-theme="light"])[data-su-accent="amber"] { --su-action:#F0B429;--su-action-hover:#F6C74E;--su-action-active:#E0A82E;--su-action-tint:#3A2A12;--su-text-on-action:#10131A; }
+  :root:not([data-theme="light"])[data-su-accent="rose"] { --su-action:#FB7A9B;--su-action-hover:#FD9BB3;--su-action-active:#FB6F92;--su-action-tint:#3A1A24;--su-text-on-action:#10131A; }
+  :root:not([data-theme="light"])[data-su-accent="slate"] { --su-action:#9AA6B8;--su-action-hover:#B3BDCC;--su-action-active:#8A97AB;--su-action-tint:#232A34;--su-text-on-action:#10131A; }
+}

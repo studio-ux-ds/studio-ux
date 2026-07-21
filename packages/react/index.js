@@ -30,3 +30,12 @@ export { ToastProvider, useToast } from "./Toast.jsx";
 // Padrões · Patterns (composição de moldes de tela — STUDIO_UX_TEMPLATES)
 export { PageHeader } from "./patterns/PageHeader.jsx";
 export { ListScreen } from "./patterns/ListScreen.jsx";
+export { AppShell } from "./patterns/AppShell.jsx";
+export { Customize } from "./patterns/Customize.jsx";
+
+// Mecanismo de tema/accent do sistema (sem React — chame applyTheme antes do render).
+export {
+  SU_ACCENTS, SU_THEMES, configureTheme,
+  getAccent, setAccent, getTheme, setTheme,
+  isDark, applyTheme, watchSystemTheme,
+} from "./theme.js";

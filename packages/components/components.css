@@ -353,3 +353,84 @@
    o card ocupar 100% da largura e o conteúdo interno truncar — grid sem coluna
    explícita vira max-content e estoura em telas estreitas. */
 .su-cards { display: flex; flex-direction: column; gap: var(--su-space-3); padding: var(--su-space-4); }
+
+/* ==================================================================
+   AppShell — molde da casca (v1.1.19)
+   Compõe Sidebar/TopBar/região de conteúdo. A página preenche SÓ
+   .su-appshell__content (P22); a casca nunca é redesenhada pela tela.
+   ================================================================== */
+.su-appshell { display: flex; height: 100vh; height: 100dvh; overflow: hidden; background: var(--su-surface-base); }
+.su-appshell__main { flex: 1; min-width: 0; display: flex; flex-direction: column; overflow: hidden; }
+.su-appshell__content { flex: 1; min-height: 0; overflow: auto; padding: var(--su-space-6); }
+
+/* Sidebar recolhida (desktop) — só ícones, largura reduzida; estado lembrado */
+.su-appshell--collapsed .su-sidebar { width: 64px; }
+.su-appshell--collapsed .su-sidebar__brand { justify-content: center; padding: var(--su-space-4) 0; }
+.su-appshell--collapsed .su-nav__item { justify-content: center; padding: var(--su-space-2); }
+
+/* Grupos e rótulos de seção da navegação */
+.su-nav__group { display: flex; flex-direction: column; gap: 2px; }
+.su-nav__group + .su-nav__group { margin-top: var(--su-space-3); }
+.su-nav__label { font-size: 11px; font-weight: var(--su-fw-semibold); letter-spacing: .04em; text-transform: uppercase; color: var(--su-text-muted); padding: var(--su-space-2) var(--su-space-3) var(--su-space-1); }
+
+/* Item ativo — sinal ALÉM DA COR (P17): barra à esquerda + peso, não só o tom */
+.su-nav__item { position: relative; font-weight: var(--su-fw-medium); }
+.su-nav__item--active { font-weight: var(--su-fw-semibold); }
+.su-nav__item--active::before { content: ""; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 3px; height: 60%; border-radius: 0 3px 3px 0; background: var(--su-action); }
+.su-appshell--collapsed .su-nav__item--active::before { left: -4px; }
+
+/* Rodapé da sidebar — 2 blocos: atalhos + bloco de versão passivo */
+.su-sidebar__foot { display: flex; flex-direction: column; gap: var(--su-space-3); }
+.su-sidebar__foot-actions { display: flex; flex-direction: column; gap: 2px; }
+.su-sidebar__version { font-size: 11px; color: var(--su-text-muted); opacity: var(--su-opacity-muted); }
+.su-appshell--collapsed .su-sidebar__version { text-align: center; font-size: 9px; }
+
+/* TopBar — contexto à esquerda, ações de sistema à direita. SEM ação primária (P6). */
+.su-topbar__left { display: flex; align-items: center; gap: var(--su-space-3); flex: 1; min-width: 0; }
+.su-topbar__right { display: flex; align-items: center; gap: var(--su-space-2); margin-left: auto; }
+.su-topbar__context { color: var(--su-text-secondary); font-size: var(--su-fs-body-sm); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* Gatilho ⌘K — parece campo de busca, some o rótulo no estreito */
+.su-topbar__cmdk { display: inline-flex; align-items: center; gap: var(--su-space-2); height: 34px; padding: 0 var(--su-space-3); border: 1px solid var(--su-border-default); border-radius: var(--su-radius-md); background: var(--su-surface-sunken); color: var(--su-text-muted); cursor: pointer; font: inherit; font-size: 13px; }
+.su-topbar__cmdk:hover { border-color: var(--su-border-strong); color: var(--su-text-secondary); }
+.su-topbar__cmdk kbd { font-family: var(--su-font-mono); font-size: 11px; background: var(--su-surface-raised); border: 1px solid var(--su-border-default); border-radius: 5px; padding: 1px 5px; color: var(--su-text-muted); }
+
+/* Sino de notificações + contador */
+.su-topbar__bell { position: relative; display: inline-flex; }
+.su-topbar__bell-dot { position: absolute; top: -2px; right: -2px; min-width: 16px; height: 16px; padding: 0 4px; border-radius: var(--su-radius-full); background: var(--su-danger); color: #fff; font-size: 10px; font-weight: var(--su-fw-semibold); display: flex; align-items: center; justify-content: center; }
+
+/* Menu do usuário */
+.su-topbar__user { position: relative; }
+.su-topbar__user-btn { display: inline-flex; align-items: center; gap: var(--su-space-2); height: 38px; padding: 0 var(--su-space-2); border: 1px solid transparent; border-radius: var(--su-radius-md); background: transparent; cursor: pointer; font: inherit; color: var(--su-text-primary); }
+.su-topbar__user-btn:hover { background: var(--su-surface-sunken); }
+.su-topbar__user-btn > .ti-chevron-down { font-size: 14px; color: var(--su-text-muted); }
+.su-topbar__user-name { font-size: 13px; font-weight: var(--su-fw-medium); max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.su-usermenu { position: absolute; top: calc(100% + 6px); right: 0; min-width: 220px; z-index: var(--su-z-overlay); }
+.su-usermenu__head { padding: var(--su-space-2) var(--su-space-3) var(--su-space-3); border-bottom: 1px solid var(--su-border-subtle); margin-bottom: 5px; }
+.su-usermenu__name { font-size: 13px; font-weight: var(--su-fw-semibold); color: var(--su-text-primary); }
+.su-usermenu__mail { font-size: 11px; color: var(--su-text-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.su-usermenu__hint { font-family: var(--su-font-mono); font-size: 10px; color: var(--su-text-muted); }
+
+/* Off-canvas mobile — Sidebar deslizando da esquerda */
+.su-appshell__scrim { position: fixed; inset: 0; background: rgba(20,22,30,.45); z-index: var(--su-z-modal); display: flex; }
+.su-appshell__offcanvas { height: 100%; box-shadow: var(--su-elevation-modal); animation: su-offcanvas-in var(--su-duration-base) var(--su-ease-entrance); }
+.su-appshell__offcanvas .su-sidebar { height: 100%; }
+@keyframes su-offcanvas-in { from { transform: translateX(-16px); opacity: .6; } to { transform: translateX(0); opacity: 1; } }
+
+/* ==================================================================
+   Customize — painel de tema + accent (v1.1.19)
+   ================================================================== */
+.su-customize { display: flex; flex-direction: column; gap: var(--su-space-6); }
+.su-customize__block { display: flex; flex-direction: column; gap: var(--su-space-3); }
+.su-customize__label { font-size: 11px; font-weight: var(--su-fw-semibold); letter-spacing: .04em; text-transform: uppercase; color: var(--su-text-muted); }
+.su-customize__hint { font-size: 12px; color: var(--su-text-secondary); margin: 0; }
+.su-customize .su-segmented { width: 100%; }
+.su-customize .su-segment { flex: 1; }
+
+/* Swatches de accent — seleção sinaliza ALÉM DA COR (anel + check), P17 */
+.su-swatches { display: flex; flex-wrap: wrap; gap: var(--su-space-3); }
+.su-swatch { position: relative; width: 40px; height: 40px; border-radius: var(--su-radius-full); background: var(--sw); border: 2px solid transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; transition: transform var(--su-duration-fast) var(--su-ease-standard); }
+.su-swatch:hover { transform: scale(1.06); }
+.su-swatch:focus-visible { outline: 2px solid var(--su-border-focus); outline-offset: 2px; }
+.su-swatch--on { border-color: var(--su-text-primary); box-shadow: 0 0 0 2px var(--su-surface-raised) inset; }
+.su-swatch--on .ti-check { color: #fff; font-size: 18px; filter: drop-shadow(0 1px 1px rgba(0,0,0,.35)); }
