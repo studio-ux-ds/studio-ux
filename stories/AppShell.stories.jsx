@@ -20,7 +20,13 @@ const NAV = [
   ]},
   { section: "Sistema", items: [
     { icon: "users", label: "Equipe", href: "#" },
-    { icon: "settings", label: "Configurações", href: "#" },
+    { group: "Configurações", icon: "settings", items: [
+      { icon: "palette", label: "Aparência", href: "#" },
+      { icon: "download", label: "Atualização", href: "#" },
+      { icon: "tags", label: "Categorias", href: "#" },
+      { icon: "shield", label: "Perfis de acesso", href: "#" },
+      { icon: "user", label: "Usuários", href: "#" },
+    ]},
   ]},
 ];
 

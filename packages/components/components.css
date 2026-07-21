@@ -368,10 +368,19 @@
 .su-appshell--collapsed .su-sidebar__brand { justify-content: center; padding: var(--su-space-4) 0; }
 .su-appshell--collapsed .su-nav__item { justify-content: center; padding: var(--su-space-2); }
 
-/* Grupos e rótulos de seção da navegação */
-.su-nav__group { display: flex; flex-direction: column; gap: 2px; }
-.su-nav__group + .su-nav__group { margin-top: var(--su-space-3); }
+/* Seções e rótulos da navegação */
+.su-nav__section { display: flex; flex-direction: column; gap: 2px; }
+.su-nav__section + .su-nav__section { margin-top: var(--su-space-3); }
 .su-nav__label { font-size: 11px; font-weight: var(--su-fw-semibold); letter-spacing: .04em; text-transform: uppercase; color: var(--su-text-muted); padding: var(--su-space-2) var(--su-space-3) var(--su-space-1); }
+
+/* Grupo colapsável (acordeão) — botão + filhos recuados */
+.su-nav__group { display: flex; flex-direction: column; gap: 2px; }
+.su-nav__group-btn { width: 100%; border: none; background: transparent; font: inherit; cursor: pointer; text-align: left; }
+.su-nav__group-label { flex: 1; }
+.su-nav__chev { font-size: 15px; color: var(--su-text-muted); transition: transform var(--su-duration-fast) var(--su-ease-standard); }
+.su-nav__chev--open { transform: rotate(90deg); }
+.su-nav__children { display: flex; flex-direction: column; gap: 2px; margin-left: var(--su-space-5); margin-top: 2px; }
+/* No grupo, a barra P17 do item ativo já vem do .su-nav__item--active */
 
 /* Item ativo — sinal ALÉM DA COR (P17): barra à esquerda + peso, não só o tom */
 .su-nav__item { position: relative; font-weight: var(--su-fw-medium); }

@@ -6,6 +6,14 @@
 
 ---
 
+## [1.1.20] - 2026-07-21 - AppShell: grupos de navegação colapsáveis (acordeão)
+
+- ✅ **`AppShell` ganhou grupos de nav colapsáveis** (`patterns/AppShell.jsx`): um item da navegação agora pode ser uma **folha** (`{icon,label,href,active}`) **ou um grupo** (`{group, icon, items:[folhas…], defaultOpen}`) que abre/fecha em **acordeão** — um aberto por vez — e **nasce aberto no grupo que contém o item ativo**. Filhos recuados (`.su-nav__children`), chevron que gira, e o botão do grupo herda a marca P17 do item ativo quando fechado sobre uma rota ativa. Na sidebar **recolhida** (só ícones), clicar um grupo **expande a sidebar e abre o grupo**.
+- 🔎 **Motivo (refinamento surgido ao adotar a casca do Finanças):** o Finanças tem o submenu **Configurações** (Aparência/Atualização/Categorias/Perfis/Usuários) como acordeão — o `AppShell` só sabia seções planas. Em vez de achatar o menu do app na adoção, a capacidade voltou pro DS (P: o DS é dono do desenho). Serve também ao IA STUDIO (mesmo padrão "abre um, fecha o outro").
+- ✅ **CSS** (`components.css`): renomeado o invólucro de seção para `.su-nav__section` (evita colisão) e adicionados `.su-nav__group/.su-nav__group-btn/.su-nav__group-label/.su-nav__chev/.su-nav__children` — só token. Story `Padrões/AppShell` atualizada com o grupo **Configurações** de exemplo.
+- 🔎 **A propagar:** próxima frente = re-adoção da casca do Finanças no `AppShell` (Layout→AppShell, Customize na TopBar/Aparência, usuário movido pra TopBar, accent migrado pro `data-su-accent`). Depende desta versão publicada. Lockstep (8 pacotes) preservado.
+- **Prova (QA):** build do Storybook limpo; acordeão verificado no Chromium — grupo Configurações fechado por padrão, abre ao clicar mostrando os 5 filhos recuados, um-aberto-por-vez; resto da casca (TopBar, nav ativo P17, accent) intacto.
+
 ## [1.1.19] - 2026-07-21 - AppShell + Customize (casca no arquétipo + tema/accent do usuário)
 
 - ✅ **`AppShell` — o molde da casca** (`@studio-ux-ds/react`, `patterns/AppShell.jsx`): compõe só átomos existentes (`Sidebar`/`NavItem`/`TopBar`/`Breadcrumb`/`Drawer`) e trava as invariantes que deixam a casca **idêntica ao Flux em posição e comportamento**. A página preenche **só a região de conteúdo** (P22); a **TopBar nunca carrega a ação primária** da tela (P6) — leva contexto (breadcrumb/período), gatilho ⌘K, notificações, ajuda e menu do usuário. Item de nav ativo sinaliza **além da cor** (barra à esquerda + peso + `aria-current`, P17). Desktop = Sidebar fixa **colapsável com estado lembrado** (`localStorage`), rodapé em 2 blocos (atalhos + bloco de versão passivo); Mobile (≤767px) = Sidebar vira **off-canvas** por hambúrguer (P4). Menu do usuário traz **Personalizar** → painel Customize, e atalho rápido Claro↔Escuro.

@@ -54,27 +54,79 @@ function toSections(nav) {
   return [{ items: nav }];
 }
 
-function NavList({ sections, collapsed, onNavigate }) {
+// Um item da nav é ou uma folha ({icon,label,href,active}) ou um GRUPO colapsável
+// ({group, icon, items:[folhas…], defaultOpen}). O grupo é acordeão: um aberto por
+// vez, e nasce aberto no grupo que contém o item ativo.
+const isGroup = (it) => it && Array.isArray(it.items);
+
+function NavList({ sections, collapsed, onNavigate, onExpandRequest }) {
+  const initialOpen = () => {
+    for (const sec of sections)
+      for (const it of sec.items || [])
+        if (isGroup(it) && (it.items.some((c) => c.active) || it.defaultOpen)) return it.group;
+    return null;
+  };
+  const [openGroup, setOpenGroup] = useState(initialOpen);
+
+  const leaf = (it, key) => (
+    <NavItem
+      key={key}
+      icon={it.icon}
+      active={it.active}
+      href={it.href}
+      title={collapsed ? it.label : undefined}
+      onClick={(e) => { it.onClick && it.onClick(e); onNavigate && onNavigate(); }}
+    >
+      {!collapsed && it.label}
+    </NavItem>
+  );
+
   return (
     <>
       {sections.map((sec, i) => (
-        <div key={i} className="su-nav__group">
+        <div key={i} className="su-nav__section">
           {sec.section && !collapsed && <div className="su-nav__label">{sec.section}</div>}
-          {(sec.items || []).map((it, j) => (
-            <NavItem
-              key={j}
-              icon={it.icon}
-              active={it.active}
-              href={it.href}
-              title={collapsed ? it.label : undefined}
-              onClick={(e) => { it.onClick && it.onClick(e); onNavigate && onNavigate(); }}
-            >
-              {!collapsed && it.label}
-            </NavItem>
-          ))}
+          {(sec.items || []).map((it, j) =>
+            isGroup(it) ? (
+              <NavGroup
+                key={j}
+                group={it}
+                collapsed={collapsed}
+                open={openGroup === it.group}
+                onToggle={() => {
+                  if (collapsed) { onExpandRequest && onExpandRequest(); setOpenGroup(it.group); }
+                  else setOpenGroup((p) => (p === it.group ? null : it.group));
+                }}
+                onNavigate={onNavigate}
+                renderLeaf={leaf}
+              />
+            ) : (
+              leaf(it, j)
+            )
+          )}
         </div>
       ))}
     </>
+  );
+}
+
+/** Grupo colapsável da navegação — botão com chevron + filhos recuados. */
+function NavGroup({ group, collapsed, open, onToggle, renderLeaf }) {
+  const groupActive = group.items.some((c) => c.active);
+  const cls = ["su-nav__item", "su-nav__group-btn", groupActive && !open && "su-nav__item--active"].filter(Boolean).join(" ");
+  return (
+    <div className="su-nav__group">
+      <button type="button" className={cls} aria-expanded={open} title={collapsed ? group.group : undefined} onClick={onToggle}>
+        {group.icon && <i className={`ti ti-${group.icon}`} style={{ fontSize: 18 }} aria-hidden="true" />}
+        {!collapsed && <span className="su-nav__group-label">{group.group}</span>}
+        {!collapsed && <i className={["ti ti-chevron-right", "su-nav__chev", open && "su-nav__chev--open"].filter(Boolean).join(" ")} aria-hidden="true" />}
+      </button>
+      {open && !collapsed && (
+        <div className="su-nav__children">
+          {group.items.map((c, k) => renderLeaf(c, k))}
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -176,7 +228,12 @@ export function AppShell({
         </div>
       }
     >
-      <NavList sections={sections} collapsed={!mobile && collapsed} onNavigate={mobile ? () => setMobileOpen(false) : undefined} />
+      <NavList
+        sections={sections}
+        collapsed={!mobile && collapsed}
+        onNavigate={mobile ? () => setMobileOpen(false) : undefined}
+        onExpandRequest={!mobile ? () => setCollapsed(false) : undefined}
+      />
     </Sidebar>
   );
 
