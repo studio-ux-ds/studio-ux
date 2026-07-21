@@ -6,7 +6,7 @@
 
 ---
 
-## [Unreleased]
+## [1.1.17] - 2026-07-21 - Padrao list na camada React
 
 - ✅ **Padrão `list` materializado na camada React** (`@studio-ux-ds/react`): novos `PageHeader` e `ListScreen` (subpasta `patterns/`) compondo só átomos existentes (DataTable, SegmentedControl, Pagination, EmptyState, Skeleton…). O molde de tela `list` (TEMPLATES §2, deriva de TABLES) passa a existir como componente React **runtime**, não só como gerador HTML — um app React (Finanças) importa `ListScreen` e a tela é **re-desenhada no archetype**.
 - ✅ **Header do card idêntico ao Flux** (posição + comportamento): título à esquerda · busca + filtro segmentado à direita; rodapé "mostrando X de Y"; ações de linha em ícone à direita. Duas variantes de produto (P4): Desktop = `DataTable`; tela estreita = `Card`s (via `renderCard`, troca por `matchMedia`). Todos os estados (P14).
