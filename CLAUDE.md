@@ -56,7 +56,7 @@ Quando existir, o Storybook documenta o **`@studio-ux-ds/react` real** (cada com
 `@studio-ux-ds/react` hoje é importado por: IA Studio (2 arquivos), AquaPark/Finanças/Delivery (0). O caminho de adoção é portar as telas pra importar o adapter — não escrever `.su-*` na mão. Repos reais: `C:\Users\Flowspec\Documents\delivery-system\{aquapark,IA STUDIO,delivery-system}` e `C:\Users\Flowspec\Documents\delivery-system\financas-pessoais`.
 
 ## 📚 DOCS DONOS (SSOT — ler o dono antes de mexer no assunto)
-`STUDIO_UX.md` (governança) · `docs/governance/STUDIO_UX_CONSTITUTION.md` · `docs/STUDIO_UX_PRINCIPLES.md` (P1–P25) · `docs/context/AI_RULES.md` · `docs/platform/STUDIO_UX_RUNTIME.md` (adapter descartável) · `docs/platform/STUDIO_UX_PACKAGES.md` · `docs/governance/STUDIO_UX_VERSIONING.md` · `docs/tokens/*` · `docs/components/STUDIO_UX_COMPONENT_LIBRARY.md` · `docs/quality/PROFUNDIDADE-OBRIGATORIA.md`.
+`STUDIO_UX.md` (governança) · `docs/governance/STUDIO_UX_CONSTITUTION.md` · `docs/STUDIO_UX_PRINCIPLES.md` (P1–P25) · `docs/context/AI_RULES.md` · `docs/platform/STUDIO_UX_RUNTIME.md` (adapter descartável) · `docs/platform/STUDIO_UX_PACKAGES.md` · `docs/governance/STUDIO_UX_VERSIONING.md` · `docs/tokens/*` · `docs/components/STUDIO_UX_COMPONENT_LIBRARY.md` · `docs/quality/PROFUNDIDADE-OBRIGATORIA.md` · `docs/quality/REFINAMENTO-E-PROPAGACAO.md` (DoD por frente + propagação de refinamento: código→Storybook→docs→CHANGELOG/versão→sistemas).
 
 ---
 
