@@ -325,3 +325,25 @@
 /* ---------- Checkbox: estado indeterminado (obrigatório — COMPONENT_LIBRARY grupo B) ---------- */
 .su-checkbox:indeterminate { accent-color: var(--su-action); }
 
+
+/* ── Padrões · Patterns (camada de composição — STUDIO_UX_TEMPLATES) ──────────
+   Só arranjo, sobre os átomos e tokens que já existem. Nenhum valor cru (P1/P7). */
+.su-listscreen { display: flex; flex-direction: column; gap: var(--su-space-5); }
+
+.su-pagehead { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--su-space-4); flex-wrap: wrap; }
+.su-pagehead__title { font-size: var(--su-fs-h1); line-height: 1.25; font-weight: var(--su-fw-semibold); margin: 0; color: var(--su-text-primary); }
+.su-pagehead__sub { margin: var(--su-space-1) 0 0; font-size: var(--su-fs-body-sm); color: var(--su-text-muted); }
+.su-pagehead__actions { display: flex; gap: var(--su-space-2); flex: none; }
+
+.su-toolbar { display: flex; align-items: center; gap: var(--su-space-3); padding: var(--su-space-3) var(--su-space-4); border-bottom: 1px solid var(--su-border-subtle); flex-wrap: wrap; }
+.su-toolbar__title { font-size: var(--su-fs-body); font-weight: var(--su-fw-semibold); color: var(--su-text-primary); }
+.su-toolbar__search { display: inline-flex; align-items: center; gap: var(--su-space-2); min-width: 200px; color: var(--su-text-muted); }
+.su-toolbar__search input { border: 0; outline: none; background: transparent; font: inherit; font-size: var(--su-fs-body-sm); color: var(--su-text-primary); flex: 1; min-width: 0; }
+.su-toolbar__spacer { flex: 1; }
+.su-toolbar__actions { display: flex; align-items: center; gap: var(--su-space-2); }
+
+.su-listcard__foot { display: flex; align-items: center; gap: var(--su-space-3); padding: var(--su-space-3) var(--su-space-4); border-top: 1px solid var(--su-border-subtle); font-size: var(--su-fs-body-sm); color: var(--su-text-secondary); }
+.su-listcard__foot .su-pagination { margin-left: auto; }
+
+.su-cardstate { padding: var(--su-space-8) var(--su-space-4); }
+.su-cards { display: grid; gap: var(--su-space-3); padding: var(--su-space-4); }

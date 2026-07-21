@@ -26,3 +26,7 @@ export { Tabs } from "./Tabs.jsx";
 export { Modal, ConfirmDialog } from "./Modal.jsx";
 export { Drawer, Sheet, Menu, Tooltip, Popover } from "./Overlay.jsx";
 export { ToastProvider, useToast } from "./Toast.jsx";
+
+// Padrões · Patterns (composição de moldes de tela — STUDIO_UX_TEMPLATES)
+export { PageHeader } from "./patterns/PageHeader.jsx";
+export { ListScreen } from "./patterns/ListScreen.jsx";

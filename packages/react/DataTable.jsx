@@ -10,8 +10,12 @@ import React, { useState } from "react";
  * @param {(selectedIds:any[], clear:()=>void)=>React.ReactNode} [bulkActions]  ações da barra de lote
  * @param {(row)=>React.ReactNode} [renderRowMenu]  o "…" de cada linha
  * @param {React.ReactNode} [toolbar]  a toolbar quando nada está selecionado
+ * @param {React.ReactNode} [footer]  rodapé dentro do card (ex.: contagem + Pagination)
+ * @param {boolean} [selectable]  mostra a coluna de seleção. Default: só quando há `bulkActions`
+ *   (sem ações de lote não há por que ter checkbox — mantém a lista "calma", igual ao Flux).
  */
-export function DataTable({ columns, rows, getRowId = (r, i) => i, bulkActions, renderRowMenu, toolbar }) {
+export function DataTable({ columns, rows, getRowId = (r, i) => i, bulkActions, renderRowMenu, toolbar, footer, selectable: selectableProp }) {
+  const selectable = selectableProp != null ? selectableProp : bulkActions != null;
   const [sel, setSel] = useState(() => new Set());
   const ids = rows.map(getRowId);
   const allChecked = rows.length > 0 && sel.size === rows.length;
@@ -22,7 +26,7 @@ export function DataTable({ columns, rows, getRowId = (r, i) => i, bulkActions, 
 
   return (
     <div className="su-table-card">
-      {sel.size > 0 ? (
+      {selectable && sel.size > 0 ? (
         <div style={{ display: "flex", alignItems: "center", gap: 20, padding: "13px 16px", background: "var(--su-action-tint)", fontSize: 12 }}>
           <span style={{ fontWeight: 500 }}><i className="ti ti-square-check" style={{ color: "var(--su-action)" }} /> {sel.size} selecionado{sel.size > 1 ? "s" : ""}</span>
           {bulkActions && bulkActions(Array.from(sel), clear)}
@@ -33,11 +37,13 @@ export function DataTable({ columns, rows, getRowId = (r, i) => i, bulkActions, 
       <table className="su-table">
         <thead>
           <tr>
-            <th style={selCell}>
-              <i className={`ti ${allChecked ? "ti-square-check" : sel.size ? "ti-square-minus" : "ti-square"}`}
-                 style={{ cursor: "pointer", fontSize: 15, color: sel.size ? "var(--su-action)" : "var(--su-text-muted)" }}
-                 onClick={toggleAll} role="checkbox" aria-checked={allChecked} />
-            </th>
+            {selectable && (
+              <th style={selCell}>
+                <i className={`ti ${allChecked ? "ti-square-check" : sel.size ? "ti-square-minus" : "ti-square"}`}
+                   style={{ cursor: "pointer", fontSize: 15, color: sel.size ? "var(--su-action)" : "var(--su-text-muted)" }}
+                   onClick={toggleAll} role="checkbox" aria-checked={allChecked} />
+              </th>
+            )}
             {columns.map((c) => <th key={c.key} className={c.align === "right" ? "num" : ""}>{c.header}</th>)}
             {renderRowMenu && <th style={{ width: 44 }} />}
           </tr>
@@ -47,11 +53,13 @@ export function DataTable({ columns, rows, getRowId = (r, i) => i, bulkActions, 
             const id = getRowId(r, i); const on = sel.has(id);
             return (
               <tr key={id} style={on ? { background: "color-mix(in srgb, var(--su-action) 5%, transparent)" } : undefined}>
-                <td style={{ paddingLeft: 16 }}>
-                  <i className={`ti ${on ? "ti-square-check" : "ti-square"}`}
-                     style={{ cursor: "pointer", fontSize: 15, color: on ? "var(--su-action)" : "var(--su-text-muted)" }}
-                     onClick={() => toggle(id)} role="checkbox" aria-checked={on} />
-                </td>
+                {selectable && (
+                  <td style={{ paddingLeft: 16 }}>
+                    <i className={`ti ${on ? "ti-square-check" : "ti-square"}`}
+                       style={{ cursor: "pointer", fontSize: 15, color: on ? "var(--su-action)" : "var(--su-text-muted)" }}
+                       onClick={() => toggle(id)} role="checkbox" aria-checked={on} />
+                  </td>
+                )}
                 {columns.map((c) => <td key={c.key} className={c.align === "right" ? "num" : ""}>{c.render ? c.render(r) : r[c.key]}</td>)}
                 {renderRowMenu && <td style={{ textAlign: "right" }}>{renderRowMenu(r)}</td>}
               </tr>
@@ -59,6 +67,7 @@ export function DataTable({ columns, rows, getRowId = (r, i) => i, bulkActions, 
           })}
         </tbody>
       </table>
+      {footer}
     </div>
   );
 }
