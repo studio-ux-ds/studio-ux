@@ -1,6 +1,6 @@
 {
   "name": "@studio-ux-ds/react-native",
-  "version": "1.2.7",
+  "version": "1.2.8",
   "description": "Adapter Mobile nativo do Studio UX (React Native) — irmão do adapter web (P4).",
   "type": "module",
   "main": "index.js",
