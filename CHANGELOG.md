@@ -6,6 +6,11 @@
 
 ---
 
+## [1.2.1] - 2026-07-22 - Correção do menu da Top Nav
+
+- ✅ **Dropdown visível:** o menu de grupos da variante `Top Nav` não é mais recortado pelo contêiner horizontal; ao abrir Configurações, seus destinos ficam acima do conteúdo e continuam clicáveis.
+- 🔎 **Trem de release:** `v1.2.0` já havia sido publicada; esta correção segue para frente em `v1.2.1`, preservando a imutabilidade das tags.
+
 ## [1.2.0] - 2026-07-22 - Preferências de layout e linguagem
 
 - ✅ **Layout persistido no `AppShell`:** o Customize passa a alternar entre `Sidebar` e `Top Nav` com a mesma árvore de navegação; no Mobile a casca preserva o menu off-canvas.

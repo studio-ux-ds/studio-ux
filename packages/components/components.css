@@ -404,13 +404,13 @@
 
 /* Variante Top Nav do AppShell. A árvore é a mesma; só muda sua disposição. */
 .su-topnav__brand { flex: 0 0 auto; display: flex; align-items: center; }
-.su-topnav { display: flex; align-items: center; gap: var(--su-space-1); min-width: 0; overflow-x: auto; scrollbar-width: none; }
-.su-topnav::-webkit-scrollbar { display: none; }
+.su-topnav { display: flex; align-items: center; gap: var(--su-space-1); min-width: 0; overflow: visible; }
 .su-topnav__item, .su-topnav__group > summary { display: inline-flex; align-items: center; gap: var(--su-space-2); height: 34px; padding: 0 var(--su-space-2); border: 0; border-radius: var(--su-radius-md); background: transparent; color: var(--su-text-secondary); font: inherit; font-size: 13px; font-weight: var(--su-fw-medium); text-decoration: none; white-space: nowrap; cursor: pointer; list-style: none; }
 .su-topnav__group > summary::-webkit-details-marker { display: none; }
 .su-topnav__item:hover, .su-topnav__group > summary:hover { background: var(--su-surface-sunken); color: var(--su-text-primary); }
 .su-topnav__item--active { background: var(--su-action-tint); color: var(--su-action); font-weight: var(--su-fw-semibold); }
 .su-topnav__group { position: relative; }
+.su-topnav__group[open] { z-index: var(--su-z-overlay); }
 .su-topnav__menu { position: absolute; top: calc(100% + var(--su-space-2)); left: 0; z-index: var(--su-z-overlay); min-width: 190px; padding: var(--su-space-1); display: flex; flex-direction: column; border: 1px solid var(--su-border-default); border-radius: var(--su-radius-md); background: var(--su-surface-overlay); box-shadow: var(--su-elevation-popover); }
 .su-topnav__menu .su-topnav__item { width: 100%; }
 
