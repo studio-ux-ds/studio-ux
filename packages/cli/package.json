@@ -1,6 +1,6 @@
 {
   "name": "@studio-ux-ds/cli",
-  "version": "1.1.21",
+  "version": "1.1.22",
   "description": "CLI oficial do Studio UX (`studio`) — verbo que aciona os donos: linter, exporters, project generator, templates, certification, devtools.",
   "type": "module",
   "bin": {

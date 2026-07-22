@@ -368,6 +368,7 @@
 /* Sidebar recolhida (desktop) — só ícones, largura reduzida; estado lembrado */
 .su-appshell--collapsed .su-sidebar { width: 72px; }
 .su-appshell--collapsed .su-sidebar__brand { justify-content: center; padding: var(--su-space-4) 0; }
+.su-appshell--collapsed .su-sidebar__brand .su-brand > :not(.su-brand__logo) { display: none; }
 .su-appshell--collapsed .su-nav__item { justify-content: center; padding: var(--su-space-2); }
 
 /* Seções e rótulos da navegação */
@@ -445,3 +446,17 @@
 .su-swatch:focus-visible { outline: 2px solid var(--su-border-focus); outline-offset: 2px; }
 .su-swatch--on { border-color: var(--su-text-primary); box-shadow: 0 0 0 2px var(--su-surface-raised) inset; }
 .su-swatch--on .ti-check { color: #fff; font-size: 18px; filter: drop-shadow(0 1px 1px rgba(0,0,0,.35)); }
+
+/* A topbar compacta antes de faltar espaço para busca, ajuda, notificações ou usuário. */
+@media (max-width: 1100px) {
+  .su-topbar { gap: var(--su-space-2); padding: var(--su-space-3) var(--su-space-4); }
+  .su-topbar__left { gap: var(--su-space-2); min-width: 0; }
+  .su-topbar__right { gap: var(--su-space-1); }
+  .su-topbar__context, .su-topbar__cmdk-label, .su-topbar__cmdk kbd, .su-topbar__user-name, .su-topbar__user-btn > .ti-chevron-down { display: none; }
+  .su-topbar__cmdk { width: 34px; justify-content: center; padding: 0; }
+  .su-topbar__user-btn { padding: 0; }
+}
+
+@media (max-width: 767px) {
+  .su-appshell__content { padding: var(--su-space-4); }
+}

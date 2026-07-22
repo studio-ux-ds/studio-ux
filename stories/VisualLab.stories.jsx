@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {
-  AppShell, Banner, Badge, Button, Card, EmptyState, Field, IconButton, Input,
+  AppShell, Banner, Badge, Button, Card, CommandPalette, Drawer, EmptyState, Field, IconButton, Input,
   ListScreen, PageHeader, ProgressBar, Select, Skeleton, StatCard, Tag, TextArea,
 } from "@studio-ux-ds/react";
 
@@ -34,6 +34,13 @@ const rows = [
   { id: 2, descricao: "Pró-labore", categoria: "Receita empresarial", bloco: "Empresa", tipo: "Recorrente", valor: "R$ 4.000" },
   { id: 3, descricao: "Aluguel recebido", categoria: "Renda passiva", bloco: "Empresa", tipo: "Recorrente", valor: "R$ 1.900" },
   { id: 4, descricao: "Projeto avulso", categoria: "Serviços", bloco: "Empresa", tipo: "Única", valor: "R$ 2.800" },
+];
+
+const expenseRows = [
+  { id: 1, descricao: "Cartão empresarial", categoria: "Operacional", bloco: "Empresa", tipo: "Recorrente", valor: "R$ 1.280" },
+  { id: 2, descricao: "Aluguel", categoria: "Estrutura", bloco: "Empresa", tipo: "Recorrente", valor: "R$ 2.300" },
+  { id: 3, descricao: "Internet", categoria: "Serviços", bloco: "Empresa", tipo: "Recorrente", valor: "R$ 189" },
+  { id: 4, descricao: "Mercado", categoria: "Pessoal", bloco: "Pessoal", tipo: "Única", valor: "R$ 620" },
 ];
 
 const columns = [
@@ -84,6 +91,25 @@ function Receitas({ onNew }) {
   />;
 }
 
+function Despesas() {
+  const [search, setSearch] = useState("");
+  const filtered = expenseRows.filter((row) => row.descricao.toLowerCase().includes(search.toLowerCase()));
+  return <ListScreen title="Despesas" subtitle="Saídas pessoais e empresariais para acompanhar seus compromissos." primaryAction={<Button variant="primary" icon="plus">Nova despesa</Button>}
+    search={search} onSearch={setSearch} searchPlaceholder="Buscar despesa…"
+    segments={[{ id: "todas", label: "Todas" }, { id: "pessoal", label: "Pessoal" }, { id: "empresa", label: "Empresa" }]} segment="todas" onSegment={() => {}}
+    columns={columns} rows={filtered} getRowId={(row) => row.id} renderRowMenu={() => <IconButton icon="dots" aria-label="Ações da despesa" />}
+    summary={<span>Mostrando {filtered.length} de {expenseRows.length} despesas</span>} filterActive={Boolean(search)}
+    emptyFiltered={{ title: "Nenhuma despesa encontrada", description: "Tente outro termo ou limpe a busca.", onClear: () => setSearch("") }}
+    renderCard={(row) => <Card><div className="su-visual-lab__list-item"><span><strong>{row.descricao}</strong><br /><small>{row.categoria} · {row.tipo}</small></span><span className="su-visual-lab__amount">{row.valor}</span></div></Card>}
+  />;
+}
+
+function Placeholder({ title }) {
+  return <div className="su-visual-lab__stack"><PageHeader title={title} subtitle="Esta cena ainda não faz parte do recorte visual atual." />
+    <Card><EmptyState icon="tools" title={`${title} em preparação`} description="O Laboratório só expõe fluxos completos quando há uma composição real para validar." /></Card>
+  </div>;
+}
+
 function NovaReceita() {
   return <div className="su-visual-lab__stack"><PageHeader title="Nova receita" subtitle="Registre uma entrada para manter suas projeções atualizadas." />
     <Card><div className="su-visual-lab__form">
@@ -109,13 +135,31 @@ function Estados() {
 
 function Lab() {
   const [screen, setScreen] = useState("dashboard");
-  const content = { dashboard: <Dashboard onNew={() => setScreen("nova")} />, receitas: <Receitas onNew={() => setScreen("nova")} />, nova: <NovaReceita />, estados: <Estados /> }[screen];
-  const nav = sections.map((section) => ({ ...section, items: section.items.map((item) => item.items ? item : ({ ...item, active: item.id === screen, href: "#", onClick: (event) => { event.preventDefault(); setScreen(item.id === "dashboard" || item.id === "receitas" ? item.id : "estados"); } })) }));
-  const label = { dashboard: "Painel", receitas: "Receitas", nova: "Nova receita", estados: "Estados" }[screen];
+  const [placeholderLabel, setPlaceholderLabel] = useState("");
+  const [commandOpen, setCommandOpen] = useState(false);
+  const [notificationsOpen, setNotificationsOpen] = useState(false);
+  const [helpOpen, setHelpOpen] = useState(false);
+  const content = screen === "dashboard" ? <Dashboard onNew={() => setScreen("nova")} />
+    : screen === "receitas" ? <Receitas onNew={() => setScreen("nova")} />
+      : screen === "despesas" ? <Despesas />
+        : screen === "nova" ? <NovaReceita />
+          : screen === "estados" ? <Estados /> : <Placeholder title={placeholderLabel} />;
+  const label = screen === "dashboard" ? "Painel" : screen === "receitas" ? "Receitas" : screen === "despesas" ? "Despesas" : screen === "nova" ? "Nova receita" : screen === "estados" ? "Estados" : placeholderLabel;
+  const navigate = (item, event) => {
+    event.preventDefault();
+    if (["dashboard", "receitas", "despesas"].includes(item.id)) setScreen(item.id);
+    else { setPlaceholderLabel(item.label); setScreen("placeholder"); }
+  };
+  const navItem = (item) => item.items ? { ...item, items: item.items.map(navItem) } : ({ ...item, active: item.id === screen, href: "#", onClick: (event) => navigate(item, event) });
+  const nav = sections.map((section) => ({ ...section, items: section.items.map(navItem) }));
   return <div className="su-visual-lab"><AppShell brand={<Brand />} nav={nav} version="Studio UX Visual Lab" breadcrumb={[{ label: "Finanças" }, { label }]} topbarContext={<span>Julho de 2026</span>}
-    user={{ name: "Robson", email: "robson@nivoo.com", initials: "R" }} notifications={3} onNotifications={() => setScreen("estados")} onCommandPalette={() => setScreen("receitas")} onHelp={() => setScreen("estados")} customize>
+    user={{ name: "Robson", email: "robson@nivoo.com", initials: "R" }} notifications={3} onNotifications={() => setNotificationsOpen(true)} onCommandPalette={() => setCommandOpen(true)} onHelp={() => setHelpOpen(true)} customize>
     {content}
-  </AppShell></div>;
+  </AppShell>
+  <CommandPalette open={commandOpen} onClose={() => setCommandOpen(false)}><div className="su-menu__item" onClick={() => { setScreen("receitas"); setCommandOpen(false); }}><i className="ti ti-trending-up" aria-hidden="true" />Ir para Receitas</div><div className="su-menu__item" onClick={() => { setScreen("despesas"); setCommandOpen(false); }}><i className="ti ti-trending-down" aria-hidden="true" />Ir para Despesas</div></CommandPalette>
+  <Drawer open={notificationsOpen} onClose={() => setNotificationsOpen(false)} title="Notificações"><div className="su-visual-lab__stack"><Banner tone="info">Você tem três lembretes para revisar.</Banner><Button variant="secondary" onClick={() => setNotificationsOpen(false)}>Fechar</Button></div></Drawer>
+  <Drawer open={helpOpen} onClose={() => setHelpOpen(false)} title="Ajuda"><div className="su-visual-lab__stack"><p>Use este laboratório para validar a experiência antes de adotar o DS em um sistema.</p><Button variant="secondary" onClick={() => setHelpOpen(false)}>Fechar</Button></div></Drawer>
+  </div>;
 }
 
 export const Completo = { name: "Console financeiro", render: () => <Lab /> };

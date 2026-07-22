@@ -6,6 +6,13 @@
 
 ---
 
+## [1.1.22] - 2026-07-22 - Laboratório visual: navegação e casca compacta
+
+- ✅ **Casca recolhida sem deformação:** ao recolher a `Sidebar`, a marca conserva apenas seu símbolo; o nome deixa de ocupar ou vazar da coluna de ícones.
+- ✅ **TopBar responsiva antes do aperto:** a partir de larguras intermediárias, contexto, rótulos e atalhos redundantes cedem espaço primeiro. Busca, notificações, ajuda e menu de usuário continuam como gatilhos independentes e clicáveis.
+- ✅ **Navegação honesta no Laboratório:** `Despesas` ganhou lista própria; busca abre a `CommandPalette`; sino e ajuda abrem seus `Drawer`s. Rotas que ainda não têm fluxo de validação mostram uma cena explícita de preparação — elas não são mais redirecionadas falsamente para “Estados da experiência”.
+- 🔎 **Prova:** `check-packages.mjs` verde para os oito manifests em lockstep (raiz + sete pacotes) `1.1.22` e `git diff --check` sem erro. A confirmação visual ocorre no Storybook Pages após o push desta tag.
+
 ## [1.1.21] - 2026-07-22 - Laboratório visual + refinamento da linguagem base
 
 - ✅ **Laboratório visual integrado no Storybook:** nova story **`Referência visual/Laboratório financeiro`**, composta exclusivamente com o runtime real (`AppShell`, `PageHeader`, `ListScreen`, `Card`, `StatCard`, formulário e estados). É o ambiente de aprovação visual antes de qualquer adoção em AquaPark, IA Studio, Finanças, Delivery ou outro consumidor — não é maquete nem CSS de app.
