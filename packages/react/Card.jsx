@@ -7,7 +7,7 @@ export function Card({ className = "", children, ...rest }) {
 
 /**
  * StatCard — .su-statcard. Indicador numérico sóbrio.
- * @param {"neutral"|"info"|"success"|"danger"} [tone]
+ * @param {"neutral"|"info"|"success"|"warning"|"danger"} [tone]
  * @param {"up"|"down"} [deltaType]
  */
 export function StatCard({ label, value, delta, deltaType, tone = "neutral" }) {

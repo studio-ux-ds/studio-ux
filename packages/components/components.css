@@ -29,7 +29,7 @@
 .su-btn--sm { height: 30px; font-size: 13px; padding: 0 var(--su-space-3); }
 .su-btn--lg { height: 42px; font-size: 15px; padding: 0 var(--su-space-5); }
 
-.su-btn--primary { background: var(--su-action); color: var(--su-text-on-action); }
+.su-btn--primary { background: var(--su-action); color: var(--su-text-on-action); border-color: var(--su-action); }
 .su-btn--primary:hover:not(:disabled) { background: var(--su-action-hover); }
 .su-btn--primary:active:not(:disabled) { background: var(--su-action-active); }
 
@@ -82,9 +82,9 @@
 .su-field__hint { font-size: 11px; color: var(--su-text-muted); }
 
 /* ---------- Table (DataTable base) ---------- */
-.su-table-card { border: 1px solid var(--su-border-default); border-radius: var(--su-radius-lg); background: var(--su-surface-raised); box-shadow: var(--su-elevation-raised); overflow: hidden; }
+.su-table-card { border: 1px solid var(--su-border-strong); border-radius: var(--su-radius-lg); background: var(--su-surface-raised); box-shadow: var(--su-elevation-raised); overflow: hidden; }
 .su-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-.su-table thead th { text-align: left; font-weight: var(--su-fw-semibold); font-size: 11px; letter-spacing: .03em; text-transform: uppercase; color: var(--su-text-muted); padding: var(--su-space-3) var(--su-space-4); }
+.su-table thead th { text-align: left; font-weight: var(--su-fw-semibold); font-size: 11px; letter-spacing: .03em; text-transform: uppercase; color: var(--su-text-muted); padding: var(--su-space-3) var(--su-space-4); background: var(--su-surface-sunken); }
 .su-table td { padding: var(--su-space-4); color: var(--su-text-primary); border-top: 1px solid var(--su-border-subtle); }
 .su-table td.num, .su-table th.num { text-align: right; font-variant-numeric: tabular-nums; }
 .su-table tbody tr:hover td, .su-table tbody tr:hover td { background: var(--su-surface-sunken); }
@@ -119,7 +119,7 @@
 /* ==================== Fase 3, grupo 2: navegação, formulário, overlays, dados ==================== */
 
 /* ---------- Navegação · Navigation ---------- */
-.su-sidebar { width: 256px; background: var(--su-surface-raised); border-right: 1px solid var(--su-border-subtle); display: flex; flex-direction: column; }
+.su-sidebar { width: 256px; background: var(--su-surface-raised); border-right: 1px solid var(--su-border-default); display: flex; flex-direction: column; }
 .su-sidebar__brand { display: flex; align-items: center; gap: var(--su-space-2); padding: var(--su-space-5) var(--su-space-4); font-weight: var(--su-fw-semibold); }
 .su-nav { display: flex; flex-direction: column; gap: 2px; padding: var(--su-space-2); flex: 1; }
 .su-nav__item { display: flex; align-items: center; gap: var(--su-space-3); padding: var(--su-space-2) var(--su-space-3); border-radius: var(--su-radius-md); font-size: 13px; color: var(--su-text-secondary); text-decoration: none; cursor: pointer; }
@@ -127,7 +127,7 @@
 .su-nav__item--active { background: var(--su-action-tint); color: var(--su-action); }
 .su-sidebar__footer { border-top: 1px solid var(--su-border-subtle); padding: var(--su-space-3); }
 
-.su-topbar { display: flex; align-items: center; gap: var(--su-space-3); padding: var(--su-space-3) var(--su-space-6); border-bottom: 1px solid var(--su-border-subtle); background: var(--su-surface-raised); }
+.su-topbar { display: flex; align-items: center; gap: var(--su-space-3); padding: var(--su-space-3) var(--su-space-6); border-bottom: 1px solid var(--su-border-default); background: var(--su-surface-raised); }
 
 .su-tabs { display: flex; gap: var(--su-space-5); border-bottom: 1px solid var(--su-border-default); }
 .su-tab { padding: var(--su-space-2) 0; font-size: 13px; color: var(--su-text-secondary); cursor: pointer; border: 0; background: transparent; appearance: none; -webkit-appearance: none; outline: none; margin: 0; font-family: inherit; border-bottom: 2px solid transparent; margin-bottom: -1px; }
@@ -164,17 +164,19 @@
 .su-popover { background: var(--su-surface-overlay); border: 1px solid var(--su-border-default); border-radius: var(--su-radius-lg); box-shadow: var(--su-elevation-overlay); padding: var(--su-space-4); }
 
 /* ---------- Dados · Data ---------- */
-.su-card { background: var(--su-surface-raised); border: 1px solid var(--su-border-default); border-radius: var(--su-radius-lg); padding: var(--su-space-5); box-shadow: var(--su-elevation-raised); }
-.su-statcard { background: var(--su-surface-raised); border: 1px solid var(--su-border-default); border-radius: var(--su-radius-lg); padding: var(--su-space-5); box-shadow: var(--su-elevation-raised); }
+.su-card { background: var(--su-surface-raised); border: 1px solid var(--su-border-strong); border-radius: var(--su-radius-lg); padding: var(--su-space-5); box-shadow: var(--su-elevation-raised); }
+.su-statcard { background: var(--su-surface-raised); border: 1px solid var(--su-border-strong); border-radius: var(--su-radius-lg); padding: var(--su-space-5); box-shadow: var(--su-elevation-raised); }
 .su-statcard__label { font-size: 12px; font-weight: var(--su-fw-medium); color: var(--su-text-secondary); }
 .su-statcard__value { font-size: 24px; font-weight: var(--su-fw-semibold); letter-spacing: -.02em; color: var(--su-text-primary); margin-top: var(--su-space-2); }
 .su-statcard__delta { display: flex; align-items: center; gap: var(--su-space-1); margin-top: var(--su-space-1); font-size: var(--su-fs-caption); color: var(--su-success-fg); }
 .su-statcard__delta--down { color: var(--su-danger-fg); }
-.su-statcard--info { border-color: color-mix(in srgb, var(--su-action) 52%, var(--su-border-default)); background: color-mix(in srgb, var(--su-action) 4%, var(--su-surface-raised)); }
+.su-statcard--info { border-color: color-mix(in srgb, var(--su-action) 58%, var(--su-border-strong)); border-left-width: 3px; background: color-mix(in srgb, var(--su-action) 5%, var(--su-surface-raised)); }
 .su-statcard--info .su-statcard__value, .su-statcard--info .su-statcard__delta { color: var(--su-action); }
-.su-statcard--success { border-color: color-mix(in srgb, var(--su-success-fg) 48%, var(--su-border-default)); background: color-mix(in srgb, var(--su-success-fg) 4%, var(--su-surface-raised)); }
+.su-statcard--success { border-color: color-mix(in srgb, var(--su-success-fg) 54%, var(--su-border-strong)); border-left-width: 3px; background: color-mix(in srgb, var(--su-success-fg) 5%, var(--su-surface-raised)); }
 .su-statcard--success .su-statcard__value, .su-statcard--success .su-statcard__delta { color: var(--su-success-fg); }
-.su-statcard--danger { border-color: color-mix(in srgb, var(--su-danger-fg) 48%, var(--su-border-default)); background: color-mix(in srgb, var(--su-danger-fg) 4%, var(--su-surface-raised)); }
+.su-statcard--warning { border-color: color-mix(in srgb, var(--su-warning-fg) 54%, var(--su-border-strong)); border-left-width: 3px; background: color-mix(in srgb, var(--su-warning-fg) 5%, var(--su-surface-raised)); }
+.su-statcard--warning .su-statcard__value, .su-statcard--warning .su-statcard__delta { color: var(--su-warning-fg); }
+.su-statcard--danger { border-color: color-mix(in srgb, var(--su-danger-fg) 54%, var(--su-border-strong)); border-left-width: 3px; background: color-mix(in srgb, var(--su-danger-fg) 5%, var(--su-surface-raised)); }
 .su-statcard--danger .su-statcard__value, .su-statcard--danger .su-statcard__delta { color: var(--su-danger-fg); }
 .su-table tbody tr.su-table__row--clickable { cursor: pointer; }
 .su-table tbody tr.su-table__row--clickable:hover { background: var(--su-action-tint); }
@@ -370,7 +372,7 @@
    Compõe Sidebar/TopBar/região de conteúdo. A página preenche SÓ
    .su-appshell__content (P22); a casca nunca é redesenhada pela tela.
    ================================================================== */
-.su-appshell { display: flex; height: 100vh; height: 100dvh; overflow: hidden; background: var(--su-surface-base); }
+.su-appshell { display: flex; height: 100vh; height: 100dvh; overflow: hidden; background: var(--su-surface-sunken); }
 .su-appshell__main { flex: 1; min-width: 0; display: flex; flex-direction: column; overflow: hidden; }
 .su-appshell__content { flex: 1; min-height: 0; overflow: auto; padding: var(--su-space-8); }
 

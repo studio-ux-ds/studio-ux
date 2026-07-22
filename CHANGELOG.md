@@ -6,6 +6,13 @@
 
 ---
 
+## [1.2.5] - 2026-07-22
+
+### Changed
+- **PT:** Refinamento de presença visual sem gradientes: canvas do AppShell usa a superfície rebaixada, shell/tabelas/cards ganham separação mais legível e `StatCard` recebe sinal semântico mais claro pela borda, tint suave e valor. Adicionado o tom `warning`.
+- **EN:** Visual-presence refinement without gradients: the AppShell canvas uses the sunken surface, shell/tables/cards gain clearer separation, and `StatCard` receives a stronger semantic signal through border, soft tint, and value. Added the `warning` tone.
+
+
 ## [1.2.4] - 2026-07-22
 
 ### Added
