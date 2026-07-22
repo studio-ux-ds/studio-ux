@@ -7,16 +7,17 @@ export function Card({ className = "", children, ...rest }) {
 
 /**
  * StatCard — .su-statcard. Indicador numérico sóbrio.
+ * @param {"neutral"|"info"|"success"|"danger"} [tone]
  * @param {"up"|"down"} [deltaType]
  */
-export function StatCard({ label, value, delta, deltaType }) {
+export function StatCard({ label, value, delta, deltaType, tone = "neutral" }) {
   return (
-    <div className="su-statcard">
+    <div className={["su-statcard", tone !== "neutral" && `su-statcard--${tone}`].filter(Boolean).join(" ")}>
       <div className="su-statcard__label">{label}</div>
       <div className="su-statcard__value">{value}</div>
       {delta && (
         <div className={["su-statcard__delta", deltaType === "down" && "su-statcard__delta--down"].filter(Boolean).join(" ")}>
-          <i className={`ti ti-arrow-${deltaType === "down" ? "down-right" : "up-right"}`} aria-hidden="true" /> {delta}
+          {delta}
         </div>
       )}
     </div>

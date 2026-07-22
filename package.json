@@ -1,6 +1,6 @@
 {
   "name": "studio-ux",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "private": true,
   "description": "Studio UX — Design System + plataforma. Monorepo dos pacotes publicáveis (tokens, components, mobile, react, react-native, icons, cli).",
   "workspaces": [
