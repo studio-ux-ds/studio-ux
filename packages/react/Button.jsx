@@ -1,4 +1,5 @@
 import React from "react";
+import { DSIcon } from "./DSIcon.jsx";
 
 /**
  * Button — embrulha .su-btn. Props traduzem para classes/estados (P1), nunca valores.
@@ -12,9 +13,9 @@ export function Button({ variant = "secondary", size = "md", icon, iconRight, cl
   const cls = ["su-btn", `su-btn--${variant}`, sizeCls, className].filter(Boolean).join(" ");
   return (
     <button className={cls} {...rest}>
-      {icon && <i className={`ti ti-${icon}`} aria-hidden="true" />}
+      {icon && <DSIcon name={icon} size="sm" />}
       {children}
-      {iconRight && <i className={`ti ti-${iconRight}`} aria-hidden="true" />}
+      {iconRight && <DSIcon name={iconRight} size="sm" />}
     </button>
   );
 }
@@ -23,7 +24,7 @@ export function Button({ variant = "secondary", size = "md", icon, iconRight, cl
 export function IconButton({ icon, className = "", ...rest }) {
   return (
     <button className={["su-iconbtn", className].filter(Boolean).join(" ")} {...rest}>
-      <i className={`ti ti-${icon}`} aria-hidden="true" />
+      <DSIcon name={icon} size="sm" />
     </button>
   );
 }

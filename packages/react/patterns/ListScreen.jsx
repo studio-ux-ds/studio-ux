@@ -5,6 +5,7 @@ import { SegmentedControl } from "../Controls.jsx";
 import { Pagination } from "../Data.jsx";
 import { EmptyState, Skeleton } from "../Feedback.jsx";
 import { Button } from "../Button.jsx";
+import { DSIcon } from "../DSIcon.jsx";
 
 /**
  * ListScreen — materialização React do molde de tela `list` (STUDIO_UX_TEMPLATES §2,
@@ -39,7 +40,7 @@ function Toolbar({ listTitle, search, onSearch, searchPlaceholder, segments, seg
       <div className="su-toolbar__spacer" />
       {onSearch && (
         <div className="su-input su-toolbar__search">
-          <i className="ti ti-search" aria-hidden="true" />
+          <DSIcon name="search" size="sm" />
           <input
             value={search ?? ""}
             onChange={(e) => onSearch(e.target.value)}

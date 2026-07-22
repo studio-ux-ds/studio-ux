@@ -1,10 +1,11 @@
 import React from "react";
+import { DSIcon } from "./DSIcon.jsx";
 
 /** EmptyState — .su-empty. Convite, não desculpa (título + ação). */
 export function EmptyState({ icon = "inbox", title, description, action }) {
   return (
     <div className="su-empty">
-      <div className="su-empty__icon"><i className={`ti ti-${icon}`} aria-hidden="true" /></div>
+      <div className="su-empty__icon"><DSIcon name={icon} size="lg" /></div>
       {title && <div className="su-empty__title">{title}</div>}
       {description && <div style={{ fontSize: 13, marginTop: 4 }}>{description}</div>}
       {action && <div style={{ marginTop: 14 }}>{action}</div>}

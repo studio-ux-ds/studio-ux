@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { DSIcon } from "./DSIcon.jsx";
 
 function useEsc(open, onClose) {
   useEffect(() => {
@@ -16,7 +17,7 @@ export function Drawer({ open, onClose, title, children, footer }) {
   return (
     <div className="su-scrim" style={{ justifyContent: "flex-end", padding: 0 }} onClick={(e) => e.target === e.currentTarget && onClose && onClose()}>
       <div className="su-drawer" role="dialog" aria-modal="true">
-        {title && <div className="su-modal__head" style={{ display: "flex", alignItems: "center" }}><span style={{ flex: 1 }}>{title}</span><button className="su-iconbtn" aria-label="Fechar" onClick={onClose}><i className="ti ti-x" /></button></div>}
+        {title && <div className="su-modal__head" style={{ display: "flex", alignItems: "center" }}><span style={{ flex: 1 }}>{title}</span><button className="su-iconbtn" aria-label="Fechar" onClick={onClose}><DSIcon name="close" size="sm" /></button></div>}
         <div style={{ padding: "0 var(--su-space-5) var(--su-space-4)", overflow: "auto", flex: 1 }}>{children}</div>
         {footer && <div className="su-modal__foot">{footer}</div>}
       </div>
@@ -46,7 +47,7 @@ export function Menu({ items }) {
           <div key={i} role="menuitem"
             className={["su-menu__item", it.danger && "su-menu__item--danger"].filter(Boolean).join(" ")}
             onClick={it.onClick}>
-            {it.icon && <i className={`ti ti-${it.icon}`} aria-hidden="true" />}{it.label}
+            {it.icon && <DSIcon name={it.icon} size="sm" />}{it.label}
           </div>
         )
       )}

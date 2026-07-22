@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { SegmentedControl } from "../Controls.jsx";
+import { DSIcon } from "../DSIcon.jsx";
 import {
   SU_ACCENTS, SU_THEMES, SU_LAYOUTS, SU_LOCALES,
   getAccent, setAccent, getTheme, setTheme, getLayout, setLayout, getLocale, setLocale, watchSystemTheme,
@@ -30,9 +31,9 @@ function ChoiceGroup({ ariaLabel, items, value, onChange, icon }) {
       return <button key={item.id} type="button" role="radio" aria-checked={selected}
         className={["su-customize__choice", selected && "su-customize__choice--on"].filter(Boolean).join(" ")}
         onClick={() => onChange(item.id)}>
-        <i className={`ti ti-${icon[item.id]}`} aria-hidden="true" />
+        <DSIcon name={icon[item.id]} size="sm" />
         <span>{item.label}</span>
-        {selected && <i className="ti ti-check su-customize__check" aria-hidden="true" />}
+        {selected && <DSIcon name="check" size="sm" className="su-customize__check" />}
       </button>;
     })}
   </div>;
@@ -70,7 +71,7 @@ export function Customize({ accents = SU_ACCENTS, onChange }) {
           const selected = accent === item.id;
           return <button key={item.id} type="button" role="radio" aria-checked={selected} aria-label={item.label} title={item.label}
             className={["su-swatch", selected && "su-swatch--on"].filter(Boolean).join(" ")} style={{ "--sw": item.hex }} onClick={() => changeAccent(item.id)}>
-            {selected && <i className="ti ti-check" aria-hidden="true" />}
+            {selected && <DSIcon name="check" size="sm" className="su-swatch__check" />}
           </button>;
         })}
       </div>

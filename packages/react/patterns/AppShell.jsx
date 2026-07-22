@@ -3,6 +3,7 @@ import { Sidebar, NavItem, TopBar, Breadcrumb } from "../Shell.jsx";
 import { Drawer } from "../Overlay.jsx";
 import { IconButton } from "../Button.jsx";
 import { Avatar } from "../Misc.jsx";
+import { DSIcon } from "../DSIcon.jsx";
 import { Customize } from "./Customize.jsx";
 import { getTheme, setTheme, isDark, getLayout, getLocale } from "../theme.js";
 
@@ -122,9 +123,9 @@ function NavGroup({ group, collapsed, open, onToggle, renderLeaf }) {
   return (
     <div className="su-nav__group">
       <button type="button" className={cls} aria-expanded={open} title={collapsed ? group.group : undefined} onClick={onToggle}>
-        {group.icon && <i className={`ti ti-${group.icon}`} style={{ fontSize: 18 }} aria-hidden="true" />}
+        {group.icon && <DSIcon name={group.icon} size="sm" />}
         {!collapsed && <span className="su-nav__group-label">{group.group}</span>}
-        {!collapsed && <i className={["ti ti-chevron-right", "su-nav__chev", open && "su-nav__chev--open"].filter(Boolean).join(" ")} aria-hidden="true" />}
+        {!collapsed && <DSIcon name="chevron-right" size="sm" className={["su-nav__chev", open && "su-nav__chev--open"].filter(Boolean).join(" ")} />}
       </button>
       {open && !collapsed && (
         <div className="su-nav__children">
@@ -139,12 +140,12 @@ function NavGroup({ group, collapsed, open, onToggle, renderLeaf }) {
 function TopNavList({ sections, ariaLabel }) {
   const leaf = (item, key) => <a key={key} className={["su-topnav__item", item.active && "su-topnav__item--active"].filter(Boolean).join(" ")}
     aria-current={item.active ? "page" : undefined} href={item.href} onClick={item.onClick}>
-    {item.icon && <i className={`ti ti-${item.icon}`} aria-hidden="true" />}{item.label}
+    {item.icon && <DSIcon name={item.icon} size="sm" />}{item.label}
   </a>;
   return <nav className="su-topnav" aria-label={ariaLabel}>
     {sections.flatMap((section) => section.items || []).map((item, index) => isGroup(item) ? (
       <details key={index} className="su-topnav__group">
-        <summary><i className={`ti ti-${item.icon}`} aria-hidden="true" />{item.group}<i className="ti ti-chevron-down" aria-hidden="true" /></summary>
+        <summary><DSIcon name={item.icon} size="sm" />{item.group}<DSIcon name="chevron-down" size="sm" /></summary>
         <div className="su-topnav__menu">{item.items.map((child, childIndex) => leaf(child, childIndex))}</div>
       </details>
     ) : leaf(item, index))}
@@ -175,7 +176,7 @@ function UserMenu({ user, items, onClose }) {
           <div key={i} role="menuitem"
             className={["su-menu__item", it.danger && "su-menu__item--danger"].filter(Boolean).join(" ")}
             onClick={() => { onClose(); it.onClick && it.onClick(); }}>
-            {it.icon && <i className={`ti ti-${it.icon}`} aria-hidden="true" />}
+            {it.icon && <DSIcon name={it.icon} size="sm" />}
             <span style={{ flex: 1 }}>{it.label}</span>
             {it.hint && <span className="su-usermenu__hint">{it.hint}</span>}
           </div>
@@ -291,7 +292,7 @@ export function AppShell({
           <div className="su-topbar__right">
             {onCommandPalette && (
               <button className="su-topbar__cmdk" onClick={onCommandPalette} aria-label={text.openSearch}>
-                <i className="ti ti-search" aria-hidden="true" />
+                <DSIcon name="search" size="sm" />
                 <span className="su-topbar__cmdk-label">{text.search}</span>
                 <kbd>{commandPaletteHint}</kbd>
               </button>
@@ -308,7 +309,7 @@ export function AppShell({
                 <button className="su-topbar__user-btn" aria-haspopup="menu" aria-expanded={menuOpen} onClick={() => setMenuOpen((v) => !v)}>
                   <Avatar src={user.avatarUrl} initials={user.initials} size="sm" alt={user.name} />
                   {!narrow && <span className="su-topbar__user-name">{user.name}</span>}
-                  <i className="ti ti-chevron-down" aria-hidden="true" />
+                  <DSIcon name="chevron-down" size="sm" className="su-topbar__user-chevron" />
                 </button>
                 {menuOpen && <UserMenu user={user} items={menuItems} onClose={() => setMenuOpen(false)} />}
               </div>

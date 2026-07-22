@@ -1,4 +1,5 @@
 import React from "react";
+import { DSIcon } from "./DSIcon.jsx";
 
 /** Sidebar — .su-sidebar (Desktop). Compõe brand + nav + footer. */
 export function Sidebar({ brand, children, footer }) {
@@ -16,7 +17,7 @@ export function NavItem({ icon, active, className = "", children, ...rest }) {
   const cls = ["su-nav__item", active && "su-nav__item--active", className].filter(Boolean).join(" ");
   return (
     <a className={cls} aria-current={active ? "page" : undefined} {...rest}>
-      {icon && <i className={`ti ti-${icon}`} style={{ fontSize: 18 }} aria-hidden="true" />}{children}
+      {icon && <DSIcon name={icon} size="sm" />}{children}
     </a>
   );
 }

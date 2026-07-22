@@ -6,6 +6,12 @@
 
 ---
 
+## [1.2.2] - 2026-07-22 - Ícones locais no adapter React
+
+- ✅ **Sem webfont externa no AppShell:** navegação, TopBar, botões de ícone, drawers, estados vazios, busca e Customize passam a renderizar o SVG local curado em `@studio-ux-ds/icons`. A casca não deixa de exibir ícones quando uma CDN é bloqueada por CSP ou está indisponível.
+- ✅ **Compatibilidade de API:** nomes legados aceitos nas props `icon` continuam funcionando por normalização interna; consumidores não precisam trocar sua árvore de navegação nesta release.
+- 🔎 **Lockstep:** oito manifests (raiz + sete pacotes) avançam juntos para `1.2.2`.
+
 ## [1.2.1] - 2026-07-22 - Correção do menu da Top Nav
 
 - ✅ **Dropdown visível:** o menu de grupos da variante `Top Nav` não é mais recortado pelo contêiner horizontal; ao abrir Configurações, seus destinos ficam acima do conteúdo e continuam clicáveis.
