@@ -1,6 +1,6 @@
 {
   "name": "@studio-ux-ds/icons",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "Biblioteca curada de ícones do Studio UX — estilo único (grade 24, traço 1.5), nomes semânticos, cor via token (ICONOGRAPHY).",
   "type": "module",
   "main": "icons.js",

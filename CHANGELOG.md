@@ -6,6 +6,13 @@
 
 ---
 
+## [1.2.6] - 2026-07-22
+
+### Changed
+- **PT:** O padrão CRUD passa a exigir continuidade visual entre detalhe e edição: quando “Editar” nasce no detalhe, a página de edição mantém o mesmo PageHeader, largura, superfície e contexto de retorno. Editar é um estado da entidade, não uma nova área do produto.
+- **EN:** The CRUD pattern now requires visual continuity between detail and editing: when “Edit” originates in detail, the edit page keeps the same PageHeader, width, surface, and return context. Editing is an entity state, not a new product area.
+
+
 ## [1.2.5] - 2026-07-22
 
 ### Changed
