@@ -6,6 +6,13 @@
 
 ---
 
+## [Unreleased]
+
+### Changed
+
+- **PT:** A jornada canônica de listagens da referência AquaPark passa a demonstrar a regra completa: linha acionável com teclado, drill-in, criação e edição em página, retorno ao contexto e `ConfirmDialog` apenas para exclusão. O gatilho de busca deixa de exibir o atalho; `Ctrl+K`/`⌘K` continuam funcionais. A referência também remove seus degradês residuais.
+- **EN:** The AquaPark reference canonical list journey now demonstrates the complete rule: keyboard-accessible row, drill-in, page-based creation and editing, contextual return, and `ConfirmDialog` only for deletion. The search trigger no longer displays the shortcut; `Ctrl+K`/`⌘K` remain functional. The reference also removes its remaining gradients.
+
 ## [1.2.7] - 2026-07-22
 
 ### Fixed

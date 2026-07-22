@@ -54,6 +54,12 @@ Antes de dizer **pronto**, responder e agir:
 
 **EN** — Mandatory gate before adopting in a new system: (1) validate the integrated scenario in the visual Lab, light and dark; (2) declare the journey being migrated; (3) inventory and remove competing local components from that journey; (4) review desktop and mobile; (5) only then release the area. “Partial adaptation” is never a final state.
 
+### Referência AquaPark · AquaPark reference
+
+**PT** — `examples/referencia-aquapark.html` ilustra a jornada canônica de listagens (linha acionável com teclado → detalhe → criar/editar em página → confirmação destrutiva → retorno). É um molde de referência, não a prova de aprovação visual do DS: essa prova continua sendo o Laboratório visual integrado do Storybook, em claro e escuro. Telas AquaPark que ainda reproduzem a rota real com ações por linha devem migrar a jornada inteira no sistema de origem antes que a referência declare paridade final.
+
+**EN** — `examples/referencia-aquapark.html` illustrates the canonical list journey (keyboard-accessible row → detail → page-based create/edit → destructive confirmation → return). It is a reference template, not evidence of visual approval for the DS: that proof remains the integrated Storybook Visual Lab, in light and dark modes. AquaPark screens that still reproduce their real route with per-row actions must migrate the complete journey in the source system before the reference claims final parity.
+
 ## 🧭 FLUXO (refinar à medida que implanta)
 ```
 constrói a peça  →  vê (mock / story / screenshot claro+escuro)  →  Robson refina
