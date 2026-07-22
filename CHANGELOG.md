@@ -12,6 +12,10 @@
 - **PT:** O gatilho de busca do `AppShell` deixa de exibir a tecla `⌘K`; ele mostra apenas a ação “Buscar”. Quando `onCommandPalette` é fornecido, a casca passa a abrir o comando por `Ctrl+K` no Windows/Linux e `⌘K` no macOS, prevenindo o atalho nativo do navegador.
 - **EN:** The `AppShell` search trigger no longer displays the `⌘K` key; it shows only the “Search” action. When `onCommandPalette` is supplied, the shell opens the command with `Ctrl+K` on Windows/Linux and `⌘K` on macOS, preventing the browser's native shortcut.
 
+### Changed
+- **PT:** A DoD de adoção passa a proibir coexistência final entre componentes legados e o layout Studio UX numa mesma jornada. A migração exige lista, detalhe, criação, edição, confirmação e retorno completos; `DataTable`/`ListScreen` usam linha clicável como acesso ao drill-in, e modais ficam restritos a confirmação ou tarefa curta.
+- **EN:** The adoption DoD now forbids final coexistence between legacy components and the Studio UX layout within the same journey. Migration requires complete list, detail, creation, edit, confirmation, and return flows; `DataTable`/`ListScreen` use a clickable row as drill-in access, while modals are restricted to confirmation or a short task.
+
 ## [1.2.6] - 2026-07-22
 
 ### Changed

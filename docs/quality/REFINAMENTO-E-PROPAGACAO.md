@@ -44,6 +44,16 @@ Antes de dizer **pronto**, responder e agir:
 - **Nunca cravar número de versão de cabeça** — conferir `git tag --sort=-v:refname`/`CHANGELOG.md` ou perguntar (§5/§6).
 - **Identidade x marca (decisão vigente):** o DS dita **layout/desenho**; o **accent (marca) é por app** (via o painel de personalização / tokens de marca). Refinamento de layout é do DS; cor de marca é do app — não confundir as duas camadas ao propagar.
 
+## Contrato de adoção de layout · Layout adoption contract
+
+**PT** — Adoção do Studio UX é feita por **jornada completa**, nunca por troca cosmética isolada. Ao migrar uma área, a lista, estados vazio/loading/erro, detalhe, criação, edição, confirmação destrutiva e retorno precisam usar o padrão novo na mesma entrega. A lista operacional não tem coluna de ações por linha: a linha/card é o acesso canônico ao detalhe; o detalhe concentra editar e excluir; criar e editar usam rotas/páginas próprias. Modal é reservado a confirmação ou tarefa curta e contextual. Componente local legado não pode permanecer renderizado ao lado do equivalente Studio UX — primeiro substitui toda a jornada, depois remove o legado.
+
+**EN** — Studio UX adoption happens by **complete journey**, never by isolated cosmetic replacement. When migrating an area, list, empty/loading/error states, detail, creation, editing, destructive confirmation, and return path must use the new pattern in the same delivery. An operational list has no per-row action column: row/card is the canonical way to detail; detail concentrates edit and delete; create and edit use dedicated routes/pages. Modal is reserved for confirmation or a short contextual task. A legacy local component cannot remain rendered beside its Studio UX equivalent — replace the whole journey first, then remove the legacy implementation.
+
+**PT** — Gate obrigatório antes de adotar em sistema novo: (1) validar o cenário integrado no Laboratório visual, claro e escuro; (2) declarar a jornada que será migrada; (3) inventariar e remover os componentes locais concorrentes daquela jornada; (4) revisar desktop e mobile; (5) só então liberar a área. Não existe “adaptação parcial” como estado final.
+
+**EN** — Mandatory gate before adopting in a new system: (1) validate the integrated scenario in the visual Lab, light and dark; (2) declare the journey being migrated; (3) inventory and remove competing local components from that journey; (4) review desktop and mobile; (5) only then release the area. “Partial adaptation” is never a final state.
+
 ## 🧭 FLUXO (refinar à medida que implanta)
 ```
 constrói a peça  →  vê (mock / story / screenshot claro+escuro)  →  Robson refina
