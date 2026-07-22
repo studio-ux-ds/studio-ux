@@ -425,10 +425,9 @@
 .su-topnav__menu { position: absolute; top: calc(100% + var(--su-space-2)); left: 0; z-index: var(--su-z-overlay); min-width: 190px; padding: var(--su-space-1); display: flex; flex-direction: column; border: 1px solid var(--su-border-default); border-radius: var(--su-radius-md); background: var(--su-surface-overlay); box-shadow: var(--su-elevation-popover); }
 .su-topnav__menu .su-topnav__item { width: 100%; }
 
-/* Gatilho ⌘K — parece campo de busca, some o rótulo no estreito */
+/* Gatilho de busca — parece campo de busca, some o rótulo no estreito */
 .su-topbar__cmdk { display: inline-flex; align-items: center; gap: var(--su-space-2); height: 34px; padding: 0 var(--su-space-3); border: 1px solid var(--su-border-default); border-radius: var(--su-radius-md); background: var(--su-surface-sunken); color: var(--su-text-muted); cursor: pointer; font: inherit; font-size: 13px; }
 .su-topbar__cmdk:hover { border-color: var(--su-border-strong); color: var(--su-text-secondary); }
-.su-topbar__cmdk kbd { font-family: var(--su-font-mono); font-size: 11px; background: var(--su-surface-raised); border: 1px solid var(--su-border-default); border-radius: 5px; padding: 1px 5px; color: var(--su-text-muted); }
 
 /* Sino de notificações + contador */
 .su-topbar__bell { position: relative; display: inline-flex; }
@@ -484,7 +483,7 @@
   .su-topbar { gap: var(--su-space-2); padding: var(--su-space-3) var(--su-space-4); }
   .su-topbar__left { gap: var(--su-space-2); min-width: 0; }
   .su-topbar__right { gap: var(--su-space-1); }
-  .su-topbar__context, .su-topbar__cmdk-label, .su-topbar__cmdk kbd, .su-topbar__user-name, .su-topbar__user-btn > .su-topbar__user-chevron { display: none; }
+  .su-topbar__context, .su-topbar__cmdk-label, .su-topbar__user-name, .su-topbar__user-btn > .su-topbar__user-chevron { display: none; }
   .su-topbar__cmdk { width: 34px; justify-content: center; padding: 0; }
   .su-topbar__user-btn { padding: 0; }
 }

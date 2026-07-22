@@ -6,6 +6,12 @@
 
 ---
 
+## [1.2.7] - 2026-07-22
+
+### Fixed
+- **PT:** O gatilho de busca do `AppShell` deixa de exibir a tecla `⌘K`; ele mostra apenas a ação “Buscar”. Quando `onCommandPalette` é fornecido, a casca passa a abrir o comando por `Ctrl+K` no Windows/Linux e `⌘K` no macOS, prevenindo o atalho nativo do navegador.
+- **EN:** The `AppShell` search trigger no longer displays the `⌘K` key; it shows only the “Search” action. When `onCommandPalette` is supplied, the shell opens the command with `Ctrl+K` on Windows/Linux and `⌘K` on macOS, preventing the browser's native shortcut.
+
 ## [1.2.6] - 2026-07-22
 
 ### Changed

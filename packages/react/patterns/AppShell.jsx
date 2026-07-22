@@ -16,7 +16,7 @@ const shellCopy = {
 // o DS já tem (Sidebar/NavItem/TopBar/Breadcrumb/Drawer) e trava as invariantes que
 // fazem a casca ficar idêntica ao Flux em posição e comportamento:
 //   • P22 — a página só preenche a REGIÃO de conteúdo; nunca redesenha a casca.
-//   • P6  — a TopBar carrega CONTEXTO (breadcrumb/período), ⌘K, notificações, ajuda
+//   • P6  — a TopBar carrega CONTEXTO (breadcrumb/período), busca, notificações, ajuda
 //           e menu do usuário. A ação primária da tela mora no PageHeader, nunca aqui.
 //   • P17 — o item de nav ativo sinaliza além da cor (barra + peso + aria-current).
 //   • P4  — Desktop: Sidebar fixa. Mobile (≤767px): Sidebar vira Drawer (hambúrguer).
@@ -196,7 +196,6 @@ export function AppShell({
   user,
   userMenuItems = [],
   onCommandPalette,
-  commandPaletteHint = "⌘K",
   notifications,
   onNotifications,
   onHelp,
@@ -224,6 +223,18 @@ export function AppShell({
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
   }, [mobileOpen]);
+
+  useEffect(() => {
+    if (!onCommandPalette) return undefined;
+    const onKey = (event) => {
+      if ((event.metaKey || event.ctrlKey) && !event.altKey && !event.shiftKey && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        onCommandPalette();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onCommandPalette]);
 
   const openCustomize = () => {
     if (onCustomize) return onCustomize();
@@ -291,10 +302,9 @@ export function AppShell({
 
           <div className="su-topbar__right">
             {onCommandPalette && (
-              <button className="su-topbar__cmdk" onClick={onCommandPalette} aria-label={text.openSearch}>
+              <button className="su-topbar__cmdk" onClick={onCommandPalette} aria-label={text.openSearch} aria-keyshortcuts="Control+K Meta+K">
                 <DSIcon name="search" size="sm" />
                 <span className="su-topbar__cmdk-label">{text.search}</span>
-                <kbd>{commandPaletteHint}</kbd>
               </button>
             )}
             {onNotifications && (

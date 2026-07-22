@@ -1,6 +1,6 @@
 {
   "name": "@studio-ux-ds/tokens",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "description": "Design Tokens do Studio UX como CSS custom properties (fonte executável, v1.0.0 Tokens Frozen).",
   "main": "tokens.css",
   "exports": {
