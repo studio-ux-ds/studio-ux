@@ -6,6 +6,17 @@
 
 ---
 
+## [1.2.4] - 2026-07-22
+
+### Added
+- **PT:** `DataTable` e `ListScreen` agora aceitam `onRowClick` e `getRowLabel`, transformando a linha no acesso canônico ao detalhe com mouse e teclado (`Enter`/`Espaço`). `StatCard` ganha o tom semântico opcional `info`, `success` e `danger`.
+- **EN:** `DataTable` and `ListScreen` now accept `onRowClick` and `getRowLabel`, making the row the canonical way into detail with mouse and keyboard (`Enter`/`Space`). `StatCard` adds optional semantic `info`, `success`, and `danger` tones.
+
+### Changed
+- **PT:** Linhas clicáveis recebem hover e foco visível; seleção em lote e menu de linha não disparam a abertura do detalhe.
+- **EN:** Clickable rows receive hover and visible focus; bulk selection and a row menu do not trigger detail navigation.
+
+
 ## [1.2.3] - 2026-07-22 - Busca estável no ListScreen
 
 - ✅ **Foco preservado:** a Toolbar de `ListScreen` agora fica em um card estrutural estável. Alternar entre loading, tabela, cartões e estado vazio não desmonta o input de busca; é possível continuar digitando depois de o primeiro resultado aparecer ou desaparecer.

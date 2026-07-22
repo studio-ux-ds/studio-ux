@@ -60,11 +60,11 @@ export function DataTable({ columns, rows, getRowId = (r, i) => i, bulkActions, 
                   <td style={{ paddingLeft: 16 }}>
                     <i className={`ti ${on ? "ti-square-check" : "ti-square"}`}
                        style={{ cursor: "pointer", fontSize: 15, color: on ? "var(--su-action)" : "var(--su-text-muted)" }}
-                       onClick={() => toggle(id)} role="checkbox" aria-checked={on} />
+                       onClick={(event) => { event.stopPropagation(); toggle(id); }} role="checkbox" aria-checked={on} />
                   </td>
                 )}
                 {columns.map((c) => <td key={c.key} className={c.align === "right" ? "num" : ""}>{c.render ? c.render(r) : r[c.key]}</td>)}
-                {renderRowMenu && <td style={{ textAlign: "right" }}>{renderRowMenu(r)}</td>}
+                {renderRowMenu && <td style={{ textAlign: "right" }} onClick={(event) => event.stopPropagation()}>{renderRowMenu(r)}</td>}
               </tr>
             );
           })}
