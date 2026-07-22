@@ -14,7 +14,7 @@ import React, { useState } from "react";
  * @param {boolean} [selectable]  mostra a coluna de seleção. Default: só quando há `bulkActions`
  *   (sem ações de lote não há por que ter checkbox — mantém a lista "calma", igual ao Flux).
  */
-export function DataTable({ columns, rows, getRowId = (r, i) => i, bulkActions, renderRowMenu, toolbar, footer, selectable: selectableProp }) {
+export function DataTable({ columns, rows, getRowId = (r, i) => i, bulkActions, renderRowMenu, toolbar, footer, selectable: selectableProp, bare = false }) {
   const selectable = selectableProp != null ? selectableProp : bulkActions != null;
   const [sel, setSel] = useState(() => new Set());
   const ids = rows.map(getRowId);
@@ -24,8 +24,7 @@ export function DataTable({ columns, rows, getRowId = (r, i) => i, bulkActions, 
   const clear = () => setSel(new Set());
   const selCell = { paddingLeft: 16, width: 34 };
 
-  return (
-    <div className="su-table-card">
+  const content = <>
       {selectable && sel.size > 0 ? (
         <div style={{ display: "flex", alignItems: "center", gap: 20, padding: "13px 16px", background: "var(--su-action-tint)", fontSize: 12 }}>
           <span style={{ fontWeight: 500 }}><i className="ti ti-square-check" style={{ color: "var(--su-action)" }} /> {sel.size} selecionado{sel.size > 1 ? "s" : ""}</span>
@@ -68,6 +67,7 @@ export function DataTable({ columns, rows, getRowId = (r, i) => i, bulkActions, 
         </tbody>
       </table>
       {footer}
-    </div>
-  );
+  </>;
+
+  return bare ? content : <div className="su-table-card">{content}</div>;
 }

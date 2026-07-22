@@ -6,6 +6,12 @@
 
 ---
 
+## [1.2.3] - 2026-07-22 - Busca estável no ListScreen
+
+- ✅ **Foco preservado:** a Toolbar de `ListScreen` agora fica em um card estrutural estável. Alternar entre loading, tabela, cartões e estado vazio não desmonta o input de busca; é possível continuar digitando depois de o primeiro resultado aparecer ou desaparecer.
+- ✅ **DataTable reutilizável:** a prop interna `bare` permite que o molde de lista reaproveite a tabela sem criar outro card, preservando a API pública existente.
+- 🔎 **Lockstep:** oito manifests (raiz + sete pacotes) avançam juntos para `1.2.3`.
+
 ## [1.2.2] - 2026-07-22 - Ícones locais no adapter React
 
 - ✅ **Sem webfont externa no AppShell:** navegação, TopBar, botões de ícone, drawers, estados vazios, busca e Customize passam a renderizar o SVG local curado em `@studio-ux-ds/icons`. A casca não deixa de exibir ícones quando uma CDN é bloqueada por CSP ou está indisponível.
