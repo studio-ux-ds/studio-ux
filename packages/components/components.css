@@ -176,6 +176,9 @@
 .su-statcard--success .su-statcard__value, .su-statcard--success .su-statcard__delta { color: var(--su-success-fg); }
 .su-statcard--danger { border-color: color-mix(in srgb, var(--su-danger-fg) 48%, var(--su-border-default)); background: color-mix(in srgb, var(--su-danger-fg) 4%, var(--su-surface-raised)); }
 .su-statcard--danger .su-statcard__value, .su-statcard--danger .su-statcard__delta { color: var(--su-danger-fg); }
+.su-table tbody tr.su-table__row--clickable { cursor: pointer; }
+.su-table tbody tr.su-table__row--clickable:hover { background: var(--su-action-tint); }
+.su-table tbody tr.su-table__row--clickable:focus-visible { outline: 2px solid var(--su-focus-ring); outline-offset: -2px; }
 .su-empty { text-align: center; padding: var(--su-space-8) var(--su-space-4); color: var(--su-text-secondary); }
 .su-empty__icon { width: 44px; height: 44px; border-radius: var(--su-radius-lg); background: var(--su-surface-sunken); color: var(--su-text-muted); display: inline-flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: var(--su-space-3); }
 .su-empty__title { font-size: 14px; font-weight: var(--su-fw-medium); color: var(--su-text-primary); }

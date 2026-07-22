@@ -14,7 +14,7 @@ import React, { useState } from "react";
  * @param {boolean} [selectable]  mostra a coluna de seleção. Default: só quando há `bulkActions`
  *   (sem ações de lote não há por que ter checkbox — mantém a lista "calma", igual ao Flux).
  */
-export function DataTable({ columns, rows, getRowId = (r, i) => i, bulkActions, renderRowMenu, toolbar, footer, selectable: selectableProp, bare = false }) {
+export function DataTable({ columns, rows, getRowId = (r, i) => i, bulkActions, renderRowMenu, toolbar, footer, selectable: selectableProp, bare = false, onRowClick, getRowLabel }) {
   const selectable = selectableProp != null ? selectableProp : bulkActions != null;
   const [sel, setSel] = useState(() => new Set());
   const ids = rows.map(getRowId);
@@ -50,8 +50,12 @@ export function DataTable({ columns, rows, getRowId = (r, i) => i, bulkActions, 
         <tbody>
           {rows.map((r, i) => {
             const id = getRowId(r, i); const on = sel.has(id);
+            const open = () => onRowClick && onRowClick(r);
             return (
-              <tr key={id} style={on ? { background: "color-mix(in srgb, var(--su-action) 5%, transparent)" } : undefined}>
+              <tr key={id} className={onRowClick ? "su-table__row--clickable" : undefined} tabIndex={onRowClick ? 0 : undefined}
+                aria-label={onRowClick ? getRowLabel?.(r) || "Abrir detalhe" : undefined}
+                onClick={open} onKeyDown={(event) => { if (onRowClick && (event.key === "Enter" || event.key === " ")) { event.preventDefault(); open(); } }}
+                style={on ? { background: "color-mix(in srgb, var(--su-action) 5%, transparent)" } : undefined}>
                 {selectable && (
                   <td style={{ paddingLeft: 16 }}>
                     <i className={`ti ${on ? "ti-square-check" : "ti-square"}`}

@@ -53,7 +53,7 @@ function SkeletonRows({ n = 5 }) {
 export function ListScreen({
   title, subtitle, primaryAction,
   listTitle, search, onSearch, searchPlaceholder, segments, segment, onSegment, toolbarActions,
-  columns, rows = [], getRowId = (row, index) => index, renderRowMenu, bulkActions,
+  columns, rows = [], getRowId = (row, index) => index, renderRowMenu, bulkActions, onRowClick, getRowLabel,
   renderCard,
   summary, page, pageCount, onPage,
   loading, error, filterActive, emptyNew, emptyFiltered,
@@ -80,7 +80,7 @@ export function ListScreen({
   } else if (narrow && renderCard) {
     content = <div className="su-cards">{rows.map((row, index) => <React.Fragment key={getRowId(row, index)}>{renderCard(row)}</React.Fragment>)}</div>;
   } else {
-    content = <DataTable bare columns={columns} rows={rows} getRowId={getRowId} renderRowMenu={renderRowMenu} bulkActions={bulkActions} />;
+    content = <DataTable bare columns={columns} rows={rows} getRowId={getRowId} renderRowMenu={renderRowMenu} bulkActions={bulkActions} onRowClick={onRowClick} getRowLabel={getRowLabel} />;
   }
 
   return <div className="su-listscreen">
