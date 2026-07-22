@@ -82,6 +82,7 @@
 - Claro e escuro são obrigatórios e AA-conformes; toda marca revalida contraste (P18).
 - Tema muda cor/superfície; densidade e layout são do produto, não do tema (P4, P21).
 - Marca viaja como configuração versionável por tenant, nunca como fork de código.
+- O painel de preferências pode persistir `pt-BR` ou `en` para os rótulos do DS; tradução de conteúdo e dados continua sendo do sistema consumidor.
 
 **EN — Rules:**
 
@@ -89,6 +90,7 @@
 - Light and dark are mandatory and AA-conformant; every brand re-validates contrast (P18).
 - A theme changes color/surface; density and layout belong to the product, not the theme (P4, P21).
 - Brand travels as versionable per-tenant configuration, never as a code fork.
+- The preference panel may persist `pt-BR` or `en` for DS-owned labels; content and data translation remain the consuming system's responsibility.
 
 **PT — Anti-padrões:**
 

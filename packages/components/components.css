@@ -402,6 +402,18 @@
 .su-topbar__right { display: flex; align-items: center; gap: var(--su-space-2); margin-left: auto; }
 .su-topbar__context { color: var(--su-text-secondary); font-size: var(--su-fs-body-sm); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
+/* Variante Top Nav do AppShell. A árvore é a mesma; só muda sua disposição. */
+.su-topnav__brand { flex: 0 0 auto; display: flex; align-items: center; }
+.su-topnav { display: flex; align-items: center; gap: var(--su-space-1); min-width: 0; overflow-x: auto; scrollbar-width: none; }
+.su-topnav::-webkit-scrollbar { display: none; }
+.su-topnav__item, .su-topnav__group > summary { display: inline-flex; align-items: center; gap: var(--su-space-2); height: 34px; padding: 0 var(--su-space-2); border: 0; border-radius: var(--su-radius-md); background: transparent; color: var(--su-text-secondary); font: inherit; font-size: 13px; font-weight: var(--su-fw-medium); text-decoration: none; white-space: nowrap; cursor: pointer; list-style: none; }
+.su-topnav__group > summary::-webkit-details-marker { display: none; }
+.su-topnav__item:hover, .su-topnav__group > summary:hover { background: var(--su-surface-sunken); color: var(--su-text-primary); }
+.su-topnav__item--active { background: var(--su-action-tint); color: var(--su-action); font-weight: var(--su-fw-semibold); }
+.su-topnav__group { position: relative; }
+.su-topnav__menu { position: absolute; top: calc(100% + var(--su-space-2)); left: 0; z-index: var(--su-z-overlay); min-width: 190px; padding: var(--su-space-1); display: flex; flex-direction: column; border: 1px solid var(--su-border-default); border-radius: var(--su-radius-md); background: var(--su-surface-overlay); box-shadow: var(--su-elevation-popover); }
+.su-topnav__menu .su-topnav__item { width: 100%; }
+
 /* Gatilho ⌘K — parece campo de busca, some o rótulo no estreito */
 .su-topbar__cmdk { display: inline-flex; align-items: center; gap: var(--su-space-2); height: 34px; padding: 0 var(--su-space-3); border: 1px solid var(--su-border-default); border-radius: var(--su-radius-md); background: var(--su-surface-sunken); color: var(--su-text-muted); cursor: pointer; font: inherit; font-size: 13px; }
 .su-topbar__cmdk:hover { border-color: var(--su-border-strong); color: var(--su-text-secondary); }
@@ -438,6 +450,15 @@
 .su-customize__hint { font-size: 12px; color: var(--su-text-secondary); margin: 0; }
 .su-customize .su-segmented { width: 100%; }
 .su-customize .su-segment { flex: 1; }
+
+/* Escolhas estruturais do Customize: rótulo + ícone + marca além da cor (P17). */
+.su-customize__choices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--su-space-2); }
+.su-customize__choice { position: relative; min-height: 62px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--su-space-1); padding: var(--su-space-2); border: 1px solid var(--su-border-default); border-radius: var(--su-radius-md); background: var(--su-surface-raised); color: var(--su-text-secondary); cursor: pointer; font: inherit; font-size: 12px; }
+.su-customize__choice:hover { background: var(--su-surface-sunken); border-color: var(--su-border-strong); color: var(--su-text-primary); }
+.su-customize__choice:focus-visible { outline: 2px solid var(--su-border-focus); outline-offset: 2px; }
+.su-customize__choice--on { background: var(--su-action-tint); border-color: var(--su-action); color: var(--su-action); font-weight: var(--su-fw-semibold); }
+.su-customize__choice > .ti { font-size: 16px; }
+.su-customize__check { position: absolute; top: var(--su-space-2); right: var(--su-space-2); font-size: 13px !important; }
 
 /* Swatches de accent — seleção sinaliza ALÉM DA COR (anel + check), P17 */
 .su-swatches { display: flex; flex-wrap: wrap; gap: var(--su-space-3); }

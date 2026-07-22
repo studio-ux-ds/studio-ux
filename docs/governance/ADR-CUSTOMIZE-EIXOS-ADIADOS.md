@@ -1,9 +1,8 @@
 # ADR (stubs) — eixos de personalização adiados do Customize
 
-> Status: **abertos** (decisão pendente) · criado junto com o AppShell + Customize v1.1.19.
+> Status: **misto** — densidade, RTL e container permanecem abertos; idioma e layout foram decididos em `v1.2.0`.
 >
-> O painel `Customize` entrega hoje só os eixos que **repontam token** (Tema, Accent) —
-> baratos e seguros (THEMES §5). Os eixos abaixo foram deliberadamente deixados de fora:
+> O painel `Customize` entrega Tema, Accent, Layout e Idioma. Os eixos abaixo que permanecem deliberadamente deixados de fora
 > cada um **mexe em estrutura, tradução ou numa invariante já escrita**, então não é
 > "customização de aparência" e não entra sem uma decisão registrada. Este arquivo é o
 > rastro dessas decisões, para nenhuma delas ser tomada por acidente dentro de um PR de tela.
@@ -40,7 +39,7 @@ tradução (chaves, catálogos, plural, data/número por locale) — não é rep
 **Opções.** (a) Frente de i18n dedicada (infra de tradução) e só então o seletor. (b) Ficar
 fora do Customize permanentemente e viver em Configurações → Conta quando existir i18n.
 
-**Decisão.** _pendente._ Sem seletor de idioma no Customize até haver camada de i18n.
+**Decisão.** **aceita em escopo limitado.** O Customize persiste `pt-BR` ou `en` e aplica `lang` no documento; componentes do DS traduzem os seus próprios rótulos. Conteúdo, dados, pluralização e catálogos pertencem ao sistema consumidor, que deve fornecer sua camada real de i18n. Não há idiomas adicionais sem catálogo validado.
 
 ---
 
@@ -71,7 +70,7 @@ overflow de itens e mobile.
 **Opções.** (a) Manter só Sidebar (decisão atual do AppShell). (b) Criar `AppShell` variante
 `topnav` como molde irmão, decidido em governança, não como preferência solta do usuário.
 
-**Decisão.** _pendente._ AppShell v1.1.19 usa **Sidebar**; top-nav não é um toggle de usuário.
+**Decisão.** **aceita.** `AppShell` oferece as variantes `sidebar` e `topnav` sobre o mesmo contrato de navegação; o usuário pode escolher e a preferência é lembrada. Mobile continua usando o menu off-canvas, independente da escolha Desktop. As duas variantes são obrigatoriamente validadas no Laboratório visual.
 
 ---
 

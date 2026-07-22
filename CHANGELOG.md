@@ -6,6 +6,12 @@
 
 ---
 
+## [1.2.0] - 2026-07-22 - Preferências de layout e linguagem
+
+- ✅ **Layout persistido no `AppShell`:** o Customize passa a alternar entre `Sidebar` e `Top Nav` com a mesma árvore de navegação; no Mobile a casca preserva o menu off-canvas.
+- ✅ **Idioma inicial real:** `pt-BR` e `en` são persistidos e aplicados ao `lang` do documento; rótulos proprietários do DS (Customize e AppShell) acompanham a escolha. O conteúdo do sistema consumidor continua em sua camada de i18n, sem tradução falsa.
+- ✅ **Escopo explícito:** densidade, direção/RTL e container seguem fora do Customize. As decisões de idioma e layout foram registradas nos ADRs correspondentes.
+
 ## [1.1.22] - 2026-07-22 - Laboratório visual: navegação e casca compacta
 
 - ✅ **Casca recolhida sem deformação:** ao recolher a `Sidebar`, a marca conserva apenas seu símbolo; o nome deixa de ocupar ou vazar da coluna de ícones.

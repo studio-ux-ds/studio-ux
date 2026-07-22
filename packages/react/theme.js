@@ -26,19 +26,35 @@ export const SU_THEMES = [
   { id: "system", label: "Sistema" }, // segue o SO (sem data-theme forçado)
 ];
 
+export const SU_LAYOUTS = [
+  { id: "sidebar", label: "Barra lateral" },
+  { id: "topnav", label: "Navegação superior" },
+];
+
+export const SU_LOCALES = [
+  { id: "pt-BR", label: "Português (Brasil)" },
+  { id: "en", label: "English" },
+];
+
 const DEFAULT_ACCENT = "indigo";
 const DEFAULT_THEME = "system";
+const DEFAULT_LAYOUT = "sidebar";
+const DEFAULT_LOCALE = "pt-BR";
 
 // Chaves de armazenamento. Trocáveis por app via configureTheme({ namespace })
 // para não colidir quando vários sistemas rodam no mesmo domínio.
 let ACCENT_KEY = "su_accent";
 let THEME_KEY = "su_theme";
+let LAYOUT_KEY = "su_layout";
+let LOCALE_KEY = "su_locale";
 
 /** Permite o app namespaçar as chaves (ex.: configureTheme({ namespace: "financas" })). */
 export function configureTheme({ namespace } = {}) {
   if (namespace) {
     ACCENT_KEY = `${namespace}_su_accent`;
     THEME_KEY = `${namespace}_su_theme`;
+    LAYOUT_KEY = `${namespace}_su_layout`;
+    LOCALE_KEY = `${namespace}_su_locale`;
   }
 }
 
@@ -46,6 +62,8 @@ const hasWindow = typeof window !== "undefined";
 const root = () => document.documentElement;
 const isAccent = (a) => SU_ACCENTS.some((x) => x.id === a);
 const isTheme = (t) => t === "light" || t === "dark" || t === "system";
+const isLayout = (layout) => SU_LAYOUTS.some((x) => x.id === layout);
+const isLocale = (locale) => SU_LOCALES.some((x) => x.id === locale);
 
 function read(key, fallback) {
   if (!hasWindow) return fallback;
@@ -87,6 +105,32 @@ export function setTheme(t) {
   return valid;
 }
 
+/* ---------------- Layout e idioma ---------------- */
+
+export function getLayout() {
+  const layout = read(LAYOUT_KEY, DEFAULT_LAYOUT);
+  return isLayout(layout) ? layout : DEFAULT_LAYOUT;
+}
+
+export function setLayout(layout) {
+  const valid = isLayout(layout) ? layout : DEFAULT_LAYOUT;
+  write(LAYOUT_KEY, valid);
+  if (hasWindow) root().dataset.suLayout = valid;
+  return valid;
+}
+
+export function getLocale() {
+  const locale = read(LOCALE_KEY, DEFAULT_LOCALE);
+  return isLocale(locale) ? locale : DEFAULT_LOCALE;
+}
+
+export function setLocale(locale) {
+  const valid = isLocale(locale) ? locale : DEFAULT_LOCALE;
+  write(LOCALE_KEY, valid);
+  if (hasWindow) root().lang = valid;
+  return valid;
+}
+
 /** `true` se, no estado atual, a interface está renderizando no escuro. */
 export function isDark() {
   const t = getTheme();
@@ -102,6 +146,8 @@ export function isDark() {
 export function applyTheme() {
   setAccent(getAccent());
   setTheme(getTheme());
+  setLayout(getLayout());
+  setLocale(getLocale());
 }
 
 /**

@@ -4,7 +4,12 @@ import { Drawer } from "../Overlay.jsx";
 import { IconButton } from "../Button.jsx";
 import { Avatar } from "../Misc.jsx";
 import { Customize } from "./Customize.jsx";
-import { getTheme, setTheme, isDark } from "../theme.js";
+import { getTheme, setTheme, isDark, getLayout, getLocale } from "../theme.js";
+
+const shellCopy = {
+  "pt-BR": { menu: "Abrir menu", expand: "Expandir menu", collapse: "Recolher menu", search: "Buscar", openSearch: "Abrir busca de comandos", notifications: "Notificações", help: "Ajuda", light: "Modo claro", dark: "Modo escuro", customize: "Personalizar", logout: "Sair", navigation: "Navegação principal", newNotifications: "novas" },
+  en: { menu: "Open menu", expand: "Expand menu", collapse: "Collapse menu", search: "Search", openSearch: "Open command search", notifications: "Notifications", help: "Help", light: "Light mode", dark: "Dark mode", customize: "Customize", logout: "Sign out", navigation: "Main navigation", newNotifications: "new" },
+};
 
 // AppShell — o MOLDE da casca (arquétipo), não a decoração. Compõe os átomos que
 // o DS já tem (Sidebar/NavItem/TopBar/Breadcrumb/Drawer) e trava as invariantes que
@@ -131,6 +136,21 @@ function NavGroup({ group, collapsed, open, onToggle, renderLeaf }) {
 }
 
 /** Dropdown do usuário — fecha ao clicar fora ou Esc. */
+function TopNavList({ sections, ariaLabel }) {
+  const leaf = (item, key) => <a key={key} className={["su-topnav__item", item.active && "su-topnav__item--active"].filter(Boolean).join(" ")}
+    aria-current={item.active ? "page" : undefined} href={item.href} onClick={item.onClick}>
+    {item.icon && <i className={`ti ti-${item.icon}`} aria-hidden="true" />}{item.label}
+  </a>;
+  return <nav className="su-topnav" aria-label={ariaLabel}>
+    {sections.flatMap((section) => section.items || []).map((item, index) => isGroup(item) ? (
+      <details key={index} className="su-topnav__group">
+        <summary><i className={`ti ti-${item.icon}`} aria-hidden="true" />{item.group}<i className="ti ti-chevron-down" aria-hidden="true" /></summary>
+        <div className="su-topnav__menu">{item.items.map((child, childIndex) => leaf(child, childIndex))}</div>
+      </details>
+    ) : leaf(item, index))}
+  </nav>;
+}
+
 function UserMenu({ user, items, onClose }) {
   const ref = useRef(null);
   useEffect(() => {
@@ -181,6 +201,7 @@ export function AppShell({
   onHelp,
   customize = false,          // true liga o painel embutido; ou {accents, themes} p/ configurar
   onCustomize,                // sobrescreve a abertura do painel embutido, se quiser um próprio
+  onPreferencesChange,
   onLogout,
   children,
 }) {
@@ -192,6 +213,9 @@ export function AppShell({
   // Espelha o tema atual só para rotular o atalho rápido no menu (Claro↔Escuro).
   const [, force] = useState(0);
   const sections = toSections(nav);
+  const layout = getLayout();
+  const locale = getLocale();
+  const text = shellCopy[locale] || shellCopy["pt-BR"];
 
   useEffect(() => {
     if (!mobileOpen) return;
@@ -213,9 +237,9 @@ export function AppShell({
   const menuItems = [
     ...userMenuItems,
     ...(userMenuItems.length ? [{ separator: true }] : []),
-    { icon: isDark() ? "sun" : "moon", label: isDark() ? "Modo claro" : "Modo escuro", onClick: quickToggleTheme },
-    ...(customize || onCustomize ? [{ icon: "adjustments", label: "Personalizar", onClick: openCustomize }] : []),
-    ...(onLogout ? [{ separator: true }, { icon: "logout", label: "Sair", danger: true, onClick: onLogout }] : []),
+    { icon: isDark() ? "sun" : "moon", label: isDark() ? text.light : text.dark, onClick: quickToggleTheme },
+    ...(customize || onCustomize ? [{ icon: "adjustments", label: text.customize, onClick: openCustomize }] : []),
+    ...(onLogout ? [{ separator: true }, { icon: "logout", label: text.logout, danger: true, onClick: onLogout }] : []),
   ];
 
   const sidebarNode = (mobile) => (
@@ -238,9 +262,9 @@ export function AppShell({
   );
 
   return (
-    <div className={["su-appshell", !narrow && collapsed && "su-appshell--collapsed"].filter(Boolean).join(" ")}>
+    <div className={["su-appshell", !narrow && layout === "sidebar" && collapsed && "su-appshell--collapsed", !narrow && layout === "topnav" && "su-appshell--topnav"].filter(Boolean).join(" ")}>
       {/* Sidebar — desktop fixa; mobile em off-canvas à esquerda */}
-      {!narrow && sidebarNode(false)}
+      {!narrow && layout === "sidebar" && sidebarNode(false)}
       {narrow && mobileOpen && (
         <div className="su-appshell__scrim" onClick={(e) => e.target === e.currentTarget && setMobileOpen(false)}>
           <div className="su-appshell__offcanvas">{sidebarNode(true)}</div>
@@ -251,33 +275,34 @@ export function AppShell({
         <TopBar>
           <div className="su-topbar__left">
             {narrow ? (
-              <IconButton icon="menu-2" aria-label="Abrir menu" onClick={() => setMobileOpen(true)} />
-            ) : (
+              <IconButton icon="menu-2" aria-label={text.menu} onClick={() => setMobileOpen(true)} />
+            ) : layout === "sidebar" ? (
               <IconButton
                 icon={collapsed ? "layout-sidebar-left-expand" : "layout-sidebar-left-collapse"}
-                aria-label={collapsed ? "Expandir menu" : "Recolher menu"}
+                aria-label={collapsed ? text.expand : text.collapse}
                 onClick={() => setCollapsed(!collapsed)}
               />
-            )}
+            ) : null}
+            {!narrow && layout === "topnav" && <><div className="su-topnav__brand">{brand}</div><TopNavList sections={sections} ariaLabel={text.navigation} /></>}
             {breadcrumb && <Breadcrumb items={breadcrumb} />}
             {topbarContext && <div className="su-topbar__context">{topbarContext}</div>}
           </div>
 
           <div className="su-topbar__right">
             {onCommandPalette && (
-              <button className="su-topbar__cmdk" onClick={onCommandPalette} aria-label="Abrir busca de comandos">
+              <button className="su-topbar__cmdk" onClick={onCommandPalette} aria-label={text.openSearch}>
                 <i className="ti ti-search" aria-hidden="true" />
-                <span className="su-topbar__cmdk-label">Buscar</span>
+                <span className="su-topbar__cmdk-label">{text.search}</span>
                 <kbd>{commandPaletteHint}</kbd>
               </button>
             )}
             {onNotifications && (
               <span className="su-topbar__bell">
-                <IconButton icon="bell" aria-label="Notificações" onClick={onNotifications} />
-                {notifications > 0 && <span className="su-topbar__bell-dot" aria-label={`${notifications} novas`}>{notifications > 9 ? "9+" : notifications}</span>}
+                <IconButton icon="bell" aria-label={text.notifications} onClick={onNotifications} />
+                {notifications > 0 && <span className="su-topbar__bell-dot" aria-label={`${notifications} ${text.newNotifications}`}>{notifications > 9 ? "9+" : notifications}</span>}
               </span>
             )}
-            {onHelp && <IconButton icon="help" aria-label="Ajuda" onClick={onHelp} />}
+            {onHelp && <IconButton icon="help" aria-label={text.help} onClick={onHelp} />}
             {user && (
               <div className="su-topbar__user">
                 <button className="su-topbar__user-btn" aria-haspopup="menu" aria-expanded={menuOpen} onClick={() => setMenuOpen((v) => !v)}>
@@ -297,10 +322,10 @@ export function AppShell({
 
       {/* Painel Customize embutido (Drawer a partir do menu do usuário) */}
       {customize && !onCustomize && (
-        <Drawer open={custOpen} onClose={() => setCustOpen(false)} title="Personalizar">
+        <Drawer open={custOpen} onClose={() => setCustOpen(false)} title={text.customize}>
           <Customize
             accents={typeof customize === "object" ? customize.accents : undefined}
-            onChange={() => force((n) => n + 1)}
+            onChange={(preferences) => { force((n) => n + 1); onPreferencesChange && onPreferencesChange(preferences); }}
           />
         </Drawer>
       )}

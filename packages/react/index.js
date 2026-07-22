@@ -35,7 +35,8 @@ export { Customize } from "./patterns/Customize.jsx";
 
 // Mecanismo de tema/accent do sistema (sem React — chame applyTheme antes do render).
 export {
-  SU_ACCENTS, SU_THEMES, configureTheme,
+  SU_ACCENTS, SU_THEMES, SU_LAYOUTS, SU_LOCALES, configureTheme,
   getAccent, setAccent, getTheme, setTheme,
+  getLayout, setLayout, getLocale, setLocale,
   isDark, applyTheme, watchSystemTheme,
 } from "./theme.js";
