@@ -15,7 +15,7 @@ export function StatCard({ label, value, delta, deltaType }) {
       <div className="su-statcard__label">{label}</div>
       <div className="su-statcard__value">{value}</div>
       {delta && (
-        <div style={{ fontSize: 12, marginTop: 4, color: deltaType === "down" ? "var(--su-danger-fg)" : "var(--su-success-fg)" }}>
+        <div className={["su-statcard__delta", deltaType === "down" && "su-statcard__delta--down"].filter(Boolean).join(" ")}>
           <i className={`ti ti-arrow-${deltaType === "down" ? "down-right" : "up-right"}`} aria-hidden="true" /> {delta}
         </div>
       )}

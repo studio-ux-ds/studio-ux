@@ -1,6 +1,6 @@
 {
   "name": "@studio-ux-ds/react",
-  "version": "1.1.20",
+  "version": "1.1.21",
   "description": "Adapter React sobre o Studio UX (embrulha as classes .su-* — runtime descartável).",
   "type": "module",
   "main": "index.js",

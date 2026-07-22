@@ -43,6 +43,7 @@ const preview = {
         order: [
           "Studio UX",
           ["Introdução"],
+          "Referência visual",
           "Fundamentais",
           "Formulário",
           "Dados",

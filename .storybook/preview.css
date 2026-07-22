@@ -18,3 +18,21 @@
 .su-demo-col { display: flex; flex-direction: column; gap: var(--su-space-4); }
 .su-demo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: var(--su-space-4); }
 .su-demo-label { font-size: var(--su-fs-caption); color: var(--su-text-muted); margin-bottom: var(--su-space-2); text-transform: uppercase; letter-spacing: .04em; }
+
+/* Visual Lab: compõe somente o runtime oficial para revisão visual integrada. */
+.su-visual-lab { min-height: 100%; }
+.su-visual-lab__dashboard { display: flex; flex-direction: column; gap: var(--su-space-6); }
+.su-visual-lab__stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--su-space-4); }
+.su-visual-lab__grid { display: grid; grid-template-columns: minmax(0, 3fr) minmax(240px, 2fr); gap: var(--su-space-4); }
+.su-visual-lab__stack, .su-visual-lab__loading { display: flex; flex-direction: column; gap: var(--su-space-4); }
+.su-visual-lab__card-title { margin: 0 0 var(--su-space-4); font: var(--su-fw-semibold) var(--su-text-h3); color: var(--su-text-primary); }
+.su-visual-lab__list { display: flex; flex-direction: column; gap: var(--su-space-3); margin: 0; padding: 0; list-style: none; }
+.su-visual-lab__list-item { display: flex; justify-content: space-between; gap: var(--su-space-3); padding-bottom: var(--su-space-3); border-bottom: 1px solid var(--su-border-subtle); color: var(--su-text-secondary); font-size: var(--su-fs-body-sm); }
+.su-visual-lab__list-item:last-child { border-bottom: 0; padding-bottom: 0; }
+.su-visual-lab__amount { color: var(--su-text-primary); font-weight: var(--su-fw-semibold); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.su-visual-lab__form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--su-space-4); }
+.su-visual-lab__form-actions { display: flex; justify-content: flex-end; gap: var(--su-space-2); margin-top: var(--su-space-5); }
+.su-visual-lab__states { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--su-space-4); }
+@media (max-width: 767px) {
+  .su-visual-lab__stats, .su-visual-lab__grid, .su-visual-lab__states, .su-visual-lab__form { grid-template-columns: 1fr; }
+}

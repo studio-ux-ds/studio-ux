@@ -7,10 +7,10 @@
 
 :root {
   /* ---- Cor · Color (claro · light) ---- */
-  --su-surface-base: #F7F8FA;
+  --su-surface-base: #F8FAFC;
   --su-surface-raised: #FFFFFF;
   --su-surface-overlay: #FFFFFF;
-  --su-surface-sunken: #EDEFF3;
+  --su-surface-sunken: #F1F5F9;
 
   --su-text-primary: #171A1F;
   --su-text-secondary: #545B67;
@@ -18,9 +18,9 @@
   --su-text-on-action: #FFFFFF;
   --su-text-disabled: #C4CAD4;
 
-  --su-border-subtle: #EDEFF3;
-  --su-border-default: #DDE1E8;
-  --su-border-strong: #C4CAD4;
+  --su-border-subtle: #EEF2F6;
+  --su-border-default: #E2E8F0;
+  --su-border-strong: #CBD5E1;
   --su-border-focus: #4F46E5;
 
   --su-action: #4F46E5;
@@ -69,13 +69,13 @@
   --su-space-16: 64px; --su-space-24: 96px;
 
   /* ---- Raio · Radius ---- */
-  --su-radius-sm: 6px; --su-radius-md: 8px; --su-radius-lg: 12px;
-  --su-radius-xl: 16px; --su-radius-full: 9999px;
+  --su-radius-sm: 7px; --su-radius-md: 10px; --su-radius-lg: 14px;
+  --su-radius-xl: 18px; --su-radius-full: 9999px;
 
   /* ---- Elevação · Elevation ---- */
-  --su-elevation-raised: 0 1px 2px rgba(23,26,31,.06), 0 1px 3px rgba(23,26,31,.05);
-  --su-elevation-overlay: 0 6px 16px rgba(23,26,31,.10), 0 2px 5px rgba(23,26,31,.06);
-  --su-elevation-modal: 0 16px 40px rgba(23,26,31,.18);
+  --su-elevation-raised: 0 1px 2px rgba(15,23,42,.03), 0 8px 20px rgba(15,23,42,.04);
+  --su-elevation-overlay: 0 12px 28px rgba(15,23,42,.10), 0 3px 8px rgba(15,23,42,.05);
+  --su-elevation-modal: 0 24px 56px rgba(15,23,42,.18);
 
   /* ---- Motion ---- */
   --su-duration-fast: 120ms; --su-duration-base: 200ms; --su-duration-slow: 320ms;
@@ -105,10 +105,10 @@
 
 /* ---- Tema escuro · Dark theme (explícito ou automático) ---- */
 [data-theme="dark"] {
-  --su-surface-base: #14161B;
-  --su-surface-raised: #1C1F26;
-  --su-surface-overlay: #24272F;
-  --su-surface-sunken: #101216;
+  --su-surface-base: #111827;
+  --su-surface-raised: #182230;
+  --su-surface-overlay: #202C3C;
+  --su-surface-sunken: #0F1722;
 
   --su-text-primary: #F2F4F7;
   --su-text-secondary: #A6ADBA;
@@ -116,9 +116,9 @@
   --su-text-on-action: #FFFFFF;
   --su-text-disabled: #4A5059;
 
-  --su-border-subtle: #23262E;
-  --su-border-default: #2A2E37;
-  --su-border-strong: #3A3F49;
+  --su-border-subtle: #253246;
+  --su-border-default: #304158;
+  --su-border-strong: #42546B;
   --su-border-focus: #6366F1;
 
   --su-action: #6365F0;
@@ -132,21 +132,21 @@
   --su-info-fg:    #60A5FA; --su-info-bg:    #16233F;
 
   /* No escuro a elevação clareia a superfície; sombra é reduzida. */
-  --su-elevation-raised: 0 1px 2px rgba(0,0,0,.30);
-  --su-elevation-overlay: 0 8px 24px rgba(0,0,0,.40);
-  --su-elevation-modal: 0 18px 44px rgba(0,0,0,.50);
+  --su-elevation-raised: 0 1px 2px rgba(0,0,0,.22), 0 8px 20px rgba(0,0,0,.16);
+  --su-elevation-overlay: 0 14px 30px rgba(0,0,0,.40);
+  --su-elevation-modal: 0 24px 56px rgba(0,0,0,.54);
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --su-surface-base: #14161B; --su-surface-raised: #1C1F26; --su-surface-overlay: #24272F; --su-surface-sunken: #101216;
+    --su-surface-base: #111827; --su-surface-raised: #182230; --su-surface-overlay: #202C3C; --su-surface-sunken: #0F1722;
     --su-text-primary: #F2F4F7; --su-text-secondary: #A6ADBA; --su-text-muted: #6E7683; --su-text-disabled: #4A5059;
-    --su-border-subtle: #23262E; --su-border-default: #2A2E37; --su-border-strong: #3A3F49; --su-border-focus: #6366F1;
+    --su-border-subtle: #253246; --su-border-default: #304158; --su-border-strong: #42546B; --su-border-focus: #6366F1;
     --su-action: #6365F0; --su-action-hover: #7B7DF5; --su-action-active: #4F46E5; --su-action-tint: #21243A;
     --su-success-fg: #34D399; --su-success-bg: #123028; --su-warning-fg: #E0A82E; --su-warning-bg: #3A2A12;
     --su-danger-fg: #F87171; --su-danger-bg: #3A1A1A; --su-danger: #F87171; --su-info-fg: #60A5FA; --su-info-bg: #16233F;
-    --su-elevation-raised: 0 1px 2px rgba(0,0,0,.30);
-    --su-elevation-overlay: 0 8px 24px rgba(0,0,0,.40);
-    --su-elevation-modal: 0 18px 44px rgba(0,0,0,.50);
+    --su-elevation-raised: 0 1px 2px rgba(0,0,0,.22), 0 8px 20px rgba(0,0,0,.16);
+    --su-elevation-overlay: 0 14px 30px rgba(0,0,0,.40);
+    --su-elevation-modal: 0 24px 56px rgba(0,0,0,.54);
   }
 }
 

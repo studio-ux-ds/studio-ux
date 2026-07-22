@@ -61,7 +61,7 @@ function Demo(args) {
       <AppShell
         brand={<Brand />}
         nav={NAV}
-        version="Finanças · v0.1.31 · DS 1.1.19"
+        version="Finanças · Studio UX 1.1.20"
         breadcrumb={[{ label: "Finanças", href: "#" }, { label: "Receitas" }]}
         topbarContext={<span>Julho 2026</span>}
         user={{ name: "Robson", email: "robson@nivoo.com", initials: "R" }}

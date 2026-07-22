@@ -82,10 +82,10 @@
 .su-field__hint { font-size: 11px; color: var(--su-text-muted); }
 
 /* ---------- Table (DataTable base) ---------- */
-.su-table-card { border: 1px solid var(--su-border-default); border-radius: var(--su-radius-lg); background: var(--su-surface-raised); overflow: hidden; }
+.su-table-card { border: 1px solid var(--su-border-default); border-radius: var(--su-radius-lg); background: var(--su-surface-raised); box-shadow: var(--su-elevation-raised); overflow: hidden; }
 .su-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-.su-table thead th { text-align: left; font-weight: var(--su-fw-regular); font-size: 11px; color: var(--su-text-muted); padding: var(--su-space-2) var(--su-space-4); }
-.su-table td { padding: var(--su-space-3) var(--su-space-4); color: var(--su-text-primary); border-top: 1px solid var(--su-border-subtle); }
+.su-table thead th { text-align: left; font-weight: var(--su-fw-semibold); font-size: 11px; letter-spacing: .03em; text-transform: uppercase; color: var(--su-text-muted); padding: var(--su-space-3) var(--su-space-4); }
+.su-table td { padding: var(--su-space-4); color: var(--su-text-primary); border-top: 1px solid var(--su-border-subtle); }
 .su-table td.num, .su-table th.num { text-align: right; font-variant-numeric: tabular-nums; }
 .su-table tbody tr:hover td, .su-table tbody tr:hover td { background: var(--su-surface-sunken); }
 
@@ -119,15 +119,15 @@
 /* ==================== Fase 3, grupo 2: navegação, formulário, overlays, dados ==================== */
 
 /* ---------- Navegação · Navigation ---------- */
-.su-sidebar { width: 240px; background: var(--su-surface-raised); border-right: 1px solid var(--su-border-default); display: flex; flex-direction: column; }
-.su-sidebar__brand { display: flex; align-items: center; gap: var(--su-space-2); padding: var(--su-space-4); font-weight: var(--su-fw-semibold); }
-.su-nav { display: flex; flex-direction: column; gap: 2px; padding: var(--su-space-1) var(--su-space-2); flex: 1; }
+.su-sidebar { width: 256px; background: var(--su-surface-raised); border-right: 1px solid var(--su-border-subtle); display: flex; flex-direction: column; }
+.su-sidebar__brand { display: flex; align-items: center; gap: var(--su-space-2); padding: var(--su-space-5) var(--su-space-4); font-weight: var(--su-fw-semibold); }
+.su-nav { display: flex; flex-direction: column; gap: 2px; padding: var(--su-space-2); flex: 1; }
 .su-nav__item { display: flex; align-items: center; gap: var(--su-space-3); padding: var(--su-space-2) var(--su-space-3); border-radius: var(--su-radius-md); font-size: 13px; color: var(--su-text-secondary); text-decoration: none; cursor: pointer; }
 .su-nav__item:hover { background: var(--su-surface-sunken); color: var(--su-text-primary); }
 .su-nav__item--active { background: var(--su-action-tint); color: var(--su-action); }
 .su-sidebar__footer { border-top: 1px solid var(--su-border-subtle); padding: var(--su-space-3); }
 
-.su-topbar { display: flex; align-items: center; gap: var(--su-space-3); padding: var(--su-space-3) var(--su-space-5); border-bottom: 1px solid var(--su-border-default); background: var(--su-surface-raised); }
+.su-topbar { display: flex; align-items: center; gap: var(--su-space-3); padding: var(--su-space-3) var(--su-space-6); border-bottom: 1px solid var(--su-border-subtle); background: var(--su-surface-raised); }
 
 .su-tabs { display: flex; gap: var(--su-space-5); border-bottom: 1px solid var(--su-border-default); }
 .su-tab { padding: var(--su-space-2) 0; font-size: 13px; color: var(--su-text-secondary); cursor: pointer; border: 0; background: transparent; appearance: none; -webkit-appearance: none; outline: none; margin: 0; font-family: inherit; border-bottom: 2px solid transparent; margin-bottom: -1px; }
@@ -165,9 +165,11 @@
 
 /* ---------- Dados · Data ---------- */
 .su-card { background: var(--su-surface-raised); border: 1px solid var(--su-border-default); border-radius: var(--su-radius-lg); padding: var(--su-space-5); box-shadow: var(--su-elevation-raised); }
-.su-statcard { background: var(--su-surface-sunken); border-radius: var(--su-radius-md); padding: var(--su-space-4); }
-.su-statcard__label { font-size: 12px; color: var(--su-text-secondary); }
-.su-statcard__value { font-size: 23px; font-weight: var(--su-fw-semibold); color: var(--su-text-primary); margin-top: 2px; }
+.su-statcard { background: var(--su-surface-raised); border: 1px solid var(--su-border-default); border-radius: var(--su-radius-lg); padding: var(--su-space-5); box-shadow: var(--su-elevation-raised); }
+.su-statcard__label { font-size: 12px; font-weight: var(--su-fw-medium); color: var(--su-text-secondary); }
+.su-statcard__value { font-size: 24px; font-weight: var(--su-fw-semibold); letter-spacing: -.02em; color: var(--su-text-primary); margin-top: var(--su-space-2); }
+.su-statcard__delta { display: flex; align-items: center; gap: var(--su-space-1); margin-top: var(--su-space-1); font-size: var(--su-fs-caption); color: var(--su-success-fg); }
+.su-statcard__delta--down { color: var(--su-danger-fg); }
 .su-empty { text-align: center; padding: var(--su-space-8) var(--su-space-4); color: var(--su-text-secondary); }
 .su-empty__icon { width: 44px; height: 44px; border-radius: var(--su-radius-lg); background: var(--su-surface-sunken); color: var(--su-text-muted); display: inline-flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: var(--su-space-3); }
 .su-empty__title { font-size: 14px; font-weight: var(--su-fw-medium); color: var(--su-text-primary); }
@@ -361,17 +363,17 @@
    ================================================================== */
 .su-appshell { display: flex; height: 100vh; height: 100dvh; overflow: hidden; background: var(--su-surface-base); }
 .su-appshell__main { flex: 1; min-width: 0; display: flex; flex-direction: column; overflow: hidden; }
-.su-appshell__content { flex: 1; min-height: 0; overflow: auto; padding: var(--su-space-6); }
+.su-appshell__content { flex: 1; min-height: 0; overflow: auto; padding: var(--su-space-8); }
 
 /* Sidebar recolhida (desktop) — só ícones, largura reduzida; estado lembrado */
-.su-appshell--collapsed .su-sidebar { width: 64px; }
+.su-appshell--collapsed .su-sidebar { width: 72px; }
 .su-appshell--collapsed .su-sidebar__brand { justify-content: center; padding: var(--su-space-4) 0; }
 .su-appshell--collapsed .su-nav__item { justify-content: center; padding: var(--su-space-2); }
 
 /* Seções e rótulos da navegação */
 .su-nav__section { display: flex; flex-direction: column; gap: 2px; }
 .su-nav__section + .su-nav__section { margin-top: var(--su-space-3); }
-.su-nav__label { font-size: 11px; font-weight: var(--su-fw-semibold); letter-spacing: .04em; text-transform: uppercase; color: var(--su-text-muted); padding: var(--su-space-2) var(--su-space-3) var(--su-space-1); }
+.su-nav__label { font-size: 11px; font-weight: var(--su-fw-semibold); letter-spacing: .06em; text-transform: uppercase; color: var(--su-text-muted); padding: var(--su-space-3) var(--su-space-3) var(--su-space-1); }
 
 /* Grupo colapsável (acordeão) — botão + filhos recuados */
 .su-nav__group { display: flex; flex-direction: column; gap: 2px; }

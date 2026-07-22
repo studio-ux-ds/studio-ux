@@ -6,6 +6,15 @@
 
 ---
 
+## [1.1.21] - 2026-07-22 - Laboratório visual + refinamento da linguagem base
+
+- ✅ **Laboratório visual integrado no Storybook:** nova story **`Referência visual/Laboratório financeiro`**, composta exclusivamente com o runtime real (`AppShell`, `PageHeader`, `ListScreen`, `Card`, `StatCard`, formulário e estados). É o ambiente de aprovação visual antes de qualquer adoção em AquaPark, IA Studio, Finanças, Delivery ou outro consumidor — não é maquete nem CSS de app.
+- ✅ **A linguagem visual foi refinada na fonte:** tokens de superfícies, bordas, raios e elevação foram recalibrados nos dois temas; sidebar, topbar, cards, KPIs e tabela passaram a ter hierarquia, ritmo e profundidade mais definidos, mantendo a paleta semântica, sem gradientes ou efeitos decorativos.
+- ✅ **`StatCard` mais consistente:** KPI agora usa a mesma superfície elevada dos agrupamentos de dados; delta ganhou classes oficiais (`.su-statcard__delta`/`--down`), removendo valores visuais inline do adapter.
+- ✅ **Governança/documentação:** `PLAYGROUND`, `REFINAMENTO-E-PROPAGACAO` e `COMPONENT_LIBRARY` passam a registrar o Laboratório visual como gate de revisão claro+escuro e descrevem as superfícies atuais. Story de `AppShell` atualizada para a versão vigente.
+- 🔎 **Prova:** contraste recalculado para os pares principais (texto primário/secundário nos dois temas ≥ AA; ação escura sobre superfície = 3.55:1 para componente não-textual); `check-packages.mjs` verde, lockstep dos 8 manifests em `1.1.21` e `git diff --check` sem erro. O build do Storybook fica a cargo da CI no push, pois o ambiente local não materializou as dependências do bundler.
+- 🔎 **A propagar:** publicar `v1.1.21` primeiro; revisar o Visual Lab no Pages e só então escolher uma adoção-canário. Nenhum sistema consumidor foi alterado nesta release.
+
 ## [1.1.20] - 2026-07-21 - AppShell: grupos de navegação colapsáveis (acordeão)
 
 - ✅ **`AppShell` ganhou grupos de nav colapsáveis** (`patterns/AppShell.jsx`): um item da navegação agora pode ser uma **folha** (`{icon,label,href,active}`) **ou um grupo** (`{group, icon, items:[folhas…], defaultOpen}`) que abre/fecha em **acordeão** — um aberto por vez — e **nasce aberto no grupo que contém o item ativo**. Filhos recuados (`.su-nav__children`), chevron que gira, e o botão do grupo herda a marca P17 do item ativo quando fechado sobre uma rota ativa. Na sidebar **recolhida** (só ícones), clicar um grupo **expande a sidebar e abre o grupo**.

@@ -23,12 +23,15 @@ Todo refinamento passa por esta régua. Se tocou o item, ajusta o item.
 | 4 | **CHANGELOG + versão** | `CHANGELOG.md` + tag `vX.Y.Z` (lockstep, `scripts/set-version.mjs`) | Todo refinamento é **release**. Entrada no CHANGELOG + bump em **lockstep** (todos os pacotes na mesma versão). |
 | 5 | **Sistemas consumidores** | lista de re-adoção (no checkpoint) | A peça que mudou é usada por quem? Registrar quem precisa **re-adotar** depois. Não precisa adotar já — mas **não pode ficar invisível**. |
 
+**Frentes visuais:** antes de alterar um consumidor, a revisão acontece no **Laboratório visual integrado** do Storybook, em claro e escuro. O laboratório usa o Runtime real; exemplos HTML ou CSS local do consumidor não são evidência de que o DS está pronto.
+
 ## ✅ CHECKLIST DE FIM DE FRENTE (o "roundup")
 Antes de dizer **pronto**, responder e agir:
 
 1. **Houve refinamento** de API, visual, token ou comportamento nesta frente? Se **não**, pula 2–6.
 2. **Código do DS** ajustado na **camada certa**? (token → CSS → react, na ordem de quem é dono do quê.)
 3. **Storybook:** a story do que mudou está nova/atualizada e reflete a API real? `build-storybook` roda limpo? Passou o QA de profundidade (sem chrome nativo, ícones renderizando, claro+escuro) — ver `PROFUNDIDADE-OBRIGATORIA.md`?
+   - Se a frente é visual: o cenário integrado do Laboratório visual foi revisado em claro+escuro antes de qualquer adoção-canário?
 4. **Docs donos** do assunto atualizados? Andaime/spec temporária removida?
 5. **CHANGELOG** com entrada + **versão bumpada em lockstep**? `node scripts/check-packages.mjs` passa (files, lockstep, fronteira P4)?
 6. **Sistemas consumidores** da peça listados pra re-adoção no checkpoint?
