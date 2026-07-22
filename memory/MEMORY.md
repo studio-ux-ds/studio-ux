@@ -1,0 +1,6 @@
+- [App de referência Studio UX](referencia-studio-ux.md) — molde visual interativo dos sistemas (AquaPark feito); arquitetura, regras do Robson e próximos passos.
+- [Storybook do Studio UX](storybook-studio-ux.md) — doc navegável do @studio-ux-ds/react real, hospedada no GitHub Pages; arquitetura, QA e setup.
+- [Consumo do adapter react](consumo-adapter-react.md) — como um app Vite passa a importar @studio-ux-ds/react (infra + padrão de port); validado no Finanças/Receitas.
+- [Padrão ListScreen + refinamento](padrao-listpage-e-refinamento.md) — DS dono do desenho (archetype de lista, FEITO + no ar v0.1.31); próxima frente = AppShell + Customize.
+- [Versionamento](feedback_versionamento.md) — patch sequencial (…1.1.15→1.1.16); nunca salto SemVer; nunca comando node pro Robson (Windows sem Node).
+- [Deploy Finanças](feedback_deploy_financas.md) — pinar dep na versão com a feature; index.lock/git via ponte; upgrade.sh fail-safe.
