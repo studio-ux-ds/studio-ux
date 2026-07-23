@@ -1,4 +1,5 @@
 import React from "react";
+import { DSIcon } from "./DSIcon.jsx";
 
 /**
  * Tabs — .su-tabs (folder) / .su-tabs--pills. Controlado por value/onChange.
@@ -17,7 +18,7 @@ export function Tabs({ items, value, onChange, variant = "folder", className = "
           className={["su-tab", value === it.id && "su-tab--active"].filter(Boolean).join(" ")}
           onClick={() => onChange && onChange(it.id)}
         >
-          {it.icon && <i className={`ti ti-${it.icon}`} aria-hidden="true" />} {it.label}
+          {it.icon && <DSIcon name={it.icon} />} {it.label}
         </button>
       ))}
     </div>

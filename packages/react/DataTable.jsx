@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { DSIcon } from "./DSIcon.jsx";
 
 /**
  * DataTable — .su-table-card + .su-table, com seleção em lote e menu por linha.
@@ -27,9 +28,9 @@ export function DataTable({ columns, rows, getRowId = (r, i) => i, bulkActions, 
   const content = <>
       {selectable && sel.size > 0 ? (
         <div style={{ display: "flex", alignItems: "center", gap: 20, padding: "13px 16px", background: "var(--su-action-tint)", fontSize: 12 }}>
-          <span style={{ fontWeight: 500 }}><i className="ti ti-square-check" style={{ color: "var(--su-action)" }} /> {sel.size} selecionado{sel.size > 1 ? "s" : ""}</span>
+          <span style={{ fontWeight: 500 }}><DSIcon name="square-check" style={{ color: "var(--su-action)" }} /> {sel.size} selecionado{sel.size > 1 ? "s" : ""}</span>
           {bulkActions && bulkActions(Array.from(sel), clear)}
-          <span style={{ marginLeft: "auto", color: "var(--su-text-muted)", cursor: "pointer" }} onClick={clear}><i className="ti ti-x" /> Limpar</span>
+          <span style={{ marginLeft: "auto", color: "var(--su-text-muted)", cursor: "pointer" }} onClick={clear}><DSIcon name="x" /> Limpar</span>
         </div>
       ) : toolbar}
 
@@ -38,9 +39,9 @@ export function DataTable({ columns, rows, getRowId = (r, i) => i, bulkActions, 
           <tr>
             {selectable && (
               <th style={selCell}>
-                <i className={`ti ${allChecked ? "ti-square-check" : sel.size ? "ti-square-minus" : "ti-square"}`}
-                   style={{ cursor: "pointer", fontSize: 15, color: sel.size ? "var(--su-action)" : "var(--su-text-muted)" }}
-                   onClick={toggleAll} role="checkbox" aria-checked={allChecked} />
+                <DSIcon name={allChecked ? "square-check" : sel.size ? "square-minus" : "square"}
+                  size="sm" style={{ cursor: "pointer", color: sel.size ? "var(--su-action)" : "var(--su-text-muted)" }}
+                  onClick={toggleAll} role="checkbox" aria-checked={allChecked} />
               </th>
             )}
             {columns.map((c) => <th key={c.key} className={c.align === "right" ? "num" : ""}>{c.header}</th>)}
@@ -58,9 +59,9 @@ export function DataTable({ columns, rows, getRowId = (r, i) => i, bulkActions, 
                 style={on ? { background: "color-mix(in srgb, var(--su-action) 5%, transparent)" } : undefined}>
                 {selectable && (
                   <td style={{ paddingLeft: 16 }}>
-                    <i className={`ti ${on ? "ti-square-check" : "ti-square"}`}
-                       style={{ cursor: "pointer", fontSize: 15, color: on ? "var(--su-action)" : "var(--su-text-muted)" }}
-                       onClick={(event) => { event.stopPropagation(); toggle(id); }} role="checkbox" aria-checked={on} />
+                    <DSIcon name={on ? "square-check" : "square"}
+                      size="sm" style={{ cursor: "pointer", color: on ? "var(--su-action)" : "var(--su-text-muted)" }}
+                      onClick={(event) => { event.stopPropagation(); toggle(id); }} role="checkbox" aria-checked={on} />
                   </td>
                 )}
                 {columns.map((c) => <td key={c.key} className={c.align === "right" ? "num" : ""}>{c.render ? c.render(r) : r[c.key]}</td>)}

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { DSIcon } from "./DSIcon.jsx";
 
 /**
  * NumericInput — .su-numeric. Campo numérico com passos +/−.
@@ -59,7 +60,7 @@ export function FileUpload({ onFiles, accept, multiple, hint = "Arraste um arqui
       onDragOver={(e) => { e.preventDefault(); e.currentTarget.classList.add("su-upload--dragover"); }}
       onDragLeave={(e) => e.currentTarget.classList.remove("su-upload--dragover")}
       onDrop={(e) => { e.preventDefault(); e.currentTarget.classList.remove("su-upload--dragover"); onFiles && onFiles(e.dataTransfer.files); }}>
-      <div className="su-upload__icon"><i className={`ti ti-${icon}`} aria-hidden="true" /></div>
+      <div className="su-upload__icon"><DSIcon name={icon} /></div>
       <div>{hint}</div>
       <input type="file" accept={accept} multiple={multiple} style={{ display: "none" }} onChange={(e) => onFiles && onFiles(e.target.files)} />
     </label>
@@ -84,15 +85,15 @@ export function DatePicker({ value, onChange, placeholder = "Selecionar data" })
   return (
     <div style={{ position: "relative", display: "inline-block" }}>
       <button type="button" className="su-input" style={{ display: "inline-flex", alignItems: "center", gap: 8, cursor: "pointer", minWidth: 170 }} onClick={() => setOpen((o) => !o)}>
-        <i className="ti ti-calendar" style={{ color: "var(--su-text-muted)" }} aria-hidden="true" />
+        <DSIcon name="calendar" style={{ color: "var(--su-text-muted)" }} />
         {value || <span style={{ color: "var(--su-text-muted)" }}>{placeholder}</span>}
       </button>
       {open && (
         <div className="su-calendar" style={{ position: "absolute", top: "calc(100% + 4px)", left: 0, zIndex: "var(--su-z-overlay)" }}>
           <div className="su-calendar__head">
-            <button type="button" className="su-iconbtn" aria-label="Mês anterior" onClick={() => move(-1)}><i className="ti ti-chevron-left" /></button>
+            <button type="button" className="su-iconbtn" aria-label="Mês anterior" onClick={() => move(-1)}><DSIcon name="chevron-left" /></button>
             <span>{DP_MONTHS[view.m]} {view.y}</span>
-            <button type="button" className="su-iconbtn" aria-label="Próximo mês" onClick={() => move(1)}><i className="ti ti-chevron-right" /></button>
+            <button type="button" className="su-iconbtn" aria-label="Próximo mês" onClick={() => move(1)}><DSIcon name="chevron-right" /></button>
           </div>
           <div className="su-calendar__grid">
             {DP_DOW.map((d, i) => <div key={"h" + i} className="su-calendar__dow">{d}</div>)}

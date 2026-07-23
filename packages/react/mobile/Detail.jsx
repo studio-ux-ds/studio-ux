@@ -1,4 +1,5 @@
 import React from "react";
+import { DSIcon } from "../DSIcon.jsx";
 
 /** DetailHeader — .su-m-detail-head (topo da tela de detalhe). */
 export function DetailHeader({ avatar, name, meta, status }) {
@@ -38,7 +39,7 @@ export function QuickActions({ children }) {
 export function QuickAction({ icon, label, onClick }) {
   return (
     <button type="button" className="su-m-action" onClick={onClick}>
-      <span className="su-m-action__circle"><i className={`ti ti-${icon}`} aria-hidden="true" /></span>
+      <span className="su-m-action__circle"><DSIcon name={icon} /></span>
       {label}
     </button>
   );

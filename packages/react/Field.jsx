@@ -1,4 +1,5 @@
 import React from "react";
+import { DSIcon } from "./DSIcon.jsx";
 
 /**
  * Field — wrapper .su-field (label + controle + erro/dica). Erro é inline (P14);
@@ -10,7 +11,7 @@ export function Field({ label, error, hint, htmlFor, className = "", children })
     <div className={cls}>
       {label && <label className="su-field__label" htmlFor={htmlFor}>{label}</label>}
       {children}
-      {error && <span className="su-field__error"><i className="ti ti-alert-circle" aria-hidden="true" />{error}</span>}
+      {error && <span className="su-field__error"><DSIcon name="alert-circle" />{error}</span>}
       {!error && hint && <span className="su-field__hint">{hint}</span>}
     </div>
   );
@@ -29,7 +30,7 @@ export function PhoneInput({ dialCode = "+55", flag = "🇧🇷", onPickCountry,
   return (
     <div className="su-phoneinput">
       <button className="su-phoneinput__country" type="button" onClick={onPickCountry}>
-        {flag} {dialCode} <i className="ti ti-chevron-down" style={{ fontSize: 13, color: "var(--su-text-muted)" }} aria-hidden="true" />
+        {flag} {dialCode} <DSIcon name="chevron-down" size="sm" style={{ color: "var(--su-text-muted)" }} />
       </button>
       <input className="su-phoneinput__input" inputMode="tel" {...rest} />
     </div>

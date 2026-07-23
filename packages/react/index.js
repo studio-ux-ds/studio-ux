@@ -3,6 +3,7 @@
 
 // Fundamentais
 export { Button, IconButton } from "./Button.jsx";
+export { DSIcon } from "./DSIcon.jsx";
 export { Badge } from "./Badge.jsx";
 export { Avatar, Link, Tag, Banner, CommandPalette } from "./Misc.jsx";
 

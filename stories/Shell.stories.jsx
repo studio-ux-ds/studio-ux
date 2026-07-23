@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Sidebar, NavItem, TopBar, Breadcrumb, Avatar, IconButton } from "@studio-ux-ds/react";
+import { Sidebar, NavItem, TopBar, Breadcrumb, Avatar, IconButton, DSIcon } from "@studio-ux-ds/react";
 
 export default {
   title: "Navegação/Shell",
@@ -19,7 +19,7 @@ function SidebarDemo() {
   return (
     <div style={{ height: 420 }}>
       <Sidebar
-        brand={<span style={{ display: "inline-flex", alignItems: "center", gap: 8, fontWeight: 600 }}><i className="ti ti-brand-react" style={{ color: "var(--su-action)" }} /> Studio UX</span>}
+        brand={<span style={{ display: "inline-flex", alignItems: "center", gap: 8, fontWeight: 600 }}><DSIcon name="dashboard" style={{ color: "var(--su-action)" }} /> Studio UX</span>}
         footer={<span style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 13 }}><Avatar initials="RM" size="sm" status="online" /> Robson</span>}
       >
         {nav.map((n) => (

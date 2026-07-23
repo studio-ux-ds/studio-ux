@@ -6,13 +6,13 @@ export default {
   component: Button,
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "`.su-btn`. Props traduzem para classes/estados (nunca valores). `disabled` é nativo (via rest). Ícones = nomes Tabler." } },
+    docs: { description: { component: "`.su-btn`. Props traduzem para classes/estados (nunca valores). `disabled` é nativo (via rest). Ícones = nomes da biblioteca local curada." } },
   },
   argTypes: {
     variant: { control: "select", options: ["primary", "secondary", "ghost", "danger"] },
     size: { control: "select", options: ["sm", "md", "lg"] },
-    icon: { control: "text", description: "ícone Tabler à esquerda (ex.: plus)" },
-    iconRight: { control: "text", description: "ícone Tabler à direita" },
+    icon: { control: "text", description: "ícone local à esquerda (ex.: plus)" },
+    iconRight: { control: "text", description: "ícone local à direita" },
     disabled: { control: "boolean" },
   },
   args: { children: "Novo cliente", variant: "primary", size: "md" },

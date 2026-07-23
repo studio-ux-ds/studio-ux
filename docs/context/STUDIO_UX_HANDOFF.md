@@ -4,7 +4,7 @@
 >
 > **EN** — This file exists because an assistant's memory is compacted in long sessions and it loses the thread (especially tracking versions). **The source of truth is git + `CHANGELOG.md`, NEVER memory.** Every new session starts by reading: (1) `git log --oneline -3` and `git tag`, (2) this file, (3) `STUDIO_UX.md`, (4) the current front's doc.
 
-> Última atualização · Last updated: 2026-07-15 (Fase 1.5 concluída · Phase 1.5 done).
+> Última atualização · Last updated: 2026-07-22 (biblioteca e adoção por jornada em evolução · component library and journey adoption in progress).
 
 ---
 
@@ -14,17 +14,17 @@
 
 **EN** — Never state a version number, a file/token/component name, or "what's already implemented" from memory. Run `git tag | sort -V | tail` and `git log --oneline -3` BEFORE talking about versions. Tags are immutable — never reuse. Confirm the next version number with Robson before tagging.
 
-> **PT — Convenção de versão vigente (decisão do Robson):** `v1.0.0` foi alcançado com o congelamento dos tokens. **Durante a construção dos componentes (Fase 3), varia-se só o dígito final na faixa `v1.0.1` … `v1.0.99`** — próxima tag `v1.0.1`, etc. (o salto de MINOR/MAJOR fica para depois, quando o conjunto amadurecer). Tags imutáveis; confirmar o número com o Robson.
-> **EN — Current version convention (Robson's decision):** `v1.0.0` was reached with the token freeze. **While building the components (Phase 3), only the final digit varies within `v1.0.1` … `v1.0.99`** — next tag `v1.0.1`, etc. (MINOR/MAJOR jumps come later, once the set matures). Immutable tags; confirm the number with Robson.
+> **PT — Convenção de versão vigente:** SemVer em lockstep para os manifests do monorepo. Antes de preparar qualquer release, descubra a última tag com `git tag --sort=-v:refname`, escolha o próximo número compatível com a mudança e aplique `scripts/set-version.mjs`; tags são imutáveis e nunca são reusadas.
+> **EN — Current version convention:** SemVer in lockstep across monorepo manifests. Before preparing any release, discover the latest tag with `git tag --sort=-v:refname`, choose the next number compatible with the change, and apply `scripts/set-version.mjs`; tags are immutable and never reused.
 
 ---
 
 ## ✅ Estado vigente · Current state
 
-- **🧊 FOUNDATION FROZEN em `v0.3.0` (2026-07-15).** A Fundação (arquitetura, princípios, linguagem visual, catálogo-spec, plataforma) está **congelada**. Daqui em diante: **Implementação (Fase 2 — tokens)**. Mudança estrutural só por RFC + ADR; componente novo só por necessidade comprovada em produto. Decisão em `docs/audits/FOUNDATION_FREEZE_DECISION.md`. / Foundation frozen at `v0.3.0`; implementation only from here (structural change via RFC+ADR).
-- **Versão / Version:** `v1.0.0` — 🎯 **TOKENS FROZEN**. Fase 2 concluída: as 6 camadas de tokens (cor, tipografia, espaço, raio, elevação, motion) foram materializadas, aprovadas e congeladas — primeiro contrato estável. Valores em `tokens/COLOR_SYSTEM §9`, `TYPOGRAPHY §9`, `SPACING`, `DESIGN_TOKENS`. Próximo: **Fase 3 — componentes (Desktop primeiro)**. / Tokens frozen at v1.0.0; next is Phase 3 (components, Desktop first).
-- **Decisões da Fase 1.6 (travadas) / Locked Phase 1.6 decisions:** (1) **direção sóbria** confirmada — sem gradientes, o DNA congelado se mantém; a variação expressiva foi vista e recusada. (2) **Cor de ação configurável** — paleta de 7 acentos sóbrios (Índigo padrão, Azul, Teal, Verde, Violeta, Cobre, Grafite), um por tema, eixo de marca do `THEMES`. Linguagem validada em ~14 cenários (dashboard, analytics, DataTable, form, wizard, detalhe+timeline, login, mobile, estados, confirm+toast, settings, command palette, filtro mobile, menu de linha).
-- **Fase / Phase:** Fases 1 e 1.5 concluídas em conteúdo — só documentação. Nenhum código, token final, componente ou tela; **nenhum valor estético final** decidido. / Phases 1 and 1.5 complete in content — documentation only. No code, final tokens, components or screens; **no final aesthetic value** decided.
+- **Fundação, linguagem e tokens / Foundation, language and tokens:** concluídos e congelados como contratos. Mudança estrutural só por RFC + ADR; componente novo só por necessidade comprovada em produto. / Complete and frozen as contracts. Structural change only through RFC + ADR; a new component only for a proven product need.
+- **Implementação real / Actual implementation:** `packages/tokens`, `packages/components`, `packages/icons`, `packages/react`, `packages/react-native`, `packages/mobile` e `packages/cli` existem e são versionados em lockstep. O Storybook documenta o adapter React real; `scripts/check-packages.mjs` é a validação estrutural da publicação. / The packages exist and are versioned in lockstep. Storybook documents the real React adapter; `scripts/check-packages.mjs` is the publishing structural validation.
+- **Fase / Phase:** Fase 3 está ativa: componentes, padrões de jornada e refinamentos são materializados e adotados de forma controlada pelos sistemas consumidores. O produto não está mais em fase somente documental. / Phase 3 is active: components, journey patterns and refinements are being materialized and adopted in a controlled way by consuming systems. The product is no longer documentation-only.
+- **Decisões visuais travadas / Locked visual decisions:** direção sóbria, sem gradientes decorativos; cor de ação configurável com paleta de acentos sóbrios; hierarquia e semântica vêm de tokens, não de literais na tela. / Sober direction, no decorative gradients; configurable action color with a sober accent palette; hierarchy and semantics come from tokens, never screen literals.
 - **Idioma / Language:** Bilíngue PT-BR + EN, lado a lado por seção, em toda doc normativa. / Bilingual, side by side per section.
 
 ### Documentos entregues · Delivered documents
@@ -52,9 +52,9 @@
 
 ## 🎯 O que vem agora · What comes next
 
-**PT** — Fases 1, 1.5 e **1.6 concluídas**; camada de plataforma documental completa. **Estamos na Fase 2 — Materialização dos Design Tokens.** Objetivo: transformar os valores provisórios validados na 1.6 em **tokens nomeados e congelados**, camada por camada com aprovação humana: **cor → tipografia → espaço → raio → elevação → motion**, mais os temas claro/escuro/marca. Cada camada é proposta, aprovada e gravada no dono (`tokens/*`, `THEMES`) — são VALORES, que a arquitetura congelada sempre reservou para cá (não é mudança estrutural, não precisa de RFC/ADR). O congelamento de todos os tokens é o marco **`v1.0.0`**. Enquanto isso, releases na linha `v0.3.x`.
+**PT** — Continuar a Fase 3 com uma jornada real por vez: inventariar o sistema consumidor, adotar o adapter oficial sem coexistência com UI legada, cobrir lista → detalhe → criação/edição → confirmação → retorno e propagar o refinamento para Storybook, documentação, CHANGELOG/versão e sistemas. A fonte de operação é `docs/quality/REFINAMENTO-E-PROPAGACAO.md`.
 
-**EN** — Phases 1, 1.5 and **1.6 complete**; platform documentation layer complete. **We are in Phase 2 — Materializing the Design Tokens.** Goal: turn the provisional values validated in 1.6 into **named, frozen tokens**, layer by layer with human approval: **color → typography → spacing → radius → elevation → motion**, plus light/dark/brand themes. Each layer is proposed, approved and written to its owner (`tokens/*`, `THEMES`) — these are VALUES, which the frozen architecture always reserved for here (not a structural change, no RFC/ADR needed). Freezing all tokens is the **`v1.0.0`** milestone. Meanwhile, releases in the `v0.3.x` line.
+**EN** — Continue Phase 3 one real journey at a time: inventory the consuming system, adopt the official adapter without coexistence with legacy UI, cover list → detail → create/edit → confirmation → return, and propagate the refinement to Storybook, documentation, CHANGELOG/version and systems. The operating source is `docs/quality/REFINAMENTO-E-PROPAGACAO.md`.
 
 ---
 

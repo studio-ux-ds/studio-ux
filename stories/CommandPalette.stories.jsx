@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CommandPalette, Button } from "@studio-ux-ds/react";
+import { CommandPalette, Button, DSIcon } from "@studio-ux-ds/react";
 
 export default {
   title: "Fundamentais/CommandPalette",
@@ -12,7 +12,7 @@ function Demo() {
   const [open, setOpen] = useState(false);
   const item = (icon, label, hint) => (
     <div className="su-menu__item" style={{ display: "flex", alignItems: "center", gap: 10 }}>
-      <i className={`ti ti-${icon}`} style={{ color: "var(--su-text-muted)" }} />
+      <DSIcon name={icon} style={{ color: "var(--su-text-muted)" }} />
       <span style={{ flex: 1 }}>{label}</span>
       {hint && <kbd style={{ fontSize: 11, color: "var(--su-text-muted)" }}>{hint}</kbd>}
     </div>

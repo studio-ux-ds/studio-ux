@@ -16,9 +16,13 @@
 
 ## 0. STATUS · Fase atual · Current phase
 
-- **Versão / Version:** `v0.1.0` (fundação documental — só documentação, zero código).
-- **Fase / Phase:** **Fase 1 — Fundação Conceitual e Documental.** Não implementar componentes, tokens finais ou telas ainda. Ver `docs/STUDIO_UX_ROADMAP.md`.
-- **Fonte da verdade de versão / Version source of truth:** `CHANGELOG.md` + tags git. **Nunca a memória.**
+- **Produto materializado / Materialized product:** **PT:** os tokens, o CSS de componentes, os adapters React e React Native, a biblioteca de ícones, o CLI e o Storybook existem em `packages/*`. A arquitetura real é `tokens → components → react → sistemas consumidores`; consulte `docs/platform/STUDIO_UX_PACKAGES.md` antes de alterar uma camada. **EN:** tokens, component CSS, React and React Native adapters, the icon library, CLI and Storybook exist in `packages/*`. The real architecture is `tokens → components → react → consuming systems`; read `docs/platform/STUDIO_UX_PACKAGES.md` before changing a layer.
+- **Fase / Phase:** **PT:** **Fase 3 — biblioteca de componentes e adoção controlada.** A fundação documental (Fase 1), a linguagem visual (1.5/1.6) e os tokens (Fase 2) estão concluídos; a biblioteca e os refinamentos por jornada continuam evoluindo sob a Definition of Done de `docs/quality/REFINAMENTO-E-PROPAGACAO.md`. O roadmap histórico permanece em `docs/STUDIO_UX_ROADMAP.md`. **EN:** **Phase 3 — component library and controlled adoption.** The documentation foundation (Phase 1), visual language (1.5/1.6) and tokens (Phase 2) are complete; the library and journey refinements continue under the Definition of Done in `docs/quality/REFINAMENTO-E-PROPAGACAO.md`. The historical roadmap remains in `docs/STUDIO_UX_ROADMAP.md`.
+- **Fonte da verdade de versão / Version source of truth:** `CHANGELOG.md` + tags git. **PT:** nunca a memória nem este cabeçalho. **EN:** never memory or this header.
+
+**PT** — Este documento governa o produto que já está em código e publicação. Não trate a Fase 1 como estado atual, não recrie camadas já existentes e não implemente fora do pacote dono.
+
+**EN** — This document governs a product that already has code and publishing. Do not treat Phase 1 as the current state, do not recreate existing layers, and do not implement outside the owning package.
 
 ---
 
@@ -58,7 +62,7 @@
 3. **Documentar o PORQUÊ, não só o QUÊ. / Document the WHY, not only the WHAT.** Toda decisão registra motivo, quando usar, quando NÃO usar, regras, limitações, boas práticas e anti-padrões (§8).
 4. **Desktop e Mobile pensados do zero, separadamente. / Desktop and Mobile designed from scratch, separately.** Nunca adaptar um a partir do outro.
 5. **Desconfie de inconsistência silenciosa. / Distrust silent inconsistency.** Um valor "quase igual" (um `padding` de 15px onde o token é 16px) é o bug do design system: parece certo e corrói a família. Sempre ancorar em token.
-6. **Arquitetura antes de estética. / Architecture before aesthetics.** Nesta fase definimos *como* tokens, temas e componentes funcionam — não os valores/estilos finais.
+6. **Arquitetura antes de estética. / Architecture before aesthetics.** A arquitetura e os tokens congelados precedem qualquer refinamento: use os contratos existentes, não crie valores paralelos nem uma segunda camada visual. / Frozen architecture and tokens precede any refinement: use existing contracts, never create parallel values or a second visual layer.
 7. **Pós-compactação = re-ancorar antes de agir. / After context compaction, re-anchor before acting.** Regra geral em `COMO-INTERAGIR-COM-ROBSON.md` §2; aqui a primeira ação após um resumo de sessão é reler também `docs/context/STUDIO_UX_HANDOFF.md`. / General rule in `COMO-INTERAGIR-COM-ROBSON.md` §2; here the first action after a session summary also rereads `docs/context/STUDIO_UX_HANDOFF.md`.
 8. **Antes de criar um documento, pergunte: "assunto novo ou já tem dono?" / Before creating a document, ask: "new subject or already owned?"** Se o assunto pertence a um documento existente, **expanda o existente — não crie outro** (viola SSOT, §11). Só nasce documento novo quando é um domínio de conhecimento genuinamente novo. E todo documento novo passa antes pelo **Architecture Boundary Check** (§12). / If the subject belongs to an existing document, **expand it — do not create another** (violates SSOT, §11). A new document is born only for a genuinely new knowledge domain. And every new document first passes the **Architecture Boundary Check** (§12).
 
@@ -263,4 +267,4 @@ Dono · Owner:                <este doc, para o domínio X / this doc, for domai
 
 ---
 
-*Versão do documento / Document version: 1.1.0 — 15/07/2026. Corresponde ao Studio UX `v0.2.0` (Fase 1.5 — linguagem visual). 1.0.0 — `v0.1.0` (fundação documental).*
+*Documento vivo / Living document: descreve o produto materializado e sua governança atual. A versão de release é sempre `CHANGELOG.md` + tags git; o histórico de fases vive em `docs/STUDIO_UX_ROADMAP.md`.*

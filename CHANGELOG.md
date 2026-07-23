@@ -6,6 +6,20 @@
 
 ---
 
+## [1.2.9] - 2026-07-22
+
+### Fixed
+
+- **PT:** O adapter React deixa de restringir `@studio-ux-ds/icons` à série `1.2.x`; a faixa de peer dependency agora aceita a linha compatível `1.x`, preservando o lockstep em futuros bumps MINOR.
+- **EN:** The React adapter no longer restricts `@studio-ux-ds/icons` to the `1.2.x` series; its peer-dependency range now accepts the compatible `1.x` line, preserving lockstep through future MINOR bumps.
+- **PT:** Ícones do adapter web, mobile-web e stories passam integralmente pelo SVG local curado. O Storybook não depende mais da webfont Tabler/CDN para exibir ícones.
+- **EN:** Icons in the web adapter, mobile-web adapter and stories now all go through the curated local SVG. Storybook no longer depends on the Tabler webfont/CDN to display icons.
+
+### Changed
+
+- **PT:** `STUDIO_UX.md` e o handoff voltam a descrever o produto real: pacotes materializados, tokens congelados, Fase 3 ativa e adoção por jornada.
+- **EN:** `STUDIO_UX.md` and the handoff once again describe the real product: materialized packages, frozen tokens, active Phase 3 and journey-based adoption.
+
 ## [1.2.8] - 2026-07-22
 
 ### Changed

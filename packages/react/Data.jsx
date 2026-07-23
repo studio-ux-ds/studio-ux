@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { DSIcon } from "./DSIcon.jsx";
 
 /**
  * DescriptionList — pares chave/valor (.su-dl). Tela de detalhe.
@@ -41,11 +42,11 @@ export function Pagination({ page, pageCount, onChange }) {
   const pages = Array.from({ length: pageCount }, (_, i) => i + 1).slice(0, 5);
   return (
     <div className="su-pagination">
-      <span className="su-page su-page--nav" onClick={() => go(page - 1)}><i className="ti ti-chevron-left" /></span>
+      <span className="su-page su-page--nav" onClick={() => go(page - 1)}><DSIcon name="chevron-left" /></span>
       {pages.map((p) => (
         <span key={p} className={["su-page", p === page && "su-page--active"].filter(Boolean).join(" ")} onClick={() => go(p)}>{p}</span>
       ))}
-      <span className="su-page su-page--nav" onClick={() => go(page + 1)}><i className="ti ti-chevron-right" /></span>
+      <span className="su-page su-page--nav" onClick={() => go(page + 1)}><DSIcon name="chevron-right" /></span>
     </div>
   );
 }
@@ -62,7 +63,7 @@ export function Accordion({ items, defaultOpen = 0 }) {
         <div className="su-accordion__item" key={i}>
           <div className="su-accordion__head" onClick={() => setOpen(open === i ? -1 : i)}>
             {it.title}
-            <i className={`ti ti-chevron-${open === i ? "up" : "down"}`} style={{ color: "var(--su-text-muted)" }} aria-hidden="true" />
+            <DSIcon name={`chevron-${open === i ? "up" : "down"}`} style={{ color: "var(--su-text-muted)" }} />
           </div>
           {open === i && <div className="su-accordion__body">{it.content}</div>}
         </div>

@@ -1,13 +1,14 @@
 import React from "react";
+import { DSIcon } from "../DSIcon.jsx";
 
 /** OfflineBanner — .su-m-offline. */
 export function OfflineBanner({ icon = "wifi-off", children }) {
-  return <div className="su-m-offline"><i className={`ti ti-${icon}`} aria-hidden="true" />{children}</div>;
+  return <div className="su-m-offline"><DSIcon name={icon} />{children}</div>;
 }
 
 /** SyncBanner — .su-m-sync. */
 export function SyncBanner({ icon = "refresh", children }) {
-  return <div className="su-m-sync"><i className={`ti ti-${icon}`} aria-hidden="true" />{children}</div>;
+  return <div className="su-m-sync"><DSIcon name={icon} />{children}</div>;
 }
 
 /** Banner — .su-m-banner (aviso genérico). */
@@ -23,7 +24,7 @@ export function Notification({ icon, title, meta, unread, tone = "neutral" }) {
   return (
     <div className={cls}>
       <span className={`su-m-notif__icon su-m-notif__icon--${tone}`}>
-        {icon && <i className={`ti ti-${icon}`} aria-hidden="true" />}
+        {icon && <DSIcon name={icon} />}
       </span>
       <div className="su-m-notif__body">
         <div className="su-m-notif__title">{title}</div>

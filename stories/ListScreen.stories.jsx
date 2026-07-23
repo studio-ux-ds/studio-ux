@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { ListScreen, Button, Badge, Tag, IconButton } from "@studio-ux-ds/react";
+import { ListScreen, Button, Badge, Tag, IconButton, DSIcon } from "@studio-ux-ds/react";
 
 export default {
   title: "Padrões/ListScreen",
@@ -26,7 +26,7 @@ const blocoBadge = (b) => (b === "PF" ? <Badge status="info">Pessoal</Badge> : <
 const columns = [
   { key: "desc", header: "Descrição", render: (r) => (
       <span style={{ display: "inline-flex", alignItems: "center", gap: 10 }}>
-        <i className="ti ti-trending-up" style={{ color: "var(--su-success-fg)" }} aria-hidden="true" />
+        <DSIcon name="trending-up" style={{ color: "var(--su-success-fg)" }} />
         <span><div style={{ fontWeight: 500 }}>{r.desc}</div><div style={{ fontSize: 11, color: "var(--su-text-muted)" }}>{r.cat}</div></span>
       </span>
     ) },
@@ -46,7 +46,7 @@ const rowMenu = () => (
 
 const renderCard = (r) => (
   <div className="su-card" style={{ display: "flex", alignItems: "center", gap: 12 }}>
-    <i className="ti ti-trending-up" style={{ color: "var(--su-success-fg)" }} aria-hidden="true" />
+    <DSIcon name="trending-up" style={{ color: "var(--su-success-fg)" }} />
     <div style={{ flex: 1, minWidth: 0 }}>
       <div style={{ fontWeight: 500 }}>{r.desc}</div>
       <div style={{ fontSize: 11, color: "var(--su-text-muted)" }}>{r.cat} · {r.tipo} · vence {r.vence}</div>

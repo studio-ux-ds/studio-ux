@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {
   AppShell, Banner, Badge, Button, Card, CommandPalette, Drawer, EmptyState, Field, IconButton, Input,
-  ListScreen, PageHeader, ProgressBar, Select, Skeleton, StatCard, Tag, TextArea,
+  ListScreen, PageHeader, ProgressBar, Select, Skeleton, StatCard, Tag, TextArea, DSIcon,
 } from "@studio-ux-ds/react";
 
 export default {
@@ -156,7 +156,7 @@ function Lab() {
     user={{ name: "Robson", email: "robson@nivoo.com", initials: "R" }} notifications={3} onNotifications={() => setNotificationsOpen(true)} onCommandPalette={() => setCommandOpen(true)} onHelp={() => setHelpOpen(true)} customize>
     {content}
   </AppShell>
-  <CommandPalette open={commandOpen} onClose={() => setCommandOpen(false)}><div className="su-menu__item" onClick={() => { setScreen("receitas"); setCommandOpen(false); }}><i className="ti ti-trending-up" aria-hidden="true" />Ir para Receitas</div><div className="su-menu__item" onClick={() => { setScreen("despesas"); setCommandOpen(false); }}><i className="ti ti-trending-down" aria-hidden="true" />Ir para Despesas</div></CommandPalette>
+  <CommandPalette open={commandOpen} onClose={() => setCommandOpen(false)}><div className="su-menu__item" onClick={() => { setScreen("receitas"); setCommandOpen(false); }}><DSIcon name="trending-up" />Ir para Receitas</div><div className="su-menu__item" onClick={() => { setScreen("despesas"); setCommandOpen(false); }}><DSIcon name="trending-down" />Ir para Despesas</div></CommandPalette>
   <Drawer open={notificationsOpen} onClose={() => setNotificationsOpen(false)} title="Notificações"><div className="su-visual-lab__stack"><Banner tone="info">Você tem três lembretes para revisar.</Banner><Button variant="secondary" onClick={() => setNotificationsOpen(false)}>Fechar</Button></div></Drawer>
   <Drawer open={helpOpen} onClose={() => setHelpOpen(false)} title="Ajuda"><div className="su-visual-lab__stack"><p>Use este laboratório para validar a experiência antes de adotar o DS em um sistema.</p><Button variant="secondary" onClick={() => setHelpOpen(false)}>Fechar</Button></div></Drawer>
   </div>;

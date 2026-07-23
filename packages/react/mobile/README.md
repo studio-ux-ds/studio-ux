@@ -18,7 +18,7 @@ import { TopBar, BottomNav, ListItem, Cta } from "@studio-ux-ds/react/mobile";
 - **Runtime descartável.** Só embrulha classe CSS; toda a verdade visual vem do
   token/CSS. Trocar React por outra tech não muda o design.
 - **Props → estado, nunca valor literal.** `tone`, `variant`, `active`… nunca cor/px.
-- **Ícones vêm do produto** (Tabler via `icon="nome"` → `<i class="ti ti-nome">`);
+- **Ícones vêm do Studio UX** (`icon="nome"` → SVG local curado, sem webfont externa);
   a **câmera** do `ScannerFrame` e o conteúdo de avatar são do produto.
 - **Gesto sempre com alternativa** (`SwipeableRow` expõe `onLongPress`; as mesmas
   ações devem existir num menu) — P19.

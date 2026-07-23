@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useCallback } from "react";
+import { DSIcon } from "./DSIcon.jsx";
 
 const ToastCtx = createContext(null);
 
@@ -25,7 +26,7 @@ export function ToastProvider({ children, duration = 3500 }) {
       <div style={{ position: "fixed", top: 16, left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", gap: 8, zIndex: 2000 }}>
         {toasts.map((t) => (
           <div key={t.id} className={`su-toast su-toast--${t.type}`} role="status">
-            <span className="su-toast__icon"><i className={`ti ti-${t.type === "danger" ? "alert-circle" : "check"}`} aria-hidden="true" /></span>
+            <span className="su-toast__icon"><DSIcon name={t.type === "danger" ? "alert-circle" : "check"} /></span>
             {t.msg}
           </div>
         ))}

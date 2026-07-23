@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { DSIcon } from "../DSIcon.jsx";
 
 /**
  * SwipeableRow (mobile-web) — .su-m-swipe. Arrasta para revelar ações (touch).
@@ -24,7 +25,7 @@ export function SwipeableRow({ actions = [], children, onLongPress }) {
           <button key={i} type="button"
             className={["su-m-swipe__action", a.tone && `su-m-swipe__action--${a.tone}`].filter(Boolean).join(" ")}
             onClick={() => { setOpen(false); a.onClick && a.onClick(); }}>
-            {a.icon && <i className={`ti ti-${a.icon}`} aria-hidden="true" />}{a.label}
+            {a.icon && <DSIcon name={a.icon} />}{a.label}
           </button>
         ))}
       </div>

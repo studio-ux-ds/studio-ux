@@ -1,4 +1,5 @@
 import React from "react";
+import { DSIcon } from "../DSIcon.jsx";
 
 /** TopBar (mobile-web) — .su-m-topbar. */
 export function TopBar({ title, left, right }) {
@@ -25,7 +26,7 @@ export function Greeting({ hi, sub }) {
 export function SearchBar({ placeholder = "Buscar", onClick }) {
   return (
     <div className="su-m-search" onClick={onClick} role="search">
-      <i className="ti ti-search" aria-hidden="true" />{placeholder}
+      <DSIcon name="search" />{placeholder}
     </div>
   );
 }
@@ -41,13 +42,13 @@ export function BottomNav({ items, activeKey, onChange, fab }) {
         return (
           <button key={it.key} className={["su-m-navitem", on && "su-m-navitem--active"].filter(Boolean).join(" ")}
             aria-current={on ? "page" : undefined} onClick={() => onChange && onChange(it.key)}>
-            {it.icon && <i className={`ti ti-${it.icon}`} aria-hidden="true" />}{it.label}
+            {it.icon && <DSIcon name={it.icon} />}{it.label}
           </button>
         );
       })}
       {fab && (
         <button className="su-m-fab" aria-label={fab.label || "Ação"} onClick={fab.onClick}>
-          <i className={`ti ti-${fab.icon || "plus"}`} aria-hidden="true" />
+          <DSIcon name={fab.icon || "plus"} />
         </button>
       )}
     </nav>
@@ -64,7 +65,7 @@ export function Cta({ ghost, icon, iconRight, className = "", children, ...rest 
   const cls = ["su-m-cta", ghost && "su-m-cta--ghost", className].filter(Boolean).join(" ");
   return (
     <button className={cls} {...rest}>
-      {icon && <i className={`ti ti-${icon}`} aria-hidden="true" />}{children}{iconRight && <i className={`ti ti-${iconRight}`} aria-hidden="true" />}
+      {icon && <DSIcon name={icon} />}{children}{iconRight && <DSIcon name={iconRight} />}
     </button>
   );
 }
