@@ -1,54 +1,49 @@
 # Prompt de alinhamento para solicitações de desenvolvimento · Development-request alignment prompt
 
-> **PT** — Documento dono do intake de pedidos de desenvolvimento feitos em linguagem natural para ChatGPT, Codex, Claude e modelos futuros. Ele converte um pedido em relatório **antes** de qualquer implementação.
+> **PT** — Esta é a porta de entrada para pedidos de desenvolvimento feitos em linguagem natural a ChatGPT, Codex, Claude e modelos futuros. Ela converte um pedido em relatório e roteia para uma especialidade aprovada; não é o prompt que executa a mudança.
 >
-> **EN** — Owner document for natural-language development-request intake used with ChatGPT, Codex, Claude and future models. It turns a request into a report **before** any implementation.
+> **EN** — This is the entry point for natural-language development requests made to ChatGPT, Codex, Claude and future models. It converts a request into a report and routes it to an approved specialty; it is not the prompt that executes the change.
 
 ```
 Architecture Boundary Check — Prompt de alinhamento
-Resolve · Solves:             converter um pedido humano em decisão de escopo verificável, sem formulário técnico
-                              e antes de código.
+Resolve · Solves:             transformar um pedido humano em uma decisão de escopo verificável antes de agir.
 Não pertence a outro porque · Not elsewhere because:
-                              AI_RULES governa geração de tela; HANDOFF registra estado; este documento governa
-                              somente o alinhamento de solicitações de desenvolvimento.
-Complementa · Complements:    AGENTS.md/CLAUDE.md, COMO-INTERAGIR-COM-ROBSON.md, HANDOFF e o dono técnico
-                              identificado para cada pedido.
+                              regras do repositório governam o trabalho; os prompts de especialidade o executam;
+                              este arquivo governa somente a triagem e o gate entre os dois.
+Complementa · Complements:    catalogo-especialidades.md, AGENTS.md/CLAUDE.md, handoff e o prompt especializado escolhido.
 Nunca substitui · Never replaces:
-                              regras do repositório, documentação dona, ADR/RFC, nem aprovação humana.
-Dono · Owner:                 este arquivo, para o domínio "intake de solicitações de desenvolvimento".
+                              regras do repositório, SSOT técnico, ADR/RFC, aprovação humana ou documentação dona.
+Dono · Owner:                 este arquivo, para a entrada e classificação de solicitações de desenvolvimento.
 ```
 
 ---
 
-## 1. Escopo e limite · Scope and boundary
+## 1. Escopo e princípio · Scope and principle
 
-**PT** — Este framework atende pedidos de mudança no projeto feitos a uma IA de desenvolvimento. Ele **não** é prompt de produto, atendimento, SDR, automação, agente operacional, banco, integração existente ou funcionalidade de negócio. Durante o alinhamento, não executa, não cria especialidade e não altera código.
+**PT** — O framework atende somente pedidos para mudar este repositório. Não serve para prompts runtime do produto, atendimento, SDR, automação, agente operacional ou funcionalidade de negócio. A especialidade é definida por **responsabilidade coesa e superfície dona**, nunca por uma lista genérica de cargos.
 
-**EN** — This framework handles project-change requests made to a development AI. It is **not** a product, support, SDR, automation, operational-agent, database, existing-integration or business-function prompt. During alignment it does not execute, create a specialty or change code.
+**EN** — This framework handles only requests to change this repository. It does not serve product-runtime prompts, support, SDR, automation, operational agents or business functionality. A specialty is defined by a **cohesive responsibility and owned surface**, never by a generic list of job titles.
 
-**PT** — Gatilho: qualquer pedido de desenvolvimento em linguagem natural. Saída obrigatória: relatório. Implementação só começa depois da decisão explícita do Robson: `ok`.
+**PT** — A identidade profissional no prompt especializado (por exemplo, “Engenheiro Frontend Sênior especializado em Design Systems”) orienta o rigor e o vocabulário. Ela não substitui missão, limites nem fontes obrigatórias — estes continuam sendo o contrato que decide a classificação.
 
-**EN** — Trigger: any natural-language development request. Required output: a report. Implementation starts only after Robson's explicit `ok` decision.
+**EN** — The professional identity in a specialized prompt (for example, “Senior Frontend Engineer specialized in Design Systems”) guides rigor and vocabulary. It does not replace mission, limits or mandatory sources — those remain the contract that decides classification.
 
 ---
 
-## 2. Catálogo inicial de especialidades · Initial specialty catalog
+## 2. Leitura permitida antes do relatório · Reading allowed before the report
 
-**PT** — O catálogo descreve apenas especialidades reais deste repositório. Ele permite classificação honesta; não é uma lista de capacidades desejadas. Se o pedido não se encaixar, use `especialidade não catalogada`.
+**PT** — Antes de emitir o relatório, a IA pode ler **somente**, nesta ordem:
 
-**EN** — The catalog lists only real specialties in this repository. It enables honest classification; it is not a wish list. If a request does not fit, use `especialidade não catalogada`.
+1. `AGENTS.md`, `CLAUDE.md` ou regra equivalente e `COMO-INTERAGIR-COM-ROBSON.md`, quando existir;
+2. `docs/context/STUDIO_UX_HANDOFF.md` ou o handoff/estado equivalente;
+3. `docs/prompt-framework/catalogo-especialidades.md`;
+4. Git mínimo: `git status --short` e `git log --oneline -3`. Consulte tags apenas se o pedido tratar de versão.
 
-| Especialidade · Specialty | Missão · Mission | Fontes iniciais · Starting sources |
-|---|---|---|
-| `design-system-foundation` | Evoluir tokens, CSS de componentes, ícones e temas sem quebrar o contrato visual. | `packages/tokens`, `packages/components`, `packages/icons`, docs de tokens/componentes. |
-| `react-adapter-and-storybook` | Evoluir o adapter React e sua documentação viva sem duplicar a camada CSS. | `packages/react`, `stories`, `.storybook`, `STUDIO_UX_RUNTIME.md`. |
-| `mobile-adapters` | Evoluir os adapters e contratos mobile respeitando a fronteira Desktop, web e nativo. | `packages/mobile`, `packages/react-native`, `packages/react/mobile`, docs mobile. |
-| `platform-cli-and-packages` | Evoluir CLI, geração, lint, certificação, manifests e publicação do monorepo. | `packages/cli`, `scripts`, workflows, docs de plataforma e ferramentas. |
-| `design-system-governance-and-quality` | Evoluir regras, SSOT, auditorias, documentação e critérios de qualidade do Studio UX. | `STUDIO_UX.md`, `docs/governance`, `docs/quality`, `docs/context`. |
+**PT** — Nesta fase a IA **não pode** criar agentes, ler código ou pacotes, auditar documentação amplamente, executar testes, instalar dependências, editar arquivos, criar especialidade ou fazer uma implementação parcial. O catálogo fornece os caminhos que serão lidos pelo prompt especializado somente após `ok`.
 
-**PT** — Exemplo: “integrar a Meta API para responder mensagens do Direct do Instagram e Facebook” não pertence às especialidades atuais. O relatório deve retornar `especialidade não catalogada`, recomendar `external-api-integrations` e aguardar `ok`; ele não cria integração nem código.
+**EN** — Before issuing the report, the AI may read **only**, in this order: (1) `AGENTS.md`, `CLAUDE.md` or equivalent rules and `COMO-INTERAGIR-COM-ROBSON.md` when present; (2) `docs/context/STUDIO_UX_HANDOFF.md` or equivalent state handoff; (3) `docs/prompt-framework/catalogo-especialidades.md`; and (4) minimal Git: `git status --short` and `git log --oneline -3`. Read tags only when the request concerns versioning.
 
-**EN** — Example: “integrate the Meta API to answer Instagram and Facebook Direct messages” does not belong to the current specialties. The report must return `especialidade não catalogada`, recommend `external-api-integrations`, and wait for `ok`; it does not create an integration or code.
+**EN** — At this stage the AI **must not** create agents, read code or packages, broadly audit documentation, run tests, install dependencies, edit files, create a specialty or make a partial implementation. The catalog provides the paths that the specialized prompt will read only after `ok`.
 
 ---
 
@@ -59,14 +54,13 @@ Dono · Owner:                 este arquivo, para o domínio "intake de solicita
 ```text
 Você está no modo ALINHAMENTO DE SOLICITAÇÃO DE DESENVOLVIMENTO.
 
-Receba o pedido em linguagem natural abaixo e responda SOMENTE com o relatório definido neste documento. Não implemente código, não altere arquivos, não crie especialidade, não modifique banco, integração, automação, prompt operacional ou funcionalidade existente antes de eu responder "ok".
+Receba o pedido abaixo e responda SOMENTE com o relatório definido neste documento.
 
-Antes de classificar ou propor qualquer coisa:
-1. Leia AGENTS.md, CLAUDE.md ou regra equivalente; leia o handoff/estado e a documentação atual relevante.
-2. Inventarie regra, documento, componente, módulo, pacote, padrão e código reutilizável existentes no próprio projeto.
-3. Classifique somente se uma especialidade do catálogo cobrir realmente o pedido. Nunca force uma classificação.
-4. Se faltar especialidade, use o fluxo "especialidade não catalogada". Se houver impedimento real, use "bloqueado".
-5. Nunca avance da resposta-relatório para implementação sem uma decisão explícita "ok" do solicitante.
+Antes do relatório, leia somente: (1) AGENTS.md, CLAUDE.md ou regra equivalente e COMO-INTERAGIR-COM-ROBSON.md quando existir; (2) o handoff/estado; (3) docs/prompt-framework/catalogo-especialidades.md; (4) git status --short e git log --oneline -3. Leia tags apenas se o pedido falar de versão.
+
+Não crie agentes, não leia código ou pacotes, não faça auditoria ampla, não execute testes, não instale dependências e não edite arquivos nesta fase. Não crie uma especialidade. Não implemente nada antes de eu responder “ok”.
+
+Classifique somente quando uma especialidade catalogada cobrir integralmente a responsabilidade do pedido. Se não houver especialidade adequada, responda “especialidade não catalogada”; recomende a especialidade faltante e aguarde aprovação. Se o pedido misturar responsabilidades independentes, não force uma única classificação: explicite a separação e peça a decisão mínima sobre a primeira frente.
 
 PEDIDO:
 {{cole aqui o pedido em linguagem natural}}
@@ -77,14 +71,13 @@ PEDIDO:
 ```text
 You are in DEVELOPMENT-REQUEST ALIGNMENT mode.
 
-Receive the natural-language request below and answer ONLY with the report defined in this document. Do not implement code, edit files, create a specialty, modify a database, integration, automation, operational prompt or existing functionality before I answer "ok".
+Receive the request below and answer ONLY with the report defined in this document.
 
-Before classifying or proposing anything:
-1. Read AGENTS.md, CLAUDE.md or equivalent rules; read the handoff/state and relevant current documentation.
-2. Inventory existing reusable rules, documents, components, modules, packages, patterns and code in the project itself.
-3. Classify only when a catalog specialty truly covers the request. Never force a classification.
-4. When a specialty is missing, use the "specialty not cataloged" flow. When a real impediment exists, use "blocked".
-5. Never move from the report response to implementation without the requester's explicit "ok" decision.
+Before the report, read only: (1) AGENTS.md, CLAUDE.md or equivalent rules and COMO-INTERAGIR-COM-ROBSON.md when present; (2) the handoff/state; (3) docs/prompt-framework/catalogo-especialidades.md; (4) git status --short and git log --oneline -3. Read tags only when the request concerns versioning.
+
+Do not create agents, read code or packages, broadly audit, run tests, install dependencies or edit files at this stage. Do not create a specialty. Do not implement anything before I answer “ok”.
+
+Classify only when a cataloged specialty fully covers the request responsibility. If no adequate specialty exists, answer “specialty not cataloged”; recommend the missing specialty and wait for approval. If the request mixes independent responsibilities, do not force one classification: state the split and ask for the minimum decision on the first front.
 
 REQUEST:
 {{paste the natural-language request here}}
@@ -93,8 +86,6 @@ REQUEST:
 ---
 
 ## 4. Formato obrigatório do relatório · Required report format
-
-**PT / EN** — Use exatamente estes títulos, preenchendo com fatos verificados. Se algo ainda não foi lido, escreva `a verificar` e inclua no plano; nunca complete por suposição.
 
 ```md
 # Relatório de alinhamento · Alignment report
@@ -106,82 +97,63 @@ REQUEST:
 <repositório, produto e área afetada>
 
 ## Especialidade identificada
-<uma especialidade do catálogo, ou “não catalogada”>
+<slug do catálogo e caminho do prompt, ou “não catalogada”>
 
 ## Pedido entendido
-<o resultado desejado, em linguagem objetiva>
+<resultado desejado em linguagem objetiva>
 
-## Fontes, documentos e código a ler
-<regras, handoff, SSOT, pacote/módulo e código existente relevantes>
+## Fontes, documentos e código a ler após “ok”
+<fontes obrigatórias declaradas pelo catálogo/prompt especializado; não as ler ainda>
 
 ## Escopo
-<o que a próxima frente poderá alterar após “ok”>
+<o que a frente poderá alterar após “ok”>
 
 ## Fora de escopo
-<o que permanece intocado nesta frente>
+<o que permanece intocado>
 
 ## Riscos e dependências
-<contratos, permissões, credenciais, APIs, migrações, release, segurança ou incertezas>
+<somente riscos dedutíveis das regras, handoff e catálogo; demais itens ficam “a verificar após ok”>
 
 ## Plano proposto
-<passos pequenos, na ordem; primeiro inventário, depois a menor mudança necessária>
+<primeiro passo obrigatório após ok: ler o prompt especializado e suas fontes; depois, a menor mudança necessária>
 
 ## Validação prevista
-<testes, checks, revisão visual, documentação e critérios de aceite proporcionais ao risco>
+<checks proporcionais declarados pela especialidade; confirmar após a leitura profunda>
 
 ## Decisão necessária antes de implementar
-<a decisão objetiva que o solicitante deve responder; “ok” só vale para este plano>
+<aprovação objetiva; “ok” aprova somente esta frente>
 ```
 
 ### 4.1 Status `alinhado`
 
-**PT** — Use quando uma especialidade existente cobre o pedido e a decisão restante é aprovar escopo/plano. O relatório ainda declara fontes a ler e o que confirmar antes de editar.
+**PT** — Use quando uma especialidade catalogada cobre uma única responsabilidade coesa. Cite o slug e o caminho do prompt; não improvise fontes fora dele antes do `ok`.
 
-**EN** — Use when an existing specialty covers the request and the remaining decision is to approve scope/plan. The report still declares sources to read and what to confirm before editing.
+**EN** — Use when one cataloged specialty covers a single cohesive responsibility. Cite its slug and prompt path; do not improvise sources outside it before `ok`.
 
 ### 4.2 Status `especialidade não catalogada`
 
-**PT** — Além do formato obrigatório, inclua estes campos antes de “Decisão necessária”:
+**PT** — Além do formato acima, inclua: `Especialidade/prompt faltante`; `Especialidade recomendada`; `Missão proposta` (uma frase); `Por que as existentes não atendem`; `Produto, fluxo e tipo de tarefa que justificam a criação`; `Escopo mínimo da nova especialidade`; e `Aprovação necessária`. Não crie o arquivo, não leia código e não implemente até uma aprovação explícita.
 
-```md
-## Especialidade/prompt faltante
-<o tipo de prompt que não existe>
-
-## Especialidade recomendada
-<nome técnico em inglês, sem criá-la ainda>
-
-## Missão proposta
-<uma frase>
-
-## Por que as existentes não atendem
-<comparação objetiva com o catálogo>
-
-## Produto, fluxo e tipo de tarefa que justificam a criação
-<onde ela será usada e qual trabalho recorrente ela organiza>
-
-## Escopo mínimo da nova especialidade
-<somente os documentos/regras mínimos; sem código nem automação>
-
-## Aprovação necessária
-<aprovar criar a especialidade, aprovar seu escopo ou rejeitar/encaminhar>
-```
-
-**EN** — In addition to the required format, include the corresponding fields: missing specialty/prompt; recommended specialty; one-sentence mission; why existing ones do not fit; product, flow and task type justifying it; minimal scope; and required approval.
+**EN** — In addition to the format above, include: `Missing specialty/prompt`; `Recommended specialty`; `Proposed mission` (one sentence); `Why existing specialties do not fit`; `Product, flow and task type justifying creation`; `Minimum scope of the new specialty`; and `Required approval`. Do not create the file, read code or implement until explicit approval.
 
 ### 4.3 Status `bloqueado`
 
-**PT** — Use somente para impedimento concreto: conflito com regra, ausência de acesso/credencial, decisão de produto necessária, dependência externa sem autoridade ou risco que não pode ser assumido. Diga o bloqueio, a evidência e a menor decisão que o remove. Não use `bloqueado` apenas porque a tarefa é grande.
+**PT** — Use somente para impedimento verificável pelas fontes permitidas: conflito com regra, ausência de estado essencial ou pedido que reúna frentes independentes sem decisão de prioridade. Declare a evidência e a menor decisão que libera uma frente. Tarefa grande não é bloqueio.
 
-**EN** — Use only for a concrete impediment: a rule conflict, missing access/credential, required product decision, external dependency without authority, or risk that cannot be assumed. State the blocker, evidence and smallest decision that removes it. Do not use `blocked` merely because a task is large.
-
----
-
-## 5. Gate de execução e checkpoint · Execution gate and checkpoint
-
-**PT** — Depois do relatório, a IA para. `ok` aprova somente a decisão listada no relatório; mudança material de escopo exige novo relatório. Ao concluir a frente documental deste framework: rodar `git diff --check`, listar os arquivos alterados e registrar checkpoint com o que foi feito, validado e não testado. Não criar tag ou deploy por documentação.
-
-**EN** — After the report, the AI stops. `ok` approves only the decision listed in the report; a material scope change requires a new report. When completing this framework's documentation work: run `git diff --check`, list changed files and record a checkpoint with what was done, validated and not tested. Do not create a tag or deploy for documentation.
+**EN** — Use only for an impediment verifiable from allowed sources: a rule conflict, missing essential state or a request joining independent fronts without a priority decision. State the evidence and the smallest decision that releases one front. A large task is not a blocker.
 
 ---
 
-*Documento vivo. Alterar catálogo ou protocolo só após relatório de alinhamento e aprovação explícita; manter PT e EN na mesma mudança. · Living document. Change the catalog or protocol only after an alignment report and explicit approval; keep PT and EN in the same change.*
+## 5. Transição para execução · Transition to execution
+
+**PT** — Depois do relatório, a IA para. Um `ok` autoriza somente o escopo e a especialidade declarados. Só então ela lê o arquivo da especialidade no catálogo, segue suas fontes obrigatórias e volta a obedecer integralmente às regras normais do repositório. Mudança material de escopo exige novo relatório.
+
+**EN** — After the report, the AI stops. An `ok` authorizes only the declared scope and specialty. Only then does it read the specialty file in the catalog, follow its mandatory sources and resume full compliance with normal repository rules. A material scope change requires a new report.
+
+**PT** — Ao concluir uma frente documental deste framework, rode `git diff --check`, liste arquivos alterados e registre checkpoint. Não há tag ou deploy para documentação.
+
+**EN** — When completing a documentation front of this framework, run `git diff --check`, list changed files and record a checkpoint. There is no tag or deployment for documentation.
+
+---
+
+*Versão do protocolo · Protocol version: 1.0.0. Esta versão identifica o framework documental, não os pacotes publicáveis do monorepo. · This version identifies the documentation framework, not publishable monorepo packages.*

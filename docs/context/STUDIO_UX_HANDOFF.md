@@ -4,7 +4,7 @@
 >
 > **EN** — This file exists because an assistant's memory is compacted in long sessions and it loses the thread (especially tracking versions). **The source of truth is git + `CHANGELOG.md`, NEVER memory.** Every new session starts by reading: (1) `git log --oneline -3` and `git tag`, (2) this file, (3) `STUDIO_UX.md`, (4) the current front's doc.
 
-> Última atualização · Last updated: 2026-07-22 (biblioteca e adoção por jornada em evolução · component library and journey adoption in progress).
+> Última atualização · Last updated: 2026-07-22 (biblioteca e adoção por jornada em evolução; framework de intake roteia para especialidades · component library and journey adoption in progress; intake framework routes to specialties).
 
 ---
 
@@ -40,7 +40,7 @@
 | Composição · Composition | `STUDIO_UX_DASHBOARD.md`, `STUDIO_UX_FORMS.md`, `STUDIO_UX_TABLES.md`, `STUDIO_UX_NAVIGATION.md` | ✅ |
 | Produtos · Products | `desktop/STUDIO_UX_DESKTOP.md`, `mobile/STUDIO_UX_MOBILE.md` | ✅ |
 | Qualidade · Quality | `STUDIO_UX_CERTIFICATION.md` | ✅ |
-| Intake de desenvolvimento · Development intake | `prompt-framework/prompt-alinhamento.md` | ✅ |
+| Intake de desenvolvimento · Development intake | `prompt-framework/prompt-alinhamento.md` (porta), `prompt-framework/catalogo-especialidades.md` (catálogo), `prompt-framework/especialidades/*` (contratos operacionais) | ✅ |
 | Evolução · Evolution | `STUDIO_UX_ROADMAP.md` (fases 1.5/1.6), `research/REFERENCES.md` | ✅ |
 | **Plataforma (Épico 1) · Platform (Epic 1)** | `platform/STUDIO_UX_PLATFORM.md`, `platform/STUDIO_UX_ARCHITECTURE.md`, `platform/STUDIO_UX_RUNTIME.md`, `platform/STUDIO_UX_PACKAGES.md`, `platform/STUDIO_UX_ROADMAP_2035.md` | ✅ |
 | **Governança da plataforma (Épico 1) · Platform governance (Epic 1)** | `governance/STUDIO_UX_CONSTITUTION.md`, `governance/STUDIO_UX_VERSIONING.md`, `governance/STUDIO_UX_ADR_GUIDE.md`, `governance/STUDIO_UX_RFC_GUIDE.md` | ✅ |

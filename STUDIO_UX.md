@@ -187,7 +187,7 @@ Toda mudança: entrada no `CHANGELOG.md` → commit → **tag anotada e imutáve
 | Domínio · Domain | Dono único · Sole owner |
 |---|---|
 | Governança operacional, SSOT, Boundary Check · Operational governance, SSOT, Boundary Check | `STUDIO_UX.md` |
-| Intake de solicitações de desenvolvimento · Development-request intake | `docs/prompt-framework/prompt-alinhamento.md` |
+| Intake de solicitações de desenvolvimento · Development-request intake | `docs/prompt-framework/prompt-alinhamento.md` (porta) + `docs/prompt-framework/catalogo-especialidades.md` (roteamento) |
 | Verdades constitucionais · Constitutional truths | `docs/governance/STUDIO_UX_CONSTITUTION.md` |
 | Estratégia de versionamento · Versioning strategy | `docs/governance/STUDIO_UX_VERSIONING.md` |
 | Padrão de ADR · ADR standard | `docs/governance/STUDIO_UX_ADR_GUIDE.md` |
