@@ -4,7 +4,7 @@
 >
 > **EN** — This file exists because an assistant's memory is compacted in long sessions and it loses the thread (especially tracking versions). **The source of truth is git + `CHANGELOG.md`, NEVER memory.** Every new session starts by reading: (1) `git log --oneline -3` and `git tag`, (2) this file, (3) `STUDIO_UX.md`, (4) the current front's doc.
 
-> Última atualização · Last updated: 2026-07-22 (biblioteca e adoção por jornada em evolução; intake também cobre referências e exemplos de UX · component library and journey adoption in progress; intake also covers UX references and examples).
+> Última atualização · Last updated: 2026-07-22 (biblioteca e adoção por jornada em evolução; referência HTML consome contratos reais; intake também cobre exemplos de UX · component library and journey adoption in progress; HTML reference consumes real contracts; intake also covers UX examples).
 
 ---
 
