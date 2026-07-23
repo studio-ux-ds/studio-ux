@@ -180,6 +180,54 @@
 **PT** — `prefers-reduced-motion`: durações vão a ~0 e transições baseadas em posição são desligadas (fade simples permanece). Movimento curto e funcional (P15).
 **EN** — `prefers-reduced-motion`: durations go to ~0 and position-based transitions are disabled (a simple fade remains). Short, functional motion (P15).
 
+### Breakpoints (aprovado)
+
+**PT** — Pontos de mudança de contexto de largura **dentro** de cada produto (P4). Nunca transformam Desktop em Mobile — Desktop e Mobile são produtos irmãos. Breakpoints organizam adaptação de composição em um mesmo produto (ex.: sidebar colapsa em `md`, cards empilham em `sm`).
+**EN** — Width-context breakpoints **within** each product (P4). They never turn Desktop into Mobile — the two are sibling products. Breakpoints organize composition adaptation inside a single product (e.g. sidebar collapses at `md`, cards stack at `sm`).
+
+| Token | px | Nota · Note |
+|---|---|---|
+| `breakpoint.sm` | 480 | limite superior de handset · handset upper bound |
+| `breakpoint.md` | 768 | fronteira `narrow` (`useNarrow` no adapter) · `narrow` boundary |
+| `breakpoint.lg` | 1024 | tablet/laptop |
+| `breakpoint.xl` | 1280 | desktop largo · wide desktop |
+
+### Ícone · Icon size (aprovado)
+
+**PT** — Escala derivada da tipografia (`../STUDIO_UX_ICONOGRAPHY.md` §4): o ícone alinha opticamente com o texto que acompanha. Três degraus cobrem body-sm/label, body/h2 e ênfase; a grade de desenho é 24 (`icon.lg` casa com a grade).
+**EN** — A scale derived from typography (`../STUDIO_UX_ICONOGRAPHY.md` §4): the icon aligns optically with the text it accompanies. Three steps cover body-sm/label, body/h2 and emphasis; the drawing grid is 24 (`icon.lg` matches the grid).
+
+| Token | px | Uso · Use |
+|---|---|---|
+| `icon.sm` | 16 | inline em body-sm/label · inline in body-sm/label |
+| `icon.md` | 20 | padrão em body/h2 · default in body/h2 |
+| `icon.lg` | 24 | ênfase (casa com a grade 24) · emphasis (matches grid 24) |
+
+### Opacidade · Opacity (aprovado)
+
+**PT** — Níveis nomeados por papel; nunca `opacity: 0.5` cru numa tela (P1). `overlay` é usado no scrim de modal/drawer; `disabled` no elemento desabilitado; `muted` em conteúdo secundário quando o token de cor não resolve.
+**EN** — Levels named by role; never a raw `opacity: 0.5` in a screen (P1). `overlay` is used on the modal/drawer scrim; `disabled` on disabled elements; `muted` on secondary content when the color token doesn't resolve.
+
+| Token | Valor · Value | Uso · Use |
+|---|---|---|
+| `opacity.disabled` | 0.55 | elementos desabilitados · disabled elements |
+| `opacity.muted` | 0.7 | secundário/apagado · secondary/dimmed |
+| `opacity.overlay` | 0.44 | scrim de modal/drawer · modal/drawer scrim |
+
+### Z-index (aprovado)
+
+**PT** — Pilha nomeada (`../layouts/STUDIO_UX_LAYOUT_SYSTEM.md` §7). Números mágicos espalhados pelo CSS são anti-padrão (P1): tudo referencia um dos degraus abaixo. A ordem é estável — camadas de topo (`toast`) nunca ficam sob camadas de base.
+**EN** — Named stack (`../layouts/STUDIO_UX_LAYOUT_SYSTEM.md` §7). Scattered magic numbers in CSS are an anti-pattern (P1): everything references one of the steps below. The order is stable — top layers (`toast`) are never below base layers.
+
+| Token | Valor · Value | Camada · Layer |
+|---|---|---|
+| `z-index.base` | 0 | plano de referência · reference plane |
+| `z-index.content` | 1 | conteúdo comum · common content |
+| `z-index.sticky` | 100 | cabeçalho fixo, tabela sticky · sticky header, sticky table |
+| `z-index.overlay` | 900 | popover, dropdown, menu |
+| `z-index.modal` | 1000 | modal, drawer, sheet |
+| `z-index.toast` | 1100 | toast (topo da pilha) · toast (top of the stack) |
+
 ---
 
-*Documento vivo. Arquitetura de tokens + valores das famílias sem doc próprio (raio ✅, elevação ✅, motion ✅). Atualizar nas duas línguas na mesma leva. · Living document. Token architecture + values for families without their own doc (radius, elevation, motion — all ✅). Update in both languages in the same commit.*
+*Documento vivo. Arquitetura de tokens + valores das famílias sem doc próprio (raio ✅, elevação ✅, motion ✅, breakpoints ✅, ícone ✅, opacidade ✅, z-index ✅). Atualizar nas duas línguas na mesma leva. · Living document. Token architecture + values for families without their own doc (radius, elevation, motion, breakpoints, icon size, opacity, z-index — all ✅). Update in both languages in the same commit.*

@@ -146,15 +146,36 @@
 
 ### 9.2 Primitivo — acentos (cor de ação, 7 opções) · Primitive — accents
 
-| Acento · Accent | Base | Hover | Tint claro · Light tint | Tint escuro · Dark tint |
-|---|---|---|---|---|
-| **Índigo** (padrão · default) | `#4F46E5` | `#4338CA` | `#EEEFFE` | `#21243A` |
-| Azul · Blue | `#2563EB` | `#1D4FD7` | `#E8F0FE` | `#16233F` |
-| Teal | `#0F766E` | `#0B5D57` | `#E1F1EF` | `#0F2E2B` |
-| Verde · Green | `#047857` | `#036145` | `#E6F4EE` | `#0F2E24` |
-| Violeta · Violet | `#7C3AED` | `#6A2BD4` | `#F1E9FE` | `#271640` |
-| Cobre · Copper | `#B45309` | `#96440A` | `#FBF0DD` | `#3A2A12` |
-| Grafite · Graphite | `#334155` | `#293445` | `#EDEFF3` | `#20262F` |
+**PT** — Os 7 acentos oficiais são os que o runtime materializa em `packages/tokens/tokens.css` (regras `[data-su-accent="..."]`) e que o adapter React expõe em `packages/react/theme.js` (constante `SU_ACCENTS`). Um acento repõe **só** o papel de ação (`--su-action`, `--su-action-hover`, `--su-action-active`, `--su-action-tint`, `--su-text-on-action`) — nunca superfície, texto, borda, layout ou espaço (`../STUDIO_UX_THEMES.md` §5). Todos foram revalidados em contraste AA (P18) nos modos claro e escuro. **Índigo** é o padrão do sistema. O identificador (`id`) em inglês é o que vai no atributo `data-su-accent` do `<html>`; o rótulo bilíngue é o mostrado no painel `Customize`.
+
+**EN** — The 7 official accents are the ones materialized by the runtime in `packages/tokens/tokens.css` (`[data-su-accent="..."]` rules) and exposed by the React adapter in `packages/react/theme.js` (`SU_ACCENTS` constant). An accent replaces **only** the action role (`--su-action`, `--su-action-hover`, `--su-action-active`, `--su-action-tint`, `--su-text-on-action`) — never surface, text, border, layout or spacing (`../STUDIO_UX_THEMES.md` §5). All seven are revalidated for AA contrast (P18) in light and dark. **Indigo** is the system default. The English `id` is what goes into the `<html data-su-accent>` attribute; the bilingual label is what the `Customize` panel shows.
+
+#### Claro · Light
+
+| id (`data-su-accent`) | Rótulo · Label | Base (`--su-action`) | Hover | Active | Tint (`--su-action-tint`) | Texto sobre ação · On-action |
+|---|---|---|---|---|---|---|
+| `indigo` (padrão · default) | Índigo · Indigo | `#4F46E5` | `#4338CA` | `#3730A3` | `#EEEFFE` | `#FFFFFF` |
+| `blue` | Azul · Blue | `#2563EB` | `#1D4ED8` | `#1E40AF` | `#E8F0FE` | `#FFFFFF` |
+| `teal` | Verde-água · Teal | `#0D8C82` | `#0B7268` | `#0A5F57` | `#DFF3F1` | `#FFFFFF` |
+| `violet` | Violeta · Violet | `#7C3AED` | `#6D28D9` | `#5B21B6` | `#F1E9FE` | `#FFFFFF` |
+| `amber` | Âmbar · Amber | `#B25E09` | `#8F4B07` | `#733D06` | `#FBEFDA` | `#FFFFFF` |
+| `rose` | Rosa · Rose | `#E11D48` | `#BE123C` | `#9F1239` | `#FCE7EC` | `#FFFFFF` |
+| `slate` | Ardósia · Slate | `#475569` | `#3A4557` | `#2E3846` | `#EDF0F4` | `#FFFFFF` |
+
+#### Escuro · Dark
+
+> **PT** — No escuro, os acentos claros (teal/amber/rose/violet/blue/slate) invertem o texto-sobre-ação para um tom escuro (`#10131A`) para cumprir AA; **índigo** mantém `#FFFFFF` porque continua escuro o bastante. O tint escuro é uma área discreta para superfícies suaves do acento (badges, hovers de baixa ênfase).
+> **EN** — In dark, the light accents (teal/amber/rose/violet/blue/slate) flip the on-action text to a dark tone (`#10131A`) to meet AA; **indigo** keeps `#FFFFFF` since it stays dark enough. The dark tint is a subtle surface for gentle accent areas (badges, low-emphasis hovers).
+
+| id | Base (`--su-action`) | Hover | Active | Tint | Texto sobre ação · On-action |
+|---|---|---|---|---|---|
+| `indigo` | `#6365F0` | `#7B7DF5` | `#4F46E5` | `#21243A` | `#FFFFFF` |
+| `blue` | `#6AA0F7` | `#8AB4FA` | `#5B92F5` | `#16233F` | `#10131A` |
+| `teal` | `#2DD4BF` | `#5EEAD4` | `#14B8A6` | `#0E2C2A` | `#10131A` |
+| `violet` | `#B79BF5` | `#CBB6F8` | `#A98BF3` | `#2A2140` | `#10131A` |
+| `amber` | `#F0B429` | `#F6C74E` | `#E0A82E` | `#3A2A12` | `#10131A` |
+| `rose` | `#FB7A9B` | `#FD9BB3` | `#FB6F92` | `#3A1A24` | `#10131A` |
+| `slate` | `#9AA6B8` | `#B3BDCC` | `#8A97AB` | `#232A34` | `#10131A` |
 
 ### 9.3 Papéis semânticos — claro e escuro · Semantic roles — light and dark
 
