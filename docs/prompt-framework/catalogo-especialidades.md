@@ -30,6 +30,7 @@ Dono · Owner:                 este catálogo, para os slugs, caminhos e frontei
 | `mobile-adapters` | Engenheiro Sênior de Design Systems Mobile · Senior Mobile Design Systems Engineer | Evoluir contratos Mobile e React Native preservando a fronteira entre web e nativo. · Evolve Mobile and React Native contracts while preserving the web/native boundary. | [mobile-adapters.md](especialidades/mobile-adapters.md) |
 | `platform-tooling-and-release` | Engenheiro Sênior de DX e Release · Senior Developer Experience and Release Engineer | Evoluir CLI, scripts, manifests, validações e publicação lockstep do monorepo. · Evolve CLI, scripts, manifests, validations and lockstep monorepo publishing. | [platform-tooling-and-release.md](especialidades/platform-tooling-and-release.md) |
 | `design-system-governance-and-quality` | Arquiteto Sênior de Governança Técnica e Qualidade · Senior Technical Governance and Quality Architect | Evoluir SSOT, regras, documentação, auditorias e critérios de qualidade sem duplicar donos. · Evolve SSOT, rules, documentation, audits and quality criteria without duplicating owners. | [design-system-governance-and-quality.md](especialidades/design-system-governance-and-quality.md) |
+| `ux-reference-and-examples` | Designer de Produto Sênior especializado em Design Systems · Senior Product Designer specialized in Design Systems | Refinar referências HTML e exemplos de jornada com os contratos reais do Studio UX, sem transformá-los em uma segunda biblioteca. · Refine HTML references and journey examples with real Studio UX contracts, without turning them into a second library. | [ux-reference-and-examples.md](especialidades/ux-reference-and-examples.md) |
 
 ## 3. Fora do catálogo · Outside the catalog
 
@@ -39,4 +40,4 @@ Dono · Owner:                 este catálogo, para os slugs, caminhos e frontei
 
 ---
 
-*Versão do catálogo · Catalog version: 1.0.0. Documento do framework, independente da versão lockstep dos pacotes. · Framework document, independent from the packages' lockstep version.*
+*Versão do catálogo · Catalog version: 1.0.1. Documento do framework, independente da versão lockstep dos pacotes. · Framework document, independent from the packages' lockstep version.*
