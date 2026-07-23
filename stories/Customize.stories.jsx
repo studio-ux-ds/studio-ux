@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Customize, Button, Card, Badge, Tag } from "@studio-ux-ds/react";
+import { Customize, SU_ACCENTS, Button, Card, Badge, Tag } from "@studio-ux-ds/react";
 
 export default {
   title: "Padrões/Customize",
@@ -43,4 +43,33 @@ export const Painel = {
 export const SoPainel = {
   render: () => <div style={{ maxWidth: 320 }}><Customize /></div>,
   name: "Só o painel (como no Drawer)",
+};
+
+export const AccentsRestritos = {
+  name: "Accents restritos (whitelabel do consumidor)",
+  parameters: { docs: { description: { story: "A prop `accents` do `Customize` aceita qualquer subconjunto de `SU_ACCENTS`. É como um sistema consumidor de marca fixa restringe as opções: expõe só os accents que se alinham à identidade (ex.: 3 de 7). O padrão do sistema continua sendo **Índigo**; se o accent atual salvo pelo usuário não estiver no subset, o painel apenas não o marca como selecionado — não força troca (a persistência é do usuário, `theme.js`)." } } },
+  render: () => {
+    // Só os accents que fariam sentido para uma marca "Nivoo" fictícia.
+    const permitidos = SU_ACCENTS.filter((a) => ["indigo", "teal", "slate"].includes(a.id));
+    return (
+      <div style={{ display: "grid", gridTemplateColumns: "300px 1fr", gap: 24, alignItems: "start", maxWidth: 760 }}>
+        <div style={{ padding: 16, border: "1px solid var(--su-border-default)", borderRadius: 12, background: "var(--su-surface-raised)" }}>
+          <Customize accents={permitidos} />
+        </div>
+        <Card>
+          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+            <strong style={{ color: "var(--su-text-primary)" }}>Prévia + accents permitidos</strong>
+            <p style={{ margin: 0, fontSize: 13, color: "var(--su-text-secondary)" }}>
+              Só {permitidos.length} de {SU_ACCENTS.length} accents estão expostos: <strong>{permitidos.map((a) => a.label).join(", ")}</strong>. Os demais (`amber`, `rose`, `violet`, `blue`) continuam válidos no runtime mas ocultos deste painel.
+            </p>
+            <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
+              <Button variant="primary" icon="check">Ação primária</Button>
+              <Badge status="info">Informação</Badge>
+              <Tag>Etiqueta</Tag>
+            </div>
+          </div>
+        </Card>
+      </div>
+    );
+  },
 };
