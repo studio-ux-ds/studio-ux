@@ -20,8 +20,10 @@ const config = {
     cfg.resolve = cfg.resolve || {};
     cfg.resolve.alias = {
       ...(cfg.resolve.alias || {}),
-      // O pacote React real é publicado como .jsx cru; o alias o serve direto da fonte,
-      // então as stories importam de "@studio-ux-ds/react" igual a um sistema consumidor.
+      // Os pacotes reais são publicados como .jsx cru; os aliases os servem direto
+      // da fonte, para as stories importarem exatamente como um sistema consumidor
+      // (subpath "./mobile" bate com o `exports` de packages/react/package.json).
+      "@studio-ux-ds/react/mobile": join(here, "../packages/react/mobile.js"),
       "@studio-ux-ds/react": join(here, "../packages/react/index.js"),
     };
     return cfg;

@@ -1,7 +1,10 @@
 import React from "react";
 // O consumidor real carrega tokens + CSS de componentes; o preview faz o mesmo.
+// O mobile.css é irmão do components.css (P4) e serve o adapter mobile-web
+// (@studio-ux-ds/react/mobile — classes .su-m-*).
 import "../packages/tokens/tokens.css";
 import "../packages/components/components.css";
+import "../packages/mobile/mobile.css";
 import "./preview.css";
 
 /** Alterna [data-theme] no <html> — mostra os tokens claro/escuro reais do DS. */
