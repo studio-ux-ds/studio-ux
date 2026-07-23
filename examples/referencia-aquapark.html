@@ -1162,11 +1162,13 @@ function screenDashboard(title){
     file:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>',
     refresh:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>'
   };
-  var stat=function(ic,label,val,bg,fg){
-    return '<div class="su-card"><div class="card__pad"><div class="cp-stat"><span class="cp-ic" style="background:'+bg+';color:'+fg+'">'+ic+'</span><div><div class="cp-stat__v">'+val+'</div><div class="cp-stat__l">'+label+'</div></div></div></div></div>';
+  var stat=function(ic,label,val,tone){
+    var palette={success:['var(--su-success-bg)','var(--su-success-fg)'],warning:['var(--su-warning-bg)','var(--su-warning-fg)'],danger:['var(--su-danger-bg)','var(--su-danger-fg)'],info:['var(--su-info-bg)','var(--su-info-fg)']}[tone]||['var(--su-action-tint)','var(--su-action)'];
+    return '<div class="su-statcard su-statcard--'+tone+'"><div class="ref-statcard__top"><span class="su-statcard__label">'+label+'</span><span class="ref-statcard__icon" style="background:'+palette[0]+';color:'+palette[1]+'">'+ic+'</span></div><div class="su-statcard__value">'+val+'</div></div>';
   };
-  var sec=function(ic,label,val,fg){
-    return '<div class="su-card"><div class="card__pad" style="padding:var(--su-space-4)"><div class="cp-stat"><span style="color:'+fg+';flex-shrink:0;display:flex" class="cp-secic">'+ic+'</span><div><div style="font-size:18px;font-weight:var(--su-fw-semibold);color:var(--su-text-primary)">'+val+'</div><div class="cp-stat__l">'+label+'</div></div></div></div></div>';
+  var sec=function(ic,label,val,tone){
+    var palette={success:['var(--su-success-bg)','var(--su-success-fg)'],warning:['var(--su-warning-bg)','var(--su-warning-fg)'],danger:['var(--su-danger-bg)','var(--su-danger-fg)'],info:['var(--su-info-bg)','var(--su-info-fg)']}[tone]||['var(--su-action-tint)','var(--su-action)'];
+    return '<div class="su-statcard su-statcard--'+tone+'"><div class="ref-statcard__top"><span class="su-statcard__label">'+label+'</span><span class="ref-statcard__icon" style="background:'+palette[0]+';color:'+palette[1]+'">'+ic+'</span></div><div class="su-statcard__value">'+val+'</div></div>';
   };
   var qa=function(label,bg,fg,bd){
     return '<a class="cp-qa" style="background:'+bg+';color:'+fg+';border-color:'+bd+'">'+label+'</a>';
@@ -1196,17 +1198,17 @@ function screenDashboard(title){
   return `<div class="row-between"><div><h1 class="h1">${title}</h1><p class="sub" style="margin:0">Visão financeira: receita, cobranças e atividade recente.</p></div><button class="su-btn su-btn--secondary su-btn--sm">${IC.refresh} Atualizar</button></div>
 
   <div class="cp-stats" style="margin-top:var(--su-space-5)">
-  ${stat(IC.dollar,'Receita Aprovada','R$ 284.720','var(--su-success-bg)','var(--su-success-fg)')}
-  ${stat(IC.clock,'Receita Pendente','R$ 38.940','var(--su-warning-bg)','var(--su-warning-fg)')}
-  ${stat(IC.cart,'Total de Vendas','1.842','var(--su-info-bg)','var(--su-info-fg)')}
-  ${stat(IC.trend,'Ticket Médio','R$ 154,50','rgba(168,85,247,0.14)','#a855f7')}
+  ${stat(IC.dollar,'Receita Aprovada','R$ 284.720','success')}
+  ${stat(IC.clock,'Receita Pendente','R$ 38.940','warning')}
+  ${stat(IC.cart,'Total de Vendas','1.842','info')}
+  ${stat(IC.trend,'Ticket Médio','R$ 154,50','info')}
   </div>
 
   <div class="cp-sec" style="margin-top:var(--su-space-4)">
-  ${sec(IC.check,'Recebidos','R$ 284.720','#10b981')}
-  ${sec(IC.clock,'Pendentes','R$ 38.940','#f59e0b')}
-  ${sec(IC.alert,'Vencidos','R$ 12.310','#ef4444')}
-  ${sec(IC.users,'Inadimplência','4,3%','#ef4444')}
+  ${sec(IC.check,'Recebidos','R$ 284.720','success')}
+  ${sec(IC.clock,'Pendentes','R$ 38.940','warning')}
+  ${sec(IC.alert,'Vencidos','R$ 12.310','danger')}
+  ${sec(IC.users,'Inadimplência','4,3%','danger')}
   </div>
 
   <div class="cp-grid3" style="margin-top:var(--su-space-4)">
@@ -1243,7 +1245,7 @@ function screenAnalytics(title){return `<div class="row-between"><div><h1 class=
  <div class="su-card"><div class="card__pad"><h3 class="card__title" style="margin-bottom:var(--su-space-5)">Receita por categoria</h3>${hbar('Ingressos',96,'R$ 30k','var(--chart-2)')}${hbar('Licenças',52,'R$ 12k','var(--chart-2)')}${hbar('Planos',30,'R$ 8k','var(--chart-2)')}${hbar('Módulos',18,'R$ 4k','var(--chart-2)')}</div></div></div>`;}
 
 function screenList(title,preset){const p=LIST[preset]||LIST.associados;
- const tabs=(p.tabs||['Todos']).map((t,i)=>`<button type="button" class="su-tab ${i===0?'su-tab--active':''}" aria-pressed="${i===0?'true':'false'}">${t}</button>`).join('');
+ const tabs=(p.tabs||['Todos']).map((t,i)=>`<button type="button" class="su-segment ${i===0?'su-segment--active':''}" aria-pressed="${i===0?'true':'false'}">${t}</button>`).join('');
  const th=p.cols.map(c=>`<th class="${c.num?'num':''}">${c.sort?`<span class="lsort">${c.label} ${SORT}</span>`:c.label}</th>`).join('');
  const tr=p.rows.map(r=>'<tr class="su-table__row--clickable" tabindex="0" aria-label="Abrir detalhe de '+(r.nome||r.cli||r.id||r.t||r.v||'registro')+'" onclick="openDetail(\''+title+'\')" onkeydown="openDetailOnKey(event,\''+title+'\')">'+p.cols.map(c=>{
    if(c.avatar)return `<td><div class="tava"><div class="avatar">${initials(r[c.k])}</div><div><b>${r[c.k]}</b>${c.sub?`<span>${r[c.sub]||''}</span>`:''}</div></div></td>`;
@@ -1252,11 +1254,11 @@ function screenList(title,preset){const p=LIST[preset]||LIST.associados;
  }).join('')+'</tr>').join('');
  return `<section class="su-listscreen">
  <header class="su-pagehead"><div><h1 class="su-pagehead__title">${title}</h1><p class="su-pagehead__sub">${p.sub||''}</p></div>${p.cta?`<div class="su-pagehead__actions"><button class="su-btn su-btn--primary" onclick="openEntityForm('new','${p.cta}')">${PLUS} ${p.cta}</button></div>`:''}</header>
- <div class="su-tabs su-tabs--pills" role="tablist" aria-label="Filtros de ${title}">${tabs}</div>
  <div class="su-table-card">
    <div class="su-toolbar">
      <label class="su-input su-toolbar__search">${SEARCH}<input type="search" placeholder="Buscar…" aria-label="Buscar em ${title}"></label>
      <span class="su-toolbar__spacer"></span>
+     <div class="su-segmented" role="tablist" aria-label="Filtros de ${title}">${tabs}</div>
      <div class="su-toolbar__actions"><button class="su-btn su-btn--secondary su-btn--sm">${COLS} Colunas</button><button class="su-btn su-btn--secondary su-btn--sm">${DL} Exportar</button></div>
    </div>
    <table class="su-table"><thead><tr>${th}</tr></thead><tbody>${tr}</tbody></table>
