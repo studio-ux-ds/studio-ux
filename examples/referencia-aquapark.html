@@ -47,48 +47,24 @@ svg{flex:none;}button{font-family:inherit;}
 .h1{font-size:26px;font-weight:var(--su-fw-semibold);letter-spacing:-.02em;margin:0 0 var(--su-space-1);}
 .sub{color:var(--su-text-secondary);font-size:var(--su-fs-body);margin:0 0 var(--su-space-8);}
 .row-between{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--su-space-4);margin-bottom:var(--su-space-6);}
-.card{background:var(--su-surface-raised);border:1px solid var(--su-border-default);border-radius:var(--su-radius-lg);box-shadow:var(--su-elevation-raised);}
-.card__pad{padding:var(--su-space-6);}.card__title{font-size:var(--su-fs-h3);font-weight:var(--su-fw-semibold);margin:0;}.card__desc{font-size:var(--su-fs-body-sm);color:var(--su-text-muted);margin:2px 0 0;}
+.card__pad{padding:var(--su-space-6);}.su-card>.card__pad{margin:calc(-1 * var(--su-space-5));}.card__title{font-size:var(--su-fs-h3);font-weight:var(--su-fw-semibold);margin:0;}.card__desc{font-size:var(--su-fs-body-sm);color:var(--su-text-muted);margin:2px 0 0;}
 .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--su-space-4);margin-bottom:var(--su-space-6);}
-.kpi{background:var(--su-surface-raised);border:1px solid var(--su-border-default);border-radius:var(--su-radius-lg);box-shadow:var(--su-elevation-raised);padding:var(--su-space-5);}
-.kpi__top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:var(--su-space-3);}.kpi__label{font-size:var(--su-fs-body-sm);color:var(--su-text-secondary);}
-.kpi__ic{width:36px;height:36px;border-radius:var(--su-radius-md);display:flex;align-items:center;justify-content:center;}
-.kpi__val{font-size:28px;font-weight:var(--su-fw-semibold);letter-spacing:-.02em;line-height:1;}
-.kpi__delta{font-size:var(--su-fs-caption);margin-top:var(--su-space-3);font-weight:var(--su-fw-medium);}.up{color:var(--su-success-fg);}.down{color:var(--su-danger-fg);}
+.ref-statcard__top{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--su-space-3);}
+.ref-statcard__icon{width:36px;height:36px;border-radius:var(--su-radius-md);display:flex;align-items:center;justify-content:center;}
 .grid2{display:grid;grid-template-columns:1.8fr 1fr;gap:var(--su-space-6);align-items:start;}
 .gridline{stroke:var(--su-border-subtle);stroke-width:1;}.axis{font-size:11px;fill:var(--su-text-muted);}
 .hbar{display:flex;align-items:center;gap:var(--su-space-3);margin-bottom:var(--su-space-4);}.hbar__lbl{width:120px;font-size:var(--su-fs-body-sm);color:var(--su-text-secondary);}
 .hbar__track{flex:1;height:10px;border-radius:var(--su-radius-full);background:var(--su-surface-sunken);overflow:hidden;}.hbar__fill{height:100%;border-radius:var(--su-radius-full);}
 .hbar__val{width:80px;text-align:right;font-size:var(--su-fs-body-sm);color:var(--su-text-muted);font-variant-numeric:tabular-nums;}
-.seg{display:inline-flex;background:var(--su-surface-sunken);border-radius:var(--su-radius-md);padding:3px;}
-.seg button{border:none;background:transparent;font-size:13px;font-weight:var(--su-fw-medium);color:var(--su-text-secondary);padding:5px 12px;border-radius:var(--su-radius-sm);cursor:pointer;}
-.seg button.on{background:var(--su-surface-raised);color:var(--su-text-primary);box-shadow:var(--su-elevation-raised);}
 .meter{margin-bottom:var(--su-space-4);}.meter__top{display:flex;justify-content:space-between;font-size:var(--su-fs-caption);margin-bottom:6px;}
 .meter__top b{font-weight:var(--su-fw-medium);color:var(--su-text-secondary);}.meter__top span{color:var(--su-text-muted);}
 .meter__track{height:8px;border-radius:var(--su-radius-full);background:var(--su-surface-sunken);overflow:hidden;}.meter__fill{height:100%;border-radius:var(--su-radius-full);background:var(--su-action);}
-/* ---- lista rica ---- */
-.ltabs{display:inline-flex;gap:4px;background:var(--su-surface-sunken);border-radius:var(--su-radius-md);padding:3px;margin-bottom:var(--su-space-4);}
-.ltab{border:none;background:transparent;font-size:13px;font-weight:var(--su-fw-medium);color:var(--su-text-secondary);padding:6px 14px;border-radius:var(--su-radius-sm);cursor:pointer;}
-.ltab.on{background:var(--su-surface-raised);color:var(--su-text-primary);box-shadow:var(--su-elevation-raised);}
-.ltoolbar{display:flex;align-items:center;gap:var(--su-space-3);}
-.lsearch{flex:1;max-width:340px;display:flex;align-items:center;gap:var(--su-space-2);height:38px;padding:0 var(--su-space-3);border:1px solid var(--su-border-default);border-radius:var(--su-radius-md);color:var(--su-text-muted);background:var(--su-surface-raised);}
-.lsearch input{border:none;outline:none;background:transparent;font-family:inherit;font-size:13px;color:var(--su-text-primary);flex:1;}
+/* ---- lista rica: usa os padrões su-tabs, su-toolbar e su-table-card ---- */
 .lsort{display:inline-flex;align-items:center;gap:5px;cursor:pointer;}.lsort svg{opacity:.45;}
 .tava{display:flex;align-items:center;gap:var(--su-space-3);}.tava .avatar{width:34px;height:34px;font-size:12px;}
 .tava b{font-size:13px;font-weight:var(--su-fw-semibold);display:block;}.tava span{font-size:12px;color:var(--su-text-muted);}
-.su-table tbody tr.su-table__row--clickable{cursor:pointer;}
-.su-table tbody tr.su-table__row--clickable:hover td{background:var(--su-action-tint);}
-.su-table tbody tr.su-table__row--clickable:focus-visible{outline:2px solid var(--su-action);outline-offset:-2px;}
-.pager2{display:flex;justify-content:space-between;align-items:center;padding:var(--su-space-3) var(--su-space-5);border-top:1px solid var(--su-border-subtle);}
-.pg{font-size:var(--su-fs-caption);color:var(--su-text-muted);}
-.pgnums{display:flex;align-items:center;gap:var(--su-space-2);}
-.pgpick{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--su-text-secondary);}.pgpick .sel{border:1px solid var(--su-border-default);border-radius:var(--su-radius-sm);padding:3px 8px;background:var(--su-surface-raised);}
-.tabs{display:flex;gap:var(--su-space-1);border-bottom:1px solid var(--su-border-default);margin-bottom:var(--su-space-6);}
-.tab{-webkit-appearance:none;appearance:none;background:transparent;border:0;border-bottom:2px solid transparent;border-radius:0;box-shadow:none;font-family:inherit;line-height:1.4;padding:var(--su-space-3) var(--su-space-4);font-size:var(--su-fs-body-sm);font-weight:var(--su-fw-medium);color:var(--su-text-secondary);cursor:pointer;margin-bottom:-1px;transition:color var(--su-duration-fast,.15s) var(--su-ease-standard);}.tab:hover{color:var(--su-text-primary);}.tab.on{color:var(--su-action);border-bottom-color:var(--su-action);}
-.ei-filter{display:flex;align-items:center;gap:var(--su-space-3);padding:var(--su-space-3) var(--su-space-4);flex-wrap:wrap;margin-bottom:var(--su-space-4);}
 .ei-sel{max-width:260px;height:36px;}
 .ei-count{margin-left:auto;font-size:var(--su-fs-caption);color:var(--su-text-muted);}
-.ei-filter .su-btn svg{width:14px;height:14px;flex:none;}
 .ei-table td{vertical-align:middle;}
 .ei-rec{font-size:12px;color:var(--su-text-muted);white-space:nowrap;}
 .ei-rem b{font-size:13px;font-weight:var(--su-fw-medium);color:var(--su-text-primary);display:block;}
@@ -157,7 +133,6 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;back
 .rc{letter-spacing:-1px;}.rc--read{color:#53bdeb;opacity:1;}
 .field-row{display:grid;grid-template-columns:240px 1fr;gap:var(--su-space-4);padding:var(--su-space-5) 0;border-bottom:1px solid var(--su-border-subtle);align-items:center;}
 .field-row b{font-size:var(--su-fs-body-sm);}.field-row small{color:var(--su-text-muted);display:block;margin-top:2px;font-size:var(--su-fs-caption);}
-.inp{height:38px;border:1px solid var(--su-border-default);border-radius:var(--su-radius-md);padding:0 var(--su-space-3);font-family:inherit;font-size:14px;background:var(--su-surface-raised);color:var(--su-text-primary);width:100%;max-width:360px;}
 .switch{width:42px;height:24px;border-radius:var(--su-radius-full);background:var(--su-action);position:relative;cursor:pointer;}.switch::after{content:"";position:absolute;top:3px;left:21px;width:18px;height:18px;border-radius:50%;background:#fff;}
 .chat{display:grid;grid-template-columns:300px 1fr;height:calc(100vh - 60px - 64px);border:1px solid var(--su-border-default);border-radius:var(--su-radius-lg);overflow:hidden;background:var(--su-surface-raised);box-shadow:var(--su-elevation-raised);}
 .chat__list{border-right:1px solid var(--su-border-subtle);overflow-y:auto;}
@@ -198,7 +173,6 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;back
 .box.on{background:var(--su-action);border-color:var(--su-action);}
 .radio{width:18px;height:18px;border-radius:50%;border:1.5px solid var(--su-border-strong);position:relative;display:inline-block;}
 .radio.on{border-color:var(--su-action);}.radio.on::after{content:"";position:absolute;inset:4px;border-radius:50%;background:var(--su-action);}
-.sel2{height:38px;border:1px solid var(--su-border-default);border-radius:var(--su-radius-md);padding:0 var(--su-space-3);display:inline-flex;align-items:center;gap:8px;color:var(--su-text-secondary);background:var(--su-surface-raised);font-size:14px;min-width:200px;justify-content:space-between;}
 .alert{display:flex;gap:var(--su-space-3);padding:10px var(--su-space-4);border-radius:var(--su-radius-md);font-size:var(--su-fs-body-sm);margin-bottom:var(--su-space-2);}
 .alert.info{background:var(--su-info-bg);color:var(--su-info-fg);}.alert.success{background:var(--su-success-bg);color:var(--su-success-fg);}.alert.warning{background:var(--su-warning-bg);color:var(--su-warning-fg);}.alert.danger{background:var(--su-danger-bg);color:var(--su-danger-fg);}
 .stepper{display:flex;align-items:flex-start;}
@@ -1172,9 +1146,9 @@ Object.assign(LIST,{"condicoes": {"sub": "Condições de pagamento oferecidas na
 
 // ===== arquétipos =====
 const CHART_LINE=`<svg viewBox="0 0 640 220" width="100%" height="220"><line class="gridline" x1="40" y1="30" x2="640" y2="30"/><line class="gridline" x1="40" y1="90" x2="640" y2="90"/><line class="gridline" x1="40" y1="150" x2="640" y2="150"/><text class="axis" x="0" y="34">800</text><text class="axis" x="0" y="154">400</text><text class="axis" x="8" y="214">0</text><polyline fill="none" stroke="var(--chart-1)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" points="55,185 130,175 205,182 280,148 355,156 430,118 505,126 600,92"/><polygon fill="var(--chart-1)" opacity="0.08" points="55,185 130,175 205,182 280,148 355,156 430,118 505,126 600,92 600,210 55,210"/></svg>`;
-function kpi(l,v,d,dir,icn,bg,fg){return `<div class="kpi"><div class="kpi__top"><span class="kpi__label">${l}</span>${icn?`<span class="kpi__ic" style="background:${bg};color:${fg}">${ic(icn)}</span>`:''}</div><div class="kpi__val">${v}</div>${d?`<div class="kpi__delta ${dir||''}">${dir==='up'?'▲':'▼'} ${d}</div>`:''}</div>`;}
+function kpi(l,v,d,dir,icn,bg,fg){const tone=fg&&fg.includes('success')?'success':fg&&fg.includes('warning')?'warning':fg&&fg.includes('danger')?'danger':fg&&fg.trim()?'info':'';return `<div class="su-statcard${tone?` su-statcard--${tone}`:''}"><div class="ref-statcard__top"><span class="su-statcard__label">${l}</span>${icn?`<span class="ref-statcard__icon" style="background:${bg};color:${fg}">${ic(icn)}</span>`:''}</div><div class="su-statcard__value">${v}</div>${d?`<div class="su-statcard__delta${dir==='down'?' su-statcard__delta--down':''}">${dir==='up'?'▲':'▼'} ${d}</div>`:''}</div>`;}
 function hbar(l,w,v,c){return `<div class="hbar"><span class="hbar__lbl">${l}</span><div class="hbar__track"><div class="hbar__fill" style="width:${w}%;background:${c}"></div></div><span class="hbar__val">${v}</span></div>`;}
-function badge(v){return `<span class="su-badge ${v[1]||''}">${v[0]}</span>`;}
+function badge(v){const tone={brand:'info',success:'success',warning:'warning',danger:'danger',info:'info'}[v[1]]||'';return `<span class="su-badge${tone?` su-badge--${tone}`:''}">${v[0]}</span>`;}
 
 function screenDashboard(title){
   var IC={
@@ -1189,10 +1163,10 @@ function screenDashboard(title){
     refresh:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>'
   };
   var stat=function(ic,label,val,bg,fg){
-    return '<div class="card"><div class="card__pad"><div class="cp-stat"><span class="cp-ic" style="background:'+bg+';color:'+fg+'">'+ic+'</span><div><div class="cp-stat__v">'+val+'</div><div class="cp-stat__l">'+label+'</div></div></div></div></div>';
+    return '<div class="su-card"><div class="card__pad"><div class="cp-stat"><span class="cp-ic" style="background:'+bg+';color:'+fg+'">'+ic+'</span><div><div class="cp-stat__v">'+val+'</div><div class="cp-stat__l">'+label+'</div></div></div></div></div>';
   };
   var sec=function(ic,label,val,fg){
-    return '<div class="card"><div class="card__pad" style="padding:var(--su-space-4)"><div class="cp-stat"><span style="color:'+fg+';flex-shrink:0;display:flex" class="cp-secic">'+ic+'</span><div><div style="font-size:18px;font-weight:var(--su-fw-semibold);color:var(--su-text-primary)">'+val+'</div><div class="cp-stat__l">'+label+'</div></div></div></div></div>';
+    return '<div class="su-card"><div class="card__pad" style="padding:var(--su-space-4)"><div class="cp-stat"><span style="color:'+fg+';flex-shrink:0;display:flex" class="cp-secic">'+ic+'</span><div><div style="font-size:18px;font-weight:var(--su-fw-semibold);color:var(--su-text-primary)">'+val+'</div><div class="cp-stat__l">'+label+'</div></div></div></div></div>';
   };
   var qa=function(label,bg,fg,bd){
     return '<a class="cp-qa" style="background:'+bg+';color:'+fg+';border-color:'+bd+'">'+label+'</a>';
@@ -1236,18 +1210,18 @@ function screenDashboard(title){
   </div>
 
   <div class="cp-grid3" style="margin-top:var(--su-space-4)">
-    <div class="card"><div class="card__pad"><h3 class="card__title" style="margin-bottom:var(--su-space-4)">Receita por mês</h3>${chart}</div></div>
-    <div class="card"><div class="card__pad"><h3 class="card__title" style="margin-bottom:var(--su-space-4)">Status dos Pedidos</h3><div style="display:flex;justify-content:center"><svg viewBox="0 0 120 120" style="width:150px;height:150px;transform:rotate(-90deg)">${segs}</svg></div><div style="margin-top:var(--su-space-3)">${legend}</div></div></div>
+    <div class="su-card"><div class="card__pad"><h3 class="card__title" style="margin-bottom:var(--su-space-4)">Receita por mês</h3>${chart}</div></div>
+    <div class="su-card"><div class="card__pad"><h3 class="card__title" style="margin-bottom:var(--su-space-4)">Status dos Pedidos</h3><div style="display:flex;justify-content:center"><svg viewBox="0 0 120 120" style="width:150px;height:150px;transform:rotate(-90deg)">${segs}</svg></div><div style="margin-top:var(--su-space-3)">${legend}</div></div></div>
   </div>
 
   <div class="cp-grid2" style="margin-top:var(--su-space-4)">
-    <div class="card"><div class="card__pad"><h3 class="card__title" style="display:flex;align-items:center;gap:8px;margin-bottom:var(--su-space-4)"><span style="color:#f59e0b;display:flex;width:15px">${IC.alert}</span> Alertas Urgentes</h3>
+    <div class="su-card"><div class="card__pad"><h3 class="card__title" style="display:flex;align-items:center;gap:8px;margin-bottom:var(--su-space-4)"><span style="color:#f59e0b;display:flex;width:15px">${IC.alert}</span> Alertas Urgentes</h3>
       <div style="display:flex;flex-direction:column;gap:var(--su-space-2)">
         <div class="cp-alert" style="background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2)"><span style="font-size:var(--su-fs-body-sm,13px);color:var(--su-text-secondary)">Boletos vencidos</span>${badge(['9','danger'])}</div>
         <div class="cp-alert" style="background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2)"><span style="font-size:var(--su-fs-body-sm,13px);color:var(--su-text-secondary)">Pedidos pendentes</span>${badge(['23','warning'])}</div>
       </div>
     </div></div>
-    <div class="card"><div class="card__pad"><h3 class="card__title" style="margin-bottom:var(--su-space-4)">Ações Rápidas</h3>
+    <div class="su-card"><div class="card__pad"><h3 class="card__title" style="margin-bottom:var(--su-space-4)">Ações Rápidas</h3>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--su-space-3)">
       ${qa('Novo Associado','rgba(249,115,22,0.12)','#f97316','rgba(249,115,22,0.25)')}
       ${qa('Ver Vendas','rgba(16,185,129,0.12)','#10b981','rgba(16,185,129,0.25)')}
@@ -1257,30 +1231,38 @@ function screenDashboard(title){
     </div></div>
   </div>
 
-  <div class="card" style="margin-top:var(--su-space-4);overflow:hidden">
+  <div class="su-card" style="margin-top:var(--su-space-4);overflow:hidden">
     <div class="card__pad" style="padding-bottom:var(--su-space-4);border-bottom:1px solid var(--su-border-subtle)"><h3 class="card__title" style="display:flex;align-items:center;gap:8px"><span style="display:flex;width:15px;color:var(--su-text-secondary)">${IC.file}</span> Atividade Recente</h3></div>
     <table class="su-table"><thead><tr><th>Número</th><th>Associado</th><th class="num">Valor</th><th>Status</th><th>Data</th><th class="num"></th></tr></thead><tbody>${tbody}</tbody></table>
   </div>`;
 }
 
-function screenAnalytics(title){return `<div class="row-between"><div><h1 class="h1">${title}</h1><p class="sub" style="margin:0">Acompanhe o desempenho e as métricas.</p></div><div class="seg"><button>7d</button><button>30d</button><button class="on">90d</button><button>1a</button></div></div>
+function screenAnalytics(title){return `<div class="row-between"><div><h1 class="h1">${title}</h1><p class="sub" style="margin:0">Acompanhe o desempenho e as métricas.</p></div><div class="su-segmented" role="tablist"><button class="su-segment">7d</button><button class="su-segment">30d</button><button class="su-segment su-segment--active" aria-selected="true">90d</button><button class="su-segment">1a</button></div></div>
  <div class="kpis">${kpi('Visitantes','284.392','24,7%','up','globe','var(--su-action-tint)','var(--su-action)')}${kpi('Únicos','42.847','12,3%','up','users','var(--su-success-bg)','var(--su-success-fg)')}${kpi('Rejeição','32,4%','5,2%','down','bar','var(--su-info-bg)','var(--su-info-fg)')}${kpi('Sessão média','4m 32s','8,1%','up','settings','var(--su-warning-bg)','var(--su-warning-fg)')}</div>
- <div class="grid2"><div class="card"><div class="card__pad"><h3 class="card__title">Acessos ao longo do tempo</h3><p class="card__desc" style="margin-bottom:var(--su-space-5)">Tendência mensal</p>${CHART_LINE}</div></div>
- <div class="card"><div class="card__pad"><h3 class="card__title" style="margin-bottom:var(--su-space-5)">Receita por categoria</h3>${hbar('Ingressos',96,'R$ 30k','var(--chart-2)')}${hbar('Licenças',52,'R$ 12k','var(--chart-2)')}${hbar('Planos',30,'R$ 8k','var(--chart-2)')}${hbar('Módulos',18,'R$ 4k','var(--chart-2)')}</div></div></div>`;}
+ <div class="grid2"><div class="su-card"><div class="card__pad"><h3 class="card__title">Acessos ao longo do tempo</h3><p class="card__desc" style="margin-bottom:var(--su-space-5)">Tendência mensal</p>${CHART_LINE}</div></div>
+ <div class="su-card"><div class="card__pad"><h3 class="card__title" style="margin-bottom:var(--su-space-5)">Receita por categoria</h3>${hbar('Ingressos',96,'R$ 30k','var(--chart-2)')}${hbar('Licenças',52,'R$ 12k','var(--chart-2)')}${hbar('Planos',30,'R$ 8k','var(--chart-2)')}${hbar('Módulos',18,'R$ 4k','var(--chart-2)')}</div></div></div>`;}
 
 function screenList(title,preset){const p=LIST[preset]||LIST.associados;
- const tabs=(p.tabs||['Todos']).map((t,i)=>`<button class="ltab ${i===0?'on':''}">${t}</button>`).join('');
+ const tabs=(p.tabs||['Todos']).map((t,i)=>`<button type="button" class="su-tab ${i===0?'su-tab--active':''}" aria-pressed="${i===0?'true':'false'}">${t}</button>`).join('');
  const th=p.cols.map(c=>`<th class="${c.num?'num':''}">${c.sort?`<span class="lsort">${c.label} ${SORT}</span>`:c.label}</th>`).join('');
  const tr=p.rows.map(r=>'<tr class="su-table__row--clickable" tabindex="0" aria-label="Abrir detalhe de '+(r.nome||r.cli||r.id||r.t||r.v||'registro')+'" onclick="openDetail(\''+title+'\')" onkeydown="openDetailOnKey(event,\''+title+'\')">'+p.cols.map(c=>{
    if(c.avatar)return `<td><div class="tava"><div class="avatar">${initials(r[c.k])}</div><div><b>${r[c.k]}</b>${c.sub?`<span>${r[c.sub]||''}</span>`:''}</div></div></td>`;
    if(c.badge)return `<td>${badge(r[c.k])}</td>`;
    return `<td class="${c.num?'num':''}">${r[c.k]}</td>`;
  }).join('')+'</tr>').join('');
- return `<div class="row-between"><div><h1 class="h1">${title}</h1><p class="sub" style="margin:0">${p.sub||''}</p></div>${p.cta?`<button class="su-btn su-btn--primary" onclick="openEntityForm('new','${p.cta}')">${PLUS} ${p.cta}</button>`:''}</div>
- <div class="ltabs">${tabs}</div>
- <div class="card" style="overflow:hidden"><div class="card__pad" style="padding-bottom:var(--su-space-4)"><div class="ltoolbar"><span class="lsearch">${SEARCH}<input placeholder="Buscar…"></span><span style="flex:1"></span><button class="su-btn su-btn--secondary su-btn--sm">${COLS} Colunas</button><button class="su-btn su-btn--secondary su-btn--sm">${DL} Exportar</button></div></div>
- <table class="su-table"><thead><tr>${th}</tr></thead><tbody>${tr}</tbody></table>
- <div class="pager2"><span class="pg">Mostrando 1–${p.rows.length} de ${p.count||p.rows.length}</span><div class="pgnums"><span class="pgpick">Linhas <span class="sel">10 ▾</span></span><button class="su-btn su-btn--secondary su-btn--sm">Anterior</button><button class="su-btn su-btn--primary su-btn--sm" style="width:32px">1</button><button class="su-btn su-btn--secondary su-btn--sm" style="width:32px">2</button><button class="su-btn su-btn--secondary su-btn--sm" style="width:32px">3</button><button class="su-btn su-btn--secondary su-btn--sm">Próxima</button></div></div></div>`;}
+ return `<section class="su-listscreen">
+ <header class="su-pagehead"><div><h1 class="su-pagehead__title">${title}</h1><p class="su-pagehead__sub">${p.sub||''}</p></div>${p.cta?`<div class="su-pagehead__actions"><button class="su-btn su-btn--primary" onclick="openEntityForm('new','${p.cta}')">${PLUS} ${p.cta}</button></div>`:''}</header>
+ <div class="su-tabs su-tabs--pills" role="tablist" aria-label="Filtros de ${title}">${tabs}</div>
+ <div class="su-table-card">
+   <div class="su-toolbar">
+     <label class="su-input su-toolbar__search">${SEARCH}<input type="search" placeholder="Buscar…" aria-label="Buscar em ${title}"></label>
+     <span class="su-toolbar__spacer"></span>
+     <div class="su-toolbar__actions"><button class="su-btn su-btn--secondary su-btn--sm">${COLS} Colunas</button><button class="su-btn su-btn--secondary su-btn--sm">${DL} Exportar</button></div>
+   </div>
+   <table class="su-table"><thead><tr>${th}</tr></thead><tbody>${tr}</tbody></table>
+   <footer class="su-listcard__foot"><span>Mostrando 1–${p.rows.length} de ${p.count||p.rows.length}</span><div class="su-pagination" aria-label="Paginação"><button class="su-page su-page--nav" aria-label="Página anterior">‹</button><button class="su-page su-page--active" aria-current="page">1</button><button class="su-page">2</button><button class="su-page">3</button><button class="su-page su-page--nav" aria-label="Próxima página">›</button></div></footer>
+ </div>
+ </section>`;}
 
 function screenChat(title){
   const AB={you:['Você','wa-ab--you'],open:['Aberta','wa-ab--open'],att:['Aramis','wa-ab--att'],closed:['Encerrada','wa-ab--closed']};
@@ -1305,7 +1287,7 @@ function screenChat(title){
     ['in','Perfeito, muito obrigada!','09:42',''],
   ].map(([d,tx,tm,st])=>`<div class="bub bub--${d}">${tx}<span class="bub__meta">${tm}${d==='out'?' '+rc(st):''}</span></div>`).join('');
   return `<div class="chat"><div class="chat__list">
-   <div class="chat__tabs"><button class="tab on">Conversas</button><button class="tab">Finalizadas</button></div>
+   <div class="chat__tabs"><button class="su-tab su-tab--active">Conversas</button><button class="su-tab">Finalizadas</button></div>
    <div class="chat__search">${SEARCH}<input placeholder="Buscar conversa…"></div>
    ${list}</div>
  <div class="chat__main"><div class="chat__head"><div class="avatar" style="width:38px;height:38px;font-size:13px">MA</div><div><div class="chat__nm">Marina Alves</div><div class="chat__phone">+55 27 99730-3404 · <span style="color:var(--su-success-fg)">janela de 24h aberta</span></div></div><span style="flex:1"></span>
@@ -1319,23 +1301,23 @@ function screenKanban(title){const col=(t,n,cards)=>`<div class="col"><div class
  <div class="kanban">${col('Novos','3',c('Colégio Santa Rita','Excursão · 120 alunos','Frio','info')+c('Família Prado','Plano anual','Frio','info'))}${col('Contato','2',c('Empresa Nivoo','Day use · 40 pessoas','Morno','warning'))}${col('Proposta','2',c('Academia Fit','Parceria mensal','Morno','warning'))}${col('Ganhos','1',c('Escola Aprender','R$ 4.800 · fechado','Quente','success'))}</div>`;}
 
 function screenConfig(title){return `<h1 class="h1">${title}</h1><p class="sub">Ajustes desta seção.</p>
- <div class="tabs"><span class="tab on">Geral</span><span class="tab">Avançado</span><span class="tab">Logs</span></div>
- <div class="card"><div class="card__pad" style="padding-top:0;padding-bottom:var(--su-space-2)">
- <div class="field-row"><div><b>Nome do sistema</b><small>Aparece no cabeçalho e no PWA</small></div><input class="inp" value="AquaPark Gestão"></div>
- <div class="field-row"><div><b>Domínio</b><small>Endereço de acesso</small></div><input class="inp" value="app.aquapark.com.br"></div>
+ <div class="su-tabs"><span class="su-tab su-tab--active">Geral</span><span class="su-tab">Avançado</span><span class="su-tab">Logs</span></div>
+ <div class="su-card"><div class="card__pad" style="padding-top:0;padding-bottom:var(--su-space-2)">
+ <div class="field-row"><div><b>Nome do sistema</b><small>Aparece no cabeçalho e no PWA</small></div><input class="su-input" value="AquaPark Gestão"></div>
+ <div class="field-row"><div><b>Domínio</b><small>Endereço de acesso</small></div><input class="su-input" value="app.aquapark.com.br"></div>
  <div class="field-row"><div><b>Modo escuro automático</b><small>Segue o sistema operacional</small></div><div class="switch"></div></div>
- <div class="field-row" style="border-bottom:none"><div><b>Fuso horário</b><small>Usado nos relatórios</small></div><input class="inp" value="America/Sao_Paulo"></div></div></div>
+ <div class="field-row" style="border-bottom:none"><div><b>Fuso horário</b><small>Usado nos relatórios</small></div><input class="su-input" value="America/Sao_Paulo"></div></div></div>
  <div style="display:flex;justify-content:flex-end;gap:var(--su-space-3);margin-top:var(--su-space-5)"><button class="su-btn su-btn--secondary">Cancelar</button><button class="su-btn su-btn--primary">Salvar alterações</button></div>`;}
 
-function chip(cls,txt){return `<span class="su-badge ${cls}">${txt}</span>`;}
+function chip(cls,txt){const tone={brand:'info',success:'success',warning:'warning',danger:'danger',info:'info'}[cls]||'';return `<span class="su-badge${tone?` su-badge--${tone}`:''}">${txt}</span>`;}
 function screenComponents(title){return `<h1 class="h1">Componentes</h1><p class="sub">Todos os elementos do Studio UX — as opções e estados possíveis.</p>
  <div class="gal">
   <div class="gcard"><h4>Botões</h4><div class="grow"><button class="su-btn su-btn--primary">Primário</button><button class="su-btn su-btn--secondary">Secundário</button><button class="su-btn su-btn--ghost">Fantasma</button><button class="su-btn su-btn--danger">Excluir</button></div><div class="grow"><button class="su-btn su-btn--primary su-btn--sm">Pequeno</button><button class="su-btn su-btn--primary">${PLUS} Com ícone</button><button class="su-btn su-btn--primary" style="opacity:.55">Desabilitado</button></div></div>
   <div class="gcard"><h4>Badges / Status</h4><div class="grow">${chip('','Neutro')}${chip('success','Ativo')}${chip('warning','Pendente')}${chip('danger','Vencido')}${chip('info','Info')}${chip('brand','Destaque')}</div></div>
-  <div class="gcard"><h4>Campos</h4><div class="grow" style="flex-direction:column;align-items:stretch;gap:var(--su-space-3)"><input class="inp" placeholder="Texto…" style="max-width:none"><span class="lsearch" style="max-width:none">${SEARCH}<input placeholder="Com ícone…"></span><div class="sel2" style="min-width:auto">Selecione…<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div></div></div>
+  <div class="gcard"><h4>Campos</h4><div class="grow" style="flex-direction:column;align-items:stretch;gap:var(--su-space-3)"><input class="su-input" placeholder="Texto…" style="max-width:none"><label class="su-input su-toolbar__search" style="max-width:none">${SEARCH}<input placeholder="Com ícone…"></label><select class="su-select" style="min-width:auto"><option>Selecione…</option></select></div></div>
   <div class="gcard"><h4>Seleção</h4><div class="grow"><span class="chk"><span class="box on">✓</span> Marcado</span><span class="chk"><span class="box"></span> Vazio</span></div><div class="grow"><span class="chk"><span class="radio on"></span> Opção A</span><span class="chk"><span class="radio"></span> Opção B</span><span class="chk"><span class="switch"></span> Toggle</span></div></div>
   <div class="gcard"><h4>Medidores</h4><div class="meter"><div class="meter__top"><b>Uso</b><span>84%</span></div><div class="meter__track"><div class="meter__fill" style="width:84%"></div></div></div><div class="meter"><div class="meter__top"><b>Armazenamento</b><span>64%</span></div><div class="meter__track"><div class="meter__fill" style="width:64%"></div></div></div></div>
-  <div class="gcard"><h4>Abas & Segmentado</h4><div class="tabs" style="margin-bottom:var(--su-space-4)"><span class="tab on">Geral</span><span class="tab">Avançado</span><span class="tab">Logs</span></div><div class="seg"><button class="on">Dia</button><button>Semana</button><button>Mês</button></div></div>
+  <div class="gcard"><h4>Abas & Segmentado</h4><div class="su-tabs" style="margin-bottom:var(--su-space-4)"><button class="su-tab su-tab--active" aria-selected="true">Geral</button><button class="su-tab">Avançado</button><button class="su-tab">Logs</button></div><div class="su-segmented" role="tablist"><button class="su-segment su-segment--active" aria-selected="true">Dia</button><button class="su-segment">Semana</button><button class="su-segment">Mês</button></div></div>
   <div class="gcard"><h4>Passo a passo</h4><div class="stepper"><div class="step on"><div class="step__n">1</div><div class="step__l">Dados</div></div><div class="step__bar"></div><div class="step on"><div class="step__n">2</div><div class="step__l">Equipe</div></div><div class="step__bar"></div><div class="step"><div class="step__n">3</div><div class="step__l">Revisão</div></div></div></div>
   <div class="gcard"><h4>Avatares</h4><div class="grow"><span class="avatar" style="width:28px;height:28px;font-size:11px">RM</span><span class="avatar" style="width:36px;height:36px;font-size:13px;background:var(--su-info-bg);color:var(--su-info-fg)">CN</span><span class="avatar" style="width:44px;height:44px;font-size:15px;background:var(--su-success-bg);color:var(--su-success-fg)">BF</span></div></div>
   <div class="gcard"><h4>Alertas</h4><div class="alert info">Informação para o usuário.</div><div class="alert success">Tudo certo, salvo com sucesso.</div><div class="alert warning">Atenção: revise antes de continuar.</div><div class="alert danger">Algo deu errado ao salvar.</div></div>
@@ -1343,14 +1325,14 @@ function screenComponents(title){return `<h1 class="h1">Componentes</h1><p class
   <div class="gcard"><h4>Card de destaque</h4><div style="border:1px solid var(--su-border-default);border-radius:var(--su-radius-md);padding:var(--su-space-4);display:flex;align-items:center;gap:var(--su-space-3)"><span class="avatar" style="width:40px;height:40px">RM</span><div style="flex:1"><b style="font-size:14px">Robson</b><div style="font-size:12px;color:var(--su-text-muted)">Administrador</div></div>${chip('success','Ativo')}</div></div>
  </div>`;}
 function screenForms(title){return `<h1 class="h1">Formulários</h1><p class="sub">Formulário e assistente (wizard) no padrão.</p>
- <div class="card"><div class="card__pad"><div class="stepper" style="margin-bottom:var(--su-space-8)"><div class="step on"><div class="step__n">1</div><div class="step__l">Detalhes</div></div><div class="step__bar"></div><div class="step"><div class="step__n">2</div><div class="step__l">Equipe</div></div><div class="step__bar"></div><div class="step"><div class="step__n">3</div><div class="step__l">Preferências</div></div><div class="step__bar"></div><div class="step"><div class="step__n">4</div><div class="step__l">Revisão</div></div></div>
-  <div style="display:grid;gap:var(--su-space-5);max-width:520px"><div><div style="font-size:13px;font-weight:600;margin-bottom:6px">Nome do projeto</div><input class="inp" style="max-width:none" placeholder="Meu projeto"></div><div><div style="font-size:13px;font-weight:600;margin-bottom:6px">Descrição</div><textarea class="inp" style="max-width:none;height:90px;padding-top:10px" placeholder="Descreva o projeto…"></textarea></div><div><div style="font-size:13px;font-weight:600;margin-bottom:6px">Categoria</div><div class="sel2" style="max-width:none;width:100%">Selecione uma categoria<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div></div></div>
+ <div class="su-card"><div class="card__pad"><div class="stepper" style="margin-bottom:var(--su-space-8)"><div class="step on"><div class="step__n">1</div><div class="step__l">Detalhes</div></div><div class="step__bar"></div><div class="step"><div class="step__n">2</div><div class="step__l">Equipe</div></div><div class="step__bar"></div><div class="step"><div class="step__n">3</div><div class="step__l">Preferências</div></div><div class="step__bar"></div><div class="step"><div class="step__n">4</div><div class="step__l">Revisão</div></div></div>
+  <div style="display:grid;gap:var(--su-space-5);max-width:520px"><div><div style="font-size:13px;font-weight:600;margin-bottom:6px">Nome do projeto</div><input class="su-input" style="max-width:none" placeholder="Meu projeto"></div><div><div style="font-size:13px;font-weight:600;margin-bottom:6px">Descrição</div><textarea class="su-input" style="max-width:none;height:90px;padding-top:10px" placeholder="Descreva o projeto…"></textarea></div><div><div style="font-size:13px;font-weight:600;margin-bottom:6px">Categoria</div><select class="su-select" style="max-width:none;width:100%"><option>Selecione uma categoria</option></select></div></div>
   <div style="display:flex;justify-content:flex-end;gap:var(--su-space-3);margin-top:var(--su-space-8);max-width:520px"><button class="su-btn su-btn--secondary">Voltar</button><button class="su-btn su-btn--primary">Próximo →</button></div></div></div>`;}
 function screenCalendar(title){const dias=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];let cells='';for(let i=1;i<=35;i++){const d=i-2;const ev=(d===8)?'<div class="cal-ev">Reunião 10h</div>':(d===15)?'<div class="cal-ev warn">Vencimento</div>':(d===22)?'<div class="cal-ev ok">Excursão</div>':'';cells+=`<div class="cal-cell${d===12?' today':''}">${d>0&&d<=31?`<span>${d}</span>${ev}`:''}</div>`;}
  return `<div class="row-between"><div><h1 class="h1">Calendário</h1><p class="sub" style="margin:0">Julho de 2026</p></div><button class="su-btn su-btn--primary">${PLUS} Novo evento</button></div>
- <div class="card"><div class="card__pad"><div class="cal-head">${dias.map(d=>`<div>${d}</div>`).join('')}</div><div class="cal-grid">${cells}</div></div></div>`;}
+ <div class="su-card"><div class="card__pad"><div class="cal-head">${dias.map(d=>`<div>${d}</div>`).join('')}</div><div class="cal-grid">${cells}</div></div></div>`;}
 function screenEmpty(title){return `<h1 class="h1">Estado vazio</h1><p class="sub">Como uma tela sem dados se apresenta.</p>
- <div class="card"><div class="card__pad" style="padding:64px var(--su-space-6);text-align:center"><div style="width:56px;height:56px;border-radius:var(--su-radius-lg);background:var(--su-surface-sunken);display:inline-flex;align-items:center;justify-content:center;color:var(--su-text-muted);margin-bottom:var(--su-space-4)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div><h3 style="margin:0 0 var(--su-space-2);font-size:18px">Nada por aqui ainda</h3><p style="color:var(--su-text-secondary);max-width:360px;margin:0 auto var(--su-space-5)">Quando você criar o primeiro item, ele aparece nesta lista.</p><button class="su-btn su-btn--primary">${PLUS} Criar o primeiro</button></div></div>`;}
+ <div class="su-card"><div class="card__pad" style="padding:64px var(--su-space-6);text-align:center"><div style="width:56px;height:56px;border-radius:var(--su-radius-lg);background:var(--su-surface-sunken);display:inline-flex;align-items:center;justify-content:center;color:var(--su-text-muted);margin-bottom:var(--su-space-4)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div><h3 style="margin:0 0 var(--su-space-2);font-size:18px">Nada por aqui ainda</h3><p style="color:var(--su-text-secondary);max-width:360px;margin:0 auto var(--su-space-5)">Quando você criar o primeiro item, ele aparece nesta lista.</p><button class="su-btn su-btn--primary">${PLUS} Criar o primeiro</button></div></div>`;}
 
 /* ==== funções do workflow ==== */
 function screenDetail(title){
@@ -1363,7 +1345,7 @@ function screenDetail(title){
     '<div class="dt-head__main">'+
       '<div class="dt-head__name">Mariana Carvalho</div>'+
       '<div class="dt-head__mail">mariana.carvalho@email.com &middot; ID #AQ-20841</div>'+
-      '<div class="dt-head__badges"><span class="su-badge success">Ativo</span><span class="su-badge brand">Plano Anual</span><span class="su-badge info">Titular</span></div>'+
+      '<div class="dt-head__badges"><span class="su-badge su-badge--success">Ativo</span><span class="su-badge su-badge--info">Plano Anual</span><span class="su-badge su-badge--info">Titular</span></div>'+
     '</div>'+
     '<div class="dt-head__act"><button class="su-btn su-btn--secondary">Mensagem</button></div>'+
   '</div>'+
@@ -1383,7 +1365,7 @@ function screenDetail(title){
           '<div class="dt-item"><span class="dt-item__k">Título</span><span class="dt-item__v">Anual Premium</span></div>'+
           '<div class="dt-item"><span class="dt-item__k">Início</span><span class="dt-item__v">15/03/2026</span></div>'+
           '<div class="dt-item"><span class="dt-item__k">Renovação</span><span class="dt-item__v">15/03/2027</span></div>'+
-          '<div class="dt-item"><span class="dt-item__k">Status</span><span class="dt-item__v"><span class="su-badge success">Vigente</span></span></div>'+
+          '<div class="dt-item"><span class="dt-item__k">Status</span><span class="dt-item__v"><span class="su-badge su-badge--success">Vigente</span></span></div>'+
         '</div>'+
       '</div>'+
       '<div class="dt-card">'+
@@ -1391,13 +1373,13 @@ function screenDetail(title){
         '<div class="dt-list">'+
           '<div class="dt-item"><span class="dt-item__k">Mensalidade</span><span class="dt-item__v">R$ 189,90</span></div>'+
           '<div class="dt-item"><span class="dt-item__k">Forma de pagamento</span><span class="dt-item__v">Cartão &bull;&bull;&bull;&bull; 4417</span></div>'+
-          '<div class="dt-item"><span class="dt-item__k">Situação</span><span class="dt-item__v"><span class="su-badge success">Em dia</span></span></div>'+
+          '<div class="dt-item"><span class="dt-item__k">Situação</span><span class="dt-item__v"><span class="su-badge su-badge--success">Em dia</span></span></div>'+
         '</div>'+
       '</div>'+
     '</div>'+
     '<div class="dt-card">'+
       '<div class="row-between" style="margin-bottom:var(--su-space-3)"><div class="card__title" style="margin:0">Atividade recente</div><button class="su-btn su-btn--ghost su-btn--sm">Ver tudo</button></div>'+
-      '<div class="tabs"><button class="tab on">Visão geral</button><button class="tab">Pagamentos</button><button class="tab">Atividade</button></div>'+
+      '<div class="su-tabs"><button class="su-tab su-tab--active">Visão geral</button><button class="su-tab">Pagamentos</button><button class="su-tab">Atividade</button></div>'+
       '<div class="dt-tl">'+
         '<div class="dt-tl__row"><div class="dt-tl__ic dt-tl__ic--success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></div><div class="dt-tl__body"><div class="dt-tl__top"><span class="dt-tl__title">Pagamento recebido</span><span class="dt-tl__time">hoje &middot; 08:12</span></div><div class="dt-tl__desc">Mensalidade de julho &mdash; R$ 189,90 via cartão de crédito.</div></div></div>'+
         '<div class="dt-tl__row"><div class="dt-tl__ic dt-tl__ic--info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/><path d="M9 12h6"/></svg></div><div class="dt-tl__body"><div class="dt-tl__top"><span class="dt-tl__title">Ingresso emitido</span><span class="dt-tl__time">ontem &middot; 14:37</span></div><div class="dt-tl__desc">Day use avulso para 2 acompanhantes &mdash; portaria principal.</div></div></div>'+
@@ -1415,16 +1397,16 @@ function screenEntityForm(mode, entityTitle){
   const title=entityTitle||(editing?'Editar associado':'Novo associado');
   const subtitle=editing?'Atualize os dados sem perder o contexto da entidade.':'Cadastre um item no mesmo fluxo da lista.';
   return `<div class="row-between"><div><h1 class="h1">${title}</h1><p class="sub" style="margin:0">${subtitle}</p></div><button class="su-btn su-btn--secondary" onclick="${editing?'openDetail()':'openEntityList()'}">Voltar</button></div>
-  <div class="card"><div class="card__pad"><div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--su-space-5);max-width:900px">
-    <label><span style="display:block;font-size:13px;font-weight:var(--su-fw-semibold);margin-bottom:6px">Nome completo</span><input class="inp" style="max-width:none" value="${editing?'Mariana Carvalho':''}" placeholder="Nome do associado"></label>
-    <label><span style="display:block;font-size:13px;font-weight:var(--su-fw-semibold);margin-bottom:6px">E-mail</span><input class="inp" style="max-width:none" value="${editing?'mariana.carvalho@email.com':''}" placeholder="nome@exemplo.com"></label>
-    <label><span style="display:block;font-size:13px;font-weight:var(--su-fw-semibold);margin-bottom:6px">Telefone</span><input class="inp" style="max-width:none" value="${editing?'(19) 98812-4477':''}" placeholder="(00) 00000-0000"></label>
-    <label><span style="display:block;font-size:13px;font-weight:var(--su-fw-semibold);margin-bottom:6px">Plano</span><select class="inp" style="max-width:none"><option>${editing?'Anual Premium':'Selecione um plano'}</option><option>Mensal</option><option>Família</option></select></label>
+  <div class="su-card"><div class="card__pad"><div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--su-space-5);max-width:900px">
+    <label><span style="display:block;font-size:13px;font-weight:var(--su-fw-semibold);margin-bottom:6px">Nome completo</span><input class="su-input" style="max-width:none" value="${editing?'Mariana Carvalho':''}" placeholder="Nome do associado"></label>
+    <label><span style="display:block;font-size:13px;font-weight:var(--su-fw-semibold);margin-bottom:6px">E-mail</span><input class="su-input" style="max-width:none" value="${editing?'mariana.carvalho@email.com':''}" placeholder="nome@exemplo.com"></label>
+    <label><span style="display:block;font-size:13px;font-weight:var(--su-fw-semibold);margin-bottom:6px">Telefone</span><input class="su-input" style="max-width:none" value="${editing?'(19) 98812-4477':''}" placeholder="(00) 00000-0000"></label>
+    <label><span style="display:block;font-size:13px;font-weight:var(--su-fw-semibold);margin-bottom:6px">Plano</span><select class="su-select" style="max-width:none"><option>${editing?'Anual Premium':'Selecione um plano'}</option><option>Mensal</option><option>Família</option></select></label>
   </div><div style="display:flex;justify-content:flex-end;gap:var(--su-space-3);margin-top:var(--su-space-8);padding-top:var(--su-space-4);border-top:1px solid var(--su-border-subtle)"><button class="su-btn su-btn--secondary" onclick="${editing?'openDetail()':'openEntityList()'}">Cancelar</button><button class="su-btn su-btn--primary" onclick="openDetail()">${editing?'Salvar alterações':'Criar associado'}</button></div></div></div>`;
 }
 
 function screenMail(title){ return `
-<div class="card" style="overflow:hidden;padding:0;">
+<div class="su-table-card">
   <div class="ml-wrap">
     <aside class="ml-nav">
       <button class="su-btn su-btn--primary ml-compose">
@@ -1433,7 +1415,7 @@ function screenMail(title){ return `
       </button>
       <div class="ml-navitem on">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 8l8 5 8-5"/></svg>
-        Entrada <span class="su-badge brand ml-navcount">12</span>
+        Entrada <span class="su-badge su-badge--info ml-navcount">12</span>
       </div>
       <div class="ml-navitem">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
@@ -1466,11 +1448,11 @@ function screenMail(title){ return `
     <section class="ml-list">
       <div class="ml-listhead">
         <span class="ml-lh-title">Entrada</span>
-        <span class="su-badge brand">12 não lidos</span>
+        <span class="su-badge su-badge--info">12 não lidos</span>
       </div>
       <div class="ml-search">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
-        <input class="inp" placeholder="Buscar e-mails..." />
+        <input class="su-input" placeholder="Buscar e-mails..." />
       </div>
       <div class="ml-scroll">
         <div class="ml-mail ml-unread on">
@@ -1566,7 +1548,7 @@ function screenMail(title){ return `
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:15px;height:15px;"><path d="M21 8v13H3V8"/><path d="M1 3h22v5H1z"/><path d="M10 12h4"/></svg>
           Arquivar
         </button>
-        <span class="su-badge info" style="margin-left:auto;">Lead</span>
+        <span class="su-badge su-badge--info" style="margin-left:auto;">Lead</span>
       </div>
       <div class="ml-corpo">
         <p>Olá, boa tarde!</p>
@@ -1604,22 +1586,22 @@ function screenActivity(title){ return `<h1 class="h1">${title||'Atividade'}</h1
 
 function screenFeedback(title){ return `<h1 class="h1">${title||'Sugestões'}</h1><p class="sub">Ideias enviadas por associados e equipe para melhorar a experiencia no parque. Vote nas suas favoritas.</p>
 <div class="ac-grid">
-  <div class="ac-fbcard"><div class="ac-vote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg><b>142</b><span>votos</span></div><div class="ac-fbbody"><div class="ac-fbhead"><div class="ac-fbtitle">App para reservar guarda-sol</div><span class="su-badge info">Planejado</span></div><p class="ac-fbdesc">Permitir que associados reservem guarda-sois e cadeiras na area da piscina de ondas direto pelo aplicativo.</p><div class="ac-fbfoot"><div class="ac-author"><div class="avatar">CM</div>Carla Mendes</div><div class="ac-comments"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>24</div></div></div></div>
-  <div class="ac-fbcard"><div class="ac-vote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg><b>98</b><span>votos</span></div><div class="ac-fbbody"><div class="ac-fbhead"><div class="ac-fbtitle">Pagamento por aproximacao nos quiosques</div><span class="su-badge warning">Em analise</span></div><p class="ac-fbdesc">Habilitar maquininhas com pagamento por aproximacao e Pix nos quiosques de lanche para agilizar filas.</p><div class="ac-fbfoot"><div class="ac-author"><div class="avatar">JB</div>Joao Batista</div><div class="ac-comments"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>17</div></div></div></div>
-  <div class="ac-fbcard"><div class="ac-vote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg><b>210</b><span>votos</span></div><div class="ac-fbbody"><div class="ac-fbhead"><div class="ac-fbtitle">Carteirinha digital com QR Code</div><span class="su-badge success">Concluido</span></div><p class="ac-fbdesc">Substituir a carteirinha fisica por uma versao digital com QR Code para entrada rapida nas catracas.</p><div class="ac-fbfoot"><div class="ac-author"><div class="avatar">FL</div>Fernanda Lima</div><div class="ac-comments"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>41</div></div></div></div>
-  <div class="ac-fbcard"><div class="ac-vote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg><b>76</b><span>votos</span></div><div class="ac-fbbody"><div class="ac-fbhead"><div class="ac-fbtitle">Desconto para excursões acima de 100 pessoas</div><span class="su-badge warning">Em analise</span></div><p class="ac-fbdesc">Criar faixa de desconto progressivo automatico para excursões escolares e corporativas de grande porte.</p><div class="ac-fbfoot"><div class="ac-author"><div class="avatar">MC</div>Marina Costa</div><div class="ac-comments"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>9</div></div></div></div>
-  <div class="ac-fbcard"><div class="ac-vote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg><b>134</b><span>votos</span></div><div class="ac-fbbody"><div class="ac-fbhead"><div class="ac-fbtitle">Pulseira recarregavel para consumo</div><span class="su-badge info">Planejado</span></div><p class="ac-fbdesc">Pulseira com credito pre-pago para compras dentro do parque, dispensando dinheiro e cartao na area molhada.</p><div class="ac-fbfoot"><div class="ac-author"><div class="avatar">PH</div>Pedro Henrique</div><div class="ac-comments"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>28</div></div></div></div>
-  <div class="ac-fbcard"><div class="ac-vote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg><b>63</b><span>votos</span></div><div class="ac-fbbody"><div class="ac-fbhead"><div class="ac-fbtitle">Notificacao de mensalidade a vencer</div><span class="su-badge success">Concluido</span></div><p class="ac-fbdesc">Enviar lembrete por WhatsApp e push 3 dias antes do vencimento da mensalidade dos associados.</p><div class="ac-fbfoot"><div class="ac-author"><div class="avatar">RA</div>Roberto Alves</div><div class="ac-comments"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>15</div></div></div></div>
+  <div class="ac-fbcard"><div class="ac-vote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg><b>142</b><span>votos</span></div><div class="ac-fbbody"><div class="ac-fbhead"><div class="ac-fbtitle">App para reservar guarda-sol</div><span class="su-badge su-badge--info">Planejado</span></div><p class="ac-fbdesc">Permitir que associados reservem guarda-sois e cadeiras na area da piscina de ondas direto pelo aplicativo.</p><div class="ac-fbfoot"><div class="ac-author"><div class="avatar">CM</div>Carla Mendes</div><div class="ac-comments"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>24</div></div></div></div>
+  <div class="ac-fbcard"><div class="ac-vote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg><b>98</b><span>votos</span></div><div class="ac-fbbody"><div class="ac-fbhead"><div class="ac-fbtitle">Pagamento por aproximacao nos quiosques</div><span class="su-badge su-badge--warning">Em analise</span></div><p class="ac-fbdesc">Habilitar maquininhas com pagamento por aproximacao e Pix nos quiosques de lanche para agilizar filas.</p><div class="ac-fbfoot"><div class="ac-author"><div class="avatar">JB</div>Joao Batista</div><div class="ac-comments"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>17</div></div></div></div>
+  <div class="ac-fbcard"><div class="ac-vote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg><b>210</b><span>votos</span></div><div class="ac-fbbody"><div class="ac-fbhead"><div class="ac-fbtitle">Carteirinha digital com QR Code</div><span class="su-badge su-badge--success">Concluido</span></div><p class="ac-fbdesc">Substituir a carteirinha fisica por uma versao digital com QR Code para entrada rapida nas catracas.</p><div class="ac-fbfoot"><div class="ac-author"><div class="avatar">FL</div>Fernanda Lima</div><div class="ac-comments"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>41</div></div></div></div>
+  <div class="ac-fbcard"><div class="ac-vote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg><b>76</b><span>votos</span></div><div class="ac-fbbody"><div class="ac-fbhead"><div class="ac-fbtitle">Desconto para excursões acima de 100 pessoas</div><span class="su-badge su-badge--warning">Em analise</span></div><p class="ac-fbdesc">Criar faixa de desconto progressivo automatico para excursões escolares e corporativas de grande porte.</p><div class="ac-fbfoot"><div class="ac-author"><div class="avatar">MC</div>Marina Costa</div><div class="ac-comments"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>9</div></div></div></div>
+  <div class="ac-fbcard"><div class="ac-vote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg><b>134</b><span>votos</span></div><div class="ac-fbbody"><div class="ac-fbhead"><div class="ac-fbtitle">Pulseira recarregavel para consumo</div><span class="su-badge su-badge--info">Planejado</span></div><p class="ac-fbdesc">Pulseira com credito pre-pago para compras dentro do parque, dispensando dinheiro e cartao na area molhada.</p><div class="ac-fbfoot"><div class="ac-author"><div class="avatar">PH</div>Pedro Henrique</div><div class="ac-comments"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>28</div></div></div></div>
+  <div class="ac-fbcard"><div class="ac-vote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg><b>63</b><span>votos</span></div><div class="ac-fbbody"><div class="ac-fbhead"><div class="ac-fbtitle">Notificacao de mensalidade a vencer</div><span class="su-badge su-badge--success">Concluido</span></div><p class="ac-fbdesc">Enviar lembrete por WhatsApp e push 3 dias antes do vencimento da mensalidade dos associados.</p><div class="ac-fbfoot"><div class="ac-author"><div class="avatar">RA</div>Roberto Alves</div><div class="ac-comments"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>15</div></div></div></div>
 </div>`; }
 function screenAccount(title){ return `
 <h1 class="h1">Configurações da conta</h1>
 <p class="sub">Gerencie seu perfil, segurança e preferências no AquaPark.</p>
 
-<div class="tabs" style="margin-bottom:var(--su-space-6)">
-  <button class="tab on">Perfil</button>
-  <button class="tab">Segurança</button>
-  <button class="tab">Notificações</button>
-  <button class="tab">Cobrança</button>
+<div class="su-tabs" style="margin-bottom:var(--su-space-6)">
+  <button class="su-tab su-tab--active">Perfil</button>
+  <button class="su-tab">Segurança</button>
+  <button class="su-tab">Notificações</button>
+  <button class="su-tab">Cobrança</button>
 </div>
 
 <div class="ac2-avatar-block">
@@ -1638,25 +1620,25 @@ function screenAccount(title){ return `
 </div>
 
 <div class="ac2-grid ac2-mb">
-  <div class="card">
+  <div class="su-card">
     <div class="card__pad">
       <div class="ac2-section-title">Dados do perfil</div>
       <div class="ac2-form">
         <div class="field-row">
           <label class="ac2-label">Nome</label>
-          <input class="inp" value="Robson Marques Jr." />
+          <input class="su-input" value="Robson Marques Jr." />
         </div>
         <div class="field-row">
           <label class="ac2-label">E-mail</label>
-          <input class="inp" value="robson.marques.jr@gmail.com" />
+          <input class="su-input" value="robson.marques.jr@gmail.com" />
         </div>
         <div class="field-row">
           <label class="ac2-label">Cargo</label>
-          <input class="inp" value="Gerente de Operações" />
+          <input class="su-input" value="Gerente de Operações" />
         </div>
         <div class="field-row">
           <label class="ac2-label">Fuso horário</label>
-          <input class="inp" value="(GMT-03:00) Brasília" />
+          <input class="su-input" value="(GMT-03:00) Brasília" />
         </div>
         <div class="row-between" style="margin-top:var(--su-space-2)">
           <span class="ac2-avatar-sub">Última atualização em 12/07/2026</span>
@@ -1667,24 +1649,24 @@ function screenAccount(title){ return `
   </div>
 
   <div style="display:flex;flex-direction:column;gap:var(--su-space-6)">
-    <div class="card">
+    <div class="su-card">
       <div class="card__pad">
         <div class="ac2-section-title">Plano e cobrança</div>
         <div class="ac2-plan">
           <div>
-            <div class="ac2-plan-name">Plano Premium <span class="su-badge brand">Ativo</span></div>
+            <div class="ac2-plan-name">Plano Premium <span class="su-badge su-badge--info">Ativo</span></div>
             <div class="ac2-price">R$ 349<small>/mês</small></div>
             <div class="ac2-plan-desc">Até 5.000 associados, controle de day use, excursões e relatórios avançados. Próxima cobrança em 05/08/2026.</div>
           </div>
         </div>
         <div class="row-between" style="margin-top:var(--su-space-5)">
-          <span class="su-badge success">Pagamento em dia</span>
+          <span class="su-badge su-badge--success">Pagamento em dia</span>
           <button class="su-btn su-btn--secondary su-btn--sm">Gerenciar</button>
         </div>
       </div>
     </div>
 
-    <div class="card">
+    <div class="su-card">
       <div class="card__pad">
         <div class="ac2-section-title">Notificações</div>
         <div class="ac2-notif">
@@ -1706,7 +1688,7 @@ function screenAccount(title){ return `
   </div>
 </div>
 
-<div class="card">
+<div class="su-card">
   <div class="card__pad">
     <div class="row-between" style="margin-bottom:var(--su-space-2)">
       <div class="ac2-section-title" style="margin:0">Sessões ativas</div>
@@ -1718,7 +1700,7 @@ function screenAccount(title){ return `
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>
         </div>
         <div class="ac2-session-body">
-          <div class="ac2-session-dev">Chrome · Windows 11 <span class="su-badge success">Este dispositivo</span></div>
+          <div class="ac2-session-dev">Chrome · Windows 11 <span class="su-badge su-badge--success">Este dispositivo</span></div>
           <div class="ac2-session-meta">Guarapari, ES · Ativo agora</div>
         </div>
       </div>
@@ -1850,21 +1832,21 @@ function screenDashcom(title){
   </div>
 
   <div class="dc-kpis">
-    ${stats.map(s=>`<div class="card"><div class="card__pad dc-stat"><div class="dc-stat__top"><span class="dc-stat__label">${s[0]}</span><span class="dc-stat__ic" style="background:${s[6]};color:${s[5]}">${s[4]}</span></div><div class="dc-stat__val">${s[1]}</div><div class="dc-stat__delta ${s[3]}">${s[3]==='up'?up:down}${s[2]}</div></div></div>`).join('')}
+    ${stats.map(s=>`<div class="su-card"><div class="card__pad dc-stat"><div class="dc-stat__top"><span class="dc-stat__label">${s[0]}</span><span class="dc-stat__ic" style="background:${s[6]};color:${s[5]}">${s[4]}</span></div><div class="dc-stat__val">${s[1]}</div><div class="dc-stat__delta ${s[3]}">${s[3]==='up'?up:down}${s[2]}</div></div></div>`).join('')}
   </div>
 
   <div class="dc-kpis">
-    ${smalls.map(s=>`<div class="card"><div class="card__pad dc-sstat"><div class="dc-sstat__top"><span class="dc-sstat__ic" style="background:${s[4]};color:${s[3]}">${s[2]}</span><span class="dc-sstat__label">${s[0]}</span></div><div class="dc-sstat__val">${s[1]}</div></div></div>`).join('')}
+    ${smalls.map(s=>`<div class="su-card"><div class="card__pad dc-sstat"><div class="dc-sstat__top"><span class="dc-sstat__ic" style="background:${s[4]};color:${s[3]}">${s[2]}</span><span class="dc-sstat__label">${s[0]}</span></div><div class="dc-sstat__val">${s[1]}</div></div></div>`).join('')}
   </div>
 
   <div class="dc-two">
-    <div class="card"><div class="card__pad">
-      <div class="row-between"><div><div class="card__title">Funil comercial</div><div class="card__desc">Por estágio do pipeline — Julho/2026</div></div><span class="su-badge brand">31,8% conv.</span></div>
+    <div class="su-card"><div class="card__pad">
+      <div class="row-between"><div><div class="card__title">Funil comercial</div><div class="card__desc">Por estágio do pipeline — Julho/2026</div></div><span class="su-badge su-badge--info">31,8% conv.</span></div>
       <div class="dc-funnel">${funnel.map(f=>`<div class="dc-fn"><div class="dc-fn__head"><span class="dc-fn__stage">${f[3]}${f[0]}</span><span class="dc-fn__val">${f[1]} <small>${f[2]}%</small></span></div><div class="dc-fn__track"><div class="dc-fn__fill" style="width:${f[2]}%"></div></div></div>`).join('')}</div>
       <p class="dc-note">Conversão do período: <strong>31,8%</strong> · Tempo médio até vender: <strong>18 dias</strong></p>
     </div></div>
 
-    <div class="card"><div class="card__pad">
+    <div class="su-card"><div class="card__pad">
       <div class="card__title">Motivos de perda</div><div class="card__desc">Oportunidades não convertidas — Julho/2026</div>
       <ul class="dc-loss">${loss.map(l=>`<li><span class="dc-loss__l"><span class="dc-dot" style="background:${l[2]}"></span>${l[0]}</span><span class="dc-loss__bar"><span class="dc-loss__fill" style="width:${(l[1]/lmax*100).toFixed(0)}%;background:${l[2]}"></span></span><span class="dc-loss__v">${l[1]}</span></li>`).join('')}</ul>
       <div class="dc-tempttl">Por temperatura</div>
@@ -1877,18 +1859,18 @@ function screenDashcom(title){
   </div>
 
   <div class="dc-three">
-    <div class="card"><div class="card__pad"><div class="card__title">Status dos pedidos</div><div class="card__desc" style="margin-bottom:var(--su-space-2)">Distribuição por situação</div>${donut(pieSales,'1.014','pedidos')}</div></div>
-    <div class="card"><div class="card__pad"><div class="card__title">Leads por status</div><div class="card__desc" style="margin-bottom:var(--su-space-2)">Origem e-mail / CRM</div>${donut(pieLeads,'3.190','leads')}</div></div>
-    <div class="card"><div class="card__pad"><div class="card__title">Vendas por mês (qtd)</div><div class="card__desc" style="margin-bottom:var(--su-space-3)">Volume mensal de pedidos</div>${areaSvg}${xax}</div></div>
+    <div class="su-card"><div class="card__pad"><div class="card__title">Status dos pedidos</div><div class="card__desc" style="margin-bottom:var(--su-space-2)">Distribuição por situação</div>${donut(pieSales,'1.014','pedidos')}</div></div>
+    <div class="su-card"><div class="card__pad"><div class="card__title">Leads por status</div><div class="card__desc" style="margin-bottom:var(--su-space-2)">Origem e-mail / CRM</div>${donut(pieLeads,'3.190','leads')}</div></div>
+    <div class="su-card"><div class="card__pad"><div class="card__title">Vendas por mês (qtd)</div><div class="card__desc" style="margin-bottom:var(--su-space-3)">Volume mensal de pedidos</div>${areaSvg}${xax}</div></div>
   </div>
 
-  <div class="card"><div class="card__pad">
-    <div class="row-between"><div><div class="card__title">Faturamento mensal (R$)</div><div class="card__desc">Receita bruta consolidada — em milhares</div></div><span class="su-badge success">+29,6% no semestre</span></div>
+  <div class="su-card"><div class="card__pad">
+    <div class="row-between"><div><div class="card__title">Faturamento mensal (R$)</div><div class="card__desc">Receita bruta consolidada — em milhares</div></div><span class="su-badge su-badge--success">+29,6% no semestre</span></div>
     <div style="margin-top:var(--su-space-3)">${barSvg}${xax}</div>
   </div></div>
 
-  <div class="card"><div class="card__pad">
-    <div class="row-between"><div><div class="card__title">Top 5 vendedores</div><div class="card__desc">Ranking por faturamento — meta individual R$ 90.000</div></div><span class="su-badge info">Julho/2026</span></div>
+  <div class="su-card"><div class="card__pad">
+    <div class="row-between"><div><div class="card__title">Top 5 vendedores</div><div class="card__desc">Ranking por faturamento — meta individual R$ 90.000</div></div><span class="su-badge su-badge--info">Julho/2026</span></div>
     <table class="su-table" style="margin-top:var(--su-space-3)">
       <thead><tr><th>#</th><th>Vendedor ${IC.sort}</th><th class="num">Vendas ${IC.sort}</th><th class="num">Total ${IC.sort}</th></tr></thead>
       <tbody>${sellers.map((s,i)=>`<tr><td><span style="color:var(--su-action);font-weight:var(--su-fw-semibold)">${i+1}.</span></td><td><span class="dc-seller"><span class="dc-av">${initials(s[0])}</span>${s[0]}</span></td><td class="num">${s[1]}</td><td class="num" style="color:#10b981;font-weight:var(--su-fw-semibold)">${brl(s[2])}</td></tr>`).join('')}</tbody>
@@ -1898,34 +1880,34 @@ function screenDashcom(title){
 
 function screenRoadmap(title){ return `<h1 class="h1">Roadmap 2026</h1><p class="sub">Iniciativas estrategicas do AquaPark por trimestre — produto, operacao e experiencia</p>
 <div class="dc-grid-kpi">
-  <div class="kpi"><div class="kpi__top"><span class="kpi__label">Iniciativas</span><span class="kpi__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3z"/><path d="M3 9h18M9 21V9"/></svg></span></div><div class="kpi__val">11</div><div class="kpi__delta up">3 entregues no ano</div></div>
-  <div class="kpi"><div class="kpi__top"><span class="kpi__label">Concluidas</span><span class="kpi__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span></div><div class="kpi__val">3</div><div class="kpi__delta up">27% do roadmap</div></div>
-  <div class="kpi"><div class="kpi__top"><span class="kpi__label">Em andamento</span><span class="kpi__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span></div><div class="kpi__val">4</div><div class="kpi__delta up">no prazo</div></div>
-  <div class="kpi"><div class="kpi__top"><span class="kpi__label">Planejadas</span><span class="kpi__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span></div><div class="kpi__val">4</div><div class="kpi__delta down">2 sem responsavel</div></div>
+<div class="su-statcard su-statcard--info"><div class="ref-statcard__top"><span class="su-statcard__label">Iniciativas</span><span class="ref-statcard__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3z"/><path d="M3 9h18M9 21V9"/></svg></span></div><div class="su-statcard__value">11</div><div class="su-statcard__delta">▲ 3 entregues no ano</div></div>
+<div class="su-statcard su-statcard--success"><div class="ref-statcard__top"><span class="su-statcard__label">Concluídas</span><span class="ref-statcard__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span></div><div class="su-statcard__value">3</div><div class="su-statcard__delta">▲ 27% do roadmap</div></div>
+<div class="su-statcard su-statcard--warning"><div class="ref-statcard__top"><span class="su-statcard__label">Em andamento</span><span class="ref-statcard__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span></div><div class="su-statcard__value">4</div><div class="su-statcard__delta">▲ no prazo</div></div>
+<div class="su-statcard su-statcard--danger"><div class="ref-statcard__top"><span class="su-statcard__label">Planejadas</span><span class="ref-statcard__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span></div><div class="su-statcard__value">4</div><div class="su-statcard__delta su-statcard__delta--down">▼ 2 sem responsável</div></div>
 </div>
 <div class="dc-board">
   <div class="dc-col">
     <div class="dc-col__head"><span class="dc-col__title">Q1 2026</span><span class="dc-col__count">3</span></div>
-    <div class="dc-card"><div class="dc-card__top"><div class="dc-card__title">Bilheteria digital com QR Code</div><span class="su-badge success">Concluido</span></div><div class="dc-card__desc">Venda online de ingressos day use com entrada por leitura de QR nas catracas.</div><div class="dc-card__foot"><span class="dc-card__meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Entregue mar/26</span><span class="dc-tag">Produto</span></div></div>
-    <div class="dc-card"><div class="dc-card__top"><div class="dc-card__title">App de carteirinha do associado</div><span class="su-badge success">Concluido</span></div><div class="dc-card__desc">Carteirinha digital, historico de mensalidades e portao de acesso via celular.</div><div class="dc-card__foot"><span class="dc-card__meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>Entregue fev/26</span><span class="dc-tag">Mobile</span></div></div>
-    <div class="dc-card"><div class="dc-card__top"><div class="dc-card__title">Integracao de pagamento Pix</div><span class="su-badge success">Concluido</span></div><div class="dc-card__desc">Recebimento de mensalidades e ingressos via Pix com baixa automatica.</div><div class="dc-card__foot"><span class="dc-card__meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Entregue mar/26</span><span class="dc-tag">Financeiro</span></div></div>
+    <div class="dc-card"><div class="dc-card__top"><div class="dc-card__title">Bilheteria digital com QR Code</div><span class="su-badge su-badge--success">Concluido</span></div><div class="dc-card__desc">Venda online de ingressos day use com entrada por leitura de QR nas catracas.</div><div class="dc-card__foot"><span class="dc-card__meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Entregue mar/26</span><span class="dc-tag">Produto</span></div></div>
+    <div class="dc-card"><div class="dc-card__top"><div class="dc-card__title">App de carteirinha do associado</div><span class="su-badge su-badge--success">Concluido</span></div><div class="dc-card__desc">Carteirinha digital, historico de mensalidades e portao de acesso via celular.</div><div class="dc-card__foot"><span class="dc-card__meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>Entregue fev/26</span><span class="dc-tag">Mobile</span></div></div>
+    <div class="dc-card"><div class="dc-card__top"><div class="dc-card__title">Integracao de pagamento Pix</div><span class="su-badge su-badge--success">Concluido</span></div><div class="dc-card__desc">Recebimento de mensalidades e ingressos via Pix com baixa automatica.</div><div class="dc-card__foot"><span class="dc-card__meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Entregue mar/26</span><span class="dc-tag">Financeiro</span></div></div>
   </div>
   <div class="dc-col">
     <div class="dc-col__head"><span class="dc-col__title">Q2 2026</span><span class="dc-col__count">3</span></div>
-    <div class="dc-card"><div class="dc-card__top"><div class="dc-card__title">Controle de lotacao das piscinas</div><span class="su-badge warning">Em andamento</span></div><div class="dc-card__desc">Sensores de fluxo e painel em tempo real da ocupacao por atracao.</div><div class="dc-card__foot"><span class="dc-card__meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>68% concluido</span><span class="dc-tag">Operacao</span></div></div>
-    <div class="dc-card"><div class="dc-card__top"><div class="dc-card__title">Portal de excursões B2B</div><span class="su-badge warning">Em andamento</span></div><div class="dc-card__desc">Reserva de pacotes para agencias e escolas com tabela de comissao.</div><div class="dc-card__foot"><span class="dc-card__meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>41% concluido</span><span class="dc-tag">Comercial</span></div></div>
-    <div class="dc-card"><div class="dc-card__top"><div class="dc-card__title">Cardapio digital dos quiosques</div><span class="su-badge warning">Em andamento</span></div><div class="dc-card__desc">Pedido por mesa via QR e integracao com estoque de alimentos e bebidas.</div><div class="dc-card__foot"><span class="dc-card__meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>22% concluido</span><span class="dc-tag">F&B</span></div></div>
+    <div class="dc-card"><div class="dc-card__top"><div class="dc-card__title">Controle de lotacao das piscinas</div><span class="su-badge su-badge--warning">Em andamento</span></div><div class="dc-card__desc">Sensores de fluxo e painel em tempo real da ocupacao por atracao.</div><div class="dc-card__foot"><span class="dc-card__meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>68% concluido</span><span class="dc-tag">Operacao</span></div></div>
+    <div class="dc-card"><div class="dc-card__top"><div class="dc-card__title">Portal de excursões B2B</div><span class="su-badge su-badge--warning">Em andamento</span></div><div class="dc-card__desc">Reserva de pacotes para agencias e escolas com tabela de comissao.</div><div class="dc-card__foot"><span class="dc-card__meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>41% concluido</span><span class="dc-tag">Comercial</span></div></div>
+    <div class="dc-card"><div class="dc-card__top"><div class="dc-card__title">Cardapio digital dos quiosques</div><span class="su-badge su-badge--warning">Em andamento</span></div><div class="dc-card__desc">Pedido por mesa via QR e integracao com estoque de alimentos e bebidas.</div><div class="dc-card__foot"><span class="dc-card__meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>22% concluido</span><span class="dc-tag">F&B</span></div></div>
   </div>
   <div class="dc-col">
     <div class="dc-col__head"><span class="dc-col__title">Q3 2026</span><span class="dc-col__count">3</span></div>
-    <div class="dc-card"><div class="dc-card__top"><div class="dc-card__title">Programa de fidelidade Onda Azul</div><span class="su-badge info">Planejado</span></div><div class="dc-card__desc">Pontos por visita e consumo, com niveis e beneficios para associados.</div><div class="dc-card__foot"><span class="dc-card__meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg>Kickoff jul/26</span><span class="dc-tag">CRM</span></div></div>
-    <div class="dc-card"><div class="dc-card__top"><div class="dc-card__title">Estacionamento com cancela automatica</div><span class="su-badge info">Planejado</span></div><div class="dc-card__desc">Leitura de placa e cobranca integrada ao ingresso do dia.</div><div class="dc-card__foot"><span class="dc-card__meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="22" height="12" rx="2"/><path d="M7 12h.01M17 12h.01"/></svg>Sem responsavel</span><span class="dc-tag">Infra</span></div></div>
-    <div class="dc-card"><div class="dc-card__top"><div class="dc-card__title">Armarios inteligentes</div><span class="su-badge info">Planejado</span></div><div class="dc-card__desc">Locacao de armario por app com trava eletronica e liberacao por PIN.</div><div class="dc-card__foot"><span class="dc-card__meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Estudo tecnico</span><span class="dc-tag">Operacao</span></div></div>
+    <div class="dc-card"><div class="dc-card__top"><div class="dc-card__title">Programa de fidelidade Onda Azul</div><span class="su-badge su-badge--info">Planejado</span></div><div class="dc-card__desc">Pontos por visita e consumo, com niveis e beneficios para associados.</div><div class="dc-card__foot"><span class="dc-card__meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg>Kickoff jul/26</span><span class="dc-tag">CRM</span></div></div>
+    <div class="dc-card"><div class="dc-card__top"><div class="dc-card__title">Estacionamento com cancela automatica</div><span class="su-badge su-badge--info">Planejado</span></div><div class="dc-card__desc">Leitura de placa e cobranca integrada ao ingresso do dia.</div><div class="dc-card__foot"><span class="dc-card__meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="22" height="12" rx="2"/><path d="M7 12h.01M17 12h.01"/></svg>Sem responsavel</span><span class="dc-tag">Infra</span></div></div>
+    <div class="dc-card"><div class="dc-card__top"><div class="dc-card__title">Armarios inteligentes</div><span class="su-badge su-badge--info">Planejado</span></div><div class="dc-card__desc">Locacao de armario por app com trava eletronica e liberacao por PIN.</div><div class="dc-card__foot"><span class="dc-card__meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Estudo tecnico</span><span class="dc-tag">Operacao</span></div></div>
   </div>
   <div class="dc-col">
     <div class="dc-col__head"><span class="dc-col__title">Q4 2026</span><span class="dc-col__count">2</span></div>
-    <div class="dc-card"><div class="dc-card__top"><div class="dc-card__title">BI de receita e ocupacao</div><span class="su-badge info">Planejado</span></div><div class="dc-card__desc">Dashboard executivo cruzando vendas, day use, mensalidades e clima.</div><div class="dc-card__foot"><span class="dc-card__meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg>Sem responsavel</span><span class="dc-tag">Dados</span></div></div>
-    <div class="dc-card"><div class="dc-card__top"><div class="dc-card__title">Renovacao automatica de mensalidade</div><span class="su-badge info">Planejado</span></div><div class="dc-card__desc">Cobranca recorrente no cartao com aviso previo e retentativa inteligente.</div><div class="dc-card__foot"><span class="dc-card__meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg>Depende de Pix</span><span class="dc-tag">Financeiro</span></div></div>
+    <div class="dc-card"><div class="dc-card__top"><div class="dc-card__title">BI de receita e ocupacao</div><span class="su-badge su-badge--info">Planejado</span></div><div class="dc-card__desc">Dashboard executivo cruzando vendas, day use, mensalidades e clima.</div><div class="dc-card__foot"><span class="dc-card__meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg>Sem responsavel</span><span class="dc-tag">Dados</span></div></div>
+    <div class="dc-card"><div class="dc-card__top"><div class="dc-card__title">Renovacao automatica de mensalidade</div><span class="su-badge su-badge--info">Planejado</span></div><div class="dc-card__desc">Cobranca recorrente no cartao com aviso previo e retentativa inteligente.</div><div class="dc-card__foot"><span class="dc-card__meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg>Depende de Pix</span><span class="dc-tag">Financeiro</span></div></div>
   </div>
 </div>`; }
 function screenCompplus(title){ return `<h1 class="h1">Componentes Avançados</h1><p class="sub">Galeria de componentes complementares do STUDIO UX para o AquaPark — estados, overlays e controles de dados.</p>
@@ -2034,7 +2016,7 @@ function screenCompplus(title){ return `<h1 class="h1">Componentes Avançados</h
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg>
         <span class="cp-fn">comprovante-pix-48213.pdf</span>
         <small>184 KB</small>
-        <span class="su-badge success">Enviado</span>
+        <span class="su-badge su-badge--success">Enviado</span>
       </div>
     </div>
   </div>
@@ -2129,13 +2111,13 @@ function screenAssistentes(title){
   '</div>';
  }).join('');
  var tabs=['Visão geral','Quem é','O que faz','O que sabe','O que pode fazer','Follow-up','Quem atende','Testar','Ajustes avançados'];
- var tabStrip=tabs.map(function(t,i){return '<div class="tab'+(i===0?' on':'')+'">'+t+'</div>';}).join('');
+var tabStrip=tabs.map(function(t,i){return '<button class="su-tab'+(i===0?' su-tab--active':'')+'" aria-selected="'+(i===0?'true':'false')+'">'+t+'</button>';}).join('');
  return '<div class="row-between"><div><h1 class="h1">'+
    '<span style="display:inline-flex;vertical-align:middle;margin-right:8px;color:#f97316">'+BOT+'</span>Assistentes</h1>'+
    '<p class="sub" style="margin:0;max-width:760px">Seus funcionários virtuais. Configure quem é, o que faz, o que sabe e o que pode fazer — tudo dentro do assistente. A chave da OpenAI/Anthropic é definida em Integrações.</p></div>'+
    '<button class="su-btn su-btn--primary su-btn--sm">'+PLUS+' Novo assistente</button></div>'+
 
-  '<div class="card" style="overflow:hidden;margin-top:var(--su-space-4)">'+rows+'</div>'+
+  '<div class="su-card" style="overflow:hidden;margin-top:var(--su-space-4)">'+rows+'</div>'+
 
   '<div class="cp-empty">'+
    '<div class="cp-ic" style="width:44px;height:44px;background:var(--su-surface-sunken);color:var(--su-text-muted)">'+BOT+'</div>'+
@@ -2143,10 +2125,10 @@ function screenAssistentes(title){
    '<div style="font-size:var(--su-fs-caption);color:var(--su-text-muted);margin-top:2px;max-width:640px">Quando não houver assistentes: “Comece em 2 passos — ensine seu negócio à IA em Conhecimento e depois crie um assistente (atendente, vendedor, concierge).”</div></div>'+
   '</div>'+
 
-  '<div class="card" style="margin-top:var(--su-space-4)"><div class="card__pad">'+
+  '<div class="su-card" style="margin-top:var(--su-space-4)"><div class="card__pad">'+
    '<div class="card__title">Editor do assistente</div>'+
    '<div class="card__desc" style="margin-bottom:var(--su-space-3)">Editar ou criar abre o assistente num editor com 9 abas. O botão “Novo assistente” passa antes por um assistente guiado (modelos: Atendimento, Vendedor, Concierge, Do zero).</div>'+
-   '<div class="tabs" style="flex-wrap:wrap;gap:var(--su-space-1)">'+tabStrip+'</div>'+
+   '<div class="su-tabs" style="flex-wrap:wrap;gap:var(--su-space-1)">'+tabStrip+'</div>'+
    '<div style="display:flex;gap:var(--su-space-2);flex-wrap:wrap;margin-top:var(--su-space-3)">'+
     badge(['Provedor: OpenAI / Anthropic',''])+badge(['Personalidade guiada (tom, emojis, sempre/nunca)',''])+badge(['Roteiro: passos + situações',''])+badge(['Bases de conhecimento',''])+badge(['Ações autorizadas','warning'])+badge(['Follow-up por assistente','info'])+badge(['Testar (mensagem simulada)','success'])+
    '</div>'+
@@ -2212,21 +2194,21 @@ function screenPendencias(title){
     '<p class="sub" style="margin:0;max-width:820px">Ações que a IA quer executar e estão aguardando aprovação. <strong>Aprovar executa a ação na hora</strong>, sob o escopo do assistente — nunca com a sua permissão.</p></div>'+
     '<button class="su-btn su-btn--secondary su-btn--sm">'+REFRESH+' Atualizar</button></div>'+
 
-  '<div class="tabs"><span class="tab on">Autorizações</span><span class="tab">Aprendizados</span></div>'+
+  '<div class="su-tabs"><span class="su-tab su-tab--active">Autorizações</span><span class="su-tab">Aprendizados</span></div>'+
 
   '<div class="kpis" style="margin-bottom:var(--su-space-4)">'+stats+'</div>'+
 
-  '<div class="ei-filter row-between" style="margin-bottom:var(--su-space-4);flex-wrap:wrap;gap:var(--su-space-3)">'+
-    '<div class="seg"><button class="on">Todas (4)</button><button>Alto risco (2)</button><button>Financeiro (1)</button></div>'+
+  '<div class="su-toolbar" style="margin-bottom:var(--su-space-4)">'+
+    '<div class="su-segmented" role="tablist"><button class="su-segment su-segment--active" aria-selected="true">Todas (4)</button><button class="su-segment">Alto risco (2)</button><button class="su-segment">Financeiro (1)</button></div>'+
     '<div style="display:flex;gap:var(--su-space-2);align-items:center">'+
-      '<select class="inp" style="width:200px"><option>Todos os assistentes</option><option>Assistente Comercial</option><option>Assistente de Retenção</option><option>Assistente de Atendimento</option></select>'+
-      '<select class="inp" style="width:160px"><option>Mais recentes</option><option>Mais antigas</option><option>Maior risco</option></select>'+
+      '<select class="su-select" style="width:200px"><option>Todos os assistentes</option><option>Assistente Comercial</option><option>Assistente de Retenção</option><option>Assistente de Atendimento</option></select>'+
+      '<select class="su-select" style="width:160px"><option>Mais recentes</option><option>Mais antigas</option><option>Maior risco</option></select>'+
     '</div>'+
   '</div>'+
 
   '<div class="cp-list">'+rows+'</div>'+
 
-  '<div class="card" style="margin-top:var(--su-space-5)"><div class="card__pad" style="padding:44px var(--su-space-6);text-align:center">'+
+  '<div class="su-card" style="margin-top:var(--su-space-5)"><div class="card__pad" style="padding:44px var(--su-space-6);text-align:center">'+
     '<div style="width:56px;height:56px;border-radius:var(--su-radius-lg);background:var(--su-surface-sunken);color:var(--su-text-muted);display:inline-flex;align-items:center;justify-content:center;margin-bottom:var(--su-space-3)">'+SHIELD+'</div>'+
     '<h3 style="margin:0 0 var(--su-space-2);font-size:16px">Fim da fila</h3>'+
     '<p style="color:var(--su-text-secondary);margin:0;font-size:var(--su-fs-body-sm)">Quando não houver nada aguardando, esta lista fica assim: <strong>Nada pra aprovar</strong> — nenhuma ação da IA pendente.</p>'+
@@ -2244,12 +2226,12 @@ function screenPortal(){
   <h1 class="h1">Portal do Associado</h1>
   <p class="sub">Gerencie o que aparece no portal acessível pelos associados via CPF.</p>
 
-  <div class="tabs">
-    <button class="tab on">Configurações</button>
-    <button class="tab">Mídias</button>
-    <button class="tab">Obra</button>
-    <button class="tab">Câmeras</button>
-    <button class="tab">Monitoramento</button>
+  <div class="su-tabs">
+    <button class="su-tab su-tab--active">Configurações</button>
+    <button class="su-tab">Mídias</button>
+    <button class="su-tab">Obra</button>
+    <button class="su-tab">Câmeras</button>
+    <button class="su-tab">Monitoramento</button>
   </div>
 
   <div class="pt-section">
@@ -2258,7 +2240,7 @@ function screenPortal(){
   </div>
 
   <div class="pt-grid">
-    <div class="card">
+    <div class="su-card">
       <div class="card__pad">
         <div class="card__title">Faturas</div>
         <p class="card__desc">Como as faturas do associado são exibidas no portal.</p>
@@ -2266,7 +2248,7 @@ function screenPortal(){
         <div class="pt-field">
           <label>Modo de exibição</label>
           <div class="pt-select">
-            <select class="inp">
+            <select class="su-select">
               <option selected>Próximas 2 faturas em aberto</option>
               <option>Todas as faturas em aberto</option>
               <option>Últimas 12 faturas</option>
@@ -2277,7 +2259,7 @@ function screenPortal(){
         <div class="pt-field">
           <label>Ordenação</label>
           <div class="pt-select">
-            <select class="inp">
+            <select class="su-select">
               <option selected>Vencimento (mais próximo primeiro)</option>
               <option>Vencimento (mais distante primeiro)</option>
               <option>Valor (maior primeiro)</option>
@@ -2290,19 +2272,19 @@ function screenPortal(){
 
         <div class="pt-field">
           <label>Destacar faturas vencendo em até N dias</label>
-          <input class="inp" type="number" value="7" style="max-width:120px" />
+          <input class="su-input" type="number" value="7" style="max-width:120px" />
         </div>
       </div>
     </div>
 
-    <div class="card">
+    <div class="su-card">
       <div class="card__pad">
         <div class="card__title">Branding</div>
         <p class="card__desc">Identidade visual apresentada ao associado.</p>
 
         <div class="pt-field">
           <label>Título do portal</label>
-          <input class="inp" value="Painel do Associado" />
+          <input class="su-input" value="Painel do Associado" />
         </div>
 
         <div class="pt-field">
@@ -2320,7 +2302,7 @@ function screenPortal(){
 
         <div class="pt-field">
           <label>Mensagem de boas-vindas <small>(opcional)</small></label>
-          <textarea class="inp" placeholder="Ex.: Bem-vindo(a) ao AquaPark! Aqui você acompanha faturas, contratos e o andamento das obras.">Bem-vindo(a) ao AquaPark! Acompanhe suas faturas, contratos e as câmeras ao vivo do parque.</textarea>
+          <textarea class="su-input" placeholder="Ex.: Bem-vindo(a) ao AquaPark! Aqui você acompanha faturas, contratos e o andamento das obras.">Bem-vindo(a) ao AquaPark! Acompanhe suas faturas, contratos e as câmeras ao vivo do parque.</textarea>
         </div>
       </div>
     </div>
@@ -2342,14 +2324,14 @@ function screenDadosEmpresa(title){
     refresh:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>`
   };
   const f = (label, input, span) => `<div class="de-field" style="grid-column:span ${span}">${label?`<label>${label}</label>`:''}${input}</div>`;
-  const inp = (val, ph, type) => `<input class="inp" ${type?`type="${type}"`:''} value="${val||''}"${ph?` placeholder="${ph}"`:''} />`;
+  const inp = (val, ph, type) => `<input class="su-input" ${type?`type="${type}"`:''} value="${val||''}"${ph?` placeholder="${ph}"`:''} />`;
 
   const UFS = [['AC','Acre'],['AL','Alagoas'],['AM','Amazonas'],['BA','Bahia'],['CE','Ceará'],['DF','Distrito Federal'],['ES','Espírito Santo'],['GO','Goiás'],['MG','Minas Gerais'],['PR','Paraná'],['PE','Pernambuco'],['RJ','Rio de Janeiro'],['RS','Rio Grande do Sul'],['SC','Santa Catarina'],['SP','São Paulo']];
   const ufOpts = UFS.map(([uf,name])=>`<option value="${uf}"${uf==='DF'?' selected':''}>${uf} — ${name}</option>`).join('');
   const tzOpts = [['America/Sao_Paulo','(GMT-03:00) São Paulo — Brasília',true],['America/Manaus','(GMT-04:00) Manaus — Amazonas',false],['America/Cuiaba','(GMT-04:00) Cuiabá — Mato Grosso',false],['America/Rio_Branco','(GMT-05:00) Rio Branco — Acre',false],['America/Noronha','(GMT-02:00) Fernando de Noronha',false]].map(([v,l,s])=>`<option value="${v}"${s?' selected':''}>${l}</option>`).join('');
 
   const sec = (icon, titleTxt, colsClass, inner) => `
-    <div class="card" style="margin-top:var(--su-space-3)">
+    <div class="su-card" style="margin-top:var(--su-space-3)">
       <div class="card__pad">
         <div class="de-sec">${icon}<h3>${titleTxt}</h3></div>
         <div class="de-grid ${colsClass}">${inner}</div>
@@ -2389,7 +2371,7 @@ function screenDadosEmpresa(title){
     f('Número', inp('1200'), 1),
     f('Complemento', inp('Setor de Lazer, Quadra 04'), 3),
     f('Bairro', inp('Águas Claras'), 2),
-    f('Estado', `<div class="de-select"><select class="inp"><option value="">Selecione...</option>${ufOpts}</select></div>`, 2),
+    f('Estado', `<div class="de-select"><select class="su-select"><option value="">Selecione...</option>${ufOpts}</select></div>`, 2),
     f('Cidade', inp('Brasília'), 2),
     f('Referência', inp('Ao lado do Parque da Cidade'), 2),
     f('Latitude', inp('-15.834720','-19.222152'), 3),
@@ -2407,7 +2389,7 @@ function screenDadosEmpresa(title){
 
   // Fuso horario (3 colunas)
   const fuso = [
-    f('Fuso horário do sistema', `<div class="de-select"><select class="inp">${tzOpts}</select></div>`, 2),
+    f('Fuso horário do sistema', `<div class="de-select"><select class="su-select">${tzOpts}</select></div>`, 2),
     `<div class="de-field" style="grid-column:span 1;justify-content:flex-end"><button class="su-btn su-btn--primary" style="width:100%">${I.save} Salvar fuso</button></div>`
   ].join('');
 
@@ -2420,7 +2402,7 @@ function screenDadosEmpresa(title){
     <button class="su-btn su-btn--secondary su-btn--sm">${I.refresh} Recarregar</button>
   </div>
 
-  <div class="card" style="margin-top:var(--su-space-4)">
+  <div class="su-card" style="margin-top:var(--su-space-4)">
     <div class="card__pad">
       <div class="de-sec">${I.img}<h3>Identidade Visual</h3></div>
       <div class="de-brand">
@@ -2434,7 +2416,7 @@ function screenDadosEmpresa(title){
   ${sec(I.pin,'Endereço do Estabelecimento','de-c6',end)}
   ${sec(I.phone,'Contato','de-c3',cont)}
 
-  <div class="card" style="margin-top:var(--su-space-3)">
+  <div class="su-card" style="margin-top:var(--su-space-3)">
     <div class="card__pad">
       <div class="de-sec">${I.clock}<h3>Fuso horário</h3></div>
       <p style="font-size:var(--su-fs-caption);color:var(--su-text-muted);margin:0 0 var(--su-space-3)">Define o horário local usado pelo sistema — inclusive pela IA ao agendar follow-ups e lembretes. Escolha o fuso da sua operação.</p>
@@ -2456,7 +2438,7 @@ function screenConfigPagamentos(title){
     {label:'Antecedência geração (dias)',hint:'Recomendado: 7',val:'7'},
     {label:'Aceite após vencimento (dias)',hint:'Quantos dias após o vencimento o boleto continua pagável.',val:'90'},
   ];
-  const numField=f=>`<div class="cp-field"><label class="cp-lbl">${f.label}</label><input class="inp" value="${f.val}"><span class="cp-hint">${f.hint}</span></div>`;
+  const numField=f=>`<div class="cp-field"><label class="cp-lbl">${f.label}</label><input class="su-input" value="${f.val}"><span class="cp-hint">${f.hint}</span></div>`;
 
   const notifs=[
     {label:'Notificar vendedor ao realizar venda',on:true},
@@ -2485,22 +2467,22 @@ function screenConfigPagamentos(title){
   </div>
 
   <div class="cp-grid">
-    <div class="card cp-span2"><div class="card__pad">
+    <div class="su-card cp-span2"><div class="card__pad">
       <h3 class="cp-sec-title">Configurações gerais</h3>
       <div class="cp-numgrid">${numFields.map(numField).join('')}</div>
     </div></div>
 
-    <div class="card cp-span2"><div class="card__pad">
+    <div class="su-card cp-span2"><div class="card__pad">
       <h3 class="cp-sec-title">Instruções do boleto</h3>
       <p class="cp-sec-note">Uma instrução por linha (máx. 40 caracteres/linha). O boleto exibe até 5 linhas no total — descrição + suas linhas + as de juros/multa, adicionadas automaticamente quando configuradas. Linhas acima de 40 caracteres são cortadas.</p>
       <div class="cp-field">
         <label class="cp-lbl">Mensagens de instrução</label>
-        <textarea class="inp" rows="4" style="resize:vertical">${instrucoes}</textarea>
+        <textarea class="su-input" rows="4" style="resize:vertical">${instrucoes}</textarea>
         <span class="cp-hint">0 / 500 caracteres</span>
       </div>
     </div></div>
 
-    <div class="card"><div class="card__pad">
+    <div class="su-card"><div class="card__pad">
       <h3 class="cp-sec-title">Desconto por antecipação</h3>
       <div class="cp-numgrid cp-numgrid--2">
         ${numField({label:'Desconto à vista (%)',hint:'Aplicado ao pagamento antecipado.',val:'5,00'})}
@@ -2508,17 +2490,17 @@ function screenConfigPagamentos(title){
       </div>
     </div></div>
 
-    <div class="card"><div class="card__pad">
+    <div class="su-card"><div class="card__pad">
       <h3 class="cp-sec-title">Notificações de venda</h3>
       <div class="cp-toggle-list">${notifs.map(n=>toggleRow(n.label,n.on)).join('')}</div>
     </div></div>
 
-    <div class="card cp-span2"><div class="card__pad">
+    <div class="su-card cp-span2"><div class="card__pad">
       <h3 class="cp-sec-title">Contrato</h3>
       <div class="cp-toggle-list">${toggleRow('Exigir contrato em toda venda',true,'Quando desligado, o checkout permite pular o contrato e liberar a venda direto (faturas cobráveis na hora).')}</div>
     </div></div>
 
-    <div class="card cp-span2"><div class="card__pad">
+    <div class="su-card cp-span2"><div class="card__pad">
       <h3 class="cp-sec-title">Estratégia de pagamento</h3>
       <p class="cp-sec-note">Define para onde o botão de pagamento dos templates de WhatsApp leva o associado.</p>
       <div class="cp-strat-grid">${strategies.map(stratCard).join('')}</div>
@@ -2575,7 +2557,7 @@ function screenCobrancaForte(title){
 
   return `<div class="row-between"><div style="display:flex;align-items:flex-start;gap:var(--su-space-2)"><span style="color:#f59e0b;margin-top:2px">${GAVEL}</span><div><h1 class="h1">Cobrança Forte</h1><p class="sub" style="margin:0">Escalada automatizada de inadimplência via Sicoob — Negativação no Serasa e Protesto em cartório.</p></div></div></div>
 
-  <div class="card" style="margin-top:var(--su-space-5)"><div class="card__pad">
+  <div class="su-card" style="margin-top:var(--su-space-5)"><div class="card__pad">
     <div class="row-between" style="margin-bottom:var(--su-space-3)">
       <div class="card__title" style="display:flex;align-items:center;gap:var(--su-space-2);margin:0">${SHIELD} Configuração geral</div>
       <label class="cf-cron"><span class="switch on"></span><span>Cron diário ativo (08:00)</span></label>
@@ -2590,9 +2572,9 @@ function screenCobrancaForte(title){
           <label class="cf-cron cf-cron--sm"><span class="switch on"></span><span>Automática</span></label>
         </div>
         <label class="cf-lbl">Dias de atraso para negativar</label>
-        <input class="inp" value="30" style="margin-bottom:var(--su-space-3)">
+        <input class="su-input" value="30" style="margin-bottom:var(--su-space-3)">
         <label class="cf-lbl">Valor mínimo (R$)</label>
-        <input class="inp" value="500,00">
+        <input class="su-input" value="500,00">
       </div>
 
       <div class="cf-box">
@@ -2601,9 +2583,9 @@ function screenCobrancaForte(title){
           <label class="cf-cron cf-cron--sm"><span class="switch"></span><span>Automático</span></label>
         </div>
         <label class="cf-lbl">Dias de atraso para protestar</label>
-        <input class="inp" value="90" style="margin-bottom:var(--su-space-3)">
+        <input class="su-input" value="90" style="margin-bottom:var(--su-space-3)">
         <label class="cf-lbl">Valor mínimo (R$)</label>
-        <input class="inp" value="1.000,00">
+        <input class="su-input" value="1.000,00">
       </div>
     </div>
 
@@ -2613,7 +2595,7 @@ function screenCobrancaForte(title){
     </div>
   </div></div>
 
-  <div class="card" style="margin-top:var(--su-space-4);overflow:hidden">
+  <div class="su-card" style="margin-top:var(--su-space-4);overflow:hidden">
     <div class="card__pad" style="border-bottom:1px solid var(--su-border-subtle);padding-top:var(--su-space-3);padding-bottom:var(--su-space-3)">
       <div class="card__title" style="margin:0">Faturas em cobrança forte ativa (${active.length})</div>
     </div>
@@ -2647,7 +2629,7 @@ function screenConfigComissoes(title){
   const ativas=rows.filter(r=>r.is_active).length;
   const def=rows.find(r=>r.is_default);
 
-  const stat=(lbl,val,ic,fg,bg)=>`<div class="card"><div class="card__pad" style="display:flex;align-items:center;gap:var(--su-space-4)">
+  const stat=(lbl,val,ic,fg,bg)=>`<div class="su-card"><div class="card__pad" style="display:flex;align-items:center;gap:var(--su-space-4)">
     <div style="width:44px;height:44px;border-radius:var(--su-radius-md);display:flex;align-items:center;justify-content:center;background:${bg};color:${fg};flex-shrink:0">${ic}</div>
     <div style="min-width:0"><div style="font-size:var(--su-fs-caption,12px);text-transform:uppercase;letter-spacing:.04em;color:var(--su-text-muted);font-weight:var(--su-fw-semibold)">${lbl}</div>
     <div style="font-size:20px;font-weight:var(--su-fw-semibold);color:var(--su-text-primary);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${val}</div></div>
@@ -2703,7 +2685,7 @@ function screenConfigComissoes(title){
   </div>`:''}
 
   <div class="cp-cols" style="margin-top:var(--su-space-5)">
-    <div class="card"><div class="card__pad">
+    <div class="su-card"><div class="card__pad">
       <div class="card__title">Configurações de comissão</div>
       <div class="card__desc">Regras que definem em que momento cada comissão é paga.</div>
       <table class="su-table" style="margin-top:var(--su-space-4)">
@@ -2712,17 +2694,17 @@ function screenConfigComissoes(title){
       </table>
     </div></div>
 
-    <div class="card"><div class="card__pad">
+    <div class="su-card"><div class="card__pad">
       <div class="card__title">Nova Configuração</div>
       <div class="card__desc">Esta configuração define apenas <em>quando</em> a comissão é paga.</div>
       <div style="display:flex;flex-direction:column;gap:var(--su-space-4);margin-top:var(--su-space-4)">
-        <div><label class="cp-lbl">Nome *</label><input class="inp" placeholder="Ex: Padrão — 1ª Fatura"></div>
+        <div><label class="cp-lbl">Nome *</label><input class="su-input" placeholder="Ex: Padrão — 1ª Fatura"></div>
         <div><label class="cp-lbl">Gatilho *</label>
-          <select class="inp">${opts.map(o=>`<option>${o[0]}</option>`).join('')}</select>
+          <select class="su-select">${opts.map(o=>`<option>${o[0]}</option>`).join('')}</select>
           <div class="cp-hint">Comissão gerada quando a 1ª fatura da venda for quitada</div>
         </div>
         <div class="cp-callout"><strong>Sem percentual aqui:</strong> a comissão do vendedor vem do cadastro dele em <a href="#" style="color:var(--su-action)">Vendedores</a>.</div>
-        <div><label class="cp-lbl">Descrição</label><input class="inp" placeholder="Opcional"></div>
+        <div><label class="cp-lbl">Descrição</label><input class="su-input" placeholder="Opcional"></div>
         <label style="display:flex;align-items:center;gap:var(--su-space-2);cursor:pointer"><span class="switch on"></span><span style="font-size:var(--su-fs-body-sm,14px);color:var(--su-text-secondary)">Definir como padrão do sistema</span></label>
         <div style="display:flex;gap:var(--su-space-3)">
           <button class="su-btn su-btn--primary su-btn--sm" style="flex:1;justify-content:center">Salvar</button>
@@ -2751,7 +2733,7 @@ function screenRelatorios(title){
     {label:'Associados Ativos',val:'942',icon:I.users,fg:'#a855f7',bg:'rgba(168,85,247,.14)'},
     {label:'Taxa Conversão',val:'34,6%',icon:I.trend,fg:'var(--su-action)',bg:'var(--su-action-tint)'}
   ];
-  const statHtml=stats.map(s=>`<div class="card"><div class="card__pad rp-stat"><span class="rp-stat__ic" style="background:${s.bg};color:${s.fg}">${ic(s.icon,22)}</span><div><div class="rp-stat__label">${s.label}</div><div class="rp-stat__val">${s.val}</div></div></div></div>`).join('');
+  const statHtml=stats.map(s=>`<div class="su-card"><div class="card__pad rp-stat"><span class="rp-stat__ic" style="background:${s.bg};color:${s.fg}">${ic(s.icon,22)}</span><div><div class="rp-stat__label">${s.label}</div><div class="rp-stat__val">${s.val}</div></div></div></div>`).join('');
 
   // ---- Area chart: Vendas por mes ----
   const meses=['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
@@ -2784,7 +2766,7 @@ function screenRelatorios(title){
   function rankCard(t,cols,rows){
     const head=cols.map((c,i)=>`<th class="${i===cols.length-1?'num':''}">${i?`<span style="display:inline-flex;align-items:center;gap:4px">${c} ${SORT}</span>`:c}</th>`).join('');
     const body=rows.map(rw=>`<tr>${rw.map((cell,i)=>`<td class="${i===rw.length-1?'num':''}">${i===0?`<span class="rp-rank">${cell}.</span>`:i===rw.length-1?`<span class="rp-last">${cell}</span>`:`<span style="color:var(--su-text-primary)">${cell}</span>`}</td>`).join('')}</tr>`).join('');
-    return `<div class="card"><div class="card__pad"><div class="rp-title">${t}</div><table class="su-table"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table></div></div>`;
+    return `<div class="su-card"><div class="card__pad"><div class="rp-title">${t}</div><table class="su-table"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table></div></div>`;
   }
   const topClients=rankCard('Top 5 Associados',['#','Associado','Total'],[
     [1,'Condomínio Águas Claras','R$ 42.380'],
@@ -2820,11 +2802,11 @@ function screenRelatorios(title){
   return `<div class="row-between"><div><h1 class="h1">${title||'Relatórios'}</h1><p class="sub" style="margin:0">Vendas, receita, conversão e inadimplência — AquaPark</p></div><button class="su-btn su-btn--secondary su-btn--sm">${ic(I.refresh,14)} Atualizar</button></div>
   <div class="rp-grid4 rp-gap">${statHtml}</div>
   <div class="rp-charts rp-gap">
-    <div class="card"><div class="card__pad"><div class="row-between"><div><div class="card__title">Vendas por mês</div><div class="card__desc">Quantidade de vendas por mês (2026)</div></div><span class="su-badge brand">1.284 no ano</span></div><div style="margin-top:var(--su-space-3)">${chart}</div><div class="rp-legend"><span><i class="rp-dot" style="background:#6366f1"></i>Vendas</span></div></div></div>
-    <div class="card"><div class="card__pad"><div class="card__title">Status dos Pedidos</div><div class="rp-piewrap" style="margin-top:var(--su-space-3)">${donut}<div style="flex:1;min-width:150px">${pieRows}</div></div></div></div>
+    <div class="su-card"><div class="card__pad"><div class="row-between"><div><div class="card__title">Vendas por mês</div><div class="card__desc">Quantidade de vendas por mês (2026)</div></div><span class="su-badge su-badge--info">1.284 no ano</span></div><div style="margin-top:var(--su-space-3)">${chart}</div><div class="rp-legend"><span><i class="rp-dot" style="background:#6366f1"></i>Vendas</span></div></div></div>
+    <div class="su-card"><div class="card__pad"><div class="card__title">Status dos Pedidos</div><div class="rp-piewrap" style="margin-top:var(--su-space-3)">${donut}<div style="flex:1;min-width:150px">${pieRows}</div></div></div></div>
   </div>
   <div class="rp-grid3 rp-gap">${topClients}${topSellers}${topPlans}</div>
-  <div class="card rp-gap"><div class="card__pad"><div class="card__title">Exportar relatórios</div><div class="card__desc" style="margin-bottom:var(--su-space-4)">Baixe os dados consolidados em planilha</div><div class="rp-export">${expHtml}</div></div></div>`;
+  <div class="su-card rp-gap"><div class="card__pad"><div class="card__title">Exportar relatórios</div><div class="card__desc" style="margin-bottom:var(--su-space-4)">Baixe os dados consolidados em planilha</div><div class="rp-export">${expHtml}</div></div></div>`;
 }
 function screenAnaliseAvancada(title){
   // ---- Benchmark vs período anterior ----
@@ -2893,13 +2875,13 @@ function screenAnaliseAvancada(title){
 
   return `<div><h1 class="h1">${title||'Análise avançada'}</h1><p class="sub" style="margin:0">Previsão, horários de movimento, comparação entre períodos e conversão por origem.</p></div>
 
-  <div class="card aa-mt"><div class="card__pad"><div class="card__title">Comparação com o período anterior</div><div class="aa-bench-grid">${benchHtml}</div></div></div>
+  <div class="su-card aa-mt"><div class="card__pad"><div class="card__title">Comparação com o período anterior</div><div class="aa-bench-grid">${benchHtml}</div></div></div>
 
-  <div class="card aa-mt"><div class="card__pad"><div class="card__title" style="display:flex;align-items:center;gap:var(--su-space-2)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg> Previsão de receita</div><div class="aa-bars">${barsHtml}</div><p class="sub" style="margin:var(--su-space-3) 0 0">Projeção do próximo mês: <strong style="color:var(--su-text-primary)">${brl(projected)}</strong> (tendência dos últimos meses).</p></div></div>
+  <div class="su-card aa-mt"><div class="card__pad"><div class="card__title" style="display:flex;align-items:center;gap:var(--su-space-2)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg> Previsão de receita</div><div class="aa-bars">${barsHtml}</div><p class="sub" style="margin:var(--su-space-3) 0 0">Projeção do próximo mês: <strong style="color:var(--su-text-primary)">${brl(projected)}</strong> (tendência dos últimos meses).</p></div></div>
 
-  <div class="card aa-mt"><div class="card__pad"><div class="card__title">Horários de movimento (chegada de leads, 90 dias)</div><div class="aa-heat-wrap"><table class="aa-heat"><thead><tr><th></th>${headCells}</tr></thead><tbody>${bodyRows}</tbody></table></div></div></div>
+  <div class="su-card aa-mt"><div class="card__pad"><div class="card__title">Horários de movimento (chegada de leads, 90 dias)</div><div class="aa-heat-wrap"><table class="aa-heat"><thead><tr><th></th>${headCells}</tr></thead><tbody>${bodyRows}</tbody></table></div></div></div>
 
-  <div class="card aa-mt"><div class="card__pad"><div class="card__title">Conversão por origem</div><div class="aa-src-list">${srcHtml}</div></div></div>`;
+  <div class="su-card aa-mt"><div class="card__pad"><div class="card__title">Conversão por origem</div><div class="aa-src-list">${srcHtml}</div></div></div>`;
 }
 function screenAtendimento(title){
   const REFRESH='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>';
@@ -2939,16 +2921,16 @@ function screenAtendimento(title){
 
   return `<div class="row-between"><div><h1 class="h1"><span style="display:inline-flex;vertical-align:-4px;margin-right:8px;color:var(--su-action)">${CHAT}</span>Atendimento WhatsApp</h1><p class="sub" style="margin:0">Operação, SLA de primeira resposta, produtividade e fila de espera da Central de Atendimento.</p></div>
   <div style="display:flex;align-items:center;gap:var(--su-space-2)">
-    <select class="inp" style="width:auto"><option>Todas as tags</option><option>Reserva</option><option>Reclamação</option><option>Financeiro</option><option>Aniversário</option></select>
-    <div class="seg"><button class="on">7 dias</button><button>30 dias</button><button>90 dias</button></div>
+    <select class="su-select" style="width:auto"><option>Todas as tags</option><option>Reserva</option><option>Reclamação</option><option>Financeiro</option><option>Aniversário</option></select>
+    <div class="su-segmented" role="tablist"><button class="su-segment su-segment--active" aria-selected="true">7 dias</button><button class="su-segment">30 dias</button><button class="su-segment">90 dias</button></div>
     <button class="su-btn su-btn--secondary su-btn--sm" title="Atualizar">${REFRESH}</button>
   </div></div>
 
-  <div class="card" style="margin-top:var(--su-space-5)"><div class="card__pad"><div class="card__title">Operação (agora)</div><div class="cp-grid cp-grid--4" style="margin-top:var(--su-space-3)">${op}</div></div></div>
+  <div class="su-card" style="margin-top:var(--su-space-5)"><div class="card__pad"><div class="card__title">Operação (agora)</div><div class="cp-grid cp-grid--4" style="margin-top:var(--su-space-3)">${op}</div></div></div>
 
-  <div class="card" style="margin-top:var(--su-space-4)"><div class="card__pad"><div class="card__title">Fila de espera (agora)</div><div class="cp-grid cp-grid--3" style="margin-top:var(--su-space-3)">${fila}</div></div></div>
+  <div class="su-card" style="margin-top:var(--su-space-4)"><div class="card__pad"><div class="card__title">Fila de espera (agora)</div><div class="cp-grid cp-grid--3" style="margin-top:var(--su-space-3)">${fila}</div></div></div>
 
-  <div class="card" style="margin-top:var(--su-space-4)"><div class="card__pad"><div class="card__title">SLA — tempo médio de primeira resposta</div>
+  <div class="su-card" style="margin-top:var(--su-space-4)"><div class="card__pad"><div class="card__title">SLA — tempo médio de primeira resposta</div>
     <div style="margin-top:var(--su-space-3)"><div class="cp-tile cp-tile--wide"><div class="cp-tile__val" style="color:var(--su-action)">2m 18s</div><div class="cp-tile__lbl">Geral (214 conversas)</div></div></div>
     <div class="cp-slacols">
       <div><div class="cp-colhead">Por equipe</div><div class="cp-brklist">${brk(byTeam)}</div></div>
@@ -2957,7 +2939,7 @@ function screenAtendimento(title){
     </div>
   </div></div>
 
-  <div class="card" style="margin-top:var(--su-space-4)"><div class="card__pad"><div class="card__title">Produtividade (últimos 7 dias)</div><div class="cp-grid cp-grid--5" style="margin-top:var(--su-space-3)">${prod}</div>
+  <div class="su-card" style="margin-top:var(--su-space-4)"><div class="card__pad"><div class="card__title">Produtividade (últimos 7 dias)</div><div class="cp-grid cp-grid--5" style="margin-top:var(--su-space-3)">${prod}</div>
     <p style="margin:var(--su-space-3) 0 0;font-size:var(--su-fs-caption,12px);color:var(--su-warning-fg,#d97706)">6 reabertura(s) por mensagem do cliente — possível encerramento prematuro.</p>
   </div></div>`;
 }
@@ -3021,11 +3003,11 @@ function screenPainel(title){
     '<button class="su-btn su-btn--secondary su-btn--sm">'+ICN.refresh+' Atualizar</button>'+
   '</div>'+
 
-  '<div class="tabs" style="margin-top:var(--su-space-4)">'+
-    '<button class="tab on">Visão geral</button>'+
-    '<button class="tab">Métricas</button>'+
-    '<button class="tab">Saúde</button>'+
-    '<button class="tab">Inteligência de fluxos</button>'+
+  '<div class="su-tabs" style="margin-top:var(--su-space-4)">'+
+    '<button class="su-tab su-tab--active">Visão geral</button>'+
+    '<button class="su-tab">Métricas</button>'+
+    '<button class="su-tab">Saúde</button>'+
+    '<button class="su-tab">Inteligência de fluxos</button>'+
   '</div>'+
 
   // ---- Execuções da IA ----
@@ -3052,7 +3034,7 @@ function screenPainel(title){
 
   // ---- Comercial ----
   '<div class="pn-grid2">'+
-    '<div class="card"><div class="card__pad">'+
+    '<div class="su-card"><div class="card__pad">'+
       '<div class="card__title">Comercial (resumo atual)</div>'+
       '<div class="pn-com3" style="margin-top:var(--su-space-3)">'+
         '<div><div class="n">'+cm.leads+'</div><div class="l">Leads abertos</div></div>'+
@@ -3060,14 +3042,14 @@ function screenPainel(title){
         '<div><div class="n">'+cm.negoc+'</div><div class="l">Em negociação</div></div>'+
       '</div>'+
     '</div></div>'+
-    '<div class="card"><div class="card__pad">'+
+    '<div class="su-card"><div class="card__pad">'+
       '<div class="card__title" style="display:flex;align-items:center;gap:var(--su-space-1)"><span class="pn-stat__ic">'+icDown+'</span> Motivos de perda</div>'+
       '<ul class="pn-loss" style="margin-top:var(--su-space-3)">'+perdaLis+'</ul>'+
     '</div></div>'+
   '</div>'+
 
   // ---- Custo ----
-  '<div class="card" style="margin-top:var(--su-space-5)"><div class="card__pad">'+
+  '<div class="su-card" style="margin-top:var(--su-space-5)"><div class="card__pad">'+
     '<div class="card__title" style="display:flex;align-items:center;gap:var(--su-space-1)"><span class="pn-stat__ic">'+icDollar+'</span> Custo da IA (7 dias)</div>'+
     '<div class="pn-bignum" style="margin-top:var(--su-space-3)">'+
       '<div><div class="v">'+fmtUsd(cu.custo)+'</div><div class="l">Custo estimado</div></div>'+
@@ -3079,11 +3061,11 @@ function screenPainel(title){
 
   // ---- Analytics ----
   '<div class="pn-grid2">'+
-    '<div class="card"><div class="card__pad">'+
+    '<div class="su-card"><div class="card__pad">'+
       '<div class="card__title">Qualidade por assistente</div>'+
       '<table class="su-table" style="margin-top:var(--su-space-3)"><thead><tr><th>Assistente</th><th class="num">Exec.</th><th class="num">Sucesso</th><th class="num">Tempo méd.</th></tr></thead><tbody>'+qualiRows+'</tbody></table>'+
     '</div></div>'+
-    '<div class="card"><div class="card__pad">'+
+    '<div class="su-card"><div class="card__pad">'+
       '<div class="card__title">Ferramentas que mais falham</div>'+
       '<table class="su-table" style="margin-top:var(--su-space-3)"><thead><tr><th>Ferramenta</th><th class="num">Usos</th><th class="num">Falhas</th><th class="num">Tempo méd.</th></tr></thead><tbody>'+toolsRows+'</tbody></table>'+
     '</div></div>'+
@@ -3093,33 +3075,33 @@ function screenAjustes(title){
   var INFO='<span class="aiw-info" title="Ajuda"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></span>';
   var SAVE='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg>';
   function tog(name,on){ return '<div class="aiw-tog"><div class="aiw-tog__l"><span>'+name+'</span>'+INFO+'</div><label class="switch'+(on?' on':'')+'"></label></div>'; }
-  function fld(label,val){ return '<div class="aiw-fld"><label>'+label+'</label><input class="inp" type="text" value="'+val+'"></div>'; }
+  function fld(label,val){ return '<div class="aiw-fld"><label>'+label+'</label><input class="su-input" type="text" value="'+val+'"></div>'; }
   function saveBtn(txt){ return '<div class="aiw-actions"><button class="su-btn su-btn--primary su-btn--sm">'+SAVE+' '+txt+'</button></div>'; }
 
-  var tabs='<div class="tabs">'
-    +'<button class="tab on">Atendimento no WhatsApp</button>'
-    +'<button class="tab">Ferramentas</button>'
-    +'<button class="tab">Ações da IA</button>'
-    +'<button class="tab">Passagem entre assistentes</button>'
-    +'<button class="tab">Colaboração</button>'
+  var tabs='<div class="su-tabs">'
+    +'<button class="su-tab su-tab--active">Atendimento no WhatsApp</button>'
+    +'<button class="su-tab">Ferramentas</button>'
+    +'<button class="su-tab">Ações da IA</button>'
+    +'<button class="su-tab">Passagem entre assistentes</button>'
+    +'<button class="su-tab">Colaboração</button>'
   +'</div>';
 
   // Card 1 — Respostas automáticas
-  var c1='<div class="card"><div class="card__pad">'
+  var c1='<div class="su-card"><div class="card__pad">'
     +'<div class="aiw-ctitle">Respostas automáticas</div>'
     +tog('IA responde no WhatsApp',true)
     +'<div class="aiw-fld"><label class="aiw-lbl"><span>Quem a IA atende</span>'+INFO+'</label>'
-      +'<select class="inp"><option>Somente leads (recomendado)</option><option>Qualquer número no WhatsApp</option></select></div>'
+      +'<select class="su-select"><option>Somente leads (recomendado)</option><option>Qualquer número no WhatsApp</option></select></div>'
     +'<div class="aiw-div">'
       +'<div class="aiw-lbl"><span>Tempo de espera para agrupar mensagens</span>'+INFO+'</div>'
-      +'<div class="aiw-fld"><label>Segundos (0 a 120)</label><input class="inp num" type="text" value="12"></div>'
+      +'<div class="aiw-fld"><label>Segundos (0 a 120)</label><input class="su-input num" type="text" value="12"></div>'
       +'<div class="aiw-hint">Junta mensagens seguidas do cliente antes de responder. Deixe 0 para responder na hora. Recomendado: 12 segundos.</div>'
       +saveBtn('Salvar')
     +'</div>'
   +'</div></div>';
 
   // Card 2 — Leads e follow-up
-  var c2='<div class="card"><div class="card__pad">'
+  var c2='<div class="su-card"><div class="card__pad">'
     +'<div class="aiw-ctitle">Leads e follow-up</div>'
     +tog('Atendimento de leads por IA (1º contato)',true)
     +'<div class="aiw-div">'
@@ -3135,7 +3117,7 @@ function screenAjustes(title){
   +'</div></div>';
 
   // Card 3 — Negociação e pós-venda
-  var c3='<div class="card"><div class="card__pad">'
+  var c3='<div class="su-card"><div class="card__pad">'
     +'<div class="aiw-ctitle">Negociação e pós-venda</div>'
     +tog('Closer (negociação e fechamento)',true)
     +fld('Nota a partir da qual o Closer assume (0–100)','81')
@@ -3149,7 +3131,7 @@ function screenAjustes(title){
   return '<div class="row-between"><div>'
       +'<h1 class="h1">Ajustes do atendimento por IA</h1>'
       +'<p class="sub" style="margin:0;max-width:760px">Configure como os assistentes de IA atendem, quais ferramentas usam e como passam a conversa entre si e para a equipe do AquaPark.</p>'
-    +'</div><span class="su-badge success">IA ativa</span></div>'
+    +'</div><span class="su-badge su-badge--success">IA ativa</span></div>'
     +'<div class="row-between" style="margin-top:var(--su-space-4)">'+tabs+'</div>'
     +'<div class="aiw-sectitle"><span>Atendimento por IA no WhatsApp</span>'+INFO+'</div>'
     +'<div class="aiw-grid">'+c1+c2+c3+'</div>';
@@ -3215,7 +3197,7 @@ function screenEquipes(title){
     return '<div class="cp-mov" style="border-color:'+bd+'"><span class="cp-mov__v" style="color:'+fg+'">'+v.value+'</span><span class="cp-mov__l">'+v.label+'</span></div>';
   }).join('');
   var overviewCard=
-    '<div class="card"><div class="card__pad">'+
+    '<div class="su-card"><div class="card__pad">'+
       '<div class="card__title" style="margin-bottom:var(--su-space-3)">Visão geral do atendimento</div>'+
       '<div class="cp-stats">'+tilesHtml+'</div>'+
       '<div class="cp-mov-lbl">Movimentações (últimos '+overview.sinceDays+' dias)</div>'+
@@ -3252,7 +3234,7 @@ function screenEquipes(title){
   }).join('') : '';
   var teamsBody=teams.length? '<div class="cp-list">'+teamsList+'</div>'
     : '<div class="cp-empty"><div class="cp-empty__t">Nenhuma equipe cadastrada</div><div class="cp-empty__d">Crie equipes para organizar atendentes e habilitar a visibilidade por time.</div></div>';
-  var teamsCard='<div class="card"><div class="card__pad">'+sectionHead(ICO_USERS,'Equipes','Grupos de atendentes e supervisores que compartilham as conversas.','Nova equipe')+'<div class="cp-sep"></div>'+teamsBody+'</div></div>';
+  var teamsCard='<div class="su-card"><div class="card__pad">'+sectionHead(ICO_USERS,'Equipes','Grupos de atendentes e supervisores que compartilham as conversas.','Nova equipe')+'<div class="cp-sep"></div>'+teamsBody+'</div></div>';
 
   // ---- Filas ----
   var queuesList=queues.length? queues.map(function(q){
@@ -3271,7 +3253,7 @@ function screenEquipes(title){
   }).join('') : '';
   var queuesBody=queues.length? '<div class="cp-list">'+queuesList+'</div>'
     : '<div class="cp-empty"><div class="cp-empty__t">Nenhuma fila cadastrada</div><div class="cp-empty__d">Crie filas para definir o destino das transferências por equipe.</div></div>';
-  var queuesCard='<div class="card"><div class="card__pad">'+sectionHead(ICO_QUEUE,'Filas','Destinos de roteamento usados ao transferir uma conversa para uma equipe.','Nova fila')+'<div class="cp-sep"></div>'+queuesBody+'</div></div>';
+  var queuesCard='<div class="su-card"><div class="card__pad">'+sectionHead(ICO_QUEUE,'Filas','Destinos de roteamento usados ao transferir uma conversa para uma equipe.','Nova fila')+'<div class="cp-sep"></div>'+queuesBody+'</div></div>';
 
   // ---- Tags ----
   var tagsBody=tags.length? '<div class="cp-chips">'+tags.map(function(t){
@@ -3283,7 +3265,7 @@ function screenEquipes(title){
     '</span>';
   }).join('')+'</div>'
     : '<div class="cp-empty"><div class="cp-empty__t">Nenhuma tag cadastrada</div><div class="cp-empty__d">Crie tags para categorizar e filtrar as conversas.</div></div>';
-  var tagsCard='<div class="card"><div class="card__pad">'+sectionHead(ICO_TAG,'Tags','Categorias para classificar conversas (ex.: Financeiro, VIP, Urgente). Uma conversa pode ter várias.','Nova tag')+'<div class="cp-sep"></div>'+tagsBody+'</div></div>';
+  var tagsCard='<div class="su-card"><div class="card__pad">'+sectionHead(ICO_TAG,'Tags','Categorias para classificar conversas (ex.: Financeiro, VIP, Urgente). Uma conversa pode ter várias.','Nova tag')+'<div class="cp-sep"></div>'+tagsBody+'</div></div>';
 
   return '<div class="row-between"><div><h1 class="h1">Equipes e Filas de Atendimento</h1>'+
     '<p class="sub" style="margin:0">Organize atendentes em equipes e defina filas de roteamento para a Central de Atendimento.</p></div></div>'+
@@ -3330,7 +3312,7 @@ function screenAtualizacao(title){
       '<span class="cp-log__s">['+l.step+']</span><span>'+l.msg+'</span></div>';
   }).join('');
 
-  var running='<div class="card" style="margin-top:var(--su-space-4)">'+
+  var running='<div class="su-card" style="margin-top:var(--su-space-4)">'+
     '<div class="card__pad">'+
     '<div class="row-between" style="margin-bottom:var(--su-space-3)">'+
       '<div style="display:flex;align-items:center;gap:var(--su-space-2)">'+
@@ -3370,7 +3352,7 @@ function screenAtualizacao(title){
     '</div>';
   }).join('');
 
-  var availPanel='<div class="card"><div class="card__pad">'+
+  var availPanel='<div class="su-card"><div class="card__pad">'+
     '<div class="row-between" style="margin-bottom:var(--su-space-3)">'+
       '<div class="card__title" style="margin:0">Versões disponíveis</div>'+
       '<button class="su-btn su-btn--secondary su-btn--sm">'+icRefresh+' Atualizar lista</button>'+
@@ -3378,7 +3360,7 @@ function screenAtualizacao(title){
   '</div></div>';
 
   // Último upgrade (SUCCESS)
-  var lastPanel='<div class="card"><div class="card__pad">'+
+  var lastPanel='<div class="su-card"><div class="card__pad">'+
     '<div style="display:flex;align-items:center;gap:var(--su-space-2);margin-bottom:var(--su-space-2)">'+
       '<span style="color:#22c55e">'+icCheck+'</span>'+
       '<div class="card__title" style="margin:0">Último upgrade: v2.1.4 → v2.1.6</div>'+
@@ -3411,7 +3393,7 @@ function screenAtualizacao(title){
       pill(h.st)+
     '</li>';
   }).join('');
-  var histPanel='<div class="card"><div class="card__pad">'+
+  var histPanel='<div class="su-card"><div class="card__pad">'+
     '<div class="row-between" style="cursor:pointer">'+
       '<div style="display:flex;align-items:center;gap:var(--su-space-2)">'+icChevD+
       '<span style="font-weight:var(--su-fw-semibold);color:var(--su-text-primary)">Histórico ('+hist.length+')</span></div>'+
@@ -3423,9 +3405,9 @@ function screenAtualizacao(title){
       '<div><h1 class="h1">'+title+'</h1>'+
       '<p class="sub" style="margin:0">Aplique versões mais recentes. Backup automático antes de cada upgrade.</p></div>'+
     '</div>'+
-    '<div class="tabs" style="margin-top:var(--su-space-4)">'+
-      '<button class="tab on">'+icDown+' Atualização</button>'+
-      '<button class="tab">'+icDb+' Backup e Restauração</button>'+
+    '<div class="su-tabs" style="margin-top:var(--su-space-4)">'+
+      '<button class="su-tab su-tab--active">'+icDown+' Atualização</button>'+
+      '<button class="su-tab">'+icDb+' Backup e Restauração</button>'+
     '</div>'+
     '<div class="kpis cp-stats">'+stats+'</div>'+
     running+
@@ -3488,27 +3470,27 @@ function screenSignatarios(title){
   return `<div class="row-between"><div><h1 class="h1">Signatários da Empresa</h1><p class="sub" style="margin:0">Sócios/representantes que assinam contratos junto com o associado. O signatário marcado como <strong style="color:var(--su-text-secondary)">primário</strong> é adicionado automaticamente em todos os contratos enviados pro D4Sign.</p></div><button class="su-btn su-btn--primary su-btn--sm">${PLUS} Novo signatário</button></div>
 
   <div class="row-between" style="margin-top:var(--su-space-4);flex-wrap:wrap;gap:var(--su-space-3)">
-    <div class="seg">
-      <button class="on">Ativos</button>
-      <button>Inativos</button>
-      <button>Todos</button>
+    <div class="su-segmented" role="tablist">
+      <button class="su-segment su-segment--active" aria-selected="true">Ativos</button>
+      <button class="su-segment">Inativos</button>
+      <button class="su-segment">Todos</button>
     </div>
     <div class="sg-note">${IC_INFO}<span>Signatário primário atual: <strong style="color:var(--su-text-primary)">${primary?primary.n:'—'}</strong></span></div>
   </div>
 
   <div class="sg-grid">${grid}</div>
 
-  <div class="card card__pad" style="margin-top:var(--su-space-5)">
+  <div class="su-card card__pad" style="margin-top:var(--su-space-5)">
     <div class="card__title">Novo / Editar signatário</div>
     <div class="card__desc" style="margin-bottom:var(--su-space-4)">Campos do cadastro. Nome, CPF e e-mail são obrigatórios; apenas 1 signatário pode ser primário por vez.</div>
-    <div class="field-row"><label class="sg-lbl">Nome completo <span style="color:#ef4444">*</span></label><input class="inp" placeholder="Ex.: Robson Marques Júnior"/></div>
+    <div class="field-row"><label class="sg-lbl">Nome completo <span style="color:#ef4444">*</span></label><input class="su-input" placeholder="Ex.: Robson Marques Júnior"/></div>
     <div class="sg-two">
-      <div><label class="sg-lbl">CPF <span style="color:#ef4444">*</span></label><input class="inp" placeholder="000.000.000-00"/></div>
-      <div><label class="sg-lbl">E-mail <span style="color:#ef4444">*</span></label><input class="inp" placeholder="nome@empresa.com.br"/></div>
+      <div><label class="sg-lbl">CPF <span style="color:#ef4444">*</span></label><input class="su-input" placeholder="000.000.000-00"/></div>
+      <div><label class="sg-lbl">E-mail <span style="color:#ef4444">*</span></label><input class="su-input" placeholder="nome@empresa.com.br"/></div>
     </div>
     <div class="sg-two">
-      <div><label class="sg-lbl">Primário</label><select class="inp"><option>Não</option><option>Sim</option></select><span class="sg-hint">Apenas 1 pode ser primário por vez.</span></div>
-      <div><label class="sg-lbl">Em uso</label><select class="inp"><option>Sim</option><option>Não</option></select><span class="sg-hint">Pausa sem inativar (signatário existe mas não assina).</span></div>
+      <div><label class="sg-lbl">Primário</label><select class="su-select"><option>Não</option><option>Sim</option></select><span class="sg-hint">Apenas 1 pode ser primário por vez.</span></div>
+      <div><label class="sg-lbl">Em uso</label><select class="su-select"><option>Sim</option><option>Não</option></select><span class="sg-hint">Pausa sem inativar (signatário existe mas não assina).</span></div>
     </div>
     <div class="row-between" style="margin-top:var(--su-space-5);justify-content:flex-end;gap:var(--su-space-2)">
       <button class="su-btn su-btn--secondary su-btn--sm">Cancelar</button>
@@ -3516,7 +3498,7 @@ function screenSignatarios(title){
     </div>
   </div>
 
-  <div class="card" style="margin-top:var(--su-space-4);padding:var(--su-space-8);display:flex;flex-direction:column;align-items:center;gap:var(--su-space-2);text-align:center;color:var(--su-text-muted)">
+  <div class="su-card" style="margin-top:var(--su-space-4);padding:var(--su-space-8);display:flex;flex-direction:column;align-items:center;gap:var(--su-space-2);text-align:center;color:var(--su-text-muted)">
     <div style="color:var(--su-text-secondary)">${IC_UC}</div>
     <div style="font-weight:var(--su-fw-semibold);color:var(--su-text-secondary)">Estado vazio</div>
     <p style="margin:0;max-width:420px;font-size:var(--su-fs-body-sm)">Nenhum signatário cadastrado. Cadastre pelo menos 1 sócio aqui — será adicionado como segundo signatário em todos os contratos do sistema.</p>
@@ -3602,7 +3584,7 @@ function screenMensagens(title){
   const eventCard=(ev)=>{
     const n=ev.variants.length;
     const addLbl=ev.only?'Adicionar canal':'Adicionar variante';
-    return `<div class="card card__pad mg-evcard">
+    return `<div class="su-card card__pad mg-evcard">
       <div class="mg-evhead">
         <div class="mg-evleft">
           <span class="mg-evname">${ev.label}</span>
@@ -3622,11 +3604,11 @@ function screenMensagens(title){
     ${g.events.map(eventCard).join('')}
   </section>`).join('');
 
-  const testArea=`<div class="card card__pad mg-test">
+  const testArea=`<div class="su-card card__pad mg-test">
     <div class="mg-testhd"><span style="color:var(--su-text-secondary)">${ICO.beaker}</span><b>Área de teste</b><span class="mg-testnote">· dispara qualquer variante com dados de exemplo</span></div>
     <div class="mg-testgrid">
       <label class="mg-fld"><span class="mg-fldlbl">Variante</span>
-        <select class="inp">
+        <select class="su-select">
           <option>Selecione uma variante...</option>
           <option>Fatura gerada — E-mail · No evento</option>
           <option>Lembrete de vencimento — WhatsApp · 3d antes</option>
@@ -3634,7 +3616,7 @@ function screenMensagens(title){
         </select>
       </label>
       <label class="mg-fld"><span class="mg-fldlbl">E-mail</span>
-        <input class="inp" placeholder="voce@exemplo.com">
+        <input class="su-input" placeholder="voce@exemplo.com">
       </label>
       <button class="su-btn su-btn--primary su-btn--sm mg-testbtn">${ICO.send} Enviar teste</button>
     </div>
@@ -3647,10 +3629,10 @@ function screenMensagens(title){
       <p class="sub" style="margin:0">Personalize as mensagens automáticas enviadas por e-mail e WhatsApp em cada evento. Crie variantes (clones) com canais e prazos diferentes.</p>
     </div>
     <div class="mg-hdactions">
-      <div class="seg">
-        <button class="on">Ativos</button>
-        <button>Inativos</button>
-        <button>Todos</button>
+      <div class="su-segmented" role="tablist">
+        <button class="su-segment su-segment--active" aria-selected="true">Ativos</button>
+        <button class="su-segment">Inativos</button>
+        <button class="su-segment">Todos</button>
       </div>
       <button class="su-btn su-btn--secondary su-btn--sm">${ICO.beaker} Diagnóstico</button>
       <button class="su-btn su-btn--secondary su-btn--sm">${ICO.play} Disparar lembretes agora</button>
@@ -3675,10 +3657,10 @@ function screenCanaisVenda(title){
   const PAUSE='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
   const tr=rows.map(c=>{
     const dim=c.del?' style="opacity:.55"':'';
-    const inativoTag=c.del?' <span class="su-badge danger" style="font-size:9px">INATIVO</span>':'';
+    const inativoTag=c.del?' <span class="su-badge su-badge--danger" style="font-size:9px">INATIVO</span>':'';
     const statusCell=c.del
       ? '<span style="color:var(--su-text-muted)">—</span>'
-      : `<span class="su-badge ${c.act?'success':''}" style="text-transform:uppercase;font-size:10px">${c.act?'Ativo':'Inativo'}</span>`;
+: `<span class="su-badge${c.act?' su-badge--success':''}" style="text-transform:uppercase;font-size:10px">${c.act?'Ativo':'Inativo'}</span>`;
     // ações: editar sempre; inativar (se ativo) ou reativar (se inativo); excluir
     const lifeBtn=c.del
       ? ''
@@ -3700,12 +3682,12 @@ function screenCanaisVenda(title){
   }).join('');
   return `<div class="row-between"><div><h1 class="h1">${title}</h1><p class="sub" style="margin:0">Os canais definem como uma venda foi originada e quanto o vendedor (e/ou indicador) recebe.</p></div><button class="su-btn su-btn--primary su-btn--sm">${PLUS} Novo canal</button></div>
 
-  <div class="ei-filter row-between" style="align-items:center">
+  <div class="su-toolbar">
     <span style="font-size:12px;color:var(--su-text-muted)">Metadata de origem — a comissão vem do cadastro do vendedor (Vendedores → Comissão).</span>
-    <div class="seg"><button class="on">Ativos</button><button>Inativos</button><button>Todos</button></div>
+    <div class="su-segmented" role="tablist"><button class="su-segment su-segment--active" aria-selected="true">Ativos</button><button class="su-segment">Inativos</button><button class="su-segment">Todos</button></div>
   </div>
 
-  <div class="card" style="overflow:hidden;padding:0">
+  <div class="su-table-card">
     <table class="su-table">
       <thead><tr>
         <th>Ordem ${SORT}</th><th>Code ${SORT}</th><th>Rótulo ${SORT}</th><th>Status ${SORT}</th>
@@ -3734,13 +3716,13 @@ function screenEventos(title){
     ['Falhou',12,IC.warn,'#ef4444','var(--su-danger-bg)'],
     ['Dead',4,IC.x,'#ef4444','var(--su-danger-bg)']
   ];
-  var statCards=stats.map(function(s){return '<div class="card cp-stat"><div class="cp-stat__ic" style="background:'+s[4]+';color:'+s[3]+'">'+s[2]+'</div><div><div class="cp-stat__v">'+s[1].toLocaleString('pt-BR')+'</div><div class="cp-stat__l">'+s[0]+'</div></div></div>';}).join('');
+  var statCards=stats.map(function(s){return '<div class="su-card cp-stat"><div class="cp-stat__ic" style="background:'+s[4]+';color:'+s[3]+'">'+s[2]+'</div><div><div class="cp-stat__v">'+s[1].toLocaleString('pt-BR')+'</div><div class="cp-stat__l">'+s[0]+'</div></div></div>';}).join('');
 
   var ST={
-    PENDING:'<span class="su-badge warning">Pendente</span>',
-    SUCCESS:'<span class="su-badge success">Sucesso</span>',
-    FAILED:'<span class="su-badge danger">Falhou</span>',
-    DEAD:'<span class="su-badge" style="background:#ef4444;color:#fff;border-color:#ef4444">Dead-letter</span>'
+    PENDING:'<span class="su-badge su-badge--warning">Pendente</span>',
+    SUCCESS:'<span class="su-badge su-badge--success">Sucesso</span>',
+    FAILED:'<span class="su-badge su-badge--danger">Falhou</span>',
+DEAD:'<span class="su-badge su-badge--danger">Dead-letter</span>'
   };
 
   var rows=[
@@ -3768,7 +3750,7 @@ function screenEventos(title){
   }).join('');
 
   var payload='{\n  "invoice_id": "inv_9f3a21",\n  "member_id": 4821,\n  "member_name": "Marcos Vinícius Andrade",\n  "amount": 349.90,\n  "due_date": "2026-07-15",\n  "days_overdue": 4,\n  "channel": "whatsapp",\n  "phone": "(11) 9999"\n}';
-  var detail='<div class="card card__pad">'
+  var detail='<div class="su-card card__pad">'
     +'<div class="row-between" style="margin-bottom:var(--su-space-4)"><div class="card__title">Detalhes do evento</div><button class="su-btn su-btn--secondary su-btn--sm" style="color:#06b6d4">'+IC.refresh+' Reemitir</button></div>'
     +'<div class="cp-detail-grid">'
       +'<div class="cp-field"><p class="cp-field__l">Evento</p><div class="cp-field__v"><span class="cp-code">payment.overdue</span></div></div>'
@@ -3787,8 +3769,8 @@ function screenEventos(title){
 
   return '<div class="row-between"><div><h1 class="h1">Confiabilidade de Eventos</h1><p class="sub" style="margin:0">Monitor do barramento interno: listeners com retry automático (a cada 5min) e dead-letter após 5 tentativas.</p></div><button class="su-btn su-btn--secondary su-btn--sm">'+IC.refresh+' Recarregar</button></div>'
     +'<div class="cp-stats">'+statCards+'</div>'
-    +'<div class="card ei-filter"><select class="inp ei-sel" style="max-width:200px"><option>Todos os status</option><option>Pendentes</option><option>Sucesso</option><option>Falhou</option><option>Dead-letter</option></select><select class="inp ei-sel" style="max-width:220px"><option>Todos os eventos</option><option>lead.created</option><option>sale.confirmed</option><option>contract.ready</option><option>payment.overdue</option><option>invoice.issued</option></select><input class="inp" style="flex:1;min-width:180px" placeholder="Filtrar por listener…"><span class="cp-count">120 eventos</span></div>'
-    +'<div class="card" style="overflow:hidden;padding:0"><table class="su-table"><thead><tr><th>Evento</th><th>Listener</th><th>Status</th><th style="text-align:center">Tent.</th><th>Emitido</th><th>Última tentativa</th><th>Erro</th><th style="text-align:right">Ações</th></tr></thead><tbody>'+tr+'</tbody></table><div class="row-between" style="padding:var(--su-space-3) var(--su-space-4);border-top:1px solid var(--su-border-subtle)"><span class="cp-count" style="margin:0">1–8 de 120</span><div style="display:flex;gap:var(--su-space-2)"><button class="su-btn su-btn--secondary su-btn--sm" disabled>Anterior</button><button class="su-btn su-btn--secondary su-btn--sm">Próxima</button></div></div></div>'
+    +'<div class="su-toolbar"><select class="su-select ei-sel" style="max-width:200px"><option>Todos os status</option><option>Pendentes</option><option>Sucesso</option><option>Falhou</option><option>Dead-letter</option></select><select class="su-select ei-sel" style="max-width:220px"><option>Todos os eventos</option><option>lead.created</option><option>sale.confirmed</option><option>contract.ready</option><option>payment.overdue</option><option>invoice.issued</option></select><input class="su-input" style="flex:1;min-width:180px" placeholder="Filtrar por listener…"><span class="cp-count">120 eventos</span></div>'
+    +'<div class="su-table-card"><table class="su-table"><thead><tr><th>Evento</th><th>Listener</th><th>Status</th><th style="text-align:center">Tent.</th><th>Emitido</th><th>Última tentativa</th><th>Erro</th><th style="text-align:right">Ações</th></tr></thead><tbody>'+tr+'</tbody></table><div class="row-between" style="padding:var(--su-space-3) var(--su-space-4);border-top:1px solid var(--su-border-subtle)"><span class="cp-count" style="margin:0">1–8 de 120</span><div style="display:flex;gap:var(--su-space-2)"><button class="su-btn su-btn--secondary su-btn--sm" disabled>Anterior</button><button class="su-btn su-btn--secondary su-btn--sm">Próxima</button></div></div></div>'
     +detail;
 }
 function screenTarefas(title){
@@ -3840,7 +3822,7 @@ function screenTarefas(title){
       const statusFooter = j.status==='FAILED'
         ? `<span style="color:var(--su-danger-fg);font-weight:var(--su-fw-semibold)"> — falhou</span>`
         : '';
-      return `<div class="card cp-job" style="${j.enabled?'':'opacity:.72;'}border-left:3px solid ${j.enabled?'transparent':'#94a3b8'}">
+      return `<div class="su-card cp-job" style="${j.enabled?'':'opacity:.72;'}border-left:3px solid ${j.enabled?'transparent':'#94a3b8'}">
         <div class="card__pad" style="padding:var(--su-space-4)">
           <div class="row-between" style="align-items:flex-start;gap:var(--su-space-3)">
             <div style="min-width:0">
@@ -3859,7 +3841,7 @@ function screenTarefas(title){
           <div class="cp-grid" style="margin-top:var(--su-space-3)">
             <div>
               <label class="cp-lbl">Expressão cron</label>
-              <input class="inp cp-code" value="${j.cron}" placeholder="0 0 6 * * *">
+              <input class="su-input cp-code" value="${j.cron}" placeholder="0 0 6 * * *">
               <p style="margin:6px 0 0;font-size:var(--su-fs-caption);color:var(--su-text-muted)">Padrão: <span class="cp-mono">${j.def}</span> · ${clock} próxima: ${j.next}</p>
             </div>
             <div style="display:flex;align-items:flex-end;gap:var(--su-space-2)">
@@ -3904,7 +3886,7 @@ function screenDadosTeste(title){
   const head=(ic,col,tt,dd,tcol)=>`<div class="dz-head"><div class="dz-ic" style="background:${col}22;color:${col}">${ic}</div><div class="dz-txt"><b${tcol?` style="color:${tcol}"`:''}>${tt}</b><p class="sub" style="margin:2px 0 0">${dd}</p></div></div>`;
   const btn=(txt,col)=>`<button class="su-btn su-btn--secondary su-btn--sm" style="color:${col};border-color:${col}55">${TRASH}${txt}</button>`;
   return `<div class="row-between"><div><h1 class="h1">Dados de Teste <span class="su-badge">Dev</span></h1><p class="sub" style="margin:0">Ferramentas de desenvolvimento — gerar e limpar dados fictícios. Não use em produção.</p></div></div>
-  <div class="card dz-rich">
+  <div class="su-card dz-rich">
     ${head(IC.db,'#06b6d4','Popular dados de teste','Popula o sistema com dados fictícios completos. Marcados com <code>created_by=SEED_DEV</code> e nomes <code>[TEST] *</code>.')}
     <div class="dz-info"><b>O QUE SERÁ CRIADO / LIMPADO</b><ul>
       <li>5 tags + 6 canais + 5 vendedores + 3 títulos com lotes</li>
@@ -3915,21 +3897,21 @@ function screenDadosTeste(title){
     </ul></div>
     <div class="dz-foot"><button class="su-btn su-btn--primary su-btn--sm">${SPARK} Popular dados de teste</button><button class="su-btn su-btn--secondary su-btn--sm" style="color:#ef4444;border-color:#ef444455">${TRASH} Limpar dados de teste (SEED_DEV)</button></div>
   </div>
-  <div class="card dz-rich">
+  <div class="su-card dz-rich">
     ${head(IC.doc,'#f59e0b','Limpar boletos mock antigos','Remove URLs <code>boleto.aquapark.com/…</code> de faturas geradas em modo simulado. Depois o admin pode gerar o boleto real (Sicoob) novamente.')}
     <div class="dz-foot">${btn('Limpar URLs de boleto mock','#f59e0b')}</div>
   </div>
-  <div class="card dz-rich">
+  <div class="su-card dz-rich">
     ${head(IC.meg,'#a855f7','Limpar marketing manual','Apaga todos os tracking links e campanhas de marketing criados manualmente para teste.')}
     <div class="dz-foot">${btn('Limpar todos os links e campanhas','#a855f7')}</div>
   </div>
-  <div class="card dz-rich">
+  <div class="su-card dz-rich">
     ${head(IC.usr,'#f59e0b','Limpar dados de um associado específico','Remove em cascata: vendas, faturas, contratos, agregados, renegociações, comissões, follow-ups, interações, tags e o próprio cadastro.')}
-    <input class="inp" style="max-width:460px;margin-top:var(--su-space-2)" placeholder="Buscar associado por nome, e-mail ou CPF...">
+    <input class="su-input" style="max-width:460px;margin-top:var(--su-space-2)" placeholder="Buscar associado por nome, e-mail ou CPF...">
   </div>
-  <div class="card dz-rich dz-danger">
+  <div class="su-card dz-rich dz-danger">
     ${head(IC.skull,'#ef4444','Apagar tudo por entidade (PERIGOSO)','Remove TODOS os registros da entidade escolhida. Digite <b>APAGAR TUDO</b> para confirmar.','#ef4444')}
-    <div class="dz-foot"><select class="inp ei-sel"><option>Associados</option><option>Vendas</option><option>Leads</option><option>Contratos</option><option>Cobranças</option></select><input class="inp" style="max-width:180px" placeholder="APAGAR TUDO"><button class="su-btn su-btn--danger su-btn--sm">Apagar tudo</button></div>
+    <div class="dz-foot"><select class="su-select ei-sel"><option>Associados</option><option>Vendas</option><option>Leads</option><option>Contratos</option><option>Cobranças</option></select><input class="su-input" style="max-width:180px" placeholder="APAGAR TUDO"><button class="su-btn su-btn--danger su-btn--sm">Apagar tudo</button></div>
   </div>`;
 }
 function screenEmailInbox(title){
@@ -3968,18 +3950,18 @@ function screenEmailInbox(title){
       <td>${r.nome}</td>
       <td class="ei-wa">${r.wa||'<span style="color:var(--su-text-muted)">—</span>'}</td>
       <td>${vend}</td>
-      <td><div class="ei-st"><span class="su-badge ${s[1]}">${s[0]}</span>${temp}</div></td>
+<td><div class="ei-st"><span class="su-badge su-badge--${s[1]}">${s[0]}</span>${temp}</div></td>
       <td><div class="ei-act">${waBtn}${asBtn}<button class="su-iconbtn" title="Ver detalhes">${IC_EYE}</button></div></td>
     </tr>`;
   }).join('');
   return `<div class="row-between"><div><h1 class="h1">Email Inbox</h1><p class="sub" style="margin:0">Captura automática de leads via IMAP.</p></div></div>
-  <div class="tabs"><button class="tab on">Leads recebidos</button><button class="tab">Regras</button><button class="tab">Configuração</button></div>
-  <div class="card ei-filter">
-    <select class="inp ei-sel"><option>Todos os status</option><option>Pendente</option><option>Atribuído</option><option>Em atendimento</option><option>Convertido</option><option>Descartado</option></select>
+  <div class="su-tabs"><button class="su-tab su-tab--active">Leads recebidos</button><button class="su-tab">Regras</button><button class="su-tab">Configuração</button></div>
+  <div class="su-toolbar">
+    <select class="su-select ei-sel"><option>Todos os status</option><option>Pendente</option><option>Atribuído</option><option>Em atendimento</option><option>Convertido</option><option>Descartado</option></select>
     <button class="su-btn su-btn--secondary su-btn--sm">${IC_RF} Atualizar</button>
     <span class="ei-count">90 leads</span>
   </div>
-  <div class="card" style="overflow:hidden;padding:0">
+  <div class="su-table-card">
     <table class="su-table ei-table"><thead><tr><th>Recebido</th><th>Remetente</th><th>Nome</th><th>WhatsApp</th><th>Vendedor</th><th>Status</th><th style="text-align:center">Ações</th></tr></thead><tbody>${tr}</tbody></table>
   </div>`;
 }
