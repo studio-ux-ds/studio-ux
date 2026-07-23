@@ -61,6 +61,18 @@ export const Desabilitado = {
   ),
 };
 
+export const Carregando = {
+  name: "Carregando (loading)",
+  parameters: { docs: { description: { story: "Padrão canônico do adapter para uma ação assíncrona (P16, P12): o botão troca o ícone à esquerda por `loader-2` e vira `disabled` enquanto submete — o `disabled` nativo bloqueia o duplo-clique. O rótulo pode mudar para o presente contínuo (\"Salvando…\"). É o mesmo padrão que o `ConfirmDialog` aplica na confirmação de ações destrutivas." } } },
+  render: () => (
+    <div className="su-demo-row">
+      <Button variant="primary" icon="loader-2" disabled>Salvando…</Button>
+      <Button variant="danger" icon="loader-2" disabled>Excluindo…</Button>
+      <Button variant="secondary" icon="loader-2" disabled>Enviando…</Button>
+    </div>
+  ),
+};
+
 export const IconButtons = {
   name: "IconButton",
   parameters: { docs: { description: { story: "`.su-iconbtn` — exige `aria-label`." } } },

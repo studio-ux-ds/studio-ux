@@ -38,3 +38,17 @@ export const Estatisticas = {
     </div>
   ),
 };
+
+export const EstatisticasTom = {
+  name: "StatCard — tons semânticos",
+  parameters: { docs: { description: { story: "`tone` = `neutral` | `info` | `success` | `warning` | `danger` (v1.2.4). Tinge o valor e a borda com o par semântico do token de status — sinal funcional, não decorativo. `neutral` mantém a superfície padrão." } } },
+  render: () => (
+    <div className="su-demo-grid">
+      <StatCard tone="neutral" label="Neutro (padrão)" value="1.284" />
+      <StatCard tone="info" label="A processar" value="127" delta="12 hoje" deltaType="up" />
+      <StatCard tone="success" label="Concluído" value="R$ 84.900" delta="8,2%" deltaType="up" />
+      <StatCard tone="warning" label="Atrasado" value="9" delta="2 novos" deltaType="up" />
+      <StatCard tone="danger" label="Falhas" value="3" delta="1" deltaType="up" />
+    </div>
+  ),
+};

@@ -98,3 +98,48 @@ export const Simples = {
     </div>
   ),
 };
+
+export const LinhaClicavel = {
+  name: "Linha clicável (onRowClick + getRowLabel)",
+  parameters: { docs: { description: { story: "Quando abrir o registro é a **ação principal** da linha (v1.2.4), passe `onRowClick` e `getRowLabel`: a linha inteira vira alvo (mouse, `Enter`, `Espaço`) e recebe `aria-label` a partir do rótulo derivado; a classe `.su-table__row--clickable` marca o hover. O menu por linha e o checkbox continuam alvos independentes (o clique neles não abre o detalhe)." } } },
+  render: () => {
+    function Demo() {
+      const [aberto, setAberto] = useState(null);
+      return (
+        <div style={{ padding: 24, background: "var(--su-surface-base)" }}>
+          <DataTable
+            columns={columns}
+            rows={ROWS}
+            getRowId={(r) => r.id}
+            renderRowMenu={() => <RowMenu />}
+            onRowClick={(r) => setAberto(r)}
+            getRowLabel={(r) => `Abrir ${r.nome}`}
+          />
+          <p style={{ marginTop: 16, fontSize: 13, color: "var(--su-text-secondary)" }}>
+            {aberto ? <>Aberto: <strong>{aberto.nome}</strong></> : "Clique numa linha (ou foque e aperte Enter)."}
+          </p>
+        </div>
+      );
+    }
+    return <Demo />;
+  },
+};
+
+export const Bare = {
+  name: "Modo bare (sem cartão)",
+  parameters: { docs: { description: { story: "Com `bare` (v1.2.4) o `DataTable` **não** desenha o próprio `.su-table-card`, entregando só toolbar+tabela+footer para caber dentro de outro cartão (é assim que o `ListScreen` compõe o molde). Use quando o wrapper de superfície já é outro." } } },
+  render: () => (
+    <div style={{ padding: 24, background: "var(--su-surface-base)" }}>
+      <div className="su-table-card">
+        <div style={{ display: "flex", alignItems: "center", padding: "12px 16px", borderBottom: "1px solid var(--su-border-subtle)" }}>
+          <strong style={{ fontSize: 14, flex: 1 }}>Cartão externo (container próprio)</strong>
+          <Button variant="secondary" size="sm" icon="filter">Filtrar</Button>
+        </div>
+        <DataTable bare columns={columns} rows={ROWS} getRowId={(r) => r.id} />
+        <div style={{ padding: "10px 16px", fontSize: 12, color: "var(--su-text-muted)", borderTop: "1px solid var(--su-border-subtle)" }}>
+          {ROWS.length} registros
+        </div>
+      </div>
+    </div>
+  ),
+};

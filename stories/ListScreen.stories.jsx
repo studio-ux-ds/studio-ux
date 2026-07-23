@@ -129,3 +129,29 @@ export const Erro = {
     </Frame>
   ),
 };
+
+function LinhaClicavelDemo() {
+  const [aberto, setAberto] = useState(null);
+  return (
+    <Frame>
+      <ListScreen
+        title="Receitas"
+        subtitle="Clique numa linha (ou foque e aperte Enter) para abrir o detalhe."
+        primaryAction={<Button variant="primary" icon="plus">Nova entrada</Button>}
+        search="" onSearch={() => {}} searchPlaceholder="Buscar receita…"
+        segments={[{ id: "", label: "Tudo" }, { id: "PF", label: "Pessoal" }, { id: "PJ", label: "Empresarial" }]} segment="" onSegment={() => {}}
+        columns={columns} rows={RAW} getRowId={(r) => r.id}
+        renderRowMenu={rowMenu} renderCard={renderCard}
+        onRowClick={(r) => setAberto(r)}
+        getRowLabel={(r) => `Abrir ${r.desc}`}
+        summary={aberto ? <span>Aberto: <strong>{aberto.desc}</strong></span> : <span>Mostrando {RAW.length} de {RAW.length}</span>}
+      />
+    </Frame>
+  );
+}
+
+export const LinhaClicavel = {
+  name: "Linha clicável (onRowClick + getRowLabel)",
+  parameters: { docs: { description: { story: "Quando abrir o registro é a ação principal (v1.2.4), o `ListScreen` propaga `onRowClick`/`getRowLabel` para o `DataTable` interno: linha inteira clicável (mouse, `Enter`, `Espaço`), `aria-label` acessível, e as ações em `renderRowMenu` continuam alvos independentes (o clique no menu não abre o detalhe)." } } },
+  render: () => <LinhaClicavelDemo />,
+};

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { AppShell, ListScreen, Badge, Tag, IconButton, Button, CommandPalette } from "@studio-ux-ds/react";
+import React, { useEffect, useState } from "react";
+import { AppShell, ListScreen, Badge, Tag, IconButton, Button, CommandPalette, setLayout } from "@studio-ux-ds/react";
 
 export default {
   title: "Padrões/AppShell",
@@ -103,4 +103,35 @@ export const Recolhida = {
 export const SemUsuario = {
   render: (args) => <Demo {...args} user={undefined} onLogout={undefined} />,
   name: "Sem menu de usuário",
+};
+
+function TopNavDemo() {
+  // A variante topnav é lida do theme (setLayout persiste em localStorage).
+  // Setamos aqui na entrada para a story ilustrar a casca horizontal; a saída
+  // volta para "sidebar" para não vazar preferência entre stories.
+  useEffect(() => { setLayout("topnav"); return () => setLayout("sidebar"); }, []);
+  return <Demo />;
+}
+
+export const TopNav = {
+  name: "Layout topnav (barra superior)",
+  parameters: { docs: { description: { story: "Variante `layout=\"topnav\"` do `AppShell` (v1.1.19): a navegação principal vira **barra horizontal** no topo, com grupos colapsáveis em `<details>` (`.su-topnav*`), enquanto a Sidebar deixa de existir. O restante da casca (busca/⌘K, notificações, ajuda, menu do usuário) permanece idêntico — a variante afeta só a região de navegação. A preferência é persistida via `setLayout(\"topnav\")`; o painel `Customize` do menu do usuário troca ao vivo entre `sidebar` e `topnav`." } } },
+  render: () => <TopNavDemo />,
+};
+
+export const MenuUsuarioCustomizado = {
+  name: "Menu do usuário com itens custom (userMenuItems)",
+  parameters: { docs: { description: { story: "`userMenuItems` (v1.1.19) adiciona ações do sistema consumidor **acima** dos itens padrão (Personalizar, Claro/Escuro, Sair) no menu do usuário. Aceita `{ icon, label, hint, onClick, danger }` e um `{ separator: true }` para dividir grupos. A separação entre itens custom e itens padrão é feita automaticamente pela casca." } } },
+  render: (args) => (
+    <Demo
+      {...args}
+      userMenuItems={[
+        { icon: "user", label: "Perfil", onClick: () => {} },
+        { icon: "building", label: "Empresa ativa", hint: "Nivoo", onClick: () => {} },
+        { icon: "credit-card", label: "Assinatura", hint: "Anual", onClick: () => {} },
+        { separator: true },
+        { icon: "help", label: "Central de ajuda", onClick: () => {} },
+      ]}
+    />
+  ),
 };
