@@ -95,11 +95,11 @@
 
 ---
 
-## 6. Nota sobre a fase atual · Note on the current phase
+## 6. Estado operacional atual · Current operational state
 
-**PT** — Na versão `v0.2.0` (Fase 1.5 concluída), o Studio UX é **só documentação** — a linguagem visual está definida como *caráter e regras*, mas tokens, componentes e telas ainda não foram implementados e **nenhum valor estético final** foi decidido (isso é a Fase 2). Se te pedirem para "usar o componente X" ou "o token Y" antes de eles existirem, avise a fase e ofereça construir a partir das *especificações* documentadas. Se faltar qualquer informação, **não invente**: crie uma proposta e aguarde aprovação (`AI_RULES.md`, `STUDIO_UX.md` §12). Ver `STUDIO_UX_ROADMAP.md`.
+**PT** — O Studio UX já é um produto materializado: os tokens, componentes CSS, adapters React/React Native, ícones, CLI e Storybook existem em `packages/*`. Antes de alterar uma tela ou componente, inventarie o contrato e o código reais no pacote dono; não trate especificações históricas como ausência de implementação. A fase e a versão vigentes são as de `STUDIO_UX.md` §0, `docs/context/STUDIO_UX_HANDOFF.md`, `CHANGELOG.md` e tags git — nunca deste contexto. Se faltar informação ou cobertura no contrato atual, pare, proponha a menor extensão e aguarde aprovação.
 
-**EN** — In `v0.2.0` (Phase 1.5 done), Studio UX is **documentation only** — the visual language is defined as *character and rules*, but tokens, components and screens are not implemented yet and **no final aesthetic value** has been decided (that's Phase 2). If asked to "use component X" or "token Y" before they exist, note the phase and offer to build from the documented *specifications*. If any information is missing, **do not invent**: create a proposal and wait for approval (`AI_RULES.md`, `STUDIO_UX.md` §12). See `STUDIO_UX_ROADMAP.md`.
+**EN** — Studio UX is already a materialized product: tokens, CSS components, React/React Native adapters, icons, CLI and Storybook exist in `packages/*`. Before changing a screen or component, inventory the actual contract and code in the owning package; do not treat historical specifications as missing implementation. The current phase and version live in `STUDIO_UX.md` §0, `docs/context/STUDIO_UX_HANDOFF.md`, `CHANGELOG.md` and git tags — never in this context. If information or coverage is missing from the current contract, stop, propose the smallest extension and wait for approval.
 
 ---
 

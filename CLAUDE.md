@@ -60,4 +60,4 @@ Quando existir, o Storybook documenta o **`@studio-ux-ds/react` real** (cada com
 
 ---
 
-*Versão 0.1.0 — fundação inicial. Escrito depois de uma sessão em que a IA agiu por suposição (reconstruiu a camada React que já existia) — a Regra Zero existe pra isso não repetir. Atualizar quando a arquitetura de pacotes mudar.*
+*Documento vivo. A Regra Zero nasceu depois de uma sessão em que a IA agiu por suposição (reconstruiu uma camada React já existente) e continua obrigatória. O estado e a versão atuais vivem em `STUDIO_UX.md`, `docs/context/STUDIO_UX_HANDOFF.md`, `CHANGELOG.md` e nas tags git.*
