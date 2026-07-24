@@ -12,6 +12,25 @@
 
 - **docs(prompt-framework)** · 2026-07-23 — adota `C:\Users\Flowspec\Documents\STUDIO-WORKFLOW\` v3.0.0 como fonte única do método (paradigma `prompt-framework/v1`). Agnósticos locais (`README.md`, `prompt-alinhamento.md`) viraram stubs; `COMO-INTERAGIR-COM-ROBSON.md` também. Catálogo local migrou para `studio-ux.specialty-catalog@2.0.0` (`kind: shared`, PT+EN); as 6 especialidades foram para o schema formal em `studio-ux.*@1.0.0`, todas com `extends: workflow.system-change-base@1.0.0`.
 
+## [1.2.11] — 2026-07-24
+
+### Changed
+
+- **`docs/components/STUDIO_UX_COMPONENT_LIBRARY.md` — regra permanente do Modal**: "formulário com `TextArea` para descrição/texto rico ou qualquer campo que exija escrita reflexiva **não vive em Modal — vira rota/tela dedicada**." Reforço explícito nas seções "Quando NÃO usar", "Regras" e "Anti-padrões" (PT+EN). Motivação: o textarea empurra o form pra baixo do scrim, reduz o espaço útil de escrita e escrever texto denso preso num modal (com o resto da tela ausente) é hostil ao pensamento. Regra alinhada com P22 (overlay é pra tarefa curta) e P6 (ação primária da tela mora no PageHeader).
+
+### Origem
+
+Descoberta durante a migração da tela `IA/Aprovacoes` do IA Studio pro DS (release `v0.9.86`, 2026-07-24): o `PolicyModal` original — que tem `TextArea` de Descrição + `TextArea` de Condição JSON — foi migrado 1:1 para o `Modal` do DS, mas Robson identificou o antipattern na revisão visual. Regra promovida imediatamente pra evitar que a mesma cagada se repita em outras migrações.
+
+### Impacto nos consumidores
+
+- **Puramente documental.** Nenhuma quebra de API, nenhum bump de código do adapter/CSS. A regra vale a partir de agora pra novas telas e pra planejamento de refactor arquitetural das telas existentes.
+- Consumidores em migração devem **rever seus modais**: qualquer `Modal` com `TextArea` como campo central é candidato a virar rota dedicada em sub-frente futura. Não é urgência de "quebrar tudo agora" — é bússola pra evitar novos casos e priorizar o refactor dos existentes.
+
+### Bump lockstep
+
+Todos os 7 pacotes vão pra `1.2.11` mesmo sendo mudança só de doc — mantém o padrão "1 tag = 1 estado da spec" (a spec inclui a doc; o snapshot da spec avança).
+
 ## [1.2.10] — 2026-07-24
 
 ### Added
