@@ -5,13 +5,19 @@ import { DSIcon } from "./DSIcon.jsx";
  * NumericInput — .su-numeric. Campo numérico com passos +/−.
  * NUNCA usa input[type=number] (regra dura herdada dos 3 sistemas).
  * onChange recebe number (ou string intermediária "" / "-" durante digitação).
+ * @param {boolean} [fullWidth]  Estica o componente e o input pra ocupar 100% do
+ *   container. Default `false` (inline-flex com input de 72px — comportamento
+ *   consagrado quando o campo tem largura natural). Use `fullWidth` quando o
+ *   NumericInput vive dentro de uma célula de grid/Field que dá 100% de espaço
+ *   e o vazio à direita destoa (ex.: forms em grid-cols-3).
  */
-export function NumericInput({ value = 0, onChange, min, max, step = 1, disabled, className = "", ...rest }) {
+export function NumericInput({ value = 0, onChange, min, max, step = 1, disabled, fullWidth = false, className = "", ...rest }) {
   const clamp = (n) => { if (min != null && n < min) n = min; if (max != null && n > max) n = max; return n; };
   const num = Number(value) || 0;
   const set = (n) => onChange && onChange(clamp(n));
+  const cls = ["su-numeric", fullWidth && "su-numeric--full", className].filter(Boolean).join(" ");
   return (
-    <div className={["su-numeric", className].filter(Boolean).join(" ")}>
+    <div className={cls}>
       <button type="button" className="su-numeric__btn" aria-label="Diminuir" disabled={disabled || (min != null && num <= min)} onClick={() => set(num - step)}>−</button>
       <input className="su-numeric__input" inputMode="decimal" value={value} disabled={disabled}
         onChange={(e) => { const v = e.target.value; if (v === "" || v === "-") { onChange && onChange(v); return; } const n = Number(v); if (!Number.isNaN(n)) set(n); }}

@@ -12,6 +12,38 @@
 
 - **docs(prompt-framework)** · 2026-07-23 — adota `C:\Users\Flowspec\Documents\STUDIO-WORKFLOW\` v3.0.0 como fonte única do método (paradigma `prompt-framework/v1`). Agnósticos locais (`README.md`, `prompt-alinhamento.md`) viraram stubs; `COMO-INTERAGIR-COM-ROBSON.md` também. Catálogo local migrou para `studio-ux.specialty-catalog@2.0.0` (`kind: shared`, PT+EN); as 6 especialidades foram para o schema formal em `studio-ux.*@1.0.0`, todas com `extends: workflow.system-change-base@1.0.0`.
 
+## [1.2.10] — 2026-07-24
+
+### Added
+
+- **`NumericInput` ganha prop `fullWidth`** (`@studio-ux-ds/react` + `@studio-ux-ds/components`). Opt-in: quando `true`, o componente muda de `inline-flex` (largura natural ~140px) para `flex; width: 100%` e o input interno passa de `width: 72px` fixo para `flex: 1`. Útil quando o `NumericInput` vive numa célula de grid/`Field` que oferece 100% de espaço (o default deixa um vazio à direita que destoa em forms `grid-cols-3` etc.).
+
+### Origem
+
+Descoberto na aplicação real durante a migração da tela `IA/Custos` do IA Studio pro DS (release `v0.9.84` do IA Studio, 2026-07-24): forms em `grid-cols-3` (Simulador de custo) mostravam os NumericInputs alinhados à esquerda com espaço vazio à direita dentro da célula. Alternativas foram avaliadas com o dono (aceitar, quick fix na tela, evoluir o DS); optou-se pela evolução do DS pra não criar inconsistência entre telas nem hack no consumidor.
+
+### Como o consumidor usa
+
+```jsx
+import { NumericInput, Field } from '@studio-ux-ds/react';
+
+// Default (largura natural, ~140px, alinhado à esquerda no container):
+<Field label="Quantidade">
+  <NumericInput value={qty} onChange={setQty} min={0} step={1} />
+</Field>
+
+// fullWidth (estica pra 100% do container — Field/grid cell/qualquer coisa):
+<Field label="Tokens de prompt">
+  <NumericInput value={form.prompt_tokens} onChange={(v) => patch({ prompt_tokens: v })} min={0} step={100} fullWidth />
+</Field>
+```
+
+### Compatibilidade
+
+Backwards-compatible. Default é `false` — todo callsite existente continua exatamente como estava. Consumidores que quiserem a nova largura opt-in explicitamente com `fullWidth`.
+
+
+
 
 - **PT:** `StatCard` semântico passa a manter a superfície neutra: borda, valor e ícone carregam o tom funcional, sem fundo colorido. O adapter React expõe o slot opcional `icon`, e as referências Financeiro e Comercial demonstram o mesmo contrato.
 - **EN:** Semantic `StatCard` now keeps a neutral surface: border, value and icon carry the functional tone, without a colored background. The React adapter exposes the optional `icon` slot, and the Financial and Commercial references demonstrate the same contract.

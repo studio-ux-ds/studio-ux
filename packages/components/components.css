@@ -166,18 +166,25 @@
 /* ---------- Dados · Data ---------- */
 .su-card { background: var(--su-surface-raised); border: 1px solid var(--su-border-strong); border-radius: var(--su-radius-lg); padding: var(--su-space-5); box-shadow: var(--su-elevation-raised); }
 .su-statcard { background: var(--su-surface-raised); border: 1px solid var(--su-border-strong); border-radius: var(--su-radius-lg); padding: var(--su-space-5); box-shadow: var(--su-elevation-raised); }
+.su-statcard__head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--su-space-3); }
 .su-statcard__label { font-size: 12px; font-weight: var(--su-fw-medium); color: var(--su-text-secondary); }
+.su-statcard__icon { width: 36px; height: 36px; flex: none; border-radius: var(--su-radius-md); display: inline-flex; align-items: center; justify-content: center; background: var(--su-surface-sunken); color: var(--su-text-muted); }
+.su-statcard__icon > svg { width: 18px; height: 18px; }
 .su-statcard__value { font-size: 24px; font-weight: var(--su-fw-semibold); letter-spacing: -.02em; color: var(--su-text-primary); margin-top: var(--su-space-2); }
 .su-statcard__delta { display: flex; align-items: center; gap: var(--su-space-1); margin-top: var(--su-space-1); font-size: var(--su-fs-caption); color: var(--su-success-fg); }
 .su-statcard__delta--down { color: var(--su-danger-fg); }
-.su-statcard--info { border-color: color-mix(in srgb, var(--su-action) 58%, var(--su-border-strong)); border-left-width: 3px; background: color-mix(in srgb, var(--su-action) 5%, var(--su-surface-raised)); }
+.su-statcard--info { border-color: color-mix(in srgb, var(--su-action) 58%, var(--su-border-strong)); background: var(--su-surface-raised); }
 .su-statcard--info .su-statcard__value, .su-statcard--info .su-statcard__delta { color: var(--su-action); }
-.su-statcard--success { border-color: color-mix(in srgb, var(--su-success-fg) 54%, var(--su-border-strong)); border-left-width: 3px; background: color-mix(in srgb, var(--su-success-fg) 5%, var(--su-surface-raised)); }
+.su-statcard--info .su-statcard__icon { background: var(--su-action-tint); color: var(--su-action); }
+.su-statcard--success { border-color: color-mix(in srgb, var(--su-success-fg) 54%, var(--su-border-strong)); background: var(--su-surface-raised); }
 .su-statcard--success .su-statcard__value, .su-statcard--success .su-statcard__delta { color: var(--su-success-fg); }
-.su-statcard--warning { border-color: color-mix(in srgb, var(--su-warning-fg) 54%, var(--su-border-strong)); border-left-width: 3px; background: color-mix(in srgb, var(--su-warning-fg) 5%, var(--su-surface-raised)); }
+.su-statcard--success .su-statcard__icon { background: var(--su-success-bg); color: var(--su-success-fg); }
+.su-statcard--warning { border-color: color-mix(in srgb, var(--su-warning-fg) 54%, var(--su-border-strong)); background: var(--su-surface-raised); }
 .su-statcard--warning .su-statcard__value, .su-statcard--warning .su-statcard__delta { color: var(--su-warning-fg); }
-.su-statcard--danger { border-color: color-mix(in srgb, var(--su-danger-fg) 54%, var(--su-border-strong)); border-left-width: 3px; background: color-mix(in srgb, var(--su-danger-fg) 5%, var(--su-surface-raised)); }
+.su-statcard--warning .su-statcard__icon { background: var(--su-warning-bg); color: var(--su-warning-fg); }
+.su-statcard--danger { border-color: color-mix(in srgb, var(--su-danger-fg) 54%, var(--su-border-strong)); background: var(--su-surface-raised); }
 .su-statcard--danger .su-statcard__value, .su-statcard--danger .su-statcard__delta { color: var(--su-danger-fg); }
+.su-statcard--danger .su-statcard__icon { background: var(--su-danger-bg); color: var(--su-danger-fg); }
 .su-table tbody tr.su-table__row--clickable { cursor: pointer; }
 .su-table tbody tr.su-table__row--clickable:hover { background: var(--su-action-tint); }
 .su-table tbody tr.su-table__row--clickable:focus-visible { outline: 2px solid var(--su-focus-ring); outline-offset: -2px; }
@@ -318,6 +325,12 @@
 .su-numeric__btn { width: 32px; border: none; background: var(--su-surface-sunken); color: var(--su-text-secondary); cursor: pointer; font-size: 16px; display: inline-flex; align-items: center; justify-content: center; }
 .su-numeric__btn:hover { background: var(--su-border-default); color: var(--su-text-primary); }
 .su-numeric__btn:disabled { opacity: .4; cursor: not-allowed; }
+/* Variante `fullWidth`: estica o componente e o input pra ocupar 100% do
+   container. Útil quando o NumericInput vive numa célula de grid/Field que dá
+   100% de espaço (o default inline-flex com input de 72px destoa). Opt-in via
+   prop `fullWidth` no adapter React. */
+.su-numeric--full { display: flex; width: 100%; }
+.su-numeric--full .su-numeric__input { flex: 1; width: auto; }
 
 /* ---------- TextArea ---------- */
 .su-textarea { font-family: var(--su-font-ui); font-size: 14px; color: var(--su-text-primary); min-height: 84px; padding: var(--su-space-2) var(--su-space-3); background: var(--su-surface-raised); border: 1px solid var(--su-border-default); border-radius: var(--su-radius-md); resize: vertical; line-height: 1.5; transition: border-color var(--su-duration-fast) var(--su-ease-standard), box-shadow var(--su-duration-fast) var(--su-ease-standard); }

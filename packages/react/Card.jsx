@@ -9,11 +9,15 @@ export function Card({ className = "", children, ...rest }) {
  * StatCard — .su-statcard. Indicador numérico sóbrio.
  * @param {"neutral"|"info"|"success"|"warning"|"danger"} [tone]
  * @param {"up"|"down"} [deltaType]
+ * @param {React.ReactNode} [icon] Elemento visual opcional para reforçar a métrica.
  */
-export function StatCard({ label, value, delta, deltaType, tone = "neutral" }) {
+export function StatCard({ label, value, delta, deltaType, icon, tone = "neutral" }) {
   return (
     <div className={["su-statcard", tone !== "neutral" && `su-statcard--${tone}`].filter(Boolean).join(" ")}>
-      <div className="su-statcard__label">{label}</div>
+      <div className="su-statcard__head">
+        <div className="su-statcard__label">{label}</div>
+        {icon && <span className="su-statcard__icon" aria-hidden="true">{icon}</span>}
+      </div>
       <div className="su-statcard__value">{value}</div>
       {delta && (
         <div className={["su-statcard__delta", deltaType === "down" && "su-statcard__delta--down"].filter(Boolean).join(" ")}>
