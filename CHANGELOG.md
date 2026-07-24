@@ -6,6 +6,16 @@
 
 ---
 
+## [Unreleased]
+
+### Changed
+
+- **docs(prompt-framework)** · 2026-07-23 — adota `C:\Users\Flowspec\Documents\STUDIO-WORKFLOW\` v3.0.0 como fonte única do método (paradigma `prompt-framework/v1`). Agnósticos locais (`README.md`, `prompt-alinhamento.md`) viraram stubs; `COMO-INTERAGIR-COM-ROBSON.md` também. Catálogo local migrou para `studio-ux.specialty-catalog@2.0.0` (`kind: shared`, PT+EN); as 6 especialidades foram para o schema formal em `studio-ux.*@1.0.0`, todas com `extends: workflow.system-change-base@1.0.0`.
+
+
+- **PT:** `StatCard` semântico passa a manter a superfície neutra: borda, valor e ícone carregam o tom funcional, sem fundo colorido. O adapter React expõe o slot opcional `icon`, e as referências Financeiro e Comercial demonstram o mesmo contrato.
+- **EN:** Semantic `StatCard` now keeps a neutral surface: border, value and icon carry the functional tone, without a colored background. The React adapter exposes the optional `icon` slot, and the Financial and Commercial references demonstrate the same contract.
+
 ## [1.2.9] - 2026-07-22
 
 ### Fixed
