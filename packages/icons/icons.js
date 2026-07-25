@@ -31,6 +31,15 @@ export const ICONS = {
   "refresh": { meaning: "recarregar / sincronizar", keywords: ["reload", "sync", "retry"], body: '<path d="M4 12a8 8 0 0 1 13.7-5.7L20 8"/><path d="M20 3v5h-5"/><path d="M20 12a8 8 0 0 1-13.7 5.7L4 16"/><path d="M4 21v-5h5"/>' },
   "filter": { meaning: "filtrar lista", keywords: ["funnel", "refine"], body: '<path d="M4 5h16l-6 7v6l-4-2v-4z"/>' },
 
+  // — Seleção — glifos de caixa. Existem porque os nomes `square*` estavam
+  // aliasados para ícones sem relação (`square` → `file`, `square-check` →
+  // `check-circle`): quem pedia uma caixa recebia um documento. Estes são a
+  // representação VISUAL de seleção; para um controle de verdade use
+  // `<input type="checkbox" class="su-checkbox">` (semântico, focável).
+  "square": { meaning: "caixa vazia / não selecionado", keywords: ["checkbox", "unchecked", "empty"], body: '<rect x="4" y="4" width="16" height="16" rx="3"/>' },
+  "square-check": { meaning: "caixa marcada / selecionado", keywords: ["checkbox", "checked", "selected"], body: '<rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 12.5l2.8 2.8L16 10"/>' },
+  "square-minus": { meaning: "seleção parcial (alguns marcados)", keywords: ["checkbox", "indeterminate", "partial"], body: '<rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8.5 12h7"/>' },
+
   // — Objetos / navegação principal —
   "home": { meaning: "início", keywords: ["house", "start", "dashboard"], body: '<path d="M4 11l8-6 8 6"/><path d="M6 10v9h12v-9"/><path d="M10 19v-5h4v5"/>' },
   "user": { meaning: "pessoa / perfil", keywords: ["person", "account", "profile"], body: '<circle cx="12" cy="8" r="4"/><path d="M5 20a7 7 0 0 1 14 0"/>' },

@@ -163,7 +163,44 @@
 /* ---------- Controles de formulário · Form controls ---------- */
 .su-select { appearance: none; font-family: var(--su-font-ui); font-size: 14px; width: 100%; box-sizing: border-box; height: 38px; padding: 0 var(--su-space-8) 0 var(--su-space-3); background: var(--su-surface-raised); border: 1px solid var(--su-border-default); border-radius: var(--su-radius-md); color: var(--su-text-primary); cursor: pointer; }
 .su-select:focus-visible { outline: none; border-color: var(--su-border-focus); box-shadow: 0 0 0 3px var(--su-action-tint); }
-.su-checkbox, .su-radio { width: 16px; height: 16px; accent-color: var(--su-action); cursor: pointer; }
+/* Caixa e círculo de seleção — desenhados pelo DS, mas em `<input>` REAL
+   (`appearance: none` estiliza sem perder foco por teclado, anúncio de leitor de
+   tela nem estado indeterminado nativo).
+   **A FORMA CARREGA O SIGNIFICADO** (P17 — sinalizar por mais que cor):
+   · quadrado (`checkbox`) = pode escolher VÁRIOS;
+   · círculo  (`radio`)    = escolhe UM.
+   O ✓ é o mesmo nos dois: quem diz "está selecionado" é o preenchimento + o
+   sinal; quem diz "quantos cabem" é a forma. Não usar círculo onde se pode
+   marcar vários — é a convenção mais antiga da interface e quebrá-la confunde
+   antes de qualquer rótulo explicar. */
+.su-checkbox, .su-radio {
+  appearance: none; -webkit-appearance: none; margin: 0;
+  width: 17px; height: 17px; flex: none; box-sizing: border-box;
+  border: 1.5px solid var(--su-border-strong); background: var(--su-surface-raised);
+  cursor: pointer; position: relative; display: inline-block; vertical-align: middle;
+  transition: background var(--su-duration-fast) var(--su-ease-standard),
+              border-color var(--su-duration-fast) var(--su-ease-standard);
+}
+.su-checkbox { border-radius: var(--su-radius-sm); }
+.su-radio { border-radius: var(--su-radius-full); }
+.su-checkbox:hover:not(:disabled), .su-radio:hover:not(:disabled) { border-color: var(--su-action); }
+.su-checkbox:focus-visible, .su-radio:focus-visible { outline: none; border-color: var(--su-border-focus); box-shadow: 0 0 0 3px var(--su-action-tint); }
+.su-checkbox:checked, .su-radio:checked { background: var(--su-action); border-color: var(--su-action); }
+/* ✓ desenhado com duas bordas rotacionadas — sem depender de webfont nem SVG. */
+.su-checkbox:checked::after, .su-radio:checked::after {
+  content: ""; position: absolute; left: 4.5px; top: 1.5px;
+  width: 5px; height: 9px;
+  border: solid var(--su-text-on-action); border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+/* Seleção parcial (alguns marcados) — traço, não ✓: diz "nem tudo". */
+.su-checkbox:indeterminate { background: var(--su-action); border-color: var(--su-action); }
+.su-checkbox:indeterminate::after {
+  content: ""; position: absolute; left: 2.5px; top: 6.5px;
+  width: 9px; height: 0; border-top: 2px solid var(--su-text-on-action);
+  transform: none;
+}
+.su-checkbox:disabled, .su-radio:disabled { opacity: .5; cursor: not-allowed; }
 
 .su-switch { position: relative; display: inline-block; width: 40px; height: 23px; }
 .su-switch input { opacity: 0; width: 0; height: 0; }

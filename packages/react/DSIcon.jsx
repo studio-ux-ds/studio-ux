@@ -24,9 +24,12 @@ const ALIASES = {
   "layout-navbar": "menu",
   adjustments: "settings",
   "circle-check": "check-circle",
-  "square-check": "check-circle",
-  "square-minus": "minus",
-  square: "file",
+  // `square`, `square-check` e `square-minus` NÃO são mais alias: viraram glifos
+  // de verdade em `icons.js` (v1.2.15). Estavam apontando para ícones sem relação
+  // — `square` → `file` fazia a caixa de seleção da DataTable renderizar um
+  // DOCUMENTO, e `square-check` → `check-circle` a marcada virar um círculo.
+  // Alias tem precedência sobre o glifo (`ALIASES[name] || name`), então manter
+  // as três linhas aqui anularia os ícones novos.
   "alert-triangle": "alert-circle",
   inbox: "file",
   "calendar-event": "calendar",

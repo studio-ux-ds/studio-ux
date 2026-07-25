@@ -1,5 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect, useId } from "react";
 import { DSIcon } from "./DSIcon.jsx";
+
+/**
+ * Controle de seleção da linha — `<input>` REAL (não um ícone clicável): focável
+ * por teclado, anunciado por leitor de tela e com estado indeterminado nativo.
+ *
+ * **A forma carrega o significado** (P17): em `selectionMode="multiple"` é um
+ * `checkbox` (quadrado — cabe vários); em `"single"` é um `radio` (círculo —
+ * cabe um). O desenho vem do `.su-checkbox`/`.su-radio` do DS; o ✓ é o mesmo nos
+ * dois, porque quem diz "quantos cabem" é a forma, não o sinal.
+ */
+function SelectBox({ checked, indeterminate, onChange, label, single, name }) {
+  const ref = useRef(null);
+  useEffect(() => {
+    if (ref.current && !single) ref.current.indeterminate = !!indeterminate && !checked;
+  }, [indeterminate, checked, single]);
+  return (
+    <input
+      ref={ref}
+      type={single ? "radio" : "checkbox"}
+      // `name` compartilhado agrupa os radios: sem ele cada um é um grupo de um
+      // só e as setas do teclado não andam entre as linhas.
+      name={single ? name : undefined}
+      className={single ? "su-radio" : "su-checkbox"}
+      checked={!!checked}
+      onChange={onChange}
+      onClick={(event) => event.stopPropagation()}
+      aria-label={label}
+    />
+  );
+}
 
 /**
  * DataTable — .su-table-card + .su-table, com seleção em lote e menu por linha.
@@ -27,6 +57,7 @@ import { DSIcon } from "./DSIcon.jsx";
 export function DataTable({ columns, rows, getRowId = (r, i) => i, bulkActions, renderRowMenu, toolbar, footer, selectable: selectableProp, selectionMode = "multiple", bare = false, onRowClick, getRowLabel }) {
   const selectable = selectableProp != null ? selectableProp : bulkActions != null;
   const single = selectionMode === "single";
+  const radioName = `su-select-${useId()}`;
   const [sel, setSel] = useState(() => new Set());
   const ids = rows.map(getRowId);
   const allChecked = !single && rows.length > 0 && sel.size === rows.length;
@@ -41,9 +72,22 @@ export function DataTable({ columns, rows, getRowId = (r, i) => i, bulkActions, 
   const content = <>
       {selectable && sel.size > 0 ? (
         <div style={{ display: "flex", alignItems: "center", gap: 20, padding: "13px 16px", background: "var(--su-action-tint)", fontSize: 12 }}>
-          <span style={{ fontWeight: 500 }}><DSIcon name="square-check" style={{ color: "var(--su-action)" }} /> {sel.size} selecionado{sel.size > 1 ? "s" : ""}</span>
+          {/* Sem ícone de caixa marcada aqui: a barra já diz "N selecionado" por
+              escrito e as linhas já mostram o próprio estado. O ícone era a mesma
+              informação uma terceira vez — ruído competindo com o dado (P1). */}
+          <span style={{ fontWeight: 500 }}>
+            {sel.size} selecionado{sel.size > 1 ? "s" : ""}
+          </span>
           {bulkActions && bulkActions(Array.from(sel), clear)}
-          <span style={{ marginLeft: "auto", color: "var(--su-text-muted)", cursor: "pointer" }} onClick={clear}><DSIcon name="x" /> Limpar</span>
+          {/* "Limpar" é ação: botão de verdade, não um <span> clicável (era
+              inalcançável por teclado). */}
+          <button
+            type="button"
+            onClick={clear}
+            style={{ marginLeft: "auto", display: "inline-flex", alignItems: "center", gap: 4, background: "none", border: 0, padding: 0, font: "inherit", color: "var(--su-text-muted)", cursor: "pointer" }}
+          >
+            <DSIcon name="close" /> Limpar
+          </button>
         </div>
       ) : toolbar}
 
@@ -55,9 +99,12 @@ export function DataTable({ columns, rows, getRowId = (r, i) => i, bulkActions, 
               // a célula fica vazia em vez de oferecer o que não se pode fazer.
               <th style={selCell}>
                 {!single && (
-                  <DSIcon name={allChecked ? "square-check" : sel.size ? "square-minus" : "square"}
-                    size="sm" style={{ cursor: "pointer", color: sel.size ? "var(--su-action)" : "var(--su-text-muted)" }}
-                    onClick={toggleAll} role="checkbox" aria-checked={allChecked} />
+                  <SelectBox
+                    checked={allChecked}
+                    indeterminate={sel.size > 0}
+                    onChange={toggleAll}
+                    label={allChecked ? "Desmarcar todas as linhas" : "Marcar todas as linhas"}
+                  />
                 )}
               </th>
             )}
@@ -75,10 +122,14 @@ export function DataTable({ columns, rows, getRowId = (r, i) => i, bulkActions, 
                 onClick={open} onKeyDown={(event) => { if (onRowClick && (event.key === "Enter" || event.key === " ")) { event.preventDefault(); open(); } }}
                 style={on ? { background: "color-mix(in srgb, var(--su-action) 5%, transparent)" } : undefined}>
                 {selectable && (
-                  <td style={{ paddingLeft: 16 }}>
-                    <DSIcon name={on ? "square-check" : "square"}
-                      size="sm" style={{ cursor: "pointer", color: on ? "var(--su-action)" : "var(--su-text-muted)" }}
-                      onClick={(event) => { event.stopPropagation(); toggle(id); }} role="checkbox" aria-checked={on} />
+                  <td style={{ paddingLeft: 16 }} onClick={(event) => event.stopPropagation()}>
+                    <SelectBox
+                      single={single}
+                      name={radioName}
+                      checked={on}
+                      onChange={() => toggle(id)}
+                      label={getRowLabel ? `Selecionar ${getRowLabel(r)}` : "Selecionar esta linha"}
+                    />
                   </td>
                 )}
                 {columns.map((c) => <td key={c.key} className={c.align === "right" ? "num" : ""}>{c.render ? c.render(r) : r[c.key]}</td>)}

@@ -12,6 +12,34 @@
 
 - **docs(prompt-framework)** · 2026-07-23 — adota `C:\Users\Flowspec\Documents\STUDIO-WORKFLOW\` v3.0.0 como fonte única do método (paradigma `prompt-framework/v1`). Agnósticos locais (`README.md`, `prompt-alinhamento.md`) viraram stubs; `COMO-INTERAGIR-COM-ROBSON.md` também. Catálogo local migrou para `studio-ux.specialty-catalog@2.0.0` (`kind: shared`, PT+EN); as 6 especialidades foram para o schema formal em `studio-ux.*@1.0.0`, todas com `extends: workflow.system-change-base@1.0.0`.
 
+## [1.2.15] — 2026-07-24
+
+### Fixed
+
+- **A caixa de seleção da `DataTable` aparecia como um ícone de DOCUMENTO.** O componente desenhava a seleção com `DSIcon name="square"` — e `square` estava **aliasado para `file`** no `DSIcon`. A caixa vazia renderizava uma folha de papel; a marcada (`square-check` → `check-circle`) virava um círculo; a parcial (`square-minus` → `minus`) um traço solto. Contraintuitivo e sem relação com "selecionar", exatamente como o Robson descreveu.
+- **A seleção virou `<input>` REAL** (novo helper `SelectBox` dentro do `DataTable`). O ícone clicável não era focável por teclado, não era anunciado por leitor de tela e não tinha **estado indeterminado nativo** — o "alguns marcados" do cabeçalho era um traço desenhado. Agora o indeterminate vem de `ref.indeterminate`, o `aria-label` diz o que o controle faz (usando o `getRowLabel` quando existe) e o clique não propaga pro `onRowClick` da linha.
+
+### Changed
+
+- **`.su-checkbox` e `.su-radio` passaram a ser desenhados pelo DS** (`appearance: none` + tokens), em vez de herdar o desenho nativo cru com `accent-color`. Ganharam borda `--su-border-strong`, preenchimento `--su-action` quando marcados, ✓ branco desenhado em CSS (duas bordas rotacionadas — sem webfont nem SVG), traço no `:indeterminate`, hover, `:focus-visible` com anel (P18) e estado `:disabled`. Continuam sendo `<input>` de verdade: estilizar com `appearance: none` **não** custa acessibilidade.
+- **A FORMA passou a carregar o significado (P17).** No `DataTable`: `selectionMode="multiple"` renderiza `checkbox` (**quadrado** — cabe vários); `selectionMode="single"` renderiza `radio` (**círculo** — cabe um). O ✓ é o mesmo nos dois: quem diz "está selecionado" é o preenchimento + o sinal; quem diz "quantos cabem" é a forma. É a convenção mais antiga da interface — círculo onde se pode marcar vários confunde antes de qualquer rótulo explicar. Em `single` os radios compartilham um `name` (via `useId`), senão cada um seria um grupo de um só e as setas do teclado não andariam entre as linhas.
+- **Três glifos de caixa criados em `icons.js`** — `square`, `square-check`, `square-minus` (retângulo com raio; com ✓; com traço) — e os três **aliases enganosos removidos** do `DSIcon`. Precisavam sair: o alias tem precedência sobre o glifo (`ALIASES[name] || name`), então manter as linhas anularia os ícones novos. Quem pedir `square` agora recebe um quadrado.
+- **"Limpar" da barra de lote virou `<button>`** — era um `<span>` com `onClick`, inalcançável por teclado.
+- **Removido o ícone de caixa marcada ao lado do "N selecionado"** na barra de lote. A barra já diz a quantidade **por escrito** e cada linha marcada já mostra o próprio estado — o ícone era a mesma informação uma terceira vez, ruído competindo com o dado (P1). Achado pelo Robson na revisão visual: *"esse que marquei é redundante na visualização"*.
+
+### Origem
+
+Robson, olhando a barra de lote que acabou de entrar (v1.2.14): *"o checkbox está com ícone de arquivo, ficou estranho e contraintuitivo"*. O `.su-checkbox` já existia no CSS e o componente `Checkbox` já existia no React — o `DataTable` só não os usava. **Quarto caso** do mesmo padrão nesta sequência (`fullWidth`, `Button.loading`, largura dos controles, agora a caixa de seleção): a peça certa existia no DS e o componente improvisava com outra.
+
+### Impacto nos consumidores
+
+- **Puramente visual/semântico, sem mudança de API.** Nenhum call-site de `DataTable` muda.
+- Se algum consumidor pedia `DSIcon name="square"` esperando o ícone de arquivo (improvável, era um bug), agora recebe um quadrado — o correto.
+
+### Bump lockstep
+
+Todos os 7 pacotes vão pra `1.2.15`. **Consumidor precisa bumpar os três** — `react` (o `SelectBox`), `components` (o desenho do `.su-checkbox`/`.su-radio`) e `icons` (os glifos `square*`).
+
 ## [1.2.14] — 2026-07-24
 
 ### Added
