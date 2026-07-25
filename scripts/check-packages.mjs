@@ -52,5 +52,29 @@ for (const file of scan(rnDir).filter((f) => /\.jsx?$/.test(f))) {
   if (/@studio-ux-ds\/react[^-]/.test(src)) fail(`${file}: adapter nativo importa o adapter web (viola P4)`);
 }
 
+// Integridade de comentário de bloco — nasceu de um bug REAL na v1.2.17: um JSDoc
+// escrito com `**3**/**4**` contém a sequência `*/`, que FECHA o comentário no meio
+// da frase. O resto do texto virou código, o arquivo ficou sintaticamente inválido
+// e foi PUBLICADO — porque este script só verificava se os arquivos existiam, não
+// se eram válidos. O consumidor só descobriu no build.
+//
+// Sem parser (este script é dependency-free e roda antes do `npm install` na CI):
+// a heurística é precisa para esta classe — numa linha de continuação de comentário
+// (começa com `*`), um `*/` que NÃO está no fim da linha fechou o bloco cedo.
+const commentFiles = [
+  ...scan(join(root, "packages")).filter((f) => /\.(jsx?|mjs|css)$/.test(f) && !f.includes("node_modules")),
+];
+for (const file of commentFiles) {
+  const lines = readFileSync(file, "utf8").split("\n");
+  lines.forEach((line, i) => {
+    if (!/^\s*\*/.test(line)) return;            // só linhas de continuação de JSDoc
+    const at = line.indexOf("*/");
+    if (at === -1) return;
+    if (line.slice(at + 2).trim() !== "") {
+      fail(`${file.replace(root, ".")}:${i + 1}: "*/" no meio de um comentário fecha o bloco cedo — o resto da linha vira código. Reescreva sem "*/" (ex.: "3 ou 4" em vez de "**3**/**4**").`);
+    }
+  });
+}
+
 console.log(errors ? `\n${errors} problema(s).` : "\nTudo certo — pacotes prontos para empacotar.");
 process.exit(errors ? 1 : 0);

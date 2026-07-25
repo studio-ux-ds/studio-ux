@@ -12,6 +12,22 @@
 
 - **docs(prompt-framework)** · 2026-07-23 — adota `C:\Users\Flowspec\Documents\STUDIO-WORKFLOW\` v3.0.0 como fonte única do método (paradigma `prompt-framework/v1`). Agnósticos locais (`README.md`, `prompt-alinhamento.md`) viraram stubs; `COMO-INTERAGIR-COM-ROBSON.md` também. Catálogo local migrou para `studio-ux.specialty-catalog@2.0.0` (`kind: shared`, PT+EN); as 6 especialidades foram para o schema formal em `studio-ux.*@1.0.0`, todas com `extends: workflow.system-change-base@1.0.0`.
 
+## [1.2.18] — 2026-07-25
+
+### Fixed
+
+- **`packages/react/Controls.jsx` estava sintaticamente INVÁLIDO na v1.2.17 — e foi publicado assim.** No JSDoc do `CheckGroup` eu escrevi `**3**/**4**`; a sequência `*` + `/` no meio disso **é `*/`**, que fecha o comentário de bloco ali. O resto da frase (`*4** para rótulos curtos…`) passou a ser lido como código. Reescrito como `3 ou 4`.
+  - **Sintoma:** qualquer parser quebra no arquivo. O build do Storybook falhou com `[storybook:react-docgen-plugin] Controls.jsx: Unexpected token (38:33)`, e o mesmo vale para o Vite/esbuild de qualquer consumidor que instale a `1.2.17`.
+  - **Quem instalou `@studio-ux-ds/react@1.2.17` precisa subir para `1.2.18`.** Consumidor com faixa `^1.2.17` pega a correção sozinho no próximo `npm install`.
+
+### Changed
+
+- **`scripts/check-packages.mjs` passou a validar integridade de comentário de bloco.** A v1.2.17 saiu quebrada porque o gate de publicação verificava se os arquivos **existiam**, não se eram **válidos** — e o workflow de publish roda esse script antes do `npm publish`, sem `npm install`, então não há parser disponível. A checagem nova é dependency-free e precisa para esta classe: numa linha de continuação de comentário (começa com `*`), um `*/` que não está no fim da linha fechou o bloco cedo → falha com o arquivo, a linha e a sugestão de reescrita. Roda sobre `.js`/`.jsx`/`.mjs`/`.css` de `packages/`.
+
+### Lição
+
+Três gates e o erro passou por todos: o `check-packages` (checava existência, não validade), o `npm publish` (não parseia nada) e a minha própria leitura (o `*/` é invisível quando você lê a frase em vez dos caracteres). O único que pegou foi o Storybook — **depois** de o pacote quebrado já estar no registry. Gate que valida forma sem validar conteúdo dá falsa segurança; foi por isso que a checagem entrou no mesmo script que já bloqueia o publish, e não num lint separado que ninguém roda.
+
 ## [1.2.17] — 2026-07-25
 
 ### Added

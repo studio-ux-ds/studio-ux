@@ -33,9 +33,9 @@ export function Checkbox({ label, className = "", id, inline = false, ...rest })
  * encaixa quantas couberem e cai pra uma sozinho em tela estreita.
  *
  * @param {"auto"|1|2|3|4} [columns="auto"]  quantas colunas no máximo. `auto` é
- *   o default (o mesmo que 3): usa o espaço que tem. Use **1** quando cada opção
- *   traz texto explicativo longo e a leitura em coluna única é melhor; **2** para
- *   rótulos de uma frase; **3**/**4** para rótulos curtos (nomes, chaves).
+ *   o default (o mesmo que 3): usa o espaço que tem. Use 1 quando cada opção traz
+ *   texto explicativo longo e a leitura em coluna única é melhor; 2 para rótulos
+ *   de uma frase; 3 ou 4 para rótulos curtos (nomes, chaves).
  * @param {string} [role]  passe `"group"` (checkboxes) ou `"radiogroup"` (radios)
  *   com um `aria-labelledby` apontando pro título da seção, quando o grupo tem
  *   um título visível.
