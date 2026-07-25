@@ -67,6 +67,34 @@ Dono · Owner:                este doc, para o domínio "composição de tabelas
 
 **EN — Row actions and opening the detail.** The last column holds the **per-row actions**, and composition follows the same economy as the rest: expose the **few** most likely actions as `IconButton`s (with tooltip and accessible label — P17), and collapse the rest into a "more" `Menu`, so the row doesn't become a button bar competing with the data (P1). Actions reveal with restraint on row hover (Desktop) but stay always keyboard-reachable (P19) — never hover-only. A destructive row action carries the five (P13). The most common action of all — **opening the record's detail** — is usually the clickable row itself (or a `Link` on the key column), leading to the detail screen (`DescriptionList`, `Tabs`, `Timeline` — `PATTERNS` §1); the row needs no redundant "open" button when the whole row is already the target.
 
+### O teste objetivo da coluna de ações · The objective test for the action column
+
+**PT** — A regra do parágrafo acima estava sendo lida como conselho e violada na prática (lápis "editar" repetido em toda linha). Vira teste **mecânico**:
+
+> **A linha é o alvo.** Antes de colocar QUALQUER botão numa linha, pergunte: *"esse botão leva ao mesmo lugar que clicar na linha levaria?"* Se sim, **ele não existe** — a linha inteira é `onRowClick`, e o botão sai.
+
+Como decidir, em ordem:
+
+1. **A linha tem UM destino natural** (abrir o registro — detalhe, editor, entradas)? → `onRowClick` para lá. **Nenhum** botão na linha. Um texto acima da tabela avisa o caminho ("Clique num orçamento para ajustar limite e alerta") — a afordância é o hover da linha + esse aviso, não um ícone repetido N vezes.
+2. **Sobrou ação secundária** que NÃO é "abrir" (sincronizar, duplicar, arquivar, exportar)? → ela vai no `Menu` de "mais opções" da linha **ou** — melhor — desce pra dentro da tela/overlay de destino, onde tem contexto pra ser entendida. Sincronizar um servidor faz mais sentido ao lado do que ele trouxe do que solto numa lista.
+3. **A linha NÃO tem destino** (o backend não expõe leitura/edição individual)? → a linha **não é clicável**, e a ação, se houver, é botão explícito. Não invente rota que não existe só pra cumprir a regra.
+4. **A linha tem duas decisões concorrentes** (ex.: aprovar × rejeitar)? → **não** são dois botões na linha. Isso é sinal de que falta a tela onde a decisão é tomada com o contexto na frente: a linha abre o detalhe, e as duas ações vivem lá. Decidir com 1 clique cego numa lista é pior que 2 cliques informados.
+
+**Anti-padrão consequente:** `onRowClick` **e** um botão de editar na mesma linha. São dois alvos primários disputando o mesmo clique; o usuário não sabe qual usa, e o botão rouba o clique de quem mirou na linha.
+
+**EN** — The paragraph above was being read as advice and violated in practice (an "edit" pencil repeated on every row). It becomes a **mechanical** test:
+
+> **The row is the target.** Before putting ANY button on a row, ask: *"does this button lead where clicking the row would lead?"* If yes, **it does not exist** — the whole row is `onRowClick`, and the button goes away.
+
+How to decide, in order:
+
+1. **Does the row have ONE natural destination** (open the record — detail, editor, entries)? → `onRowClick` there. **No** button on the row. A line of text above the table states the path ("Click a budget to adjust its limit and alert") — the affordance is the row hover plus that hint, not an icon repeated N times.
+2. **Any secondary action left** that is NOT "open" (sync, duplicate, archive, export)? → it goes in the row's "more" `Menu` **or** — better — moves into the destination screen/overlay, where it has context to be understood. Syncing a server makes more sense next to what it brought back than loose in a list.
+3. **Does the row have no destination** (the backend exposes no single-record read/edit)? → the row is **not** clickable, and the action, if any, is an explicit button. Do not invent a route that does not exist just to satisfy the rule.
+4. **Does the row carry two competing decisions** (e.g. approve × reject)? → those are **not** two row buttons. That is a sign the decision screen is missing: the row opens the detail, and both actions live there. Deciding with one blind click in a list is worse than two informed clicks.
+
+**Resulting anti-pattern:** `onRowClick` **and** an edit button on the same row. Two primary targets fighting for the same click; the user cannot tell which to use, and the button steals the click from whoever aimed at the row.
+
 ---
 
 ## 4. Ordenação · Sorting

@@ -12,6 +12,31 @@
 
 - **docs(prompt-framework)** · 2026-07-23 — adota `C:\Users\Flowspec\Documents\STUDIO-WORKFLOW\` v3.0.0 como fonte única do método (paradigma `prompt-framework/v1`). Agnósticos locais (`README.md`, `prompt-alinhamento.md`) viraram stubs; `COMO-INTERAGIR-COM-ROBSON.md` também. Catálogo local migrou para `studio-ux.specialty-catalog@2.0.0` (`kind: shared`, PT+EN); as 6 especialidades foram para o schema formal em `studio-ux.*@1.0.0`, todas com `extends: workflow.system-change-base@1.0.0`.
 
+## [1.2.12] — 2026-07-24
+
+### Changed
+
+- **`docs/components/STUDIO_UX_COMPONENT_LIBRARY.md` — a regra do Modal virou TESTE OBJETIVO.** A v1.2.11 escreveu a regra em prosa editorial ("campo que exija escrita reflexiva") e ela foi interpretada por gosto — cada caso virou uma discussão sobre o `TextArea` ser "pequeno o bastante". Substituída por critério **mecânico, verificável por `grep`**: *se o formulário contém um `TextArea`, ele NÃO é Modal — é rota.* Sem exceção de tamanho, obrigatoriedade ou "é só um motivinho curto". Nova subseção **"Modal ou rota? — o teste objetivo"** (PT+EN) com: a lista fechada dos campos que Modal aceita (`Input`, `NumericInput`, `Select`, `Combobox`, `Checkbox`, `Switch`, `RadioGroup`, `DatePicker`), o **porquê** de ser absoluta (o que decide não é o tamanho do campo, é o que ele pede do usuário — `Input` pede dado que ele já tem na cabeça, `TextArea` pede que ele **componha**, e compor exige ver o contexto que o Modal esconde atrás do scrim), como promover pra rota, e 4 **casos-limite resolvidos** (motivo opcional de rejeição → rota; JSON mono → rota; leitura de lista curta → pode ser Modal; `ConfirmDialog` sem campo → Modal sempre).
+- **`docs/STUDIO_UX_TABLES.md` §3 — a regra da linha clicável virou TESTE OBJETIVO.** A regra já existia ("a linha não precisa de um botão 'abrir' redundante quando ela inteira já é o alvo") mas estava enterrada no meio de um parágrafo de prosa, e foi violada na prática. Nova subseção **"O teste objetivo da coluna de ações"** (PT+EN): antes de colocar QUALQUER botão numa linha, perguntar *"esse botão leva ao mesmo lugar que clicar na linha levaria?"* — se sim, ele não existe. Mais uma **árvore de decisão em 4 casos**: (1) um destino natural → `onRowClick`, zero botão; (2) ação secundária que não é "abrir" → `Menu` de mais-opções ou, melhor, desce pra dentro da tela de destino; (3) linha sem destino (backend não expõe leitura/edição individual) → linha não clicável, não invente rota; (4) duas decisões concorrentes na linha (aprovar × rejeitar) → sinal de que falta a tela de decisão; a linha abre o detalhe e as ações vivem lá. **Anti-padrão nomeado:** `onRowClick` **e** botão de editar na mesma linha (dois alvos primários disputando o mesmo clique).
+
+### Origem
+
+Duas descobertas na sequência, durante a migração da família IA Studio:
+
+1. **Modal.** A regra da v1.2.11 não segurou: na migração de `IA/Ferramentas` (release `v0.9.87` do IA Studio) o `ToolModal` foi corretamente promovido a rota, mas o `RejectModal` do `Aprovacoes` (um `TextArea` de motivo, 2 linhas, opcional) ficou como Modal por eu ter julgado "curto o bastante". Robson cortou a ambiguidade: *"modal deveria ser usado somente aonde havera poucos dados e nunca aonde tem imputs grandes como o descrição e o jason"*. Regra reescrita como teste binário.
+2. **Tabelas.** Na mesma release eu coloquei um lápis "editar" em cada linha do catálogo de habilidades. Robson: *"se não me engano em tabelas teremos sempre linha clicaveis sem botões de ações"* — e estava certo, a regra já estava escrita no `TABLES` §3. Ou seja: **a regra existir não basta se estiver diluída em prosa.** Promovida a teste verificável, com a árvore de decisão que cobre os casos que davam margem a improviso.
+
+Lição registrada no método: quando uma regra do DS é violada por quem a leu, o problema costuma ser a **forma** da regra (editorial, sujeita a julgamento), não a falta dela. A correção é transformá-la em teste mecânico.
+
+### Impacto nos consumidores
+
+- **Puramente documental.** Nenhuma quebra de API, nenhuma mudança de CSS/adapter. Consumidor NÃO precisa bumpar dependência por causa desta release.
+- **Auditoria recomendada** nos consumidores em adoção — dois `grep` resolvem: `TextArea` dentro de arquivo que também tem `Modal` (candidato a rota), e `renderRowMenu` com botão que leva ao mesmo destino do `onRowClick` (botão redundante). Foi exatamente essa auditoria que gerou a release `v0.9.88` do IA Studio, que corrigiu as 4 telas já migradas.
+
+### Bump lockstep
+
+Todos os 7 pacotes vão pra `1.2.12` mesmo sendo mudança só de doc — mantém o padrão "1 tag = 1 estado da spec".
+
 ## [1.2.11] — 2026-07-24
 
 ### Changed
