@@ -12,6 +12,30 @@
 
 - **docs(prompt-framework)** · 2026-07-23 — adota `C:\Users\Flowspec\Documents\STUDIO-WORKFLOW\` v3.0.0 como fonte única do método (paradigma `prompt-framework/v1`). Agnósticos locais (`README.md`, `prompt-alinhamento.md`) viraram stubs; `COMO-INTERAGIR-COM-ROBSON.md` também. Catálogo local migrou para `studio-ux.specialty-catalog@2.0.0` (`kind: shared`, PT+EN); as 6 especialidades foram para o schema formal em `studio-ux.*@1.0.0`, todas com `extends: workflow.system-change-base@1.0.0`.
 
+## [1.2.16] — 2026-07-25
+
+### Fixed
+
+- **Várias opções seguidas ficavam NA MESMA LINHA, com o rótulo de uma encostando no controle da próxima.** O rótulo do `Checkbox`/`Radio` era `display: inline-flex` por estilo inline — e elemento inline não quebra linha, então nem `space-y-*` no container resolvia. O default virou **`flex` (bloco): uma lista de opções empilha**, que é o caso comum. Para o caso raro de opções lado a lado existe a prop **`inline`** (classe `.su-check--inline`).
+- **`align-items: flex-start` + `line-height: 1.45`** no rótulo: quando o texto da opção é longo e quebra em duas linhas, o controle fica alinhado com a **primeira** linha em vez de flutuar no meio do parágrafo.
+- **O ✓ saía torto no círculo.** Estava posicionado por offset fixo em px, calibrado para o quadrado; no `radio` isso desalinhava. Agora é `left/top: 50%` + `translate(-50%,-50%)`, que centraliza em qualquer forma. Mesmo tratamento no traço do `:indeterminate`.
+- **Estilo saiu do inline para a classe `.su-check`** (P1: prop traduz para classe, não para valor). Antes o rótulo carregava `style={{...}}` com tamanho, cor e gap cravados — o consumidor não tinha como tematizar.
+
+### Origem
+
+Robson, revisando a família ISP recém-migrada (`v0.9.92`): *"não sei se é o DS, muito junto os checkbox do fim das frases"* — no card "Comportamento do assistente", as 4 opções apareciam em duas linhas corridas, com "…por este incidente✓ Informar a previsão…" grudado. E no mesmo print, o ✓ do radio desalinhado.
+
+**Quinto caso** do padrão desta sequência: o componente funcionava na montagem em que foi testado primeiro (uma opção sozinha), e quebrava na montagem óbvia seguinte (uma lista de opções).
+
+### Impacto nos consumidores
+
+- **Mudança visual em quem usa `Checkbox`/`Radio` com rótulo.** Onde havia várias opções na horizontal por acidente, elas passam a empilhar (o correto). Se alguma tela dependia do arranjo horizontal, passar `inline`.
+- Sem mudança de API fora disso: `inline` é opt-in com default `false`.
+
+### Bump lockstep
+
+Todos os 7 pacotes vão pra `1.2.16`. **Consumidor precisa bumpar** `react` + `components`.
+
 ## [1.2.15] — 2026-07-24
 
 ### Fixed

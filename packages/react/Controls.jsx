@@ -5,24 +5,35 @@ export function Select({ className = "", children, ...rest }) {
   return <select className={["su-select", className].filter(Boolean).join(" ")} {...rest}>{children}</select>;
 }
 
-/** Checkbox — .su-checkbox (accent-color = cor de ação). Rótulo opcional à direita. */
-export function Checkbox({ label, className = "", id, ...rest }) {
+/**
+ * Checkbox — `.su-checkbox` (quadrado: cabe VÁRIOS). Rótulo opcional à direita.
+ * @param {boolean} [inline] põe a opção na mesma linha das vizinhas. O default é
+ *   EMPILHAR: uma lista de opções é vertical. (Até a v1.2.15 o rótulo era
+ *   `inline-flex` e várias opções seguidas fluíam na mesma linha, com o texto de
+ *   uma encostando no controle da próxima.)
+ */
+export function Checkbox({ label, className = "", id, inline = false, ...rest }) {
   const input = <input type="checkbox" id={id} className={["su-checkbox", className].filter(Boolean).join(" ")} {...rest} />;
   if (!label) return input;
   return (
-    <label htmlFor={id} style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 13, color: "var(--su-text-primary)" }}>
-      {input}{label}
+    <label htmlFor={id} className={["su-check", inline && "su-check--inline"].filter(Boolean).join(" ")}>
+      {input}<span>{label}</span>
     </label>
   );
 }
 
-/** Radio — .su-radio. */
-export function Radio({ label, className = "", id, ...rest }) {
+/**
+ * Radio — `.su-radio` (círculo: cabe UM). Radios do mesmo grupo precisam do
+ * mesmo `name`, senão cada um é um grupo de um só e as setas do teclado não
+ * andam entre eles.
+ * @param {boolean} [inline] mesma linha das vizinhas; o default é empilhar.
+ */
+export function Radio({ label, className = "", id, inline = false, ...rest }) {
   const input = <input type="radio" id={id} className={["su-radio", className].filter(Boolean).join(" ")} {...rest} />;
   if (!label) return input;
   return (
-    <label htmlFor={id} style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 13, color: "var(--su-text-primary)" }}>
-      {input}{label}
+    <label htmlFor={id} className={["su-check", inline && "su-check--inline"].filter(Boolean).join(" ")}>
+      {input}<span>{label}</span>
     </label>
   );
 }
