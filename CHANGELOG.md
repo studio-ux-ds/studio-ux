@@ -12,7 +12,9 @@
 
 - **docs(prompt-framework)** · 2026-07-23 — adota `C:\Users\Flowspec\Documents\STUDIO-WORKFLOW\` v3.0.0 como fonte única do método (paradigma `prompt-framework/v1`). Agnósticos locais (`README.md`, `prompt-alinhamento.md`) viraram stubs; `COMO-INTERAGIR-COM-ROBSON.md` também. Catálogo local migrou para `studio-ux.specialty-catalog@2.0.0` (`kind: shared`, PT+EN); as 6 especialidades foram para o schema formal em `studio-ux.*@1.0.0`, todas com `extends: workflow.system-change-base@1.0.0`.
 
-## [1.2.18] — 2026-07-25
+## [1.2.19] — 2026-07-25
+
+> **A tag `v1.2.18` existe mas NÃO publicou nada com esse número.** Eu corrigi o código e escrevi a entrada, mas **esqueci de bumpar os `package.json`** — que continuaram em `1.2.17`. O workflow então republicou `1.2.17` (já existente no registry), o CI ficou **verde**, e o consumidor que pediu `^1.2.18` recebeu `ETARGET: No matching version found`. O conteúdo que era pra ser a 1.2.18 está nesta 1.2.19; a tag `v1.2.18` fica queimada (tag é imutável).
 
 ### Fixed
 
@@ -22,11 +24,21 @@
 
 ### Changed
 
+- **`scripts/check-packages.mjs` passou a validar que a TAG bate com a versão dos pacotes.** Este é o gate que faltava e que deixou a `v1.2.18` sair vazia: o workflow publica quando uma tag `vX.Y.Z` é empurrada, mas nada conferia se os `package.json` diziam `X.Y.Z`. Com as versões atrasadas, o `npm publish` republica a versão antiga — **sem erro**, porque tecnicamente é um publish válido — e o número da tag simplesmente nunca existe no registry. Agora, se `GITHUB_REF_NAME` for uma tag de versão e não casar com o lockstep, o publish falha antes, dizendo o comando exato para corrigir. Validei simulando os dois casos (tag certa passa; tag `v1.2.18` com pacotes em `1.2.19` falha).
 - **`scripts/check-packages.mjs` passou a validar integridade de comentário de bloco.** A v1.2.17 saiu quebrada porque o gate de publicação verificava se os arquivos **existiam**, não se eram **válidos** — e o workflow de publish roda esse script antes do `npm publish`, sem `npm install`, então não há parser disponível. A checagem nova é dependency-free e precisa para esta classe: numa linha de continuação de comentário (começa com `*`), um `*/` que não está no fim da linha fechou o bloco cedo → falha com o arquivo, a linha e a sugestão de reescrita. Roda sobre `.js`/`.jsx`/`.mjs`/`.css` de `packages/`.
+
+### Bump lockstep
+
+Todos os 7 pacotes vão pra `1.2.19`. **Consumidor precisa usar `^1.2.19`** — `^1.2.18` não resolve, porque essa versão não existe no registry.
 
 ### Lição
 
-Três gates e o erro passou por todos: o `check-packages` (checava existência, não validade), o `npm publish` (não parseia nada) e a minha própria leitura (o `*/` é invisível quando você lê a frase em vez dos caracteres). O único que pegou foi o Storybook — **depois** de o pacote quebrado já estar no registry. Gate que valida forma sem validar conteúdo dá falsa segurança; foi por isso que a checagem entrou no mesmo script que já bloqueia o publish, e não num lint separado que ninguém roda.
+Dois erros meus em sequência, e o mesmo tipo de causa: **gate que valida forma sem validar conteúdo dá falsa segurança.**
+
+1. O `Controls.jsx` inválido passou pelo `check-packages` (que checava se o arquivo **existia**, não se era **válido**) e pelo `npm publish` (que não parseia nada). Quem pegou foi o Storybook, **depois** do pacote já estar no registry.
+2. A `v1.2.18` saiu vazia porque nada conferia se a **tag** batia com a **versão dos pacotes** — e republicar uma versão existente não é erro para o npm, então o CI ficou verde.
+
+Nos dois casos o CI passou e o consumidor descobriu no build dele. As duas checagens novas entraram no **mesmo script que já bloqueia o publish**, de propósito: lint separado que ninguém roda não é gate.
 
 ## [1.2.17] — 2026-07-25
 

@@ -39,6 +39,23 @@ for (const w of rootPkg.workspaces) {
 // Lockstep: todas as versões dos pacotes iguais entre si.
 if (versions.size > 1) fail(`versões fora de lockstep: ${[...versions].join(", ")}`);
 
+// A TAG tem que bater com a versão dos pacotes. Sem esta checagem, empurrar a tag
+// `v1.2.18` com os package.json ainda em `1.2.17` faz o workflow republicar 1.2.17
+// (que já existe no registry) e NADA com o número da tag chega lá — o CI fica
+// verde, o consumidor recebe `ETARGET: No matching version found for …@^1.2.18` e
+// o erro só aparece no deploy dele. Aconteceu de verdade na v1.2.18 (2026-07-25):
+// eu corrigi o código e escrevi o CHANGELOG, mas esqueci de bumpar as versões.
+const refName = process.env.GITHUB_REF_NAME || "";
+if (/^v\d+\.\d+\.\d+/.test(refName)) {
+  const tagVersion = refName.slice(1);
+  const pkgVersion = [...versions][0];
+  if (tagVersion !== pkgVersion) {
+    fail(`tag ${refName} não bate com a versão dos pacotes (${pkgVersion}). Rode "npm run version:all ${tagVersion}" e refaça o commit ANTES de taggear — publicar assim republicaria ${pkgVersion} e a ${tagVersion} nunca existiria no registry.`);
+  } else {
+    console.log(`  ✓ tag ${refName} == versão dos pacotes`);
+  }
+}
+
 // Fronteira P4: o adapter web e o nativo nunca se importam.
 const reactDir = join(root, "packages/react");
 const rnDir = join(root, "packages/react-native");
