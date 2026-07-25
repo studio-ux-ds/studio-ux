@@ -42,6 +42,18 @@
 .su-btn--danger { background: var(--su-danger); color: #FFFFFF; }
 .su-btn--danger:hover:not(:disabled) { filter: brightness(.94); }
 
+/* Estado loading (P16): o Spinner dentro do botão herda a COR DO TEXTO
+   (`currentColor`) em vez das cores do .su-spinner solto — que usam
+   --su-border-default/--su-action e ficariam invisíveis sobre o fundo de um
+   botão primary/danger. O anel é 3/4 de currentColor com o topo transparente,
+   girando; sem color-mix pra não depender de suporte. O botão fica disabled
+   (via prop) então o `opacity: .55` do :disabled já sinaliza o bloqueio. */
+.su-btn--loading { cursor: progress; }
+.su-btn--loading:disabled { cursor: progress; }
+.su-btn .su-spinner { width: 14px; height: 14px; border-color: currentColor; border-top-color: transparent; }
+.su-btn--sm .su-spinner { width: 12px; height: 12px; border-width: 2px; }
+.su-btn--lg .su-spinner { width: 16px; height: 16px; }
+
 /* IconButton */
 .su-iconbtn {
   display: inline-flex; align-items: center; justify-content: center;

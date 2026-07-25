@@ -12,6 +12,36 @@
 
 - **docs(prompt-framework)** · 2026-07-23 — adota `C:\Users\Flowspec\Documents\STUDIO-WORKFLOW\` v3.0.0 como fonte única do método (paradigma `prompt-framework/v1`). Agnósticos locais (`README.md`, `prompt-alinhamento.md`) viraram stubs; `COMO-INTERAGIR-COM-ROBSON.md` também. Catálogo local migrou para `studio-ux.specialty-catalog@2.0.0` (`kind: shared`, PT+EN); as 6 especialidades foram para o schema formal em `studio-ux.*@1.0.0`, todas com `extends: workflow.system-change-base@1.0.0`.
 
+## [1.2.13] — 2026-07-24
+
+### Added
+
+- **`Button` ganha prop `loading`** (`@studio-ux-ds/react` + `@studio-ux-ds/components`). Materializa o estado que a spec **já declarava** desde sempre no catálogo (`STUDIO_UX_COMPONENT_LIBRARY.md` → Button → Estados: *"loading (spinner + rótulo, bloqueia re-clique, P16)"*) e que o adapter não expunha. Com `loading`: o `icon` da esquerda é substituído por `<Spinner>`, o `iconRight` é suprimido, o botão recebe `disabled` (bloqueia re-clique de verdade, não só visualmente) e `aria-busy` (anuncia a leitores). O **rótulo continua visível** — quem chama deve trocá-lo pelo gerúndio ("Salvando…"), porque spinner sozinho não diz o que está acontecendo (P11); isso está no JSDoc da prop.
+- **CSS `.su-btn .su-spinner`** — o Spinner dentro de botão herda a **cor do texto** (`currentColor`) em vez das cores do `.su-spinner` solto (que usa `--su-border-default` + `--su-action` e ficaria **invisível** sobre o fundo de um `primary`/`danger`). Anel de 3/4 em `currentColor` com o topo transparente; tamanho acompanha `--sm`/`--lg`. Sem `color-mix` pra não depender de suporte. `.su-btn--loading` só ajusta `cursor: progress`.
+
+### Origem
+
+Rastro de três descobertas em cadeia, durante a migração da família IA Studio (releases `v0.9.84`–`v0.9.88`):
+
+1. Robson notou que os botões de salvar não mostravam spinner de verdade.
+2. Investigando, os consumidores estavam escrevendo `icon={saving ? 'loader-2' : 'check'}` — **fingindo** o estado. `loader-2` existe como *alias* no `DSIcon` (→ `refresh`), então renderiza um ícone de refresh **estático**: parece um botão comum, não comunica carregamento.
+3. A causa raiz: a spec declarava o estado, `.su-spinner` já existia no CSS, `<Spinner>` já existia no React — **só não estavam ligados no Button**. Mesmo padrão do `fullWidth` do `NumericInput` (v1.2.10): consumidor precisou, spec já previa, adapter não expunha, consumidor improvisou.
+
+**Lição registrada no método:** quando um consumidor improvisa um estado (ícone falso, `<div>` no lugar de componente, classe inventada), a primeira pergunta não é "como melhorar o improviso" — é **"a spec já prevê isso e o adapter não expõe?"**. Nos 2 casos até agora a resposta foi sim. Um `grep` no catálogo antes de improvisar teria evitado os dois.
+
+### Também nesta leva (achado colateral)
+
+Auditoria dos nomes de ícone usados pelos consumidores contra `ICON_NAMES` + `ALIASES` do `DSIcon` encontrou **nomes inexistentes sendo passados** (`refresh-cw`, `server`). O `DSIcon` **não quebra** — cai no fallback `"help"`, ou seja, renderiza um **"?"** na interface. Comportamento correto (não explodir a tela), mas silencioso: o consumidor só descobre olhando. Corrigido do lado do consumidor (IA Studio `v0.9.89`). **Fica registrado como dívida do DS:** avaliar um aviso em dev (`console.warn` só quando `NODE_ENV !== 'production'`) para nome de ícone não resolvido — hoje o erro é invisível até alguém ver o "?" na tela. Não implementado nesta release (é decisão de API do adapter, merece frente própria).
+
+### Impacto nos consumidores
+
+- **Retrocompatível (MINOR).** `loading` é opt-in com default `false`; nenhum call-site existente muda de comportamento.
+- **Ação recomendada:** trocar `icon={saving ? 'loader-2' : 'x'}` por `loading={saving} icon="x"` — o `icon` volta a ser sempre o ícone real da ação, e o DS cuida do estado.
+
+### Bump lockstep
+
+Todos os 7 pacotes vão pra `1.2.13`. **Consumidor precisa bumpar** pra usar a prop (`@studio-ux-ds/react` + `@studio-ux-ds/components` — o CSS do spinner-em-botão vem no `components.css`).
+
 ## [1.2.12] — 2026-07-24
 
 ### Changed
