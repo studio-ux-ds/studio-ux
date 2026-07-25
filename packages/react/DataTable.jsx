@@ -8,19 +8,32 @@ import { DSIcon } from "./DSIcon.jsx";
  * @param {{key:string, header:React.ReactNode, align?:"right", render?:(row)=>React.ReactNode}[]} columns
  * @param {any[]} rows
  * @param {(row, i)=>string|number} [getRowId]
- * @param {(selectedIds:any[], clear:()=>void)=>React.ReactNode} [bulkActions]  ações da barra de lote
+ * @param {(selectedIds:any[], clear:()=>void)=>React.ReactNode} [bulkActions]  ações da barra de lote.
+ *   Recebe os ids selecionados justamente para o conjunto de ações **variar com a quantidade**:
+ *   com 1 marcado cabem as ações de um registro só (Editar, Ver versões, Publicar); com vários,
+ *   só as que fazem sentido em lote (Exportar, Excluir, Arquivar). Ramifique em
+ *   `selectedIds.length === 1` — não ofereça uma ação de-um-só quando há cinco marcados.
  * @param {(row)=>React.ReactNode} [renderRowMenu]  o "…" de cada linha
  * @param {React.ReactNode} [toolbar]  a toolbar quando nada está selecionado
  * @param {React.ReactNode} [footer]  rodapé dentro do card (ex.: contagem + Pagination)
  * @param {boolean} [selectable]  mostra a coluna de seleção. Default: só quando há `bulkActions`
  *   (sem ações de lote não há por que ter checkbox — mantém a lista "calma", igual ao Flux).
+ * @param {"multiple"|"single"} [selectionMode]  quantos registros a seleção aceita. Default
+ *   `"multiple"`. Use `"single"` quando a ação **não pode** ser feita em massa — seja porque é
+ *   perigosa (aprovar uma ação de IA, estornar) ou porque o backend só atende um por vez. Em
+ *   `"single"` marcar uma linha desmarca a anterior e o "marcar todos" do cabeçalho não existe:
+ *   a interface deixa de oferecer o que o sistema não faz, em vez de recusar depois (P13).
  */
-export function DataTable({ columns, rows, getRowId = (r, i) => i, bulkActions, renderRowMenu, toolbar, footer, selectable: selectableProp, bare = false, onRowClick, getRowLabel }) {
+export function DataTable({ columns, rows, getRowId = (r, i) => i, bulkActions, renderRowMenu, toolbar, footer, selectable: selectableProp, selectionMode = "multiple", bare = false, onRowClick, getRowLabel }) {
   const selectable = selectableProp != null ? selectableProp : bulkActions != null;
+  const single = selectionMode === "single";
   const [sel, setSel] = useState(() => new Set());
   const ids = rows.map(getRowId);
-  const allChecked = rows.length > 0 && sel.size === rows.length;
-  const toggle = (id) => setSel((s) => { const n = new Set(s); n.has(id) ? n.delete(id) : n.add(id); return n; });
+  const allChecked = !single && rows.length > 0 && sel.size === rows.length;
+  const toggle = (id) => setSel((s) => {
+    if (single) return s.has(id) ? new Set() : new Set([id]);
+    const n = new Set(s); n.has(id) ? n.delete(id) : n.add(id); return n;
+  });
   const toggleAll = () => setSel(allChecked ? new Set() : new Set(ids));
   const clear = () => setSel(new Set());
   const selCell = { paddingLeft: 16, width: 34 };
@@ -38,10 +51,14 @@ export function DataTable({ columns, rows, getRowId = (r, i) => i, bulkActions, 
         <thead>
           <tr>
             {selectable && (
+              // Em `single` não há "marcar todas" — a seleção aceita um só, então
+              // a célula fica vazia em vez de oferecer o que não se pode fazer.
               <th style={selCell}>
-                <DSIcon name={allChecked ? "square-check" : sel.size ? "square-minus" : "square"}
-                  size="sm" style={{ cursor: "pointer", color: sel.size ? "var(--su-action)" : "var(--su-text-muted)" }}
-                  onClick={toggleAll} role="checkbox" aria-checked={allChecked} />
+                {!single && (
+                  <DSIcon name={allChecked ? "square-check" : sel.size ? "square-minus" : "square"}
+                    size="sm" style={{ cursor: "pointer", color: sel.size ? "var(--su-action)" : "var(--su-text-muted)" }}
+                    onClick={toggleAll} role="checkbox" aria-checked={allChecked} />
+                )}
               </th>
             )}
             {columns.map((c) => <th key={c.key} className={c.align === "right" ? "num" : ""}>{c.header}</th>)}

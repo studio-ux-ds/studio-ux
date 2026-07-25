@@ -67,33 +67,75 @@ Dono · Owner:                este doc, para o domínio "composição de tabelas
 
 **EN — Row actions and opening the detail.** The last column holds the **per-row actions**, and composition follows the same economy as the rest: expose the **few** most likely actions as `IconButton`s (with tooltip and accessible label — P17), and collapse the rest into a "more" `Menu`, so the row doesn't become a button bar competing with the data (P1). Actions reveal with restraint on row hover (Desktop) but stay always keyboard-reachable (P19) — never hover-only. A destructive row action carries the five (P13). The most common action of all — **opening the record's detail** — is usually the clickable row itself (or a `Link` on the key column), leading to the detail screen (`DescriptionList`, `Tabs`, `Timeline` — `PATTERNS` §1); the row needs no redundant "open" button when the whole row is already the target.
 
-### O teste objetivo da coluna de ações · The objective test for the action column
+### Onde cada ação mora — a taxonomia · Where each action lives — the taxonomy
 
-**PT** — A regra do parágrafo acima estava sendo lida como conselho e violada na prática (lápis "editar" repetido em toda linha). Vira teste **mecânico**:
+**PT** — A regra do parágrafo acima estava sendo lida como conselho e violada na prática (lápis "editar" repetido em toda linha; quatro `IconButton` na última coluna). Vira **taxonomia fechada**: toda ação de uma tela de lista cai em **um** de três lugares, e a pergunta que decide é *"essa ação age sobre O QUÊ?"*.
 
-> **A linha é o alvo.** Antes de colocar QUALQUER botão numa linha, pergunte: *"esse botão leva ao mesmo lugar que clicar na linha levaria?"* Se sim, **ele não existe** — a linha inteira é `onRowClick`, e o botão sai.
+| A ação… | Mora em | Como |
+|---|---|---|
+| **abre o registro** (detalhe, editor, entradas) | **na própria linha** | `onRowClick` na linha inteira. **Zero botão.** Um texto acima da tabela conta o caminho ("Clique num orçamento para ajustar limite e alerta"); a afordância é o hover + esse aviso, não um ícone repetido N vezes. |
+| **age sobre um ou mais registros** (exportar, excluir, cobrar, sincronizar, arquivar, publicar) | **na barra de lote** | `selectable` + `bulkActions(selectedIds, clear)` do `DataTable`. Marcar as caixas troca a toolbar por uma barra contextual — "N selecionados" + as ações + "Limpar". **Este é o comportamento canônico do componente**, não uma alternativa. |
+| **só existe dentro do registro** (testar este assistente, ver as versões deste, filtrar as entradas deste perfil) | **na tela de destino** | Cabeçalho (`PageHeader.actions`) ou aba da tela que a linha abre. |
 
-Como decidir, em ordem:
+**A pergunta que resolve 90% dos casos:** *"se eu marcar cinco linhas, essa ação faz sentido nas cinco?"* Se **sim** → barra de lote. Se **não** (é sobre um registro específico) → tela de destino. Se a ação **é** abrir o registro → é a própria linha.
 
-1. **A linha tem UM destino natural** (abrir o registro — detalhe, editor, entradas)? → `onRowClick` para lá. **Nenhum** botão na linha. Um texto acima da tabela avisa o caminho ("Clique num orçamento para ajustar limite e alerta") — a afordância é o hover da linha + esse aviso, não um ícone repetido N vezes.
-2. **Sobrou ação secundária** que NÃO é "abrir" (sincronizar, duplicar, arquivar, exportar)? → ela vai no `Menu` de "mais opções" da linha **ou** — melhor — desce pra dentro da tela/overlay de destino, onde tem contexto pra ser entendida. Sincronizar um servidor faz mais sentido ao lado do que ele trouxe do que solto numa lista.
-3. **A linha NÃO tem destino** (o backend não expõe leitura/edição individual)? → a linha **não é clicável**, e a ação, se houver, é botão explícito. Não invente rota que não existe só pra cumprir a regra.
-4. **A linha tem duas decisões concorrentes** (ex.: aprovar × rejeitar)? → **não** são dois botões na linha. Isso é sinal de que falta a tela onde a decisão é tomada com o contexto na frente: a linha abre o detalhe, e as duas ações vivem lá. Decidir com 1 clique cego numa lista é pior que 2 cliques informados.
+#### Quantos registros a seleção aceita · How many records the selection accepts
 
-**Anti-padrão consequente:** `onRowClick` **e** um botão de editar na mesma linha. São dois alvos primários disputando o mesmo clique; o usuário não sabe qual usa, e o botão rouba o clique de quem mirou na linha.
+A barra de lote **não é sempre multi-seleção.** A tabela declara o que o sistema realmente faz:
 
-**EN** — The paragraph above was being read as advice and violated in practice (an "edit" pencil repeated on every row). It becomes a **mechanical** test:
+- **`selectionMode="multiple"` (default)** — quando as ações rodam em lote. Marca-se quantas linhas quiser; o "marcar todas" existe no cabeçalho.
+- **`selectionMode="single"`** — quando **nada** ali pode ser feito em massa, seja porque é perigoso (aprovar uma ação de IA, estornar um pagamento) ou porque o backend só atende um por vez. Marcar uma linha desmarca a anterior e o "marcar todas" **não existe**. A interface deixa de oferecer o que o sistema não faz — em vez de aceitar cinco e recusar na hora de executar (P13: não prometa o que não cumpre).
 
-> **The row is the target.** Before putting ANY button on a row, ask: *"does this button lead where clicking the row would lead?"* If yes, **it does not exist** — the whole row is `onRowClick`, and the button goes away.
+E o **conjunto de ações varia com a quantidade marcada** — é para isso que o `bulkActions` recebe os ids:
 
-How to decide, in order:
+- **1 marcado** → cabem também as ações de registro único (Editar, Ver versões, Publicar, Testar).
+- **vários marcados** → só as que fazem sentido em lote (Exportar, Excluir, Arquivar). Ramifique em `selectedIds.length === 1`; oferecer "Ver versões" com cinco marcados é prometer o que não dá.
 
-1. **Does the row have ONE natural destination** (open the record — detail, editor, entries)? → `onRowClick` there. **No** button on the row. A line of text above the table states the path ("Click a budget to adjust its limit and alert") — the affordance is the row hover plus that hint, not an icon repeated N times.
-2. **Any secondary action left** that is NOT "open" (sync, duplicate, archive, export)? → it goes in the row's "more" `Menu` **or** — better — moves into the destination screen/overlay, where it has context to be understood. Syncing a server makes more sense next to what it brought back than loose in a list.
-3. **Does the row have no destination** (the backend exposes no single-record read/edit)? → the row is **not** clickable, and the action, if any, is an explicit button. Do not invent a route that does not exist just to satisfy the rule.
-4. **Does the row carry two competing decisions** (e.g. approve × reject)? → those are **not** two row buttons. That is a sign the decision screen is missing: the row opens the detail, and both actions live there. Deciding with one blind click in a list is worse than two informed clicks.
+Ou seja: a mesma tabela pode ter **mais** ações disponíveis com um item marcado do que com cinco. Isso é desejável e explícito, não inconsistência.
 
-**Resulting anti-pattern:** `onRowClick` **and** an edit button on the same row. Two primary targets fighting for the same click; the user cannot tell which to use, and the button steals the click from whoever aimed at the row.
+**Por que a barra de lote e não um botão por linha.** Um botão repetido em N linhas é a mesma informação N vezes — ruído que compete com o dado (P1) e que cresce com a lista. A barra aparece só quando há seleção, some quando não há, e resolve de uma vez o caso de "fazer isso em cinco registros" que o botão-por-linha obriga a repetir cinco cliques. Ainda: a barra é **um** lugar para descobrir o que se pode fazer com registros, em vez de um enxame de ícones que o usuário precisa passar o mouse para entender.
+
+**Casos-limite:**
+- **Ação destrutiva na barra de lote** carrega os cinco de P13 — e o `ConfirmDialog` diz **quantos** registros serão afetados, não "este item".
+- **A linha não tem destino** (o backend não expõe leitura individual)? → linha **não** clicável. Não invente rota que não existe só pra cumprir a regra. As ações, se houver, seguem na barra de lote.
+- **Duas decisões concorrentes na linha** (aprovar × rejeitar)? → não são dois botões. É sinal de que falta a tela onde se decide **com o contexto na frente**: a linha abre o detalhe e as duas ações vivem lá. Um clique cego numa lista é pior que dois cliques informados. E cuidado com o impulso de jogar isso na barra de lote: aprovar em massa uma ação de IA é exatamente o tipo de coisa que não se faz sem ler.
+- **Sobrou ação que não é nem lote nem destino?** Aí, e só aí, o `Menu` de "mais opções" da linha. É a exceção, não o padrão.
+
+**Anti-padrões:** `onRowClick` **e** um botão de editar na mesma linha (dois alvos primários disputando o mesmo clique — o botão rouba o clique de quem mirou na linha); ação de registro repetida por linha quando cabia na barra de lote; **tirar o botão da linha e não fazê-lo reaparecer em lugar nenhum** — ação que desaparece é regressão, não simplificação: ao mover uma ação, verifique na tela que ela chegou no destino.
+
+**EN** — The paragraph above was being read as advice and violated in practice (an "edit" pencil on every row; four `IconButton`s in the last column). It becomes a **closed taxonomy**: every action on a list screen lands in **one** of three places, and the deciding question is *"what does this action act ON?"*.
+
+| The action… | Lives in | How |
+|---|---|---|
+| **opens the record** (detail, editor, entries) | **the row itself** | `onRowClick` on the whole row. **Zero buttons.** A line of text above the table states the path; the affordance is the hover plus that hint, not an icon repeated N times. |
+| **acts on one or more records** (export, delete, charge, sync, archive, publish) | **the bulk bar** | `DataTable`'s `selectable` + `bulkActions(selectedIds, clear)`. Ticking the boxes swaps the toolbar for a contextual bar — "N selected" + the actions + "Clear". **This is the component's canonical behavior**, not an alternative. |
+| **only exists inside the record** (test this assistant, see its versions, filter this profile's entries) | **the destination screen** | Header (`PageHeader.actions`) or a tab of the screen the row opens. |
+
+**The question that settles 90% of cases:** *"if I tick five rows, does this action make sense on all five?"* If **yes** → bulk bar. If **no** (it's about one specific record) → destination screen. If the action **is** opening the record → it's the row itself.
+
+#### How many records the selection accepts
+
+The bulk bar is **not always multi-select.** The table declares what the system actually does:
+
+- **`selectionMode="multiple"` (default)** — when the actions run in batch. Tick as many rows as you want; "select all" exists in the header.
+- **`selectionMode="single"`** — when **nothing** there can be done en masse, either because it's dangerous (approving an AI action, refunding a payment) or because the backend serves one at a time. Ticking a row unticks the previous one and "select all" **does not exist**. The interface stops offering what the system won't do — instead of accepting five and refusing at execution time (P13: don't promise what you can't deliver).
+
+And the **action set varies with the selected count** — that's why `bulkActions` receives the ids:
+
+- **1 ticked** → single-record actions also fit (Edit, See versions, Publish, Test).
+- **several ticked** → only those that make sense in batch (Export, Delete, Archive). Branch on `selectedIds.length === 1`; offering "See versions" with five ticked promises what can't be done.
+
+That is: the same table may have **more** actions available with one item ticked than with five. That is deliberate and explicit, not inconsistency.
+
+**Why the bulk bar and not a per-row button.** A button repeated across N rows is the same information N times — noise competing with the data (P1), growing with the list. The bar appears only on selection, disappears otherwise, and solves "do this to five records" that per-row buttons force into five clicks. Also: the bar is **one** place to discover what can be done with records, instead of a swarm of icons the user must hover to understand.
+
+**Edge cases:**
+- **A destructive bulk action** carries P13's five — and the `ConfirmDialog` states **how many** records are affected, not "this item".
+- **The row has no destination** (no single-record read endpoint)? → row **not** clickable. Don't invent a route just to satisfy the rule. Actions, if any, still live in the bulk bar.
+- **Two competing decisions on the row** (approve × reject)? → not two buttons. It signals the missing screen where you decide **with the context in front of you**: the row opens the detail and both actions live there. One blind click in a list is worse than two informed clicks. And beware the urge to move that to the bulk bar: mass-approving an AI action is exactly what should not happen without reading.
+- **An action that is neither bulk nor destination?** Then, and only then, the row's "more" `Menu`. It's the exception, not the default.
+
+**Anti-patterns:** `onRowClick` **and** an edit button on the same row (two primary targets fighting for one click); a record action repeated per row when the bulk bar fit; **removing the row button and not making it reappear anywhere** — a vanished action is a regression, not a simplification: after moving an action, verify on screen that it landed.
 
 ---
 

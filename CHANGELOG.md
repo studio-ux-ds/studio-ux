@@ -12,6 +12,40 @@
 
 - **docs(prompt-framework)** · 2026-07-23 — adota `C:\Users\Flowspec\Documents\STUDIO-WORKFLOW\` v3.0.0 como fonte única do método (paradigma `prompt-framework/v1`). Agnósticos locais (`README.md`, `prompt-alinhamento.md`) viraram stubs; `COMO-INTERAGIR-COM-ROBSON.md` também. Catálogo local migrou para `studio-ux.specialty-catalog@2.0.0` (`kind: shared`, PT+EN); as 6 especialidades foram para o schema formal em `studio-ux.*@1.0.0`, todas com `extends: workflow.system-change-base@1.0.0`.
 
+## [1.2.14] — 2026-07-24
+
+### Added
+
+- **`DataTable` ganhou `selectionMode: "multiple" | "single"`** (default `"multiple"`, retrocompatível). A barra de lote deixou de pressupor multi-seleção: com `"single"`, marcar uma linha **desmarca a anterior** e o "marcar todas" do cabeçalho **não é renderizado**. Existe para os casos em que nada ali pode ser feito em massa — seja porque é perigoso (aprovar uma ação de IA, estornar um pagamento) ou porque o backend só atende um por vez. A interface para de oferecer o que o sistema não faz, em vez de aceitar cinco e recusar na hora de executar (P13).
+- **`bulkActions` documentado como contextual à quantidade.** Ele já recebia `selectedIds`; o JSDoc agora diz para que serve: **o conjunto de ações varia com quantos estão marcados** — com 1 cabem as ações de registro único (Editar, Ver versões, Publicar, Testar); com vários, só as que rodam em lote (Exportar, Excluir, Arquivar). Ramificar em `selectedIds.length === 1`. A mesma tabela ter **mais** ações com um item marcado do que com cinco é deliberado, não inconsistência.
+
+### Changed
+
+- **`docs/STUDIO_UX_TABLES.md` §3 — "O teste objetivo da coluna de ações" virou "Onde cada ação mora — a taxonomia".** A versão anterior (v1.2.12) dizia o que **não** fazer (sem botão redundante na linha) e mandava a ação secundária "pro Menu de mais opções ou pra tela de destino" — mas **não citava a barra de lote**, que é o comportamento canônico do próprio `DataTable` ("Ao selecionar, a toolbar vira barra contextual", no JSDoc do componente desde sempre). Resultado: eu mesmo, seguindo a regra, tirei quatro botões da linha de Assistentes e mandei dois pro cabeçalho do editor — quando o lugar deles era a barra de lote. Regra reescrita como **taxonomia fechada de três lugares**: (1) abre o registro → a própria linha (`onRowClick`, zero botão); (2) age sobre um ou mais registros → **barra de lote** (`selectable` + `bulkActions`); (3) só existe dentro do registro → tela de destino. Mais a pergunta que decide (*"se eu marcar cinco linhas, essa ação faz sentido nas cinco?"*), a subseção de `selectionMode`, e o porquê da barra vencer o botão-por-linha (a mesma informação N vezes é ruído que cresce com a lista, e "fazer isso em cinco" deixa de custar cinco cliques).
+- **Novo anti-padrão nomeado:** *"tirar o botão da linha e não fazê-lo reaparecer em lugar nenhum — ação que desaparece é regressão, não simplificação"*. Ao mover uma ação, **verificar na tela** que ela chegou no destino. Nasceu de o Robson notar, no Assistentes, que as ações saíram da linha e ele não as achou.
+
+### Fixed
+
+- **`.su-pagehead__actions` ganhou `flex-wrap: wrap` + `justify-content: flex-end`.** Sem wrap e com `flex: none`, um cabeçalho de detalhe com 3–4 ações (Voltar · Versões · Exportar · Salvar) estourava para fora da viewport em telas estreitas — e as ações simplesmente desapareciam de vista, o que é indistinguível de "não foram implementadas".
+
+- **`.su-input`, `.su-textarea` e `.su-select` ganharam `width: 100%` + `box-sizing: border-box`** (`@studio-ux-ds/components`). Os três só preenchiam o espaço **porque `.su-field` é `flex-direction: column`** — o stretch vinha do flex do wrapper, não do controle. Fora do `Field` caíam na largura intrínseca do elemento HTML: `<input>` ~180px, `<textarea>` no `cols` padrão (~20 caracteres). Resultado: qualquer composição que use um controle solto — linha repetível (passo de um roteiro, item de lista editável), célula de tabela, barra de filtro montada à mão — nascia com o campo esmagado. **Dentro do `Field` nada muda**: o efeito é idêntico ao que o flex já dava.
+- **`.su-toolbar__search` ganhou `width: auto`** para reverter o `100%` acima. Ali o `.su-input` está aplicado numa `<div>` que vive na flex row da toolbar do `ListScreen`, ao lado do `SegmentedControl` e das ações — se esticasse, empurraria os dois pra fora da linha. Regressão pega antes de publicar.
+
+### Origem
+
+Terceiro caso do mesmo padrão em três releases (`fullWidth` do `NumericInput` na v1.2.10, `loading` do `Button` na v1.2.13, largura dos controles agora): **o componente funcionava só no arranjo em que foi testado primeiro**, e o consumidor que saía dele improvisava. Aqui apareceu na migração do editor de assistentes do IA Studio (`v0.9.90`), onde as linhas de "Passo" e "Situação" põem um `Input` e um `TextArea` numa linha flex sem `Field` — e os campos apareceram com ~180px, ilegíveis, no print do Robson.
+
+**Ajuste no método:** ao materializar um componente, testar as **duas** montagens — dentro do `Field` e solto — antes de considerar pronto. Um controle de formulário que só preenche quando embrulhado não é um componente completo; é um componente com pré-condição não documentada.
+
+### Impacto nos consumidores
+
+- **Retrocompatível na intenção, mas é mudança visual.** Onde havia `.su-input`/`.su-select`/`.su-textarea` **fora** de um `.su-field` dentro de um container largo, o campo passa a preencher — que é o efeito desejado, mas é diferente de antes.
+- **Onde NÃO se quer o `100%`**, envolver num container com largura (`<div style={{ maxWidth: 320 }}>`) — que já é o padrão que os consumidores usam para o `Field` — ou aplicar `width: auto` numa classe própria, como o `.su-toolbar__search` faz.
+
+### Bump lockstep
+
+Todos os 7 pacotes vão pra `1.2.14`. **Consumidor precisa bumpar** (`@studio-ux-ds/components` carrega o CSS).
+
 ## [1.2.13] — 2026-07-24
 
 ### Added

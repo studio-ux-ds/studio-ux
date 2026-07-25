@@ -79,8 +79,15 @@
 /* ---------- FormField / Input ---------- */
 .su-field { display: flex; flex-direction: column; gap: var(--su-space-1); }
 .su-field__label { font-size: 13px; font-weight: var(--su-fw-medium); color: var(--su-text-secondary); }
+/* `width: 100%` + `box-sizing: border-box`: um controle de formulário preenche
+   o container em que foi posto. Dentro de `.su-field` (flex column) o efeito é
+   o mesmo de antes — o stretch do flex já dava isso. A diferença é FORA do
+   Field: numa linha repetível (passo de um roteiro, item de uma lista editável)
+   o input caía na largura intrínseca do elemento (~180px) e ficava esmagado.
+   Não se sustenta que o componente só funcione num arranjo. */
 .su-input {
   font-family: var(--su-font-ui); font-size: 14px; color: var(--su-text-primary);
+  width: 100%; box-sizing: border-box;
   height: 38px; padding: 0 var(--su-space-3);
   background: var(--su-surface-raised); border: 1px solid var(--su-border-default);
   border-radius: var(--su-radius-md);
@@ -154,7 +161,7 @@
 .su-breadcrumb a { color: var(--su-text-secondary); text-decoration: none; }
 
 /* ---------- Controles de formulário · Form controls ---------- */
-.su-select { appearance: none; font-family: var(--su-font-ui); font-size: 14px; height: 38px; padding: 0 var(--su-space-8) 0 var(--su-space-3); background: var(--su-surface-raised); border: 1px solid var(--su-border-default); border-radius: var(--su-radius-md); color: var(--su-text-primary); cursor: pointer; }
+.su-select { appearance: none; font-family: var(--su-font-ui); font-size: 14px; width: 100%; box-sizing: border-box; height: 38px; padding: 0 var(--su-space-8) 0 var(--su-space-3); background: var(--su-surface-raised); border: 1px solid var(--su-border-default); border-radius: var(--su-radius-md); color: var(--su-text-primary); cursor: pointer; }
 .su-select:focus-visible { outline: none; border-color: var(--su-border-focus); box-shadow: 0 0 0 3px var(--su-action-tint); }
 .su-checkbox, .su-radio { width: 16px; height: 16px; accent-color: var(--su-action); cursor: pointer; }
 
@@ -345,7 +352,9 @@
 .su-numeric--full .su-numeric__input { flex: 1; width: auto; }
 
 /* ---------- TextArea ---------- */
-.su-textarea { font-family: var(--su-font-ui); font-size: 14px; color: var(--su-text-primary); min-height: 84px; padding: var(--su-space-2) var(--su-space-3); background: var(--su-surface-raised); border: 1px solid var(--su-border-default); border-radius: var(--su-radius-md); resize: vertical; line-height: 1.5; transition: border-color var(--su-duration-fast) var(--su-ease-standard), box-shadow var(--su-duration-fast) var(--su-ease-standard); }
+/* Mesmo motivo do `.su-input`: preenche o container. Sem isto, um textarea fora
+   do `.su-field` cai no `cols` padrão do elemento (~20 caracteres). */
+.su-textarea { font-family: var(--su-font-ui); font-size: 14px; color: var(--su-text-primary); width: 100%; box-sizing: border-box; min-height: 84px; padding: var(--su-space-2) var(--su-space-3); background: var(--su-surface-raised); border: 1px solid var(--su-border-default); border-radius: var(--su-radius-md); resize: vertical; line-height: 1.5; transition: border-color var(--su-duration-fast) var(--su-ease-standard), box-shadow var(--su-duration-fast) var(--su-ease-standard); }
 .su-textarea::placeholder { color: var(--su-text-muted); }
 .su-textarea:hover { border-color: var(--su-border-strong); }
 .su-textarea:focus-visible { outline: none; border-color: var(--su-border-focus); box-shadow: 0 0 0 3px var(--su-action-tint); }
@@ -374,11 +383,17 @@
 .su-pagehead { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--su-space-4); flex-wrap: wrap; }
 .su-pagehead__title { font-size: var(--su-fs-h1); line-height: 1.25; font-weight: var(--su-fw-semibold); margin: 0; color: var(--su-text-primary); }
 .su-pagehead__sub { margin: var(--su-space-1) 0 0; font-size: var(--su-fs-body-sm); color: var(--su-text-muted); }
-.su-pagehead__actions { display: flex; gap: var(--su-space-2); flex: none; }
+/* `flex-wrap: wrap` + `justify-content: flex-end`: com 3–4 ações no cabeçalho de
+   uma tela de detalhe (Voltar · Versões · Exportar · Salvar) e viewport estreito,
+   o slot sem wrap estourava para fora da tela e as ações desapareciam da vista. */
+.su-pagehead__actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--su-space-2); flex: none; }
 
 .su-toolbar { display: flex; align-items: center; gap: var(--su-space-3); padding: var(--su-space-3) var(--su-space-4); border-bottom: 1px solid var(--su-border-subtle); flex-wrap: wrap; }
 .su-toolbar__title { font-size: var(--su-fs-body); font-weight: var(--su-fw-semibold); color: var(--su-text-primary); }
-.su-toolbar__search { display: inline-flex; align-items: center; gap: var(--su-space-2); min-width: 200px; color: var(--su-text-muted); }
+/* `width: auto` reverte o `width: 100%` que o `.su-input` passou a ter (v1.2.14):
+   aqui o `.su-input` está numa DIV que vive numa flex row da toolbar, ao lado do
+   SegmentedControl e das ações — se esticasse, empurraria os dois pra fora. */
+.su-toolbar__search { display: inline-flex; width: auto; align-items: center; gap: var(--su-space-2); min-width: 200px; color: var(--su-text-muted); }
 .su-toolbar__search input { border: 0; outline: none; background: transparent; font: inherit; font-size: var(--su-fs-body-sm); color: var(--su-text-primary); flex: 1; min-width: 0; }
 .su-toolbar__spacer { flex: 1; }
 .su-toolbar__actions { display: flex; align-items: center; gap: var(--su-space-2); }
