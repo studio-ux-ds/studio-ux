@@ -12,6 +12,28 @@
 
 - **docs(prompt-framework)** · 2026-07-23 — adota `C:\Users\Flowspec\Documents\STUDIO-WORKFLOW\` v3.0.0 como fonte única do método (paradigma `prompt-framework/v1`). Agnósticos locais (`README.md`, `prompt-alinhamento.md`) viraram stubs; `COMO-INTERAGIR-COM-ROBSON.md` também. Catálogo local migrou para `studio-ux.specialty-catalog@2.0.0` (`kind: shared`, PT+EN); as 6 especialidades foram para o schema formal em `studio-ux.*@1.0.0`, todas com `extends: workflow.system-change-base@1.0.0`.
 
+## [1.2.21] — 2026-07-25
+
+### Fixed
+
+- **`Pagination` era inalcançável por teclado.** Os controles eram `<span onClick>` — não focáveis, não anunciados como botão, e o "anterior" na página 1 continuava parecendo clicável. Agora são `<button>` com `aria-label`, `aria-current="page"` na atual, `disabled` real nas pontas e anel de foco (P18). Mesma classe de bug do "Limpar" da barra de lote (v1.2.15): elemento de ação escrito como `<span>`.
+- **Mostrava apenas as 5 PRIMEIRAS páginas** (`slice(0, 5)`) — num log de 40 páginas **não havia como chegar na 6ª**. Agora é uma **janela** em volta da página atual (`window`, default 1 de cada lado), com primeira e última sempre visíveis e `…` marcando o salto. O `…` não é botão: é indicação, sem hover nem foco.
+
+### Added
+
+- **`total` + `itemLabel` no `Pagination`.** O componente não mostrava contagem de registros, então **cada tela de log montava "N registros" à mão** — a informação mais pedida numa lista longa, reimplementada N vezes com espaçamento próprio. Passando `total`, o componente rende a barra `.su-pagination-bar` com a contagem à esquerda e a navegação à direita.
+  - **`itemLabel` aceita `[singular, plural]`**, não só string. String pluraliza com "s", o que **não serve para quase nenhum substantivo de log em português**: `notificação` → `notificaçãos`, `execução` → `execuçãos`. Com o par: `["notificação", "notificações"]`. Um DS que fala português por padrão não pode assumir plural do inglês.
+
+### Origem
+
+Pedido do Robson ao ver o primeiro consumo real numa tela de log da Automação do IA Studio: *"temos que evoluir o DS primeiro"*. Os três problemas só apareceriam **com dado de verdade** — 40 páginas, contagem grande, navegação por teclado. Ou seja: seriam descobertos em produção, não no desenvolvimento, que é o pior momento.
+
+**Sexto caso** do padrão desta sequência: o componente funcionava na montagem em que foi testado primeiro (poucas páginas, mouse) e quebrava na montagem real (log paginado, teclado).
+
+### Bump lockstep
+
+Todos os 7 pacotes vão pra `1.2.21`. **Consumidor precisa bumpar** `react` + `components`. **Mudança de API compatível**: `{ page, pageCount, onChange }` continua funcionando; `total`/`itemLabel`/`window` são opt-in.
+
 ## [1.2.20] — 2026-07-25
 
 ### Added

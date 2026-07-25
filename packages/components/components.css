@@ -342,10 +342,20 @@
 @keyframes su-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
 @media (prefers-reduced-motion: reduce) { .su-skeleton { animation: none; } }
 .su-pagination { display: flex; gap: 4px; align-items: center; }
-.su-page { width: 28px; height: 28px; border-radius: 7px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; color: var(--su-text-secondary); border: 1px solid transparent; cursor: pointer; background: none; }
-.su-page:hover { background: var(--su-surface-sunken); }
+.su-page { width: 28px; height: 28px; border-radius: 7px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; color: var(--su-text-secondary); border: 1px solid transparent; cursor: pointer; background: none; font-family: inherit; }
+.su-page:hover:not(:disabled) { background: var(--su-surface-sunken); }
+.su-page:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--su-surface-base), 0 0 0 4px var(--su-border-focus); }
 .su-page--active { background: var(--su-action); color: var(--su-text-on-action); }
 .su-page--nav { border-color: var(--su-border-default); }
+/* Ponta desabilitada (página 1 / última): sem hover e sem cursor de clique — o
+   controle parava de funcionar mas continuava parecendo clicável. */
+.su-page:disabled { opacity: .4; cursor: default; }
+/* O "…" não é botão: é indicação de salto. Sem hover, sem foco. */
+.su-page--gap { cursor: default; color: var(--su-text-muted); }
+/* Barra com a contagem à esquerda e a navegação à direita — a composição que
+   toda tela de log montava à mão antes de o componente aceitar `total`. */
+.su-pagination-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--su-space-3); padding: var(--su-space-2) var(--su-space-4); }
+.su-pagination__count { font-size: 12px; color: var(--su-text-muted); }
 
 /* ==================== Fase 3, grupo 3: especializados ==================== */
 

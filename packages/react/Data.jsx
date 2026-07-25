@@ -36,17 +36,78 @@ export function Timeline({ items }) {
   );
 }
 
-/** Pagination — .su-pagination. Controlado por page/onChange. */
-export function Pagination({ page, pageCount, onChange }) {
-  const go = (p) => p >= 1 && p <= pageCount && onChange && onChange(p);
-  const pages = Array.from({ length: pageCount }, (_, i) => i + 1).slice(0, 5);
+/**
+ * Pagination — `.su-pagination`. Controlado por `page`/`onChange`.
+ *
+ * Três coisas que a v1.2.20 não fazia e que impediam usar em log de verdade:
+ *  1. os controles eram `<span onClick>` — invisíveis para o teclado e não
+ *     anunciados como botão. Agora são `<button>` com `aria-label` e `disabled`
+ *     real nas pontas (antes o "anterior" na página 1 parecia clicável);
+ *  2. mostrava só as 5 PRIMEIRAS páginas (`slice(0, 5)`) — num log de 40 páginas
+ *     não havia como chegar na 6ª. Agora é uma JANELA em volta da página atual,
+ *     com primeira/última sempre visíveis e `…` no salto;
+ *  3. não mostrava contagem, então cada tela montava "N registros" à mão — a
+ *     informação mais pedida numa lista longa reimplementada N vezes. Passe
+ *     `total` (e opcionalmente `itemLabel`) e o componente escreve.
+ *
+ * @param {number} page  página atual (1-based)
+ * @param {number} pageCount  total de páginas
+ * @param {(p:number)=>void} onChange
+ * @param {number} [total]  total de REGISTROS — habilita a contagem à esquerda
+ * @param {string|[string,string]} [itemLabel="registro"]  substantivo da
+ *   contagem. String simples pluraliza com "s" (`registro` → `registros`), o que
+ *   NÃO serve para a maioria dos substantivos de log em português — então aceita
+ *   o par `[singular, plural]`: `["notificação", "notificações"]`,
+ *   `["execução", "execuções"]`. Sem isso a tela escreveria "notificaçãos".
+ * @param {number} [window=1]  quantas páginas mostrar de cada lado da atual
+ */
+export function Pagination({ page, pageCount, onChange, total, itemLabel = "registro", window: win = 1 }) {
+  const [one, many] = Array.isArray(itemLabel) ? itemLabel : [itemLabel, `${itemLabel}s`];
+  const last = Math.max(1, pageCount || 1);
+  const cur = Math.min(Math.max(1, page || 1), last);
+  const go = (p) => p >= 1 && p <= last && p !== cur && onChange && onChange(p);
+
+  // Janela em volta da atual + primeira e última sempre presentes. `null` marca
+  // onde entra o "…" (não é página, é indicação de salto).
+  const items = [];
+  const from = Math.max(1, cur - win);
+  const to = Math.min(last, cur + win);
+  if (from > 1) { items.push(1); if (from > 2) items.push(null); }
+  for (let p = from; p <= to; p++) items.push(p);
+  if (to < last) { if (to < last - 1) items.push(null); items.push(last); }
+
+  const nav = (
+    <div className="su-pagination" role="navigation" aria-label="Paginação">
+      <button type="button" className="su-page su-page--nav" onClick={() => go(cur - 1)} disabled={cur <= 1} aria-label="Página anterior">
+        <DSIcon name="chevron-left" />
+      </button>
+      {items.map((p, i) => (p === null ? (
+        <span key={`gap-${i}`} className="su-page su-page--gap" aria-hidden="true">…</span>
+      ) : (
+        <button
+          key={p}
+          type="button"
+          className={["su-page", p === cur && "su-page--active"].filter(Boolean).join(" ")}
+          onClick={() => go(p)}
+          aria-label={`Página ${p}`}
+          aria-current={p === cur ? "page" : undefined}
+        >
+          {p}
+        </button>
+      )))}
+      <button type="button" className="su-page su-page--nav" onClick={() => go(cur + 1)} disabled={cur >= last} aria-label="Próxima página">
+        <DSIcon name="chevron-right" />
+      </button>
+    </div>
+  );
+
+  if (total == null) return nav;
   return (
-    <div className="su-pagination">
-      <span className="su-page su-page--nav" onClick={() => go(page - 1)}><DSIcon name="chevron-left" /></span>
-      {pages.map((p) => (
-        <span key={p} className={["su-page", p === page && "su-page--active"].filter(Boolean).join(" ")} onClick={() => go(p)}>{p}</span>
-      ))}
-      <span className="su-page su-page--nav" onClick={() => go(page + 1)}><DSIcon name="chevron-right" /></span>
+    <div className="su-pagination-bar">
+      <span className="su-pagination__count">
+        {total.toLocaleString("pt-BR")} {total === 1 ? one : many}
+      </span>
+      {nav}
     </div>
   );
 }
