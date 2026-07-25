@@ -4,12 +4,31 @@ import { DSIcon } from "./DSIcon.jsx";
 /**
  * Field — wrapper .su-field (label + controle + erro/dica). Erro é inline (P14);
  * a falha de envio vai por Toast (P12).
+ *
+ * `required` marca o campo como obrigatório **na etiqueta** — o asterisco é o
+ * sinal que o usuário já conhece, e vem acompanhado de "(obrigatório)" para o
+ * leitor de tela, porque um `*` solto não é lido como nada.
+ *
+ * Ele NÃO propaga `required` para o controle: o Field embrulha children
+ * arbitrários (Input, Select, TextArea, um grupo de Checkbox), e adivinhar em
+ * qual deles cravar o atributo daria falso positivo. Quem valida é o produto —
+ * o Field diz ao usuário o que é obrigatório, não impõe ao navegador.
  */
-export function Field({ label, error, hint, htmlFor, className = "", children }) {
+export function Field({ label, error, hint, htmlFor, required, className = "", children }) {
   const cls = ["su-field", error && "su-field--error", className].filter(Boolean).join(" ");
   return (
     <div className={cls}>
-      {label && <label className="su-field__label" htmlFor={htmlFor}>{label}</label>}
+      {label && (
+        <label className="su-field__label" htmlFor={htmlFor}>
+          {label}
+          {required && (
+            <>
+              <span className="su-field__req" aria-hidden="true">*</span>
+              <span className="su-sr-only"> (obrigatório)</span>
+            </>
+          )}
+        </label>
+      )}
       {children}
       {error && <span className="su-field__error"><DSIcon name="alert-circle" />{error}</span>}
       {!error && hint && <span className="su-field__hint">{hint}</span>}

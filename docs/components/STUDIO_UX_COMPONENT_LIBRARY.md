@@ -52,6 +52,20 @@
 
 **EN — Purpose:** a short state label (Badge: "Active", "Pending") or categorization/metadata (Tag: "VIP", "Fiber"). **When to use:** signal status, count or classify. **When NOT to use:** as an action (not clickable by default; a removable Tag is the exception, with an "x" and label). **Rules:** semantic color + **text/icon** together (P8, P17 — never color alone saying "error"); short text; status comes from a semantic map (success/warning/danger/info/neutral), not free color. **States:** static; a removable Tag has hover/focus on the "x". **Desktop vs Mobile:** same; Mobile ensures the "x" is touchable. **Accessibility:** meaning is in the text, not only color; badge text contrast meets AA. **Anti-patterns:** color-only badge; using it as a button; too many tags competing with data (P1).
 
+### O papel semântico chama-se `tone` — em TODOS os componentes
+
+`StatCard`, `Banner` e `Badge` expressam a mesma ideia (qual é o papel disto: neutro, informativo, sucesso, alerta, perigo) e o nome da prop é **`tone`**. O `Badge` era o único que chamava `status`, e isso custou 47 badges neutros no IA Studio: quem migrava tela escrevia `tone` por analogia com os outros dois, a prop caía no `...rest`, virava atributo inválido no `<span>` — **sem erro no console, sem cor na tela**. Alinhado na **v1.2.22**; `status` segue aceito como apelido para não quebrar quem já publicou com ele, mas código novo usa `tone`.
+
+| Valor | Quando |
+|---|---|
+| `neutral` (default) | estado sem carga — "rascunho", "não", contagem, rótulo de categoria. Não tem classe própria: é o `.su-badge` puro. |
+| `info` | estado em curso ou informativo — "na fila", "simulação", canal |
+| `success` | desfecho bom — "concluída", "enviada", "publicado" |
+| `warning` | atenção sem falha — "executando", "reprocessado 3x", "pulada" |
+| `danger` | falha — "falhou", "erro", "sem permissão" quando bloqueia |
+
+Regra que não muda: **a cor nunca é a única portadora** (P17). O badge sempre tem texto; `tone` só reforça.
+
 ## Avatar
 
 **PT — Propósito:** representar uma pessoa/entidade com imagem ou iniciais. **Quando usar:** identificar usuário/conta, autor de um evento na Timeline, participante. **Quando NÃO usar:** como ícone genérico de UI. **Regras:** fallback de **iniciais** (2 letras) quando não há imagem (padrão do rodapé de sidebar do IA Studio); forma e tamanho por token; status (online) é um segundo sinal além de cor. **Estados:** com imagem · iniciais · com indicador de status. **Desktop vs Mobile:** tamanhos por token; alvo de toque quando clicável. **Acessibilidade:** alt com o nome; se decorativo ao lado do nome já visível, aria-hidden. **Anti-padrões:** avatar sem fallback (quebra quando a imagem falha); iniciais ilegíveis por baixo contraste.
@@ -85,6 +99,18 @@
 **PT — Propósito:** o invólucro padrão de todo controle de formulário — dá rótulo, dica, mensagem de erro e associação acessível ao campo. **Quando usar:** em torno de TODO input (TextInput, Select, etc.). **Quando NÃO usar:** para conteúdo não-editável. **Regras:** todo campo tem **rótulo visível** (nunca placeholder como rótulo — anti-padrão de acessibilidade); erro associado ao campo e exibido junto dele (o *toast* é para o resultado do envio; o erro de validação de campo vive no FormField — complementa P12); marca obrigatoriedade de forma textual, não só por cor/asterisco solto. **Estados:** default · focus (no controle interno) · error (mensagem + borda/sinal) · disabled · readonly. **Desktop vs Mobile:** Mobile empilha rótulo sobre campo; Desktop pode alinhar em coluna densa. **Acessibilidade:** label associado por id, `aria-describedby` para dica/erro, `aria-invalid` no erro. **Anti-padrões:** placeholder no lugar do rótulo; erro só em vermelho sem texto (P17); rótulo órfão.
 
 **EN — Purpose:** the standard wrapper for every form control — provides label, hint, error message and accessible association. **When to use:** around EVERY input. **When NOT to use:** for non-editable content. **Rules:** every field has a **visible label** (never placeholder-as-label — an accessibility anti-pattern); the error is associated with the field and shown by it (the *toast* is for the submit result; field validation lives in FormField — complements P12); marks required-ness textually, not by color/loose asterisk alone. **States:** default · focus (on the inner control) · error (message + border/cue) · disabled · readonly. **Desktop vs Mobile:** Mobile stacks label over field; Desktop may align in a dense column. **Accessibility:** label tied by id, `aria-describedby` for hint/error, `aria-invalid` on error. **Anti-patterns:** placeholder replacing the label; error in red only, no text (P17); orphan label.
+
+### `required` — como o Field marca obrigatoriedade
+
+A regra acima ("marca obrigatoriedade de forma textual, não só por cor/asterisco solto") já estava escrita desde a v1.0.0, mas o adapter React **não expunha `required`** — quem migrava tela escrevia `<Field required>`, a prop caía no vazio e o campo obrigatório ficava indistinguível do opcional, sem erro nenhum no console. Corrigido na **v1.2.22**.
+
+| O que é | Como fica |
+|---|---|
+| `<Field label="Nome" required>` | `Nome*` — o `*` é `aria-hidden`, seguido de `(obrigatório)` em `.su-sr-only` (o leitor de tela lê a palavra; um asterisco solto ele não lê) |
+| Cor do `*` | `--su-danger-fg` — mesmo eixo semântico do erro (o que impede o envio), em peso menor. Nunca cor cravada. |
+| O que `required` **não** faz | não propaga o atributo `required` pro controle. O Field embrulha children arbitrários (Input, Select, TextArea, grupo de Checkbox) e adivinhar em qual cravar daria falso positivo. **Quem valida é o produto** (e avisa por toast, P12); o Field avisa o usuário. |
+
+Anti-padrão: escrever `label="Nome *"` com o asterisco dentro da string. Aí ele é texto solto, não é marcado como decorativo, e o leitor de tela anuncia "Nome asterisco".
 
 ## TextInput
 

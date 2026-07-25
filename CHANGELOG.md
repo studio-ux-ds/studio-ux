@@ -12,6 +12,38 @@
 
 - **docs(prompt-framework)** · 2026-07-23 — adota `C:\Users\Flowspec\Documents\STUDIO-WORKFLOW\` v3.0.0 como fonte única do método (paradigma `prompt-framework/v1`). Agnósticos locais (`README.md`, `prompt-alinhamento.md`) viraram stubs; `COMO-INTERAGIR-COM-ROBSON.md` também. Catálogo local migrou para `studio-ux.specialty-catalog@2.0.0` (`kind: shared`, PT+EN); as 6 especialidades foram para o schema formal em `studio-ux.*@1.0.0`, todas com `extends: workflow.system-change-base@1.0.0`.
 
+## [1.2.22] — 2026-07-25
+
+### Added
+
+- **`Badge` aceita `tone`** — o nome canônico do papel semântico no DS, o mesmo que `StatCard` e `Banner` já usavam. `status` continua aceito como apelido (versões publicadas o usam), mas código novo escreve `tone`. `neutral` virou valor explícito e válido (é o `.su-badge` puro, sem classe de cor).
+- **`Field` ganhou `required`** — asterisco na etiqueta (`.su-field__req`, cor `--su-danger-fg`) mais `(obrigatório)` em texto só-para-leitor-de-tela. O `*` vai `aria-hidden`: sozinho ele não é lido, e "Nome asterisco" não é rótulo.
+- **`.su-sr-only`** no `components.css` — utilitário de texto só para leitor de tela (fora do fluxo visual, dentro da árvore de acessibilidade). Faltava um, e sem ele a alternativa era `display: none`, que esconde dos dois.
+
+### Fixed
+
+- **`<Badge tone>` era prop morta — e derrubou 47 badges de um consumidor só.** O `Badge` era o único componente do DS a chamar o papel semântico de `status`; `StatCard` e `Banner` chamam `tone`. Quem migrava tela escrevia `tone` por analogia, a prop caía no `...rest`, virava atributo inválido no `<span>` e **o badge ficava neutro em silêncio** — sem erro de build, sem aviso no console. No IA Studio eram **47 ocorrências em 19 arquivos**, todas de telas já validadas e no ar: "Falhou", "Concluída", "Enviada", "sem permissão" — tudo cinza. Com o apelido aceito, as 47 passam a colorir **sem tocar em nenhum arquivo do consumidor**.
+- **`<Field required>` era prop morta.** A spec do FormField exige, desde a v1.0.0, "marcar obrigatoriedade de forma textual, não só por cor/asterisco solto" — mas o adapter React nunca expôs `required`. Quem migrava tela escrevia `required` de boa-fé, a prop caía no vazio e **o campo obrigatório ficava idêntico ao opcional**, sem aviso nenhum no console. Já estava vazando em `ContaSenha.jsx` (3 campos) desde a v0.9.87 do IA Studio.
+
+### Origem
+
+Auditoria dos editores novos da Automação do IA Studio (calendário e template). Escrevi `<Field required>` por hábito, fui conferir a assinatura real antes de fechar, e a prop não existia. Fui conferir as outras que uso por hábito — e caiu o `Badge tone`, que é bem pior: 47 vezes, em telas já no ar.
+
+### Lição
+
+**Uma classe nova de erro, e a mais perigosa até agora: a prop morta.**
+
+As seis lições anteriores (`NumericInput.fullWidth`, `Button.loading`, largura fora do `Field`, glifo do DataTable, rótulo de opção, `Pagination` com dado real) eram todas o mesmo padrão — *a spec previa, o adapter não expunha* — e todas **apareciam na tela**: algo torto, apertado, sem spinner. Alguém olhava e via.
+
+Estas duas não aparecem. A prop cai no `...rest` ou é ignorada, o build passa, o React não reclama de prop desconhecida em componente próprio, e **o resultado é plausível**: um campo sem asterisco parece opcional, um badge cinza parece uma escolha de design. Foram 47 badges cinza em 19 arquivos passando por validação visual sem ninguém — eu incluído — desconfiar.
+
+Duas causas distintas, cada uma com sua correção estrutural:
+
+1. **Divergência de nome dentro do próprio DS** (`Badge.status` contra `StatCard.tone`/`Banner.tone`). Um DS que chama a mesma coisa por dois nomes **educa o consumidor a errar**. Correção: o nome canônico é `tone`, em todos; o antigo fica como apelido.
+2. **Spec adiante do adapter** (`Field.required`). Correção: já é a sétima — vale gate.
+
+Anotado como candidato a gate no `check-packages.mjs`: (a) comparar as props documentadas na `STUDIO_UX_COMPONENT_LIBRARY.md` com as desestruturadas na assinatura do componente; (b) checar que props de mesmo papel semântico têm o mesmo nome entre componentes. Não entram nesta versão — a spec é prosa bilíngue, extrair nome de prop dela sem falso positivo é frente própria, e (b) exige um vocabulário declarado de props canônicas que ainda não existe.
+
 ## [1.2.21] — 2026-07-25
 
 ### Fixed

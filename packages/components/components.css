@@ -99,6 +99,16 @@
 .su-field--error .su-input { border-color: var(--su-danger); }
 .su-field__error { font-size: 11px; color: var(--su-danger-fg); display: flex; align-items: center; gap: 4px; }
 .su-field__hint { font-size: 11px; color: var(--su-text-muted); }
+/* Obrigatório: asterisco na etiqueta. Cor de perigo porque é o mesmo eixo
+   semântico do erro (o que impede o envio), num peso menor. */
+.su-field__req { color: var(--su-danger-fg); margin-left: 2px; }
+
+/* Texto só para leitor de tela — fora do fluxo visual, mas dentro da árvore de
+   acessibilidade. `display: none` NÃO serve: esconde dos dois. */
+.su-sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
 
 /* ---------- Table (DataTable base) ---------- */
 .su-table-card { border: 1px solid var(--su-border-strong); border-radius: var(--su-radius-lg); background: var(--su-surface-raised); box-shadow: var(--su-elevation-raised); overflow: hidden; }
