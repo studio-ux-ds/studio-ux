@@ -6,20 +6,49 @@ export function Select({ className = "", children, ...rest }) {
 }
 
 /**
+ * Envelope compartilhado por `Checkbox` e `Radio` — o rótulo, a variante em card
+ * e a linha de meta. Um só lugar: as duas opções não podem divergir de desenho.
+ */
+function OptionLabel({ input, id, label, meta, variant, inline }) {
+  const card = variant === "card";
+  const cls = [
+    "su-check",
+    card && "su-check--card",
+    inline && !card && "su-check--inline",
+  ].filter(Boolean).join(" ");
+  return (
+    <label htmlFor={id} className={cls}>
+      {input}
+      {card || meta ? (
+        <span className="su-check__body">
+          <span className="su-check__label">{label}</span>
+          {meta && <span className="su-check__meta">{meta}</span>}
+        </span>
+      ) : (
+        <span>{label}</span>
+      )}
+    </label>
+  );
+}
+
+/**
  * Checkbox — `.su-checkbox` (quadrado: cabe VÁRIOS). Rótulo opcional à direita.
  * @param {boolean} [inline] põe a opção na mesma linha das vizinhas. O default é
  *   EMPILHAR: uma lista de opções é vertical. (Até a v1.2.15 o rótulo era
  *   `inline-flex` e várias opções seguidas fluíam na mesma linha, com o texto de
  *   uma encostando no controle da próxima.)
+ * @param {"plain"|"card"} [variant="plain"]  `card` embrulha a opção numa borda
+ *   que acende no accent quando marcada. Use quando a lista é longa, quando cada
+ *   item carrega um dado secundário (`meta`), ou quando a leitura é em grade —
+ *   sem fronteira visível o olho perde a associação entre o rótulo de uma coluna
+ *   e a caixa dela.
+ * @param {React.ReactNode} [meta]  linha secundária sob o rótulo: categoria,
+ *   contagem, `Badge`s de estado. Aceita nós, não só texto.
  */
-export function Checkbox({ label, className = "", id, inline = false, ...rest }) {
+export function Checkbox({ label, className = "", id, inline = false, variant = "plain", meta, ...rest }) {
   const input = <input type="checkbox" id={id} className={["su-checkbox", className].filter(Boolean).join(" ")} {...rest} />;
   if (!label) return input;
-  return (
-    <label htmlFor={id} className={["su-check", inline && "su-check--inline"].filter(Boolean).join(" ")}>
-      {input}<span>{label}</span>
-    </label>
-  );
+  return <OptionLabel input={input} id={id} label={label} meta={meta} variant={variant} inline={inline} />;
 }
 
 /**
@@ -32,21 +61,24 @@ export function Checkbox({ label, className = "", id, inline = false, ...rest })
  * Distribui em COLUNAS por `auto-fill` + `minmax`, sem media query — o navegador
  * encaixa quantas couberem e cai pra uma sozinho em tela estreita.
  *
- * @param {"auto"|1|2|3|4} [columns="auto"]  quantas colunas no máximo. `auto` é
- *   o default (o mesmo que 3): usa o espaço que tem. Use 1 quando cada opção traz
- *   texto explicativo longo e a leitura em coluna única é melhor; 2 para rótulos
- *   de uma frase; 3 ou 4 para rótulos curtos (nomes, chaves).
+ * @param {"auto"|1|2|3|4} [columns="auto"]  dois regimes:
+ *   · `"auto"` (default) — **quantas couberem** com largura mínima legível. Numa
+ *     tela larga rende 5, 6 colunas. É o que se quer numa lista longa de rótulos
+ *     curtos: densidade máxima sem rolagem.
+ *   · número — **teto**. `2` significa "no máximo 2, menos se não couber". Use
+ *     quando o rótulo é uma frase e mais colunas partiriam cada uma em três
+ *     linhas; use `1` para opção com texto explicativo longo.
  * @param {string} [role]  passe `"group"` (checkboxes) ou `"radiogroup"` (radios)
  *   com um `aria-labelledby` apontando pro título da seção, quando o grupo tem
  *   um título visível.
  */
 export function CheckGroup({ columns = "auto", className = "", children, ...rest }) {
-  const n = columns === "auto" ? 3 : columns;
-  return (
-    <div className={["su-check-group", `su-check-group--${n}`, className].filter(Boolean).join(" ")} {...rest}>
-      {children}
-    </div>
-  );
+  const cls = [
+    "su-check-group",
+    columns !== "auto" && `su-check-group--${columns}`,
+    className,
+  ].filter(Boolean).join(" ");
+  return <div className={cls} {...rest}>{children}</div>;
 }
 
 /**
@@ -54,15 +86,13 @@ export function CheckGroup({ columns = "auto", className = "", children, ...rest
  * mesmo `name`, senão cada um é um grupo de um só e as setas do teclado não
  * andam entre eles.
  * @param {boolean} [inline] mesma linha das vizinhas; o default é empilhar.
+ * @param {"plain"|"card"} [variant="plain"]  igual ao `Checkbox` — ver lá.
+ * @param {React.ReactNode} [meta]  linha secundária sob o rótulo.
  */
-export function Radio({ label, className = "", id, inline = false, ...rest }) {
+export function Radio({ label, className = "", id, inline = false, variant = "plain", meta, ...rest }) {
   const input = <input type="radio" id={id} className={["su-radio", className].filter(Boolean).join(" ")} {...rest} />;
   if (!label) return input;
-  return (
-    <label htmlFor={id} className={["su-check", inline && "su-check--inline"].filter(Boolean).join(" ")}>
-      {input}<span>{label}</span>
-    </label>
-  );
+  return <OptionLabel input={input} id={id} label={label} meta={meta} variant={variant} inline={inline} />;
 }
 
 /** Switch / Toggle — .su-switch (controlado). */

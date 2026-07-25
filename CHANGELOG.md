@@ -12,6 +12,24 @@
 
 - **docs(prompt-framework)** · 2026-07-23 — adota `C:\Users\Flowspec\Documents\STUDIO-WORKFLOW\` v3.0.0 como fonte única do método (paradigma `prompt-framework/v1`). Agnósticos locais (`README.md`, `prompt-alinhamento.md`) viraram stubs; `COMO-INTERAGIR-COM-ROBSON.md` também. Catálogo local migrou para `studio-ux.specialty-catalog@2.0.0` (`kind: shared`, PT+EN); as 6 especialidades foram para o schema formal em `studio-ux.*@1.0.0`, todas com `extends: workflow.system-change-base@1.0.0`.
 
+## [1.2.20] — 2026-07-25
+
+### Added
+
+- **`Checkbox` e `Radio` ganharam `variant="card"` + `meta`.** A opção inteira vira um alvo delimitado — caixa + rótulo + linha de `meta` (categoria, contagem, `Badge`) dentro de uma borda que **acende no accent** quando marcada. O estado visual vem do próprio input via **`:has(:checked)`**: não existe prop de estado duplicada nem classe pra tela sincronizar — se existisse, borda e marcado poderiam divergir. `hover`, `focus-visible` (anel, P18) e `disabled` (esmaecido + superfície afundada) passaram a ser do componente.
+  - **Por que virou padrão:** esse desenho já existia — **montado à mão** no editor de assistente do IA Studio, com `<div>` + borda e `<input>` solto. Mesma aparência, mas sem foco visível, com a borda de "marcado" sincronizada por JS e o motivo do desabilitado escondido num `title`. Robson comparou as duas telas (a com card e a com opção nua) e cravou: *"ficou muito mais elegante e isso tem que ser padrão do DS"*.
+  - `meta` aceita nós, não só texto. Serve para tirar do rótulo a condição de aplicação — em vez de "Avisar quando normalizar (só nos modos proativo e combinado)" numa linha só, o rótulo fica curto e a condição vai pra `meta`.
+
+### Changed
+
+- **`CheckGroup.columns` agora tem dois regimes explícitos, e o numérico é TETO.** Antes a regra era só `minmax(240px, 1fr)`, que define largura **mínima** — então `columns={2}` num card de 1500px rendia 6 colunas. Agora: `"auto"` (default) = **quantas couberem** (o comportamento denso que o Robson aprovou nas listas de rótulo curto); `4`/`3`/`2`/`1` = **teto**, com o piso de cada coluna sendo o maior entre a largura legível e a fração 1/N do container descontados os gaps. Nenhuma media query.
+- **`docs/components/STUDIO_UX_COMPONENT_LIBRARY.md`** ganhou duas seções novas — **`CheckGroup`** (com a tabela de quando usar cada regime de `columns`, decidido pelo comprimento do rótulo) e **Opção em card** (quando a borda ganha da opção nua, quando ela é só moldura, e os anti-padrões). Antes o catálogo descrevia `Checkbox` e `Radio` isolados e não dizia nada sobre **lista** de opções — o vácuo que fez cada tela inventar a sua grade.
+- `Checkbox` e `Radio` passaram a compartilhar um `OptionLabel` interno: as duas não podem divergir de desenho, e antes o rótulo estava duplicado nos dois.
+
+### Bump lockstep
+
+Todos os 7 pacotes vão pra `1.2.20`. **Consumidor precisa bumpar** `react` + `components`.
+
 ## [1.2.19] — 2026-07-25
 
 > **A tag `v1.2.18` existe mas NÃO publicou nada com esse número.** Eu corrigi o código e escrevi a entrada, mas **esqueci de bumpar os `package.json`** — que continuaram em `1.2.17`. O workflow então republicou `1.2.17` (já existente no registry), o CI ficou **verde**, e o consumidor que pediu `^1.2.18` recebeu `ETARGET: No matching version found`. O conteúdo que era pra ser a 1.2.18 está nesta 1.2.19; a tag `v1.2.18` fica queimada (tag é imutável).

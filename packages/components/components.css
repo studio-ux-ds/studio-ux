@@ -230,16 +230,68 @@
    estreita cai sozinho pra uma. `min(…, 100%)` evita estouro quando o container
    é menor que o próprio mínimo.
    O DEFAULT é usar as colunas que couberem — não empilhar uma opção por linha e
-   deixar a tela larga vazia. Quem quer coluna única pede `columns={1}`. */
+   deixar a tela larga vazia. Quem quer coluna única pede `columns={1}`.
+
+   Dois regimes, porque as duas intenções são legítimas:
+
+   · `--auto` (default) — **quantas couberem**, com largura mínima legível. Numa
+     tela larga rende 5, 6 colunas, e é o que se quer numa lista longa de rótulos
+     curtos: densidade máxima sem rolagem.
+   · `--N` — **teto de N colunas**. Para quando o rótulo é uma frase e mais que N
+     colunas partiria cada uma em três linhas. Aqui o mínimo de cada coluna é o
+     MAIOR entre a largura legível e a fração 1/N do container (descontados os
+     gaps) — assim nunca cabem mais de N, e em tela estreita cai para menos.
+     Sem isso, `columns={2}` num card de 1500px rendia 6, porque `minmax` define
+     mínimo e não teto. */
 .su-check-group {
+  --su-og-min: 240px;
+  --su-og-gap: var(--su-space-5);
   display: grid;
-  gap: var(--su-space-2) var(--su-space-5);
-  grid-template-columns: repeat(auto-fill, minmax(min(var(--su-og-min, 240px), 100%), 1fr));
+  gap: var(--su-space-2) var(--su-og-gap);
+  grid-template-columns: repeat(auto-fill, minmax(min(var(--su-og-min), 100%), 1fr));
 }
-.su-check-group--1 { --su-og-min: 100%; }
-.su-check-group--2 { --su-og-min: 320px; }
-.su-check-group--3 { --su-og-min: 240px; }
-.su-check-group--4 { --su-og-min: 190px; }
+/* Teto de N: a fração 1/N entra como piso da coluna. */
+.su-check-group--1,
+.su-check-group--2,
+.su-check-group--3,
+.su-check-group--4 {
+  grid-template-columns: repeat(auto-fill, minmax(
+    max(min(var(--su-og-min), 100%),
+        calc((100% - (var(--su-og-cols) - 1) * var(--su-og-gap)) / var(--su-og-cols))),
+    1fr));
+}
+.su-check-group--1 { --su-og-cols: 1; --su-og-min: 100%; }
+.su-check-group--2 { --su-og-cols: 2; --su-og-min: 280px; }
+.su-check-group--3 { --su-og-cols: 3; --su-og-min: 240px; }
+.su-check-group--4 { --su-og-cols: 4; --su-og-min: 200px; }
+
+/* ---------- Opção em CARD (`variant="card"`) ----------
+   A opção inteira vira um alvo delimitado: caixa + rótulo + uma linha de meta
+   (categoria, badges) dentro de uma borda que acende no accent quando marcada.
+   Ganha sobre a opção "nua" quando a lista é longa, quando cada item carrega um
+   dado secundário, ou quando a leitura em grade precisa de fronteira visível —
+   sem borda, olho perde a associação entre o rótulo da coluna 2 e a caixa dela.
+   O estado vem do próprio input via `:has()`, então não há prop de estado
+   duplicada nem classe que o consumidor precise sincronizar. */
+.su-check--card {
+  align-items: flex-start;
+  padding: var(--su-space-3);
+  border: 1px solid var(--su-border-default);
+  border-radius: var(--su-radius-md);
+  background: var(--su-surface-raised);
+  transition: border-color var(--su-duration-fast) var(--su-ease-standard),
+              background var(--su-duration-fast) var(--su-ease-standard);
+}
+.su-check--card:hover:not(:has(:disabled)) { border-color: var(--su-border-strong); }
+.su-check--card:has(:checked) { border-color: var(--su-action); }
+.su-check--card:has(:focus-visible) { border-color: var(--su-border-focus); box-shadow: 0 0 0 3px var(--su-action-tint); }
+.su-check--card:has(:disabled) { opacity: .55; cursor: not-allowed; background: var(--su-surface-sunken); }
+.su-check__body { min-width: 0; flex: 1; }
+.su-check__label { display: block; font-size: 14px; font-weight: var(--su-fw-medium); color: var(--su-text-primary); }
+.su-check__meta {
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+  margin-top: 2px; font-size: 11px; color: var(--su-text-muted);
+}
 
 .su-switch { position: relative; display: inline-block; width: 40px; height: 23px; }
 .su-switch input { opacity: 0; width: 0; height: 0; }

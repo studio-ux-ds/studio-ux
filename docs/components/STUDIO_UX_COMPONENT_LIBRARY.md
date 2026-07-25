@@ -128,6 +128,46 @@
 
 **EN — Purpose:** independent or multiple boolean selection in a list. **When to use:** accept terms, mark several items. **When NOT to use:** exclusive choice (`Radio`); immediate-effect settings toggle (`Switch`). **Rules:** clickable label by the box; indeterminate state for "some selected". **States:** unchecked · checked · indeterminate · focus · disabled · error. **Desktop vs Mobile:** ≥44px target including the label on Mobile. **Accessibility:** role checkbox, associated label, Space-operable. **Anti-patterns:** checkbox for exclusive choice; a non-clickable label; a tiny box on touch.
 
+## CheckGroup (lista de opções) · CheckGroup (option list)
+
+**PT — Propósito:** o **container** de uma lista de `Checkbox`/`Radio`. Existe porque o layout de um grupo de opções é decisão do sistema, não de cada tela: sem ele, cada consumidor monta um `div` com espaçamento próprio e o resultado divergia — e empilhava uma opção por linha, deixando dois terços da tela larga vazios. **Quando usar:** sempre que houver **duas ou mais** opções relacionadas. Opção única e solta não precisa de grupo. **Quando NÃO usar:** para agrupar campos de tipos diferentes (isso é `Card`/`Fieldset`); para escolha entre 2–4 alternativas que trocam a vista na hora (é `SegmentedControl`).
+
+**Regras:** distribui em **colunas** por `auto-fill` + `minmax`, sem media query — o navegador encaixa quantas couberem e cai para menos em tela estreita. Dois regimes de `columns`, e a escolha é pelo **comprimento do rótulo**:
+
+| `columns` | Comportamento | Quando |
+|---|---|---|
+| `"auto"` (default) | **quantas couberem** (mín. legível ~240px) — 5, 6 numa tela larga | lista longa de rótulos curtos (nomes, chaves, categorias). Densidade máxima sem rolagem |
+| `4` · `3` · `2` | **teto** de N colunas, menos se não couber | rótulo de uma frase, que em mais colunas quebraria em três linhas |
+| `1` | coluna única | opção com texto explicativo longo, onde a leitura corrida é melhor |
+
+**`columns` numérico é TETO, não sugestão** — `minmax` sozinho define largura mínima, então `columns={2}` num card largo renderia 6. O piso de cada coluna é o maior entre a largura legível e a fração 1/N do container.
+
+**Acessibilidade:** quando o grupo tem título visível, passe `role="group"` (checkboxes) ou `role="radiogroup"` (radios) + `aria-labelledby` apontando pro `id` desse título — o leitor de tela anuncia o assunto antes das opções. Radios do mesmo grupo compartilham `name`, senão as setas do teclado não andam entre eles.
+
+**Anti-padrões:** montar a grade na tela em vez de usar o grupo (o responsivo passa a ser responsabilidade de cada tela, e muda em N lugares quando muda); empilhar opção por linha num container largo; pedir `columns={4}` com rótulos de uma frase.
+
+**EN — Purpose:** the **container** of a `Checkbox`/`Radio` list. It exists because a group's layout is a system decision, not a per-screen one: without it every consumer hand-rolled a `div` with its own spacing, results diverged — and it stacked one option per row, leaving two thirds of a wide screen empty. **When to use:** whenever there are **two or more** related options. A single standalone option needs no group. **When NOT to use:** to group fields of different kinds (that is `Card`/`Fieldset`); for 2–4 alternatives that switch the view immediately (that is `SegmentedControl`).
+
+**Rules:** lays out in **columns** via `auto-fill` + `minmax`, no media query — the browser fits as many as possible and drops to fewer when narrow. Two `columns` regimes, chosen by **label length**: `"auto"` (default) = as many as fit (~240px min), for long lists of short labels; `4`/`3`/`2` = a **cap** of N, for one-sentence labels; `1` = single column, for options carrying long explanatory text. **A numeric `columns` is a CAP, not a hint** — `minmax` alone sets a minimum, so `columns={2}` in a wide card would render 6; each column's floor is the greater of the legible width and the container's 1/N fraction.
+
+**Accessibility:** when the group has a visible title, pass `role="group"` (checkboxes) or `role="radiogroup"` (radios) + `aria-labelledby` pointing at that title's `id`. Radios in one group share a `name`, otherwise arrow keys won't move between them.
+
+**Anti-patterns:** hand-rolling the grid in the screen instead of using the group; stacking one option per row in a wide container; asking for `columns={4}` with one-sentence labels.
+
+## Opção em card (`variant="card"`) · Option as card
+
+**PT — Propósito:** a variante do `Checkbox`/`Radio` em que a opção inteira é um **alvo delimitado** — caixa + rótulo + uma linha de `meta` (categoria, contagem, `Badge` de estado) dentro de uma borda que **acende no accent** quando marcada. **Quando usar:** lista longa; item que carrega um dado secundário; leitura em **grade** (sem fronteira visível, o olho perde a associação entre o rótulo de uma coluna e a caixa dela); e quando a opção é uma *escolha de catálogo* (habilidade, base de conhecimento, integração) e não um simples "sim/não" de configuração. **Quando NÃO usar:** duas ou três opções soltas de configuração — a borda vira moldura sem função e pesa a tela (P1); dentro de um `Modal` apertado.
+
+**Regras:** o estado visual vem do **próprio input** via `:has(:checked)` — não existe prop de estado duplicada nem classe que a tela precise sincronizar (se existisse, a borda e o marcado poderiam divergir). O alvo clicável é o card **todo**, porque ele é um `<label>`. `meta` aceita nós, não só texto — é onde entram os `Badge`s. Estados de `hover`, `focus-visible` (anel, P18) e `disabled` (esmaecido + superfície afundada) são do componente, não da tela.
+
+**Anti-padrões:** reconstruir o card na tela com `div` + borda e `<input>` solto (era o que existia antes desta variante: mesma aparência, sem foco visível, com o estado sincronizado à mão); card com rótulo de três palavras e nenhuma `meta` (não ganha nada da borda); usar a borda de accent para outra coisa que não "esta opção está marcada".
+
+**EN — Purpose:** the `Checkbox`/`Radio` variant where the whole option is a **bounded target** — box + label + a `meta` line (category, count, state `Badge`) inside a border that **lights up in the accent** when checked. **When to use:** long lists; items carrying secondary data; **grid** reading (without a visible boundary the eye loses the tie between a column's label and its box); and when the option is a *catalog choice* (a skill, a knowledge base, an integration) rather than a plain config yes/no. **When NOT to use:** two or three loose config options — the border becomes a frame with no function and weighs the screen down (P1); inside a cramped `Modal`.
+
+**Rules:** visual state comes from the **input itself** via `:has(:checked)` — no duplicated state prop, no class for the screen to keep in sync (if there were, border and checked state could diverge). The clickable target is the **whole** card, because it is a `<label>`. `meta` takes nodes, not just text — that's where `Badge`s go. `hover`, `focus-visible` (ring, P18) and `disabled` (dimmed + sunken surface) belong to the component, not the screen.
+
+**Anti-patterns:** rebuilding the card in the screen with a `div` + border and a loose `<input>` (exactly what existed before this variant: same look, no visible focus, state synced by hand); a card with a three-word label and no `meta` (gains nothing from the border); using the accent border for anything other than "this option is checked".
+
 ## Radio
 
 **PT — Propósito:** escolha **exclusiva** entre poucas opções visíveis. **Quando usar:** 2–5 opções mutuamente exclusivas que valem mostrar todas. **Quando NÃO usar:** muitas opções (`Select`); múltipla (`Checkbox`). **Regras:** sempre em grupo com rótulo do grupo; um selecionado por padrão quando fizer sentido. **Estados:** iguais ao Checkbox (sem indeterminate). **Desktop vs Mobile:** alvo ≥44px. **Acessibilidade:** radiogroup, navegação por setas dentro do grupo. **Anti-padrões:** radio solto (sem grupo); usar onde caberia Select por excesso de opções.
