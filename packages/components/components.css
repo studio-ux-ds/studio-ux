@@ -221,6 +221,26 @@
 .su-check > .su-checkbox, .su-check > .su-radio { margin-top: 1px; }
 .su-check--inline > .su-checkbox, .su-check--inline > .su-radio { margin-top: 0; }
 
+/* Grupo de opções — o container de uma lista de `Checkbox`/`Radio`.
+   Existe porque o consumidor não deve montar o layout de um grupo na mão (era
+   um `div` com `space-y-*`, e em card largo sobrava dois terços de vazio com a
+   lista descendo pra rolagem).
+   `auto-fill` + `minmax` dá colunas SEM media query: o `--su-og-min` define a
+   largura mínima de uma coluna, e o navegador encaixa quantas cabem. Em tela
+   estreita cai sozinho pra uma. `min(…, 100%)` evita estouro quando o container
+   é menor que o próprio mínimo.
+   O DEFAULT é usar as colunas que couberem — não empilhar uma opção por linha e
+   deixar a tela larga vazia. Quem quer coluna única pede `columns={1}`. */
+.su-check-group {
+  display: grid;
+  gap: var(--su-space-2) var(--su-space-5);
+  grid-template-columns: repeat(auto-fill, minmax(min(var(--su-og-min, 240px), 100%), 1fr));
+}
+.su-check-group--1 { --su-og-min: 100%; }
+.su-check-group--2 { --su-og-min: 320px; }
+.su-check-group--3 { --su-og-min: 240px; }
+.su-check-group--4 { --su-og-min: 190px; }
+
 .su-switch { position: relative; display: inline-block; width: 40px; height: 23px; }
 .su-switch input { opacity: 0; width: 0; height: 0; }
 .su-switch__track { position: absolute; inset: 0; background: var(--su-border-strong); border-radius: var(--su-radius-full); transition: background var(--su-duration-fast) var(--su-ease-standard); cursor: pointer; }

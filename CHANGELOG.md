@@ -12,6 +12,29 @@
 
 - **docs(prompt-framework)** · 2026-07-23 — adota `C:\Users\Flowspec\Documents\STUDIO-WORKFLOW\` v3.0.0 como fonte única do método (paradigma `prompt-framework/v1`). Agnósticos locais (`README.md`, `prompt-alinhamento.md`) viraram stubs; `COMO-INTERAGIR-COM-ROBSON.md` também. Catálogo local migrou para `studio-ux.specialty-catalog@2.0.0` (`kind: shared`, PT+EN); as 6 especialidades foram para o schema formal em `studio-ux.*@1.0.0`, todas com `extends: workflow.system-change-base@1.0.0`.
 
+## [1.2.17] — 2026-07-25
+
+### Added
+
+- **`CheckGroup` — o container de uma lista de `Checkbox`/`Radio`** (`@studio-ux-ds/react` + `.su-check-group` no CSS). Montar o layout de um grupo de opções era trabalho do consumidor (um `div` com `space-y-*`), e o resultado empilhava **uma opção por linha**: num card largo sobravam dois terços de vazio e a lista descia pra rolagem. O `CheckGroup` distribui em **colunas** por `auto-fill` + `minmax` — sem media query: o navegador encaixa quantas couberem e cai pra uma sozinho em tela estreita.
+  - `columns`: `"auto"` (default, equivale a 3) · `1` · `2` · `3` · `4`. **O default é usar as colunas que couberem**, não empilhar. Use `1` quando cada opção traz texto explicativo longo; `2` para rótulos de uma frase; `3`/`4` para rótulos curtos (nomes, chaves).
+  - Aceita `role="group"`/`role="radiogroup"` + `aria-labelledby` apontando pro título visível da seção.
+  - Dois consumidores reais já na estreia (a regra de "nenhuma abstração sem 2+ consumidores"): as listas de habilidades/bases/memória do editor de assistente do IA Studio — que tinham uma grade `auto-fill` **montada à mão**, agora deletada — e as opções de comportamento do incidente.
+
+### Origem
+
+Robson, olhando as 4 opções de comportamento do incidente empilhadas na v1.2.16: *"olha o tanto de espaço"* — e a diretriz: *"para otimizar o espaço em telas grandes seria bom ela ser capaz de usar colunas, não empilhar linha por linha"*.
+
+Complementa a v1.2.16 (que corrigiu o rótulo de opção deixar de ser `inline` e passar a empilhar): empilhar era o certo para **uma** opção não colar na outra, mas o certo para um **grupo** é distribuir em colunas. A v1.2.16 resolveu a colisão; esta resolve o desperdício.
+
+### Impacto nos consumidores
+
+- **Aditivo.** `Checkbox`/`Radio` soltos não mudam. Quem quiser colunas envolve a lista no `CheckGroup`; quem não usar continua com o comportamento da v1.2.16 (empilhado).
+
+### Bump lockstep
+
+Todos os 7 pacotes vão pra `1.2.17`. **Consumidor precisa bumpar** `react` + `components`.
+
 ## [1.2.16] — 2026-07-25
 
 ### Fixed

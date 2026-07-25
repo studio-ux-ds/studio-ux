@@ -23,6 +23,33 @@ export function Checkbox({ label, className = "", id, inline = false, ...rest })
 }
 
 /**
+ * CheckGroup — container de uma LISTA de `Checkbox`/`Radio` (`.su-check-group`).
+ *
+ * Existe porque montar o layout de um grupo era trabalho do consumidor (um `div`
+ * com `space-y-*`), e o resultado empilhava uma opção por linha: num card largo
+ * sobravam dois terços de vazio e a lista descia pra rolagem.
+ *
+ * Distribui em COLUNAS por `auto-fill` + `minmax`, sem media query — o navegador
+ * encaixa quantas couberem e cai pra uma sozinho em tela estreita.
+ *
+ * @param {"auto"|1|2|3|4} [columns="auto"]  quantas colunas no máximo. `auto` é
+ *   o default (o mesmo que 3): usa o espaço que tem. Use **1** quando cada opção
+ *   traz texto explicativo longo e a leitura em coluna única é melhor; **2** para
+ *   rótulos de uma frase; **3**/**4** para rótulos curtos (nomes, chaves).
+ * @param {string} [role]  passe `"group"` (checkboxes) ou `"radiogroup"` (radios)
+ *   com um `aria-labelledby` apontando pro título da seção, quando o grupo tem
+ *   um título visível.
+ */
+export function CheckGroup({ columns = "auto", className = "", children, ...rest }) {
+  const n = columns === "auto" ? 3 : columns;
+  return (
+    <div className={["su-check-group", `su-check-group--${n}`, className].filter(Boolean).join(" ")} {...rest}>
+      {children}
+    </div>
+  );
+}
+
+/**
  * Radio — `.su-radio` (círculo: cabe UM). Radios do mesmo grupo precisam do
  * mesmo `name`, senão cada um é um grupo de um só e as setas do teclado não
  * andam entre eles.
