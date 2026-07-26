@@ -22,8 +22,8 @@ Dono · Owner:                este doc, para o domínio "personalidade / linguag
                              / this doc, for the "personality / visual language" domain.
 ```
 
-> **PT — Nota de fase (importante):** este documento define **caráter e regras**, não **valores**. Ele diz *"praticamente nenhum gradiente"*, não *"o gradiente é #A→#B"*. Os valores concretos (paletas, px, fontes, durações) são materializados na Fase 2 (`STUDIO_UX_ROADMAP.md`). Isto mantém a regra "arquitetura antes de estética" (`STUDIO_UX.md` §3.6).
-> **EN — Phase note (important):** this document defines **character and rules**, not **values**. It says *"virtually no gradients"*, not *"the gradient is #A→#B"*. Concrete values (palettes, px, fonts, durations) are materialized in Phase 2 (`STUDIO_UX_ROADMAP.md`). This upholds the "architecture before aesthetics" rule (`STUDIO_UX.md` §3.6).
+> **PT — Nota de fase (importante):** este documento define **caráter e regras**, não **valores**. Ele diz *"gradiente só tonal e discreto"* (§6.4), não *"o gradiente é #A→#B"*. Os valores concretos (paletas, px, fontes, durações) são materializados na Fase 2 (`STUDIO_UX_ROADMAP.md`). Isto mantém a regra "arquitetura antes de estética" (`STUDIO_UX.md` §3.6).
+> **EN — Phase note (important):** this document defines **character and rules**, not **values**. It says *"gradients only tonal and discreet"* (§6.4), not *"the gradient is #A→#B"*. Concrete values (palettes, px, fonts, durations) are materialized in Phase 2 (`STUDIO_UX_ROADMAP.md`). This upholds the "architecture before aesthetics" rule (`STUDIO_UX.md` §3.6).
 
 ---
 
@@ -116,8 +116,19 @@ Dono · Owner:                este doc, para o domínio "personalidade / linguag
 **EN** — The border is the last means of separation, after space and surface color (P5). When used, it is subtle and serves to delimit the essential (an input field, a table). Studio UX does not draw "cages": frames within frames are an anti-pattern. A screen with borders everywhere signals that space was used poorly.
 
 ### 6.4 Gradientes · Gradients
-**PT** — Praticamente nunca. O gradiente chama atenção para si e envelhece rápido — dois pecados capitais aqui. A exceção rara e discreta é funcional (ex.: um leve esmaecimento para indicar que um conteúdo continua além da borda visível). Gradiente decorativo, colorido ou de marca é anti-padrão.
-**EN** — Virtually never. A gradient draws attention to itself and ages quickly — two cardinal sins here. The rare, discreet exception is functional (e.g. a slight fade to indicate content continues beyond the visible edge). A decorative, colorful or brand gradient is an anti-pattern.
+**PT** — **Permitido, tonal e discreto** (revisto na v1.2.27; antes era "praticamente nunca"). O gradiente aceito é um **esmaecimento da própria cor do papel sobre a superfície** — mesma matiz, contraste baixo, servindo para dar identidade a uma peça pequena (o cartão de indicador é o caso canônico) ou para indicar que um conteúdo continua além da borda. Vale a régua:
+
+| Vale | Não vale |
+|---|---|
+| **Uma matiz só**, vinda de token (`--su-action` ou o papel semântico) | Duas cores diferentes no mesmo gradiente; arco-íris; "mesh" |
+| **Baixa saturação** — o suficiente para perceber, não para dominar (≈15% de cor sobre a superfície) | Fundo saturado que compete com o dado que está em cima |
+| **Peça pequena e delimitada** (cartão de indicador, faixa de estado) | Fundo de página, painel grande, área atrás de texto corrido |
+| Direção estável em todo o sistema (135°, canto para o centro) | Ângulo diferente por tela |
+| Contraste do texto **medido depois** do gradiente aplicado (P18) | Texto colorido sobre fundo tonalizado — o dado é o que menos pode ficar difícil de ler |
+
+O que segue **anti-padrão**: gradiente de marca, vibrante ou "de moda" (glass, neon, duotone). O teste é o mesmo de sempre — se o gradiente é a primeira coisa que se nota na tela, ele venceu o dado, e o dado é o que importa.
+
+**EN** — **Allowed, tonal and discreet** (revised in v1.2.27; previously "virtually never"). The accepted gradient is a **fade of the piece's own role color over the surface** — one hue, low contrast, giving identity to a small component (the metric card is the canonical case) or signalling that content continues past an edge. The ruler: one hue from a token; low saturation (≈15% of color over the surface); small, delimited piece — never a page background or the area behind running text; one stable direction system-wide (135°); text contrast measured **after** the gradient (P18). Still an anti-pattern: brand, vibrant or on-trend gradients (glass, neon, duotone). Same test as always — if the gradient is the first thing you notice, it beat the data, and the data is what matters.
 
 ### 6.5 Transparência · Transparency
 **PT** — Uso restrito e funcional: escurecer o fundo atrás de um overlay/diálogo (scrim), para focar a atenção (dono do empilhamento: `SURFACES`). O Studio UX evita transparências "de vidro"/desfoque decorativas, que reduzem contraste (risco de P18) e datam a interface. Transparência nunca compromete a legibilidade do que está por cima.
@@ -173,9 +184,9 @@ Dono · Owner:                este doc, para o domínio "personalidade / linguag
 
 > **PT** — Exemplos em prosa (nunca código, §13) para calibrar o gosto. **EN** — Prose examples (never code, §13) to calibrate taste.
 
-**PT — Um cartão de indicador (KPI) "à la Studio UX":** uma superfície levemente elevada, com muito espaço interno; o número grande e sóbrio domina; um rótulo pequeno e discreto acima; a variação (ex.: +4%) aparece em cor de status apenas no símbolo/seta e no texto, nunca colorindo o fundo; sem borda pesada, sem sombra chamativa, sem ícone decorativo. O olho lê o número em um instante. *Anti-exemplo:* o mesmo cartão com fundo em gradiente colorido, sombra forte, ícone grande e borda grossa — vira enfeite, o número perde protagonismo.
+**PT — Um cartão de indicador (KPI) "à la Studio UX"** (revisto na v1.2.27, junto com §6.4): uma superfície levemente elevada com **um esmaecimento tonal da cor do papel**, muito espaço interno, e um ícone à esquerda numa caixa da mesma matiz; o número grande domina — sempre na cor de texto principal, **nunca** na cor do papel, porque sobre fundo tonalizado o número colorido perde contraste; um rótulo pequeno em caixa alta acima; e, quando há, a variação em cor de status **no texto da variação**, não no fundo. O olho lê o número em um instante e o tom diz de que assunto ele é. *Anti-exemplo:* o mesmo cartão com **fundo saturado**, sombra forte, borda grossa — ou, mais comum, sete cartões em sete cores escolhidas por gosto: aí nenhuma cor é sinal, e o tom deixa de significar qualquer coisa.
 
-**EN — A KPI card "à la Studio UX":** a slightly elevated surface with generous inner space; the large, sober number dominates; a small, discreet label above; the variation (e.g. +4%) appears in a status color only on the symbol/arrow and text, never coloring the background; no heavy border, no flashy shadow, no decorative icon. The eye reads the number in an instant. *Anti-example:* the same card with a colorful gradient background, strong shadow, big icon and thick border — it becomes ornament, the number loses primacy.
+**EN — A KPI card "à la Studio UX"** (revised in v1.2.27, along with §6.4): a slightly elevated surface with **a tonal fade of the role color**, generous inner space, and an icon on the left in a box of the same hue; the large number dominates — always in the primary text color, **never** in the role color, since over a tinted background a colored number loses contrast; a small uppercase label above; and, when present, the variation in a status color **on the variation text**, not on the background. The eye reads the number instantly and the tint says what subject it belongs to. *Anti-example:* the same card with a **saturated background**, strong shadow, thick border — or, more common, seven cards in seven colors picked by taste: then no color is a signal, and the tint stops meaning anything.
 
 **PT — Uma tabela de dados densa:** linhas com altura confortável, alinhamento de números à direita, cabeçalho discreto, zebra sutil ou nenhuma (o espaço já separa), ações por linha reveladas com contenção; a densidade é alta mas organizada — nada de bordas em toda célula. *Anti-exemplo:* cada célula emoldurada, cores alternadas fortes, muitos pesos de fonte — a tabela vira uma grade barulhenta e cansativa.
 

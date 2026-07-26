@@ -46,6 +46,10 @@
   --su-fw-regular: 400;
   --su-fw-medium: 500;
   --su-fw-semibold: 600;
+  /* Faltava o peso mais forte da escala: o número de um indicador precisa
+     "pesar" mais que um título de seção. Sem ele o consumidor escrevia
+     `font-weight: 700` cravado — valor solto fora do token (P — Tipografia). */
+  --su-fw-bold: 700;
   --su-text-display: 32px/1.2;
   --su-text-h1: 24px/1.25;
   --su-text-h2: 20px/1.3;

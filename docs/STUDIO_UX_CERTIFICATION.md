@@ -100,8 +100,8 @@ Dono · Owner:                este doc, para o domínio "certificação / audito
 - **EN** — The screen belongs to one product and honors its doc; it is not a Desktop "stretched" via media query into Mobile, nor the reverse (P4). Density matches the right product (P21): dense and uniform on Desktop, spacious on Mobile.
 
 ### 2.i DNA visual · Visual DNA — VISUAL_DNA
-- **PT** — A tela soa **clara, calma e confiável** e some para o dado brilhar (`STUDIO_UX_VISUAL_DNA.md`). Régua de veto: nada chamativo, "de moda", decorativo, ruidoso, infantil, ostentoso, amontoado. Sem gradiente decorativo, sem "mar de cards", sem "gaiola" de bordas, sem sombra que embeleza cartão parado. Aplica-se o micro-ritmo do espaço (dono: `STUDIO_UX_VISUAL_RHYTHM.md`).
-- **EN** — The screen sounds **clear, calm and trustworthy** and disappears to let data shine (`STUDIO_UX_VISUAL_DNA.md`). Veto ruler: nothing flashy, on-trend, decorative, noisy, childish, ostentatious, cluttered. No decorative gradient, no "sea of cards", no border "cage", no shadow beautifying a resting card. The micro-rhythm of space applies (owner: `STUDIO_UX_VISUAL_RHYTHM.md`).
+- **PT** — A tela soa **clara, calma e confiável** e some para o dado brilhar (`STUDIO_UX_VISUAL_DNA.md`). Régua de veto: nada chamativo, "de moda", decorativo, ruidoso, infantil, ostentoso, amontoado. Sem gradiente **saturado, multicor ou de marca** (o gradiente **tonal e discreto** passou a ser permitido na v1.2.27 — régua em `VISUAL_DNA` §6.4), sem "mar de cards", sem "gaiola" de bordas, sem sombra que embeleza cartão parado. Aplica-se o micro-ritmo do espaço (dono: `STUDIO_UX_VISUAL_RHYTHM.md`).
+- **EN** — The screen sounds **clear, calm and trustworthy** and disappears to let data shine (`STUDIO_UX_VISUAL_DNA.md`). Veto ruler: nothing flashy, on-trend, decorative, noisy, childish, ostentatious, cluttered. No **saturated, multi-hue or brand** gradient (the **tonal, discreet** gradient became allowed in v1.2.27 — ruler in `VISUAL_DNA` §6.4), no "sea of cards", no border "cage", no shadow beautifying a resting card. The micro-rhythm of space applies (owner: `STUDIO_UX_VISUAL_RHYTHM.md`).
 
 ---
 

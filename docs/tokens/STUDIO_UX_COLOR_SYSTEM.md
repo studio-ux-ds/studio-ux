@@ -90,13 +90,13 @@
 
 **PT — Quando NÃO usar cor:**
 
-- Para decorar (gradientes, blocos coloridos sem função). Superfície neutra + espaço resolve melhor.
+- Para decorar (blocos coloridos sem função, gradiente **saturado ou multicor**). Superfície neutra + espaço resolve melhor. O gradiente **tonal e discreto** — uma matiz só, vinda de token, sobre a superfície — é permitido desde a v1.2.27; a régua é `VISUAL_DNA` §6.4, e ela não abre a porta para colorir por gosto: sete indicadores em sete cores continua sendo decoração.
 - Para hierarquia que o tamanho/peso/espaço já resolvem (`STUDIO_UX_TYPOGRAPHY.md`, P5).
 - Para diferenciar itens que não têm diferença semântica real.
 
 **EN — When NOT to use color:**
 
-- To decorate (gradients, colored blocks with no function). Neutral surface + space does it better.
+- To decorate (colored blocks with no function, **saturated or multi-hue** gradients). Neutral surface + space does it better. The **tonal, discreet** gradient — one token-derived hue over the surface — has been allowed since v1.2.27; the ruler is `VISUAL_DNA` §6.4, and it does not license coloring by taste: seven metrics in seven colors is still decoration.
 - For hierarchy that size/weight/space already solve (`STUDIO_UX_TYPOGRAPHY.md`, P5).
 - To differentiate items with no real semantic difference.
 

@@ -12,6 +12,45 @@
 
 - **docs(prompt-framework)** · 2026-07-23 — adota `C:\Users\Flowspec\Documents\STUDIO-WORKFLOW\` v3.0.0 como fonte única do método (paradigma `prompt-framework/v1`). Agnósticos locais (`README.md`, `prompt-alinhamento.md`) viraram stubs; `COMO-INTERAGIR-COM-ROBSON.md` também. Catálogo local migrou para `studio-ux.specialty-catalog@2.0.0` (`kind: shared`, PT+EN); as 6 especialidades foram para o schema formal em `studio-ux.*@1.0.0`, todas com `extends: workflow.system-change-base@1.0.0`.
 
+## [1.2.27] — 2026-07-25
+
+### Changed
+
+- **`StatCard` mudou de desenho** — ícone à esquerda num quadrado tonalizado, rótulo em caixa alta pequena, número em destaque (peso 700) e o card com um **degradê leve da cor do papel**. Antes era plano, com o ícone no canto direito e o rótulo do mesmo tamanho do resto. Desenho pedido pelo Robson a partir do console do IA Studio, que já o tinha escrito à mão em Tailwind. **Afeta todos os consumidores** (é um DS: o desenho é o do sistema, não o da tela).
+- **O `tone` não colore mais o número.** Sobre fundo tonalizado, número colorido perde contraste — e o dado é o que menos pode ficar difícil de ler. A cor agora vive no entorno (degradê, borda, ícone); o valor é sempre `--su-text-primary` (P17/P18).
+- **`tone="neutral"` usa o accent do sistema** em vez de cinza, então um painel de indicadores acompanha a personalização do usuário.
+
+### Added
+
+- **`sub` no `StatCard`** — linha secundária **neutra** sob o número: unidade, composição, recorte ("976.884 tokens", "Limite: 5", "0 com erro"). Existia só `delta`, que é a **variação** e leva cor de direção; quem precisava de legenda usava `delta` e **pintava de verde um texto que não é melhora nenhuma** (o Dashboard do IA Studio tinha quatro cards escrevendo "Limite: N" em verde desde a v0.9.80).
+- **Token `--su-fw-bold` (700)** — a escala de pesos ia só até 600 (semibold). O número de um indicador precisa pesar mais que um título de seção, e sem o token o consumidor cravava `font-weight: 700` solto.
+
+### Fixed
+
+- **Storybook quebrado em toda story com ícone** — "React is not defined". `packages/icons/react.jsx` era **o único `.jsx` dos pacotes sem `import React`**: publicado como JSX cru, um bundler que compile no runtime **classic** gera `React.createElement`, e o pré-bundle do esbuild (Vite) usa classic por padrão — ao contrário do plugin React, que usa automatic. Nos apps consumidores funcionava; no Storybook, não.
+- **`Icon` com nome fora da curadoria deixou de lançar exceção.** Era `throw` no render — e exceção durante o render **desmonta a árvore React inteira**: um nome de ícone errado apagava a tela do consumidor. Agora desenha `help` e avisa no console, dizendo onde olhar. Mesma classe do `children` no `<input>` (v1.2.23): o rigor do DS não pode custar a aplicação de quem consome.
+
+### Changed (regra)
+
+- **Gradiente passou a ser PERMITIDO — tonal e discreto.** A regra era "praticamente nunca" e o card de indicador com fundo em degradê estava escrito no `VISUAL_DNA` como **anti-exemplo**. Decisão do Robson. A régua nova (§6.4) admite: **uma matiz só**, vinda de token, baixa saturação (≈15% sobre a superfície), em **peça pequena e delimitada**, direção estável (135°), contraste do texto medido **depois** do gradiente. Seguem vetados: saturado, multicor, "mesh", de marca, glass/neon, e gradiente atrás de texto corrido ou em fundo de página.
+- Reconciliado nos **cinco** documentos que repetiam a proibição — `VISUAL_DNA` (§6.4, a nota de fase e o exemplo do KPI, que virou o exemplo POSITIVO), `CERTIFICATION` (régua de veto), `COLOR_SYSTEM` (quando não usar cor) e `HANDOFF` (decisões travadas). Doc que contradiz o código é pior que doc faltando: a próxima pessoa segue a regra velha e desfaz o trabalho.
+
+### Origem
+
+Pedido do Robson: *"queria fazer uma alteração visual nos cards do DS para ficarem iguais os do print"* — o print sendo o dashboard do console, cujos cards são bonitos e estavam fora do DS. Junto: *"mude a proibição de gradiente para aceitar"* e o Storybook publicado quebrado.
+
+### Lição
+
+**O desenho veio de um componente local que o produto já tinha — e a tradução exigiu tirar uma coisa.** O card do console escolhe a cor por gosto (`color="brand|green|blue|yellow"`): sete indicadores, quatro cores, nenhuma delas dizendo nada sobre o dado. Trazer isso literalmente para o DS seria transformar `tone` — que é **papel semântico** — em paleta decorativa, e com ela a promessa de que verde significa algo se perde em todo o sistema.
+
+O que entrou foi o **desenho** (degradê, ícone à esquerda, hierarquia tipográfica); o que ficou de fora foi a **cor arbitrária**. Um painel em que tudo é colorido comunica menos que um em que só o que importa é: quando cada card tem sua cor, nenhuma cor é sinal. Quem quiser variedade tem os tones semânticos — e um indicador que não é bom nem ruim fica `neutral`, que agora tem cor (a do accent), não cinza.
+
+Vale para toda vez que um visual sobe do produto para o DS: **copiar a aparência é fácil; a parte difícil é decidir o que da aparência era regra e o que era gosto.**
+
+E a segunda lição, do gradiente: **uma regra estética que o dono do produto contraria é uma regra que precisa mudar, não uma que ele precisa obedecer.** O "praticamente nunca" nasceu de um receio legítimo (gradiente envelhece, rouba atenção do dado) e virou proibição categórica — que, aplicada ao pé da letra, vetava também o uso discreto que não tem nenhum desses defeitos. O conserto não foi abrir a mão: foi **escrever a régua** que separa o gradiente que serve do que enfeita. Regra sem régua é gosto com autoridade.
+
+Nota de método: a proibição estava em **cinco** documentos. Mudar um e deixar quatro contando a história antiga seria pior que não mudar nenhum — a próxima leitura acha o texto velho, obedece, e desfaz. Regra vive num dono (`VISUAL_DNA` §6.4); os outros documentos **referenciam**, não repetem — e quando repetem, mudam junto.
+
 ## [1.2.26] — 2026-07-25
 
 ### Added
