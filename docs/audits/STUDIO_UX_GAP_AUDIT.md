@@ -99,6 +99,14 @@ Documentados em `PACKAGES.md` (11 pacotes); implementados: `tokens`, `components
   previsto; enquanto não existe, o produto carrega o Tabler (funciona, mas não é o "set
   curado" da doc). 🟢
 
+### B.1.1 Achados de adoção — o que o uso real revelou (2026-07-25)
+
+Lacunas encontradas **usando** o DS na migração do IA Studio, ainda abertas:
+
+- **`Accordion` com cabeçalho não focável.** `.su-accordion__head` é uma `<div onClick>`: não entra na ordem de tabulação, não responde a Espaço/Enter e não tem `aria-expanded`. Quem precisa de lista expansível operável por teclado hoje **não usa o componente** — o que é pior que o componente não existir, porque parece pronto. 🟠 acessibilidade. (Não corrigido junto porque nenhum consumidor o usa ainda: consertar sem consumidor seria mexer no escuro. Corrigir **antes** do primeiro uso.)
+- **Infra de canvas / node-editor não existe no DS** (paleta de blocos, trilho recolhível, nó com conectores, inspetor persistente). Dois produtos já a têm escrita à mão — AquaPark (`WorkflowCanvas`) e IA Studio (`FluxoCanvas`) — e o item **G1** deste audit já a marcava como "zona cinzenta / decisão humana". O canvas do IA Studio foi migrado usando **tokens** do DS, mas a estrutura segue no consumidor. Enquanto assim, a divergência entre os dois produtos é garantida. 🟠 escopo (exige decisão: entra como pattern do DS ou fica sendo infra de produto?).
+- **Vocabulário de ícones era só de CRUD.** Faltavam `play`, `archive`, `save` (v1.2.24) e `power`, `zap` (v1.2.26) — todos verbos de **operação**, não de cadastro. Resolvido para automação; a pergunta fica de pé para o próximo domínio: *quais verbos deste domínio a biblioteca ainda não sabe desenhar?*
+
 ### B.2 Ferramentas/qualidade/geração (Épicos 2–5) — só especificação
 Nenhum roda como software hoje; todos documentados como alvo:
 - **CLI `studio`** (11 comandos) — `tools/CLI`.

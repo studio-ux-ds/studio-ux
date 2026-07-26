@@ -35,6 +35,12 @@ export const ICONS = {
   // silencioso do DSIcon — ou pedia emprestado um ícone de outro significado
   // (P2: uma metáfora, um significado).
   "play": { meaning: "executar / iniciar agora", keywords: ["run", "start", "execute"], body: '<path d="M7 5l12 7-12 7V5z"/>' },
+  // `power` e `zap` fecham o vocabulário de automação: LIGAR/DESLIGAR uma
+  // automação e o GATILHO que a dispara. Sem eles o produto de automação pedia
+  // emprestado `settings` para "gatilho" (que já significa configuração) e não
+  // tinha nada para ligar/desligar — caía no "?" do fallback.
+  "power": { meaning: "ligar / desligar (o que está em operação)", keywords: ["on", "off", "enable", "disable", "publish"], body: '<path d="M12 4v8"/><path d="M7.5 7.5a6.5 6.5 0 1 0 9 0"/>' },
+  "zap": { meaning: "gatilho / o que dispara algo", keywords: ["trigger", "event", "bolt", "lightning"], body: '<path d="M13 3L5 14h6l-1 7 8-11h-6l1-7z"/>' },
   "archive": { meaning: "arquivar (guarda sem excluir)", keywords: ["box", "store", "inactive"], body: '<path d="M3 7h18v3H3z"/><path d="M5 10v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9"/><path d="M10 14h4"/>' },
   "save": { meaning: "salvar / gravar alteração", keywords: ["store", "disk", "commit"], body: '<path d="M5 4h11l4 4v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/><path d="M8 4v5h7"/><path d="M8 15h8"/>' },
 

@@ -12,6 +12,22 @@
 
 - **docs(prompt-framework)** · 2026-07-23 — adota `C:\Users\Flowspec\Documents\STUDIO-WORKFLOW\` v3.0.0 como fonte única do método (paradigma `prompt-framework/v1`). Agnósticos locais (`README.md`, `prompt-alinhamento.md`) viraram stubs; `COMO-INTERAGIR-COM-ROBSON.md` também. Catálogo local migrou para `studio-ux.specialty-catalog@2.0.0` (`kind: shared`, PT+EN); as 6 especialidades foram para o schema formal em `studio-ux.*@1.0.0`, todas com `extends: workflow.system-change-base@1.0.0`.
 
+## [1.2.26] — 2026-07-25
+
+### Added
+
+- **Glifos `power` e `zap`** — fecham o vocabulário de automação: **ligar/desligar** o que está em operação e o **gatilho** que dispara. Sem eles o consumidor pedia `settings` emprestado para "gatilho" (que já significa configuração, ferindo P2 — uma metáfora, um significado) e não tinha nada para ligar/desligar: caía no `help`, o "?" do fallback silencioso.
+
+### Origem
+
+Migração do canvas de automação do IA Studio (sub-frente C). Terceira leva de glifos que a mesma frente pediu — `play`/`archive`/`save` na v1.2.24, `power`/`zap` agora.
+
+### Lição
+
+A curadoria de ícones estava completa para **CRUD** (criar, editar, excluir, buscar, filtrar) e vazia para **operação** (rodar, ligar, arquivar, gravar versão, disparar). Não é acaso: a biblioteca cresceu vestindo telas de cadastro. Um DS que se propõe a vestir produto de automação precisa do vocabulário de *o que acontece*, não só de *o que se cadastra* — e a hora de descobrir isso é lendo o domínio, não quando o botão aparece com um "?" na tela do cliente.
+
+Fica anotado como pergunta para a próxima família a migrar: **quais verbos deste domínio a biblioteca ainda não sabe desenhar?**
+
 ## [1.2.25] — 2026-07-25
 
 ### Added
