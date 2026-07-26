@@ -12,6 +12,26 @@
 
 - **docs(prompt-framework)** · 2026-07-23 — adota `C:\Users\Flowspec\Documents\STUDIO-WORKFLOW\` v3.0.0 como fonte única do método (paradigma `prompt-framework/v1`). Agnósticos locais (`README.md`, `prompt-alinhamento.md`) viraram stubs; `COMO-INTERAGIR-COM-ROBSON.md` também. Catálogo local migrou para `studio-ux.specialty-catalog@2.0.0` (`kind: shared`, PT+EN); as 6 especialidades foram para o schema formal em `studio-ux.*@1.0.0`, todas com `extends: workflow.system-change-base@1.0.0`.
 
+## [1.2.30] — 2026-07-25
+
+### Fixed
+
+- **O degradê do `StatCard` agora são os valores da referência, traduzidos** — não uma calibragem de olho. O card do console do IA Studio é `bg-gradient-to-br from-<hue>-500/20 to-<hue>-600/5` + `border-<hue>-500/20` + ícone `bg-<hue>-500/10`. Em CSS: 135°, **20% de cor no início e 5% no fim**, transição ocupando o trajeto inteiro; borda a 20%; caixa do ícone a 10%.
+- **O erro das duas tentativas anteriores era o mesmo:** terminar em **cor zero** (16%→superfície em 72%, depois 10%→superfície em 55%). Acabar em superfície pura antes do fim deixa metade do card branco, e a peça **para de ler como degradê** — era exatamente a queixa. O que sustenta a aparência de degradê é a cor **não** chegar a zero.
+- A régua da §6.4 foi corrigida junto: era "≈10%, termina antes do meio" — o oposto do que funciona.
+
+### Origem
+
+O Robson, depois da segunda tentativa: *"continua muito claro, não parece um gradiente. como é tão difícil ir lá no console ler o que está lá e aplicar no DS? você tem código e doc na mão"*.
+
+### Lição
+
+Ele está certo, e o erro é de método, não de gosto. **Eu tinha lido o arquivo da referência** — cheguei a citar a linha da paleta no CHANGELOG da v1.2.27 — e mesmo assim escrevi valores próprios "no espírito" dela, em vez de **traduzir** `from-500/20 to-600/5` para `color-mix`. Depois passei duas versões ajustando por tentativa, cada uma mais clara que a anterior.
+
+O padrão a não repetir: **quando existe uma referência concreta, o trabalho é traduzir, não interpretar.** Ler o arquivo para "entender a intenção" e depois inventar o número é o mesmo vício de supor em vez de verificar — só que disfarçado de bom gosto. Se a referência tem valores, os valores fazem parte dela; se algum deles não servir no contexto novo, aí sim se ajusta **aquele**, dizendo qual e por quê.
+
+Corolário sobre iterar: duas rodadas de "está forte demais" → "está fraco demais" custaram duas releases e a paciência do dono. Fosse a tradução literal na primeira, a conversa teria sido uma só.
+
 ## [1.2.29] — 2026-07-25
 
 ### Changed

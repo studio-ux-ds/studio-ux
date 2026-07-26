@@ -121,8 +121,8 @@ Dono · Owner:                este doc, para o domínio "personalidade / linguag
 | Vale | Não vale |
 |---|---|
 | **Uma matiz só**, vinda de token (`--su-action` ou o papel semântico) | Duas cores diferentes no mesmo gradiente; arco-íris; "mesh" |
-| **Baixa saturação** — o suficiente para perceber, não para dominar (≈10% de cor sobre a superfície) | Fundo saturado que compete com o dado que está em cima |
-| **Termina antes do meio da peça** (≈55% do trajeto) — em componente que estica, a diagonal longa deixa metade da área colorida | Degradê percorrendo a peça inteira |
+| **Baixa saturação** — perceptível sem dominar: **20% de cor no início, 5% no fim** (a referência é o cartão de indicador) | Fundo saturado que compete com o dado que está em cima |
+| **A cor não chega a zero** — a transição ocupa o trajeto inteiro e termina ainda tonalizada | Terminar em superfície pura no meio do caminho: metade da peça fica branca e ela deixa de ler como degradê |
 | **Peça pequena e delimitada** (cartão de indicador, faixa de estado) | Fundo de página, painel grande, área atrás de texto corrido |
 | Direção estável em todo o sistema (135°, canto para o centro) | Ângulo diferente por tela |
 | Contraste do texto **medido depois** do gradiente aplicado (P18) | Texto colorido sobre fundo tonalizado — o dado é o que menos pode ficar difícil de ler |
