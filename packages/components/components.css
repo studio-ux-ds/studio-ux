@@ -333,8 +333,13 @@
   display: flex; align-items: flex-start; gap: var(--su-space-4);
   padding: var(--su-space-5);
   border-radius: var(--su-radius-lg);
-  border: 1px solid color-mix(in srgb, var(--su-sc) 26%, var(--su-border-subtle));
-  background: linear-gradient(135deg, color-mix(in srgb, var(--su-sc) 16%, var(--su-surface-raised)) 0%, var(--su-surface-raised) 72%);
+  border: 1px solid color-mix(in srgb, var(--su-sc) 20%, var(--su-border-subtle));
+  /* 10% terminando em 55% (era 16%/72%, v1.2.27). O primeiro ajuste veio de um
+     card estreito com ícone; num card de ~400px a diagonal longa deixava METADE
+     da peça colorida e o degradê virava o assunto. A régua da §6.4 fala de
+     "perceber, não dominar" — em componente que estica, isso significa terminar
+     antes do meio. */
+  background: linear-gradient(135deg, color-mix(in srgb, var(--su-sc) 10%, var(--su-surface-raised)) 0%, var(--su-surface-raised) 55%);
   box-shadow: var(--su-elevation-raised);
 }
 .su-statcard__body { flex: 1; min-width: 0; }

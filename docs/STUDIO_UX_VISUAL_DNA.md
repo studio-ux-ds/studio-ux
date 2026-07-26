@@ -121,7 +121,8 @@ Dono · Owner:                este doc, para o domínio "personalidade / linguag
 | Vale | Não vale |
 |---|---|
 | **Uma matiz só**, vinda de token (`--su-action` ou o papel semântico) | Duas cores diferentes no mesmo gradiente; arco-íris; "mesh" |
-| **Baixa saturação** — o suficiente para perceber, não para dominar (≈15% de cor sobre a superfície) | Fundo saturado que compete com o dado que está em cima |
+| **Baixa saturação** — o suficiente para perceber, não para dominar (≈10% de cor sobre a superfície) | Fundo saturado que compete com o dado que está em cima |
+| **Termina antes do meio da peça** (≈55% do trajeto) — em componente que estica, a diagonal longa deixa metade da área colorida | Degradê percorrendo a peça inteira |
 | **Peça pequena e delimitada** (cartão de indicador, faixa de estado) | Fundo de página, painel grande, área atrás de texto corrido |
 | Direção estável em todo o sistema (135°, canto para o centro) | Ângulo diferente por tela |
 | Contraste do texto **medido depois** do gradiente aplicado (P18) | Texto colorido sobre fundo tonalizado — o dado é o que menos pode ficar difícil de ler |

@@ -12,6 +12,24 @@
 
 - **docs(prompt-framework)** · 2026-07-23 — adota `C:\Users\Flowspec\Documents\STUDIO-WORKFLOW\` v3.0.0 como fonte única do método (paradigma `prompt-framework/v1`). Agnósticos locais (`README.md`, `prompt-alinhamento.md`) viraram stubs; `COMO-INTERAGIR-COM-ROBSON.md` também. Catálogo local migrou para `studio-ux.specialty-catalog@2.0.0` (`kind: shared`, PT+EN); as 6 especialidades foram para o schema formal em `studio-ux.*@1.0.0`, todas com `extends: workflow.system-change-base@1.0.0`.
 
+## [1.2.28] — 2026-07-25
+
+### Changed
+
+- **Degradê do `StatCard` mais contido:** 10% de cor terminando em **55%** do trajeto (era 16% até 72%). A régua da §6.4 ganhou a linha que faltava: **o degradê termina antes do meio da peça**. Em componente que estica, a diagonal longa deixava **metade** de um card de ~400px colorida, e o degradê passava a ser o assunto da tela.
+
+### Origem
+
+O Robson viu o resultado no painel real e perguntou: *"vc acha que ficou estranho?"*. Ficou. Três causas somadas — degradê forte para card largo (esta versão), quatro cards com quatro tones sem razão semântica e nenhum deles com ícone (as duas últimas eram do consumidor, corrigidas na v0.10.6 do IA Studio).
+
+### Lição
+
+**Calibrei a intensidade num arranjo e ela não sobreviveu ao outro** — o card do console é estreito e tem ícone; o do painel é largo e não tinha. É a mesma armadilha da série toda (`NumericInput.fullWidth`, `Pagination` com dado real, largura do `Drawer`): componente de DS **estica**, e valor calibrado numa largura vira outra coisa na largura seguinte.
+
+O que passo a fazer diferente: quando o valor é **proporcional** (porcentagem de trajeto, largura relativa), a régua tem que dizer **onde ele termina**, não só quanto ele vale. "10% de cor" não protege nada se o trajeto for a diagonal inteira de uma peça larga.
+
+E a parte que não é técnica: o gradiente estava fazendo o serviço de dizer "este card é de um assunto diferente" — serviço que, no painel, nenhum dos quatro cards precisava. Enfraquecer o efeito foi metade do conserto; a outra metade foi o consumidor parar de pedir quatro cores para quatro contagens.
+
 ## [1.2.27] — 2026-07-25
 
 ### Changed
