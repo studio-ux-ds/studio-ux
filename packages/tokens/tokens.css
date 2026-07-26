@@ -23,9 +23,16 @@
   --su-border-strong: #CBD5E1;
   --su-border-focus: #4F46E5;
 
-  --su-action: #4F46E5;
-  --su-action-hover: #4338CA;
-  --su-action-active: #3730A3;
+  /* O papel de AÇÃO. Cada tom vem em duas formas: o hex, para CSS comum, e a
+     variante `-rgb` com os canais crus ("79 70 229", sem `rgb()` em volta).
+     A segunda existe porque consumidor com Tailwind precisa compor opacidade a
+     partir da cor do tema (`bg-brand/5` → `rgb(var(--su-action-rgb) / 0.05)`), e
+     não há como derivar canais de um hex em CSS. Sem ela, o app cravava o índigo
+     no `tailwind.config` e ficava com DUAS cores de ação: a do accent nas telas
+     do DS e a fixa nas demais. Toda troca de accent atualiza as duas formas. */
+  --su-action:#4F46E5;--su-action-rgb:79 70 229;
+  --su-action-hover:#4338CA;--su-action-hover-rgb:67 56 202;
+  --su-action-active:#3730A3;--su-action-active-rgb:55 48 163;
   --su-action-tint: #EEEFFE;
 
   --su-success-fg: #047857; --su-success-bg: #E6F4EE;
@@ -121,9 +128,9 @@
   --su-border-strong: #42546B;
   --su-border-focus: #6366F1;
 
-  --su-action: #6365F0;
-  --su-action-hover: #7B7DF5;
-  --su-action-active: #4F46E5;
+  --su-action:#6365F0;--su-action-rgb:99 101 240;
+  --su-action-hover:#7B7DF5;--su-action-hover-rgb:123 125 245;
+  --su-action-active:#4F46E5;--su-action-active-rgb:79 70 229;
   --su-action-tint: #21243A;
 
   --su-success-fg: #34D399; --su-success-bg: #123028;
@@ -141,7 +148,7 @@
     --su-surface-base: #111827; --su-surface-raised: #182230; --su-surface-overlay: #202C3C; --su-surface-sunken: #0F1722;
     --su-text-primary: #F2F4F7; --su-text-secondary: #A6ADBA; --su-text-muted: #6E7683; --su-text-disabled: #4A5059;
     --su-border-subtle: #253246; --su-border-default: #304158; --su-border-strong: #42546B; --su-border-focus: #6366F1;
-    --su-action: #6365F0; --su-action-hover: #7B7DF5; --su-action-active: #4F46E5; --su-action-tint: #21243A;
+    --su-action:#6365F0;--su-action-rgb:99 101 240; --su-action-hover:#7B7DF5;--su-action-hover-rgb:123 125 245; --su-action-active:#4F46E5;--su-action-active-rgb:79 70 229; --su-action-tint: #21243A;
     --su-success-fg: #34D399; --su-success-bg: #123028; --su-warning-fg: #E0A82E; --su-warning-bg: #3A2A12;
     --su-danger-fg: #F87171; --su-danger-bg: #3A1A1A; --su-danger: #F87171; --su-info-fg: #60A5FA; --su-info-bg: #16233F;
     --su-elevation-raised: 0 1px 2px rgba(0,0,0,.22), 0 8px 20px rgba(0,0,0,.16);
@@ -160,30 +167,30 @@
    nunca espaço, layout ou estrutura (THEMES §5). Todos os 7 revalidados em AA (P18),
    claro e escuro — ver scripts de verificação. Índigo = padrão do sistema.
    No escuro, accents claros (teal/âmbar/…) usam tinta escura no botão para cumprir AA. */
-[data-su-accent="indigo"] { --su-action:#4F46E5;--su-action-hover:#4338CA;--su-action-active:#3730A3;--su-action-tint:#EEEFFE;--su-text-on-action:#FFFFFF; }
-[data-su-accent="blue"] { --su-action:#2563EB;--su-action-hover:#1D4ED8;--su-action-active:#1E40AF;--su-action-tint:#E8F0FE;--su-text-on-action:#FFFFFF; }
-[data-su-accent="teal"] { --su-action:#0D8C82;--su-action-hover:#0B7268;--su-action-active:#0A5F57;--su-action-tint:#DFF3F1;--su-text-on-action:#FFFFFF; }
-[data-su-accent="violet"] { --su-action:#7C3AED;--su-action-hover:#6D28D9;--su-action-active:#5B21B6;--su-action-tint:#F1E9FE;--su-text-on-action:#FFFFFF; }
-[data-su-accent="amber"] { --su-action:#B25E09;--su-action-hover:#8F4B07;--su-action-active:#733D06;--su-action-tint:#FBEFDA;--su-text-on-action:#FFFFFF; }
-[data-su-accent="rose"] { --su-action:#E11D48;--su-action-hover:#BE123C;--su-action-active:#9F1239;--su-action-tint:#FCE7EC;--su-text-on-action:#FFFFFF; }
-[data-su-accent="slate"] { --su-action:#475569;--su-action-hover:#3A4557;--su-action-active:#2E3846;--su-action-tint:#EDF0F4;--su-text-on-action:#FFFFFF; }
+[data-su-accent="indigo"] { --su-action:#4F46E5;--su-action-rgb:79 70 229;--su-action-hover:#4338CA;--su-action-hover-rgb:67 56 202;--su-action-active:#3730A3;--su-action-active-rgb:55 48 163;--su-action-tint:#EEEFFE;--su-text-on-action:#FFFFFF; }
+[data-su-accent="blue"] { --su-action:#2563EB;--su-action-rgb:37 99 235;--su-action-hover:#1D4ED8;--su-action-hover-rgb:29 78 216;--su-action-active:#1E40AF;--su-action-active-rgb:30 64 175;--su-action-tint:#E8F0FE;--su-text-on-action:#FFFFFF; }
+[data-su-accent="teal"] { --su-action:#0D8C82;--su-action-rgb:13 140 130;--su-action-hover:#0B7268;--su-action-hover-rgb:11 114 104;--su-action-active:#0A5F57;--su-action-active-rgb:10 95 87;--su-action-tint:#DFF3F1;--su-text-on-action:#FFFFFF; }
+[data-su-accent="violet"] { --su-action:#7C3AED;--su-action-rgb:124 58 237;--su-action-hover:#6D28D9;--su-action-hover-rgb:109 40 217;--su-action-active:#5B21B6;--su-action-active-rgb:91 33 182;--su-action-tint:#F1E9FE;--su-text-on-action:#FFFFFF; }
+[data-su-accent="amber"] { --su-action:#B25E09;--su-action-rgb:178 94 9;--su-action-hover:#8F4B07;--su-action-hover-rgb:143 75 7;--su-action-active:#733D06;--su-action-active-rgb:115 61 6;--su-action-tint:#FBEFDA;--su-text-on-action:#FFFFFF; }
+[data-su-accent="rose"] { --su-action:#E11D48;--su-action-rgb:225 29 72;--su-action-hover:#BE123C;--su-action-hover-rgb:190 18 60;--su-action-active:#9F1239;--su-action-active-rgb:159 18 57;--su-action-tint:#FCE7EC;--su-text-on-action:#FFFFFF; }
+[data-su-accent="slate"] { --su-action:#475569;--su-action-rgb:71 85 105;--su-action-hover:#3A4557;--su-action-hover-rgb:58 69 87;--su-action-active:#2E3846;--su-action-active-rgb:46 56 70;--su-action-tint:#EDF0F4;--su-text-on-action:#FFFFFF; }
 
 /* accent no escuro explícito */
-[data-theme="dark"][data-su-accent="indigo"] { --su-action:#6365F0;--su-action-hover:#7B7DF5;--su-action-active:#4F46E5;--su-action-tint:#21243A;--su-text-on-action:#FFFFFF; }
-[data-theme="dark"][data-su-accent="blue"] { --su-action:#6AA0F7;--su-action-hover:#8AB4FA;--su-action-active:#5B92F5;--su-action-tint:#16233F;--su-text-on-action:#10131A; }
-[data-theme="dark"][data-su-accent="teal"] { --su-action:#2DD4BF;--su-action-hover:#5EEAD4;--su-action-active:#14B8A6;--su-action-tint:#0E2C2A;--su-text-on-action:#10131A; }
-[data-theme="dark"][data-su-accent="violet"] { --su-action:#B79BF5;--su-action-hover:#CBB6F8;--su-action-active:#A98BF3;--su-action-tint:#2A2140;--su-text-on-action:#10131A; }
-[data-theme="dark"][data-su-accent="amber"] { --su-action:#F0B429;--su-action-hover:#F6C74E;--su-action-active:#E0A82E;--su-action-tint:#3A2A12;--su-text-on-action:#10131A; }
-[data-theme="dark"][data-su-accent="rose"] { --su-action:#FB7A9B;--su-action-hover:#FD9BB3;--su-action-active:#FB6F92;--su-action-tint:#3A1A24;--su-text-on-action:#10131A; }
-[data-theme="dark"][data-su-accent="slate"] { --su-action:#9AA6B8;--su-action-hover:#B3BDCC;--su-action-active:#8A97AB;--su-action-tint:#232A34;--su-text-on-action:#10131A; }
+[data-theme="dark"][data-su-accent="indigo"] { --su-action:#6365F0;--su-action-rgb:99 101 240;--su-action-hover:#7B7DF5;--su-action-hover-rgb:123 125 245;--su-action-active:#4F46E5;--su-action-active-rgb:79 70 229;--su-action-tint:#21243A;--su-text-on-action:#FFFFFF; }
+[data-theme="dark"][data-su-accent="blue"] { --su-action:#6AA0F7;--su-action-rgb:106 160 247;--su-action-hover:#8AB4FA;--su-action-hover-rgb:138 180 250;--su-action-active:#5B92F5;--su-action-active-rgb:91 146 245;--su-action-tint:#16233F;--su-text-on-action:#10131A; }
+[data-theme="dark"][data-su-accent="teal"] { --su-action:#2DD4BF;--su-action-rgb:45 212 191;--su-action-hover:#5EEAD4;--su-action-hover-rgb:94 234 212;--su-action-active:#14B8A6;--su-action-active-rgb:20 184 166;--su-action-tint:#0E2C2A;--su-text-on-action:#10131A; }
+[data-theme="dark"][data-su-accent="violet"] { --su-action:#B79BF5;--su-action-rgb:183 155 245;--su-action-hover:#CBB6F8;--su-action-hover-rgb:203 182 248;--su-action-active:#A98BF3;--su-action-active-rgb:169 139 243;--su-action-tint:#2A2140;--su-text-on-action:#10131A; }
+[data-theme="dark"][data-su-accent="amber"] { --su-action:#F0B429;--su-action-rgb:240 180 41;--su-action-hover:#F6C74E;--su-action-hover-rgb:246 199 78;--su-action-active:#E0A82E;--su-action-active-rgb:224 168 46;--su-action-tint:#3A2A12;--su-text-on-action:#10131A; }
+[data-theme="dark"][data-su-accent="rose"] { --su-action:#FB7A9B;--su-action-rgb:251 122 155;--su-action-hover:#FD9BB3;--su-action-hover-rgb:253 155 179;--su-action-active:#FB6F92;--su-action-active-rgb:251 111 146;--su-action-tint:#3A1A24;--su-text-on-action:#10131A; }
+[data-theme="dark"][data-su-accent="slate"] { --su-action:#9AA6B8;--su-action-rgb:154 166 184;--su-action-hover:#B3BDCC;--su-action-hover-rgb:179 189 204;--su-action-active:#8A97AB;--su-action-active-rgb:138 151 171;--su-action-tint:#232A34;--su-text-on-action:#10131A; }
 
 /* accent no escuro automático (segue o SO, sem data-theme forçado) */
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"])[data-su-accent="indigo"] { --su-action:#6365F0;--su-action-hover:#7B7DF5;--su-action-active:#4F46E5;--su-action-tint:#21243A;--su-text-on-action:#FFFFFF; }
-  :root:not([data-theme="light"])[data-su-accent="blue"] { --su-action:#6AA0F7;--su-action-hover:#8AB4FA;--su-action-active:#5B92F5;--su-action-tint:#16233F;--su-text-on-action:#10131A; }
-  :root:not([data-theme="light"])[data-su-accent="teal"] { --su-action:#2DD4BF;--su-action-hover:#5EEAD4;--su-action-active:#14B8A6;--su-action-tint:#0E2C2A;--su-text-on-action:#10131A; }
-  :root:not([data-theme="light"])[data-su-accent="violet"] { --su-action:#B79BF5;--su-action-hover:#CBB6F8;--su-action-active:#A98BF3;--su-action-tint:#2A2140;--su-text-on-action:#10131A; }
-  :root:not([data-theme="light"])[data-su-accent="amber"] { --su-action:#F0B429;--su-action-hover:#F6C74E;--su-action-active:#E0A82E;--su-action-tint:#3A2A12;--su-text-on-action:#10131A; }
-  :root:not([data-theme="light"])[data-su-accent="rose"] { --su-action:#FB7A9B;--su-action-hover:#FD9BB3;--su-action-active:#FB6F92;--su-action-tint:#3A1A24;--su-text-on-action:#10131A; }
-  :root:not([data-theme="light"])[data-su-accent="slate"] { --su-action:#9AA6B8;--su-action-hover:#B3BDCC;--su-action-active:#8A97AB;--su-action-tint:#232A34;--su-text-on-action:#10131A; }
+  :root:not([data-theme="light"])[data-su-accent="indigo"] { --su-action:#6365F0;--su-action-rgb:99 101 240;--su-action-hover:#7B7DF5;--su-action-hover-rgb:123 125 245;--su-action-active:#4F46E5;--su-action-active-rgb:79 70 229;--su-action-tint:#21243A;--su-text-on-action:#FFFFFF; }
+  :root:not([data-theme="light"])[data-su-accent="blue"] { --su-action:#6AA0F7;--su-action-rgb:106 160 247;--su-action-hover:#8AB4FA;--su-action-hover-rgb:138 180 250;--su-action-active:#5B92F5;--su-action-active-rgb:91 146 245;--su-action-tint:#16233F;--su-text-on-action:#10131A; }
+  :root:not([data-theme="light"])[data-su-accent="teal"] { --su-action:#2DD4BF;--su-action-rgb:45 212 191;--su-action-hover:#5EEAD4;--su-action-hover-rgb:94 234 212;--su-action-active:#14B8A6;--su-action-active-rgb:20 184 166;--su-action-tint:#0E2C2A;--su-text-on-action:#10131A; }
+  :root:not([data-theme="light"])[data-su-accent="violet"] { --su-action:#B79BF5;--su-action-rgb:183 155 245;--su-action-hover:#CBB6F8;--su-action-hover-rgb:203 182 248;--su-action-active:#A98BF3;--su-action-active-rgb:169 139 243;--su-action-tint:#2A2140;--su-text-on-action:#10131A; }
+  :root:not([data-theme="light"])[data-su-accent="amber"] { --su-action:#F0B429;--su-action-rgb:240 180 41;--su-action-hover:#F6C74E;--su-action-hover-rgb:246 199 78;--su-action-active:#E0A82E;--su-action-active-rgb:224 168 46;--su-action-tint:#3A2A12;--su-text-on-action:#10131A; }
+  :root:not([data-theme="light"])[data-su-accent="rose"] { --su-action:#FB7A9B;--su-action-rgb:251 122 155;--su-action-hover:#FD9BB3;--su-action-hover-rgb:253 155 179;--su-action-active:#FB6F92;--su-action-active-rgb:251 111 146;--su-action-tint:#3A1A24;--su-text-on-action:#10131A; }
+  :root:not([data-theme="light"])[data-su-accent="slate"] { --su-action:#9AA6B8;--su-action-rgb:154 166 184;--su-action-hover:#B3BDCC;--su-action-hover-rgb:179 189 204;--su-action-active:#8A97AB;--su-action-active-rgb:138 151 171;--su-action-tint:#232A34;--su-text-on-action:#10131A; }
 }

@@ -12,6 +12,30 @@
 
 - **docs(prompt-framework)** · 2026-07-23 — adota `C:\Users\Flowspec\Documents\STUDIO-WORKFLOW\` v3.0.0 como fonte única do método (paradigma `prompt-framework/v1`). Agnósticos locais (`README.md`, `prompt-alinhamento.md`) viraram stubs; `COMO-INTERAGIR-COM-ROBSON.md` também. Catálogo local migrou para `studio-ux.specialty-catalog@2.0.0` (`kind: shared`, PT+EN); as 6 especialidades foram para o schema formal em `studio-ux.*@1.0.0`, todas com `extends: workflow.system-change-base@1.0.0`.
 
+## [1.2.25] — 2026-07-25
+
+### Added
+
+- **Cada tom de ação agora vem também em canais RGB** — `--su-action-rgb`, `--su-action-hover-rgb`, `--su-action-active-rgb`, nos 7 accents × claro/escuro. Existem para o consumidor com **Tailwind**: `bg-brand/5` precisa compor opacidade a partir da cor do tema (`rgb(var(--su-action-rgb) / <alpha-value>)`), e **não há como extrair canais de um hex em CSS**. Sem isso, o app é obrigado a cravar o hex no `tailwind.config` — e passa a ter duas cores de ação: a do accent nas telas do DS e a fixa em todas as outras. Vale para os três sistemas do ecossistema, que usam Tailwind.
+- **`Breadcrumb` ganhou `onNavigate(href, event)`**, repassado pelo `AppShell` como `onBreadcrumbNavigate`. Sem ele, clicar no caminho **recarrega a aplicação inteira** — o componente usa `<a href>` de verdade (e continua usando: Ctrl/Cmd-clique abre em nova aba, que um `<span onClick>` não daria). O `preventDefault` só acontece no clique simples.
+
+### Fixed
+
+- **`Breadcrumb` sem semântica de navegação.** Era uma `<div>` com links soltos; virou `<nav aria-label="Caminho">`, com `aria-current="page"` no último item e as barras `/` marcadas `aria-hidden`. O leitor de tela agora anuncia que aquilo é o caminho e onde o usuário está.
+
+### Origem
+
+O Robson mandou dois prints lado a lado: o mesmo botão "Salvar versão" **verde** na tela migrada e **azul** na que ainda não migrou. A causa não estava no DS — o `tailwind.config` do consumidor cravava índigo —, mas a **impossibilidade de resolver sem cravar** estava: faltava a forma RGB do accent. No mesmo relato: uma tela migrada tinha ficado sem saída porque quem a escreveu (eu) supôs que o breadcrumb navegava, e ele era texto decorativo.
+
+### Lição
+
+Dois vazamentos da mesma natureza: **o DS entregava o valor num formato que o consumidor não consegue usar, e o consumidor "resolvia" cravando.**
+
+- Cor: só hex → Tailwind não compõe alpha → hex cravado no config → duas cores de ação no mesmo painel.
+- Navegação: `href` sem gancho de interceptação → SPA recarregaria → o consumidor "resolve" não usando o link, e o caminho vira enfeite.
+
+A pergunta que o DS tem que fazer de cada token e de cada prop é **"o consumidor consegue usar isto no arranjo real dele?"** — não "isto está correto?". Um token que só serve para `color:` e um link que só serve para site estático estão corretos e são inúteis onde vão ser usados. Quando o consumidor precisa cravar valor para contornar o DS, a falha é do DS, não da disciplina de quem consome.
+
 ## [1.2.24] — 2026-07-25
 
 ### Added

@@ -310,6 +310,18 @@ Regra que isso deixou para **todo** componente do DS: **`...rest` só carrega at
 
 **PT — Propósito:** mostrar a posição na hierarquia e permitir subir níveis (responde "onde estou?" — P6). **Quando usar:** hierarquias com profundidade (Desktop). **Quando NÃO usar:** fluxo linear de etapas (é `Stepper`); Mobile profundo (lá o padrão é voltar). **Regras:** cada nível é `Link` navegável; o atual não é link; rótulos na língua do usuário. **Estados:** default · hover/focus nos níveis · truncado (níveis do meio colapsados em "…"). **Desktop vs Mobile:** primordialmente Desktop; no Mobile, um "voltar" contextual costuma substituir. **Acessibilidade:** navegação com aria-current no atual; truncamento acessível. **Anti-padrões:** breadcrumb que não navega; rótulo técnico; usar como abas.
 
+### Num app de página única, `href` sozinho não navega — passe `onNavigate`
+
+O anti-padrão listado acima ("breadcrumb que não navega") acontecia **pelo adapter**, não por descuido de quem consome: o item só virava link quando tinha `href`, e um `<a href>` puro dentro de uma SPA **recarrega a aplicação inteira**. Diante disso o consumidor faz uma das duas coisas erradas: omite o `href` (e o caminho vira enfeite — foi o que aconteceu no IA Studio, com uma tela ficando sem saída nenhuma) ou aceita o recarregamento.
+
+Desde a **v1.2.25** existe `onNavigate(href, event)`, repassado pelo `AppShell` como `onBreadcrumbNavigate`:
+
+- o `<a href>` **permanece** — é o que faz Ctrl/Cmd-clique abrir em nova aba e o que o leitor de tela anuncia como link;
+- o `preventDefault` acontece **só no clique simples** (sem modificador, botão esquerdo), então o router assume a navegação;
+- o componente é `<nav aria-label="Caminho">`, com `aria-current="page"` no último item.
+
+Regra que fica: **todo item que não é o último tem `href`**; se o app é SPA, ele **também** passa `onNavigate`. Um dos dois faltando quebra alguma coisa — sem `href` não navega, sem `onNavigate` recarrega.
+
 **EN — Purpose:** show position in the hierarchy and allow going up (answers "where am I?" — P6). **When to use:** deep hierarchies (Desktop). **When NOT to use:** a linear step flow (that is `Stepper`); deep Mobile (there the pattern is back). **Rules:** each level is a navigable `Link`; the current is not a link; labels in the user's language. **States:** default · hover/focus on levels · truncated (middle levels collapsed to "…"). **Desktop vs Mobile:** primarily Desktop; on Mobile a contextual "back" usually replaces it. **Accessibility:** navigation with aria-current on the current; accessible truncation. **Anti-patterns:** a non-navigating breadcrumb; a technical label; using it as tabs.
 
 ## Tabs (folder e pills)

@@ -192,6 +192,7 @@ export function AppShell({
   footer,
   version,
   breadcrumb,
+  onBreadcrumbNavigate,       // repassado ao Breadcrumb: sem ele, clicar recarrega a app inteira
   topbarContext,
   user,
   userMenuItems = [],
@@ -296,7 +297,7 @@ export function AppShell({
               />
             ) : null}
             {!narrow && layout === "topnav" && <><div className="su-topnav__brand">{brand}</div><TopNavList sections={sections} ariaLabel={text.navigation} /></>}
-            {breadcrumb && <Breadcrumb items={breadcrumb} />}
+            {breadcrumb && <Breadcrumb items={breadcrumb} onNavigate={onBreadcrumbNavigate} />}
             {topbarContext && <div className="su-topbar__context">{topbarContext}</div>}
           </div>
 

@@ -31,15 +31,38 @@ export function TopBar({ className = "", children, ...rest }) {
  * Breadcrumb — .su-breadcrumb.
  * @param {{label:string, href?:string}[]} items
  */
-export function Breadcrumb({ items }) {
+/**
+ * Breadcrumb — o caminho até a tela atual. Item com `href` é link; o último item
+ * (a página onde se está) nunca deve ter.
+ *
+ * `onNavigate(href, event)` existe para o app de página única: sem ele, o clique
+ * num `<a href>` **recarrega a aplicação inteira** — perde estado, refaz login
+ * check, pisca a tela. Quem tem router passa `onNavigate` e chama a navegação
+ * dele; o componente dá `preventDefault` só no clique simples, então
+ * Ctrl/Cmd-clique e "abrir em nova aba" continuam funcionando (é para isso que o
+ * `href` real permanece, em vez de virar um `<span onClick>`).
+ *
+ * @param {{label:React.ReactNode, href?:string}[]} items
+ * @param {(href:string, event:MouseEvent)=>void} [onNavigate]
+ */
+export function Breadcrumb({ items, onNavigate }) {
+  const handle = (href) => (event) => {
+    if (!onNavigate) return;
+    // Deixa passar o que o navegador faz melhor: nova aba, nova janela, download.
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
+    event.preventDefault();
+    onNavigate(href, event);
+  };
   return (
-    <div className="su-breadcrumb">
+    <nav className="su-breadcrumb" aria-label="Caminho">
       {items.map((it, i) => (
         <React.Fragment key={i}>
-          {i > 0 && <span>/</span>}
-          {it.href ? <a href={it.href}>{it.label}</a> : <span>{it.label}</span>}
+          {i > 0 && <span aria-hidden="true">/</span>}
+          {it.href
+            ? <a href={it.href} onClick={handle(it.href)}>{it.label}</a>
+            : <span aria-current="page">{it.label}</span>}
         </React.Fragment>
       ))}
-    </div>
+    </nav>
   );
 }
