@@ -30,6 +30,13 @@ export const ICONS = {
   "download": { meaning: "baixar", keywords: ["save", "export"], body: '<path d="M12 4v11"/><path d="M8 11l4 4 4-4"/><path d="M5 19h14"/>' },
   "refresh": { meaning: "recarregar / sincronizar", keywords: ["reload", "sync", "retry"], body: '<path d="M4 12a8 8 0 0 1 13.7-5.7L20 8"/><path d="M20 3v5h-5"/><path d="M20 12a8 8 0 0 1-13.7 5.7L4 16"/><path d="M4 21v-5h5"/>' },
   "filter": { meaning: "filtrar lista", keywords: ["funnel", "refine"], body: '<path d="M4 5h16l-6 7v6l-4-2v-4z"/>' },
+  // Três ações que faltavam para vestir um produto de automação: executar,
+  // arquivar e salvar. Sem elas o consumidor caía no `help` ("?") — o fallback
+  // silencioso do DSIcon — ou pedia emprestado um ícone de outro significado
+  // (P2: uma metáfora, um significado).
+  "play": { meaning: "executar / iniciar agora", keywords: ["run", "start", "execute"], body: '<path d="M7 5l12 7-12 7V5z"/>' },
+  "archive": { meaning: "arquivar (guarda sem excluir)", keywords: ["box", "store", "inactive"], body: '<path d="M3 7h18v3H3z"/><path d="M5 10v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9"/><path d="M10 14h4"/>' },
+  "save": { meaning: "salvar / gravar alteração", keywords: ["store", "disk", "commit"], body: '<path d="M5 4h11l4 4v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/><path d="M8 4v5h7"/><path d="M8 15h8"/>' },
 
   // — Seleção — glifos de caixa. Existem porque os nomes `square*` estavam
   // aliasados para ícones sem relação (`square` → `file`, `square-check` →

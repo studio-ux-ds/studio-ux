@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useId } from "react";
 import { DSIcon } from "./DSIcon.jsx";
 
 function useEsc(open, onClose) {
@@ -10,14 +10,33 @@ function useEsc(open, onClose) {
   }, [open, onClose]);
 }
 
-/** Drawer — painel lateral (.su-drawer) sobre scrim. */
-export function Drawer({ open, onClose, title, children, footer }) {
+/**
+ * Drawer — painel lateral (.su-drawer) sobre scrim. É o container do **inspetor**
+ * (`DESKTOP` §6): edita as propriedades do item em foco **sem tirar o resto de
+ * vista** — o passo de um fluxo, o nó de um canvas, o item de uma lista longa.
+ *
+ * É a terceira via da regra de container (`COMPONENT_LIBRARY` → Modal): Modal
+ * para leitura/confirmação/campo curto; **rota** para o registro que existe por
+ * si e merece URL; **inspetor** para a propriedade de um item dentro de um
+ * editor, cujo rascunho vive na sessão e não tem endereço próprio.
+ *
+ * @param {number} [width=360]  largura em px. 360 serve para uma lista de
+ *   propriedades curtas; um formulário com texto longo ou JSON precisa de 480+ —
+ *   em 360 o JSON quebra em toda linha e o inspetor deixa de ser legível. O
+ *   `max-width: 90vw` do CSS continua valendo, então em tela estreita o painel
+ *   se ajusta sozinho.
+ */
+export function Drawer({ open, onClose, title, children, footer, width = 360 }) {
+  const titleId = useId();
   useEsc(open, onClose);
   if (!open) return null;
   return (
     <div className="su-scrim" style={{ justifyContent: "flex-end", padding: 0 }} onClick={(e) => e.target === e.currentTarget && onClose && onClose()}>
-      <div className="su-drawer" role="dialog" aria-modal="true">
-        {title && <div className="su-modal__head" style={{ display: "flex", alignItems: "center" }}><span style={{ flex: 1 }}>{title}</span><button className="su-iconbtn" aria-label="Fechar" onClick={onClose}><DSIcon name="close" size="sm" /></button></div>}
+      {/* `aria-labelledby` aponta pro texto do título, não pro cabeçalho inteiro:
+          o cabeçalho contém o botão Fechar, e o leitor de tela anunciaria o nome
+          do painel com "Fechar" grudado no fim. */}
+      <div className="su-drawer" style={{ width }} role="dialog" aria-modal="true" aria-labelledby={title ? titleId : undefined}>
+        {title && <div className="su-modal__head" style={{ display: "flex", alignItems: "center" }}><span id={titleId} style={{ flex: 1 }}>{title}</span><button className="su-iconbtn" aria-label="Fechar" onClick={onClose}><DSIcon name="close" size="sm" /></button></div>}
         <div style={{ padding: "0 var(--su-space-5) var(--su-space-4)", overflow: "auto", flex: 1 }}>{children}</div>
         {footer && <div className="su-modal__foot">{footer}</div>}
       </div>

@@ -12,6 +12,28 @@
 
 - **docs(prompt-framework)** · 2026-07-23 — adota `C:\Users\Flowspec\Documents\STUDIO-WORKFLOW\` v3.0.0 como fonte única do método (paradigma `prompt-framework/v1`). Agnósticos locais (`README.md`, `prompt-alinhamento.md`) viraram stubs; `COMO-INTERAGIR-COM-ROBSON.md` também. Catálogo local migrou para `studio-ux.specialty-catalog@2.0.0` (`kind: shared`, PT+EN); as 6 especialidades foram para o schema formal em `studio-ux.*@1.0.0`, todas com `extends: workflow.system-change-base@1.0.0`.
 
+## [1.2.24] — 2026-07-25
+
+### Added
+
+- **A terceira via da regra de container: o inspetor.** A regra do Modal era escrita com duas saídas — Modal ou rota — e havia um caso que não cabe em nenhuma: **a configuração de um passo dentro do editor de um fluxo**. Rota exigiria que o passo existisse no servidor, e ele é rascunho da sessão até se salvar uma versão; Modal está fora pela regra do `TextArea`. O container certo é o `Drawer` no papel de **inspetor** — que a spec de Desktop (`DESKTOP` §6) já declarava: *"painel lateral persistente que edita as propriedades do item em foco"*. Agora está escrito onde se procura (`COMPONENT_LIBRARY` → Modal), com a tabela dos três containers e o critério de cada um.
+- **Três glifos novos: `play`, `archive`, `save`.** Faltavam para vestir um produto de automação — executar um fluxo, arquivar sem excluir, salvar uma versão. Sem eles o consumidor cai no `help` (o "?" do fallback silencioso do `DSIcon`) ou empresta um ícone de outro significado, o que fere P2 (uma metáfora, um significado).
+- **`Drawer` ganhou `width`** (default 360). Um inspetor de propriedades curtas cabe em 360; **formulário com texto longo ou JSON precisa de 480+** — em 360 o JSON quebra em toda linha e o painel deixa de cumprir a função. `max-width: 90vw` do CSS continua valendo.
+
+### Fixed
+
+- **`Drawer` não associava o título ao diálogo.** Tinha `role="dialog"` + `aria-modal` mas nenhum `aria-labelledby` — o leitor de tela anunciava "diálogo" sem dizer qual. Agora aponta para o **texto** do título, não para o cabeçalho inteiro (que contém o botão Fechar, e viria grudado no nome do painel).
+
+### Origem
+
+Decisão do Robson na migração da Automação do IA Studio (sub-frente B): perguntei onde deveria viver a configuração de um passo, e a resposta foi o painel lateral — o mesmo que o canvas vai precisar quando clicar num nó. A regra que faltava não era nova: era ler a spec de Desktop e ligá-la ao teste de container.
+
+### Lição
+
+A regra mecânica do `TextArea` (v1.2.11 → v1.2.12) resolveu a ambiguidade que existia, mas **fechou o mundo em duas opções** e, com isso, criou uma nova: qualquer caso que não fosse Modal era empurrado para rota, inclusive o que não tem registro nem URL para chamar de sua.
+
+Uma regra mecânica é boa quando **descarta** (a pergunta "tem `TextArea`?" segue perfeita para eliminar o Modal) e é ruim quando pretende **escolher entre todas as alternativas** — porque o conjunto de alternativas cresce com o produto. A correção não foi enfraquecer a regra nem abrir exceção: foi **declarar a terceira alternativa** e dizer qual pergunta separa uma da outra ("o item tem URL própria?" e "o contexto em volta precisa continuar à vista?").
+
 ## [1.2.23] — 2026-07-25
 
 ### Fixed

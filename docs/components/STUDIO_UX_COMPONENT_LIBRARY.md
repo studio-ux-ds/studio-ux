@@ -364,6 +364,18 @@ Regra que isso deixou para **todo** componente do DS: **`...rest` só carrega at
 
 > **Se o formulário contém um `TextArea`, ele NÃO é Modal — é rota.** Sem exceção, sem julgar tamanho, obrigatoriedade ou "é só um motivinho curto".
 
+> **A terceira via: o inspetor.** Nem todo formulário com `TextArea` pode ser rota — e o teste acima, escrito com duas saídas, empurrava para uma delas casos que não cabem em nenhuma. O caso que expôs isso: **a configuração de um passo dentro do editor de um fluxo**. Rota exigiria que o passo existisse no servidor, e ele é **rascunho da sessão de edição** até se salvar uma versão; Modal está fora pela regra do `TextArea`. A saída não é abrir exceção: é o `Drawer` como **inspetor** — o padrão que a spec de Desktop (`DESKTOP` §6) já declarava, *"painel lateral persistente que edita as propriedades do item em foco"*, preservando contexto.
+>
+> | Container | Quando | Teste |
+> |---|---|---|
+> | **Modal** | leitura, confirmação, formulário de resposta curta | não tem `TextArea` |
+> | **Rota** | um **registro** que existe (ou vai existir) por si — cadastro, edição, detalhe | tem URL própria; sobrevive a F5 |
+> | **Inspetor** (`Drawer`) | **propriedade de um item dentro de um editor** — passo de um fluxo, nó de um canvas, camada de um desenho | o item não tem URL própria **e** o contexto em volta precisa continuar à vista |
+>
+> O inspetor **não é o Modal com outro nome**: ele existe justamente porque o usuário precisa ver o resto enquanto edita a parte (o próximo passo, o desenho do fluxo). Se o contexto em volta é irrelevante enquanto se preenche, não é inspetor — é rota. E a pergunta "tem `TextArea`?" continua valendo para **descartar o Modal**; ela nunca foi a pergunta que escolhe entre rota e inspetor.
+>
+> **Ação com campo longo** (importar colando JSON, executar informando entrada) segue a mesma leitura: a que **cria um registro** vai para rota (é endereçável, some do contexto sem prejuízo); a que **age sobre o item em foco** vai para o inspetor.
+
 Modal aceita **somente** campos de resposta curta e fechada: `Input` (uma linha), `NumericInput`, `Select`, `Combobox`, `Checkbox`, `Switch`, `RadioGroup`, `DatePicker`. A presença de qualquer um deles, sozinhos ou combinados, mantém o form elegível a Modal.
 
 **Por que a regra é absoluta.** A tentação é abrir exceção para o `TextArea` "pequeno" — um motivo opcional de duas linhas, uma observação. Mas o tamanho do campo não é o que decide: o que decide é **o que o campo pede do usuário**. `Input` pede um dado que ele já tem na cabeça (um nome, um número, uma escolha); `TextArea` pede que ele **componha** — pense, escreva, releia, reescreva. Compor exige ver o contexto que motivou a escrita, e o Modal esconde exatamente isso atrás do scrim. Um campo de 2 linhas num overlay produz texto pior que o mesmo campo numa tela com o registro à vista. Além disso, exceção baseada em "é pequeno" não é verificável: cada pessoa desenha a linha num lugar, a régua vira gosto, e a inconsistência volta.
@@ -403,6 +415,13 @@ A Modal accepts **only** short, closed-answer fields: `Input` (single line), `Nu
 **PT — Propósito:** painel que desliza de uma borda (geralmente inferior, no Mobile) para tarefas, menus e seleções ao alcance do polegar — a contraparte Mobile de muitos overlays do Desktop. **Quando usar:** menus/seleções/formulários curtos no Mobile; painel lateral de detalhe/filtros no Desktop. **Quando NÃO usar:** feedback (é Toast); confirmação destrutiva (é ConfirmDialog, ainda que apresentado como Sheet). **Regras:** puxador/afordância de fechar; fecha por gesto/Esc/backdrop; altura por conteúdo, respeita área segura. **Estados:** opening · open · dragging · closing. **Desktop vs Mobile:** no Mobile é o substituto natural de Modal/Menu/Select; no Desktop é um painel lateral. **Acessibilidade:** foco preso, role dialog, alternativa a gesto (botão fechar), devolve foco. **Anti-padrões:** só fechável por gesto (sem botão); Sheet que cobre a ação sem saída clara; usar no Desktop onde um Popover ancorado seria melhor.
 
 **EN — Purpose:** a panel sliding from an edge (usually the bottom on Mobile) for tasks, menus and selections within thumb reach — the Mobile counterpart of many Desktop overlays. **When to use:** menus/selections/short forms on Mobile; a side detail/filter panel on Desktop. **When NOT to use:** feedback (that is Toast); destructive confirmation (that is ConfirmDialog, even if shown as a Sheet). **Rules:** a handle/close affordance; closes via gesture/Esc/backdrop; height by content, respects the safe area. **States:** opening · open · dragging · closing. **Desktop vs Mobile:** on Mobile it's the natural Modal/Menu/Select substitute; on Desktop a side panel. **Accessibility:** trapped focus, role dialog, a gesture alternative (close button), returns focus. **Anti-patterns:** gesture-only close (no button); a Sheet covering the action with no clear exit; using it on Desktop where an anchored Popover fits.
+
+### O Drawer como inspetor — largura importa
+
+No Desktop o `Drawer` é o container do **inspetor** (ver o teste de container na seção do Modal e `DESKTOP` §6). Duas coisas decidem se ele funciona nesse papel:
+
+- **Largura pelo conteúdo, não pelo default.** `width` é prop (v1.2.24): 360px é o default e serve para uma lista de propriedades curtas; **formulário com texto longo ou JSON precisa de 480+**. Em 360 o JSON quebra em toda linha e o inspetor deixa de cumprir a própria função — quem edita não consegue ler o que edita. `max-width: 90vw` continua no CSS, então tela estreita se ajusta sozinha.
+- **O contexto tem que continuar visível.** Se o painel precisa ser tão largo que cobre o que ficou atrás, o caso não era inspetor: era rota.
 
 ## Tooltip
 
