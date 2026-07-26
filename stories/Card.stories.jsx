@@ -50,16 +50,16 @@ export const SubOuDelta = {
   ),
 };
 
-export const EstatisticasTom = {
-  name: "StatCard — tons semânticos",
-  parameters: { docs: { description: { story: "`tone` = `neutral` | `info` | `success` | `warning` | `danger`. O tone pinta o **entorno** (degradê, borda, ícone) e nunca o número — sobre fundo tonalizado, número colorido perde contraste. `neutral` usa o accent do sistema, então o painel acompanha a personalização. A cor responde \"isto é bom/ruim/atenção\": indicador que não responde nada fica `neutral`, mesmo que sete cores diferentes ficassem bonitas." } } },
+export const EstatisticasMatiz = {
+  name: "StatCard — matiz por assunto",
+  parameters: { docs: { description: { story: "`hue` = `indigo` | `blue` | `teal` | `violet` | `amber` | `rose` | `slate`. A cor é **categórica**: diz de que assunto o indicador é, não se ele é bom ou ruim (o `tone` semântico saiu do StatCard na v1.2.29 — no card de indicador o par bom/ruim quase nunca cabe, e quem precisava distinguir domínio acabava usando `success` só para ter verde). A régua: **estável por assunto** — custo é sempre a mesma cor em qualquer tela; nunca rotativa por posição na grade. Sem `hue`, o card usa o accent do sistema." } } },
   render: () => (
     <div className="su-demo-grid">
-      <StatCard tone="neutral" label="Organizações" value="1" icon={<DSIcon name="home" />} />
-      <StatCard tone="info" label="A processar" value="127" sub="na fila agora" icon={<DSIcon name="refresh" />} />
-      <StatCard tone="success" label="Sem erros" value="0" sub="nas últimas 164 execuções" icon={<DSIcon name="check-circle" />} />
-      <StatCard tone="warning" label="Atrasado" value="9" delta="2 novos" deltaType="up" />
-      <StatCard tone="danger" label="Falhas" value="3" delta="1" deltaType="up" icon={<DSIcon name="alert-circle" />} />
+      <StatCard hue="violet" label="Organizações" value="1" icon={<DSIcon name="home" />} />
+      <StatCard hue="blue" label="Execuções" value="164" sub="0 com erro" icon={<DSIcon name="play" />} />
+      <StatCard hue="teal" label="Custo de IA" value="US$ 0,19" sub="976.884 tokens" icon={<DSIcon name="chart-bar" />} />
+      <StatCard hue="amber" label="Mensagens" value="6" icon={<DSIcon name="message" />} />
+      <StatCard label="Sem matiz (usa o accent)" value="1.284" icon={<DSIcon name="users" />} />
     </div>
   ),
 };

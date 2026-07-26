@@ -43,6 +43,23 @@
   /* ---- Tipografia · Typography ---- */
   --su-font-ui: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --su-font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  /* ---------- Matizes categóricas (v1.2.29) ----------
+     Sete matizes SEMPRE disponíveis, independentes do accent escolhido. Existem
+     para **distinguir assunto**, não para enfeitar: num painel com sete
+     indicadores de sete domínios (organizações, execuções, custo, WhatsApp…), a
+     cor é o que faz o olho reencontrar o mesmo assunto de uma tela para outra.
+     São os mesmos hexes da paleta de accents (já validados AA em claro e escuro),
+     mas expostos como matiz fixa — `--su-action` continua sendo só a cor de AÇÃO.
+     Regra de uso: a matiz é estável POR ASSUNTO, nunca rotativa por posição na
+     grade (ver COLOR_SYSTEM e VISUAL_DNA §6.4). */
+  --su-hue-indigo: #4F46E5;
+  --su-hue-blue:   #2563EB;
+  --su-hue-teal:   #0D8C82;
+  --su-hue-violet: #7C3AED;
+  --su-hue-amber:  #B25E09;
+  --su-hue-rose:   #E11D48;
+  --su-hue-slate:  #475569;
+
   --su-fw-regular: 400;
   --su-fw-medium: 500;
   --su-fw-semibold: 600;
@@ -141,6 +158,16 @@
   --su-warning-fg: #E0A82E; --su-warning-bg: #3A2A12;
   --su-danger-fg:  #F87171; --su-danger-bg:  #3A1A1A; --su-danger: #F87171;
   --su-info-fg:    #60A5FA; --su-info-bg:    #16233F;
+
+  /* Matizes categóricas no escuro — os mesmos tons dos accents em tema escuro
+     (mais claros, para contrastar com a superfície escura). */
+  --su-hue-indigo: #6365F0;
+  --su-hue-blue:   #6AA0F7;
+  --su-hue-teal:   #2DD4BF;
+  --su-hue-violet: #B79BF5;
+  --su-hue-amber:  #F0B429;
+  --su-hue-rose:   #FB7A9B;
+  --su-hue-slate:  #9AA6B8;
 
   /* No escuro a elevação clareia a superfície; sombra é reduzida. */
   --su-elevation-raised: 0 1px 2px rgba(0,0,0,.22), 0 8px 20px rgba(0,0,0,.16);

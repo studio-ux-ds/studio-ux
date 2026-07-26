@@ -94,6 +94,12 @@
 - Para hierarquia que o tamanho/peso/espaço já resolvem (`STUDIO_UX_TYPOGRAPHY.md`, P5).
 - Para diferenciar itens que não têm diferença semântica real.
 
+**PT — A exceção: cor CATEGÓRICA (`--su-hue-*`, v1.2.29).** Existe um uso de cor que não é status nem decoração: **dizer de que assunto uma coisa é**. Num painel com indicadores de sete domínios (organizações, execuções, custo, mensagens, e-mails), a cor é o que faz o olho reencontrar o mesmo assunto de uma tela para outra — isso é função, e o `tone` semântico não serve para ela (usar `success` para ter verde corrompe o significado de `success` em todo o sistema). Sete matizes fixas, disponíveis sempre e independentes do accent: `--su-hue-{indigo,blue,teal,violet,amber,rose,slate}`.
+
+Duas condições, e ambas são obrigatórias: **a matiz é estável por assunto** (custo é a mesma cor em toda tela) e **não é rotativa por posição** ("o primeiro card é lilás"). Sem as duas, é decoração com nome novo.
+
+**EN — The exception: CATEGORICAL color (`--su-hue-*`, v1.2.29).** There is a use of color that is neither status nor decoration: **saying which subject something belongs to**. In a panel with metrics from seven domains, color is what lets the eye find the same subject across screens — a function the semantic `tone` cannot serve (using `success` just to get green corrupts `success` system-wide). Seven fixed hues, always available and independent of the accent. Two mandatory conditions: the hue is **stable per subject** and **never rotates by grid position**. Without both, it is decoration with a new name.
+
 **EN — When NOT to use color:**
 
 - To decorate (colored blocks with no function, **saturated or multi-hue** gradients). Neutral surface + space does it better. The **tonal, discreet** gradient — one token-derived hue over the surface — has been allowed since v1.2.27; the ruler is `VISUAL_DNA` §6.4, and it does not license coloring by taste: seven metrics in seven colors is still decoration.

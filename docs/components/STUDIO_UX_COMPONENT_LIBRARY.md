@@ -52,6 +52,17 @@
 
 **EN — Purpose:** a short state label (Badge: "Active", "Pending") or categorization/metadata (Tag: "VIP", "Fiber"). **When to use:** signal status, count or classify. **When NOT to use:** as an action (not clickable by default; a removable Tag is the exception, with an "x" and label). **Rules:** semantic color + **text/icon** together (P8, P17 — never color alone saying "error"); short text; status comes from a semantic map (success/warning/danger/info/neutral), not free color. **States:** static; a removable Tag has hover/focus on the "x". **Desktop vs Mobile:** same; Mobile ensures the "x" is touchable. **Accessibility:** meaning is in the text, not only color; badge text contrast meets AA. **Anti-patterns:** color-only badge; using it as a button; too many tags competing with data (P1).
 
+### A exceção: no `StatCard` a cor é CATEGÓRICA, não semântica
+
+`Badge`, `StatCard` e `Banner` usam `tone` para papel semântico — **menos o `StatCard`, que desde a v1.2.29 usa `hue`**. O motivo não é gosto:
+
+- num **card de indicador** o par bom/ruim quase nunca cabe (uma contagem de usuários não é nem uma coisa nem outra), então `tone` ficava sempre `neutral` ou era escolhido ao acaso;
+- e quem precisava **distinguir domínio** num painel — organizações, execuções, custo, mensagens — usava `success` só para conseguir verde. Aí `success` deixa de significar "deu certo" em todo o sistema, e é o próprio `tone` que se corrompe.
+
+`hue` aceita as 7 matizes da paleta (`indigo` `blue` `teal` `violet` `amber` `rose` `slate`, tokens `--su-hue-*`, sempre disponíveis e independentes do accent). A régua que a torna informação e não enfeite: **a matiz é estável por assunto** — custo é a mesma cor em toda tela do produto —, nunca rotativa por posição na grade. Sem `hue`, o card usa o accent e acompanha a personalização do usuário.
+
+Julgamento de valor no indicador continua existindo: vive no `delta`, que é verde/vermelho por **direção**.
+
 ### O papel semântico chama-se `tone` — em TODOS os componentes
 
 `StatCard`, `Banner` e `Badge` expressam a mesma ideia (qual é o papel disto: neutro, informativo, sucesso, alerta, perigo) e o nome da prop é **`tone`**. O `Badge` era o único que chamava `status`, e isso custou 47 badges neutros no IA Studio: quem migrava tela escrevia `tone` por analogia com os outros dois, a prop caía no `...rest`, virava atributo inválido no `<span>` — **sem erro no console, sem cor na tela**. Alinhado na **v1.2.22**; `status` segue aceito como apelido para não quebrar quem já publicou com ele, mas código novo usa `tone`.

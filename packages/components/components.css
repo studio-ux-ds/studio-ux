@@ -352,10 +352,16 @@
 .su-statcard__sub { margin-top: var(--su-space-1); font-size: var(--su-fs-caption); color: var(--su-text-muted); }
 .su-statcard__delta { display: flex; align-items: center; gap: var(--su-space-1); margin-top: var(--su-space-1); font-size: var(--su-fs-caption); color: var(--su-success-fg); }
 .su-statcard__delta--down { color: var(--su-danger-fg); }
-.su-statcard--info { --su-sc: var(--su-info-fg); }
-.su-statcard--success { --su-sc: var(--su-success-fg); }
-.su-statcard--warning { --su-sc: var(--su-warning-fg); }
-.su-statcard--danger { --su-sc: var(--su-danger-fg); }
+/* Matiz CATEGÓRICA do card (v1.2.29, substitui os tons semânticos). Diz de que
+   assunto o indicador é — não se ele é bom ou ruim. Sem `hue`, o card usa o
+   accent do sistema e acompanha a personalização do usuário. */
+.su-statcard--indigo { --su-sc: var(--su-hue-indigo); }
+.su-statcard--blue   { --su-sc: var(--su-hue-blue); }
+.su-statcard--teal   { --su-sc: var(--su-hue-teal); }
+.su-statcard--violet { --su-sc: var(--su-hue-violet); }
+.su-statcard--amber  { --su-sc: var(--su-hue-amber); }
+.su-statcard--rose   { --su-sc: var(--su-hue-rose); }
+.su-statcard--slate  { --su-sc: var(--su-hue-slate); }
 .su-table tbody tr.su-table__row--clickable { cursor: pointer; }
 .su-table tbody tr.su-table__row--clickable:hover { background: var(--su-action-tint); }
 .su-table tbody tr.su-table__row--clickable:focus-visible { outline: 2px solid var(--su-focus-ring); outline-offset: -2px; }

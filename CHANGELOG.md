@@ -12,6 +12,38 @@
 
 - **docs(prompt-framework)** · 2026-07-23 — adota `C:\Users\Flowspec\Documents\STUDIO-WORKFLOW\` v3.0.0 como fonte única do método (paradigma `prompt-framework/v1`). Agnósticos locais (`README.md`, `prompt-alinhamento.md`) viraram stubs; `COMO-INTERAGIR-COM-ROBSON.md` também. Catálogo local migrou para `studio-ux.specialty-catalog@2.0.0` (`kind: shared`, PT+EN); as 6 especialidades foram para o schema formal em `studio-ux.*@1.0.0`, todas com `extends: workflow.system-change-base@1.0.0`.
 
+## [1.2.29] — 2026-07-25
+
+### Changed
+
+- **O `StatCard` deixou de ter `tone` semântico e passou a ter `hue` — cor CATEGÓRICA.** `hue` = `indigo` `blue` `teal` `violet` `amber` `rose` `slate`. A cor do card passa a dizer **de que assunto o número é** (organizações, execuções, custo, mensagens), não se ele é bom ou ruim. Sem `hue`, o card usa o accent do sistema.
+  - `tone` **saiu** da API do componente. Quem ainda passar `tone` não quebra — a prop é ignorada e o card cai no accent.
+  - Julgamento de valor no indicador continua no `delta`, que segue verde/vermelho por **direção**.
+
+### Added
+
+- **Tokens `--su-hue-{indigo,blue,teal,violet,amber,rose,slate}`** — sete matizes **sempre disponíveis e independentes do accent**, em claro e escuro (os mesmos hexes da paleta de accents, já validados AA). Servem a qualquer componente que precise distinguir categoria; `--su-action` volta a ser só a cor de **ação**.
+
+### Origem
+
+O Robson mostrou dois prints do console e disse: *"eu queria eles assim"* — cada card numa cor — e depois, direto: *"remove esse tone semântico"*. Na v1.2.27 eu tinha feito o contrário: mantive `tone` e argumentei que sete cores viram decoração.
+
+### Lição
+
+**Eu estava defendendo o princípio certo com o mecanismo errado.** O problema real nunca foi "cor variada num painel" — foi usar a prop **de status** para conseguir cor. Enquanto só existia `tone`, quem precisava distinguir domínio escrevia `tone="success"` para ter verde, e aí `success` deixava de significar "deu certo" em todo o sistema. Eu li isso como "o consumidor quer enfeitar" e travei; o que ele queria era uma função que o DS não oferecia.
+
+Existem **três** usos de cor, não dois, e o DS só tinha vocabulário para dois:
+
+| Uso | Pergunta que responde | Mecanismo |
+|---|---|---|
+| Semântico | isto é bom/ruim/atenção? | `tone` (Badge, Banner, `delta`) |
+| **Categórico** | de que assunto isto é? | **`hue`** (`--su-hue-*`) — novo |
+| Decorativo | — | não existe no DS |
+
+Cor categórica é uso reconhecido (é o que faz uma série ser reencontrável num gráfico) e tem régua própria: **estável por assunto, nunca rotativa por posição**. Com ela nomeada, a recusa a "colorir por gosto" continua de pé — e deixa de atropelar um pedido legítimo.
+
+O padrão a levar: quando o dono insiste num resultado que a regra proíbe, **a hipótese mais provável é que falte um conceito na regra**, não que ele esteja errado. Duas versões atrás eu escrevi que "uma regra estética que o dono contraria é uma regra que precisa mudar" — e na versão seguinte fiz exatamente o oposto, discutindo com o pedido em vez de procurar o conceito que faltava.
+
 ## [1.2.28] — 2026-07-25
 
 ### Changed

@@ -8,30 +8,37 @@ export function Card({ className = "", children, ...rest }) {
 /**
  * StatCard — .su-statcard. Indicador numérico.
  *
- * Desenho (v1.2.27): **ícone à esquerda** num quadrado tonalizado, texto à
- * direita, e o card com um leve degradê da cor do papel. O `tone` decide a cor —
- * do degradê, da borda e do ícone —, **nunca do número**: valor colorido perde
- * contraste e some junto com o fundo tonalizado.
+ * Desenho: **ícone à esquerda** num quadrado tonalizado, texto à direita, e o
+ * card com um leve degradê. A cor pinta o **entorno** (degradê, borda, ícone) e
+ * **nunca o número**: valor colorido sobre fundo tonalizado perde contraste.
  *
- * O `tone` continua sendo **papel semântico**, não decoração: `neutral` usa o
- * accent do sistema, e os outros o papel correspondente. Um painel com sete
- * indicadores em cinco cores por gosto não é o que este componente faz — a cor
- * aqui responde "isto é bom/ruim/atenção", e quando não responde nada, é
- * `neutral` (P17).
+ * `hue` é a cor do card, e ela é **categórica — diz de que ASSUNTO o indicador
+ * é**, não se ele é bom ou ruim (v1.2.29: o `tone` semântico saiu daqui). Num
+ * painel com vários domínios lado a lado — organizações, execuções, custo,
+ * mensagens — é a cor que faz o olho reencontrar o mesmo assunto de uma tela para
+ * outra, e isso é função, não enfeite.
  *
- * @param {"neutral"|"info"|"success"|"warning"|"danger"} [tone]
+ * A régua: **a matiz é estável por assunto**. Custo é sempre a mesma cor, em
+ * qualquer tela. Nunca rotativa por posição na grade ("o primeiro card é lilás")
+ * — aí a cor deixa de informar e passa a decorar.
+ *
+ * Por que `tone` saiu: no card de indicador o par bom/ruim quase nunca cabe (uma
+ * contagem não é nem uma coisa nem outra), e quem precisava distinguir assunto
+ * acabava usando `tone` como paleta — o que fazia `success` significar "verde"
+ * em vez de "deu certo". Julgamento de valor no indicador vive no `delta`, que
+ * continua vermelho/verde por direção.
+ *
+ * @param {"indigo"|"blue"|"teal"|"violet"|"amber"|"rose"|"slate"} [hue]
+ *   Default: o accent do sistema (acompanha a personalização do usuário).
  * @param {React.ReactNode} [sub]  linha secundária NEUTRA sob o número —
- *   composição, unidade, recorte ("976.884 tokens", "0 com erro"). É o que quase
- *   sempre se quer: antes só existia `delta`, que é colorido como variação, e
- *   quem precisava de legenda a colocava lá — dando verde a um texto que não é
- *   nem melhora nem piora.
+ *   composição, unidade, recorte ("976.884 tokens", "0 com erro").
  * @param {React.ReactNode} [delta]  a VARIAÇÃO no período ("8,4%").
  * @param {"up"|"down"} [deltaType]  direção da variação (verde/vermelho).
  * @param {React.ReactNode} [icon]  reforço visual da métrica.
  */
-export function StatCard({ label, value, sub, delta, deltaType, icon, tone = "neutral" }) {
+export function StatCard({ label, value, sub, delta, deltaType, icon, hue }) {
   return (
-    <div className={["su-statcard", tone !== "neutral" && `su-statcard--${tone}`].filter(Boolean).join(" ")}>
+    <div className={["su-statcard", hue && `su-statcard--${hue}`].filter(Boolean).join(" ")}>
       {icon && <span className="su-statcard__icon" aria-hidden="true">{icon}</span>}
       <div className="su-statcard__body">
         <div className="su-statcard__label">{label}</div>
