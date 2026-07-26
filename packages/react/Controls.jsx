@@ -44,11 +44,19 @@ function OptionLabel({ input, id, label, meta, variant, inline }) {
  *   e a caixa dela.
  * @param {React.ReactNode} [meta]  linha secundária sob o rótulo: categoria,
  *   contagem, `Badge`s de estado. Aceita nós, não só texto.
+ * @param {React.ReactNode} [children]  forma alternativa de dar o rótulo:
+ *   `<Checkbox>Segunda</Checkbox>` é o mesmo que `label="Segunda"`. Aceita as
+ *   duas porque **as duas são o que se espera de um componente com rótulo em
+ *   React** — e até a v1.2.22 passar children DERRUBAVA A PÁGINA: `children`
+ *   caía no `...rest`, ia pro `<input>` (elemento vazio) e o React lançava
+ *   "input is a void element tag and must neither have children…", desmontando a
+ *   árvore inteira. Tela branca por escrever o rótulo do jeito óbvio.
  */
-export function Checkbox({ label, className = "", id, inline = false, variant = "plain", meta, ...rest }) {
+export function Checkbox({ label, children, className = "", id, inline = false, variant = "plain", meta, ...rest }) {
+  const text = label ?? children;
   const input = <input type="checkbox" id={id} className={["su-checkbox", className].filter(Boolean).join(" ")} {...rest} />;
-  if (!label) return input;
-  return <OptionLabel input={input} id={id} label={label} meta={meta} variant={variant} inline={inline} />;
+  if (!text) return input;
+  return <OptionLabel input={input} id={id} label={text} meta={meta} variant={variant} inline={inline} />;
 }
 
 /**
@@ -88,11 +96,14 @@ export function CheckGroup({ columns = "auto", className = "", children, ...rest
  * @param {boolean} [inline] mesma linha das vizinhas; o default é empilhar.
  * @param {"plain"|"card"} [variant="plain"]  igual ao `Checkbox` — ver lá.
  * @param {React.ReactNode} [meta]  linha secundária sob o rótulo.
+ * @param {React.ReactNode} [children]  rótulo, alternativa a `label` — ver o
+ *   `Checkbox` para o motivo (até a v1.2.22 children aqui derrubava a página).
  */
-export function Radio({ label, className = "", id, inline = false, variant = "plain", meta, ...rest }) {
+export function Radio({ label, children, className = "", id, inline = false, variant = "plain", meta, ...rest }) {
+  const text = label ?? children;
   const input = <input type="radio" id={id} className={["su-radio", className].filter(Boolean).join(" ")} {...rest} />;
-  if (!label) return input;
-  return <OptionLabel input={input} id={id} label={label} meta={meta} variant={variant} inline={inline} />;
+  if (!text) return input;
+  return <OptionLabel input={input} id={id} label={text} meta={meta} variant={variant} inline={inline} />;
 }
 
 /** Switch / Toggle — .su-switch (controlado). */

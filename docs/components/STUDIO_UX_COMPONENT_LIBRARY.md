@@ -154,6 +154,12 @@ Anti-padrão: escrever `label="Nome *"` com o asterisco dentro da string. Aí el
 
 **EN — Purpose:** independent or multiple boolean selection in a list. **When to use:** accept terms, mark several items. **When NOT to use:** exclusive choice (`Radio`); immediate-effect settings toggle (`Switch`). **Rules:** clickable label by the box; indeterminate state for "some selected". **States:** unchecked · checked · indeterminate · focus · disabled · error. **Desktop vs Mobile:** ≥44px target including the label on Mobile. **Accessibility:** role checkbox, associated label, Space-operable. **Anti-patterns:** checkbox for exclusive choice; a non-clickable label; a tiny box on touch.
 
+### O rótulo pode vir por `label` ou como filho — as duas formas valem
+
+`<Checkbox label="Segunda" />` e `<Checkbox>Segunda</Checkbox>` são equivalentes (idem `Radio`), desde a **v1.2.23**. Aceitar só uma das duas obriga o consumidor a decorar a assinatura, e a que faltava era justamente a mais natural em React — até a v1.2.22, escrever o rótulo como filho **derrubava a página**: `children` era repassado ao `<input>`, que é elemento vazio, e o React lançava exceção durante o render, desmontando a árvore inteira (tela branca, sem casca).
+
+Regra que isso deixou para **todo** componente do DS: **`...rest` só carrega atributos que o elemento de destino aceita.** Tudo que o componente posiciona por conta própria — `children` em primeiro lugar — é consumido por nome na desestruturação. Espalhar o resto num elemento vazio deixa o adapter a um rótulo de distância de quebrar a aplicação de quem consome.
+
 ## CheckGroup (lista de opções) · CheckGroup (option list)
 
 **PT — Propósito:** o **container** de uma lista de `Checkbox`/`Radio`. Existe porque o layout de um grupo de opções é decisão do sistema, não de cada tela: sem ele, cada consumidor monta um `div` com espaçamento próprio e o resultado divergia — e empilhava uma opção por linha, deixando dois terços da tela larga vazios. **Quando usar:** sempre que houver **duas ou mais** opções relacionadas. Opção única e solta não precisa de grupo. **Quando NÃO usar:** para agrupar campos de tipos diferentes (isso é `Card`/`Fieldset`); para escolha entre 2–4 alternativas que trocam a vista na hora (é `SegmentedControl`).

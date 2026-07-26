@@ -12,6 +12,24 @@
 
 - **docs(prompt-framework)** · 2026-07-23 — adota `C:\Users\Flowspec\Documents\STUDIO-WORKFLOW\` v3.0.0 como fonte única do método (paradigma `prompt-framework/v1`). Agnósticos locais (`README.md`, `prompt-alinhamento.md`) viraram stubs; `COMO-INTERAGIR-COM-ROBSON.md` também. Catálogo local migrou para `studio-ux.specialty-catalog@2.0.0` (`kind: shared`, PT+EN); as 6 especialidades foram para o schema formal em `studio-ux.*@1.0.0`, todas com `extends: workflow.system-change-base@1.0.0`.
 
+## [1.2.23] — 2026-07-25
+
+### Fixed
+
+- **`<Checkbox>rótulo</Checkbox>` derrubava a página inteira.** O `Checkbox` (e o `Radio`) só liam o rótulo de `label`; `children` caía no `...rest`, chegava ao `<input>` — que é elemento vazio — e o React lançava *"input is a void element tag and must neither have children nor use dangerouslySetInnerHTML"*. Não é aviso: é exceção durante o render, que **desmonta a árvore toda**. Resultado no consumidor: **tela branca**, sem casca, sem menu. Agora `label` e `children` são equivalentes, e `children` nunca é repassado ao `<input>`.
+
+### Origem
+
+Rota nova do IA Studio (`/automacao/calendarios/novo`) abrindo em branco. O arquivo tinha um `<Checkbox>` por dia da semana com o rótulo escrito como filho — a forma mais natural de escrever em React, e a única que o componente não aceitava.
+
+### Lição
+
+Terceira prop mal-resolvida em duas versões (`Badge.tone`, `Field.required`, agora `Checkbox.children`), e a que mostra o pior desenho dos três: **a falha não foi silenciosa, foi catastrófica**. Prop ignorada dá tela feia; prop repassada cegamente pro DOM dá tela branca.
+
+A regra que sai daí, e que vale para todo componente do DS: **`...rest` só existe para atributos que o elemento de destino aceita.** Se o componente decide onde cada prop vai, ele tem que **consumir por nome** tudo que não é atributo do elemento — `children` em primeiro lugar. Um adapter que espalha o resto num elemento vazio está a um rótulo de distância de derrubar a aplicação do consumidor.
+
+Corolário para o consumidor: **rótulo de opção aceita `label` ou filho** — as duas, sempre. Um componente que aceita só uma das duas formas está exigindo que o consumidor decore a assinatura, o que é o mesmo problema que o `Badge.tone` criou por outro caminho.
+
 ## [1.2.22] — 2026-07-25
 
 ### Added
