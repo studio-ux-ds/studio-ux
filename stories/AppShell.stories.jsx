@@ -30,6 +30,20 @@ const NAV = [
   ]},
 ];
 
+const LONG_NAV = [
+  { section: "Operação", items: Array.from({ length: 10 }, (_, index) => ({ icon: "grid", label: `Visão ${index + 1}`, href: "#" })) },
+  { section: "Administração", items: [
+    { icon: "users", label: "Pessoas", href: "#" },
+    { group: "Configurações", icon: "settings", items: [
+      { icon: "building", label: "Dados da empresa", href: "#" },
+      { icon: "shield", label: "Perfis de acesso", href: "#" },
+      { icon: "user", label: "Usuários", href: "#" },
+      { icon: "key", label: "Chaves de acesso", href: "#" },
+      { icon: "database", label: "Dados", href: "#" },
+    ]},
+  ]},
+];
+
 const brl = (n) => n.toLocaleString("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 });
 const RAW = [
   { id: 1, desc: "Salário CLT", cat: "Salário", bloco: "PF", tipo: "Recorrente", vence: "dia 5", valor: 8500 },
@@ -51,7 +65,7 @@ const Brand = () => (
   </span>
 );
 
-function Demo(args) {
+function Demo({ nav = NAV, ...args }) {
   const [search, setSearch] = useState("");
   const [seg, setSeg] = useState("");
   const [cmdk, setCmdk] = useState(false);
@@ -60,7 +74,7 @@ function Demo(args) {
     <>
       <AppShell
         brand={<Brand />}
-        nav={NAV}
+        nav={nav}
         version="Finanças · Studio UX 1.1.20"
         breadcrumb={[{ label: "Finanças", href: "#" }, { label: "Receitas" }]}
         topbarContext={<span>Julho 2026</span>}
@@ -98,6 +112,12 @@ export const Recolhida = {
   render: (args) => <Demo {...args} />,
   name: "Sidebar recolhida",
   parameters: { docs: { description: { story: "A sidebar recolhe para só-ícones; o estado é lembrado em `localStorage`. Use o botão de recolher na TopBar." } } },
+};
+
+export const GrupoRevelado = {
+  name: "Grupo aberto permanece visível",
+  parameters: { docs: { description: { story: "Com a navegação maior que a Sidebar, abrir Configurações rola apenas a região de navegação até revelar o grupo. O foco permanece no botão e a animação respeita redução de movimento." } } },
+  render: (args) => <Demo {...args} nav={LONG_NAV} />,
 };
 
 export const SemUsuario = {

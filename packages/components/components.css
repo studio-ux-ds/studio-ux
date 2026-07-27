@@ -162,7 +162,7 @@
 /* ---------- Navegação · Navigation ---------- */
 .su-sidebar { width: 256px; background: var(--su-surface-raised); border-right: 1px solid var(--su-border-default); display: flex; flex-direction: column; }
 .su-sidebar__brand { display: flex; align-items: center; gap: var(--su-space-2); padding: var(--su-space-5) var(--su-space-4); font-weight: var(--su-fw-semibold); }
-.su-nav { display: flex; flex-direction: column; gap: 2px; padding: var(--su-space-2); flex: 1; }
+.su-nav { display: flex; flex-direction: column; gap: 2px; padding: var(--su-space-2); flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
 .su-nav__item { display: flex; align-items: center; gap: var(--su-space-3); padding: var(--su-space-2) var(--su-space-3); border-radius: var(--su-radius-md); font-size: 13px; color: var(--su-text-secondary); text-decoration: none; cursor: pointer; }
 .su-nav__item:hover { background: var(--su-surface-sunken); color: var(--su-text-primary); }
 .su-nav__item--active { background: var(--su-action-tint); color: var(--su-action); }

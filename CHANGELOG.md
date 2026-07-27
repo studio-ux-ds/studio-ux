@@ -12,6 +12,18 @@
 
 - **docs(prompt-framework)** · 2026-07-23 — adota `C:\Users\Flowspec\Documents\STUDIO-WORKFLOW\` v3.0.0 como fonte única do método (paradigma `prompt-framework/v1`). Agnósticos locais (`README.md`, `prompt-alinhamento.md`) viraram stubs; `COMO-INTERAGIR-COM-ROBSON.md` também. Catálogo local migrou para `studio-ux.specialty-catalog@2.0.0` (`kind: shared`, PT+EN); as 6 especialidades foram para o schema formal em `studio-ux.*@1.0.0`, todas com `extends: workflow.system-change-base@1.0.0`.
 
+## [1.2.42] — 2026-07-27
+
+### Fixed
+
+- **AppShell — grupo aberto sempre fica alcançável.** Ao abrir um grupo colapsável na Sidebar, o adapter agora rola somente a região de navegação para manter o grupo inteiro visível quando ele couber; se o grupo for maior que a região, posiciona o seu início. A Sidebar ganhou rolagem própria, sem deslocar o conteúdo da página nem o rodapé.
+- **Acessibilidade preservada.** O clique não move o foco do botão do grupo; apenas o scroll muda. A animação respeita `prefers-reduced-motion` e vira imediata quando a pessoa reduz movimento.
+- **Storybook — cenário de navegação longa.** A story `Grupo aberto permanece visível` reproduz o caso real de abrir Configurações abaixo da dobra.
+
+### Readoção
+
+- **AquaPark v2.1.39** deve consumir `@studio-ux-ds/* ^1.2.42` antes de iniciar a próxima família de telas. IA Studio, Finanças Pessoais e Delivery não precisam de alteração de código: a correção é retrocompatível no `AppShell`.
+
 ## [1.2.41] — 2026-07-27
 
 ### Added

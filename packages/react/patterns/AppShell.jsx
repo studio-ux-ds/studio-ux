@@ -73,6 +73,7 @@ function NavList({ sections, collapsed, onNavigate, onExpandRequest }) {
     return null;
   };
   const [openGroup, setOpenGroup] = useState(initialOpen);
+  const [revealGroup, setRevealGroup] = useState(null);
 
   const leaf = (it, key) => (
     <NavItem
@@ -100,11 +101,19 @@ function NavList({ sections, collapsed, onNavigate, onExpandRequest }) {
                 collapsed={collapsed}
                 open={openGroup === it.group}
                 onToggle={() => {
-                  if (collapsed) { onExpandRequest && onExpandRequest(); setOpenGroup(it.group); }
-                  else setOpenGroup((p) => (p === it.group ? null : it.group));
+                  if (collapsed) {
+                    onExpandRequest && onExpandRequest();
+                    setOpenGroup(it.group);
+                    setRevealGroup(it.group);
+                    return;
+                  }
+                  const next = openGroup === it.group ? null : it.group;
+                  setOpenGroup(next);
+                  setRevealGroup(next);
                 }}
                 onNavigate={onNavigate}
                 renderLeaf={leaf}
+                reveal={openGroup === it.group && revealGroup === it.group}
               />
             ) : (
               leaf(it, j)
@@ -117,11 +126,38 @@ function NavList({ sections, collapsed, onNavigate, onExpandRequest }) {
 }
 
 /** Grupo colapsável da navegação — botão com chevron + filhos recuados. */
-function NavGroup({ group, collapsed, open, onToggle, renderLeaf }) {
+function NavGroup({ group, collapsed, open, onToggle, renderLeaf, reveal }) {
+  const groupRef = useRef(null);
+
+  useEffect(() => {
+    if (!reveal || !groupRef.current) return undefined;
+    const frame = window.requestAnimationFrame(() => {
+      const node = groupRef.current;
+      const nav = node && node.closest(".su-nav");
+      if (!node || !nav) return;
+
+      const groupBounds = node.getBoundingClientRect();
+      const navBounds = nav.getBoundingClientRect();
+      const groupTallerThanNav = groupBounds.height > navBounds.height;
+      let top = nav.scrollTop;
+
+      if (groupTallerThanNav || groupBounds.top < navBounds.top) {
+        top += groupBounds.top - navBounds.top;
+      } else if (groupBounds.bottom > navBounds.bottom) {
+        top += groupBounds.bottom - navBounds.bottom;
+      }
+
+      if (top === nav.scrollTop) return;
+      const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      nav.scrollTo({ top, behavior: reduceMotion ? "auto" : "smooth" });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [reveal]);
+
   const groupActive = group.items.some((c) => c.active);
   const cls = ["su-nav__item", "su-nav__group-btn", groupActive && !open && "su-nav__item--active"].filter(Boolean).join(" ");
   return (
-    <div className="su-nav__group">
+    <div ref={groupRef} className="su-nav__group">
       <button type="button" className={cls} aria-expanded={open} title={collapsed ? group.group : undefined} onClick={onToggle}>
         {group.icon && <DSIcon name={group.icon} size="sm" />}
         {!collapsed && <span className="su-nav__group-label">{group.group}</span>}

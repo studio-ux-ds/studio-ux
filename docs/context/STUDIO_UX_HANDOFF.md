@@ -21,6 +21,8 @@
 
 ## ✅ Estado vigente · Current state
 
+- **Navegação / Navigation (v1.2.42):** o `AppShell` revela o grupo recém-aberto dentro da rolagem própria da Sidebar, sem mover o foco e respeitando redução de movimento. O próximo consumidor é AquaPark `v2.1.39`. / `AppShell` reveals a newly opened group within the Sidebar's own scrolling without moving focus and respecting reduced motion. The next consumer is AquaPark `v2.1.39`.
+
 - **Fundação, linguagem e tokens / Foundation, language and tokens:** concluídos e congelados como contratos. Mudança estrutural só por RFC + ADR; componente novo só por necessidade comprovada em produto. / Complete and frozen as contracts. Structural change only through RFC + ADR; a new component only for a proven product need.
 - **Implementação real / Actual implementation:** `packages/tokens`, `packages/components`, `packages/icons`, `packages/react`, `packages/react-native`, `packages/mobile` e `packages/cli` existem e são versionados em lockstep. O Storybook documenta o adapter React real; `scripts/check-packages.mjs` é a validação estrutural da publicação. / The packages exist and are versioned in lockstep. Storybook documents the real React adapter; `scripts/check-packages.mjs` is the publishing structural validation.
 - **Fase / Phase:** Fase 3 está ativa: componentes, padrões de jornada e refinamentos são materializados e adotados de forma controlada pelos sistemas consumidores. O produto não está mais em fase somente documental. / Phase 3 is active: components, journey patterns and refinements are being materialized and adopted in a controlled way by consuming systems. The product is no longer documentation-only.
