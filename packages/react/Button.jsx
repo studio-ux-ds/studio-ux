@@ -13,9 +13,13 @@ import { Spinner } from "./Feedback.jsx";
  *   O rótulo continua visível — quem chama deve trocá-lo pelo gerúndio da ação
  *   ("Salvando…"), porque spinner sozinho não diz o que está acontecendo (P11).
  */
-export function Button({ variant = "secondary", size = "md", icon, iconRight, loading = false, disabled, className = "", children, ...rest }) {
+export function Button({ variant = "secondary", size = "md", icon, iconRight, loading = false, block = false, disabled, className = "", children, ...rest }) {
   const sizeCls = size === "sm" ? "su-btn--sm" : size === "lg" ? "su-btn--lg" : "";
-  const cls = ["su-btn", `su-btn--${variant}`, sizeCls, loading && "su-btn--loading", className].filter(Boolean).join(" ");
+  // `block`: largura total do container. A spec já pedia isso ("no rodapé de
+  // formulário no Mobile, largura total"; tela de login, ação única de um passo)
+  // e o adapter não expunha — então o consumidor cravava `width: 100%` no
+  // `style`, ou pior, uma classe que não existe.
+  const cls = ["su-btn", `su-btn--${variant}`, sizeCls, block && "su-btn--block", loading && "su-btn--loading", className].filter(Boolean).join(" ");
   return (
     <button className={cls} disabled={disabled || loading} aria-busy={loading || undefined} {...rest}>
       {loading ? <Spinner /> : (icon && <DSIcon name={icon} size="sm" />)}

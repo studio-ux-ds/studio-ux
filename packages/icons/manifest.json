@@ -10,7 +10,7 @@
     "strokeLinejoin": "round"
   },
   "note": "Biblioteca curada (ICONOGRAPHY §6). Uma metáfora, um significado (P2). Cor via currentColor (§4). Cresce por curadoria governada.",
-  "count": 53,
+  "count": 55,
   "icons": {
     "chevron-right": {
       "meaning": "avançar / abrir item",
@@ -143,6 +143,23 @@
         "warning",
         "caution",
         "risk"
+      ]
+    },
+    "history": {
+      "meaning": "histórico / versões anteriores",
+      "keywords": [
+        "timeline",
+        "revisions",
+        "past",
+        "log"
+      ]
+    },
+    "upload": {
+      "meaning": "enviar arquivo / importar",
+      "keywords": [
+        "import",
+        "attach",
+        "send file"
       ]
     },
     "download": {

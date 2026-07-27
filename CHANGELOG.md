@@ -12,6 +12,25 @@
 
 - **docs(prompt-framework)** · 2026-07-23 — adota `C:\Users\Flowspec\Documents\STUDIO-WORKFLOW\` v3.0.0 como fonte única do método (paradigma `prompt-framework/v1`). Agnósticos locais (`README.md`, `prompt-alinhamento.md`) viraram stubs; `COMO-INTERAGIR-COM-ROBSON.md` também. Catálogo local migrou para `studio-ux.specialty-catalog@2.0.0` (`kind: shared`, PT+EN); as 6 especialidades foram para o schema formal em `studio-ux.*@1.0.0`, todas com `extends: workflow.system-change-base@1.0.0`.
 
+## [1.2.37] — 2026-07-26
+
+### Added
+
+- **`Checkbox` tem `indeterminate`** — o estado misto, que não é atributo HTML (só existe como propriedade do nó, e por isso precisa de `ref`). É o que a caixa "marcar o grupo todo" de qualquer tela de permissão precisa: sem ele, meia seleção aparece como caixa **vazia**, informando o oposto do que acontece. Era exatamente por isso que o consumidor voltava ao `<input>` cru em toda tela de ACL. O CSS `:indeterminate` já existia desde sempre — faltava alguém conseguir ligar.
+- **`ProgressBar` tem `tone`** (+ `label` para leitor de tela). A cor do preenchimento é o único lugar onde a cor carrega significado numa barra: "quanto falta para o limite" é o que se quer ler de longe. Sem `tone`, o consumidor cravava hex (`#f59e0b` a 70%, `#ef4444` a 90%) — cor fora do tema, que não acompanha claro/escuro nem o accent.
+- **`Button` tem `block`** — largura total do container, conteúdo centrado. A spec já pedia ("no rodapé de formulário no Mobile, largura total"; ação única de um passo, como entrar), e o adapter não expunha: o consumidor cravava `width: 100%` no `style` ou, pior, uma classe `su-btn--block` que **não existia**.
+- **Glifos `history` e `upload`** (55 no core). Faltavam, e o consumidor os pedia mesmo assim: cinco callsites em telas já migradas desenhavam "?" havia releases — `history` em quatro (versões de fluxo, histórico de atendimento) e `upload` em um (importar fluxo). `refresh` não é histórico e `download` não é upload.
+
+### Origem
+
+Migração da última família do IA Studio (pessoas, perfis, workspaces, auditoria, minha conta + as três telas públicas). As quatro entradas têm a mesma forma: **o consumidor já fazia, por fora, o que o componente devia oferecer.**
+
+### Lição
+
+Quatro lacunas numa frente só, e nenhuma delas era invenção nova: caixa em estado misto, barra que avisa, botão de largura total e dois nomes de ícone. Todas apareceram porque o consumidor **precisou contornar** — com `<input>` cru, com hex, com `width: 100%`, com um nome inventado.
+
+Vale como método de descoberta: **onde o consumidor sai do DS, há uma lacuna do DS.** Não é indisciplina de quem escreve a tela; é sintoma. Os quatro contornos estavam à vista no diff de qualquer uma dessas telas — o que faltava era ler o contorno como pedido, e não como desvio.
+
 ## [1.2.36] — 2026-07-26
 
 ### Fixed

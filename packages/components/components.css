@@ -36,6 +36,11 @@
 .su-btn--secondary { background: transparent; color: var(--su-text-primary); border-color: var(--su-border-strong); }
 .su-btn--secondary:hover:not(:disabled) { background: var(--su-surface-sunken); }
 
+/* `block`: o botão ocupa a largura do container e centra o conteúdo. É a forma
+   de ação única de um passo (entrar, confirmar) e do rodapé de formulário no
+   Mobile — onde um botão do tamanho do texto vira um alvo pequeno perdido no
+   meio da linha. */
+.su-btn--block { width: 100%; justify-content: center; }
 .su-btn--ghost { background: transparent; color: var(--su-text-primary); }
 .su-btn--ghost:hover:not(:disabled) { background: var(--su-surface-sunken); }
 
@@ -502,6 +507,18 @@
 /* ---------- ProgressBar ---------- */
 .su-progress { height: 8px; background: var(--su-surface-sunken); border-radius: var(--su-radius-full); overflow: hidden; }
 .su-progress__fill { height: 100%; background: var(--su-action); border-radius: var(--su-radius-full); transition: width var(--su-duration-base) var(--su-ease-standard); }
+/* `tone` na barra: o preenchimento é o único elemento cuja COR carrega
+   significado — "quanto falta para o limite" é justamente o que se quer ler de
+   longe. Sem isso, o consumidor cravava hex (`#f59e0b` a 70%, `#ef4444` a 90%),
+   que é cor fora do tema e não acompanha claro/escuro nem o accent do usuário.
+   O default (sem `tone`) segue no accent: progresso neutro não é aviso. */
+/* Usa o `-fg` de cada papel: é a variante SÓLIDA e legível, e existe nos dois
+   temas. (`--su-success`/`--su-warning`/`--su-info` "puros" não existem — só
+   `--su-danger` existe, e usar ele aqui criaria a única exceção do conjunto.) */
+.su-progress__fill--success { background: var(--su-success-fg); }
+.su-progress__fill--warning { background: var(--su-warning-fg); }
+.su-progress__fill--danger  { background: var(--su-danger-fg); }
+.su-progress__fill--info    { background: var(--su-info-fg); }
 
 /* ---------- Timeline (auditoria) ---------- */
 .su-timeline { position: relative; padding-left: var(--su-space-5); }

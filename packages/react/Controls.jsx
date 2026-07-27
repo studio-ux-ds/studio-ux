@@ -52,9 +52,27 @@ function OptionLabel({ input, id, label, meta, variant, inline }) {
  *   "input is a void element tag and must neither have children…", desmontando a
  *   árvore inteira. Tela branca por escrever o rótulo do jeito óbvio.
  */
-export function Checkbox({ label, children, className = "", id, inline = false, variant = "plain", meta, ...rest }) {
+export function Checkbox({ label, children, className = "", id, inline = false, variant = "plain", meta, indeterminate = false, ...rest }) {
   const text = label ?? children;
-  const input = <input type="checkbox" id={id} className={["su-checkbox", className].filter(Boolean).join(" ")} {...rest} />;
+  // `indeterminate` não é atributo HTML — só existe como propriedade do nó, e
+  // por isso precisa de ref. Sem isto, a caixa "marcar todo o grupo" só sabe
+  // dizer "todas" ou "nenhuma": com metade do grupo marcado ela aparece VAZIA, o
+  // que informa o oposto do que acontece. Era o motivo de o consumidor voltar ao
+  // `<input>` cru em toda tela de permissões.
+  const ref = React.useRef(null);
+  React.useEffect(() => {
+    if (ref.current) ref.current.indeterminate = Boolean(indeterminate);
+  }, [indeterminate]);
+  const input = (
+    <input
+      ref={ref}
+      type="checkbox"
+      id={id}
+      className={["su-checkbox", className].filter(Boolean).join(" ")}
+      aria-checked={indeterminate ? "mixed" : undefined}
+      {...rest}
+    />
+  );
   if (!text) return input;
   return <OptionLabel input={input} id={id} label={text} meta={meta} variant={variant} inline={inline} />;
 }

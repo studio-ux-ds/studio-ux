@@ -24,11 +24,21 @@ export function Spinner({ className = "", ...rest }) {
 }
 
 /** ProgressBar — .su-progress. Progresso com fim conhecido (0–100). */
-export function ProgressBar({ value = 0 }) {
+export function ProgressBar({ value = 0, tone, label }) {
   const v = Math.max(0, Math.min(100, value));
   return (
-    <div className="su-progress" role="progressbar" aria-valuenow={v} aria-valuemin={0} aria-valuemax={100}>
-      <div className="su-progress__fill" style={{ width: `${v}%` }} />
+    <div
+      className="su-progress"
+      role="progressbar"
+      aria-valuenow={v}
+      aria-valuemin={0}
+      aria-valuemax={100}
+      aria-label={label}
+    >
+      <div
+        className={["su-progress__fill", tone && `su-progress__fill--${tone}`].filter(Boolean).join(" ")}
+        style={{ width: `${v}%` }}
+      />
     </div>
   );
 }
