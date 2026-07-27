@@ -12,6 +12,35 @@
 
 - **docs(prompt-framework)** · 2026-07-23 — adota `C:\Users\Flowspec\Documents\STUDIO-WORKFLOW\` v3.0.0 como fonte única do método (paradigma `prompt-framework/v1`). Agnósticos locais (`README.md`, `prompt-alinhamento.md`) viraram stubs; `COMO-INTERAGIR-COM-ROBSON.md` também. Catálogo local migrou para `studio-ux.specialty-catalog@2.0.0` (`kind: shared`, PT+EN); as 6 especialidades foram para o schema formal em `studio-ux.*@1.0.0`, todas com `extends: workflow.system-change-base@1.0.0`.
 
+## [1.2.32] — 2026-07-26
+
+### Added
+
+- **`CopyButton`** (`@studio-ux-ds/react`) — copia um valor técnico para a área de transferência (id de registro, chave, token gerado, URL de webhook). Confirma **no próprio botão**: o ícone vira `check` e o rótulo/tooltip vira "Copiado" por 2s. Sem `label`, degrada para `IconButton` só-ícone.
+- **Glifo `copy`** no core curado (`@studio-ux-ds/icons`) — 52 glifos.
+
+### Fixed
+
+- **8 glifos estavam publicados sem SVG nem entrada no manifesto** (`play`, `power`, `zap`, `archive`, `save`, `square`, `square-check`, `square-minus`, entrados entre a v1.2.24 e a v1.2.31). `icons.js` tinha os oito; `icons/*.svg` e `manifest.json` — que vão **no pacote publicado** — não. O `manifest.json` seguia anunciando 43 glifos.
+- **`build-icons.mjs` deixou de apagar a pasta inteira** antes de emitir: agora sobrescreve os SVGs da fonte e remove só os órfãos. O `rmSync(icons/)` tornava o build **impossível de executar** de dentro de um mount que não permite `unlink` — que é exatamente onde ele estava sendo rodado. O comando falhava, quem adicionou o glifo seguiu em frente, e os artefatos ficaram para trás.
+- **`check-packages.mjs` passou a travar nessa divergência** — compara `icons.js` × `icons/*.svg` × `manifest.json` (nomes e contagem) e recusa empacotar fora de sincronia.
+
+### Lição (a que importa desta versão)
+
+Um build que falha por causa do **ambiente** e não por causa do **conteúdo** é pior do que um build que não existe: ele dá a impressão de que o passo foi executado. Aqui a falha era `EPERM` num `unlink` — nada a ver com os ícones — e o efeito foi publicar oito versões seguidas com a biblioteca de artefatos congelada.
+
+Só não virou defeito visível porque o adapter React lê a fonte (`icons.js`), não os SVGs. **A cobertura escondeu a falta por sete releases.** É a mesma família da "prop morta": o caminho principal funciona, então ninguém procura. O conserto que vale é o terceiro item — a divergência agora é verificada por quem já roda antes de publicar, e não depende de alguém lembrar de rodar o build.
+
+### Origem
+
+Migração da família Integrações do IA Studio. O par "valor técnico + botão de copiar" aparecia **quatro vezes na mesma família** (id da conexão, id de cada recurso descoberto, URL do webhook para colar na Meta, valor do token gerado) — e cada uma reimplementava a mesma coisa por conta própria, num helper local (`copyToClipboard` em `ConnectionFields.jsx`) que as outras telas não enxergavam.
+
+### Lição
+
+O que decidiu a entrada no DS não foi a repetição — foi **qual parte cada cópia esquecia**. Copiar é três coisas, não uma: o `try/catch` do `navigator.clipboard`, o **fallback** para contexto sem Clipboard API (http, iframe antigo) e o aviso de que copiou. A repetição solta acerta a primeira, quase sempre esquece a segunda e resolve a terceira de um jeito diferente em cada tela. E o modo de falhar é o pior possível para um botão: **o clique não faz nada e não diz nada** — o usuário conclui que copiou, cola em branco, e o erro aparece longe dali.
+
+Por isso a confirmação mudou de lugar. O legado avisava por toast, no canto da tela, enquanto o olho estava no valor. Aqui o botão fala de si mesmo (P11): a resposta nasce onde a pergunta foi feita.
+
 ## [1.2.31] — 2026-07-25
 
 ### Added

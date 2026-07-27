@@ -93,5 +93,29 @@ for (const file of commentFiles) {
   });
 }
 
+// Sincronia da biblioteca de ícones: `icons.js` é a fonte, mas quem é PUBLICADO
+// junto é `icons/*.svg` + `manifest.json` (estão no `files` do pacote). Se o
+// `build-icons.mjs` não rodar depois de um glifo novo, a fonte anda e os
+// artefatos ficam para trás — e o sintoma não aparece em lugar nenhum, porque o
+// adapter React lê `icons.js` e desenha certo. Foi o que aconteceu entre a
+// v1.2.24 e a v1.2.31: **8 glifos publicados sem SVG nem entrada no manifesto**,
+// descobertos por acaso na v1.2.32. Quem consome o pacote pelos SVGs (design,
+// outro runtime) recebia uma biblioteca menor do que a documentada.
+{
+  const iconsDir = join(root, "packages/icons");
+  const fonte = readFileSync(join(iconsDir, "icons.js"), "utf8");
+  const nomes = [...fonte.matchAll(/^\s*"([a-z][a-z0-9-]*)":\s*\{\s*meaning:/gm)].map((m) => m[1]);
+  if (!nomes.length) fail("packages/icons/icons.js: não consegui ler os nomes dos glifos — o formato mudou?");
+  const svgs = new Set(readdirSync(join(iconsDir, "icons")).filter((f) => f.endsWith(".svg")).map((f) => f.slice(0, -4)));
+  const manifest = JSON.parse(readFileSync(join(iconsDir, "manifest.json"), "utf8"));
+  const semSvg = nomes.filter((n) => !svgs.has(n));
+  const orfaos = [...svgs].filter((n) => !nomes.includes(n));
+  const semManifesto = nomes.filter((n) => !manifest.icons?.[n]);
+  if (semSvg.length) fail(`packages/icons: glifos em icons.js sem SVG emitido (${semSvg.join(", ")}) — rode "node packages/icons/build-icons.mjs".`);
+  if (orfaos.length) fail(`packages/icons: SVG sem glifo correspondente em icons.js (${orfaos.join(", ")}) — rode o build.`);
+  if (semManifesto.length) fail(`packages/icons: glifos fora do manifest.json (${semManifesto.join(", ")}) — rode o build.`);
+  if (manifest.count !== nomes.length) fail(`packages/icons: manifest.json diz ${manifest.count} glifos, icons.js tem ${nomes.length} — rode o build.`);
+}
+
 console.log(errors ? `\n${errors} problema(s).` : "\nTudo certo — pacotes prontos para empacotar.");
 process.exit(errors ? 1 : 0);

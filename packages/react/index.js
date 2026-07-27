@@ -2,7 +2,7 @@
 // Adapter de runtime sobre packages/components/components.css + packages/tokens/tokens.css.
 
 // Fundamentais
-export { Button, IconButton } from "./Button.jsx";
+export { Button, IconButton, CopyButton } from "./Button.jsx";
 export { DSIcon } from "./DSIcon.jsx";
 export { Badge } from "./Badge.jsx";
 export { Avatar, Link, Tag, Banner, CommandPalette } from "./Misc.jsx";

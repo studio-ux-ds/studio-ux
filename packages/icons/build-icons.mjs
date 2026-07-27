@@ -5,7 +5,7 @@
  *   icons/<name>.svg (biblioteca curada) + manifest.json (registro com significado).
  * Falha (exit 1) se algum ícone quebrar o contrato — o pacote enforce a própria regra.
  */
-import { writeFileSync, mkdirSync, readdirSync, rmSync } from "node:fs";
+import { writeFileSync, mkdirSync, readdirSync, rmSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { ICONS, ICON_NAMES, ICON_STYLE, iconSvg } from "./icons.js";
@@ -37,8 +37,21 @@ for (const name of ICON_NAMES) {
 if (errors) { console.error(`\n${errors} violação(ões) de contrato — biblioteca NÃO emitida.`); process.exit(1); }
 
 // --- Emitir a biblioteca curada + o registro ---
-rmSync(OUT, { recursive: true, force: true });
+// Reconcilia em vez de apagar a pasta inteira: sobrescreve os SVGs de `icons.js`
+// e remove SÓ os órfãos. O `rmSync(OUT)` anterior tornava o build impossível de
+// rodar de dentro de um mount que não permite `unlink` (o caso do sandbox sobre
+// a pasta do Windows) — e o efeito colateral foi silencioso: quem adicionava um
+// glifo não conseguia gerar os artefatos, então `icons.js` seguia em frente e
+// `icons/` + `manifest.json` ficavam para trás sem ninguém perceber (o adapter
+// React lê `icons.js`, então a tela funcionava). Agora o `check-packages.mjs`
+// também trava nessa divergência.
 mkdirSync(OUT, { recursive: true });
+const emitidos = new Set(ICON_NAMES.map((n) => n + ".svg"));
+if (existsSync(OUT)) {
+  for (const f of readdirSync(OUT)) {
+    if (f.endsWith(".svg") && !emitidos.has(f)) rmSync(join(OUT, f), { force: true });
+  }
+}
 for (const name of ICON_NAMES) writeFileSync(join(OUT, name + ".svg"), iconSvg(name) + "\n");
 
 const manifest = {

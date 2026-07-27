@@ -27,6 +27,7 @@ export const ICONS = {
   "trash": { meaning: "excluir (ação destrutiva — nunca solta, P13)", keywords: ["delete", "remove"], body: '<path d="M4 7h16"/><path d="M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/><path d="M6 7l1 12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1l1-12"/><path d="M10 11v6"/><path d="M14 11v6"/>' },
   "edit": { meaning: "editar", keywords: ["pencil", "modify", "write"], body: '<path d="M5 19h4L19 9l-4-4L5 15v4z"/><path d="M13.5 6.5l4 4"/>' },
   "send": { meaning: "enviar mensagem", keywords: ["submit", "paper plane"], body: '<path d="M20 4L3 11l7 3 3 7 7-17z"/><path d="M20 4l-10 10"/>' },
+  "copy": { meaning: "copiar para a área de transferência", keywords: ["duplicate", "clipboard", "id"], body: '<rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/>' },
   "download": { meaning: "baixar", keywords: ["save", "export"], body: '<path d="M12 4v11"/><path d="M8 11l4 4 4-4"/><path d="M5 19h14"/>' },
   "refresh": { meaning: "recarregar / sincronizar", keywords: ["reload", "sync", "retry"], body: '<path d="M4 12a8 8 0 0 1 13.7-5.7L20 8"/><path d="M20 3v5h-5"/><path d="M20 12a8 8 0 0 1-13.7 5.7L4 16"/><path d="M4 21v-5h5"/>' },
   "filter": { meaning: "filtrar lista", keywords: ["funnel", "refine"], body: '<path d="M4 5h16l-6 7v6l-4-2v-4z"/>' },

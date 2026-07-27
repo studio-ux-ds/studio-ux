@@ -33,3 +33,66 @@ export function IconButton({ icon, className = "", ...rest }) {
     </button>
   );
 }
+
+/**
+ * CopyButton — copia um texto para a área de transferência.
+ *
+ * Existe porque "valor técnico + botão de copiar" é um par recorrente (id de
+ * registro, chave de API, URL de webhook, token gerado) e cada tela vinha
+ * reimplementando os mesmos três detalhes, sempre pela metade: o `try/catch` do
+ * `navigator.clipboard`, o fallback para contexto sem Clipboard API (http,
+ * iframe antigo) e o aviso de que copiou. Sem o fallback o clique não faz nada
+ * e não diz nada — o pior desfecho possível para um botão.
+ *
+ * Confirma no próprio botão (o rótulo/tooltip vira "Copiado" por 2s) em vez de
+ * depender de toast: a confirmação nasce onde o olho está (P11). Quem quiser o
+ * toast passa `onCopied`.
+ *
+ * @param {string} value   texto a copiar (obrigatório)
+ * @param {string} label   rótulo visível; sem ele, vira IconButton só-ícone
+ * @param {(ok:boolean)=>void} onCopied  chamado após a tentativa
+ */
+export function CopyButton({ value, label, title = "Copiar", variant = "ghost", size = "sm", onCopied, ...rest }) {
+  const [copied, setCopied] = React.useState(false);
+
+  React.useEffect(() => {
+    if (!copied) return undefined;
+    const t = setTimeout(() => setCopied(false), 2000);
+    return () => clearTimeout(t);
+  }, [copied]);
+
+  async function handleCopy() {
+    let ok = false;
+    try {
+      if (typeof navigator !== "undefined" && navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(String(value ?? ""));
+        ok = true;
+      } else {
+        const el = document.createElement("textarea");
+        el.value = String(value ?? "");
+        el.style.position = "fixed";
+        el.style.opacity = "0";
+        document.body.appendChild(el);
+        el.select();
+        ok = document.execCommand("copy");
+        document.body.removeChild(el);
+      }
+    } catch {
+      ok = false;
+    }
+    if (ok) setCopied(true);
+    onCopied?.(ok);
+  }
+
+  const texto = copied ? "Copiado" : label;
+  const dica = copied ? "Copiado" : title;
+
+  if (!label) {
+    return <IconButton icon={copied ? "check" : "copy"} title={dica} aria-label={dica} onClick={handleCopy} {...rest} />;
+  }
+  return (
+    <Button variant={variant} size={size} icon={copied ? "check" : "copy"} title={dica} onClick={handleCopy} {...rest}>
+      {texto}
+    </Button>
+  );
+}

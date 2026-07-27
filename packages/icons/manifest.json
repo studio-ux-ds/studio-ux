@@ -10,7 +10,7 @@
     "strokeLinejoin": "round"
   },
   "note": "Biblioteca curada (ICONOGRAPHY §6). Uma metáfora, um significado (P2). Cor via currentColor (§4). Cresce por curadoria governada.",
-  "count": 43,
+  "count": 52,
   "icons": {
     "chevron-right": {
       "meaning": "avançar / abrir item",
@@ -129,6 +129,14 @@
         "paper plane"
       ]
     },
+    "copy": {
+      "meaning": "copiar para a área de transferência",
+      "keywords": [
+        "duplicate",
+        "clipboard",
+        "id"
+      ]
+    },
     "download": {
       "meaning": "baixar",
       "keywords": [
@@ -149,6 +157,73 @@
       "keywords": [
         "funnel",
         "refine"
+      ]
+    },
+    "play": {
+      "meaning": "executar / iniciar agora",
+      "keywords": [
+        "run",
+        "start",
+        "execute"
+      ]
+    },
+    "power": {
+      "meaning": "ligar / desligar (o que está em operação)",
+      "keywords": [
+        "on",
+        "off",
+        "enable",
+        "disable",
+        "publish"
+      ]
+    },
+    "zap": {
+      "meaning": "gatilho / o que dispara algo",
+      "keywords": [
+        "trigger",
+        "event",
+        "bolt",
+        "lightning"
+      ]
+    },
+    "archive": {
+      "meaning": "arquivar (guarda sem excluir)",
+      "keywords": [
+        "box",
+        "store",
+        "inactive"
+      ]
+    },
+    "save": {
+      "meaning": "salvar / gravar alteração",
+      "keywords": [
+        "store",
+        "disk",
+        "commit"
+      ]
+    },
+    "square": {
+      "meaning": "caixa vazia / não selecionado",
+      "keywords": [
+        "checkbox",
+        "unchecked",
+        "empty"
+      ]
+    },
+    "square-check": {
+      "meaning": "caixa marcada / selecionado",
+      "keywords": [
+        "checkbox",
+        "checked",
+        "selected"
+      ]
+    },
+    "square-minus": {
+      "meaning": "seleção parcial (alguns marcados)",
+      "keywords": [
+        "checkbox",
+        "indeterminate",
+        "partial"
       ]
     },
     "home": {
