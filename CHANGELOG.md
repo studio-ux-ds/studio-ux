@@ -12,6 +12,22 @@
 
 - **docs(prompt-framework)** · 2026-07-23 — adota `C:\Users\Flowspec\Documents\STUDIO-WORKFLOW\` v3.0.0 como fonte única do método (paradigma `prompt-framework/v1`). Agnósticos locais (`README.md`, `prompt-alinhamento.md`) viraram stubs; `COMO-INTERAGIR-COM-ROBSON.md` também. Catálogo local migrou para `studio-ux.specialty-catalog@2.0.0` (`kind: shared`, PT+EN); as 6 especialidades foram para o schema formal em `studio-ux.*@1.0.0`, todas com `extends: workflow.system-change-base@1.0.0`.
 
+## [1.2.33] — 2026-07-26
+
+### Added
+
+- **`Tabs` avisa quando um item vem sem `id`** (só fora de produção). Sem `id`, `value === it.id` nunca casa e o `onChange` devolve `undefined`: as abas aparecem normalmente, e clicar em qualquer uma **esvazia o conteúdo** — porque nenhum bloco `tab === '…'` do consumidor renderiza. Avisa e segue funcionando; derrubar o render seria pior que o sintoma.
+
+### Origem
+
+Migração da família Integrações do IA Studio (v0.10.11): a tela de detalhe da conexão declarou os itens como `{ value, label }` e as três abas ficaram em branco. Reportado pelo Robson na validação visual — o console estava limpo.
+
+### Lição
+
+Terceira vez que a **prop morta** aparece nesta adoção, e a primeira **dentro de um array de dados**, não na assinatura do componente. O engano é quase inevitável: a prop da aba ativa se chama `value`, então `{ value, label }` parece a forma natural de escrever o item. A assinatura aceita, o rótulo aparece, e só o comportamento some.
+
+O padrão que já vale para as três: **quando o DS tem duas coisas com nomes parecidos e uma delas cai no silêncio, o silêncio é responsabilidade do DS.** Não dá para pedir que cada consumidor lembre da distinção — dá para o componente dizer o que está errado no momento em que acontece.
+
 ## [1.2.32] — 2026-07-26
 
 ### Added
