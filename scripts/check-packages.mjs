@@ -117,5 +117,36 @@ for (const file of commentFiles) {
   if (manifest.count !== nomes.length) fail(`packages/icons: manifest.json diz ${manifest.count} glifos, icons.js tem ${nomes.length} — rode o build.`);
 }
 
+// Nome de ícone citado DENTRO do próprio adapter tem que existir no catálogo.
+// `DSIcon` com nome desconhecido não quebra: desenha "help" (um "?") e avisa no
+// console — proteção deliberada, para um engano de nome não apagar a tela do
+// consumidor. O efeito colateral é que **o DS pode publicar um "?" e ninguém vê**,
+// porque o aviso sai no console de quem consome, não no build de quem publica.
+// Foi o caso de 4 nomes de uma vez até a v1.2.34: `circle-check` e `alert-triangle`
+// no `Banner` (tones `success` e `warning` saíam com "?") e `adjustments` e
+// `menu-2` no `AppShell` (o item "Personalizar" e o **hambúrguer do mobile**).
+// Consumidor pode errar e ser avisado; o DS não pode errar o próprio vocabulário.
+{
+  const iconsSrc = readFileSync(join(root, "packages/icons/icons.js"), "utf8");
+  const glifos = new Set([...iconsSrc.matchAll(/^\s*"([a-z][a-z0-9-]*)":\s*\{\s*meaning:/gm)].map((m) => m[1]));
+  // Só posições em que o valor É um nome de ícone: `icon:`/`icon=`/`iconRight=`/`name=` com literal.
+  const PADROES = [
+    /\bicon:\s*"([a-z][a-z0-9-]+)"/g,
+    /\bicon="([a-z][a-z0-9-]+)"/g,
+    /\biconRight="([a-z][a-z0-9-]+)"/g,
+    /<DSIcon\s+name="([a-z][a-z0-9-]+)"/g,
+  ];
+  for (const file of scan(join(root, "packages/react")).filter((f) => /\.jsx?$/.test(f))) {
+    const src = readFileSync(file, "utf8");
+    for (const re of PADROES) {
+      for (const m of src.matchAll(re)) {
+        if (!glifos.has(m[1])) {
+          fail(`${file.replace(root, ".")}: ícone "${m[1]}" não existe em packages/icons/icons.js — o DSIcon desenharia "help" (um "?") na tela do consumidor.`);
+        }
+      }
+    }
+  }
+}
+
 console.log(errors ? `\n${errors} problema(s).` : "\nTudo certo — pacotes prontos para empacotar.");
 process.exit(errors ? 1 : 0);

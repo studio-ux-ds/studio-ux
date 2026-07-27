@@ -12,6 +12,26 @@
 
 - **docs(prompt-framework)** · 2026-07-23 — adota `C:\Users\Flowspec\Documents\STUDIO-WORKFLOW\` v3.0.0 como fonte única do método (paradigma `prompt-framework/v1`). Agnósticos locais (`README.md`, `prompt-alinhamento.md`) viraram stubs; `COMO-INTERAGIR-COM-ROBSON.md` também. Catálogo local migrou para `studio-ux.specialty-catalog@2.0.0` (`kind: shared`, PT+EN); as 6 especialidades foram para o schema formal em `studio-ux.*@1.0.0`, todas com `extends: workflow.system-change-base@1.0.0`.
 
+## [1.2.34] — 2026-07-26
+
+### Fixed
+
+- **Quatro ícones do próprio DS apontavam para nomes que não existem** — e por isso desenhavam "?" (o `help`) na tela do consumidor:
+  - `Banner` pedia `circle-check` (é `check-circle`) e `alert-triangle` (não existia) → os tones **`success` e `warning` sempre saíram com "?"**.
+  - `AppShell` pedia `adjustments` no item "Personalizar" e **`menu-2` no hambúrguer do mobile** → o botão que abre o menu no celular era um "?".
+- **Glifo `alert-triangle`** entrou no catálogo (53 glifos) — é o vocabulário de aviso, que faltava.
+- **`check-packages.mjs` passou a travar nisso**: todo nome de ícone literal dentro de `packages/react` é conferido contra o catálogo antes de empacotar.
+
+### Origem
+
+Migração das famílias Recursos + Desenvolvedor do IA Studio: fui usar `Banner tone="warning"` no aviso de "SQL é somente leitura" e conferi o mapa de ícones antes — a regra da casa é ler a assinatura real, não a esperada.
+
+### Lição
+
+A degradação graciosa do `DSIcon` (nome inválido → "?" + `console.warn`, em vez de exceção) foi acertada na v1.2.24 e continua certa. Mas ela **inverte quem descobre o erro**: o aviso sai no console de quem consome, e o build de quem publica passa limpo. Ou seja, o DS podia publicar quatro "?" e só saberia se alguém abrisse o console numa tela específica — o hambúrguer do mobile estava assim havia releases.
+
+Daí a assimetria que a trava consagra: **o consumidor pode errar o nome e ser avisado; o DS não pode errar o próprio vocabulário.** Rede de proteção para fora, verificação para dentro.
+
 ## [1.2.33] — 2026-07-26
 
 ### Added

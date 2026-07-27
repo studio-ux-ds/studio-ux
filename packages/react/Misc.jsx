@@ -36,7 +36,12 @@ export function Tag({ onRemove, className = "", children }) {
  * @param {"info"|"success"|"warning"|"danger"} [tone]
  */
 export function Banner({ tone, icon, className = "", children }) {
-  const iconMap = { info: "info-circle", success: "circle-check", warning: "alert-triangle", danger: "alert-circle" };
+  // Os nomes aqui têm que existir no catálogo curado — `DSIcon` com nome
+  // desconhecido desenha "help" (um "?" no lugar do ícone) e avisa no console.
+  // Até a v1.2.33 este mapa pedia `circle-check` e `alert-triangle`, que **não
+  // existiam**: os tones `success` e `warning` do Banner saíam com "?" desde
+  // sempre, e ninguém viu porque o painel só usava `info` e `danger`.
+  const iconMap = { info: "info-circle", success: "check-circle", warning: "alert-triangle", danger: "alert-circle" };
   const ic = icon || iconMap[tone];
   return (
     <div className={["su-banner", tone && `su-banner--${tone}`, className].filter(Boolean).join(" ")}>

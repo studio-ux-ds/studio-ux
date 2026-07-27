@@ -252,7 +252,7 @@ export function AppShell({
     ...userMenuItems,
     ...(userMenuItems.length ? [{ separator: true }] : []),
     { icon: isDark() ? "sun" : "moon", label: isDark() ? text.light : text.dark, onClick: quickToggleTheme },
-    ...(customize || onCustomize ? [{ icon: "adjustments", label: text.customize, onClick: openCustomize }] : []),
+    ...(customize || onCustomize ? [{ icon: "settings", label: text.customize, onClick: openCustomize }] : []),
     ...(onLogout ? [{ separator: true }, { icon: "logout", label: text.logout, danger: true, onClick: onLogout }] : []),
   ];
 
@@ -289,7 +289,7 @@ export function AppShell({
         <TopBar>
           <div className="su-topbar__left">
             {narrow ? (
-              <IconButton icon="menu-2" aria-label={text.menu} onClick={() => setMobileOpen(true)} />
+              <IconButton icon="menu" aria-label={text.menu} onClick={() => setMobileOpen(true)} />
             ) : layout === "sidebar" ? (
               <IconButton
                 icon={collapsed ? "layout-sidebar-left-expand" : "layout-sidebar-left-collapse"}
