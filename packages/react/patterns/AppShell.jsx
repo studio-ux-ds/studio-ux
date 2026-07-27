@@ -237,6 +237,8 @@ export function AppShell({
   notifications,
   onNotifications,
   onHelp,
+  // Controls globais do sistema consumidor. A ação primária continua no PageHeader.
+  topbarActions,
   customize = false,          // true liga o painel embutido; ou {accents, themes} p/ configurar
   onCustomize,                // sobrescreve a abertura do painel embutido, se quiser um próprio
   onPreferencesChange,
@@ -352,6 +354,7 @@ export function AppShell({
               </span>
             )}
             {onHelp && <IconButton icon="help" aria-label={text.help} onClick={onHelp} />}
+            {topbarActions && <div className="su-topbar__custom-actions">{topbarActions}</div>}
             {user && (
               <div className="su-topbar__user">
                 <button className="su-topbar__user-btn" aria-haspopup="menu" aria-expanded={menuOpen} onClick={() => setMenuOpen((v) => !v)}>

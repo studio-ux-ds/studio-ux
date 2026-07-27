@@ -125,6 +125,12 @@ export const SemUsuario = {
   name: "Sem menu de usuário",
 };
 
+export const AcoesGlobaisDoConsumidor = {
+  name: "Ações globais do consumidor (topbarActions)",
+  parameters: { docs: { description: { story: "`topbarActions` recebe controles globais do sistema consumidor, como uma central de notificações com popover próprio. O slot fica antes do menu da pessoa usuária e nunca recebe a ação primária da tela, que permanece no PageHeader." } } },
+  render: (args) => <Demo {...args} topbarActions={<IconButton icon="bell" aria-label="Central de notificações" />} />,
+};
+
 function TopNavDemo() {
   // A variante topnav é lida do theme (setLayout persiste em localStorage).
   // Setamos aqui na entrada para a story ilustrar a casca horizontal; a saída

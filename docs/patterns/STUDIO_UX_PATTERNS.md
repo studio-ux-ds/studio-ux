@@ -168,6 +168,10 @@
 
 ---
 
+**PT — Ações globais do consumidor:** `topbarActions` hospeda somente controles globais do produto consumidor, antes do menu da pessoa usuária (por exemplo, uma central de notificações com popover próprio). A ação primária da tela não entra nesse slot: continua no `PageHeader`.
+
+**EN — Consumer global actions:** `topbarActions` hosts only consuming-product global controls, before the user menu (for example, a notification center with its own popover). A screen primary action does not enter this slot: it remains in `PageHeader`.
+
 **PT — Revelação de grupos:** ao abrir um grupo por clique, a região rolável da Sidebar o revela por inteiro quando couber; se o grupo for maior que a região, mostra o início dele. O foco continua no botão acionado e `prefers-reduced-motion` desliga a animação da rolagem.
 
 **EN — Group reveal:** when a group opens on click, the Sidebar's scrollable region reveals it in full when it fits; when the group is taller than that region, it reveals its start. Focus remains on the trigger and `prefers-reduced-motion` disables scroll animation.

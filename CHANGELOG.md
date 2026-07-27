@@ -8,6 +8,17 @@
 
 ## [Unreleased]
 
+## [1.2.43] — 2026-07-27
+
+### Added
+
+- **AppShell — `topbarActions`.** Slot React para controles globais do sistema consumidor, posicionado antes do menu da pessoa usuária. Ele integra uma central de notificações com popover próprio sem redesenhar a casca nem criar uma TopBar paralela. A ação primária da tela continua no `PageHeader` (P6).
+- **Storybook — ações globais.** A story `Ações globais do consumidor (topbarActions)` demonstra o contrato.
+
+### Consumption
+
+- **AquaPark v2.1.40** pode migrar a casca autenticada preservando sua central de notificações no slot oficial.
+
 ### Changed
 
 - **docs(prompt-framework)** · 2026-07-23 — adota `C:\Users\Flowspec\Documents\STUDIO-WORKFLOW\` v3.0.0 como fonte única do método (paradigma `prompt-framework/v1`). Agnósticos locais (`README.md`, `prompt-alinhamento.md`) viraram stubs; `COMO-INTERAGIR-COM-ROBSON.md` também. Catálogo local migrou para `studio-ux.specialty-catalog@2.0.0` (`kind: shared`, PT+EN); as 6 especialidades foram para o schema formal em `studio-ux.*@1.0.0`, todas com `extends: workflow.system-change-base@1.0.0`.
