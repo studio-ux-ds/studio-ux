@@ -550,6 +550,34 @@
 .su-phoneinput__country { display: flex; align-items: center; gap: 6px; padding: 0 10px; border-right: 1px solid var(--su-border-default); font-size: 14px; color: var(--su-text-primary); cursor: pointer; background: var(--su-surface-sunken); white-space: nowrap; }
 .su-phoneinput__input { border: none; outline: none; flex: 1; min-width: 0; padding: 0 var(--su-space-3); height: 38px; font-family: var(--su-font-ui); font-size: 14px; color: var(--su-text-primary); background: transparent; }
 .su-phoneinput__input::placeholder { color: var(--su-text-muted); }
+/* O seletor de país virou componente de verdade na v1.2.38 (antes o botão não
+   abria nada). `position: relative` + `overflow: visible` na raiz: o menu é
+   ancorado nela, e o `overflow: hidden` que arredondava as pontas cortava a
+   lista pela metade. */
+.su-phoneinput { position: relative; overflow: visible; }
+.su-phoneinput__country { border-top-left-radius: var(--su-radius-md); border-bottom-left-radius: var(--su-radius-md); }
+.su-phoneinput__country:hover:not(:disabled) { background: var(--su-surface-base); }
+.su-phoneinput__country:disabled { opacity: .55; cursor: not-allowed; }
+.su-phoneinput--error { border-color: var(--su-danger); }
+.su-phoneinput__dial { font-family: var(--su-font-mono, monospace); font-size: 12px; color: var(--su-text-secondary); }
+.su-phoneinput__menu {
+  position: absolute; top: calc(100% + 4px); left: 0; z-index: 60;
+  width: 280px; max-height: 260px; display: flex; flex-direction: column;
+  background: var(--su-surface-raised); border: 1px solid var(--su-border-default);
+  border-radius: var(--su-radius-md); box-shadow: var(--su-shadow-lg, 0 10px 30px rgb(0 0 0 / .18));
+  overflow: hidden;
+}
+.su-phoneinput__search { padding: var(--su-space-2); border-bottom: 1px solid var(--su-border-subtle); }
+.su-phoneinput__list { overflow-y: auto; }
+.su-phoneinput__option {
+  width: 100%; display: flex; align-items: center; gap: var(--su-space-3);
+  padding: 8px var(--su-space-3); font-size: 14px; text-align: left; cursor: pointer;
+  background: transparent; border: none; color: var(--su-text-primary);
+}
+.su-phoneinput__option:hover { background: var(--su-surface-sunken); }
+.su-phoneinput__option--on { background: var(--su-action-tint); }
+.su-phoneinput__name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.su-phoneinput__empty { padding: var(--su-space-4); margin: 0; font-size: 13px; text-align: center; color: var(--su-text-muted); }
 
 /* ---------- FormSection (seção rotulada de formulário longo) ---------- */
 .su-form-section { padding: var(--su-space-5) 0; border-top: 1px solid var(--su-border-subtle); }

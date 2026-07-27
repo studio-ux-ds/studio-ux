@@ -12,6 +12,19 @@
 
 - **docs(prompt-framework)** · 2026-07-23 — adota `C:\Users\Flowspec\Documents\STUDIO-WORKFLOW\` v3.0.0 como fonte única do método (paradigma `prompt-framework/v1`). Agnósticos locais (`README.md`, `prompt-alinhamento.md`) viraram stubs; `COMO-INTERAGIR-COM-ROBSON.md` também. Catálogo local migrou para `studio-ux.specialty-catalog@2.0.0` (`kind: shared`, PT+EN); as 6 especialidades foram para o schema formal em `studio-ux.*@1.0.0`, todas com `extends: workflow.system-change-base@1.0.0`.
 
+## [1.2.38] — 2026-07-26
+
+### Added
+
+- **`PhoneInput` virou componente de verdade** — seletor de país com bandeira, DDI e **busca**, máscara do número local por país e teto de dígitos por país. Guarda o valor em **E.164 só-dígitos, com DDI e sem `+`** (`5527999998888`), e `onChange` entrega a string de dígitos, não o evento: o que se guarda não é o que está na tela (a tela mostra o número local mascarado).
+  - Exporta também `SU_COUNTRIES` (lista curada, cresce por governança como os ícones) e `suDetectCountry(digits)`, que descobre o país testando prefixos de **3, 2 e 1 dígito nessa ordem** — `+591` (Bolívia) começa com `+59`, então testar do mais curto casaria o país errado.
+
+### Lição
+
+Até aqui o `PhoneInput` era **só a casca**: campo mais um botão de país que não abria nada, e a documentação dizia que "a lista e a normalização são do produto". O resultado previsível: **nenhum consumidor usava.** Cada produto mantinha o seu (21 países, busca, máscara), e o do DS existia só no catálogo.
+
+A régua que faltava: **um componente que delega a parte difícil não é um componente — é um nome.** Seletor de país não é regra de negócio de um produto; é o próprio componente. O sinal de que a divisão estava errada não era teórico: era o zero consumidor com três implementações idênticas do lado de fora.
+
 ## [1.2.37] — 2026-07-26
 
 ### Added
