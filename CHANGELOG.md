@@ -12,6 +12,30 @@
 
 - **docs(prompt-framework)** · 2026-07-23 — adota `C:\Users\Flowspec\Documents\STUDIO-WORKFLOW\` v3.0.0 como fonte única do método (paradigma `prompt-framework/v1`). Agnósticos locais (`README.md`, `prompt-alinhamento.md`) viraram stubs; `COMO-INTERAGIR-COM-ROBSON.md` também. Catálogo local migrou para `studio-ux.specialty-catalog@2.0.0` (`kind: shared`, PT+EN); as 6 especialidades foram para o schema formal em `studio-ux.*@1.0.0`, todas com `extends: workflow.system-change-base@1.0.0`.
 
+## [1.2.40] — 2026-07-27
+
+### Added
+
+- **`patterns/AuthScreen` (+ `AuthLink`)** — o molde **`login`** de `STUDIO_UX_TEMPLATES` §2, agora em React. Porte fiel de `examples/login.html`: painel de marca à esquerda (só a partir de 900px), marca absoluta no topo, argumento com `max-width: 400px`, formulário com `max-width: 380px`. Props: `brand`, `welcome`, `pitch`, `features[]`, `footer`, `title`, `subtitle`, `children`, `note`, `topRight`. O painel **só é renderizado quando há conteúdo para ele** — sem ele o molde centra o formulário na tela, que é o arranjo certo para os acessos obrigatórios (aceitar convite, redefinir senha), onde não há o que argumentar. `AuthLink` é o link discreto ("Esqueci a senha?").
+- **`patterns/MessageScreen`** — o molde **`empty` de tela inteira**, em React. Cobre os quatro casos concretos que todo produto tem: endereço que não existe, acesso que a pessoa não tem, recurso removido, erro inesperado. Props: `icon`, `title`, `description`, `action`, `above`.
+- **`.su-auth*` em `components.css`** — as peças do molde de acesso, portadas **verbatim** do exemplo (não recalibradas "no espírito" — a referência era concreta).
+
+### Changed
+
+- **`STUDIO_UX_TEMPLATES.md` §Estado da implementação** — passa a ter a **tabela dos moldes materializados em React** (`list`, `login`, `empty`), que antes era uma frase dizendo "só o `list`; os demais seguem como HTML".
+
+### Origem
+
+O Robson, olhando o login do IA Studio ao lado do `examples/login.html`: *"tela de login continua diferente da criada no Studio UX... essa parte que não entendo: tela de login, logout, 404 e etc não foram criadas os padrões em Studio UX?"*
+
+Foram. Estão especificadas em §2 desde a era de geração e materializadas no gerador HTML. O que não existia era a **materialização em React** — e o app consumidor, que só consome React, escreveu a tela à mão: sem painel de marca, sem "esqueci a senha", sem "manter conectado".
+
+### Lição
+
+**Especificação sem materialização na camada que o consumidor usa não é adotada — ela existe para quem já sabe que existe.** O molde `list` foi encontrado porque tinha `ListScreen`; os outros oito não foram encontrados porque não tinham nada com nome de componente. Nenhum aviso disparou: não há erro em escrever um cartão de login à mão, o resultado é plausível, e a divergência só aparece quando alguém põe as duas telas lado a lado.
+
+Isto é a mesma família de falha do **prop morto** e do **glifo repetido**: o DS tinha a resposta, o consumidor não teve como chegar nela, e o desvio passou por parecer razoável. A regra prática que fica: **antes de escrever qualquer tela de classe recorrente, inventariar a tabela de moldes** — é o que a Regra Zero já mandava, aplicada aos moldes e não só aos componentes.
+
 ## [1.2.39] — 2026-07-26
 
 ### Added

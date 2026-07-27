@@ -32,6 +32,8 @@ export { ToastProvider, useToast } from "./Toast.jsx";
 // Padrões · Patterns (composição de moldes de tela — STUDIO_UX_TEMPLATES)
 export { PageHeader } from "./patterns/PageHeader.jsx";
 export { ListScreen } from "./patterns/ListScreen.jsx";
+export { AuthScreen, AuthLink } from "./patterns/AuthScreen.jsx";
+export { MessageScreen } from "./patterns/MessageScreen.jsx";
 export { AppShell } from "./patterns/AppShell.jsx";
 export { Customize } from "./patterns/Customize.jsx";
 
