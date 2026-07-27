@@ -193,6 +193,7 @@ export function AppShell({
   version,
   breadcrumb,
   onBreadcrumbNavigate,       // repassado ao Breadcrumb: sem ele, clicar recarrega a app inteira
+  fullBleed = false,          // conteúdo sem padding e sem rolagem própria (tela de trabalho contínuo)
   topbarContext,
   user,
   userMenuItems = [],
@@ -328,8 +329,17 @@ export function AppShell({
           </div>
         </TopBar>
 
-        {/* Região de conteúdo — a página vive SÓ aqui (P22) */}
-        <main className="su-appshell__content">{children}</main>
+        {/* Região de conteúdo — a página vive SÓ aqui (P22).
+            `fullBleed` entrega a região **sem espaçamento e sem rolagem própria**,
+            virando um container flex de altura definida: é o que uma tela de
+            trabalho contínuo precisa (conversa, canvas, editor de mídia), onde o
+            conteúdo tem a própria rolagem interna e precisa ocupar a altura toda.
+            Sem isso o consumidor calcula altura à mão (`100dvh - 8.5rem`) — número
+            que erra sempre que a barra de cima muda de altura, e erra diferente no
+            mobile. */}
+        <main className={["su-appshell__content", fullBleed && "su-appshell__content--bleed"].filter(Boolean).join(" ")}>
+          {children}
+        </main>
       </div>
 
       {/* Painel Customize embutido (Drawer a partir do menu do usuário) */}

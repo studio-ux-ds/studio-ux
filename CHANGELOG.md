@@ -12,6 +12,24 @@
 
 - **docs(prompt-framework)** · 2026-07-23 — adota `C:\Users\Flowspec\Documents\STUDIO-WORKFLOW\` v3.0.0 como fonte única do método (paradigma `prompt-framework/v1`). Agnósticos locais (`README.md`, `prompt-alinhamento.md`) viraram stubs; `COMO-INTERAGIR-COM-ROBSON.md` também. Catálogo local migrou para `studio-ux.specialty-catalog@2.0.0` (`kind: shared`, PT+EN); as 6 especialidades foram para o schema formal em `studio-ux.*@1.0.0`, todas com `extends: workflow.system-change-base@1.0.0`.
 
+## [1.2.31] — 2026-07-25
+
+### Added
+
+- **`AppShell` ganhou `fullBleed`** — entrega a região de conteúdo **sem espaçamento e sem rolagem própria**, virando um container flex de altura definida (`.su-appshell__content--bleed`). É o que uma **tela de trabalho contínuo** precisa: conversa, canvas, editor de mídia — onde o conteúdo tem rolagem interna em mais de uma coluna e deve ocupar a altura toda.
+  - Sem isso, o consumidor calcula a altura à mão. O IA Studio tinha `h-[calc(100dvh-8.5rem)]` na tela de conversas: **8.5rem é a soma da barra de cima com o padding**, um número que erra sempre que a casca muda de altura, e erra diferente no celular.
+  - No mobile o full-bleed **não** recebe padding (a regra de 16px do `content` é anulada de propósito): é justamente onde cada pixel conta.
+
+### Origem
+
+Migração da família WhatsApp do IA Studio, decisão do Robson: a tela de conversas deve ocupar a área inteira, como no AquaPark.
+
+### Lição
+
+O padrão que se repete quando falta uma prop na casca: **o consumidor não fica sem a funcionalidade — ele a reimplementa com um número mágico.** `100dvh - 8.5rem` não é descuido de quem escreveu; é a única saída quando a casca cobra padding e rolagem sem oferecer como desligar.
+
+Vale a pergunta na revisão de qualquer componente de layout: *"que decisão minha o consumidor precisa desfazer, e eu deixo?"*. Padding e rolagem são as duas mais comuns — e as duas mais caras de contornar por fora, porque a conta depende de dimensões que só a casca conhece.
+
 ## [1.2.30] — 2026-07-25
 
 ### Fixed

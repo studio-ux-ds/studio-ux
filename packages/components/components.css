@@ -591,6 +591,12 @@
 .su-appshell { display: flex; height: 100vh; height: 100dvh; overflow: hidden; background: var(--su-surface-sunken); }
 .su-appshell__main { flex: 1; min-width: 0; display: flex; flex-direction: column; overflow: hidden; }
 .su-appshell__content { flex: 1; min-height: 0; overflow: auto; padding: var(--su-space-8); }
+/* Conteúdo full-bleed (v1.2.31): sem espaçamento, sem rolagem própria, e virando
+   container flex — a tela ocupa a altura toda e cuida da sua própria rolagem
+   interna. É o arranjo de uma tela de trabalho contínuo (conversa, canvas): o
+   `overflow: hidden` aqui é o que impede a página inteira de rolar quando é só
+   uma coluna interna que deveria. */
+.su-appshell__content--bleed { padding: 0; overflow: hidden; display: flex; flex-direction: column; }
 
 /* Sidebar recolhida (desktop) — só ícones, largura reduzida; estado lembrado */
 .su-appshell--collapsed .su-sidebar { width: 72px; }
@@ -706,4 +712,8 @@
 
 @media (max-width: 767px) {
   .su-appshell__content { padding: var(--su-space-4); }
+  /* O full-bleed não ganha padding no mobile — é justamente onde a tela de
+     trabalho contínuo mais precisa de cada pixel. Sem esta linha, o override
+     acima (mais específico por vir depois) devolveria 16px de borda. */
+  .su-appshell__content--bleed { padding: 0; }
 }
