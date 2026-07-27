@@ -120,6 +120,28 @@ export const ICONS = {
   "phone": { meaning: "telefone / ligação", keywords: ["call", "tel"], body: '<path d="M6 3h4l2 5-3 2a11 11 0 0 0 5 5l2-3 5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 4 5a2 2 0 0 1 2-2z"/>' },
   "file": { meaning: "documento / arquivo", keywords: ["document", "page", "invoice"], body: '<path d="M6 3h8l4 4v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v4h4"/>' },
 
+  // — Mídia / gravação — o vocabulário de quem GRAVA e TOCA algo (mensagem de
+  // voz, anexo de foto, reprodução). Faltava pelo mesmo motivo que faltou o de
+  // navegação: a curadoria nasceu vestindo tela de cadastro, onde nada toca e
+  // nada grava. A ausência não apareceu como erro — apareceu como o consumidor
+  // importando ícone de outra biblioteca dentro do composer de áudio, com dois
+  // estilos de desenho na mesma barra.
+  // Dois sinais de confirmação: o primeiro é "chegou", o segundo é "foi visto".
+  // É vocabulário de MENSAGERIA (a convenção que o WhatsApp popularizou), e
+  // entra porque o conceito "entregue ≠ lido" existe em qualquer produto que
+  // troca mensagem — sem ele o consumidor mantinha uma segunda biblioteca de
+  // ícones viva por causa de um glifo.
+  "check-double": { meaning: "entregue e lido", keywords: ["delivered", "read", "seen", "double check"], body: '<path d="M2 12.5l3.5 3.5L13 8"/><path d="M11 16l3.5-3.5"/><path d="M13.5 11.5L22 3"/>' },
+  "pause": { meaning: "pausar reprodução", keywords: ["stop temporarily", "audio", "video"], body: '<path d="M9 5v14"/><path d="M15 5v14"/>' },
+  "mic": { meaning: "gravar voz", keywords: ["microphone", "record", "audio", "voice"], body: '<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3"/>' },
+  "music": { meaning: "áudio / faixa de som", keywords: ["audio", "sound", "note", "track"], body: '<circle cx="7" cy="17" r="3"/><circle cx="18" cy="15" r="3"/><path d="M10 17V6l11-2v11"/>' },
+  "image": { meaning: "imagem / foto", keywords: ["photo", "picture", "attachment"], body: '<rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="M4 17l5-4 4 3 3-2 4 3"/>' },
+  "camera": { meaning: "tirar foto / capturar", keywords: ["photo", "capture", "webcam"], body: '<path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.5"/>' },
+  "file-text": { meaning: "documento com texto", keywords: ["document", "note", "content", "page"], body: '<path d="M6 3h8l4 4v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v4h4"/><path d="M8.5 12h7"/><path d="M8.5 16h5"/>' },
+  "clock": { meaning: "hora / duração", keywords: ["time", "duration", "schedule", "elapsed"], body: '<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3.5 2"/>' },
+  "sliders": { meaning: "ajuste fino / filtros avançados", keywords: ["filters", "tune", "controls", "advanced"], body: '<path d="M4 8h10"/><path d="M18 8h2"/><circle cx="16" cy="8" r="2"/><path d="M4 16h4"/><path d="M12 16h8"/><circle cx="10" cy="16" r="2"/>' },
+  "rotate": { meaning: "recomeçar / desfazer para o estado inicial", keywords: ["reset", "undo", "restart", "revert"], body: '<path d="M4 12a8 8 0 1 0 8-8 8 8 0 0 0-5.7 2.4L4 9"/><path d="M4 4v5h5"/>' },
+
   // — Dados / métricas —
   "dashboard": { meaning: "painel / visão geral", keywords: ["grid", "overview", "panel"], body: '<rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="4" rx="1"/><rect x="13" y="10" width="7" height="10" rx="1"/><rect x="4" y="13" width="7" height="7" rx="1"/>' },
   "chart-bar": { meaning: "relatório / gráfico", keywords: ["report", "analytics", "stats"], body: '<path d="M4 20h16"/><path d="M6 20v-8"/><path d="M12 20V5"/><path d="M18 20v-11"/>' },

@@ -10,7 +10,7 @@
     "strokeLinejoin": "round"
   },
   "note": "Biblioteca curada (ICONOGRAPHY §6). Uma metáfora, um significado (P2). Cor via currentColor (§4). Cresce por curadoria governada.",
-  "count": 81,
+  "count": 91,
   "icons": {
     "chevron-right": {
       "meaning": "avançar / abrir item",
@@ -569,6 +569,93 @@
         "document",
         "page",
         "invoice"
+      ]
+    },
+    "check-double": {
+      "meaning": "entregue e lido",
+      "keywords": [
+        "delivered",
+        "read",
+        "seen",
+        "double check"
+      ]
+    },
+    "pause": {
+      "meaning": "pausar reprodução",
+      "keywords": [
+        "stop temporarily",
+        "audio",
+        "video"
+      ]
+    },
+    "mic": {
+      "meaning": "gravar voz",
+      "keywords": [
+        "microphone",
+        "record",
+        "audio",
+        "voice"
+      ]
+    },
+    "music": {
+      "meaning": "áudio / faixa de som",
+      "keywords": [
+        "audio",
+        "sound",
+        "note",
+        "track"
+      ]
+    },
+    "image": {
+      "meaning": "imagem / foto",
+      "keywords": [
+        "photo",
+        "picture",
+        "attachment"
+      ]
+    },
+    "camera": {
+      "meaning": "tirar foto / capturar",
+      "keywords": [
+        "photo",
+        "capture",
+        "webcam"
+      ]
+    },
+    "file-text": {
+      "meaning": "documento com texto",
+      "keywords": [
+        "document",
+        "note",
+        "content",
+        "page"
+      ]
+    },
+    "clock": {
+      "meaning": "hora / duração",
+      "keywords": [
+        "time",
+        "duration",
+        "schedule",
+        "elapsed"
+      ]
+    },
+    "sliders": {
+      "meaning": "ajuste fino / filtros avançados",
+      "keywords": [
+        "filters",
+        "tune",
+        "controls",
+        "advanced"
+      ]
+    },
+    "rotate": {
+      "meaning": "recomeçar / desfazer para o estado inicial",
+      "keywords": [
+        "reset",
+        "undo",
+        "restart",
+        "revert"
       ]
     },
     "dashboard": {

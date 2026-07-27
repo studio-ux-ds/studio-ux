@@ -12,6 +12,29 @@
 
 - **docs(prompt-framework)** · 2026-07-23 — adota `C:\Users\Flowspec\Documents\STUDIO-WORKFLOW\` v3.0.0 como fonte única do método (paradigma `prompt-framework/v1`). Agnósticos locais (`README.md`, `prompt-alinhamento.md`) viraram stubs; `COMO-INTERAGIR-COM-ROBSON.md` também. Catálogo local migrou para `studio-ux.specialty-catalog@2.0.0` (`kind: shared`, PT+EN); as 6 especialidades foram para o schema formal em `studio-ux.*@1.0.0`, todas com `extends: workflow.system-change-base@1.0.0`.
 
+## [1.2.41] — 2026-07-27
+
+### Added
+
+- **Vocabulário de MÍDIA e GRAVAÇÃO — 10 glifos** (91 no total): `mic`, `pause`, `music`, `image`, `camera`, `file-text`, `clock`, `sliders`, `rotate` e `check-double`. O último é vocabulário de **mensageria** — dois sinais de confirmação, "chegou" e "foi visto" — e entra porque "entregue ≠ lido" existe em qualquer produto que troca mensagem.
+- **`Spinner` ganha `size` (`sm` 12 · padrão 16 · `lg` 24) e `center`.** `size` porque o mesmo desenho serve ao lado de um rótulo e no centro de uma região vazia. `center` porque **carregamento inicial de tela/cartão** é um arranjo, não um ícone: bloco centrado com respiro (`.su-spinner-center`). A **cor segue não-configurável** — anel neutro com topo no accent é a assinatura de carregamento do DS.
+- **`ICONOGRAPHY` §4.1 ganha o Corolário II:** a falta de glifo também se mede pelo **`import`**, não só pelo menu. Se o consumidor ainda importa ícone de outra biblioteca, ou o catálogo não cobre, ou ele não sabe que cobre — e as duas causas são do DS. O diagnóstico é um `grep`.
+
+### Origem
+
+O Robson perguntou "falta alguma coisa?" depois da v1.2.40. Em vez de responder de cabeça, medi o consumidor: **62 arquivos ainda importavam de outra biblioteca de ícones.** Dois motivos, e nenhum era descuido do consumidor:
+
+- **57 pelo spinner.** O DS tinha `Spinner`, mas sem `size` e sem o arranjo centrado — então cada tela desenhava o seu com o ícone de fora e `animate-spin`, em 68 lugares com o mesmo `flex justify-center py-16` copiado.
+- **O resto pelo composer de áudio do WhatsApp**, onde gravar, pausar, anexar foto e mostrar duração exigiam glifos que o core não tinha. Resultado: **duas famílias de desenho na mesma barra** — traço diferente, grade diferente.
+
+### Lição
+
+É a terceira vez que a mesma falha aparece com roupa nova, e agora ela tem um nome de medida.
+
+Na v1.2.39 foi o **menu**: 30 itens, 7 glifos próprios, porque faltava vocabulário de navegação. Na v1.2.40 foram os **moldes de tela**: existiam em HTML, não em React, então o consumidor escreveu o login à mão. Aqui é o **spinner e a mídia**: o componente existia sem a escala que o caso real pedia, e o vocabulário não cobria gravar/tocar.
+
+O padrão comum: **a lacuna do DS nunca se manifesta como erro.** Ela se manifesta como o consumidor fazendo algo plausível — um mapa "por proximidade", uma tela escrita à mão, um `import` de outra biblioteca. Nada disso quebra o build, então nada avisa. Por isso as três regras que ficaram são todas **de medição, não de intenção**: glifos distintos ÷ itens de menu; a tabela de moldes materializados; e agora o `grep` do `import` de fora. Boa vontade não encontra lacuna silenciosa — contagem encontra.
+
 ## [1.2.40] — 2026-07-27
 
 ### Added
