@@ -9,6 +9,7 @@ export { Avatar, Link, Tag, Banner, CommandPalette } from "./Misc.jsx";
 
 // Formulário
 export { Field, Input, PhoneInput } from "./Field.jsx";
+export { FormGrid } from "./FormGrid.jsx";
 export { Select, Checkbox, CheckGroup, Radio, Switch, SegmentedControl } from "./Controls.jsx";
 export { NumericInput, TextArea, Combobox, FileUpload, DatePicker } from "./Inputs.jsx";
 export { Stepper } from "./Stepper.jsx";

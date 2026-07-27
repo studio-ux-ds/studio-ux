@@ -14,6 +14,12 @@
 
 ## [1.2.34] — 2026-07-26
 
+### Added
+
+- **`FormGrid`** — o arranjo de um formulário: distribui os campos em colunas por `auto-fill` + `minmax` (sem media query) e fixa a largura de leitura. `columns` numérico é **teto**, não quantidade fixa. `Field` ganhou **`wide`** para o campo que ocupa a linha inteira — o do que se escreve (texto longo, JSON, lista editável), que em meia coluna vira uma faixa estreita e alta.
+  - Alinha pelo **topo**, não pela base: campo com dica é mais alto que campo sem, e alinhar pela base **empurra o controle de quem tem dica para cima** — a linha fica torta. Era exatamente o defeito que o Robson apontou numa linha de três campos com `items-end`.
+  - Regra que acompanha: **numa linha de busca, a dica vira `placeholder`, não `hint`**; e o botão fica **dentro do campo**, ao lado do controle — como item do grid ele precisaria de uma coluna inteira e de alinhamento especial (não tem etiqueta em cima).
+
 ### Fixed
 
 - **Quatro ícones do próprio DS apontavam para nomes que não existem** — e por isso desenhavam "?" (o `help`) na tela do consumidor:
@@ -24,9 +30,17 @@
 
 ### Origem
 
-Migração das famílias Recursos + Desenvolvedor do IA Studio: fui usar `Banner tone="warning"` no aviso de "SQL é somente leitura" e conferi o mapa de ícones antes — a regra da casa é ler a assinatura real, não a esperada.
+Migração das famílias Recursos + Desenvolvedor do IA Studio. O `FormGrid` nasceu de duas observações do Robson na mesma tela: *"já que vai ter esse espaço em branco não seria melhor alinhar em 2 colunas?"* e *"olha o desalinhamento do terceiro input"*. O inventário confirmou que não era daquela tela: **20 grids de formulário montados à mão em 12 arquivos, e 34 larguras máximas cravadas com 16 valores diferentes** (860, 720, 980, 640, 560, 480…) respondendo à mesma pergunta.
+
+Os ícones apareceram no caminho: fui usar `Banner tone="warning"` e conferi o mapa antes de confiar nele.
 
 ### Lição
+
+Duas perguntas visuais do dono do produto — "por que o vazio?" e "por que torto?" — eram **a mesma lacuna**: o DS não tinha opinião sobre o arranjo de um formulário. Sem opinião, cada tela inventa a sua, e o resultado é 16 larguras diferentes para "um formulário" e um alinhamento que quebra sempre que um campo tem dica e o vizinho não.
+
+O sinal de que a lacuna era do DS e não da tela: **o consumidor já tinha resolvido — doze vezes, de doze maneiras.** Repetição com divergência é o retrato de decisão que ninguém tomou no lugar certo.
+
+### Lição (ícones)
 
 A degradação graciosa do `DSIcon` (nome inválido → "?" + `console.warn`, em vez de exceção) foi acertada na v1.2.24 e continua certa. Mas ela **inverte quem descobre o erro**: o aviso sai no console de quem consome, e o build de quem publica passa limpo. Ou seja, o DS podia publicar quatro "?" e só saberia se alguém abrisse o console numa tela específica — o hambúrguer do mobile estava assim havia releases.
 

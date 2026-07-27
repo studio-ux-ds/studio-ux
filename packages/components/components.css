@@ -275,6 +275,54 @@
 .su-check-group--3 { --su-og-cols: 3; --su-og-min: 240px; }
 .su-check-group--4 { --su-og-cols: 4; --su-og-min: 200px; }
 
+/* ---------- FormGrid: o arranjo de um formulário ----------
+   Mesmo mecanismo do `check-group` (auto-fill + minmax, sem media query),
+   aplicado aos CAMPOS. Existe porque o `Field` empilha — um por linha — e num
+   card largo isso deixa dois terços de vazio à direita enquanto o formulário
+   desce para a rolagem. Cada tela vinha resolvendo à mão com um grid do Tailwind
+   e um `maxWidth` cravado: 20 arquivos, 16 larguras diferentes para a mesma
+   pergunta ("qual é a largura de leitura de um formulário?").
+
+   `--su-form-col-min` é o piso de UMA coluna: abaixo disso o campo fica curto
+   demais para o que se digita nele. É o que garante que a decisão de quebrar em
+   1 ou 2 colunas seja do espaço disponível, não de uma media query adivinhada.
+
+   `--su-form-max` é a largura de leitura: um formulário esticado numa tela de
+   1920px vira campo de 900px de largura para digitar um nome. Limita o GRID,
+   não o card — o card continua sendo o card. */
+.su-form-grid {
+  --su-form-col-min: 320px;
+  --su-form-gap: var(--su-space-5);
+  --su-form-max: 880px;
+  display: grid;
+  gap: var(--su-space-4) var(--su-form-gap);
+  grid-template-columns: repeat(auto-fill, minmax(min(var(--su-form-col-min), 100%), 1fr));
+  max-width: var(--su-form-max);
+  /* Alinha pelo TOPO, não pela base. Campo com dica embaixo é mais alto que
+     campo sem — alinhando pela base, o controle de quem tem dica SOBE e a linha
+     fica torta. Pelo topo, os rótulos ficam na mesma altura, os controles ficam
+     na mesma altura, e a dica sobra embaixo de quem a tem, que é onde ela deve
+     estar. */
+  align-items: start;
+}
+
+/* Teto de N colunas: a fração 1/N entra como piso, igual ao check-group. */
+.su-form-grid--1,
+.su-form-grid--2,
+.su-form-grid--3 {
+  grid-template-columns: repeat(auto-fill, minmax(
+    max(min(var(--su-form-col-min), 100%),
+        calc((100% - (var(--su-form-cols) - 1) * var(--su-form-gap)) / var(--su-form-cols))),
+    1fr));
+}
+.su-form-grid--1 { --su-form-cols: 1; --su-form-col-min: 100%; --su-form-max: 640px; }
+.su-form-grid--2 { --su-form-cols: 2; }
+.su-form-grid--3 { --su-form-cols: 3; --su-form-col-min: 260px; --su-form-max: 1100px; }
+/* `wide`: o campo ocupa a linha inteira. É para o que se ESCREVE (texto longo,
+   JSON, uma lista editável) — meia largura transforma o texto numa coluna
+   estreita e alta, e o olho perde a linha. */
+.su-form-grid > .su-field--wide { grid-column: 1 / -1; }
+
 /* ---------- Opção em CARD (`variant="card"`) ----------
    A opção inteira vira um alvo delimitado: caixa + rótulo + uma linha de meta
    (categoria, badges) dentro de uma borda que acende no accent quando marcada.
