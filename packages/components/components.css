@@ -287,17 +287,21 @@
    demais para o que se digita nele. É o que garante que a decisão de quebrar em
    1 ou 2 colunas seja do espaço disponível, não de uma media query adivinhada.
 
-   `--su-form-max` é a largura de leitura: um formulário esticado numa tela de
-   1920px vira campo de 900px de largura para digitar um nome. Limita o GRID,
-   não o card — o card continua sendo o card. */
+   **O grid NÃO limita a própria largura** — ele preenche o container. A v1.2.35
+   trazia um `max-width: 880px` "de leitura" e o efeito foi o oposto do
+   pretendido: num card de 1580px o formulário virou uma faixa estreita encostada
+   à esquerda, com um vazio MAIOR que o que se queria eliminar. Pior, o teto de
+   largura brigava com o piso de coluna: `columns={3}` dentro de 880px só caberia
+   2 colunas de 320, então a terceira caía sozinha na linha de baixo.
+   Largura de leitura é decisão de **quem põe o formulário na tela** (o card, a
+   página) — o grid resolve DISTRIBUIÇÃO, não largura. Duas responsabilidades
+   diferentes no mesmo componente foi o que produziu o defeito. */
 .su-form-grid {
   --su-form-col-min: 320px;
   --su-form-gap: var(--su-space-5);
-  --su-form-max: 880px;
   display: grid;
   gap: var(--su-space-4) var(--su-form-gap);
   grid-template-columns: repeat(auto-fill, minmax(min(var(--su-form-col-min), 100%), 1fr));
-  max-width: var(--su-form-max);
   /* Alinha pelo TOPO, não pela base. Campo com dica embaixo é mais alto que
      campo sem — alinhando pela base, o controle de quem tem dica SOBE e a linha
      fica torta. Pelo topo, os rótulos ficam na mesma altura, os controles ficam
@@ -315,9 +319,9 @@
         calc((100% - (var(--su-form-cols) - 1) * var(--su-form-gap)) / var(--su-form-cols))),
     1fr));
 }
-.su-form-grid--1 { --su-form-cols: 1; --su-form-col-min: 100%; --su-form-max: 640px; }
+.su-form-grid--1 { --su-form-cols: 1; --su-form-col-min: 100%; }
 .su-form-grid--2 { --su-form-cols: 2; }
-.su-form-grid--3 { --su-form-cols: 3; --su-form-col-min: 260px; --su-form-max: 1100px; }
+.su-form-grid--3 { --su-form-cols: 3; --su-form-col-min: 260px; }
 /* `wide`: o campo ocupa a linha inteira. É para o que se ESCREVE (texto longo,
    JSON, uma lista editável) — meia largura transforma o texto numa coluna
    estreita e alta, e o olho perde a linha. */

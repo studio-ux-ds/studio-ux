@@ -12,6 +12,19 @@
 
 - **docs(prompt-framework)** · 2026-07-23 — adota `C:\Users\Flowspec\Documents\STUDIO-WORKFLOW\` v3.0.0 como fonte única do método (paradigma `prompt-framework/v1`). Agnósticos locais (`README.md`, `prompt-alinhamento.md`) viraram stubs; `COMO-INTERAGIR-COM-ROBSON.md` também. Catálogo local migrou para `studio-ux.specialty-catalog@2.0.0` (`kind: shared`, PT+EN); as 6 especialidades foram para o schema formal em `studio-ux.*@1.0.0`, todas com `extends: workflow.system-change-base@1.0.0`.
 
+## [1.2.36] — 2026-07-26
+
+### Fixed
+
+- **`FormGrid` deixou de limitar a própria largura.** O `max-width: 880px` "de leitura" da v1.2.35 fez o oposto do pretendido: num card de 1580px o formulário virou uma faixa estreita encostada à esquerda, com um vazio **maior** que o que se queria eliminar. Pior, o teto brigava com o piso de coluna — `columns={3}` dentro de 880px só caberia 2 colunas de 320, então a terceira caía sozinha na linha de baixo (2+1 em vez de 3).
+  - Agora o grid **preenche o container**. Largura de leitura é decisão de quem põe o formulário na tela (o card, a página), não do arranjo.
+
+### Lição
+
+Foi um componente com **duas responsabilidades** — distribuir e limitar — e a segunda estragou a primeira. O sintoma que denunciou: o defeito reportado ("por que esse vazio?") voltou pior depois do conserto, e num arranjo que a v1.2.35 dizia suportar (`columns={3}`).
+
+Vale como régua: quando duas props do mesmo componente podem se contradizer (um piso de coluna e um teto de largura total), uma delas provavelmente não é dele.
+
 ## [1.2.35] — 2026-07-26
 
 ### Added

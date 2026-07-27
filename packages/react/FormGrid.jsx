@@ -5,10 +5,15 @@ import React from "react";
  *
  * Existe porque o `Field` empilha, um por linha. Num card largo isso deixa dois
  * terços de vazio à direita enquanto o formulário desce para a rolagem — e cada
- * tela vinha resolvendo à mão, com um grid do framework de CSS do consumidor mais
- * uma largura máxima cravada. No IA Studio eram **20 arquivos com o grid montado
- * à mão e 16 larguras diferentes** respondendo à mesma pergunta: qual é a largura
- * de leitura de um formulário? Essa pergunta é do design system.
+ * tela vinha resolvendo à mão, com um grid do framework de CSS do consumidor. No
+ * IA Studio eram **20 arquivos com o grid montado à mão**.
+ *
+ * **Distribui, não limita.** O grid preenche o container: se o card é largo, o
+ * formulário é largo. A v1.2.35 embutia um `max-width` "de leitura" e o resultado
+ * foi o contrário do pretendido — num card de 1580px o formulário virou uma faixa
+ * de 880px encostada à esquerda, com um vazio maior que o original, e o teto de
+ * largura ainda brigava com o piso de coluna (`columns={3}` caía para 2+1).
+ * Quem decide a largura de leitura é **quem põe o formulário na tela**.
  *
  * Distribui por `auto-fill` + `minmax`, **sem media query**: o navegador encaixa
  * quantas colunas couberem e cai para uma sozinha em tela estreita. O piso de uma
