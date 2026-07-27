@@ -12,6 +12,27 @@
 
 - **docs(prompt-framework)** · 2026-07-23 — adota `C:\Users\Flowspec\Documents\STUDIO-WORKFLOW\` v3.0.0 como fonte única do método (paradigma `prompt-framework/v1`). Agnósticos locais (`README.md`, `prompt-alinhamento.md`) viraram stubs; `COMO-INTERAGIR-COM-ROBSON.md` também. Catálogo local migrou para `studio-ux.specialty-catalog@2.0.0` (`kind: shared`, PT+EN); as 6 especialidades foram para o schema formal em `studio-ux.*@1.0.0`, todas com `extends: workflow.system-change-base@1.0.0`.
 
+## [1.2.39] — 2026-07-26
+
+### Added
+
+- **Vocabulário de NAVEGAÇÃO no core — 26 glifos** (81 no total): `spark`, `bot`, `brain`, `book`, `tool`, `shield`, `coin`, `network`, `radio`, `ticket`, `workflow`, `git-branch`, `activity`, `messages`, `list`, `plug`, `store`, `grid`, `key`, `database`, `layers`, `compass`, `terminal`, `code`, `boxes`, `credit-card`.
+- **Regra nova (ICONOGRAPHY):** **um conceito de menu, um glifo.** Se dois itens de menu compartilham desenho, ou são a mesma coisa (e o menu tem item demais), ou falta glifo — e o lugar de resolver é o catálogo, nunca um mapa de fallback no consumidor.
+
+### Origem
+
+O menu do IA Studio, apontado pelo Robson: *"os ícones ficaram tudo de qualquer maneira, um monte se repetindo e a grande maioria não faz sentido nenhum"*. Ele estava certo, e a medição foi pior que a impressão — de **30 itens, só 7 tinham ícone próprio**: `file` em 12 (Custos era uma folha de papel), `settings` em 9, `lock` em 4, e "Incidentes" usava o mesmo sino de "Notificações".
+
+### Lição
+
+O core nasceu vestindo **tela de cadastro**: ação (salvar, excluir), objeto (arquivo, usuário) e status. Ninguém percebeu que faltava o vocabulário do **menu de um produto** — porque a falta não apareceu como erro, apareceu como **repetição**. O consumidor escreveu um mapa "por proximidade semântica" e quase tudo caiu em dois glifos.
+
+Duas coisas que ficam:
+
+**Indireção que degrada em silêncio é pior que nenhuma.** O mapa `LUCIDE_TO_DS` do consumidor tinha um `|| 'help'` no fim e nunca chegava lá: sempre havia um glifo "mais ou menos" para cair. Se ele tivesse falhado alto na primeira tradução ruim, o problema apareceria na primeira tela, não no menu inteiro.
+
+**Repetição de ícone é sintoma de vocabulário faltando, não de descuido de quem escolheu.** Vale como diagnóstico: contar glifos distintos ÷ itens de menu. Perto de 1 é saudável; 7 em 30 significa que o catálogo não cobre o domínio.
+
 ## [1.2.38] — 2026-07-26
 
 ### Added

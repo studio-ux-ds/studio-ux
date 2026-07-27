@@ -10,7 +10,7 @@
     "strokeLinejoin": "round"
   },
   "note": "Biblioteca curada (ICONOGRAPHY §6). Uma metáfora, um significado (P2). Cor via currentColor (§4). Cresce por curadoria governada.",
-  "count": 55,
+  "count": 81,
   "icons": {
     "chevron-right": {
       "meaning": "avançar / abrir item",
@@ -152,6 +152,232 @@
         "revisions",
         "past",
         "log"
+      ]
+    },
+    "spark": {
+      "meaning": "faísca / inteligência / marca de produto",
+      "keywords": [
+        "ai",
+        "sparkle",
+        "magic",
+        "brand",
+        "star"
+      ]
+    },
+    "bot": {
+      "meaning": "assistente / agente de IA",
+      "keywords": [
+        "agent",
+        "assistant",
+        "robot",
+        "ai"
+      ]
+    },
+    "brain": {
+      "meaning": "memória / conhecimento retido",
+      "keywords": [
+        "memory",
+        "mind",
+        "context"
+      ]
+    },
+    "book": {
+      "meaning": "base de conhecimento / documentação",
+      "keywords": [
+        "knowledge",
+        "docs",
+        "library",
+        "manual"
+      ]
+    },
+    "tool": {
+      "meaning": "ferramenta / habilidade que o sistema executa",
+      "keywords": [
+        "wrench",
+        "skill",
+        "capability"
+      ]
+    },
+    "shield": {
+      "meaning": "permissão / proteção",
+      "keywords": [
+        "acl",
+        "profile",
+        "security",
+        "role"
+      ]
+    },
+    "coin": {
+      "meaning": "custo / dinheiro",
+      "keywords": [
+        "money",
+        "cost",
+        "billing",
+        "price"
+      ]
+    },
+    "network": {
+      "meaning": "rede / infraestrutura conectada",
+      "keywords": [
+        "isp",
+        "nodes",
+        "topology",
+        "provider"
+      ]
+    },
+    "radio": {
+      "meaning": "transmissão / incidente em curso",
+      "keywords": [
+        "broadcast",
+        "signal",
+        "live",
+        "outage"
+      ]
+    },
+    "ticket": {
+      "meaning": "chamado / atendimento aberto",
+      "keywords": [
+        "support",
+        "os",
+        "case",
+        "issue"
+      ]
+    },
+    "workflow": {
+      "meaning": "automação / sequência de passos",
+      "keywords": [
+        "flow",
+        "pipeline",
+        "automation",
+        "steps"
+      ]
+    },
+    "git-branch": {
+      "meaning": "fluxo com ramos / versão",
+      "keywords": [
+        "flow",
+        "branch",
+        "fork",
+        "version"
+      ]
+    },
+    "activity": {
+      "meaning": "execução / atividade em andamento",
+      "keywords": [
+        "pulse",
+        "run",
+        "monitor",
+        "heartbeat"
+      ]
+    },
+    "messages": {
+      "meaning": "conversas / várias trocas",
+      "keywords": [
+        "chats",
+        "threads",
+        "inbox"
+      ]
+    },
+    "list": {
+      "meaning": "fila / lista ordenada",
+      "keywords": [
+        "queue",
+        "order",
+        "team",
+        "sequence"
+      ]
+    },
+    "plug": {
+      "meaning": "conexão com sistema externo",
+      "keywords": [
+        "connection",
+        "integration",
+        "socket"
+      ]
+    },
+    "store": {
+      "meaning": "catálogo / loja de conectores",
+      "keywords": [
+        "marketplace",
+        "shop",
+        "catalog"
+      ]
+    },
+    "grid": {
+      "meaning": "conjunto de blocos / módulos",
+      "keywords": [
+        "blocks",
+        "modules",
+        "apps"
+      ]
+    },
+    "key": {
+      "meaning": "chave de acesso / credencial",
+      "keywords": [
+        "api key",
+        "secret",
+        "token",
+        "credential"
+      ]
+    },
+    "database": {
+      "meaning": "recurso de dados / repositório",
+      "keywords": [
+        "data",
+        "storage",
+        "records",
+        "resource"
+      ]
+    },
+    "layers": {
+      "meaning": "camadas / tradução entre formatos",
+      "keywords": [
+        "mapping",
+        "stack",
+        "transform"
+      ]
+    },
+    "compass": {
+      "meaning": "explorar / percorrer o que existe",
+      "keywords": [
+        "explore",
+        "discover",
+        "browse"
+      ]
+    },
+    "terminal": {
+      "meaning": "ambiente de desenvolvedor",
+      "keywords": [
+        "console",
+        "shell",
+        "cli",
+        "developer"
+      ]
+    },
+    "code": {
+      "meaning": "código / chamada técnica",
+      "keywords": [
+        "json",
+        "payload",
+        "script",
+        "test"
+      ]
+    },
+    "boxes": {
+      "meaning": "workspaces / espaços separados",
+      "keywords": [
+        "workspace",
+        "environments",
+        "containers"
+      ]
+    },
+    "credit-card": {
+      "meaning": "plano / assinatura",
+      "keywords": [
+        "billing",
+        "plan",
+        "license",
+        "subscription"
       ]
     },
     "upload": {

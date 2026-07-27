@@ -51,6 +51,26 @@
 
 ---
 
+## 4.1 Um conceito de menu, um glifo · One menu concept, one glyph
+
+**PT** — Num menu de navegação, **cada item tem o seu glifo**. Se dois itens compartilham desenho, há só duas explicações: (a) eles são a mesma coisa vista de dois lugares — e aí a repetição é deliberada e documentada; ou (b) **falta glifo no catálogo**, e o lugar de resolver é aqui, nunca num mapa de "proximidade semântica" no consumidor.
+
+O sintoma dessa falta **não é um erro** — é repetição. O menu do IA Studio chegou a ter, de 30 itens, apenas 7 com ícone próprio: um único glifo de "arquivo" em 12 deles (inclusive em "Custos") e um de "engrenagem" em 9. Ninguém escolheu isso: o consumidor tinha um mapa que traduzia nomes de outra biblioteca e caía no glifo mais próximo, porque o vocabulário de navegação (assistente, rede, fluxo, banco de dados, terminal, plugue, livro, dinheiro) não existia no core — que nasceu vestindo tela de cadastro.
+
+**Diagnóstico rápido:** conte *glifos distintos ÷ itens de menu*. Perto de 1 é saudável. Bem abaixo disso, o catálogo não cobre o domínio — e a correção é curadoria, não criatividade no consumidor.
+
+**Corolário sobre a marca:** a identidade do produto é **um símbolo, em um lugar**. Se o menu tem um desenho, o login outro e o favicon um terceiro, não há marca — há três. Quando a marca virar glifo do catálogo, ele deve ser **a mesma geometria** do arquivo original, não uma aproximação "no espírito".
+
+**EN** — In a navigation menu, **each item gets its own glyph**. If two items share a drawing, there are only two explanations: (a) they are the same thing seen from two places — then the repetition is deliberate and documented; or (b) **a glyph is missing from the catalog**, and that is where it gets fixed, never in a "semantic proximity" map inside the consumer.
+
+The symptom of that gap **is not an error** — it is repetition. The IA Studio menu reached a point where, out of 30 items, only 7 had their own icon: a single "file" glyph on 12 of them (including "Costs") and a "gear" on 9. Nobody chose that: the consumer had a map translating another library's names and falling back to the closest glyph, because the navigation vocabulary (assistant, network, flow, database, terminal, plug, book, money) did not exist in the core — which was born dressed for a CRUD screen.
+
+**Quick diagnostic:** count *distinct glyphs ÷ menu items*. Near 1 is healthy. Far below, the catalog does not cover the domain — and the fix is curation, not consumer creativity.
+
+**Brand corollary:** a product's identity is **one symbol, in one place**. If the menu shows one drawing, the login another and the favicon a third, there is no brand — there are three. When the brand becomes a catalog glyph, it must be **the same geometry** as the original file, not an approximation "in the spirit of" it.
+
+---
+
 ## 5. Quando um ícone pode aparecer sozinho · When an icon may appear alone
 
 **PT** — O ícone solitário é permitido apenas quando **três condições** se cumprem juntas:
@@ -115,7 +135,7 @@
 
 ## Estado da implementação · Implementation state
 
-**PT** — Materializado no pacote `@studio-ux-ds/icons` (v1.1.9). Fonte única `packages/icons/icons.js` (nome semântico → corpo SVG + significado + keywords); `build-icons.mjs` **valida o contrato de estilo** (§3/§7: kebab-case, sem cor crua, sem `px`/`style`, ponto absoluto na grade 24, significado obrigatório) e emite `icons/<name>.svg` + `manifest.json`. **Tamanhos viraram token** (§4): `--su-icon-sm/md/lg` = 16/20/24 na fonte de tokens (entram em todos os exports). O `<Icon>` web (`react.jsx`) aplica tamanho por token e a acessibilidade do §5 (`label` → `role=img`+`aria-label`; sem `label` → `aria-hidden`); `icons.css` dá `.su-icon`/`--sm`/`--lg`. Core curado: **55 glifos** (navegação, ações, objetos, dados, status, UI), cor via `currentColor` (herda o papel de texto). Galeria em `examples/icons.html`. **Honesto:** é o core que cresce por curadoria governada (SemVer) — não a biblioteca "completa"; novo ícone entra por `icons.js` + `build:icons`, nunca por download avulso (§6).
+**PT** — Materializado no pacote `@studio-ux-ds/icons` (v1.1.9). Fonte única `packages/icons/icons.js` (nome semântico → corpo SVG + significado + keywords); `build-icons.mjs` **valida o contrato de estilo** (§3/§7: kebab-case, sem cor crua, sem `px`/`style`, ponto absoluto na grade 24, significado obrigatório) e emite `icons/<name>.svg` + `manifest.json`. **Tamanhos viraram token** (§4): `--su-icon-sm/md/lg` = 16/20/24 na fonte de tokens (entram em todos os exports). O `<Icon>` web (`react.jsx`) aplica tamanho por token e a acessibilidade do §5 (`label` → `role=img`+`aria-label`; sem `label` → `aria-hidden`); `icons.css` dá `.su-icon`/`--sm`/`--lg`. Core curado: **81 glifos** (navegação, ações, objetos, dados, status, UI), cor via `currentColor` (herda o papel de texto). Galeria em `examples/icons.html`. **Honesto:** é o core que cresce por curadoria governada (SemVer) — não a biblioteca "completa"; novo ícone entra por `icons.js` + `build:icons`, nunca por download avulso (§6).
 **EN** — Materialized in `@studio-ux-ds/icons` (v1.1.9). Single source `icons.js`; `build-icons.mjs` **validates the style contract** (§3/§7) and emits `icons/*.svg` + `manifest.json`. **Sizes are now tokens** (§4): `--su-icon-sm/md/lg` = 16/20/24. The web `<Icon>` applies size-by-token and §5 accessibility; `icons.css` provides `.su-icon`. Curated core: **43 glyphs**, color via `currentColor`. Gallery in `examples/icons.html`. **Honest:** it's the governed-growth core, not the "complete" library — a new icon enters via `icons.js` + `build:icons`, never ad-hoc download (§6).
 
 ---

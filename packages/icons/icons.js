@@ -30,6 +30,55 @@ export const ICONS = {
   "copy": { meaning: "copiar para a área de transferência", keywords: ["duplicate", "clipboard", "id"], body: '<rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/>' },
   "alert-triangle": { meaning: "aviso / atenção", keywords: ["warning", "caution", "risk"], body: '<path d="M12 4L2.5 20h19L12 4z"/><path d="M12 10v5"/><path d="M12 17.5v.5"/>' },
   "history": { meaning: "histórico / versões anteriores", keywords: ["timeline", "revisions", "past", "log"], body: '<path d="M3.5 12a8.5 8.5 0 1 0 2.6-6.1"/><path d="M3 4v4h4"/><path d="M12 8v4l3 2"/>' },
+
+  /* ---------------------------------------------------------------------------
+     VOCABULÁRIO DE NAVEGAÇÃO (v1.2.39)
+     ---------------------------------------------------------------------------
+     O core nasceu vestindo tela de CADASTRO: ação (salvar, excluir), objeto
+     (arquivo, usuário) e status. Faltava o vocabulário do MENU de um produto —
+     assistente, rede, fluxo, banco de dados, terminal, plugue, livro, dinheiro.
+
+     A falta não apareceu como erro: apareceu como **repetição**. O consumidor
+     montou um mapa de "proximidade semântica" e o menu do IA Studio terminou com
+     `file` em 12 itens e `settings` em 9 — de 30 itens, só 7 tinham ícone próprio.
+     "Custos" era uma folha de papel; "Incidentes" era o mesmo sino de
+     "Notificações". Ninguém errou um nome: o vocabulário não existia.
+
+     Regra que fica: **um conceito de menu, um glifo.** Se dois itens de menu
+     compartilham desenho, ou eles são a mesma coisa (e o menu tem item demais),
+     ou falta glifo — e aí ele entra aqui, não num mapa de fallback no consumidor.
+     ------------------------------------------------------------------------ */
+
+  /* `spark` usa o MESMO path do favicon do IA Studio — não um desenho parecido.
+     A marca do produto aparecia em três formas diferentes (um `·` no menu, um
+     raio no login, esta faísca no favicon); unificar exigia que o glifo fosse
+     literalmente a mesma geometria, não uma aproximação "no espírito". */
+  "spark": { meaning: "faísca / inteligência / marca de produto", keywords: ["ai", "sparkle", "magic", "brand", "star"], body: '<path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z"/>' },
+  "bot": { meaning: "assistente / agente de IA", keywords: ["agent", "assistant", "robot", "ai"], body: '<rect x="4" y="8" width="16" height="11" rx="3"/><path d="M12 4v4"/><path d="M9 13v1.5"/><path d="M15 13v1.5"/>' },
+  "brain": { meaning: "memória / conhecimento retido", keywords: ["memory", "mind", "context"], body: '<path d="M9.5 4.5a3.5 3.5 0 0 0-3.5 3.5 3 3 0 0 0-1 5.8V16a3.5 3.5 0 0 0 4.5 3.3z"/><path d="M14.5 4.5A3.5 3.5 0 0 1 18 8a3 3 0 0 1 1 5.8V16a3.5 3.5 0 0 1-4.5 3.3z"/><path d="M12 5v14"/>' },
+  "book": { meaning: "base de conhecimento / documentação", keywords: ["knowledge", "docs", "library", "manual"], body: '<path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H10a2 2 0 0 1 2 2v13a2 2 0 0 0-2-2H4z"/><path d="M20 5.5A1.5 1.5 0 0 0 18.5 4H14a2 2 0 0 0-2 2v13a2 2 0 0 1 2-2h6z"/>' },
+  "tool": { meaning: "ferramenta / habilidade que o sistema executa", keywords: ["wrench", "skill", "capability"], body: '<path d="M14.5 4.5a4 4 0 0 0 5 5L20 10 10 20a2.8 2.8 0 0 1-4-4L16 6z"/><path d="M6.5 17.5h.01"/>' },
+  "shield": { meaning: "permissão / proteção", keywords: ["acl", "profile", "security", "role"], body: '<path d="M12 3l7 3v5.5c0 4.2-2.8 7.6-7 9.5-4.2-1.9-7-5.3-7-9.5V6z"/>' },
+  "coin": { meaning: "custo / dinheiro", keywords: ["money", "cost", "billing", "price"], body: '<circle cx="12" cy="12" r="8.5"/><path d="M14.5 9.5A2.5 2.5 0 0 0 12 8c-1.4 0-2.5.9-2.5 2s1.1 2 2.5 2 2.5.9 2.5 2-1.1 2-2.5 2a2.5 2.5 0 0 1-2.5-1.5"/><path d="M12 6v12"/>' },
+  "network": { meaning: "rede / infraestrutura conectada", keywords: ["isp", "nodes", "topology", "provider"], body: '<circle cx="12" cy="5" r="2.5"/><circle cx="5" cy="19" r="2.5"/><circle cx="19" cy="19" r="2.5"/><path d="M12 7.5v4"/><path d="M12 11.5L6.5 17"/><path d="M12 11.5L17.5 17"/>' },
+  "radio": { meaning: "transmissão / incidente em curso", keywords: ["broadcast", "signal", "live", "outage"], body: '<circle cx="12" cy="12" r="2"/><path d="M7.8 7.8a6 6 0 0 0 0 8.4"/><path d="M16.2 16.2a6 6 0 0 0 0-8.4"/><path d="M4.9 4.9a10 10 0 0 0 0 14.2"/><path d="M19.1 19.1a10 10 0 0 0 0-14.2"/>' },
+  "ticket": { meaning: "chamado / atendimento aberto", keywords: ["support", "os", "case", "issue"], body: '<path d="M3.5 9V7a1.5 1.5 0 0 1 1.5-1.5h14A1.5 1.5 0 0 1 20.5 7v2a3 3 0 0 0 0 6v2a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 17v-2a3 3 0 0 0 0-6z"/><path d="M12 8.5v7"/>' },
+  "workflow": { meaning: "automação / sequência de passos", keywords: ["flow", "pipeline", "automation", "steps"], body: '<rect x="3.5" y="4" width="7" height="5.5" rx="1.5"/><rect x="13.5" y="14.5" width="7" height="5.5" rx="1.5"/><path d="M7 9.5v4a3 3 0 0 0 3 3h3.5"/>' },
+  "git-branch": { meaning: "fluxo com ramos / versão", keywords: ["flow", "branch", "fork", "version"], body: '<circle cx="7" cy="5.5" r="2.5"/><circle cx="7" cy="18.5" r="2.5"/><circle cx="17" cy="9" r="2.5"/><path d="M7 8v8"/><path d="M17 11.5c0 3-2.5 4.5-6 4.5"/>' },
+  "activity": { meaning: "execução / atividade em andamento", keywords: ["pulse", "run", "monitor", "heartbeat"], body: '<path d="M3 12h4l2.5-6 4 12 2.5-6h5"/>' },
+  "messages": { meaning: "conversas / várias trocas", keywords: ["chats", "threads", "inbox"], body: '<path d="M8 14H6.5A2.5 2.5 0 0 1 4 11.5v-4A2.5 2.5 0 0 1 6.5 5h8A2.5 2.5 0 0 1 17 7.5V9"/><path d="M9.5 10h8a2.5 2.5 0 0 1 2.5 2.5v4a2.5 2.5 0 0 1-2.5 2.5H14l-4 3v-3h-.5A2.5 2.5 0 0 1 7 16.5v-4A2.5 2.5 0 0 1 9.5 10z"/>' },
+  "list": { meaning: "fila / lista ordenada", keywords: ["queue", "order", "team", "sequence"], body: '<path d="M9 6.5h11"/><path d="M9 12h11"/><path d="M9 17.5h11"/><path d="M4.5 6.5h.01"/><path d="M4.5 12h.01"/><path d="M4.5 17.5h.01"/>' },
+  "plug": { meaning: "conexão com sistema externo", keywords: ["connection", "integration", "socket"], body: '<path d="M9 3.5v5"/><path d="M15 3.5v5"/><path d="M6.5 8.5h11v3a5.5 5.5 0 0 1-11 0z"/><path d="M12 17v3.5"/>' },
+  "store": { meaning: "catálogo / loja de conectores", keywords: ["marketplace", "shop", "catalog"], body: '<path d="M4 9.5h16V19a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 19z"/><path d="M3 9.5L5 4h14l2 5.5"/><path d="M9.5 14h5"/>' },
+  "grid": { meaning: "conjunto de blocos / módulos", keywords: ["blocks", "modules", "apps"], body: '<rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/>' },
+  "key": { meaning: "chave de acesso / credencial", keywords: ["api key", "secret", "token", "credential"], body: '<circle cx="8" cy="8" r="4"/><path d="M11 11l8 8"/><path d="M16.5 16.5l2-2"/><path d="M19 19l1.5-1.5"/>' },
+  "database": { meaning: "recurso de dados / repositório", keywords: ["data", "storage", "records", "resource"], body: '<ellipse cx="12" cy="6.5" rx="7" ry="3"/><path d="M5 6.5v11c0 1.7 3.1 3 7 3s7-1.3 7-3v-11"/><path d="M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/>' },
+  "layers": { meaning: "camadas / tradução entre formatos", keywords: ["mapping", "stack", "transform"], body: '<path d="M12 3.5L20.5 8 12 12.5 3.5 8z"/><path d="M3.5 12.5L12 17l8.5-4.5"/><path d="M3.5 17L12 21.5l8.5-4.5"/>' },
+  "compass": { meaning: "explorar / percorrer o que existe", keywords: ["explore", "discover", "browse"], body: '<circle cx="12" cy="12" r="8.5"/><path d="M15 9l-2 4-4 2 2-4z"/>' },
+  "terminal": { meaning: "ambiente de desenvolvedor", keywords: ["console", "shell", "cli", "developer"], body: '<rect x="3.5" y="4.5" width="17" height="15" rx="2"/><path d="M7.5 10l2.5 2.5L7.5 15"/><path d="M12.5 15.5h4"/>' },
+  "code": { meaning: "código / chamada técnica", keywords: ["json", "payload", "script", "test"], body: '<path d="M8.5 8.5L4 12l4.5 3.5"/><path d="M15.5 8.5L20 12l-4.5 3.5"/><path d="M13.5 5l-3 14"/>' },
+  "boxes": { meaning: "workspaces / espaços separados", keywords: ["workspace", "environments", "containers"], body: '<rect x="3.5" y="3.5" width="8" height="8" rx="1.5"/><rect x="12.5" y="12.5" width="8" height="8" rx="1.5"/><path d="M12.5 7.5h5a2 2 0 0 1 2 2v3"/>' },
+  "credit-card": { meaning: "plano / assinatura", keywords: ["billing", "plan", "license", "subscription"], body: '<rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="M3 10h18"/><path d="M6.5 14.5h4"/>' },
   "upload": { meaning: "enviar arquivo / importar", keywords: ["import", "attach", "send file"], body: '<path d="M12 19V8"/><path d="M8 12l4-4 4 4"/><path d="M5 5h14"/>' },
   "download": { meaning: "baixar", keywords: ["save", "export"], body: '<path d="M12 4v11"/><path d="M8 11l4 4 4-4"/><path d="M5 19h14"/>' },
   "refresh": { meaning: "recarregar / sincronizar", keywords: ["reload", "sync", "retry"], body: '<path d="M4 12a8 8 0 0 1 13.7-5.7L20 8"/><path d="M20 3v5h-5"/><path d="M20 12a8 8 0 0 1-13.7 5.7L4 16"/><path d="M4 21v-5h5"/>' },
