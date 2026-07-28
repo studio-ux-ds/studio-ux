@@ -44,6 +44,14 @@ const LONG_NAV = [
   ]},
 ];
 
+const MOBILE_NAV = [
+  { items: [
+    { icon: "home", label: "Inicio", href: "#" },
+    { icon: "wallet", label: "Contas", href: "#", active: true },
+    { icon: "message", label: "Mensagens", href: "#" },
+  ]},
+];
+
 const brl = (n) => n.toLocaleString("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 });
 const RAW = [
   { id: 1, desc: "Salário CLT", cat: "Salário", bloco: "PF", tipo: "Recorrente", vence: "dia 5", valor: 8500 },
@@ -118,6 +126,12 @@ export const GrupoRevelado = {
   name: "Grupo aberto permanece visível",
   parameters: { docs: { description: { story: "Com a navegação maior que a Sidebar, abrir Configurações rola apenas a região de navegação até revelar o grupo. O foco permanece no botão e a animação respeita redução de movimento." } } },
   render: (args) => <Demo {...args} nav={LONG_NAV} />,
+};
+
+export const NavegacaoMobileEspecifica = {
+  name: "Navegacao mobile especifica",
+  parameters: { docs: { description: { story: "`mobileNav` aceita o mesmo contrato de `nav` e so entra no Drawer em ate 767px. Use quando a jornada compacta e, intencionalmente, um subconjunto da arvore desktop; sem a prop, o Drawer reproduz `nav` integralmente." } } },
+  render: (args) => <Demo {...args} mobileNav={MOBILE_NAV} />,
 };
 
 export const SemUsuario = {

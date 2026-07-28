@@ -8,6 +8,20 @@
 
 ## [Unreleased]
 
+## [1.2.44] — 2026-07-27
+
+### Added
+
+- **AppShell — `mobileNav`.** Contrato aditivo para uma navegação exclusiva do Drawer mobile, usando a mesma estrutura de seções, folhas e grupos de `nav`. Sem a prop, o Drawer continua espelhando `nav`; com ela, um produto pode preservar seu subconjunto móvel sem achatar a árvore desktop.
+
+### Fixed
+
+- **AppShell — grupo ativo acompanha a rota.** Depois de uma navegação, o acordeão reabre o grupo que contém o item ativo, mantendo a localização atual visível.
+
+### Consumption
+
+- **AquaPark v2.1.42** passa a consumir `@studio-ux-ds/* ^1.2.44` para preservar simultaneamente a árvore desktop completa e o catálogo móvel existente.
+
 ## [1.2.43] — 2026-07-27
 
 ### Added

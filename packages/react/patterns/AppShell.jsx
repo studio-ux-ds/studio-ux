@@ -75,6 +75,14 @@ function NavList({ sections, collapsed, onNavigate, onExpandRequest }) {
   const [openGroup, setOpenGroup] = useState(initialOpen);
   const [revealGroup, setRevealGroup] = useState(null);
 
+  // Quando o consumidor troca a rota ativa, o acordeao acompanha a nova secao.
+  // Sem isso, a sidebar poderia manter aberto o grupo anterior e esconder a
+  // rota corrente, especialmente depois de uma navegacao programatica.
+  useEffect(() => {
+    const activeGroup = initialOpen();
+    if (activeGroup) setOpenGroup(activeGroup);
+  }, [sections]);
+
   const leaf = (it, key) => (
     <NavItem
       key={key}
@@ -225,6 +233,10 @@ function UserMenu({ user, items, onClose }) {
 export function AppShell({
   brand,
   nav,
+  // Navegacao especifica para o Drawer mobile. Usa exatamente o mesmo contrato
+  // de `nav`; quando omitida, o mobile recebe a navegacao desktop integral.
+  // Serve a produtos cuja jornada compacta e intencionalmente um subconjunto.
+  mobileNav,
   footer,
   version,
   breadcrumb,
@@ -253,6 +265,7 @@ export function AppShell({
   // Espelha o tema atual só para rotular o atalho rápido no menu (Claro↔Escuro).
   const [, force] = useState(0);
   const sections = toSections(nav);
+  const mobileSections = toSections(mobileNav || nav);
   const layout = getLayout();
   const locale = getLocale();
   const text = shellCopy[locale] || shellCopy["pt-BR"];
@@ -305,7 +318,7 @@ export function AppShell({
       }
     >
       <NavList
-        sections={sections}
+        sections={mobile ? mobileSections : sections}
         collapsed={!mobile && collapsed}
         onNavigate={mobile ? () => setMobileOpen(false) : undefined}
         onExpandRequest={!mobile ? () => setCollapsed(false) : undefined}
