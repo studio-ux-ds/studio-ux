@@ -8,6 +8,30 @@
 
 ## [Unreleased]
 
+## [1.2.47] — 2026-07-27
+
+### Fixed — `Button` e `IconButton` nascem `type="button"`
+
+**Decisão de segurança, não de estilo.** Em HTML, um `<button>` sem `type` dentro de um `<form>` vale como **submit**. A partir do momento em que existe um molde de formulário de verdade, *qualquer* botão dentro dele passaria a enviar o formulário ao ser clicado: "Remover membro", "Sugerir com IA", "Adicionar linha". O sintoma é grotesco — a tela salva e navega quando a pessoa queria remover um item — e **nada avisa**, porque é HTML correto.
+
+Descoberto na primeira adoção real (IA Studio, `EquipeEditor`: uma lixeira de remover membro dentro do que virou um `<form>`). Enviar passa a ser a exceção explícita (`type="submit"`), que é o que o `FormScreen` usa no seu único botão primário.
+
+`FormScreen` também ganhou, pelo mesmo caminho, **`canSubmit`** (sem permissão o Salvar **não é renderizado** — botão cinza convida a tentar e depois nega) e **`bare`** (o formulário cujas seções já são cartões; continua sendo **um** `<form>`, submetido junto).
+
+### Origem
+
+A **primeira adoção real** do `FormScreen` (IA Studio, família `form`, 9 editores). Nenhum dos três itens apareceu enquanto o molde era escrito e testado em story — os três apareceram no primeiro contato com tela de verdade, que é exatamente o que a story não cobre: tela de verdade tem botão auxiliar, tem permissão e tem seção que já é cartão.
+
+### Lição
+
+**A story valida o molde; a adoção valida o contrato.** Um molde renderizado com dados de exemplo mostra que ele funciona; um molde dentro de uma tela real mostra o que ele *assume* — e as três lacunas eram suposições minhas: que o formulário só teria o botão de salvar, que quem abre a tela pode salvar, e que os campos cabem num cartão.
+
+A mais grave é a primeira, e ela é do tipo mais caro desta base: **o `<form>` transformou botões que já existiam em botões de submit.** Nada no código mudou de aparência, nada quebrou no build, e o clique numa lixeira passaria a salvar e navegar. Envolver algo num `<form>` **muda o significado do que já estava dentro** — vale lembrar disso em qualquer container novo que o DS venha a criar.
+
+### Verificado
+
+Um caso dedicado no probe: num `FormScreen` com botões auxiliares, **só 1 dos 3 `<button>` renderizados é submit**.
+
 ## [1.2.46] — 2026-07-27
 
 ### Added

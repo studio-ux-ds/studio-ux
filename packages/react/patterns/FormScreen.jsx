@@ -52,15 +52,25 @@ function CamposCarregando() {
  * @param {string} [cancelLabel]
  * @param {boolean} [saving]
  * @param {boolean} [submitDisabled]
+ * @param {boolean} [canSubmit]  false → **o Salvar não é renderizado** (não fica
+ *   desabilitado): quem não tem permissão não vê a ação (a mesma regra do resto
+ *   do sistema — botão cinza convida a tentar e depois nega). O Cancelar vira a
+ *   única saída, e o rótulo passa a "Voltar", porque não há o que cancelar.
  * @param {React.ReactNode} [extraActions]  ação secundária do formulário (ex.: "Salvar e criar outro")
  * @param {boolean} [loading]               carregando o registro a editar
  * @param {{message:string,onRetry?:Function}} [error]
+ * @param {boolean} [bare]  o formulário **não** cabe num cartão só — ele tem
+ *   seções que já são cartões (um por grupo de permissão, um por passo de uma
+ *   receita). Com `bare` os filhos são renderizados soltos e as ações ganham a
+ *   própria linha no fim. Continua sendo **um `<form>`**: tudo que está dentro
+ *   é submetido junto, que é o que distingue "seções de um formulário" de
+ *   "telas diferentes empilhadas".
  */
 export function FormScreen({
   title, subtitle, back, banner,
   onSubmit, onCancel, submitLabel = "Salvar", cancelLabel = "Cancelar",
-  saving = false, submitDisabled = false, extraActions,
-  loading, error,
+  saving = false, submitDisabled = false, canSubmit = true, extraActions,
+  loading, error, bare = false,
   children,
 }) {
   if (error) {
@@ -78,6 +88,22 @@ export function FormScreen({
       </div>
     );
   }
+
+  const acoes = (
+    <div className="su-form-actions">
+      {extraActions}
+      {onCancel && (
+        <Button type="button" variant={canSubmit ? "ghost" : "secondary"} onClick={onCancel} disabled={saving}>
+          {canSubmit ? cancelLabel : "Voltar"}
+        </Button>
+      )}
+      {canSubmit && (
+        <Button type="submit" variant="primary" loading={saving} disabled={submitDisabled || loading}>
+          {submitLabel}
+        </Button>
+      )}
+    </div>
+  );
 
   return (
     <div className="su-screen">
@@ -99,21 +125,17 @@ export function FormScreen({
           if (!saving) onSubmit?.(event);
         }}
       >
-        <Card>
-          {loading ? <CamposCarregando /> : children}
-
-          <div className="su-form-actions">
-            {extraActions}
-            {onCancel && (
-              <Button type="button" variant="ghost" onClick={onCancel} disabled={saving}>
-                {cancelLabel}
-              </Button>
-            )}
-            <Button type="submit" variant="primary" loading={saving} disabled={submitDisabled || loading}>
-              {submitLabel}
-            </Button>
+        {bare ? (
+          <div className="su-screen">
+            {loading ? <Card><CamposCarregando /></Card> : children}
+            {acoes}
           </div>
-        </Card>
+        ) : (
+          <Card>
+            {loading ? <CamposCarregando /> : children}
+            {acoes}
+          </Card>
+        )}
       </form>
     </div>
   );
