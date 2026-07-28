@@ -21,6 +21,7 @@
 
 ## ✅ Estado vigente · Current state
 
+- **Navegação / Navigation (v1.2.48):** grupos expansíveis do `AppShell` e suas folhas compartilham a mesma escala tipográfica; a hierarquia é dada por recuo, peso e estado, sem o `font` shorthand sobrescrever o tamanho do item. AquaPark é o consumidor-canário desta correção. / Expandable `AppShell` groups and their leaves share the same type scale; indentation, weight and state establish hierarchy, without the `font` shorthand overriding the item size. AquaPark is the canary consumer for this fix.
 - **Casca / Shell (v1.2.43):** o `AppShell` ganhou `topbarActions`, slot oficial de controles globais do consumidor antes do menu da pessoa usuária. A ação primária continua no `PageHeader`; o slot cobre, por exemplo, uma central de notificações com popover próprio. O próximo consumidor é AquaPark `v2.1.40`. / `AppShell` gained `topbarActions`, the official consumer global-controls slot before the user menu. The primary action remains in `PageHeader`; the slot covers, for example, a notification center with its own popover. The next consumer is AquaPark `v2.1.40`.
 
 - **Fundação, linguagem e tokens / Foundation, language and tokens:** concluídos e congelados como contratos. Mudança estrutural só por RFC + ADR; componente novo só por necessidade comprovada em produto. / Complete and frozen as contracts. Structural change only through RFC + ADR; a new component only for a proven product need.

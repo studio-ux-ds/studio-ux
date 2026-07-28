@@ -8,6 +8,22 @@
 
 ## [Unreleased]
 
+## [1.2.48] — 2026-07-27
+
+### Fixed — AppShell navigation scale
+
+**PT:** o botão de grupo usava `font: inherit`, shorthand que também substituía
+o `font-size` do item de navegação. Grupos e folhas agora compartilham a mesma
+escala; recuo, peso e estado ativo continuam sendo os sinais de hierarquia.
+
+**EN:** the group button used `font: inherit`, a shorthand that also replaced
+the navigation item's `font-size`. Groups and leaves now share one scale;
+indentation, weight and active state remain the hierarchy signals.
+
+### Consumption
+
+- AquaPark is the canary consumer for this correction.
+
 ## [1.2.47] — 2026-07-27
 
 ### Fixed — `Button` e `IconButton` nascem `type="button"`

@@ -124,7 +124,7 @@ export const Recolhida = {
 
 export const GrupoRevelado = {
   name: "Grupo aberto permanece visível",
-  parameters: { docs: { description: { story: "Com a navegação maior que a Sidebar, abrir Configurações rola apenas a região de navegação até revelar o grupo. O foco permanece no botão e a animação respeita redução de movimento." } } },
+  parameters: { docs: { description: { story: "Com a navegação maior que a Sidebar, abrir Configurações rola apenas a região de navegação até revelar o grupo. Grupo e folhas mantêm a mesma escala tipográfica; recuo, peso e estado ativo organizam a hierarquia. O foco permanece no botão e a animação respeita redução de movimento." } } },
   render: (args) => <Demo {...args} nav={LONG_NAV} />,
 };
 
