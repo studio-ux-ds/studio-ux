@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { ListScreen, Button, Badge, Tag, IconButton, DSIcon } from "@studio-ux-ds/react";
+import { ListScreen, Button, Badge, Tag, IconButton, DSIcon, Field, Select } from "@studio-ux-ds/react";
 
 export default {
   title: "Padrões/ListScreen",
@@ -83,6 +83,20 @@ function Interativo() {
 }
 
 export const Completo = { name: "Completo (Flux · interativo)", render: () => <Interativo /> };
+
+function FiltrosCompactosDemo() {
+  const [category, setCategory] = useState("");
+  const rows = useMemo(() => RAW.filter((row) => !category || row.bloco === category), [category]);
+  return <Frame><ListScreen
+    title="Receitas" subtitle="Filtros complementares ficam recolhidos para a lista continuar sendo o foco."
+    primaryAction={<Button variant="primary" icon="plus">Nova entrada</Button>}
+    listTitle="Lançamentos" columns={columns} rows={rows} getRowId={(row) => row.id}
+    filterContent={<Field label="Bloco"><Select value={category} onChange={(event) => setCategory(event.target.value)}><option value="">Todos os blocos</option><option value="PF">Pessoal</option><option value="PJ">Empresarial</option></Select></Field>}
+    filtersActive={Boolean(category)} filterLabel="Filtros" onClearFilters={() => setCategory("")}
+  /></Frame>;
+}
+
+export const FiltrosCompactos = { name: "Filtros compactos (Drawer)", render: () => <FiltrosCompactosDemo /> };
 
 export const Carregando = {
   name: "Carregando",

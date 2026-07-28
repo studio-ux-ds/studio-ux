@@ -6,6 +6,7 @@ import { Pagination } from "../Data.jsx";
 import { EmptyState, Skeleton } from "../Feedback.jsx";
 import { Button } from "../Button.jsx";
 import { DSIcon } from "../DSIcon.jsx";
+import { Drawer } from "../Overlay.jsx";
 
 function useNarrow(maxWidth = 767) {
   const query = `(max-width: ${maxWidth}px)`;
@@ -22,7 +23,30 @@ function useNarrow(maxWidth = 767) {
   return narrow;
 }
 
-function Toolbar({ listTitle, search, onSearch, searchPlaceholder, segments, segment, onSegment, toolbarActions }) {
+function FilterPanel({ content, active, label, onClear }) {
+  const [open, setOpen] = useState(false);
+  if (!content) return null;
+  const close = () => setOpen(false);
+  return <>
+    <Button variant="secondary" size="sm" icon="filter" onClick={() => setOpen(true)}>
+      {active ? `${label || "Filtros"} ativos` : (label || "Filtros")}
+    </Button>
+    <Drawer
+      open={open}
+      onClose={close}
+      title={label || "Filtros"}
+      width={420}
+      footer={<>
+        {onClear && <Button variant="secondary" onClick={onClear}>Limpar filtros</Button>}
+        <Button variant="primary" onClick={close}>Ver resultados</Button>
+      </>}
+    >
+      {content}
+    </Drawer>
+  </>;
+}
+
+function Toolbar({ listTitle, search, onSearch, searchPlaceholder, segments, segment, onSegment, filterContent, filtersActive, filterLabel, onClearFilters, toolbarActions }) {
   return <div className="su-toolbar">
     {listTitle && <span className="su-toolbar__title">{listTitle}</span>}
     <div className="su-toolbar__spacer" />
@@ -31,6 +55,7 @@ function Toolbar({ listTitle, search, onSearch, searchPlaceholder, segments, seg
       <input value={search ?? ""} onChange={(event) => onSearch(event.target.value)} placeholder={searchPlaceholder || "Buscar…"} aria-label={searchPlaceholder || "Buscar"} />
     </div>}
     {segments && segments.length > 0 && <SegmentedControl items={segments} value={segment} onChange={onSegment} />}
+    <FilterPanel content={filterContent} active={filtersActive} label={filterLabel} onClear={onClearFilters} />
     {toolbarActions && toolbarActions.length > 0 && <div className="su-toolbar__actions">
       {toolbarActions.map((action, index) => <Button key={index} variant="secondary" size="sm" icon={action.icon} onClick={action.onClick}>{action.label}</Button>)}
     </div>}
@@ -52,14 +77,15 @@ function SkeletonRows({ n = 5 }) {
  */
 export function ListScreen({
   title, subtitle, primaryAction,
-  listTitle, search, onSearch, searchPlaceholder, segments, segment, onSegment, toolbarActions,
+  listTitle, search, onSearch, searchPlaceholder, segments, segment, onSegment,
+  filterContent, filtersActive, filterLabel, onClearFilters, toolbarActions,
   columns, rows = [], getRowId = (row, index) => index, renderRowMenu, bulkActions, onRowClick, getRowLabel,
   renderCard,
   summary, page, pageCount, onPage,
   loading, error, filterActive, emptyNew, emptyFiltered,
 }) {
   const narrow = useNarrow();
-  const toolbar = <Toolbar listTitle={listTitle} search={search} onSearch={onSearch} searchPlaceholder={searchPlaceholder} segments={segments} segment={segment} onSegment={onSegment} toolbarActions={toolbarActions} />;
+  const toolbar = <Toolbar listTitle={listTitle} search={search} onSearch={onSearch} searchPlaceholder={searchPlaceholder} segments={segments} segment={segment} onSegment={onSegment} filterContent={filterContent} filtersActive={filtersActive} filterLabel={filterLabel} onClearFilters={onClearFilters} toolbarActions={toolbarActions} />;
   const hasPagination = typeof pageCount === "number" && pageCount > 1;
   const footer = (summary || hasPagination) ? <div className="su-listcard__foot">
     {summary && <span>{summary}</span>}

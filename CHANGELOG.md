@@ -8,6 +8,19 @@
 
 ## [Unreleased]
 
+## [1.2.51] - 2026-07-28
+
+### Added - compact complementary filters in `ListScreen`
+
+`ListScreen` now accepts `filterContent`, `filtersActive`, `filterLabel` and
+`onClearFilters`. Filters that do not fit as segments open from the Toolbar
+Drawer, keeping the collection as the focus instead of creating a full-width
+control band above the list.
+
+### Canary consumer
+
+- AquaPark: associates base.
+
 ## [1.2.50] — 2026-07-28
 
 ### Fixed — Dashboard grids fill the available row
