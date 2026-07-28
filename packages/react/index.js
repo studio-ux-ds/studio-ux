@@ -30,10 +30,18 @@ export { Drawer, Sheet, Menu, Tooltip, Popover } from "./Overlay.jsx";
 export { ToastProvider, useToast } from "./Toast.jsx";
 
 // Padrões · Patterns (composição de moldes de tela — STUDIO_UX_TEMPLATES)
+// Os 9 moldes de STUDIO_UX_TEMPLATES §2, agora todos materializados em React:
+// list · login · empty · detail · form · dashboard · search · settings · wizard.
 export { PageHeader } from "./patterns/PageHeader.jsx";
 export { ListScreen } from "./patterns/ListScreen.jsx";
 export { AuthScreen, AuthLink } from "./patterns/AuthScreen.jsx";
 export { MessageScreen } from "./patterns/MessageScreen.jsx";
+export { DetailScreen } from "./patterns/DetailScreen.jsx";
+export { FormScreen } from "./patterns/FormScreen.jsx";
+export { DashboardScreen } from "./patterns/DashboardScreen.jsx";
+export { SearchScreen } from "./patterns/SearchScreen.jsx";
+export { SettingsScreen, SettingsSection } from "./patterns/SettingsScreen.jsx";
+export { WizardScreen } from "./patterns/WizardScreen.jsx";
 export { AppShell } from "./patterns/AppShell.jsx";
 export { Customize } from "./patterns/Customize.jsx";
 

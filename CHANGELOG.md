@@ -8,6 +8,36 @@
 
 ## [Unreleased]
 
+## [1.2.46] — 2026-07-27
+
+### Added
+
+- **Os 6 moldes de tela que faltavam, em React** — com isso **os 9 de `TEMPLATES` §2 existem na camada que o consumidor usa**:
+  - **`DetailScreen`** (`detail`) — voltar → cabeçalho → abas → conteúdo. O "voltar" é do molde, não do breadcrumb; a aba é identificada por `id`; carregando e erro moram **dentro** da aba.
+  - **`FormScreen`** (`form`) — `<form>` de verdade (Enter submete), salvar com `loading` no botão, erro de validação em `Toast`, `banner` para a condição de tela inteira, Cancelar sempre presente.
+  - **`DashboardScreen`** (`dashboard`) — `Skeleton` em forma de KPI, `hue` **categórico e estável por assunto**, e **sem dado é vazio, não zero**.
+  - **`SearchScreen`** (`search`) — o campo **nunca é desmontado**; três vazios com três textos (ainda não perguntou / nada encontrado / erro); "procurando" fica no campo.
+  - **`SettingsScreen` + `SettingsSection`** (`settings`) — abas *pills*, e a distinção que a classe exige: ajuste de **efeito imediato não tem Salvar**; ajuste que só vale em conjunto tem.
+  - **`WizardScreen`** (`wizard`) — rota (não modal), voltar sempre possível, o botão do último passo **diz o verbo**, e `hint` obrigatório junto de `Avançar` desabilitado.
+- **Peças de arranjo no `components.css`:** `.su-screen` (o ritmo vertical comum a todos os moldes — `.su-listscreen` vira o nome legado do mesmo arranjo), `.su-statgrid`, `.su-blocks`, `.su-backlink`, `.su-searchfield`, `.su-form-actions--split`.
+- **Uma story por molde**, com os estados reais (carregando, erro, vazio, bloqueado, salvando), e a spec completa de cada um no **Grupo G** da `COMPONENT_LIBRARY`.
+
+### Origem
+
+A última lacuna medida na auditoria do IA Studio: **18 telas de detalhe/editor, 16 formulários, 1 passo a passo e 3 painéis** arranjados à mão, cada um com o seu espaçamento, o seu jeito de mostrar carregando e a sua decisão sobre onde fica o "voltar". Não era descuido do consumidor — era a mesma causa do login: o molde existia na spec e no gerador HTML, e **não existia em React**.
+
+### Lição
+
+Escrever seis moldes de uma vez expôs uma coisa que os três anteriores não tinham deixado claro: **o "quando NÃO usar" é parte do molde, não um adendo.**
+
+`WizardScreen` é o caso extremo. Um passo a passo disponível convida a usar passo a passo — e se os campos são independentes, ele **piora** a tela: esconde metade das perguntas e obriga a ir e voltar para conferir. O mesmo vale para `SearchScreen` usado onde bastava a busca da Toolbar, e para `FormScreen` dentro de um Modal. **Um molde disponível e mal escolhido é pior que nenhum molde, porque parece certo** — e a essa altura já está em 18 telas.
+
+Por isso cada entrada do Grupo G abre com "quando usar" **e** "quando NÃO usar", e a regra de escolha vem antes da lista de props.
+
+### Verificado
+
+Os 22 casos (cada molde nos seus estados) renderizados com `react-dom/server`: **nenhuma exceção e nenhum aviso do React** — que é a checagem que pega prop desconhecida indo para o DOM, a família de erro mais cara desta base. Todas as classes `.su-*` usadas existem no CSS; nenhum componente exportado sem story.
+
 ## [1.2.45] — 2026-07-27
 
 ### Changed

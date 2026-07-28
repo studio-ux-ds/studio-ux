@@ -720,9 +720,38 @@
 
 /* ── Padrões · Patterns (camada de composição — STUDIO_UX_TEMPLATES) ──────────
    Só arranjo, sobre os átomos e tokens que já existem. Nenhum valor cru (P1/P7). */
+/* `.su-screen` é o RITMO de uma tela: pilha vertical com o mesmo respiro entre as
+   regiões (cabeçalho, abas, cartões, ações). Todos os moldes o usam, para que duas
+   telas de classes diferentes não tenham espaçamentos diferentes entre as mesmas
+   coisas. `.su-listscreen` é o nome legado do mesmo arranjo — mantido porque já
+   está publicado. */
+.su-screen,
 .su-listscreen { display: flex; flex-direction: column; gap: var(--su-space-5); min-width: 0; }
 /* filhos de flex precisam de min-width:0 pra encolher em vez de estourar no min-content */
+.su-screen > *,
 .su-listscreen > * { min-width: 0; }
+
+/* Grade de indicadores do molde `dashboard`. Auto-fill como o FormGrid: sem media
+   query, o navegador encaixa quantos KPIs couberem e cai para um em tela estreita. */
+.su-statgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--su-space-4); }
+/* Blocos de conteúdo do dashboard (gráfico + resumo). Mesmo princípio, coluna mais larga. */
+.su-blocks { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: var(--su-space-4); align-items: start; }
+.su-blocks--single { grid-template-columns: 1fr; }
+
+/* "Voltar" do molde `detail`: acima do cabeçalho, discreto, alvo real de clique.
+   É a saída que a pessoa procura primeiro — não depende do breadcrumb estar certo. */
+.su-backlink { display: inline-flex; align-items: center; gap: var(--su-space-2); align-self: flex-start; background: none; border: 0; padding: 0; font: inherit; font-size: var(--su-fs-body-sm); color: var(--su-text-muted); cursor: pointer; min-height: 32px; }
+.su-backlink:hover { color: var(--su-text-primary); }
+.su-backlink:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--su-surface-base), 0 0 0 4px var(--su-border-focus); border-radius: var(--su-radius-sm); }
+
+/* Campo de busca do molde `search`: é a razão de a tela existir, então nasce grande
+   e com o ícone dentro (não ao lado, que viraria uma coluna a mais no arranjo). */
+.su-searchfield { display: flex; align-items: center; gap: var(--su-space-3); padding: var(--su-space-3) var(--su-space-4); color: var(--su-text-muted); }
+.su-searchfield input { border: 0; outline: none; background: transparent; font: inherit; font-size: var(--su-fs-body); color: var(--su-text-primary); flex: 1; min-width: 0; }
+
+/* Ações do wizard: Voltar de um lado, Avançar/Concluir do outro — a direção do
+   passo a passo fica legível sem ler o rótulo. */
+.su-form-actions--split { justify-content: space-between; }
 .su-cards > * { min-width: 0; }
 
 .su-pagehead { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--su-space-4); flex-wrap: wrap; }
