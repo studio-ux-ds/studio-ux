@@ -8,6 +8,19 @@
 
 ## [Unreleased]
 
+## [1.2.50] — 2026-07-28
+
+### Fixed — Dashboard grids fill the available row
+
+`DashboardScreen` now uses `auto-fit` for both KPI and content grids. Empty
+tracks collapse, so dashboards with 2, 3, 4 or 6 blocks use the available width
+instead of remaining compressed on the left of a wide screen. The same CSS still
+falls back to one column on narrow screens, with no API change.
+
+### Canary consumer
+
+- AquaPark: financial, commercial and marketing dashboards.
+
 ## [1.2.49] — 2026-07-27
 
 ### Added — `FormRow`, a linha de ação de um formulário

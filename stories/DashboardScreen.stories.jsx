@@ -27,6 +27,7 @@ const periodo = (
 
 export const Padrao = {
   name: "Com dados",
+  parameters: { docs: { description: { story: "Com dois blocos, a grade `auto-fit` colapsa as trilhas vazias e ambos ocupam a largura disponível; em telas estreitas, continuam empilhados." } } },
   render: () => (
     <DashboardScreen title="Desempenho dos anúncios" subtitle="Últimos 30 dias · atualizado há 12 min" actions={periodo} stats={stats}>
       <div className="su-blocks">
