@@ -14,12 +14,15 @@ import { DSIcon } from "./DSIcon.jsx";
  * qual deles cravar o atributo daria falso positivo. Quem valida é o produto —
  * o Field diz ao usuário o que é obrigatório, não impõe ao navegador.
  */
-export function Field({ label, error, hint, htmlFor, required, wide = false, className = "", children }) {
+export function Field({ label, error, hint, htmlFor, required, wide = false, grow = false, className = "", children }) {
   // `wide` só tem efeito dentro de um `FormGrid`: faz o campo ocupar a linha
   // inteira. É para o que se escreve (texto longo, JSON, lista editável) — meia
   // largura vira uma coluna estreita e alta em que o olho perde a linha. Fora do
   // grid, é inerte (não vira atributo no DOM nem quebra o layout).
-  const cls = ["su-field", error && "su-field--error", wide && "su-field--wide", className].filter(Boolean).join(" ");
+  // `grow` só tem efeito dentro de um `FormRow`: marca QUAL campo da linha de
+  // ação cresce (o principal — o seletor de pessoa, não o de papel). Cresce até
+  // um teto de leitura; sem isso o campo estica até a borda do cartão.
+  const cls = ["su-field", error && "su-field--error", wide && "su-field--wide", grow && "su-field--grow", className].filter(Boolean).join(" ");
   return (
     <div className={cls}>
       {label && (

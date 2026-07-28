@@ -8,6 +8,24 @@
 
 ## [Unreleased]
 
+## [1.2.49] — 2026-07-27
+
+### Added — `FormRow`, a linha de ação de um formulário
+
+Campos e um botão que age sobre eles, lado a lado ("adicionar pessoa à equipe", "incluir uma variável", "consultar"). Existia à mão em **cinco telas de um consumidor**, sempre com o mesmo `flex items-end gap-2` — e sempre com as mesmas três falhas:
+
+1. **`items-end` alinha pela BASE da caixa, não pelo controle.** Um campo com dica é mais alto que o vizinho, então alinhar por baixo empurra o controle de quem tem dica para cima e joga o botão para a altura do *texto da dica*.
+2. **`flex: 1` num campo o estica até onde o cartão for.** Num cartão largo, um seletor de nomes virou uma faixa de **1200px** — largura que não ajuda a ler nem a escolher.
+3. **A dica embaixo empurra a linha** — a mesma armadilha já documentada no `FormGrid`, agravada pelo botão junto.
+
+Como o componente resolve: os campos alinham pelo **topo** (a dica pende abaixo do próprio campo) e a ação carrega uma **etiqueta fantasma** — um rótulo invisível e `aria-hidden` com exatamente a altura de um rótulo real. O botão cai na linha dos controles **por medição, não por número mágico**: se a tipografia mudar, o alinhamento acompanha. O campo principal leva **`<Field grow>`** e cresce até um teto de leitura.
+
+### Lição
+
+**Um `marginBottom: 1` cravado num botão é sintoma de arranjo errado, não de botão errado.** Um dos cinco casos tinha exatamente isso — alguém empurrou a lixeira 1px para ela "parecer" alinhada, o que funciona naquele zoom, naquela fonte e naquela largura. Quando o ajuste é um número que ninguém sabe explicar, o que está faltando é a peça.
+
+E o diagnóstico vale como regra geral: **onde o consumidor escreve `flex` + `gap` + um ajuste fino, falta arranjo no DS.** Não é o consumidor sendo desleixado — é ele resolvendo, com as ferramentas que tem, um problema que devia estar resolvido uma vez só.
+
 ## [1.2.48] — 2026-07-27
 
 ### Fixed — AppShell navigation scale

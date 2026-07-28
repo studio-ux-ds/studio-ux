@@ -752,6 +752,29 @@
 /* Ações do wizard: Voltar de um lado, Avançar/Concluir do outro — a direção do
    passo a passo fica legível sem ler o rótulo. */
 .su-form-actions--split { justify-content: space-between; }
+
+/* ── Linha de ação de formulário (.su-form-row) ──────────────────────────────
+   Campos + botão lado a lado. Alinha pelo TOPO de propósito: assim a dica de um
+   campo pende abaixo dele em vez de empurrar o vizinho — alinhar pela base é o
+   que deixa a linha torta quando um campo tem dica e o outro não.
+   A ação usa uma ETIQUETA FANTASMA (`.su-field__label` invisível) para cair na
+   linha dos controles por medição, sem número mágico de padding. */
+.su-form-row { display: flex; flex-wrap: wrap; align-items: flex-start; gap: var(--su-space-3); }
+.su-form-row > .su-field { flex: 0 1 auto; min-width: 160px; }
+/* Campo principal: cresce, mas com teto de leitura. Sem teto, um seletor de
+   nomes vira uma faixa de 1200px num cartão largo — largura que não ajuda a ler
+   nem a escolher, só afasta o rótulo do controle. */
+.su-form-row > .su-field--grow { flex: 1 1 240px; max-width: 480px; }
+.su-form-row__action { display: flex; flex-direction: column; gap: var(--su-space-1); }
+.su-form-row__buttons { display: flex; align-items: center; gap: var(--su-space-2); }
+/* Em tela estreita a linha vira pilha e a etiqueta fantasma perde a função. */
+@media (max-width: 560px) {
+  .su-form-row > .su-field,
+  .su-form-row > .su-field--grow { flex: 1 1 100%; max-width: none; }
+  .su-form-row__action .su-field__label { display: none; }
+  .su-form-row__buttons { width: 100%; }
+  .su-form-row__buttons > .su-btn { flex: 1; justify-content: center; }
+}
 .su-cards > * { min-width: 0; }
 
 .su-pagehead { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--su-space-4); flex-wrap: wrap; }
