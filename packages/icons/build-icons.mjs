@@ -63,5 +63,64 @@ const manifest = {
 };
 writeFileSync(join(DIR, "manifest.json"), JSON.stringify(manifest, null, 2) + "\n");
 
-console.log(`  ✓ ${ICON_NAMES.length} ícones conformes emitidos em icons/ + manifest.json`);
+// --- Galeria navegável (examples/icons.html) — GERADA, nunca escrita à mão ---
+// Ela era um HTML manual e congelou em 43 glifos enquanto o catálogo chegava a 91:
+// mais da metade da biblioteca ficou invisível para quem abre a galeria para
+// procurar um ícone — que é exatamente como um consumidor conclui "não existe" e
+// vai buscar em outra biblioteca (ICONOGRAPHY §4.1, Corolário II). Artefato que
+// mostra o catálogo tem que SAIR do catálogo; qualquer cópia manual vira mentira
+// na primeira curadoria seguinte.
+const GALERIA = join(DIR, "..", "..", "examples", "icons.html");
+const cell = (n) =>
+  `    <figure class="cell" data-nome="${n}" data-kw="${ICONS[n].keywords.join(" ")}" title="${ICONS[n].meaning}">` +
+  `<span class="ic">${iconSvg(n, { size: 24 })}</span><figcaption>${n}</figcaption></figure>`;
+const html = `<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studio UX — Ícones (biblioteca curada)</title>
+<!-- ARQUIVO GERADO por packages/icons/build-icons.mjs a partir de icons.js. Não editar à mão. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../packages/tokens/tokens.css">
+<link rel="stylesheet" href="../packages/icons/icons.css">
+<style>
+ body{margin:0;background:var(--su-surface-base);font-family:var(--su-font-ui);color:var(--su-text-primary);padding:var(--su-space-6);}
+ h1{font-size:var(--su-fs-h2);margin:0 0 var(--su-space-1);} p{color:var(--su-text-muted);font-size:var(--su-fs-body-sm);margin:0 0 var(--su-space-5);}
+ .bar{display:flex;gap:var(--su-space-2);align-items:center;margin-bottom:var(--su-space-5);flex-wrap:wrap;}
+ .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:var(--su-space-2);}
+ .cell{margin:0;display:flex;flex-direction:column;align-items:center;gap:var(--su-space-2);padding:var(--su-space-4) var(--su-space-2);border:1px solid var(--su-border-default);border-radius:var(--su-radius-md);background:var(--su-surface-raised);}
+ .cell[hidden]{display:none;}
+ .ic{color:var(--su-text-primary);} figcaption{font-size:var(--su-fs-caption);color:var(--su-text-muted);font-family:var(--su-font-mono);text-align:center;word-break:break-all;}
+ .sizes{display:flex;gap:var(--su-space-4);align-items:baseline;color:var(--su-text-secondary);}
+ button,input{font:inherit;padding:var(--su-space-1) var(--su-space-3);border:1px solid var(--su-border-default);border-radius:var(--su-radius-md);background:var(--su-surface-raised);color:var(--su-text-primary);}
+ button{cursor:pointer;} #vazio{color:var(--su-text-muted);font-size:var(--su-fs-body-sm);}
+</style></head>
+<body>
+ <h1>Ícones — biblioteca curada (${ICON_NAMES.length})</h1>
+ <p>Estilo único: grade 24 · traço ${ICON_STYLE.strokeWidth} · currentColor (herda o token de texto) · terminações redondas. ICONOGRAPHY §3/§6.<br>
+    Não achou o conceito aqui? Isso é <strong>lacuna do catálogo</strong> — o caminho é a curadoria (§4.1), nunca importar de outra biblioteca.</p>
+ <div class="bar">
+   <button onclick="document.documentElement.dataset.theme=document.documentElement.dataset.theme==='dark'?'light':'dark'">Alternar tema</button>
+   <input id="busca" type="search" placeholder="Buscar por nome ou palavra-chave…" style="min-width:260px">
+   <span class="sizes"><span class="su-icon su-icon--sm">${iconSvg("check")}</span>sm 16 <span class="su-icon">${iconSvg("check")}</span>md 20 <span class="su-icon su-icon--lg">${iconSvg("check")}</span>lg 24</span>
+ </div>
+ <div class="grid">
+${ICON_NAMES.map(cell).join("\n")}
+ </div>
+ <p id="vazio" hidden>Nada com esse nome. Se o conceito faz falta, ele entra por curadoria em <code>packages/icons/icons.js</code>.</p>
+<script>
+ const cells=[...document.querySelectorAll('.cell')], vazio=document.getElementById('vazio');
+ document.getElementById('busca').addEventListener('input',(e)=>{
+   const q=e.target.value.trim().toLowerCase();
+   let n=0;
+   for(const c of cells){const ok=!q||c.dataset.nome.includes(q)||c.dataset.kw.includes(q);c.hidden=!ok;if(ok)n++;}
+   vazio.hidden=n>0;
+ });
+</script>
+</body>
+</html>
+`;
+writeFileSync(GALERIA, html);
+
+console.log(`  ✓ ${ICON_NAMES.length} ícones conformes emitidos em icons/ + manifest.json + examples/icons.html`);
 console.log(`  estilo: grade 24 · traço ${ICON_STYLE.strokeWidth} · currentColor · terminações redondas`);

@@ -8,6 +8,30 @@
 
 ## [Unreleased]
 
+## [1.2.45] — 2026-07-27
+
+### Changed
+
+- **`examples/icons.html` passou a ser GERADO** por `build-icons.mjs`, a partir de `icons.js`. Ganhou busca por nome e por palavra-chave, e uma linha dizendo o que fazer quando o conceito não está lá (curadoria — §4.1), em vez de deixar a pessoa concluir sozinha.
+
+### Added
+
+- **Story para os 5 exportados que não tinham:** `AuthScreen` (+ `AuthLink`), `MessageScreen`, `FormGrid`, `CopyButton` e `CheckGroup`.
+- **`Spinner` na story de Feedback** agora mostra as três escalas e o `center` — antes mostrava só o padrão, que era o único que existia.
+
+### Origem
+
+Auditoria depois da v1.2.41, procurando onde mais o padrão "existe mas ninguém acha" ainda estava vivo. Dois lugares:
+
+1. **A galeria de ícones estava congelada em 43 glifos** enquanto o catálogo chegava a **91**. Era HTML escrito à mão: cada curadoria desde então (26 de navegação, 10 de mídia, `copy`, `spark`…) ficou de fora. **Mais da metade da biblioteca era invisível** para quem abre a galeria justamente para procurar um ícone.
+2. **5 componentes exportados no barrel não tinham story** — e o Storybook é declarado a doc navegável do `@studio-ux-ds/react` real.
+
+### Lição
+
+A galeria congelada **era a causa raiz do episódio do `lucide-react`, ainda viva**: um consumidor procurando `mic` ou `camera` na galeria concluía "não tem" e importava de fora — e concluía certo, pela evidência que tinha à mão. O catálogo cobria; a vitrine, não.
+
+Daí a regra: **artefato que mostra o catálogo tem que SAIR do catálogo.** Cópia manual de uma fonte que cresce vira mentira na primeira curadoria seguinte, e ninguém percebe porque nada quebra — a galeria continua abrindo, bonita, mostrando um terço da verdade. É o mesmo mecanismo do menu com glifo repetido, do molde só-em-HTML e do `manualChunks` esquecido: **o erro se manifesta como uma conclusão razoável tirada de uma evidência desatualizada**, nunca como uma exceção.
+
 ## [1.2.44] — 2026-07-27
 
 ### Added

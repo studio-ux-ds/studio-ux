@@ -34,10 +34,34 @@ export const Esqueleto = {
 
 export const Carregando = {
   name: "Spinner",
+  parameters: {
+    docs: { description: { story: "Três escalas, porque o mesmo desenho serve a dois lugares: **ao lado de um rótulo** (`sm`/padrão) e **no centro de uma região que ainda não tem conteúdo** (`lg`).\n\n**A cor não é configurável de propósito** — anel neutro com o topo no accent é a assinatura de carregamento do sistema; deixar cada tela escolher é como se perde a unidade.\n\nDentro de um botão, nada disso é necessário: use `<Button loading>`, que monta o spinner na escala e na cor do botão e já cuida do `disabled`/`aria-busy`." } },
+  },
   render: () => (
-    <div className="su-demo-row">
-      <Spinner />
-      <span style={{ fontSize: 13, color: "var(--su-text-secondary)" }}>Carregando…</span>
+    <div style={{ display: "grid", gap: 20 }}>
+      <div className="su-demo-row">
+        <Spinner size="sm" />
+        <Spinner />
+        <Spinner size="lg" />
+        <span style={{ fontSize: 13, color: "var(--su-text-secondary)" }}>sm 12 · padrão 16 · lg 24</span>
+      </div>
+      <div>
+        <div style={{ fontSize: 12, color: "var(--su-text-muted)", marginBottom: 6 }}>
+          Ao lado do rótulo — carregamento de uma ação pontual:
+        </div>
+        <div className="su-demo-row">
+          <Spinner size="sm" />
+          <span style={{ fontSize: 13, color: "var(--su-text-secondary)" }}>Executando…</span>
+        </div>
+      </div>
+      <div>
+        <div style={{ fontSize: 12, color: "var(--su-text-muted)", marginBottom: 6 }}>
+          <code>center</code> — carregamento inicial de uma tela ou cartão (o arranjo, não só o desenho):
+        </div>
+        <div style={{ border: "1px dashed var(--su-border-default)", borderRadius: 8 }}>
+          <Spinner size="lg" center />
+        </div>
+      </div>
     </div>
   ),
 };
