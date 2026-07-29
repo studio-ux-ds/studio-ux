@@ -8,6 +8,19 @@
 
 ## [Unreleased]
 
+## [1.2.52] - 2026-07-29
+
+### Fixed - `NumericInput` keeps its natural width inside `Field`
+
+`Field` is a vertical flex container, whose default cross-axis alignment stretched
+the compact `NumericInput` to the whole available width. The default
+`fullWidth={false}` now holds inside `Field`; `fullWidth` remains the explicit
+opt-in for a column/cell that should be filled.
+
+### Canary consumer
+
+- AquaPark: Legal eligibility criterion.
+
 ## [1.2.51] - 2026-07-28
 
 ### Added - compact complementary filters in `ListScreen`

@@ -9,9 +9,11 @@ export default {
 
 function NumericDemo() {
   const [v, setV] = useState(3);
+  const [full, setFull] = useState(3);
   return (
-    <div style={{ maxWidth: 200 }}>
-      <Field label="Quantidade" htmlFor="q"><NumericInput value={v} onChange={setV} min={0} max={99} /></Field>
+    <div className="su-demo-col" style={{ maxWidth: 420 }}>
+      <Field label="Quantidade (largura natural)" htmlFor="q"><NumericInput value={v} onChange={setV} min={0} max={99} /></Field>
+      <Field label="Quantidade (largura total)" htmlFor="q-full"><NumericInput fullWidth value={full} onChange={setFull} min={0} max={99} /></Field>
     </div>
   );
 }

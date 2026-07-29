@@ -21,6 +21,12 @@
 
 ## ✅ Estado vigente · Current state
 
+- **NumericInput (v1.2.52):** a largura natural do controle agora prevalece
+  dentro de `Field`; somente `fullWidth` ocupa a coluna inteira. O ajuste é na
+  camada CSS do DS e evita que um número curto forme uma faixa vazia. AquaPark
+  Jurídico é o consumidor-canário. / Natural width now prevails inside `Field`;
+  only `fullWidth` fills the whole column. The CSS-layer correction prevents a
+  short number from creating an empty strip. AquaPark Legal is the canary.
 - **Dashboard grid (v1.2.50):** `DashboardScreen` usa `auto-fit` em `su-statgrid`
   e `su-blocks`; trilhas vazias colapsam, então 2–6 cartões ocupam a largura do
   painel sem deformar a leitura em desktop e continuam empilhando em mobile.

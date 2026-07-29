@@ -689,6 +689,11 @@
 .su-numeric__btn { width: 32px; border: none; background: var(--su-surface-sunken); color: var(--su-text-secondary); cursor: pointer; font-size: 16px; display: inline-flex; align-items: center; justify-content: center; }
 .su-numeric__btn:hover { background: var(--su-border-default); color: var(--su-text-primary); }
 .su-numeric__btn:disabled { opacity: .4; cursor: not-allowed; }
+/* `Field` é flex em coluna e seu alinhamento padrão é stretch. O NumericInput,
+   porém, nasce compacto: sem esta regra o próprio wrapper contradiz a API
+   `fullWidth=false` e cria uma faixa vazia depois do botão +. A variante full
+   continua sendo a única forma explícita de ocupar a largura do Field. */
+.su-field > .su-numeric:not(.su-numeric--full) { align-self: flex-start; }
 /* Variante `fullWidth`: estica o componente e o input pra ocupar 100% do
    container. Útil quando o NumericInput vive numa célula de grid/Field que dá
    100% de espaço (o default inline-flex com input de 72px destoa). Opt-in via
