@@ -39,7 +39,7 @@ const columns = [
 
 const rowMenu = () => (
   <span style={{ display: "inline-flex", gap: 2, justifyContent: "flex-end", opacity: 0.75 }}>
-    <IconButton icon="pencil" aria-label="Editar" />
+    <IconButton icon="edit" aria-label="Editar" />
     <IconButton icon="trash" aria-label="Remover" />
   </span>
 );
@@ -60,8 +60,15 @@ const Frame = ({ children }) => <div style={{ padding: 24, background: "var(--su
 function Interativo() {
   const [search, setSearch] = useState("");
   const [seg, setSeg] = useState("");
+  const [sort, setSort] = useState({ key: "vence", direction: "asc" });
   const base = useMemo(() => RAW.filter((r) => !seg || r.bloco === seg), [seg]);
-  const rows = useMemo(() => base.filter((r) => !search || r.desc.toLowerCase().includes(search.toLowerCase())), [base, search]);
+  const rows = useMemo(() => [...base]
+    .filter((r) => !search || r.desc.toLowerCase().includes(search.toLowerCase()))
+    .sort((a, b) => {
+      const result = typeof a[sort.key] === "number" ? a[sort.key] - b[sort.key] : String(a[sort.key]).localeCompare(String(b[sort.key]), "pt-BR");
+      return sort.direction === "asc" ? result : -result;
+    }), [base, search, sort]);
+  const sortableColumns = useMemo(() => columns.map((column) => ["desc", "valor", "vence"].includes(column.key) ? { ...column, sortable: true } : column), []);
   const total = base.reduce((s, r) => s + r.valor, 0);
   return (
     <Frame>
@@ -72,7 +79,7 @@ function Interativo() {
         search={search} onSearch={setSearch} searchPlaceholder="Buscar receita…"
         segments={[{ id: "", label: "Tudo" }, { id: "PF", label: "Pessoal" }, { id: "PJ", label: "Empresarial" }]}
         segment={seg} onSegment={setSeg}
-        columns={columns} rows={rows} getRowId={(r) => r.id} renderRowMenu={rowMenu} renderCard={renderCard}
+        columns={sortableColumns} rows={rows} getRowId={(r) => r.id} renderRowMenu={rowMenu} renderCard={renderCard} sort={sort} onSort={(key, direction) => setSort({ key, direction })}
         summary={<span>Mostrando {rows.length} de {RAW.length} · Total <strong style={{ color: "var(--su-success-fg)" }}>{brl(total)}</strong></span>}
         filterActive={Boolean(search || seg)}
         emptyFiltered={{ onClear: () => { setSearch(""); setSeg(""); } }}

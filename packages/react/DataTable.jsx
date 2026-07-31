@@ -35,7 +35,7 @@ function SelectBox({ checked, indeterminate, onChange, label, single, name }) {
  * DataTable — .su-table-card + .su-table, com seleção em lote e menu por linha.
  * Ao selecionar, a toolbar vira barra contextual (o comportamento canônico).
  *
- * @param {{key:string, header:React.ReactNode, align?:"right", render?:(row)=>React.ReactNode}[]} columns
+ * @param {{key:string, header:React.ReactNode, align?:"right", render?:(row)=>React.ReactNode, sortable?:boolean, sortLabel?:string}[]} columns
  * @param {any[]} rows
  * @param {(row, i)=>string|number} [getRowId]
  * @param {(selectedIds:any[], clear:()=>void)=>React.ReactNode} [bulkActions]  ações da barra de lote.
@@ -45,6 +45,8 @@ function SelectBox({ checked, indeterminate, onChange, label, single, name }) {
  *   `selectedIds.length === 1` — não ofereça uma ação de-um-só quando há cinco marcados.
  * @param {(row)=>React.ReactNode} [renderRowMenu]  o "…" de cada linha
  * @param {React.ReactNode} [toolbar]  a toolbar quando nada está selecionado
+ * @param {{key:string, direction:"asc"|"desc"}} [sort]  ordenação atual, controlada pelo consumidor.
+ * @param {(key:string, direction:"asc"|"desc")=>void} [onSort]  solicita a próxima ordenação; o DataTable não reordena rows.
  * @param {React.ReactNode} [footer]  rodapé dentro do card (ex.: contagem + Pagination)
  * @param {boolean} [selectable]  mostra a coluna de seleção. Default: só quando há `bulkActions`
  *   (sem ações de lote não há por que ter checkbox — mantém a lista "calma", igual ao Flux).
@@ -54,7 +56,7 @@ function SelectBox({ checked, indeterminate, onChange, label, single, name }) {
  *   `"single"` marcar uma linha desmarca a anterior e o "marcar todos" do cabeçalho não existe:
  *   a interface deixa de oferecer o que o sistema não faz, em vez de recusar depois (P13).
  */
-export function DataTable({ columns, rows, getRowId = (r, i) => i, bulkActions, renderRowMenu, toolbar, footer, selectable: selectableProp, selectionMode = "multiple", bare = false, onRowClick, getRowLabel }) {
+export function DataTable({ columns, rows, getRowId = (r, i) => i, bulkActions, renderRowMenu, toolbar, footer, selectable: selectableProp, selectionMode = "multiple", bare = false, onRowClick, getRowLabel, sort, onSort }) {
   const selectable = selectableProp != null ? selectableProp : bulkActions != null;
   const single = selectionMode === "single";
   const radioName = `su-select-${useId()}`;
@@ -68,6 +70,11 @@ export function DataTable({ columns, rows, getRowId = (r, i) => i, bulkActions, 
   const toggleAll = () => setSel(allChecked ? new Set() : new Set(ids));
   const clear = () => setSel(new Set());
   const selCell = { paddingLeft: 16, width: 34 };
+  const sortColumn = (column) => {
+    if (!column.sortable || !onSort) return;
+    const nextDirection = sort?.key === column.key && sort.direction === "asc" ? "desc" : "asc";
+    onSort(column.key, nextDirection);
+  };
 
   const content = <>
       {selectable && sel.size > 0 ? (
@@ -108,7 +115,17 @@ export function DataTable({ columns, rows, getRowId = (r, i) => i, bulkActions, 
                 )}
               </th>
             )}
-            {columns.map((c) => <th key={c.key} className={c.align === "right" ? "num" : ""}>{c.header}</th>)}
+            {columns.map((c) => {
+              const sorted = sort?.key === c.key ? sort.direction : undefined;
+              const label = c.sortLabel || (typeof c.header === "string" ? c.header : "esta coluna");
+              return <th key={c.key} className={c.align === "right" ? "num" : ""} aria-sort={c.sortable && onSort ? (sorted === "asc" ? "ascending" : sorted === "desc" ? "descending" : "none") : undefined}>
+                {c.sortable && onSort ? (
+                  <button type="button" className="su-table__sort" onClick={() => sortColumn(c)} aria-label={`Ordenar por ${label}${sorted ? sorted === "asc" ? ", crescente" : ", decrescente" : ""}`}>
+                    <span>{c.header}</span>{sorted && <DSIcon name={sorted === "asc" ? "arrow-up" : "arrow-down"} size="sm" />}
+                  </button>
+                ) : c.header}
+              </th>;
+            })}
             {renderRowMenu && <th style={{ width: 44 }} />}
           </tr>
         </thead>

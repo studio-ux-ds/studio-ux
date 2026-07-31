@@ -4,7 +4,7 @@
 >
 > **EN** — This file exists because an assistant's memory is compacted in long sessions and it loses the thread (especially tracking versions). **The source of truth is git + `CHANGELOG.md`, NEVER memory.** Every new session starts by reading: (1) `git log --oneline -3` and `git tag`, (2) this file, (3) `STUDIO_UX.md`, (4) the current front's doc.
 
-> Última atualização · Last updated: 2026-07-22 (biblioteca e adoção por jornada em evolução; referência HTML demonstra a composição canônica de listas, superfícies e filtros; intake também cobre exemplos de UX · component library and journey adoption in progress; HTML reference demonstrates canonical list, surface and filter composition; intake also covers UX examples).
+> Última atualização · Last updated: 2026-07-30 (ordenacao controlada e Sheet estruturado em preparação para revisão visual/CI; biblioteca e adoção por jornada seguem em evolução · controlled sorting and structured Sheet are prepared for visual/CI review; component library and journey adoption remain in progress).
 
 ---
 
@@ -20,6 +20,18 @@
 ---
 
 ## ✅ Estado vigente · Current state
+
+- **Vendedores — contratos de apoio (v1.2.53):** a auditoria da migração do
+  AquaPark gerou ordenação controlada em `DataTable`/`ListScreen` e `Sheet`
+  estruturado (`title`, `footer`, `fullHeight`). O Storybook demonstra ambos e
+  corrige nomes de ícones desatualizados; a composição de relacionamento
+  opcional usa o `Combobox` existente, sem criar componente de domínio. O
+  consumo no AquaPark depende da publicação CI da tag e da validação visual da
+  story. / The AquaPark migration audit produced controlled `DataTable`/
+  `ListScreen` sorting and the structured Sheet (`title`, `footer`,
+  `fullHeight`). Storybook demonstrates both and corrects stale icon names;
+  optional relationships use the existing `Combobox`, with no domain component.
+  AquaPark consumption depends on CI publishing the tag and visual story review.
 
 - **NumericInput (v1.2.52):** a largura natural do controle agora prevalece
   dentro de `Field`; somente `fullWidth` ocupa a coluna inteira. O ajuste é na

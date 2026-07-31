@@ -44,13 +44,20 @@ export function Drawer({ open, onClose, title, children, footer, width = 360 }) 
   );
 }
 
-/** Sheet — bottom sheet (mobile/desktop secundário). */
-export function Sheet({ open, onClose, children }) {
+/** Sheet — painel inferior; `title`/`footer`/`fullHeight` ativam o fluxo estruturado. */
+export function Sheet({ open, onClose, title, children, footer, fullHeight = false }) {
+  const titleId = useId();
   useEsc(open, onClose);
   if (!open) return null;
+  const structured = Boolean(title || footer || fullHeight);
   return (
     <div className="su-scrim" style={{ alignItems: "flex-end", padding: 0 }} onClick={(e) => e.target === e.currentTarget && onClose && onClose()}>
-      <div className="su-sheet"><div className="su-sheet__handle" />{children}</div>
+      <div className={["su-sheet", structured && "su-sheet--structured", fullHeight && "su-sheet--full"].filter(Boolean).join(" ")} role="dialog" aria-modal="true" aria-labelledby={title ? titleId : undefined} aria-label={title ? undefined : "Painel inferior"}>
+        <div className="su-sheet__handle" />
+        {title && <div className="su-sheet__head"><span id={titleId}>{title}</span><button type="button" className="su-iconbtn" aria-label="Fechar" onClick={onClose}><DSIcon name="close" size="sm" /></button></div>}
+        {structured ? <div className="su-sheet__body">{children}</div> : children}
+        {footer && <div className="su-sheet__foot">{footer}</div>}
+      </div>
     </div>
   );
 }

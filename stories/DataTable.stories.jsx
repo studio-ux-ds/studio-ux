@@ -29,7 +29,7 @@ function RowMenu() {
   const [open, setOpen] = useState(false);
   return (
     <span style={{ position: "relative", display: "inline-block" }}>
-      <IconButton icon="dots" aria-label="Ações da linha" onClick={() => setOpen((o) => !o)} />
+      <IconButton icon="more" aria-label="Ações da linha" onClick={() => setOpen((o) => !o)} />
       {open && (
         <div style={{ position: "absolute", right: 0, top: "100%", zIndex: "var(--su-z-overlay)" }} onMouseLeave={() => setOpen(false)}>
           <Menu items={[
@@ -123,6 +123,25 @@ export const LinhaClicavel = {
     }
     return <Demo />;
   },
+};
+
+function SortDemo() {
+  const [sort, setSort] = useState({ key: "nome", direction: "asc" });
+  const sortedRows = [...ROWS].sort((a, b) => {
+    const left = a[sort.key]; const right = b[sort.key];
+    const result = typeof left === "number" ? left - right : String(left).localeCompare(String(right), "pt-BR");
+    return sort.direction === "asc" ? result : -result;
+  });
+  const sortableColumns = columns.map((column) => ["nome", "mrr"].includes(column.key) ? { ...column, sortable: true } : column);
+  return <div style={{ padding: 24, background: "var(--su-surface-base)" }}>
+    <DataTable columns={sortableColumns} rows={sortedRows} getRowId={(row) => row.id} sort={sort} onSort={(key, direction) => setSort({ key, direction })} />
+  </div>;
+}
+
+export const OrdenacaoControlada = {
+  name: "Ordenação controlada",
+  parameters: { docs: { description: { story: "O DS torna o cabeçalho acionável, anuncia `aria-sort` e informa a próxima direção por `onSort(key, direction)`. A ordem dos dados continua no produto: aqui ela é local; numa lista paginada ela normalmente chama a API." } } },
+  render: () => <SortDemo />,
 };
 
 export const Bare = {

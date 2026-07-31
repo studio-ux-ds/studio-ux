@@ -47,6 +47,26 @@ function ComboDemo() {
 }
 export const ComboboxBuscavel = { name: "Combobox", render: () => <ComboDemo /> };
 
+function OptionalRelationshipDemo() {
+  const [value, setValue] = useState(null);
+  const options = [
+    { label: "Marina Lopes · Administradora", value: "marina" },
+    { label: "Rafael Lima · Operador", value: "rafael" },
+    { label: "Sem vínculo", value: "" },
+  ];
+  return <div style={{ maxWidth: 420 }}>
+    <Field label="Pessoa vinculada" hint="Opcional. Pesquise para vincular um registro existente.">
+      <Combobox value={value} onChange={setValue} options={options} placeholder="Buscar pessoa" />
+    </Field>
+  </div>;
+}
+
+export const ComboboxRelacionamentoOpcional = {
+  name: "Combobox: relacionamento opcional",
+  parameters: { docs: { description: { story: "Use `Combobox` para escolher um relacionamento entre registros quando as opções podem crescer. A obrigatoriedade, a fonte dos dados e o payload continuam sendo decisões do produto consumidor." } } },
+  render: () => <OptionalRelationshipDemo />,
+};
+
 function UploadDemo() {
   const [name, setName] = useState(null);
   return (

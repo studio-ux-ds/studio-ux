@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Drawer, Sheet, Menu, Tooltip, Popover, Button, IconButton, Field, Input } from "@studio-ux-ds/react";
+import { Drawer, Sheet, Menu, Tooltip, Popover, Button, IconButton, Field, Input, FileUpload, Banner } from "@studio-ux-ds/react";
 
 export default {
   title: "Overlays/Painéis e menus",
@@ -35,9 +35,9 @@ function SheetDemo() {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <Button variant="secondary" icon="dots" onClick={() => setOpen(true)}>Mais ações</Button>
-      <Sheet open={open} onClose={() => setOpen(false)}>
-        <div className="su-demo-col" style={{ padding: 20 }}>
+      <Button variant="secondary" icon="more" onClick={() => setOpen(true)}>Mais ações</Button>
+      <Sheet open={open} onClose={() => setOpen(false)} title="Ações rápidas" footer={<Button variant="secondary" onClick={() => setOpen(false)}>Fechar</Button>}>
+        <div className="su-demo-col">
           <strong style={{ fontSize: 15 }}>Ações rápidas</strong>
           <Button variant="secondary" icon="edit" onClick={() => setOpen(false)}>Editar</Button>
           <Button variant="secondary" icon="copy" onClick={() => setOpen(false)}>Duplicar</Button>
@@ -48,6 +48,34 @@ function SheetDemo() {
   );
 }
 export const SheetInferior = { name: "Sheet", render: () => <SheetDemo /> };
+
+function FileFlowSheetDemo() {
+  const [open, setOpen] = useState(false);
+  const [fileName, setFileName] = useState("");
+  const close = () => { setOpen(false); setFileName(""); };
+  return <>
+    <Button variant="secondary" icon="upload" onClick={() => setOpen(true)}>Importar arquivo</Button>
+    <Sheet
+      open={open}
+      onClose={close}
+      title="Importar registros"
+      fullHeight
+      footer={<><Button variant="secondary" onClick={close}>Cancelar</Button><Button variant="primary" disabled={!fileName} onClick={close}>{fileName ? "Continuar" : "Selecione um arquivo"}</Button></>}
+    >
+      <div className="su-demo-col">
+        <p style={{ margin: 0, color: "var(--su-text-secondary)" }}>Envie uma planilha para revisar os dados antes de confirmar a importação.</p>
+        <FileUpload accept=".xlsx,.csv" hint="Arraste uma planilha ou clique para selecionar" onFiles={(files) => setFileName(files && files[0] ? files[0].name : "")} />
+        {fileName && <Banner tone="info">Arquivo selecionado: <strong>{fileName}</strong></Banner>}
+      </div>
+    </Sheet>
+  </>;
+}
+
+export const SheetFluxoDeArquivo = {
+  name: "Sheet: fluxo de arquivo em tela cheia",
+  parameters: { docs: { description: { story: "Para uma jornada de arquivo com revisão, use `Sheet` com `title`, `footer` e `fullHeight`. O corpo fica rolável e o rodapé conserva as ações. `FileUpload` recebe o arquivo; leitura, validação, progresso e envio são responsabilidade do produto." } } },
+  render: () => <FileFlowSheetDemo />,
+};
 
 export const MenuDropdown = {
   name: "Menu",

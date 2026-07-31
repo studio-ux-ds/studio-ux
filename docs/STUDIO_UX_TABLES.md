@@ -141,6 +141,12 @@ That is: the same table may have **more** actions available with one item ticked
 
 ## 4. Ordenação · Sorting
 
+### Contrato React do adapter · React adapter contract
+
+**PT** — O adapter materializa a regra com contrato controlado: na coluna, `sortable: true` (e `sortLabel` quando o cabeçalho não for texto); na tabela, `sort={{ key, direction }}` e `onSort(key, direction)`. O clique alterna `asc`/`desc`, a seta aparece somente na coluna corrente e `aria-sort` informa `ascending`, `descending` ou `none`. O adapter nunca ordena nem muda a coleção por conta própria: a tela decide se aplica um comparador local ou refaz a consulta com a ordenação solicitada. Assim a mesma peça serve listas pequenas, paginação e backend remoto sem fingir que o dado inteiro está no navegador.
+
+**EN** — The adapter materializes the rule through a controlled contract: on the column, `sortable: true` (and `sortLabel` when the header is not text); on the table, `sort={{ key, direction }}` and `onSort(key, direction)`. A click toggles `asc`/`desc`, the arrow appears only on the current column and `aria-sort` states `ascending`, `descending` or `none`. The adapter never sorts or mutates the collection itself: the screen decides whether to apply a local comparator or refetch with the requested sorting. This lets the same piece serve small lists, pagination and remote backends without pretending the whole dataset is in the browser.
+
 **PT** — A ordenação é do componente `DataTable` (comportamento: `COMPONENT_LIBRARY`); aqui, a composição. Ordena-se clicando no **cabeçalho da coluna**, com a direção sinalizada por **ícone + estado** e não só por cor (P17 — uma seta para cima/baixo, além do realce). Uma coluna ordenada por vez é o padrão previsível; ordenação multi-nível é recurso avançado, não o comportamento base. Nem toda coluna precisa ser ordenável — colunas de ação ou de texto livre longo não ganham nada com isso. A ordenação é anunciada a leitores (`aria-sort`).
 
 **EN** — Sorting belongs to the `DataTable` component (behavior: `COMPONENT_LIBRARY`); here, the composition. You sort by clicking the **column header**, with direction signaled by **icon + state**, not color alone (P17 — an up/down arrow, plus the highlight). One sorted column at a time is the predictable default; multi-level sorting is an advanced feature, not the base behavior. Not every column needs to be sortable — action columns or long free-text ones gain nothing from it. Sorting is announced to readers (`aria-sort`).

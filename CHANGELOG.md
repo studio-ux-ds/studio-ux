@@ -8,6 +8,26 @@
 
 ## [Unreleased]
 
+## [1.2.53] - 2026-07-30
+
+### Added — controlled table sorting and structured flow Sheet
+
+- `DataTable` now supports controlled sorting through column `sortable` / `sortLabel`
+  plus table `sort` / `onSort`. It owns the accessible header control, semantic
+  direction icon and `aria-sort`; the consumer continues to own local or remote
+  ordering.
+- `ListScreen` forwards the same controlled sorting contract to its `DataTable`.
+- `Sheet` now accepts `title`, `footer` and `fullHeight` for a titled flow with
+  a scrollable body and persistent actions, while the former content-sized use
+  remains compatible.
+
+### Fixed — Storybook evidence matches the real catalog
+
+- Replaced stale `dots` and `pencil` story icons with the real `more` and `edit`
+  catalog names.
+- Added stories for controlled sorting, the full-height file-flow Sheet and the
+  optional relationship `Combobox` composition.
+
 ## [1.2.52] - 2026-07-29
 
 ### Fixed - `NumericInput` keeps its natural width inside `Field`
