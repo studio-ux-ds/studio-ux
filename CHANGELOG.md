@@ -8,6 +8,21 @@
 
 ## [Unreleased]
 
+## [1.2.55] - 2026-08-01
+
+### Fixed — controlled selection reaches ListScreen consumers
+
+- `ListScreen` now forwards `selectable`, `selectionMode`, `isRowSelectable`,
+  `selectedIds` and `onSelectionChange` to its internal `DataTable`.
+  A paginated operational list can therefore keep eligible controlled selection
+  without replacing the standard list pattern.
+
+### Storybook and component reference
+
+- Added the `Seleção elegível e controlada` ListScreen story, demonstrating a
+  final row without a checkbox and a controlled selection that is ready for
+  pagination.
+
 ## [1.2.54] - 2026-08-01
 
 ### Added — stable list actions and eligible controlled selection

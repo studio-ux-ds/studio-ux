@@ -190,3 +190,25 @@ export const LinhaClicavel = {
   parameters: { docs: { description: { story: "Quando abrir o registro é a ação principal (v1.2.4), o `ListScreen` propaga `onRowClick`/`getRowLabel` para o `DataTable` interno: linha inteira clicável (mouse, `Enter`, `Espaço`), `aria-label` acessível, e as ações em `renderRowMenu` continuam alvos independentes (o clique no menu não abre o detalhe)." } } },
   render: () => <LinhaClicavelDemo />,
 };
+
+function SelecaoElegivelControladaDemo() {
+  const [selected, setSelected] = useState([]);
+  const rows = [
+    { id: "a", desc: "Comissão a liberar", status: "Pendente", eligible: true, valor: 500 },
+    { id: "b", desc: "Comissão paga", status: "Paga", eligible: false, valor: 500 },
+    { id: "c", desc: "Comissão liberada", status: "Liberada", eligible: true, valor: 250 },
+  ];
+  return <Frame><ListScreen
+    title="Comissões" subtitle="Só itens elegíveis entram na operação em lote."
+    listTitle="Comissões registradas" columns={[{ key: "desc", header: "Comissão" }, { key: "status", header: "Status" }, { key: "valor", header: "Valor", align: "right", render: (row) => brl(row.valor) }]} rows={rows} getRowId={(row) => row.id}
+    selectable isRowSelectable={(row) => row.eligible} selectedIds={selected} onSelectionChange={setSelected}
+    bulkActions={(ids, clear) => <><Button variant="primary" size="sm" onClick={() => {}}>Processar {ids.length}</Button><Button variant="secondary" size="sm" onClick={clear}>Limpar</Button></>}
+    summary={`${selected.length} comissão(ões) selecionada(s)`}
+  /></Frame>;
+}
+
+export const SelecaoElegivelControlada = {
+  name: "Seleção elegível e controlada",
+  parameters: { docs: { description: { story: "`ListScreen` propaga `selectable`, `isRowSelectable`, `selectedIds` e `onSelectionChange` para o `DataTable`. Use a seleção controlada quando ela deve sobreviver à paginação; linhas finais ficam sem checkbox em vez de serem aceitas e recusadas depois." } } },
+  render: () => <SelecaoElegivelControladaDemo />,
+};
