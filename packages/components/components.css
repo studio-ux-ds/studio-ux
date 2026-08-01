@@ -480,7 +480,7 @@
 .su-calendar__day--selected { background: var(--su-action); color: var(--su-text-on-action); }
 
 /* ---------- FileUpload ---------- */
-.su-upload { border: 1.5px dashed var(--su-border-strong); border-radius: var(--su-radius-lg); padding: var(--su-space-6); text-align: center; color: var(--su-text-secondary); background: var(--su-surface-raised); cursor: pointer; }
+.su-upload { display: grid; width: 100%; box-sizing: border-box; justify-items: center; gap: var(--su-space-2); border: 1.5px dashed var(--su-border-strong); border-radius: var(--su-radius-lg); padding: var(--su-space-6); text-align: center; color: var(--su-text-secondary); background: var(--su-surface-raised); cursor: pointer; }
 .su-upload:hover, .su-upload--dragover { border-color: var(--su-action); background: var(--su-action-tint); }
 .su-upload__icon { font-size: 26px; color: var(--su-text-muted); margin-bottom: var(--su-space-2); }
 

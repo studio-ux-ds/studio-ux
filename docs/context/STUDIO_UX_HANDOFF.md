@@ -4,7 +4,7 @@
 >
 > **EN** — This file exists because an assistant's memory is compacted in long sessions and it loses the thread (especially tracking versions). **The source of truth is git + `CHANGELOG.md`, NEVER memory.** Every new session starts by reading: (1) `git log --oneline -3` and `git tag`, (2) this file, (3) `STUDIO_UX.md`, (4) the current front's doc.
 
-> Última atualização · Last updated: 2026-08-01 (regra normativa de escolha entre Modal, Drawer, Sheet e detalhe inline registrada; AquaPark Produtos é o consumidor-canário em correção visual · normative choice between Modal, Drawer, Sheet and inline detail recorded; AquaPark Products is the visual-correction canary).
+> Última atualização · Last updated: 2026-08-01 (FileUpload corrigido como região de largura total; AquaPark Produtos é o consumidor-canário do editor PDF inline · FileUpload fixed as a full-width receiving region; AquaPark Products is the inline PDF editor canary).
 
 ---
 
@@ -21,7 +21,15 @@
 
 ## ✅ Estado vigente · Current state
 
-- **Escolha de contêiner (Unreleased):** Modal Desktop + Sheet Mobile é para
+- **FileUpload (v1.2.57):** a zona de arquivo deixou de ser um `label` inline e
+  passou a ser uma grade de largura total, com borda tracejada íntegra e conteúdo
+  centralizado em qualquer contêiner. Biblioteca de componentes e Storybook
+  registram o contrato. AquaPark Produtos é o consumidor-canário do editor PDF
+  inline. / The file receiving zone is no longer an inline `label`; it is a
+  full-width grid with an intact dashed border and centered content in every
+  container. The component library and Storybook record the contract.
+
+- **Escolha de contêiner (v1.2.56):** Modal Desktop + Sheet Mobile é para
   uma intenção curta e fechada, sem Tabs, escrita, arquivo ou prévia; Drawer é
   exclusivamente inspetor de item dentro de editor/canvas que precisa manter o
   contexto ao redor visível; Tabs e trabalho contínuo promovem para detalhe

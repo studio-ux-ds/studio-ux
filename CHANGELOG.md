@@ -6,6 +6,17 @@
 
 ---
 
+## [1.2.57] - 2026-08-01
+
+### Fixed — FileUpload layout contract
+
+- `FileUpload` is now a full-width grid receiving region instead of an inline
+  label. Its dashed border remains intact and its icon and instruction remain
+  centered in every container, including inline detail screens.
+- The component reference and Storybook now make that layout contract explicit.
+
+---
+
 ## [1.2.56] - 2026-08-01
 
 ### Changed — normative overlay selection

@@ -76,7 +76,11 @@ function UploadDemo() {
     </div>
   );
 }
-export const Upload = { name: "FileUpload", render: () => <UploadDemo /> };
+export const Upload = {
+  name: "FileUpload",
+  parameters: { docs: { description: { story: "O FileUpload ocupa toda a largura disponível como uma única zona de clique e arrastar-soltar, com borda tracejada íntegra. Ele não pode encolher como um label inline." } } },
+  render: () => <UploadDemo />,
+};
 
 function DateDemo() {
   const [v, setV] = useState("");
