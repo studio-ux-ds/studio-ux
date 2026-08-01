@@ -89,6 +89,24 @@ export const Completo = {
   render: () => <FullDemo />,
 };
 
+function SelecaoElegivelDemo() {
+  const [selected, setSelected] = useState([]);
+  return <div style={{ padding: 24, background: "var(--su-surface-base)" }}>
+    <DataTable
+      columns={columns} rows={ROWS} getRowId={(row) => row.id}
+      isRowSelectable={(row) => row.status !== "bloqueado"}
+      selectedIds={selected} onSelectionChange={setSelected}
+      bulkActions={(ids, clear) => <><Button variant="secondary" size="sm">Processar ({ids.length})</Button><Button variant="secondary" size="sm" onClick={clear}>Limpar</Button></>}
+    />
+  </div>;
+}
+
+export const SelecaoElegivelControlada = {
+  name: "Seleção elegível e controlada",
+  parameters: { docs: { description: { story: "`isRowSelectable` impede que estados finais sejam selecionados. `selectedIds` e `onSelectionChange` tornam a seleção controlada, preservando-a quando a paginação troca as linhas visíveis." } } },
+  render: () => <SelecaoElegivelDemo />,
+};
+
 export const Simples = {
   name: "Simples",
   parameters: { docs: { description: { story: "Só colunas + linhas, sem toolbar nem menu (seleção continua disponível)." } } },

@@ -105,6 +105,20 @@ function FiltrosCompactosDemo() {
 
 export const FiltrosCompactos = { name: "Filtros compactos (Drawer)", render: () => <FiltrosCompactosDemo /> };
 
+export const AcoesSecundariasAbaixo = {
+  name: "Ações secundárias em linha fixa",
+  parameters: { docs: { description: { story: "Use `toolbarActionsPlacement=\"below\"` quando exportar, importar ou sincronizar precisa ocupar uma segunda linha estável. A mudança de largura do botão de filtro nunca pode puxar essas ações de volta para a primeira linha." } } },
+  render: () => <Frame><ListScreen
+    title="Associados" subtitle="Ações de lista mantêm posição previsível."
+    primaryAction={<Button variant="primary" icon="plus">Adicionar associado</Button>}
+    listTitle="Base de associados" search="" onSearch={() => {}} searchPlaceholder="Buscar nome, e-mail ou CPF"
+    segments={[{ id: "ativos", label: "Ativos" }, { id: "arquivados", label: "Arquivados" }, { id: "todos", label: "Todos" }]} segment="ativos" onSegment={() => {}}
+    filterContent={<Field label="Situação"><Select><option>Todos status</option></Select></Field>} filterLabel="Filtros" filtersActive
+    toolbarActions={[{ label: "Importar XLSX", icon: "upload", onClick: () => {} }, { label: "Exportar", icon: "download", onClick: () => {} }]}
+    toolbarActionsPlacement="below" columns={columns} rows={RAW} getRowId={(row) => row.id}
+  /></Frame>,
+};
+
 export const Carregando = {
   name: "Carregando",
   render: () => (

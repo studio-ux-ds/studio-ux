@@ -8,6 +8,26 @@
 
 ## [Unreleased]
 
+## [1.2.54] - 2026-08-01
+
+### Added — stable list actions and eligible controlled selection
+
+- `ListScreen.toolbarActionsPlacement="below"` reserves a full second Toolbar row
+  for secondary actions. Import, export and synchronization keep their position
+  when search, segments or the filter label change width.
+- `DataTable` now accepts `isRowSelectable` for final/ineligible rows and the
+  controlled pair `selectedIds` / `onSelectionChange` for selections that must
+  persist across pagination.
+
+### Storybook and component reference
+
+- Added live stories for fixed secondary list actions and eligible controlled
+  selection, and documented both contracts in the component library.
+
+### Canary consumer
+
+- AquaPark: associates, sellers/managers and commissions.
+
 ## [1.2.53] - 2026-07-30
 
 ### Added — controlled table sorting and structured flow Sheet

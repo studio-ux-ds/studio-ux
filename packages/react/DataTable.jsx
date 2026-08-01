@@ -50,25 +50,42 @@ function SelectBox({ checked, indeterminate, onChange, label, single, name }) {
  * @param {React.ReactNode} [footer]  rodapé dentro do card (ex.: contagem + Pagination)
  * @param {boolean} [selectable]  mostra a coluna de seleção. Default: só quando há `bulkActions`
  *   (sem ações de lote não há por que ter checkbox — mantém a lista "calma", igual ao Flux).
+ * @param {(row:any)=>boolean} [isRowSelectable] limita a seleção às linhas elegíveis.
+ * @param {Array<string|number>} [selectedIds] seleção controlada, para paginação ou estado externo.
+ * @param {(ids:Array<string|number>)=>void} [onSelectionChange] recebe a próxima seleção controlada.
  * @param {"multiple"|"single"} [selectionMode]  quantos registros a seleção aceita. Default
  *   `"multiple"`. Use `"single"` quando a ação **não pode** ser feita em massa — seja porque é
  *   perigosa (aprovar uma ação de IA, estornar) ou porque o backend só atende um por vez. Em
  *   `"single"` marcar uma linha desmarca a anterior e o "marcar todos" do cabeçalho não existe:
  *   a interface deixa de oferecer o que o sistema não faz, em vez de recusar depois (P13).
  */
-export function DataTable({ columns, rows, getRowId = (r, i) => i, bulkActions, renderRowMenu, toolbar, footer, selectable: selectableProp, selectionMode = "multiple", bare = false, onRowClick, getRowLabel, sort, onSort }) {
+export function DataTable({ columns, rows, getRowId = (r, i) => i, bulkActions, renderRowMenu, toolbar, footer, selectable: selectableProp, selectionMode = "multiple", bare = false, onRowClick, getRowLabel, sort, onSort, isRowSelectable = () => true, selectedIds, onSelectionChange }) {
   const selectable = selectableProp != null ? selectableProp : bulkActions != null;
   const single = selectionMode === "single";
   const radioName = `su-select-${useId()}`;
-  const [sel, setSel] = useState(() => new Set());
-  const ids = rows.map(getRowId);
-  const allChecked = !single && rows.length > 0 && sel.size === rows.length;
-  const toggle = (id) => setSel((s) => {
-    if (single) return s.has(id) ? new Set() : new Set([id]);
-    const n = new Set(s); n.has(id) ? n.delete(id) : n.add(id); return n;
-  });
-  const toggleAll = () => setSel(allChecked ? new Set() : new Set(ids));
-  const clear = () => setSel(new Set());
+  const [internalSelection, setInternalSelection] = useState(() => new Set());
+  const controlled = selectedIds != null;
+  const selection = controlled ? new Set(selectedIds) : internalSelection;
+  const selectableRows = rows.filter(isRowSelectable);
+  const selectableIds = selectableRows.map(getRowId);
+  const allChecked = !single && selectableIds.length > 0 && selectableIds.every((id) => selection.has(id));
+  const commitSelection = (next) => {
+    if (controlled) onSelectionChange?.(Array.from(next));
+    else setInternalSelection(next);
+  };
+  const toggle = (id) => {
+    const next = new Set(selection);
+    if (single) { if (next.has(id)) next.clear(); else { next.clear(); next.add(id); } }
+    else if (next.has(id)) next.delete(id); else next.add(id);
+    commitSelection(next);
+  };
+  const toggleAll = () => {
+    const next = new Set(selection);
+    if (allChecked) selectableIds.forEach((id) => next.delete(id));
+    else selectableIds.forEach((id) => next.add(id));
+    commitSelection(next);
+  };
+  const clear = () => commitSelection(new Set());
   const selCell = { paddingLeft: 16, width: 34 };
   const sortColumn = (column) => {
     if (!column.sortable || !onSort) return;
@@ -77,15 +94,15 @@ export function DataTable({ columns, rows, getRowId = (r, i) => i, bulkActions, 
   };
 
   const content = <>
-      {selectable && sel.size > 0 ? (
+      {selectable && selection.size > 0 ? (
         <div style={{ display: "flex", alignItems: "center", gap: 20, padding: "13px 16px", background: "var(--su-action-tint)", fontSize: 12 }}>
           {/* Sem ícone de caixa marcada aqui: a barra já diz "N selecionado" por
               escrito e as linhas já mostram o próprio estado. O ícone era a mesma
               informação uma terceira vez — ruído competindo com o dado (P1). */}
           <span style={{ fontWeight: 500 }}>
-            {sel.size} selecionado{sel.size > 1 ? "s" : ""}
+            {selection.size} selecionado{selection.size > 1 ? "s" : ""}
           </span>
-          {bulkActions && bulkActions(Array.from(sel), clear)}
+          {bulkActions && bulkActions(Array.from(selection), clear)}
           {/* "Limpar" é ação: botão de verdade, não um <span> clicável (era
               inalcançável por teclado). */}
           <button
@@ -108,7 +125,7 @@ export function DataTable({ columns, rows, getRowId = (r, i) => i, bulkActions, 
                 {!single && (
                   <SelectBox
                     checked={allChecked}
-                    indeterminate={sel.size > 0}
+                    indeterminate={selection.size > 0}
                     onChange={toggleAll}
                     label={allChecked ? "Desmarcar todas as linhas" : "Marcar todas as linhas"}
                   />
@@ -131,7 +148,7 @@ export function DataTable({ columns, rows, getRowId = (r, i) => i, bulkActions, 
         </thead>
         <tbody>
           {rows.map((r, i) => {
-            const id = getRowId(r, i); const on = sel.has(id);
+            const id = getRowId(r, i); const on = selection.has(id); const rowSelectable = isRowSelectable(r);
             const open = () => onRowClick && onRowClick(r);
             return (
               <tr key={id} className={onRowClick ? "su-table__row--clickable" : undefined} tabIndex={onRowClick ? 0 : undefined}
@@ -140,13 +157,13 @@ export function DataTable({ columns, rows, getRowId = (r, i) => i, bulkActions, 
                 style={on ? { background: "color-mix(in srgb, var(--su-action) 5%, transparent)" } : undefined}>
                 {selectable && (
                   <td style={{ paddingLeft: 16 }} onClick={(event) => event.stopPropagation()}>
-                    <SelectBox
+                    {rowSelectable && <SelectBox
                       single={single}
                       name={radioName}
                       checked={on}
                       onChange={() => toggle(id)}
                       label={getRowLabel ? `Selecionar ${getRowLabel(r)}` : "Selecionar esta linha"}
-                    />
+                    />}
                   </td>
                 )}
                 {columns.map((c) => <td key={c.key} className={c.align === "right" ? "num" : ""}>{c.render ? c.render(r) : r[c.key]}</td>)}

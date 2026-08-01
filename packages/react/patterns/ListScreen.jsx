@@ -46,7 +46,7 @@ function FilterPanel({ content, active, label, onClear }) {
   </>;
 }
 
-function Toolbar({ listTitle, search, onSearch, searchPlaceholder, segments, segment, onSegment, filterContent, filtersActive, filterLabel, onClearFilters, toolbarActions }) {
+function Toolbar({ listTitle, search, onSearch, searchPlaceholder, segments, segment, onSegment, filterContent, filtersActive, filterLabel, onClearFilters, toolbarActions, toolbarActionsPlacement = "inline" }) {
   return <div className="su-toolbar">
     {listTitle && <span className="su-toolbar__title">{listTitle}</span>}
     <div className="su-toolbar__spacer" />
@@ -56,7 +56,7 @@ function Toolbar({ listTitle, search, onSearch, searchPlaceholder, segments, seg
     </div>}
     {segments && segments.length > 0 && <SegmentedControl items={segments} value={segment} onChange={onSegment} />}
     <FilterPanel content={filterContent} active={filtersActive} label={filterLabel} onClear={onClearFilters} />
-    {toolbarActions && toolbarActions.length > 0 && <div className="su-toolbar__actions">
+    {toolbarActions && toolbarActions.length > 0 && <div className={["su-toolbar__actions", toolbarActionsPlacement === "below" && "su-toolbar__actions--below"].filter(Boolean).join(" ")}>
       {toolbarActions.map((action, index) => <Button key={index} variant="secondary" size="sm" icon={action.icon} onClick={action.onClick}>{action.label}</Button>)}
     </div>}
   </div>;
@@ -78,14 +78,14 @@ function SkeletonRows({ n = 5 }) {
 export function ListScreen({
   title, subtitle, primaryAction,
   listTitle, search, onSearch, searchPlaceholder, segments, segment, onSegment,
-  filterContent, filtersActive, filterLabel, onClearFilters, toolbarActions,
+  filterContent, filtersActive, filterLabel, onClearFilters, toolbarActions, toolbarActionsPlacement,
   columns, rows = [], getRowId = (row, index) => index, renderRowMenu, bulkActions, onRowClick, getRowLabel, sort, onSort,
   renderCard,
   summary, page, pageCount, onPage,
   loading, error, filterActive, emptyNew, emptyFiltered,
 }) {
   const narrow = useNarrow();
-  const toolbar = <Toolbar listTitle={listTitle} search={search} onSearch={onSearch} searchPlaceholder={searchPlaceholder} segments={segments} segment={segment} onSegment={onSegment} filterContent={filterContent} filtersActive={filtersActive} filterLabel={filterLabel} onClearFilters={onClearFilters} toolbarActions={toolbarActions} />;
+  const toolbar = <Toolbar listTitle={listTitle} search={search} onSearch={onSearch} searchPlaceholder={searchPlaceholder} segments={segments} segment={segment} onSegment={onSegment} filterContent={filterContent} filtersActive={filtersActive} filterLabel={filterLabel} onClearFilters={onClearFilters} toolbarActions={toolbarActions} toolbarActionsPlacement={toolbarActionsPlacement} />;
   const hasPagination = typeof pageCount === "number" && pageCount > 1;
   const footer = (summary || hasPagination) ? <div className="su-listcard__foot">
     {summary && <span>{summary}</span>}
