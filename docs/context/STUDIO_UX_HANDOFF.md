@@ -4,7 +4,7 @@
 >
 > **EN** — This file exists because an assistant's memory is compacted in long sessions and it loses the thread (especially tracking versions). **The source of truth is git + `CHANGELOG.md`, NEVER memory.** Every new session starts by reading: (1) `git log --oneline -3` and `git tag`, (2) this file, (3) `STUDIO_UX.md`, (4) the current front's doc.
 
-> Última atualização · Last updated: 2026-07-30 (ordenacao controlada e Sheet estruturado em preparação para revisão visual/CI; biblioteca e adoção por jornada seguem em evolução · controlled sorting and structured Sheet are prepared for visual/CI review; component library and journey adoption remain in progress).
+> Última atualização · Last updated: 2026-08-01 (regra normativa de escolha entre Modal, Drawer, Sheet e detalhe inline registrada; AquaPark Produtos é o consumidor-canário em correção visual · normative choice between Modal, Drawer, Sheet and inline detail recorded; AquaPark Products is the visual-correction canary).
 
 ---
 
@@ -20,6 +20,13 @@
 ---
 
 ## ✅ Estado vigente · Current state
+
+- **Escolha de contêiner (Unreleased):** Modal Desktop + Sheet Mobile é para
+  uma intenção curta e fechada, sem Tabs, escrita, arquivo ou prévia; Drawer é
+  exclusivamente inspetor de item dentro de editor/canvas que precisa manter o
+  contexto ao redor visível; Tabs e trabalho contínuo promovem para detalhe
+  inline ou rota. A contagem de campos não é o teste. Storybook e biblioteca de
+  componentes registram a regra. Consumidor-canário: AquaPark Produtos.
 
 - **Vendedores — contratos de apoio (v1.2.53):** a auditoria da migração do
   AquaPark gerou ordenação controlada em `DataTable`/`ListScreen` e `Sheet`

@@ -20,7 +20,7 @@ function CamposCarregando() {
 
 /**
  * FormScreen — o molde **`form`** (`STUDIO_UX_TEMPLATES` §2, deriva de `FORMS`):
- * criar ou editar um registro, **em rota própria**.
+ * criar ou editar um registro na **camada de conteúdo**, inline ou em rota própria.
  *
  * Regiões: voltar (opcional) → cabeçalho → `Card` com os campos → ações
  * (Cancelar *ghost* à esquerda, Salvar *primary* à direita).

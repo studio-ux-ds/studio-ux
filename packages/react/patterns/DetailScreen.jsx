@@ -38,9 +38,11 @@ function CamposCarregando() {
  * 3. **Carregando e erro moram DENTRO da aba**, não no lugar da tela: quem já
  *    leu o título e clicou numa aba não pode ver o cabeçalho sumir.
  *
- * Quem edita esse registro vai para uma **rota** própria (`/…/:id/editar`) — a
- * regra dos três containers (`COMPONENT_LIBRARY`): Modal é leitura e campo
- * curto; registro que existe por si tem endereço.
+ * O detalhe pode ocupar a **camada inline** da lista quando isso preserva a
+ * continuidade, ou uma rota própria (`/…/:id`) quando precisa de endereço. A
+ * regra dos três containers (`COMPONENT_LIBRARY`) é objetiva: Modal é uma
+ * intenção curta e fechada; Drawer é inspetor de editor/canvas; conteúdo com
+ * abas, escrita ou continuidade fica na camada de conteúdo.
  *
  * @param {React.ReactNode} title
  * @param {React.ReactNode} [subtitle]

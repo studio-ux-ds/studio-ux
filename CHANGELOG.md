@@ -6,7 +6,26 @@
 
 ---
 
-## [Unreleased]
+## [1.2.56] - 2026-08-01
+
+### Changed — normative overlay selection
+
+- The component library now defines one container-selection rule: a centered
+  Modal on Desktop and a Sheet on Mobile for a single short closed-answer task;
+  Drawer only as an inspector inside an editor/canvas; inline detail or route
+  for Tabs, writing, file/preview, relationships or continuous work.
+- Field count is explicitly not the deciding factor. A compact, legible form may
+  have more than four simple fields without becoming a Drawer.
+
+### Storybook
+
+- The Modal story now documents the rule and demonstrates a short multi-field
+  form that remains Modal-appropriate.
+
+### Consumer follow-up
+
+- AquaPark Products: Lotes moves from Desktop Drawer to Modal; existing Títulos
+  moves from Drawer to inline DetailScreen because it has Tabs and a PDF editor.
 
 ## [1.2.55] - 2026-08-01
 
