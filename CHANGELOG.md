@@ -6,6 +6,18 @@
 
 ---
 
+## [1.2.58] - 2026-08-02
+
+### Fixed — metric-grid section rhythm
+
+- `.su-statgrid` now owns the mandatory section gap after the final metric.
+  A following heading, list or form cannot visually attach to the KPI grid, and
+  consumers must not add a local compensating margin.
+- The Dashboard component reference and Storybook explicitly document that
+  composition rule.
+
+---
+
 ## [1.2.57] - 2026-08-01
 
 ### Fixed — FileUpload layout contract

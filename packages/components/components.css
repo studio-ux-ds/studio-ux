@@ -747,8 +747,11 @@
 .su-listscreen > * { min-width: 0; }
 
 /* Grade de indicadores do molde `dashboard`. Auto-fit colapsa trilhas vazias: sem media
-   query, o navegador encaixa quantos KPIs couberem e cai para um em tela estreita. */
-.su-statgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--su-space-4); }
+   query, o navegador encaixa quantos KPIs couberem e cai para um em tela estreita.
+   A grade é um BLOCO de leitura: sempre se separa do próximo cabeçalho, lista ou
+   formulário pelo ritmo de seção. Consumidor não acrescenta margem manual; sem esta
+   saída, o título seguinte parece pertencer ao último KPI. */
+.su-statgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--su-space-4); margin-block-end: var(--su-space-5); }
 /* Blocos de conteúdo do dashboard (gráfico + resumo). Mesmo princípio, coluna mais larga. */
 .su-blocks { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--su-space-4); align-items: start; }
 .su-blocks--single { grid-template-columns: 1fr; }
