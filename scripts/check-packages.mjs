@@ -148,5 +148,32 @@ for (const file of commentFiles) {
   }
 }
 
+// Alias do DSIcon NÃO pode ter o mesmo nome de um glifo real. `ALIASES[name] || name`
+// dá precedência ao alias, então um alias homônimo ANULA o glifo curado — sem erro,
+// sem aviso, e a tela desenha outra coisa. Reincidiu duas vezes:
+//   v1.2.15 — `square`/`square-check`/`square-minus` → a caixa de seleção da
+//             DataTable renderizava um DOCUMENTO.
+//   v1.2.59 — `copy`→`file`, `history`→`refresh`, `upload`→`arrow-up-right`,
+//             `shield`→`lock`, `alert-triangle`→`alert-circle`: cinco glifos
+//             curados anulados; "copiar" saía como documento.
+// Da segunda vez o comentário de aviso já existia no arquivo e não bastou — por
+// isso agora é o build que reprova.
+{
+  const iconsSrc = readFileSync(join(root, "packages/icons/icons.js"), "utf8");
+  const glifos = new Set([...iconsSrc.matchAll(/^\s*"([a-z][a-z0-9-]*)":\s*\{\s*meaning:/gm)].map((m) => m[1]));
+  const dsIcon = readFileSync(join(root, "packages/react/DSIcon.jsx"), "utf8");
+  const bloco = dsIcon.split("const ALIASES = {")[1]?.split("};")[0] ?? "";
+  if (!bloco) fail("packages/react/DSIcon.jsx: não encontrei o bloco ALIASES — o formato mudou?");
+  for (const m of bloco.matchAll(/^\s*"?([a-z][a-z0-9-]*)"?\s*:\s*"([a-z][a-z0-9-]*)"/gm)) {
+    const [, de, para] = m;
+    if (glifos.has(de)) {
+      fail(`packages/react/DSIcon.jsx: alias "${de}" → "${para}" anula o glifo real "${de}" de icons.js — remova a linha (alias é só para nome legado SEM glifo próprio).`);
+    }
+    if (!glifos.has(para)) {
+      fail(`packages/react/DSIcon.jsx: alias "${de}" aponta para "${para}", que não existe em icons.js — renderizaria "help".`);
+    }
+  }
+}
+
 console.log(errors ? `\n${errors} problema(s).` : "\nTudo certo — pacotes prontos para empacotar.");
 process.exit(errors ? 1 : 0);

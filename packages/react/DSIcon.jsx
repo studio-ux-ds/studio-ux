@@ -9,10 +9,7 @@ const ALIASES = {
   pencil: "edit",
   dots: "more",
   eye: "search",
-  copy: "file",
-  history: "refresh",
   "file-invoice": "file",
-  upload: "arrow-up-right",
   "loader-2": "refresh",
   "wifi-off": "alert-circle",
   wallet: "file",
@@ -24,13 +21,24 @@ const ALIASES = {
   "layout-navbar": "menu",
   adjustments: "settings",
   "circle-check": "check-circle",
-  // `square`, `square-check` e `square-minus` NÃO são mais alias: viraram glifos
-  // de verdade em `icons.js` (v1.2.15). Estavam apontando para ícones sem relação
-  // — `square` → `file` fazia a caixa de seleção da DataTable renderizar um
-  // DOCUMENTO, e `square-check` → `check-circle` a marcada virar um círculo.
-  // Alias tem precedência sobre o glifo (`ALIASES[name] || name`), então manter
-  // as três linhas aqui anularia os ícones novos.
-  "alert-triangle": "alert-circle",
+  // ─────────────────────────────────────────────────────────────────────────
+  // NÃO reintroduzir alias para um nome que JÁ É glifo em `icons.js`.
+  //
+  // `ALIASES[name] || name` dá precedência ao alias, então um alias com o mesmo
+  // nome de um glifo real ANULA o glifo — silenciosamente, sem erro nenhum.
+  //
+  // Já aconteceu duas vezes:
+  //  • v1.2.15 — `square`/`square-check`/`square-minus` apontavam para `file` e
+  //    `check-circle`: a caixa de seleção da DataTable renderizava um DOCUMENTO.
+  //  • v1.2.59 — `copy`→`file`, `history`→`refresh`, `upload`→`arrow-up-right`,
+  //    `shield`→`lock` e `alert-triangle`→`alert-circle`. Todos os cinco tinham
+  //    glifo próprio e curado; "copiar" aparecia como documento e "enviar
+  //    arquivo" como seta diagonal.
+  //
+  // Antes de acrescentar uma linha aqui: confira que o nome NÃO está em
+  // `packages/icons/manifest.json`. Alias existe para nome LEGADO (Tabler) que
+  // não tem equivalente próprio — não para renomear glifo que já temos.
+  // ─────────────────────────────────────────────────────────────────────────
   inbox: "file",
   "calendar-event": "calendar",
   "layout-dashboard": "dashboard",
@@ -39,7 +47,6 @@ const ALIASES = {
   "cloud-download": "download",
   "settings-2": "settings",
   tags: "file",
-  shield: "lock",
   palette: "settings",
   "trending-down": "trending-up",
   sun: "moon",
