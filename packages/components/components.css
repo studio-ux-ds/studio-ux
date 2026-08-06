@@ -805,10 +805,15 @@
 
 .su-toolbar { display: flex; align-items: center; gap: var(--su-space-3); padding: var(--su-space-3) var(--su-space-4); border-bottom: 1px solid var(--su-border-subtle); flex-wrap: wrap; }
 .su-toolbar__title { font-size: var(--su-fs-body); font-weight: var(--su-fw-semibold); color: var(--su-text-primary); }
-/* `width: auto` reverte o `width: 100%` que o `.su-input` passou a ter (v1.2.14):
-   aqui o `.su-input` está numa DIV que vive numa flex row da toolbar, ao lado do
-   SegmentedControl e das ações — se esticasse, empurraria os dois pra fora. */
-.su-toolbar__search { display: inline-flex; width: auto; align-items: center; gap: var(--su-space-2); min-width: 200px; color: var(--su-text-muted); }
+/* A busca CRESCE com o espaço livre, até um teto (v1.2.61).
+   O `width: auto` de antes revertia o `width: 100%` do `.su-input` (v1.2.14) —
+   necessário, senão a busca empurraria SegmentedControl e ações pra fora. Mas
+   fixar a largura no mínimo desperdiçava a toolbar inteira numa tela larga: o
+   campo ficava com 200px e sobravam centenas de pixels vazios ao lado.
+   `flex` resolve os dois: ocupa a folga quando existe, encolhe até `min-width`
+   quando não existe, e o `max-width` impede que uma toolbar quase vazia vire um
+   campo de busca gigante. */
+.su-toolbar__search { display: inline-flex; flex: 1 1 240px; max-width: 420px; align-items: center; gap: var(--su-space-2); min-width: 200px; color: var(--su-text-muted); }
 .su-toolbar__search input { border: 0; outline: none; background: transparent; font: inherit; font-size: var(--su-fs-body-sm); color: var(--su-text-primary); flex: 1; min-width: 0; }
 .su-toolbar__spacer { flex: 1; }
 .su-toolbar__actions { display: flex; align-items: center; gap: var(--su-space-2); }

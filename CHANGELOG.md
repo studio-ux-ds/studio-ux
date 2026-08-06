@@ -6,6 +6,19 @@
 
 ---
 
+## [1.2.61] - 2026-08-05
+
+### Fixed — the list toolbar search now uses the space it has
+
+- `.su-toolbar__search` was pinned to its minimum width, so on a wide screen the
+  field stayed at 200px while hundreds of pixels sat empty beside it.
+- It now grows into the free space (`flex: 1 1 240px`) up to a `max-width` of
+  420px, and still shrinks to `min-width` when the toolbar is crowded. The
+  `width: auto` that v1.2.14 introduced is no longer needed: `flex` already
+  prevents the field from pushing the SegmentedControl and the actions out.
+
+---
+
 ## [1.2.60] - 2026-08-05
 
 ### Fixed — five curated glyphs were being shadowed by their own aliases
