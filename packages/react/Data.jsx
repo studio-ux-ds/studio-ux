@@ -2,14 +2,27 @@ import React, { useState } from "react";
 import { DSIcon } from "./DSIcon.jsx";
 
 /**
- * DescriptionList — pares chave/valor (.su-dl). Tela de detalhe.
- * @param {{key:string, value:React.ReactNode}[]} items
+ * DescriptionList — a ficha de um registro (.su-dl). Tela de detalhe.
+ *
+ * Os pares se distribuem em grade: numa tela larga a ficha rende várias colunas
+ * em vez de descer numa única fileira com a largura toda vazia ao lado. Quem
+ * decide quantas colunas é o espaço, não uma media query — igual ao `FormGrid`.
+ *
+ * @param {{key:string, value:React.ReactNode, wide?:boolean}[]} items
+ *        `wide` dá a linha inteira ao par — para observação, endereço, texto
+ *        longo, que espremido numa coluna estica a altura de todas as outras.
+ * @param {boolean} [rows]  Empilha em coluna única (rótulo ao lado do valor).
+ *        Para resumo estreito, painel lateral ou confirmação curta.
+ * @param {number|string} [min]  Piso de uma coluna (default 220px). Suba quando
+ *        os valores forem longos e a ficha estiver quebrando cedo demais.
  */
-export function DescriptionList({ items }) {
+export function DescriptionList({ items, rows = false, min, className = "", style, ...rest }) {
+  const cls = ["su-dl", rows ? "su-dl--rows" : "", className].filter(Boolean).join(" ");
+  const estilo = min ? { "--su-dl-min": typeof min === "number" ? `${min}px` : min, ...style } : style;
   return (
-    <div className="su-dl">
+    <div className={cls} style={estilo} {...rest}>
       {items.map((it, i) => (
-        <div className="su-dl__row" key={i}>
+        <div className={`su-dl__row${it.wide ? " su-dl__row--wide" : ""}`} key={i}>
           <span className="su-dl__key">{it.key}</span>
           <span className="su-dl__val">{it.value}</span>
         </div>

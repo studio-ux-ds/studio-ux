@@ -41,6 +41,7 @@ Dono · Owner:                este doc, para o domínio "regras imperativas para
 - **Nunca use** `alert()/confirm()/prompt()` nativos nem banner improvisado — feedback é por toast. (P12)
 - **Nunca faça ação destrutiva sem os 5** (ConfirmDialog, disclaimer, tooltip, loading, gate de permissão). (P13)
 - **Nunca crie um segundo jeito** de resolver o que já tem componente/padrão. (P2, P3)
+- **Nunca desça uma ficha de leitura numa coluna só** num container largo, nem separe rótulo e valor com `space-between`. Pares rótulo↔valor se distribuem pela largura (`DescriptionList`), como campos de formulário. E antes de dividir um detalhe em abas, verificar se o conteúdo cabe distribuído — aba que compensa layout desperdiçado esconde informação sem motivo. (P26)
 - **Nunca defina aqui um assunto que tem outro dono** (SSOT, `STUDIO_UX.md` §11). Referencie o dono; não duplique.
 - **Nunca amarre** uma regra permanente a uma tecnologia (React, Tailwind, CSS…). Princípio é agnóstico. (`STUDIO_UX.md` §13)
 - **Nunca viole um princípio em silêncio.** Diga qual, por quê, e proponha um ADR.

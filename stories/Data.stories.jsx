@@ -9,16 +9,31 @@ export default {
 
 export const DL = {
   name: "DescriptionList",
-  parameters: { docs: { description: { story: "`.su-dl` — itens `{ key, value }`. Tela de detalhe." } } },
+  parameters: { docs: { description: { story: "`.su-dl` — itens `{ key, value, wide? }`. A ficha se distribui em grade: numa tela larga rende várias colunas em vez de descer numa fileira só com a largura vazia ao lado. `wide` dá a linha inteira ao par; `rows` volta à coluna única (resumo estreito, painel lateral). Esta story roda em largura CHEIA de propósito — a versão anterior vivia dentro de um `maxWidth: 460` e por isso o defeito de distribuição nunca aparecia aqui." } } },
   render: () => (
-    <div style={{ maxWidth: 460 }}>
-      <DescriptionList items={[
-        { key: "Razão social", value: "Acme Comércio Ltda" },
-        { key: "CNPJ", value: "12.345.678/0001-90" },
-        { key: "Plano", value: <Badge status="success">Anual</Badge> },
-        { key: "Responsável", value: "Ana Prado" },
-        { key: "Desde", value: "12/03/2024" },
-      ]} />
+    <div style={{ display: "grid", gap: 32 }}>
+      <div>
+        <p style={{ fontSize: 12, color: "var(--su-text-secondary)", marginBottom: 8 }}>Padrão — grade, largura cheia</p>
+        <DescriptionList items={[
+          { key: "Razão social", value: "Acme Comércio Ltda" },
+          { key: "CNPJ", value: "12.345.678/0001-90" },
+          { key: "Plano", value: <Badge status="success">Anual</Badge> },
+          { key: "Responsável", value: "Ana Prado" },
+          { key: "Desde", value: "12/03/2024" },
+          { key: "Cidade", value: "Vitória — ES" },
+          { key: "Situação", value: <Badge status="success">Em dia</Badge> },
+          { key: "Contrato", value: "vence em 05/2027" },
+          { key: "Observação", wide: true, value: "Reajuste anual pelo IPCA aplicado em junho; renovação automática salvo aviso com 60 dias de antecedência." },
+        ]} />
+      </div>
+      <div style={{ maxWidth: 320 }}>
+        <p style={{ fontSize: 12, color: "var(--su-text-secondary)", marginBottom: 8 }}>`rows` — coluna única, para painel estreito</p>
+        <DescriptionList rows items={[
+          { key: "Plano", value: <Badge status="success">Anual</Badge> },
+          { key: "Responsável", value: "Ana Prado" },
+          { key: "Desde", value: "12/03/2024" },
+        ]} />
+      </div>
     </div>
   ),
 };

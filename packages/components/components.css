@@ -515,11 +515,78 @@
 .su-step__line--done { background: var(--su-action); }
 
 /* ---------- DescriptionList ---------- */
-.su-dl { width: 100%; font-size: 13px; }
-.su-dl__row { display: flex; justify-content: space-between; padding: var(--su-space-2) 0; }
-.su-dl__row + .su-dl__row { border-top: 1px solid var(--su-border-subtle); }
-.su-dl__key { color: var(--su-text-secondary); }
-.su-dl__val { color: var(--su-text-primary); text-align: right; }
+/* ---------- DescriptionList: a ficha de um registro ----------
+   Pares rótulo↔valor de leitura. Mesmo motor do `form-grid` — e pela mesma
+   razão, porque uma ficha é o espelho de um formulário: onde o formulário tem
+   campos para digitar, a ficha tem pares para ler.
+
+   Até a v1.2.61 cada par era uma LINHA `flex` com `space-between`. Isso produzia
+   dois defeitos que só aparecem em tela larga, e foram os dois que a tela de
+   detalhe mostrava:
+
+   1. O par se separava. `space-between` empurra o rótulo para uma borda e o
+      valor para a outra; num container de 1500px sobravam mais de mil pixels de
+      vazio no meio e o olho perdia a linha entre "Valor" e "R$ 1.500,00".
+   2. A ficha inteira era uma coluna só. Oito campos gastavam ~300px de largura
+      e OITO linhas de altura — a tela descia para a rolagem com dois terços dela
+      vazios ao lado. É o que fazia a tela de detalhe "não aproveitar o espaço" e
+      o que criava pressão para esconder metade do conteúdo atrás de abas.
+
+   Trocar o alinhamento resolve (1) e não toca em (2) — foi a primeira tentativa,
+   e o vazio continuou lá, só menor. A correção é a DISTRIBUIÇÃO: os pares são
+   itens de um grid `auto-fill`, então numa tela larga a ficha rende quatro ou
+   cinco colunas e cabe em duas alturas de linha; num celular vira uma coluna
+   sozinha, sem media query. Dentro de cada par, rótulo em cima e valor embaixo:
+   assim o valor começa onde o rótulo começa e não existe vazio entre os dois,
+   qualquer que seja a largura.
+
+   Como no `form-grid`, o grid **não limita a própria largura** (lição da
+   v1.2.35): ele preenche o container e quem decide a medida de leitura é quem
+   põe a ficha na tela. `--su-dl-min` é o piso de UMA coluna — abaixo disso o
+   valor quebraria em duas linhas. `.su-dl--rows` volta ao empilhamento em coluna
+   única para quando a ficha é curta e serve de resumo lateral. */
+.su-dl {
+  --su-dl-min: 220px;
+  --su-dl-gap: var(--su-space-5);
+  display: grid;
+  gap: var(--su-space-4) var(--su-dl-gap);
+  grid-template-columns: repeat(auto-fill, minmax(min(var(--su-dl-min), 100%), 1fr));
+  align-items: start;
+  width: 100%;
+  font-size: 13px;
+}
+.su-dl__row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.su-dl__key {
+  color: var(--su-text-secondary);
+  font-size: 12px;
+  min-width: 0;
+}
+.su-dl__val {
+  color: var(--su-text-primary);
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+/* Valor longo (uma observação, um endereço, um bloco de texto) ocupa a ficha
+   inteira em vez de espremer uma coluna e empurrar a altura de todas as outras. */
+.su-dl__row--wide { grid-column: 1 / -1; }
+/* Ficha em coluna única: resumo estreito, painel lateral, confirmação curta.
+   Aqui o par volta a ficar lado a lado, com o rótulo numa faixa previsível — não
+   `space-between`, para o valor não fugir da borda. */
+.su-dl--rows { grid-template-columns: 1fr; gap: 0; }
+.su-dl--rows .su-dl__row {
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: var(--su-space-4);
+  align-items: baseline;
+  padding: var(--su-space-2) 0;
+}
+.su-dl--rows .su-dl__row + .su-dl__row { border-top: 1px solid var(--su-border-subtle); }
+.su-dl--rows .su-dl__key { flex: 0 0 clamp(96px, 40%, 180px); font-size: 13px; }
 
 /* ---------- ProgressBar ---------- */
 .su-progress { height: 8px; background: var(--su-surface-sunken); border-radius: var(--su-radius-full); overflow: hidden; }

@@ -6,6 +6,35 @@
 
 ---
 
+## [1.2.62] - 2026-08-06
+
+### Fixed — the description list wasted the width and split each pair in two
+
+- `.su-dl` laid each pair out as a `flex` row with `space-between`. Two defects
+  followed, both visible only on a wide screen:
+  1. **The pair split.** `space-between` throws the label to one edge and the
+     value to the other; in a 1500px container over a thousand pixels of void
+     sat between "Valor" and "R$ 1.500,00" and the eye lost the line.
+  2. **The whole list was one column.** Eight fields spent ~300px of width and
+     eight rows of height, leaving two thirds of the screen empty beside them.
+     This is what made detail screens "waste the space" — and what created the
+     pressure to hide half the content behind tabs.
+- The list now uses the same engine as `FormGrid`: `auto-fill` with a column
+  floor (`--su-dl-min`, default `220px`), no media query and no width cap — the
+  v1.2.35 lesson still holds, the grid resolves distribution and reading measure
+  belongs to whoever places the list. Within a pair the label sits above the
+  value, so the value starts where the label starts and no void remains at any
+  width. Fixing only the alignment would have addressed defect 1 and left 2.
+- `wide` on an item gives it the full row (a note, an address, long text, which
+  squeezed into a column stretches every other column's height). `rows` returns
+  the list to a single column for a narrow summary or side panel, there with the
+  label beside the value in a predictable band — never `space-between`.
+- The Storybook story ran inside a `maxWidth: 460` wrapper, which is why the
+  defect never showed up there. It now renders at full width and covers the
+  default grid, `wide` and `rows`.
+
+---
+
 ## [1.2.61] - 2026-08-05
 
 ### Fixed — the list toolbar search now uses the space it has

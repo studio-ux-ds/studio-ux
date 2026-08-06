@@ -88,6 +88,14 @@ function lintFile(file) {
   const hasData = /\bsu-table\b|class="[^"]*su-m-list/.test(src);
   const hasState = /\bsu-empty\b|\bsu-skeleton\b|\bsu-spinner\b|EmptyState/.test(src);
   if (hasData && !hasState) add(rel, 0, "required-states", "P14", "aviso", "componente de dados (tabela/lista) sem estado vazio/carregando/erro declarado (parcial)");
+  // 2.14 read-data-distributes (P26) — ficha de pares rótulo↔valor montada à mão.
+  // Assinatura estática: `space-between` repetido em irmãos é como se escreve um
+  // par "rótulo à esquerda, valor à direita" — que num container largo separa a
+  // pergunta da resposta e desce a ficha numa coluna só. Três ou mais num arquivo
+  // sem `DescriptionList`/`.su-dl` é ficha à mão, não coincidência.
+  const paresAMao = (src.match(/space-between/g) || []).length;
+  const usaFicha = /\bsu-dl\b|DescriptionList/.test(src);
+  if (paresAMao >= 3 && !usaFicha) add(rel, 0, "read-data-distributes", "P26", "aviso", `${paresAMao} pares alinhados com space-between e nenhum DescriptionList — ficha de leitura montada à mão`);
 
   lines.forEach((ln, i) => {
     const n = i + 1;
