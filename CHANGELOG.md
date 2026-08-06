@@ -6,6 +6,25 @@
 
 ---
 
+## [1.2.63] - 2026-08-06
+
+### Fixed — a legacy FormGrid rule overrode its own column contract
+
+- A late `.su-form-grid` declaration reset every `FormGrid`, including
+  `columns={1}`, to two columns. It caused one-column collections to render as
+  sparse two-card grids. The duplicate rule is removed; the original responsive
+  `auto-fill` contract and numeric column cap now apply consistently.
+
+### Added — TableIdentity keeps record labels and metadata readable
+
+- `TableIdentity` is the standard DataTable cell for a primary label plus a
+  secondary value, such as name + e-mail. The two levels are stacked, preserve
+  their hierarchy and wrap long content instead of merging it into one line.
+- Storybook now documents the component. Consumers to re-adopt: AquaPark
+  Vendedores and Gerentes lists.
+
+---
+
 ## [1.2.62] - 2026-08-06
 
 ### Fixed — the description list wasted the width and split each pair in two

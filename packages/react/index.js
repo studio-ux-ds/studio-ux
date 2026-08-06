@@ -18,6 +18,7 @@ export { Stepper } from "./Stepper.jsx";
 // Dados
 export { Card, StatCard } from "./Card.jsx";
 export { DataTable } from "./DataTable.jsx";
+export { TableIdentity } from "./TableIdentity.jsx";
 export { DescriptionList, Timeline, Pagination, Accordion } from "./Data.jsx";
 export { EmptyState, Skeleton, Spinner, ProgressBar } from "./Feedback.jsx";
 

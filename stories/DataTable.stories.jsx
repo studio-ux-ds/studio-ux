@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { DataTable, Badge, Button, IconButton, Menu, Avatar } from "@studio-ux-ds/react";
+import { DataTable, Badge, Button, IconButton, Menu, Avatar, TableIdentity } from "@studio-ux-ds/react";
 
 export default {
   title: "Dados/DataTable",
@@ -115,6 +115,22 @@ export const Simples = {
       <DataTable columns={columns} rows={ROWS} getRowId={(r) => r.id} />
     </div>
   ),
+};
+
+export const IdentidadeComMeta = {
+  name: "Identidade com metadado",
+  parameters: { docs: { description: { story: "`TableIdentity` mantém a informação principal e seu metadado em duas linhas dentro da célula. Use para nome + e-mail, empresa + responsável ou qualquer identidade de leitura que não pode se misturar na mesma linha." } } },
+  render: () => <div style={{ padding: 24, background: "var(--su-surface-base)" }}>
+    <DataTable
+      columns={[
+        { key: "nome", header: "Cliente", render: (row) => <TableIdentity primary={row.nome} secondary={`${row.contato.toLowerCase().replace(" ", ".")}@acme.com`} /> },
+        { key: "plano", header: "Plano" },
+        { key: "status", header: "Status", render: (row) => statusBadge(row.status) },
+      ]}
+      rows={ROWS}
+      getRowId={(row) => row.id}
+    />
+  </div>,
 };
 
 export const LinhaClicavel = {

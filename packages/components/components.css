@@ -122,6 +122,9 @@
 .su-table td { padding: var(--su-space-4); color: var(--su-text-primary); border-top: 1px solid var(--su-border-subtle); }
 .su-table td.num, .su-table th.num { text-align: right; font-variant-numeric: tabular-nums; }
 .su-table tbody tr:hover td, .su-table tbody tr:hover td { background: var(--su-surface-sunken); }
+.su-table-identity { display: grid; gap: var(--su-space-1); min-width: 0; }
+.su-table-identity__primary { min-width: 0; font-weight: var(--su-fw-semibold); overflow-wrap: anywhere; }
+.su-table-identity__secondary { min-width: 0; color: var(--su-text-secondary); font-size: var(--su-fs-body-sm); overflow-wrap: anywhere; }
 
 /* ---------- Overlay / Modal / Dialog ---------- */
 .su-scrim { position: fixed; inset: 0; background: rgba(20,22,30,.45); display: flex; align-items: center; justify-content: center; padding: var(--su-space-4); z-index: 1000; }
@@ -732,8 +735,6 @@
 .su-form-section { padding: var(--su-space-5) 0; border-top: 1px solid var(--su-border-subtle); }
 .su-form-section:first-child { border-top: none; padding-top: 0; }
 .su-form-section__title { font-size: 13px; font-weight: var(--su-fw-semibold); color: var(--su-text-secondary); margin-bottom: var(--su-space-4); }
-.su-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--su-space-4); }
-.su-form-grid--full { grid-column: 1 / -1; }
 .su-form-actions { display: flex; justify-content: flex-end; gap: var(--su-space-2); padding: var(--su-space-4) 0 0; }
 
 /* ==================== Fase 3, grupo 4: catálogo completo (bloco A do GAP_AUDIT) ==================== */
